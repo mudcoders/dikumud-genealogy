@@ -1,5 +1,5 @@
 #AREADATA
-Name        Graveyard~
+Name        {{ 5 10} Alfa    Graveyard~
 Builders    None~
 VNUMs       3600 3651
 Security    1
@@ -19,7 +19,7 @@ decades of hard work and his somewhat crouched expression is one of deep
 sorrow and depression.  He is haunted by a memory of a lost paradise.
 ~
 65 0 350 S
-2 15 0 1d12+48 1d6+1
+5 15 0 1d12+48 1d6+1
 50 0
 0 Human~ 1
 #3601
@@ -30,7 +30,7 @@ A rotting zombie is staggering towards you with outstretched hands.
 Maggots crawl all over its decaying body.
 ~
 35 512 -750 S
-8 16 0 2d6+60 1d8+2
+5 16 0 2d6+60 1d8+2
 50 0
 0 Undead~ 1
 #3602
@@ -42,7 +42,7 @@ It is a walking corpse with long fangs and long, sharp nails that most of
 resemble claws.  Its eyes are a dark yellow colour and glare hungrily at you.
 ~
 35 512 -750 S
-12 15 0 2d6+72 1d10+2
+4 15 0 2d6+72 1d10+2
 100 0
 0 Undead~ 1
 #3603
@@ -54,7 +54,7 @@ The dusty bones are almost brown.  It must have been buried for a very long
 time.
 ~
 35 512 -750 S
-1 17 0 1d12+36 1d6+2
+3 17 0 1d12+36 1d6+2
 10 0
 0 Undead~ 1
 #3604
@@ -66,7 +66,7 @@ The dusty bones are almost brown.  It must have been buried for a very long
 time.
 ~
 33 512 -750 S
-1 17 0 1d12+36 1d6+2
+5 17 0 1d12+36 1d6+2
 10 0
 0 Undead~ 1
 #3605
@@ -77,7 +77,7 @@ A rotting zombie is staggering towards you with outstretched hands.
 Maggots crawl all over its decaying body.
 ~
 33 512 -750 S
-8 16 0 2d6+60 1d8+2
+5 16 0 2d6+60 1d8+2
 100 0
 0 Undead~ 1
 #0
@@ -847,11 +847,11 @@ S
 
 
 #SPECIALS
-M 3601 spec_cast_undead 	; the rotting zombie
-M 3602 spec_cast_undead 	; the ghastly ghoul
-M 3603 spec_cast_undead 	; a dusty skeleton
-M 3604 spec_cast_undead 	; a dusty skeleton
-M 3605 spec_cast_undead 	; the rotting zombie
+M 3601 spec_cast_undead
+M 3602 spec_cast_undead
+M 3603 spec_cast_undead
+M 3604 spec_cast_undead
+M 3605 spec_cast_undead
 S
 
 
@@ -862,34 +862,34 @@ S
 
 
 #RESETS
-M 0 3604  4 3604  	; a dusty skeleton to In front of the Chapel
-M 0 3604  4 3606  	; a dusty skeleton to A Gravel Path on the Graveyard
-O 0 3610  0 3607  	; A dusty skeleton to In a dusty Tomb
-M 0 3603  5 3609  	; a dusty skeleton to In a dusty Tomb
-M 0 3603  5 3611  	; a dusty skeleton to In a dusty Tomb
-O 0 3613  0 3611  	; A silver dagger to In a dusty Tomb
-M 0 3604  4 3612  	; a dusty skeleton to A Gravel Path on the Graveyard
-M 0 3600  1 3613  	; Henry the Gardener to In a shed on the Graveyard
-G 0 3601  0      	;   A brandy bottle
-O 0 3602  0 3613  	; A brandy bottle to In a shed on the Graveyard
-O 0 3603  0 3613  	; A wheelbarrow to In a shed on the Graveyard
-O 0 3604  0 3613  	; A shovel to In a shed on the Graveyard
-O 0 3605  0 3613  	; A rake to In a shed on the Graveyard
-O 0 3610  0 3615  	; A dusty skeleton to In a dusty Tomb
-M 0 3602  1 3617  	; the ghastly ghoul to In a dusty Tomb
-G 0 3612  0      	;   A silver pendant
-O 0 3610  0 3619  	; A dusty skeleton to In a dusty Tomb
-M 0 3605  3 3638  	; the rotting zombie to A Gravel Path on the Graveyard
-M 0 3603  5 3639  	; a dusty skeleton to In a dusty Tomb
-M 0 3604  4 3640  	; a dusty skeleton to A Gravel Path on the Graveyard
-O 0 3610  0 3641  	; A dusty skeleton to In a dusty Tomb
-O 0 3603  0 3643  	; A wheelbarrow to In a dusty Tomb
-M 0 3605  3 3644  	; the rotting zombie to A Gravel Path on the Graveyard
-M 0 3601  1 3645  	; the rotting zombie to In a dusty Tomb
-G 0 3611  0      	;   A amethyst
-O 0 3610  0 3647  	; A dusty skeleton to In a dusty Tomb
-M 0 3603  5 3649  	; a dusty skeleton to In a dusty Tomb
-M 0 3605  3 3651  	; the rotting zombie to In a dusty Tomb
+M 0 3604 4 3604
+M 0 3604 4 3606
+O 0 3610 0 3607
+M 0 3603 5 3609
+M 0 3603 5 3611
+O 0 3613 0 3611
+M 0 3604 4 3612
+M 0 3600 1 3613
+G 0 3601 0
+O 0 3602 0 3613
+O 0 3603 0 3613
+O 0 3604 0 3613
+O 0 3605 0 3613
+O 0 3610 0 3615
+M 0 3602 1 3617
+G 0 3612 0
+O 0 3610 0 3619
+M 0 3605 3 3638
+M 0 3603 5 3639
+M 0 3604 4 3640
+O 0 3610 0 3641
+O 0 3603 0 3643
+M 0 3605 3 3644
+M 0 3601 1 3645
+G 0 3611 0
+O 0 3610 0 3647
+M 0 3603 5 3649
+M 0 3605 3 3651
 S
 
 

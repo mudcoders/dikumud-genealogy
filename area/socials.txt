@@ -1,4 +1,4 @@
-239
+240
 accuse~
 Accuse whom?~
 $n is in an accusing mood.~
@@ -2149,4 +2149,13 @@ $n makes a jumping dance around $N. $e must be happy.~
 $n makes a jumping dance around you. $e must be happy.~
 You jump up and down with joy!~
 $n jumps up and down with joy!~
+
+flower~
+You admire a beautifull {g---,--'--{{{r@{x on a nearby bush.~
+$n admires a beautifull {g---,--'--{{{r@{x on a nearby bush.~
+You give $M a beautifull {g---,--'--{{{r@{x~
+$n gives $N a beautifull {g---,--'--{{{r@{x~
+$n gives you a beautifull {g---,--'--{{{r@{x~
+You put a beautifull {g---,--'--{{{r@{x in your hair.~
+$n puts a beautifull {g---,--'--{{{r@{x in his hair.~
 

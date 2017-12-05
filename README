@@ -1,5 +1,5 @@
-Mythran Mud release 3.1.1
-Mon Oct 21, 1996
+Mythran Mud release 3.1.11
+Mon Mar 10, 1997
 
 This file was written by:
 
@@ -12,13 +12,13 @@ Mythran Mud Staff:  mythran@envy.com
 Instructions for Installation:
 
 1.	Download the archive from ftp.game.org in the directory
-	/pub/mud/diku/merc/envy/mythran/mythran_3_1_1_tar.gz or from
+	/pub/mud/diku/merc/envy/mythran/mythran.tar.gz or from
 	http://www.delftnet.nl/~mark/mythran
 
 2.	Extract the archive with the command:
-		tar -zxvf mythran-3.1.1.tar.gz
+		tar -zxvf mythran.tar.gz
 	or (if you have an older version of tar)
-		gunzip -c mythran-3.1.1.tar.gz | tar -xvf -
+		gunzip -c mythran.tar.gz | tar -xvf -
 
 3.	Change to the mythran3/src directory and edit config.h to suit your
 	personal preferences.

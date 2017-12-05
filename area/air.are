@@ -1,5 +1,5 @@
 #AREADATA
-Name        In the Air~
+Name        {{ 5 10} Copper  In the Air~
 Builders    None~
 VNUMs       1000 1040
 Security    1
@@ -18,7 +18,7 @@ It's a cute little multi-colored dragon...about 2 foot long.
 It gracefully dances around your head.
 ~
 65 24 500 S
-6 16 0 5d5+50 2d4+1
+4 16 0 5d5+50 2d4+1
 20 0
 0 Dragon~ 2
 #1001
@@ -30,7 +30,7 @@ Golden maned and black all over.  It's quite a beautiful creature if not
 for the fact it is hungry and is attacking you!
 ~
 97 0 300 S
-17 14 0 1d1+104 2d5+2
+8 14 0 1d1+104 2d5+2
 500 0
 0 Harpy~ 1
 #0
@@ -1211,7 +1211,7 @@ S
 
 
 #SPECIALS
-M 1000 spec_cast_mage 	; A fairy dragon
+M 1000 spec_cast_mage
 S
 
 
@@ -1222,10 +1222,10 @@ S
 
 
 #RESETS
-M 0 1000 10 1005  	; A fairy dragon to In the air ...
-M 0 1000 10 1019  	; A fairy dragon to In the air ...
-M 0 1000 10 1022  	; A fairy dragon to In the air ...
-M 0 1001  3 1034  	; A griffin to In the air ...
+M 0 1000 10 1005
+M 0 1000 10 1019
+M 0 1000 10 1022
+M 0 1001 3 1034
 S
 
 

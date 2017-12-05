@@ -243,6 +243,7 @@ void save_rooms( FILE *fp, AREA_DATA *pArea )
 {
     ROOM_INDEX_DATA *pRoomIndex;
     EXTRA_DESCR_DATA *pEd;
+    ROOM_MANA_DATA *pMana;
     EXIT_DATA *pExit;
     int vnum;
     int door;
@@ -266,6 +267,11 @@ void save_rooms( FILE *fp, AREA_DATA *pArea )
 		    fprintf( fp, "E\n%s~\n%s~\n", pEd->keyword,
 			fix_string( pEd->description ) );
                 }
+
+		for ( pMana = pRoomIndex->mana; pMana; pMana = pMana->next )
+		{
+		    fprintf( fp, "M %d %d\n", pMana->type, pMana->amount);
+		}
 
 		for( door = 0; door < MAX_DIR; door++ )
 		{
@@ -333,17 +339,14 @@ void save_mobprogs( FILE *fp, AREA_DATA *pArea )
     {
         if( ( pMobIndex = get_mob_index(vnum) ) )
         {
-            if ( pMobIndex->area == pArea && pMobIndex->spec_fun )
+            if ( pMobIndex->area == pArea && pMobIndex->progtypes ) /* prog */
             {
-		if ( pMobIndex->progtypes )	/* If mob has progs... */
-		{
-		    /* Step 1: Write the prog call to the area file */
-		    fprintf( fp, "M %d %d.prg\n",
-			pMobIndex->vnum,
-			pMobIndex->vnum );
-		    /* Step 2: Create the .prg file... this is the hard part */
-		    write_mobprog(pMobIndex);
-		}
+		/* Step 1: Write the prog call to the area file */
+		fprintf( fp, "M %d %d.prg\n",
+		pMobIndex->vnum,
+		pMobIndex->vnum );
+		/* Step 2: Create the .prg file... this is the hard part */
+		write_mobprog(pMobIndex);
             }
         }
     }
@@ -849,6 +852,9 @@ void do_asave( CHAR_DATA *ch, char *argument )
     char arg1 [MAX_INPUT_LENGTH];
     AREA_DATA *pArea;
     int value;
+    char buf[MAX_INPUT_LENGTH];
+
+    buf[0] = '\0';
 
     if ( !ch )       /* Do an autosave */
     {
@@ -856,8 +862,19 @@ void do_asave( CHAR_DATA *ch, char *argument )
 	save_area_list();
 	for( pArea = area_first; pArea; pArea = pArea->next )
 	{
-	    save_area( pArea );
-	    REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED );
+	    /* Save changed areas. */
+	    if ( IS_SET(pArea->area_flags, AREA_CHANGED)
+	      || IS_SET(pArea->area_flags, AREA_ADDED) )
+	    {
+		if ( !str_infix( "verbose", argument ) )
+		    SET_BIT( pArea->area_flags, AREA_VERBOSE );
+		save_area( pArea );
+		REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
+		sprintf( buf, "%24s - '%s'\n\r", pArea->name, pArea->filename );
+		log_string( buf );
+	    }
+	    /* save_area( pArea ); Changed by Maniac...
+	    REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED ); */
 	}
 	send_to_all_char( "Thank you, the database has been saved.\n\r" );
 	return;
@@ -933,8 +950,6 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( "changed", arg1 ) )
     {
-	char buf[MAX_INPUT_LENGTH];
-
 	save_area_list();
 
 	send_to_char( "Saved zones:\n\r", ch );
@@ -1018,7 +1033,7 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
 void write_mobprog( MOB_INDEX_DATA * pMobIndex )
 {
-	FILE *		fp;
+	FILE *		ofp;
 	MPROG_DATA *	mprg;
 	char		filename[50];
 
@@ -1026,9 +1041,9 @@ void write_mobprog( MOB_INDEX_DATA * pMobIndex )
 
 	sprintf (filename, "%s%d.prg", MOB_DIR, pMobIndex->vnum );
 
-	fclose (fpReserve );
+	/* fclose (fpReserve ); */
 
-	if ( !(fp = fopen( filename, "w" ) ) )
+	if ( !(ofp = fopen( filename, "w" ) ) )
 	{
 		bug ("write_mobprog: open", 0 );
 		perror ( filename );
@@ -1036,14 +1051,14 @@ void write_mobprog( MOB_INDEX_DATA * pMobIndex )
 
 	for ( mprg = pMobIndex->mobprogs; mprg != NULL; mprg = mprg->next )
 	{
-		fprintf (fp, ">%s %s~\n%s~\n",
+		fprintf (ofp, ">%s %s~\n%s~\n",
 			mprog_type_to_name( mprg->type ),
 			mprg->arglist,
 			mprg->comlist );
 	}
-	fprintf (fp, "|\n");
+	fprintf (ofp, "|\n");
 
-	fclose (fp);
-	fpReserve = fopen( NULL_FILE, "r");
+	fclose (ofp);
+	/*	fpReserve = fopen( NULL_FILE, "r"); */
 	return;
 }

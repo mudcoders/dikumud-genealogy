@@ -2123,7 +2123,7 @@ void do_gospouse( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     ROOM_INDEX_DATA *location;
 
-    if ( !( str_cmp( ch->pcdata->spouse, "" ) ) )
+    if ( !ch->pcdata->spouse )
     {
 	send_to_char( "Huh?\n\r", ch );
 	return;
@@ -2162,7 +2162,68 @@ void do_gospouse( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	send_to_char( "You do not have enough mana for that.", ch );
+	send_to_char( "You do not have enough mana for that.\n\r", ch );
 	return;
     }
+}
+
+/* Death of old age */
+/* Player Age System, from Mythran Mud */
+/* (C) 1996 Mythran Mud. */
+
+void die_old_age( CHAR_DATA *ch )
+{
+	char	buf[MAX_STRING_LENGTH];
+
+	buf[0] = '\0';
+
+	send_to_char ("You blow out your last breath, and die at a nice old age.\n\r", ch );
+	do_quit( ch, "" );
+	return;
+}
+
+
+/*
+ * Portal code by Canth (canth@xs4all.nl)
+ * Coded initially for Daisy MUD (daisy.goodnet.com 1234)
+ */
+void do_enter ( CHAR_DATA *ch, char *argument )
+{
+    OBJ_DATA *portal;
+
+    portal = get_obj_room ( ch, argument );
+    if ( !portal )
+    {	/* There is no portal named argument */
+	send_to_char ( "You can't find it.\n\r", ch );
+	return;
+    }
+
+    if ( !( portal->item_type == ITEM_PORTAL ) )
+    {	/* The object found is not a portal */
+	send_to_char ( "That's not a portal!\n\r", ch );
+	return;
+    }
+
+    if ( get_trust( ch ) < portal->value[1] )
+    {	/* Not high enough level to enter */
+	send_to_char ( "You are not experienced enough to enter.\n\r", ch );
+	return;
+    }
+
+    if ( ( ch->level > portal->value[2] ) && ( portal->value[2] != 0 ) )
+    {	/* Too high level to enter */
+	send_to_char ( "You are no longer allowed to enter.\n\r", ch );
+	return;
+    }
+
+    /* Okie, we got a good portal, ch is proper level to enter, let's do it */
+    act ( "$n enters $p", ch, portal, NULL, TO_ROOM );
+    char_from_room ( ch );
+    char_to_room ( ch, get_room_index ( portal->value[0] ) );
+    /* Can't use "$n steps out of a portal here because portals aren't */
+    /* Neccesarily two-ways */
+    act ( "$n appears into the room", ch, NULL, NULL, TO_ROOM );
+    do_look ( ch, "auto" );
+
+    return;
 }

@@ -79,6 +79,52 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
     
 };
 
+/* Mana Table
+ *
+ * int		type;		Mana type
+ * char *	name;		String mana name
+ * int		opposite;	Opposite mana type (type)
+ */
+
+const	struct	mana_type	mana_table	[]	=
+{
+	{
+		MANA_WHITE, "white", MANA_BLACK
+	},
+
+	{
+		MANA_BLACK, "black", MANA_WHITE
+	},
+
+	{
+		MANA_BLUE, "blue", MANA_RED
+	},
+
+	{
+		MANA_RED, "red", MANA_BLUE
+	},
+
+	{
+		MANA_GREEN, "green", MANA_NONE
+	},
+
+	{
+		MANA_YELLOW, "yellow", MANA_NONE
+	},
+
+	{
+		MANA_PURPLE, "purple", MANA_NONE
+	},
+
+	{
+		MANA_BROWN, "brown", MANA_NONE
+	},
+
+	{
+		0, "",0
+	}
+};
+
 /*
  * Clan table.
  */
@@ -95,26 +141,28 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 
 const	struct	clan_type	clan_table	[]     =
 {
+	/* First clan none... then the other clans */
+
 	{
-		-1, "None", "None", 0, 0, {0, 0, 0}, 0
+		0, "None", "None", 0, 0, {0, 0, 0}, 0
 	},
 
 	{
 		1,
 		"Mythran",
 		"mythran",
-		1240, 1240,
-		{ 1240, 1241, 1242 },
-		1240
+		3010, 3054,
+		{ 3001, 3001, 3001 },
+		3001
 	},
 
 	{
 		2,
 		"Dragon",
 		"dragon",
-		1250, 1250,
-		{ 1250, 1251, 1252 },
-		1250
+		3010, 3054,
+		{ 3001, 3001, 3001 },
+		3001
 	},
 
 	/* Last entry */
@@ -696,6 +744,10 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 /*
     char *              name;
     int                 race_lang;
+    int			start_age;
+    int			start_age_mod[2];
+    int			death_age;
+    int			death_age_mod[2];
     int                 race_abilities;
     int                 size;
     int                 str_mod;
@@ -710,7 +762,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Human",
-	HUMAN,
+	HUMAN, 15, { 1, 4 }, 90, { 2, 20 },
 	RACE_PC_AVAIL | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
 	0, 0, 0, 0, 0, 0,
@@ -720,7 +772,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Elf",
-	ELVISH,
+	ELVISH, 100, { 5, 6 }, 350, { 4, 100 },
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_AVERAGE,
@@ -731,7 +783,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Halfelf",
-	ELVISH,
+	ELVISH, 15, { 1, 6 }, 125, { 3, 20 },
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
 	0, 0, 0, 1, 0, 0,
@@ -741,7 +793,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Drow",
-	DROW,
+	DROW, 100, { 5, 6 }, 350, { 4, 100 },
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_PETITE,
@@ -752,7 +804,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Dwarf",
-	DWARVISH,
+	DWARVISH, 40, { 5, 6 }, 250, { 2, 100 },
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
         SIZE_PETITE,
@@ -763,7 +815,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Halfdwarf",
-	DWARVISH,
+	DWARVISH, 40, { 3, 12 }, 250, { 3, 100 }, /* Guessing - Canth */
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
 	0, 0, 0, 0, 1, 0,
@@ -773,7 +825,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Hobbit",
-	HOBBIT,
+	HOBBIT, 20, { 3, 4 }, 100, { 1, 100 }, /* Guessing - Canth */
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_PETITE,
@@ -784,7 +836,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Giant",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 }, /* NPC age = 17, death = none */
 	RACE_WEAPON_WIELD,
 	SIZE_HUGE,
 	2, -1, 0, -1, 1, 0,
@@ -794,7 +846,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Ogre",
-	OGRE,
+	OGRE, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_WEAPON_WIELD,
 	SIZE_HUGE,
 	1, -1, 0, -1, 1, 0,
@@ -804,7 +856,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Orc",
-	ORCISH,
+	ORCISH, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_LARGE,
 	1, -1, 0, 0, 0, 0,
@@ -814,7 +866,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Kobold",
-	KOBOLD,
+	KOBOLD, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
 	-1, -1, 0, 1, 0, 0,
@@ -824,7 +876,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Minotaur",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_LARGE,
 	2, 0, 0, -1, 1, 0,
@@ -834,7 +886,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Troll",
-	TROLLISH,
+	TROLLISH, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_TITANIC,
 	2, -1, 0, 0, 1, 0,
@@ -844,7 +896,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Hobgoblin",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
 	1, 0, -1, 0, 1, 0,
@@ -854,7 +906,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Insect",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_NO_ABILITIES,
 	SIZE_MINUTE,
 	0, 0, 0, 0, -1, 0,
@@ -864,7 +916,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Dragon",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_FLY | RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS |
 		RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_GARGANTUAN,
@@ -875,7 +927,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Animal",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_DETECT_HIDDEN,
 	SIZE_SMALL,
 	0, 0, 0, 1, 0, 0,
@@ -885,7 +937,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"God",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_WATERBREATH | RACE_FLY | RACE_SWIM | RACE_WATERWALK |
 		RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_PROTECTION |
@@ -898,7 +950,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Undead",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_AVERAGE,
@@ -909,7 +961,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Harpy",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_FLY | RACE_DETECT_INVIS,
 	SIZE_AVERAGE,
 	0, 0, 0, 2, 0, 0,
@@ -919,7 +971,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Bear",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_SWIM | RACE_DETECT_HIDDEN,
 	SIZE_AVERAGE,
 	1, 0, 0, -1, 1, 0,
@@ -929,7 +981,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Githyanki",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
 	0, 1, 0, 0, 0, 0,
@@ -939,7 +991,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Elemental",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_NO_ABILITIES,
 	SIZE_LARGE,
 	1, 0, 0, 0, 1, 0,
@@ -949,7 +1001,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Bat",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_FLY | RACE_INFRAVISION,
 	SIZE_MINUTE,
 	-1, 0, 0, 2, -1, 0,
@@ -959,7 +1011,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Plant",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_NO_ABILITIES,
 	SIZE_MINUTE,
 	0, 0, 0, -1, 1, 0,
@@ -969,7 +1021,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Rat",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_PASSDOOR,
         SIZE_MINUTE,
 	-1, 0, 0, 2, -1, 0,
@@ -979,7 +1031,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Vampire",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_FLY | RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
@@ -990,7 +1042,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Werewolf",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS |
 		RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_AVERAGE,
@@ -1001,7 +1053,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Goblin",
-	GOBLIN,
+	GOBLIN, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
 	-1, -1, -1, 1, 0, 0,
@@ -1011,7 +1063,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Faerie",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_FLY | RACE_INFRAVISION | RACE_DETECT_INVIS | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_MINUTE,
@@ -1022,7 +1074,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Arachnid",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_NO_ABILITIES | RACE_WEAPON_WIELD,
 	SIZE_SMALL,
 	0, 0, 0, 1, 0, 0,
@@ -1032,7 +1084,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Mindflayer",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
 	1, 2, 1, -1, 0, 0,
@@ -1042,7 +1094,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Object",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_WATERBREATH,
 	SIZE_AVERAGE,
 	3, 0, 0, 0, 3, 0,
@@ -1052,7 +1104,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Mist",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_FLY | RACE_PASSDOOR,
 	SIZE_PETITE,
 	-1, 0, 0, 3, 0, 0,
@@ -1062,7 +1114,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Snake",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_NO_ABILITIES,
 	SIZE_MINUTE,
 	0, 0, 0, 1, 0, 0,
@@ -1072,7 +1124,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Worm",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_PASSDOOR,
 	SIZE_MINUTE,
 	0, 0, 0, 0, 0, 0,
@@ -1082,7 +1134,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Fish",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_WATERBREATH | RACE_SWIM,
 	SIZE_MINUTE,
 	0, 0, 0, 2, 0, 0,
@@ -1092,7 +1144,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Hydra",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_DETECT_HIDDEN,
 	SIZE_TITANIC,
 	2, 0, 0, -1, 2, 0,
@@ -1102,7 +1154,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Lizard",
-	COMMON,
+	COMMON, 17, { 0, 0 }, -1, { 0, 0 },
 	RACE_NO_ABILITIES,
 	SIZE_SMALL,
 	-1, 0, 0, 1, 0, 0,
@@ -1112,7 +1164,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Gnome",
-	GNOMISH,
+	GNOMISH, 60, { 3, 12 }, 200, { 3, 100 },
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
 	-1, 0, 1, 1, -1, 0,
@@ -1122,7 +1174,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 
     {
 	"Halfkobold",
-	KOBOLD,
+	KOBOLD, 10, { 1, 3 }, 40, { 1, 10 },
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
 	-2, -1, -2, 3, -2, 0,
@@ -1360,6 +1412,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"age",			{    25,   25, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_age,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			20,	12,
+	"age",			"!Age!"
+    },
+
+    {
 	"animate dead",		{    20, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
 	spell_animate_dead,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			20,	12,
@@ -1490,6 +1549,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_create_food,	TAR_IGNORE,		POS_STANDING,
 	NULL,			5,	12,
 	"",			"!Create Food!"
+    },
+
+    {
+	"create portal",	{ L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_create_portal,	TAR_IGNORE,		POS_STANDING,
+	NULL,			50,	25,
+	"",			"!Create portal!"
     },
 
     {
@@ -1819,6 +1885,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_refresh,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			12,	18,
 	"refresh",		"!Refresh!"
+    },
+
+    {
+	"rejuvenate",		{    30,   30, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_rejuvenate,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			20,	12,
+	"rejuvenate",		"!Rejuvenate!"
     },
 
     {

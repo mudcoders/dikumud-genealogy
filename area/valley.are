@@ -1,5 +1,5 @@
 #AREADATA
-Name        Valley of the Elves~
+Name        {{ 5 20} Hatchet Valley of the Elves~
 Builders    None~
 VNUMs       7800 7883
 Security    1
@@ -19,7 +19,7 @@ brown spots.  Its shape, along with its colors, make this cooshee almost
 undetectable as it moves.
 ~
 193 32768 0 S
-9 15 0 4d4+55 2d4+1
+6 15 0 4d4+55 2d4+1
 0 0
 0 Animal~ 0
 #7801
@@ -33,7 +33,7 @@ to spring upon you, like a mountain lion stalking its prey.  He sees you
 noticing him, and quietly disappears.
 ~
 229 33280 0 S
-2 11 0 7d7+80 1d4+6
+9 11 0 7d7+80 1d4+6
 10 0
 0 Elf~ 1
 #7802
@@ -45,7 +45,7 @@ This elf is almost as tall as you are, but much slimmer and more agile.
 She glares at you, then quickly disappears before you see more of her.
 ~
 229 33280 0 S
-1 11 0 7d7+80 1d4+6
+8 11 0 7d7+80 1d4+6
 10 0
 0 Elf~ 2
 #7803
@@ -57,7 +57,7 @@ This elf is almost as tall as you are, but much slimmer and more agile.
 He glares at your intrusion and attacks with menace.
 ~
 35 33280 0 S
-8 12 0 6d6+70 1d4+5
+7 12 0 6d6+70 1d4+5
 10 0
 0 Elf~ 1
 #7804
@@ -80,7 +80,7 @@ A valley elf scout wanders the valley, searching for intruders like you!
 The elf notices your intrusion and attacks with determination.
 ~
 101 33280 0 S
-8 13 0 5d5+60 1d4+4
+6 13 0 5d5+60 1d4+4
 10 0
 0 Elf~ 1
 #7806
@@ -92,7 +92,7 @@ She is currently doing some menial chores, and ignores your intrusion except
 when you are in her way.
 ~
 193 33280 0 S
-5 13 0 5d5+60 1d4+4
+6 13 0 5d5+60 1d4+4
 10 0
 0 Elf~ 2
 #7807
@@ -105,7 +105,7 @@ This elf looks quite old, probably twenty or more times your age.  He looks
 quite potent, though.
 ~
 39 8320 0 S
-18 3 0 14d14+150 1d4+9
+14 3 0 14d14+150 1d4+9
 10 0
 0 Elf~ 1
 #7808
@@ -118,7 +118,7 @@ This elf looks quite old, probably twenty or more times your age.  She looks
 quite potent, though.
 ~
 39 8192 0 S
-13 3 0 14d14+150 1d4+9
+15 3 0 14d14+150 1d4+9
 10 0
 0 Elf~ 2
 #7809
@@ -130,7 +130,7 @@ This big beast looks like a small red dragon, but has many more heads than a
 regular dragon, too.  It doesn't look happy.
 ~
 35 0 0 S
-19 2 0 20d20+200 1d20+12
+20 2 0 20d20+200 1d20+12
 0 0
 0 Hydra~ 0
 #7810
@@ -152,7 +152,7 @@ An old mage busies himself with some chemicals.
 Talemon looks harmless, but the fireballs he throws at you don't.
 ~
 39 0 0 S
-27 0 0 25d25+250 1d4+10
+23 0 0 25d25+250 1d4+10
 1000 0
 0 Elf~ 1
 #7812
@@ -164,7 +164,7 @@ This daemon is unhappy with its summoned job, and is willing to take out it's
 anger at you!
 ~
 35 0 -500 S
-22 -2 0 25d25+250 2d4+20
+25 -2 0 25d25+250 2d4+20
 0 0
 0 God~ 0
 #7813
@@ -175,7 +175,7 @@ A wolf is here, looking for small prey.
 The wolf is covered with brown hair.  It looks at you with fright.
 ~
 161 0 0 S
-10 16 0 4d4+40 1d4+3
+2 16 0 4d4+40 1d4+3
 0 0
 0 Bear~ 0
 #7814
@@ -2087,10 +2087,10 @@ S
 
 
 #SPECIALS
-M 7807 spec_cast_cleric 	; a valley elf elder
-M 7808 spec_cast_mage 	; a valley elf elder
-M 7809 spec_breath_fire 	; the pyrohydra
-M 7811 spec_cast_mage 	; Talemon
+M 7807 spec_cast_cleric
+M 7808 spec_cast_mage
+M 7809 spec_breath_fire
+M 7811 spec_cast_mage
 S
 
 
@@ -2101,141 +2101,141 @@ S
 
 
 #RESETS
-M 0 7801  1 7805  	; a valley elf to The Entrance to the Valley of the Elves
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7800  1 7806  	; a cooshee to The Edge of the Valley
-M 0 7800  2 7807  	; a cooshee to The Edge of the Valley
-M 0 7802  2 7811  	; a valley elf to The Valley of the Elves
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7814  3 7815  	; an antelope to The Valley of the Elves
-M 0 7801  6 7816  	; a valley elf to The Valley of the Elves
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7801  3 7818  	; a valley elf to The Edge of the Valley
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7813  3 7818  	; a wolf to The Edge of the Valley
-M 0 7801  2 7820  	; a valley elf to The Valley of the Elves
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7802  6 7820  	; a valley elf to The Valley of the Elves
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7800  5 7823  	; a cooshee to The Edge of the Valley
-M 0 7814  3 7825  	; an antelope to The Edge of the Valley
-M 0 7805  3 7827  	; a valley elf scout to Along the Trail
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7813  3 7830  	; a wolf to A Trail in the Valley
-M 0 7800  6 7833  	; a cooshee to A Trail in the Valley
-M 0 7806  3 7835  	; a valley elf to The Kitchen
-M 0 7800  3 7837  	; a cooshee to A Trail in the Valley
-M 0 7806  4 7838  	; a valley elf to The Living Room
-M 0 7806  5 7839  	; a valley elf to The Storage Room
-M 0 7802  5 7842  	; a valley elf to A Trail in the Valley
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7805  4 7842  	; a valley elf scout to A Trail in the Valley
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7801  4 7844  	; a valley elf to A Trail in the Valley
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7807  1 7845  	; a valley elf elder to The Elders' Room
-G 0 7804  0      	;   A key
-E 0 7806  0 1     	;   A gold ring on the left finger
-E 0 7807  0 16    	;   A quarterstaff wielded (1)
-M 0 7808  1 7845  	; a valley elf elder to The Elders' Room
-E 0 7806  0 1     	;   A gold ring on the left finger
-E 0 7807  0 16    	;   A quarterstaff wielded (1)
-O 0 7809  0 7846  	; A potion to The Storage Room
-O 0 7823  0 7846  	; A scroll to The Storage Room
-O 0 7820  0 7846  	; A scroll to The Storage Room
-O 0 7817  0 7846  	; A scroll to The Storage Room
-O 0 7815  0 7846  	; A potion to The Storage Room
-O 0 7816  0 7846  	; A potion to The Storage Room
-O 0 7819  0 7846  	; A scroll to The Storage Room
-M 0 7806  1 7847  	; a valley elf to The Sleeping Quarters
-M 0 7806  2 7847  	; a valley elf to The Sleeping Quarters
-M 0 7803  4 7848  	; a valley elf sentry to Study
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7804  1 7848  	; a valley elf sentry to Study
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7804  1 7850  	; a valley elf sentry to Along a Windy Trail on the Rim of the Valley
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7805  1 7852  	; a valley elf scout to Along a Windy Trail on the Rim of the Valley
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7814  3 7852  	; an antelope to Along a Windy Trail on the Rim of the Valley
-M 0 7803  1 7853  	; a valley elf sentry to Along a Windy Trail on the Rim of the Valley
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7802  4 7854  	; a valley elf to Along a Windy Trail on the Rim of the Valley
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7804  1 7856  	; a valley elf sentry to Along a Windy Trail on the Rim of the Valley
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7803  3 7860  	; a valley elf sentry to Along a Windy Trail on the Rim of the Valley
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7813  3 7860  	; a wolf to Along a Windy Trail on the Rim of the Valley
-M 0 7805  2 7862  	; a valley elf scout to Along a Windy Trail on the Rim of the Valley
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7804  1 7863  	; a valley elf sentry to Along a Windy Trail on the Rim of the Valley
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7802  3 7865  	; a valley elf to Along a Windy Trail on the Rim of the Valley
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7803  2 7866  	; a valley elf sentry to Along a Windy Trail on the Rim of the Valley
-E 0 7800  0 5     	;   Elven chainmail on the body
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7802  1 7868  	; a valley elf to A Bend in the Trail
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7800  4 7873  	; a cooshee to The Small Valley
-M 0 7805  5 7876  	; a valley elf scout to The Small Valley
-E 0 7801  0 8     	;   Elven boots on the feet
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-E 0 7803  0 3     	;   A brown cloak around the neck (1)
-M 0 7801  5 7877  	; a valley elf to The Small Valley
-E 0 7802  0 16    	;   An elven longsword wielded (1)
-M 0 7810  1 7878  	; an old hermit to Inside the Small Shack
-M 0 7809  1 7880  	; the pyrohydra to The Den of the Pyrohydra
-G 0 7805  0      	;   A key
-M 0 7811  1 7881  	; Talemon to The Workroom
-E 0 7806  0 1     	;   A gold ring on the left finger
-E 0 7807  0 16    	;   A quarterstaff wielded (1)
-E 0 7824  0 0     	;   The rod of neutrality as a light
-O 0 7808  0 7882  	; A potion to The Storage Room
-O 0 7822  0 7882  	; A scroll to The Storage Room
-O 0 7821  0 7882  	; A scroll to The Storage Room
-O 0 7810  0 7882  	; A potion to The Storage Room
-O 0 7812  0 7882  	; A potion to The Storage Room
-O 0 7811  0 7882  	; A potion to The Storage Room
-O 0 7820  0 7882  	; A scroll to The Storage Room
-O 0 7815  0 7882  	; A potion to The Storage Room
-O 0 7818  0 7882  	; A scroll to The Storage Room
-O 0 7814  0 7882  	; A potion to The Storage Room
-O 0 7813  0 7882  	; A potion to The Storage Room
-O 0 7823  0 7882  	; A scroll to The Storage Room
-M 0 7812  1 7882  	; the guardian daemon to The Storage Room
+M 0 7801 1 7805
+E 0 7802 0 16
+M 0 7800 1 7806
+M 0 7800 2 7807
+M 0 7802 2 7811
+E 0 7802 0 16
+M 0 7814 3 7815
+M 0 7801 6 7816
+E 0 7802 0 16
+M 0 7801 3 7818
+E 0 7802 0 16
+M 0 7813 3 7818
+M 0 7801 2 7820
+E 0 7802 0 16
+M 0 7802 6 7820
+E 0 7802 0 16
+M 0 7800 5 7823
+M 0 7814 3 7825
+M 0 7805 3 7827
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7813 3 7830
+M 0 7800 6 7833
+M 0 7806 3 7835
+M 0 7800 3 7837
+M 0 7806 4 7838
+M 0 7806 5 7839
+M 0 7802 5 7842
+E 0 7802 0 16
+M 0 7805 4 7842
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7801 4 7844
+E 0 7802 0 16
+M 0 7807 1 7845
+G 0 7804 0
+E 0 7806 0 1
+E 0 7807 0 16
+M 0 7808 1 7845
+E 0 7806 0 1
+E 0 7807 0 16
+O 0 7809 0 7846
+O 0 7823 0 7846
+O 0 7820 0 7846
+O 0 7817 0 7846
+O 0 7815 0 7846
+O 0 7816 0 7846
+O 0 7819 0 7846
+M 0 7806 1 7847
+M 0 7806 2 7847
+M 0 7803 4 7848
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7804 1 7848
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7804 1 7850
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7805 1 7852
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7814 3 7852
+M 0 7803 1 7853
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7802 4 7854
+E 0 7802 0 16
+M 0 7804 1 7856
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7803 3 7860
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7813 3 7860
+M 0 7805 2 7862
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7804 1 7863
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7802 3 7865
+E 0 7802 0 16
+M 0 7803 2 7866
+E 0 7800 0 5
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7802 1 7868
+E 0 7802 0 16
+M 0 7800 4 7873
+M 0 7805 5 7876
+E 0 7801 0 8
+E 0 7802 0 16
+E 0 7803 0 3
+M 0 7801 5 7877
+E 0 7802 0 16
+M 0 7810 1 7878
+M 0 7809 1 7880
+G 0 7805 0
+M 0 7811 1 7881
+E 0 7806 0 1
+E 0 7807 0 16
+E 0 7824 0 0
+O 0 7808 0 7882
+O 0 7822 0 7882
+O 0 7821 0 7882
+O 0 7810 0 7882
+O 0 7812 0 7882
+O 0 7811 0 7882
+O 0 7820 0 7882
+O 0 7815 0 7882
+O 0 7818 0 7882
+O 0 7814 0 7882
+O 0 7813 0 7882
+O 0 7823 0 7882
+M 0 7812 1 7882
 S
 
 

@@ -1,5 +1,5 @@
 #AREADATA
-Name        Smurf Village~
+Name        {{ 1 10} Generic Smurf Village~
 Builders    None~
 VNUMs       100 129
 Security    1
@@ -41,7 +41,7 @@ Brainy Smurf has on his usual glasses.  Brainy Smurf isn't liked much by the
 other smurfs.  They fear his knowledge.  Knowledge is power!
 ~
 193 0 100 S
-2 18 0 3d10+1 1d4+1
+4 18 0 3d10+1 1d4+1
 30 0
 0 Animal~ 1
 #104
@@ -53,7 +53,7 @@ Handy is always building something.  He never takes a break.  Why don't you
 give him a break, like all of his bones.
 ~
 193 0 100 S
-10 18 0 3d10+1 1d4+1
+4 18 0 3d10+1 1d4+1
 30 0
 0 Animal~ 1
 #105
@@ -65,7 +65,7 @@ Sleepy never gets enough sleep.  You would think he goes to college.  I wonder
 if he has ever stayed up a whole night without sleeping.
 ~
 193 0 100 S
-8 18 0 3d10+1 1d4+1
+2 18 0 3d10+1 1d4+1
 30 0
 0 Animal~ 1
 #106
@@ -77,7 +77,7 @@ Hefty is a total health nut.  He lifts weights, eats right, and exercises all
 the time.  Won't do him much good when he's DEAD.
 ~
 193 0 100 S
-1 18 0 3d10+1 1d4+1
+4 18 0 3d10+1 1d4+1
 30 0
 0 Animal~ 1
 #107
@@ -100,7 +100,7 @@ Jokey loves to give people presents.  Too bad the present explodes when opened.
 Oh well, to each his own.
 ~
 193 0 100 S
-4 18 0 3d10+1 1d4+1
+1 18 0 3d10+1 1d4+1
 30 0
 0 Animal~ 1
 #109
@@ -125,7 +125,7 @@ beard.  Papa Smurf treats his fellow smurfs with dignity and respect.  That
 is why Papa Smurf is so popular among the ladies.
 ~
 193 0 100 S
-7 10 0 10d10+50 2d2+12
+10 10 0 10d10+50 2d2+12
 50 0
 0 Animal~ 1
 #111
@@ -137,7 +137,7 @@ Gargamel has never done anything right in his life.  He has caught smurfs
 before but always lets them escape.  He brings true meaning to the word moron.
 ~
 131 0 -100 S
-6 10 0 10d10+50 2d2+12
+8 10 0 10d10+50 2d2+12
 50 0
 0 Human~ 1
 #112
@@ -149,7 +149,7 @@ Gargamel's worthless cat.  He is just about as dumb as Gargamel.  He should
 just grab a smurf in his teeth and chew away.
 ~
 131 0 -100 S
-2 12 0 8d8+80 1d4+5
+7 12 0 8d8+80 1d4+5
 20 0
 0 Animal~ 1
 #0
@@ -802,18 +802,18 @@ S
 
 
 #SPECIALS
-M 101 spec_thief 	; a smurf
-M 102 spec_thief 	; a smurf
-M 103 spec_thief 	; Brainy Smurf
-M 104 spec_thief 	; Handy Smurf
-M 105 spec_thief 	; Sleepy Smurf
-M 106 spec_thief 	; Hefty Smurf
-M 107 spec_thief 	; Grumpy Smurf
-M 108 spec_thief 	; Jokey Smurf
-M 109 spec_thief 	; Smurfette
-M 110 spec_cast_mage 	; Papa Smurf
-M 111 spec_cast_cleric 	; Gargamel
-M 112 spec_poison 	; Azreal
+M 101 spec_thief
+M 102 spec_thief
+M 103 spec_thief
+M 104 spec_thief
+M 105 spec_thief
+M 106 spec_thief
+M 107 spec_thief
+M 108 spec_thief
+M 109 spec_thief
+M 110 spec_cast_mage
+M 111 spec_cast_cleric
+M 112 spec_poison
 S
 
 
@@ -824,43 +824,43 @@ S
 
 
 #RESETS
-M 0 101  3 104   	; a smurf to Entrance to Smurf Village
-G 0 102  0      	;   A smurf hat
-M 0 101  3 105   	; a smurf to Smurfy Road
-M 0 101  3 107   	; a smurf to Smurfy Road
-M 0 101  3 108   	; a smurf to Smurfy Road
-G 0 102  0      	;   A smurf hat
-O 0 108  0 109   	; A smurf well to Smurfy Road
-M 0 101  3 109   	; a smurf to Smurfy Road
-M 0 101  3 110   	; a smurf to Smurfy Road
-G 0 102  0      	;   A smurf hat
-M 0 101  3 111   	; a smurf to Smurfy Road
-M 0 101  3 112   	; a smurf to Smurfy Road
-G 0 102  0      	;   A smurf hat
-M 0 110  1 113   	; Papa Smurf to Stone Path
-G 0 105  0      	;   A pink potion
-G 0 109  0      	;   A small key
-M 0 102  3 116   	; a smurf to Smurfberry Patch
-G 0 100  0      	;   A bunch of smurfberries
-M 0 102  3 117   	; a smurf to Smurfberry Patch
-G 0 100  0      	;   A bunch of smurfberries
-M 0 102  3 118   	; a smurf to Smurfberry Patch
-G 0 100  0      	;   A bunch of smurfberries
-M 0 103  1 119   	; Brainy Smurf to Brainy Smurf's Home
-E 0 101  0 6     	;   A pair of glasses over the head
-M 0 104  1 120   	; Handy Smurf to Handy Smurf's Home
-E 0 103  0 16    	;   A small axe wielded (1)
-M 0 106  1 121   	; Hefty Smurf to Hefty Smurf's Home
-E 0 103  0 16    	;   A small axe wielded (1)
-M 0 105  1 122   	; Sleepy Smurf to Sleepy Smurf's Home
-M 0 107  1 123   	; Grumpy Smurf to Grumpy Smurf's Home
-M 0 108  1 124   	; Jokey Smurf to Jokey Smurf's Home
-M 0 111  1 128   	; Gargamel to Gargamel's Castle
-E 0 106  0 17    	;   A small wand held in the hands
-M 0 112  1 128   	; Azreal to Gargamel's Castle
-M 0 109  1 129   	; Smurfette to Smurfette's House
-E 0 104  0 3     	;   A small necklace around the neck (1)
-G 0 107  0      	;   A tiny key
+M 0 101 3 104
+G 0 102 0
+M 0 101 3 105
+M 0 101 3 107
+M 0 101 3 108
+G 0 102 0
+O 0 108 0 109
+M 0 101 3 109
+M 0 101 3 110
+G 0 102 0
+M 0 101 3 111
+M 0 101 3 112
+G 0 102 0
+M 0 110 1 113
+G 0 105 0
+G 0 109 0
+M 0 102 3 116
+G 0 100 0
+M 0 102 3 117
+G 0 100 0
+M 0 102 3 118
+G 0 100 0
+M 0 103 1 119
+E 0 101 0 6
+M 0 104 1 120
+E 0 103 0 16
+M 0 106 1 121
+E 0 103 0 16
+M 0 105 1 122
+M 0 107 1 123
+M 0 108 1 124
+M 0 111 1 128
+E 0 106 0 17
+M 0 112 1 128
+M 0 109 1 129
+E 0 104 0 3
+G 0 107 0
 S
 
 

@@ -1,5 +1,5 @@
 #AREADATA
-Name        Machine Dreams~
+Name        {{ 1  5} Furey   Machine Dreams~
 Builders    None~
 VNUMs       8600 8699
 Security    1
@@ -17,7 +17,7 @@ The keeper of the Morris equipment is here.
 Her job is to set the level for this equipment.
 ~
 1 0 1000 S
-5 1 0 1d1+999 4d6+3
+6 1 0 1d1+999 4d6+3
 100 0
 0 Elf~ 2
 #0
@@ -1274,39 +1274,39 @@ S
 
 
 #RESETS
-R 0 8600  6      	; Randomize The Void
-R 0 8601  6      	; Randomize The Void
-R 0 8602  6      	; Randomize The Void
-R 0 8603  6      	; Randomize The Void
-R 0 8604  6      	; Randomize The Void
-R 0 8605  6      	; Randomize The Void
-R 0 8606  6      	; Randomize The Void
-R 0 8607  6      	; Randomize The Void
-R 0 8608  6      	; Randomize The Void
-R 0 8610  6      	; Randomize The Void
-R 0 8611  6      	; Randomize The Void
-R 0 8612  6      	; Randomize The Void
-R 0 8613  6      	; Randomize The Void
-R 0 8614  6      	; Randomize The Void
-R 0 8615  6      	; Randomize The Void
-R 0 8616  6      	; Randomize The Void
-R 0 8617  6      	; Randomize The Void
-R 0 8618  6      	; Randomize The Void
-R 0 8620  6      	; Randomize The Void
-R 0 8621  6      	; Randomize The Void
-R 0 8622  6      	; Randomize The Void
-R 0 8623  6      	; Randomize The Void
-R 0 8624  6      	; Randomize The Void
-R 0 8625  6      	; Randomize The Void
-R 0 8626  6      	; Randomize The Void
-R 0 8627  6      	; Randomize The Void
-R 0 8628  6      	; Randomize The Void
-O 0 8600  0 8631  	; Morris bells to Newfane Village Square
-O 0 8601  0 8632  	; A morris handkerchief to A Large Dance Hall
-O 0 8601  0 8634  	; A morris handkerchief to A Small Hall
-O 0 8602  0 8637  	; A morris sash to An Old Wooden Church
-O 0 8603  0 8639  	; A morris staff to Yule Tree Farm
-M 0 8600  1 8699  	; the keeper to The Void
+R 0 8600 6
+R 0 8601 6
+R 0 8602 6
+R 0 8603 6
+R 0 8604 6
+R 0 8605 6
+R 0 8606 6
+R 0 8607 6
+R 0 8608 6
+R 0 8610 6
+R 0 8611 6
+R 0 8612 6
+R 0 8613 6
+R 0 8614 6
+R 0 8615 6
+R 0 8616 6
+R 0 8617 6
+R 0 8618 6
+R 0 8620 6
+R 0 8621 6
+R 0 8622 6
+R 0 8623 6
+R 0 8624 6
+R 0 8625 6
+R 0 8626 6
+R 0 8627 6
+R 0 8628 6
+O 0 8600 0 8631
+O 0 8601 0 8632
+O 0 8601 0 8634
+O 0 8602 0 8637
+O 0 8603 0 8639
+M 0 8600 1 8699
 S
 
 

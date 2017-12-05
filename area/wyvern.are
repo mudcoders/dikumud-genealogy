@@ -1,5 +1,5 @@
 #AREADATA
-Name        Wyvern's Tower~
+Name        {{ 5 30} Tyrst   Wyvern's Tower~
 Builders    None~
 VNUMs       1601 1720
 Security    1
@@ -17,7 +17,7 @@ A killer frog rises up out of the water.
 The killer frog looks ravenous.
 ~
 99 0 -300 S
-6 16 0 5d5+55 1d5+4
+3 16 0 5d5+55 1d5+4
 20 0
 0 Animal~ 0
 #1602
@@ -39,7 +39,7 @@ An angry gargoyle glares at you.
 He looks ready to attack!
 ~
 101 0 -600 S
-17 12 0 10d10+100 4d3+3
+10 12 0 10d10+100 4d3+3
 500 0
 0 God~ 1
 #1604
@@ -50,7 +50,7 @@ An elite gargoyle guards this room against intrusion.
 He snarls at you and says LEAVE OR DIE!
 ~
 7 0 -600 S
-9 10 0 12d12+120 6d2+4
+10 10 0 12d12+120 6d2+4
 800 0
 0 God~ 1
 #1605
@@ -61,7 +61,7 @@ The gargoyle shaman is here, preparing to do battle.
 She says 'I can SEE you! I have been waiting ...'.
 ~
 71 40 -900 S
-10 8 0 13d13+130 6d3+4
+15 8 0 13d13+130 6d3+4
 3000 0
 0 God~ 2
 #1606
@@ -72,7 +72,7 @@ Amidst the jungle here, a huge Carnivorous plant reaches out to grab you!
 The plant looks something like a Venus fly-trap, only MUCH larger.
 ~
 99 0 0 S
-2 12 0 9d9+90 3d3+3
+9 12 0 9d9+90 3d3+3
 16 0
 0 Plant~ 0
 #1607
@@ -94,7 +94,7 @@ A dark shadow moves about the room.
 The Shadow is vaguely humanoid. Two glowing pinpoints look at you.
 ~
 101 42 -1000 S
-10 12 0 10d10+100 4d3+4
+11 12 0 10d10+100 4d3+4
 900 0
 0 Human~ 0
 #1609
@@ -105,7 +105,7 @@ An evil wight lurks in the shadows!
 He glares at you savagely and charges!
 ~
 103 40 -1000 S
-12 10 0 12d12+120 6d2+3
+11 10 0 12d12+120 6d2+3
 2200 0
 0 Undead~ 1
 #1610
@@ -116,7 +116,7 @@ A burly minotaur watches you solemnly.
 This powerful creature wonders whether to kill you or not ...
 ~
 69 8 -600 S
-11 9 0 14d14+140 5d3+4
+12 9 0 14d14+140 5d3+4
 1500 0
 0 Minotaur~ 1
 #1612
@@ -127,7 +127,7 @@ A bloodthirsty minotaur slowly counts his loot
 He looks up at you and screams 'SO! Coming to steal my hoard!'
 ~
 103 8 -600 S
-2 8 0 15d15+150 5d3+5
+14 8 0 15d15+150 5d3+5
 0 0
 0 Minotaur~ 1
 #1613
@@ -138,7 +138,7 @@ Sitting here in this room is the Minotaur Captain.
 He looks at you, and a sinister grin slowly spreads on his face ...
 ~
 103 8 -900 S
-21 5 0 17d17+170 5d3+6
+17 5 0 17d17+170 5d3+6
 0 0
 0 Minotaur~ 1
 #1614
@@ -149,7 +149,7 @@ A huge black pudding fills the center of the room!!
 It is a huge black blob that oozes about the room. Its heading toward YOU!
 ~
 101 0 -1000 S
-23 9 0 15d15+150 8d2+5
+15 9 0 15d15+150 8d2+5
 0 0
 0 Object~ 0
 #1615
@@ -160,7 +160,7 @@ A lesser Golem stands guarding the entrance.
 The golem appears to be made of some kind of clay, enchanted to come to life!
 ~
 67 8 0 S
-16 8 0 16d16+160 8d2+7
+14 8 0 16d16+160 8d2+7
 0 0
 0 God~ 0
 #1616
@@ -171,7 +171,7 @@ An enormous, ancient wyvern stares down at your tiny form...
 It thunders loudly 'I must protect my Master's wealth!'
 ~
 101 40 -1000 S
-19 5 0 18d18+180 10d2+8
+18 5 0 18d18+180 10d2+8
 0 0
 0 Mist~ 1
 #1617
@@ -182,7 +182,7 @@ A spectre has begun to materialize in front of you!
 Terror fills your heart as you view this master of the undead.
 ~
 101 138 -1000 S
-22 2 0 19d19+190 8d3+7
+19 2 0 19d19+190 8d3+7
 0 0
 0 Undead~ 1
 #1702
@@ -204,7 +204,7 @@ A hunter rests in here, carrying a fresh kill.
 The hunter is rugged and sturdy from his occupation.
 ~
 5 0 0 S
-14 13 0 8d8+80 2d4+2
+8 13 0 8d8+80 2d4+2
 120 0
 0 Human~ 1
 #1706
@@ -215,7 +215,7 @@ A grim ranger reclines at a table.
 The years of wanderings have left the ranger hardened and strong.
 ~
 69 8 200 S
-18 11 0 12d12+120 3d4+3
+14 11 0 12d12+120 3d4+3
 0 0
 0 Giant~ 1
 #1707
@@ -226,7 +226,7 @@ A leader of the Rangers is watching you solemnly.
 This individual has quite a reputation at the local trading posts!
 ~
 7 8 300 S
-10 7 0 15d15+150 4d4+4
+13 7 0 15d15+150 4d4+4
 0 0
 0 Giant~ 1
 #1708
@@ -236,7 +236,7 @@ The Lord of the Rangers catches your eye.
 ~
 ~
 7 8 400 S
-16 1 0 20d20+200 6d4+5
+17 1 0 20d20+200 6d4+5
 0 0
 0 Giant~ 1
 #1710
@@ -247,7 +247,7 @@ A male centaur wanders about this area.
 The centaur has the upper torso of a man and lower body of a horse.
 ~
 5 0 200 S
-12 14 0 7d7+70 2d4+1
+7 14 0 7d7+70 2d4+1
 120 0
 0 Animal~ 1
 #1711
@@ -258,7 +258,7 @@ A female centaur wanders about this area.
 The centaur has the upper torso of a woman and lower body of a horse.
 ~
 5 0 200 S
-1 14 0 7d7+70 2d4+1
+8 14 0 7d7+70 2d4+1
 110 0
 0 Animal~ 2
 #1712
@@ -269,7 +269,7 @@ An old centaur is resting in a corner.
 This centaur has lived a full life.
 ~
 5 0 200 S
-2 15 0 6d6+60 2d4+0
+6 15 0 6d6+60 2d4+0
 110 0
 0 Animal~ 1
 #1714
@@ -280,7 +280,7 @@ One of the centaur elders is here, watching you.
 The elders act as counselors and advisors to the chief.
 ~
 7 2 200 S
-6 13 0 9d9+90 2d4+2
+9 13 0 9d9+90 2d4+2
 0 0
 0 Animal~ 1
 #1715
@@ -303,7 +303,7 @@ He has been the leader of this tribe for many years, and has acquired much
 wisdom.
 ~
 7 2 200 S
-7 11 0 12d12+120 2d4+3
+12 11 0 12d12+120 2d4+3
 0 0
 0 Animal~ 1
 #1720
@@ -314,7 +314,7 @@ A displacer beast is grazing nearby.
 As you watch this strange creature, its position seems to flicker and shift.
 ~
 129 0 0 S
-14 11 0 10d10+100 4d3+2
+10 11 0 10d10+100 4d3+2
 0 0
 0 Animal~ 0
 #0
@@ -1576,12 +1576,12 @@ S
 
 
 #SPECIALS
-M 1605 spec_cast_cleric 	; the gargoyle shaman
-M 1609 spec_cast_undead 	; an evil wight
-M 1614 spec_breath_acid 	; the black pudding
-M 1616 spec_breath_any 	; the ancient wyvern
-M 1617 spec_cast_undead 	; the spectre
-M 1716 spec_cast_undead 	; the centaur chief
+M 1605 spec_cast_cleric
+M 1609 spec_cast_undead
+M 1614 spec_breath_acid
+M 1616 spec_breath_any
+M 1617 spec_cast_undead
+M 1716 spec_cast_undead
 S
 
 
@@ -1592,88 +1592,89 @@ S
 
 
 #RESETS
-O 0 1652  0 1608  	; A barrel of ale to Old Store Room
-M 0 1612  1 1610  	; the savage minotaur to Minotaur's Room
-E 0 1604  0 16    	;   A steel broad sword wielded (1)
-E 0 1612  0 11    	;   A black kite shield as a shield
-M 0 1601  2 1620  	; a killer frog to Western Moat
-M 0 1601  2 1620  	; a killer frog to Western Moat
-M 0 1601  3 1621  	; a killer frog to Northern Moat
-M 0 1601  3 1622  	; a killer frog to Southern Moat
-M 0 1602  2 1623  	; the stone gargoyle to Tower Foyer
-M 0 1602  2 1623  	; the stone gargoyle to Tower Foyer
-M 0 1602  4 1624  	; the stone gargoyle to The Grand Lobby
-M 0 1602  4 1624  	; the stone gargoyle to The Grand Lobby
-M 0 1602  5 1625  	; the stone gargoyle to Base of the Western Tower
-O 0 1601  0 1627  	; A rusty cleaver to Kitchen
-M 0 1606  1 1628  	; a carnivorous plant to Conservatory
-M 0 1607  1 1629  	; a gruesome ogre to The Dining Hall
-M 0 1603  1 1630  	; an angry gargoyle to Art Gallery
-M 0 1602  6 1631  	; the stone gargoyle to Base of the Eastern Tower
-M 0 1603  2 1632  	; an angry gargoyle to The Common Room
-M 0 1609  1 1634  	; an evil wight to A Large Murky Cellar
-E 0 1692  0 17    	;   A strange key held in the hands
-M 0 1604  2 1636  	; the elite gargoyle to Second Level of the Eastern Tower
-E 0 1604  0 16    	;   A steel broad sword wielded (1)
-M 0 1604  2 1636  	; the elite gargoyle to Second Level of the Eastern Tower
-E 0 1604  0 16    	;   A steel broad sword wielded (1)
-M 0 1603  3 1637  	; an angry gargoyle to The Elegant Hall
-M 0 1605  1 1638  	; the gargoyle shaman to The Shaman's Room
-E 0 1602  0 16    	;   The fine mace wielded (1)
-E 0 1621  0 13    	;   A dark red potion around the waist
-M 0 1604  2 1639  	; the elite gargoyle to The Library
-M 0 1604  2 1639  	; the elite gargoyle to The Library
-M 0 1614  1 1643  	; the black pudding to Third Level of Western Tower
-R 0 1644  0      	; Randomize It's too dark to see anything!
-M 0 1608  4 1644  	; a shadow to It's too dark to see anything!
-O 0 1651  0 1645  	; A bronze chest to The Armory
-P 0 1603  0 1651  	; A long elven dagger inside a long elven dagger
-M 0 1610  2 1645  	; A burly minotaur to The Armory
-M 0 1610  2 1645  	; A burly minotaur to The Armory
-M 0 1613  1 1646  	; the captain to The Officer's Quarters
-E 0 1604  0 16    	;   A steel broad sword wielded (1)
-E 0 1614  0 6     	;   A commander's helm over the head
-M 0 1615  2 1647  	; a lesser golem to Third Level of Eastern Tower
-E 0 1606  0 16    	;   The rod of might wielded (1)
-M 0 1616  1 1648  	; the ancient wyvern to Turret of the Eastern Tower
-E 0 1615  0 17    	;   A mithril bracer held in the hands
-G 0 1621  0      	;   A dark red potion
-M 0 1617  1 1650  	; the spectre to Turret of the Western Tower
-E 0 1616  0 3     	;   A dark blue cloak around the neck (1)
-M 0 1702  2 1703  	; a trapper to Trading Post
-E 0 1711  0 6     	;   A fur cap over the head
-M 0 1702  2 1703  	; a trapper to Trading Post
-E 0 1711  0 6     	;   A fur cap over the head
-M 0 1704  2 1703  	; a hunter to Trading Post
-M 0 1704  2 1703  	; a hunter to Trading Post
-E 0 1701  0 16    	;   A short bow wielded (1)
-M 0 1706  1 1703  	; a ranger to Trading Post
-E 0 1702  0 16    	;   A long bow wielded (1)
-G 0 1621  0      	;   A dark red potion
-M 0 1710  1 1704  	; a centaur to Trail north of crossroads
-E 0 1701  0 16    	;   A short bow wielded (1)
-M 0 1711  1 1706  	; a centaur to Entrance to the forest
-M 0 1710  2 1708  	; a centaur to Junction in Dark Forest
-E 0 1701  0 16    	;   A short bow wielded (1)
-M 0 1711  2 1709  	; a centaur to Path to Centaur Village
-M 0 1710  3 1710  	; a centaur to The East side of the Centaur Clearing
-M 0 1712  1 1710  	; an old centaur to The East side of the Centaur Clearing
-M 0 1714  1 1711  	; an elder centaur to West side of the Centaur Clearing
-M 0 1712  2 1712  	; an old centaur to A Centaur's Hut
-M 0 1712  3 1713  	; an old centaur to A Centaur's Hut
-M 0 1714  2 1714  	; an elder centaur to A Centaur's Hut
-M 0 1714  3 1715  	; an elder centaur to A Centaur's Hut
-M 0 1715  2 1716  	; a centaur guard to Entrance to a Large Hut
-E 0 1604  0 16    	;   A steel broad sword wielded (1)
-M 0 1715  2 1716  	; a centaur guard to Entrance to a Large Hut
-E 0 1604  0 16    	;   A steel broad sword wielded (1)
-M 0 1716  1 1717  	; the centaur chief to Back of a Large Hut
-E 0 1713  0 2     	;   A bronze ring on the right finger
+O 0 1652 0 1608
+M 0 1612 1 1610
+E 0 1604 0 16
+E 0 1612 0 11
+M 0 1601 2 1620
+M 0 1601 2 1620
+M 0 1601 3 1621
+M 0 1601 3 1622
+M 0 1602 2 1623
+M 0 1602 2 1623
+M 0 1602 4 1624
+M 0 1602 4 1624
+M 0 1602 5 1625
+O 0 1601 0 1627
+M 0 1606 1 1628
+M 0 1607 1 1629
+M 0 1603 1 1630
+M 0 1602 6 1631
+M 0 1603 2 1632
+M 0 1609 1 1634
+E 0 1692 0 17
+M 0 1604 2 1636
+E 0 1604 0 16
+M 0 1604 2 1636
+E 0 1604 0 16
+M 0 1603 3 1637
+M 0 1605 1 1638
+E 0 1602 0 16
+E 0 1621 0 13
+M 0 1604 2 1639
+M 0 1604 2 1639
+M 0 1614 1 1643
+R 0 1644 0
+M 0 1608 4 1644
+O 0 1651 0 1645
+P 0 1603 0 1651
+M 0 1610 2 1645
+M 0 1610 2 1645
+M 0 1613 1 1646
+E 0 1604 0 16
+E 0 1614 0 6
+M 0 1615 2 1647
+E 0 1606 0 16
+M 0 1616 1 1648
+E 0 1615 0 17
+G 0 1621 0
+M 0 1617 1 1650
+E 0 1616 0 3
+M 0 1702 2 1703
+E 0 1711 0 6
+M 0 1702 2 1703
+E 0 1711 0 6
+M 0 1704 2 1703
+M 0 1704 2 1703
+E 0 1701 0 16
+M 0 1706 1 1703
+E 0 1702 0 16
+G 0 1621 0
+M 0 1710 1 1704
+E 0 1701 0 16
+M 0 1711 1 1706
+M 0 1710 2 1708
+E 0 1701 0 16
+M 0 1711 2 1709
+M 0 1710 3 1710
+M 0 1712 1 1710
+M 0 1714 1 1711
+M 0 1712 2 1712
+M 0 1712 3 1713
+M 0 1714 2 1714
+M 0 1714 3 1715
+M 0 1715 2 1716
+E 0 1604 0 16
+M 0 1715 2 1716
+E 0 1604 0 16
+M 0 1716 1 1717
+E 0 1713 0 2
 S
 
 
 
 #MOBPROGS
+M 1704 1704.prg
 S
 
 

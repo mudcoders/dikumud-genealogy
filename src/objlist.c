@@ -469,7 +469,7 @@ char *item_index_type_name (int item_type)
     case ITEM_CORPSE_PC:	return "pc corpse";
     case ITEM_FOUNTAIN:		return "fountain";
     case ITEM_PILL:			return "pill";
-/*    case ITEM_PORTAL:   	return "magical portal"; */
+    case ITEM_PORTAL:   	return "portal";
     }
 
     bug( "Item_type_name: unknown type %d.", item_type );

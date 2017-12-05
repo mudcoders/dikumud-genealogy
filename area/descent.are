@@ -1,5 +1,5 @@
 #AREADATA
-Name        Descent to Hell~
+Name        {{ 5 20} Strahd  Descent to Hell~
 Builders    None~
 VNUMs       10401 10541
 Security    1
@@ -20,7 +20,7 @@ shiver. The guardian stands motionless before you, its rough grey skin
 looks impervious to normal weapons.
 ~
 67 568 -900 S
-32 2 0 1d1+30000 1d8+32
+36 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10402
@@ -31,7 +31,7 @@ A pile of gold coins lies on the ground.
 A large sparkly pile of gold coins.
 ~
 67 512 -800 S
-21 2 0 1d1+30000 1d8+32
+15 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10403
@@ -43,7 +43,7 @@ This is the most handsome male you have ever seen. His naked body
 makes your mouth water.
 ~
 67 512 -1000 S
-58 2 0 1d1+30000 1d8+32
+27 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 1
 #10404
@@ -55,7 +55,7 @@ This is the most beautiful female you have ever seen. The curves of her
 naked body make you sweat, and babble uncontrollably.
 ~
 67 512 -1000 S
-28 2 0 1d1+30000 1d8+32
+26 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 2
 #10405
@@ -66,7 +66,7 @@ A shiny gold bar lies on the ground.
 This gold bar must be worth bucks!
 ~
 67 512 -800 S
-12 2 0 1d1+30000 1d8+32
+20 2 0 1d1+30000 1d8+32
 1000 0
 0 Object~ 0
 #10406
@@ -77,7 +77,7 @@ A yummy looking chicken pot pie is here on the ground.
 You see a golden crusted pot pie filled with chicken and vegetables.
 ~
 67 512 -800 S
-20 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 1000 0
 0 Object~ 0
 #10407
@@ -88,7 +88,7 @@ A yummy looking beef pot pie is here on the ground.
 You see a golden crusted pot pie filled with beef and vegetables.
 ~
 67 512 -800 S
-19 2 0 1d1+30000 1d8+32
+20 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10408
@@ -99,7 +99,7 @@ A yummy looking vegetable pot pie is here on the ground.
 You see a golden crusted pot pie filled with vegetables.
 ~
 67 512 -800 S
-20 2 0 1d1+30000 1d8+32
+24 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10409
@@ -111,7 +111,7 @@ You see a faint silhouette of a person. Looking closely at it you can barely
 make out features that would identify it as the person it was in life.
 ~
 65 512 -700 S
-15 2 0 1d1+30000 1d8+32
+11 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10410
@@ -123,7 +123,7 @@ You see a unrecognizable person going through unheard of and
 indescribable torture. It screams out at you in pain and terror.
 ~
 67 512 -800 S
-11 2 0 1d1+30000 1d8+32
+14 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10411
@@ -136,7 +136,7 @@ It writhes in agony and pain as it gasps frantically for Death to answer
 its desperate plea...
 ~
 67 512 -757 S
-5 2 0 1d1+30000 1d8+32
+7 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10412
@@ -162,7 +162,7 @@ Its decaying eyes stare at you intently as it sees only you
 delicious and juicy brain.
 ~
 65 512 -743 S
-21 2 0 1d1+30000 1d8+32
+20 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10414
@@ -174,7 +174,7 @@ The blood arm of some poor luckless indivudual. The stench of the
 gore covered limb makes you want to retch.
 ~
 67 512 -884 S
-10 2 0 1d1+30000 1d8+32
+13 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10415
@@ -197,7 +197,7 @@ I wonder how the person that lost this smells...hopefully not as bad as
 this nose does...
 ~
 67 512 -800 S
-1 2 0 1d1+30000 1d8+32
+5 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10417
@@ -208,7 +208,7 @@ The blood in the fountain gurgles merrily.
 You see gallons and gallons of thick red blood gurgling in the fountian.
 ~
 67 512 -950 S
-7 2 0 1d1+30000 1d8+32
+4 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10418
@@ -220,7 +220,7 @@ This soul is definetely clueless to where it is. He holds a ticket
 that reads #14349023402342039840293481234900049.
 ~
 67 512 -500 S
-7 2 0 1d1+30000 1d8+32
+4 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10419
@@ -233,7 +233,7 @@ hulk that is being burned for eternity...I screams out as the flames lick
 at its body and devour its flesh...
 ~
 67 512 -800 S
-2 2 0 1d1+30000 1d8+32
+5 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10420
@@ -245,7 +245,7 @@ Stringy bits of flesh blow gently in the breeze. The bones rattle as you walk
 by them.
 ~
 67 512 -700 S
-9 2 0 1d1+30000 1d8+32
+6 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10421
@@ -260,7 +260,7 @@ skin gives them a diseased and decaying look. They somewhat resemble
 shadows or ghasts.
 ~
 97 512 -900 S
-20 2 0 1d1+30000 1d8+32
+12 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10422
@@ -273,7 +273,7 @@ thrown at him. He sits here chained to the wall; banished to hell forever by
 the God.
 ~
 67 512 -1000 S
-7 2 0 1d1+30000 1d8+32
+3 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 1
 #10423
@@ -285,7 +285,7 @@ She is sad looking indeed. Cuts and scraps all over her. Many scars
 and burns cover her face and arms.
 ~
 67 512 -800 S
-17 2 0 1d1+30000 1d8+32
+8 2 0 1d1+30000 1d8+32
 100000 0
 0 Human~ 2
 #10424
@@ -298,7 +298,7 @@ and burns cover her face and arms. One of his arms is broken at the
 forearm and hangs limply by his side.
 ~
 67 512 -800 S
-8 2 0 1d1+30000 1d8+32
+7 2 0 1d1+30000 1d8+32
 100000 0
 0 Human~ 1
 #10425
@@ -310,7 +310,7 @@ This very large demon stands before you licking its daggerlike teeth.
 Yellow spittle runs down the scales of his blackened skin.
 ~
 65 512 -800 S
-17 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10426
@@ -322,7 +322,7 @@ You can barely make out anything on it. All you can make out is the flames
 of hell consuming it and the smell of burning flesh.
 ~
 67 512 -900 S
-9 2 0 1d1+30000 1d8+32
+2 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10427
@@ -335,7 +335,7 @@ As you look closer at the hard hat you notice
 it says, '4th DEMONsion Construction Co.'
 ~
 67 512 -666 S
-8 2 0 1d1+30000 1d8+32
+4 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 1
 #10428
@@ -348,7 +348,7 @@ As you look closer at the hard hat you notice
 it says, '4th DEMONsion Construction Co.'
 ~
 67 512 -666 S
-7 2 0 1d1+30000 1d8+32
+3 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 2
 #10429
@@ -361,7 +361,7 @@ As you look closer at the hard hat you notice
 it says, '4th DEMONsion Construction Co.'
 ~
 67 512 -666 S
-12 2 0 1d1+30000 1d8+32
+6 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 2
 #10430
@@ -374,7 +374,7 @@ with blisters and puss. As you look at it, it smiles at you with sharp blood
 covered teeth. This is definetly a face only a mother could love.
 ~
 67 512 -1000 S
-19 2 0 1d1+30000 1d8+32
+17 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10431
@@ -387,7 +387,7 @@ burning everything in its path; Including the poor souls that are chained to
 various posts around the room.
 ~
 67 512 -600 S
-37 2 0 1d1+30000 1d8+32
+26 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10432
@@ -400,7 +400,7 @@ ghastly red. Its sooty black teeth and tongue are covered with green spittle
 that runs down its  dung covered coat.
 ~
 99 66088 -900 S
-15 2 0 1d1+30000 1d8+32
+16 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10433
@@ -412,7 +412,7 @@ As you look at the corpse you recoil as you notice its eyes still move.
 They stare intently from its bluish face as if pleading for your help.
 ~
 67 512 -900 S
-12 2 0 1d1+30000 1d8+32
+8 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10434
@@ -427,7 +427,7 @@ and then starting over. Every couple of minutes it takes time out to
 break an apendage off of a nearby soul and beat the soul with it.
 ~
 67 512 -1000 S
-38 2 0 1d1+30000 1d8+32
+31 2 0 1d1+30000 1d8+32
 100000 0
 0 God~ 0
 #10435
@@ -440,7 +440,7 @@ iceflow. It desperatly gasps for air for a few minutes and then seems to
 die for a second before it is restored and begins thrashing about again.
 ~
 67 512 -789 S
-2 2 0 1d1+30000 1d8+32
+11 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10436
@@ -453,7 +453,7 @@ see small white maggots eating away at the body. The flesh seems to
 move and wriggle with a life of its own...
 ~
 67 512 -876 S
-13 2 0 1d1+30000 1d8+32
+10 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10437
@@ -465,7 +465,7 @@ What a cute little penguin....wait why is it looking at you that way...
 HEY! penguins don't have teeth!
 ~
 99 512 -876 S
-15 2 0 1d1+30000 1d8+32
+10 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10438
@@ -480,7 +480,7 @@ WE ALL SCREAM FOR I SCREAM!!!'
 
 ~
 67 512 -706 S
-15 2 0 1d1+30000 1d8+32
+20 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10439
@@ -495,7 +495,7 @@ He is dressing in a white jumpsuit with the words,
 written on it in large yellow letters.
 ~
 67 512 -706 S
-14 2 0 1d1+30000 1d8+32
+23 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10440
@@ -511,7 +511,7 @@ back in large black letters.
 He seems none to happy to see you.
 ~
 99 552 -1000 S
-21 2 0 1d1+30000 1d8+32
+24 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 1
 #10441
@@ -524,7 +524,7 @@ by watching the little lights on the telephone blink. She is oblivious
 to your presence and seems fascinated by the phones.
 ~
 67 552 -700 S
-28 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 2
 #10442
@@ -536,7 +536,7 @@ Just looking at them makes your blood boil.
 AAAAAAAAAAaaaaaaaaaaaarrrrrrrrgggggghhhhh!!!!!!!!!!!
 ~
 67 552 -1000 S
-23 2 0 1d1+30000 1d8+32
+21 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10443
@@ -547,7 +547,7 @@ A records worker is here filing bad reports.
 You see a rather plain looking office personel here filing a file on someone.
 ~
 67 552 -1000 S
-19 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10444
@@ -559,7 +559,7 @@ Its a jolly old man, with red cheeks and a rolly poley belly and a laugh
 as jolly as you can get.
 ~
 67 552 1000 S
-28 2 0 1d1+30000 1d8+32
+23 2 0 1d1+30000 1d8+32
 100000 0
 0 Human~ 1
 #10445
@@ -571,7 +571,7 @@ The dark black robes hide most of his features, but you can barely make
 out his emaciated face beneath his hood.
 ~
 67 552 -1000 S
-30 2 0 1d1+30000 1d8+32
+35 2 0 1d1+30000 1d8+32
 100000 0
 0 God~ 1
 #10446
@@ -582,7 +582,7 @@ A bowl of blood sits here on the altar.
 Its is a wooden bowl filled with blood and bits of flesh.
 ~
 99 552 -900 S
-4 2 0 1d1+30000 1d8+32
+7 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10447
@@ -593,7 +593,7 @@ A jury member sits here with a guilty sign, waiting for a trial to begin.
 It seems to be a lesser demon disguised as mortal. Fair trial...not likely.
 ~
 67 552 -800 S
-24 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10448
@@ -605,7 +605,7 @@ This is the High Judge of Hell. He has never found anyone innocent,
 and is notorious for his painful and harsh punishments.
 ~
 67 552 -1000 S
-25 2 0 1d1+30000 1d8+32
+32 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10449
@@ -616,7 +616,7 @@ The Lawyer from Hell sits here playing games on his laptop computer.
 Slimy, sleezy and has very sharp teeth...a lawyer all right...
 ~
 67 552 -1000 S
-40 2 0 1d1+30000 1d8+32
+35 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10450
@@ -630,7 +630,7 @@ She seems not to notice you; But is absorbed in her favorite soap,
 
 ~
 67 552 -1000 S
-21 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 2
 #10451
@@ -644,7 +644,7 @@ and then goes back to practicing.
 He is known to buy anything....and sell anything people sell him.
 ~
 67 552 -600 S
-23 2 0 1d1+30000 1d8+32
+20 2 0 1d1+30000 1d8+32
 100000 0
 0 Human~ 1
 #10452
@@ -655,7 +655,7 @@ A maintenance worker is here fixing stuff.
 He is in a yellow jumpsuit with a large nuclear warning symbol on the back.
 ~
 67 552 -750 S
-27 2 0 1d1+30000 1d8+32
+21 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 0
 #10453
@@ -666,7 +666,7 @@ A weed is growing out of the cement here.
 You see a nasty yellow and purple weed.
 ~
 67 552 -1000 S
-6 2 0 1d1+30000 1d8+32
+11 2 0 1d1+30000 1d8+32
 100000 0
 0 Plant~ 0
 #10454
@@ -679,7 +679,7 @@ are pretty well known. He was rumored to disappear around Solace
 100 years ago.
 ~
 67 552 -700 S
-19 2 0 1d1+30000 1d8+32
+24 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 1
 #10455
@@ -691,7 +691,7 @@ This is what used to be a horse....maybe...its hard to tell; half of it has
 been digested already.
 ~
 67 552 -800 S
-6 2 0 1d1+30000 1d8+32
+10 2 0 1d1+30000 1d8+32
 100000 0
 0 Undead~ 0
 #10456
@@ -703,7 +703,7 @@ A large brown and green slime covered reptile. It seems to move around
 to each food item and proceed to barf acid all over it.
 ~
 67 552 -900 S
-25 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Dragon~ 0
 #10457
@@ -715,7 +715,7 @@ Its one of those really nasty pieces of food in the refrigerator that
 disappears and you wonder if it just walked away....
 ~
 67 552 -900 S
-6 2 0 1d1+30000 1d8+32
+2 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10458
@@ -727,7 +727,7 @@ He is dressed in a black jumpsuit with a large nuclear warning symbol on
 the back.
 ~
 67 512 -900 S
-22 2 0 1d1+30000 1d8+32
+23 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 1
 #10459
@@ -739,7 +739,7 @@ He is dressed in a black jumpsuit with a large lighting bolt symbol on
 the back.
 ~
 67 512 -900 S
-20 2 0 1d1+30000 1d8+32
+15 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 1
 #10460
@@ -754,7 +754,7 @@ Homer calmly stands up and unplugs the control panel and sits down
 for a nap.
 ~
 67 512 -900 S
-26 2 0 1d1+30000 1d8+32
+24 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 1
 #10461
@@ -765,7 +765,7 @@ A nice slice of devils food cake is here waiting to be eaten.
 Mmmmmm...don't you just want to take a bite?
 ~
 67 512 -900 S
-10 2 0 1d1+30000 1d8+32
+13 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10462
@@ -778,7 +778,7 @@ You spots you and screams, 'Git awa froom mi food!'
 'I'll kill you!'
 ~
 99 512 -900 S
-27 2 0 1d1+30000 1d8+32
+22 2 0 1d1+30000 1d8+32
 100000 0
 0 Troll~ 1
 #10463
@@ -788,7 +788,7 @@ A frantic lady is here tearing her hair out looking for a sale.
 ~
 ~
 65 512 -600 S
-13 2 0 1d1+30000 1d8+32
+19 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 2
 #10464
@@ -798,7 +798,7 @@ A nuclear technician is here fiddling with his rad suit.
 ~
 ~
 67 512 -850 S
-29 2 0 1d1+30000 1d8+32
+25 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 1
 #10465
@@ -808,7 +808,7 @@ A stray proton is here wizzing about.
 ~
 ~
 67 512 -850 S
-10 2 0 1d1+30000 1d8+32
+15 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10466
@@ -818,7 +818,7 @@ Radiation is here doing unknown things to you.
 ~
 ~
 67 512 -1000 S
-18 2 0 1d1+30000 1d8+32
+25 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #10467
@@ -832,7 +832,7 @@ the reactor floor frantically check dials and gauges while flashing lights
 and sirens sound.
 ~
 67 512 -1000 S
-34 2 0 1d1+30000 1d8+32
+36 2 0 1d1+30000 1d8+32
 100000 0
 0 Ogre~ 1
 #10468
@@ -847,7 +847,7 @@ nails rip slowly through their flesh, as he cackles with glee at the
 sounds of their unending pain...
 ~
 67 512 -1000 S
-36 2 0 1d1+30000 1d8+32
+41 2 0 1d1+30000 1d8+32
 100000 0
 0 God~ 0
 #10469
@@ -859,7 +859,7 @@ This enormous carcass looks as if it came from a small dragon or a very
 large cow.
 ~
 67 512 -675 S
-4 2 0 1d1+30000 1d8+32
+10 2 0 1d1+30000 1d8+32
 100 0
 0 Object~ 0
 #10470
@@ -870,7 +870,7 @@ A guard dog sits here guarding the break room.
 A vicious looking pit bull / demon dog mix is here slobering on the donuts.
 ~
 67 512 -900 S
-16 2 0 1d1+30000 1d8+32
+15 2 0 1d1+30000 1d8+32
 100000 0
 0 Animal~ 0
 #10471
@@ -881,7 +881,7 @@ A mouth watering juicy steak is here steaming.
 Mmmmmmm.....steak....mmmmmm...you feel your mouth start to water.
 ~
 67 512 -900 S
-15 2 0 1d1+30000 1d8+32
+11 2 0 1d1+30000 1d8+32
 100000 0
 0 Object~ 0
 #0
@@ -4268,23 +4268,23 @@ S
 
 
 #SPECIALS
-M 10401 spec_cast_judge 	; the Guardian of Hell
-M 10402 spec_thief 	; the pile of gold coins
-M 10405 spec_thief 	; the gold bar
-M 10411 spec_cast_undead 	; the half-eaten person
-M 10412 spec_cast_undead 	; the living wall
-M 10421 spec_fido 	; the manes
-M 10422 spec_fido 	; the prisoner Raiden
-M 10425 spec_poison 	; demonguard
-M 10432 spec_breath_fire 	; hell hound
-M 10434 spec_breath_frost 	; ice devil
-M 10439 spec_breath_frost 	; Ice Screamer
-M 10442 spec_thief 	; office worker from hell
-M 10445 spec_cast_cleric 	; High Priest of Hell
-M 10448 spec_cast_judge 	; Judge Whopper
-M 10456 spec_breath_acid 	; stomach dragon
-M 10468 spec_breath_fire 	; Greater Fire Demon
-M 10470 spec_fido 	; guard dog
+M 10401 spec_cast_judge
+M 10402 spec_thief
+M 10405 spec_thief
+M 10411 spec_cast_undead
+M 10412 spec_cast_undead
+M 10421 spec_fido
+M 10422 spec_fido
+M 10425 spec_poison
+M 10432 spec_breath_fire
+M 10434 spec_breath_frost
+M 10439 spec_breath_frost
+M 10442 spec_thief
+M 10445 spec_cast_cleric
+M 10448 spec_cast_judge
+M 10456 spec_breath_acid
+M 10468 spec_breath_fire
+M 10470 spec_fido
 S
 
 
@@ -4295,178 +4295,178 @@ S
 
 
 #RESETS
-M 0 10401  2 10405 	; the Guardian of Hell to Gateway to Hell
-E 0 10401  0 16    	;   A wicked looking trident wielded (1)
-M 0 10401  2 10405 	; the Guardian of Hell to Gateway to Hell
-E 0 10401  0 16    	;   A wicked looking trident wielded (1)
-M 0 10409  6 10406 	; a damned soul to Hall of the Damned
-M 0 10409  6 10408 	; a damned soul to Hall of the Damned
-M 0 10409  6 10410 	; a damned soul to Hall of the Damned
-M 0 10412  1 10412 	; the living wall to Living Walls
-G 0 10405  0      	;   Angel's skull
-M 0 10410  2 10413 	; a tortured soul to Trapped souls
-M 0 10411  1 10414 	; the half-eaten person to Tortured Beings
-M 0 10406  1 10415 	; a scrumpious chicken pot pie to Gluttony
-M 0 10407  1 10415 	; a yummy beef pot pie to Gluttony
-M 0 10408  1 10415 	; a yummy vegetable pot pie to Gluttony
-M 0 10402  1 10416 	; the pile of gold coins to Greed
-M 0 10405  1 10416 	; the gold bar to Greed
-M 0 10403  1 10417 	; the male Dee to Bedroom.
-E 0 10402  0 16    	;   A black leather whip wielded (1)
-M 0 10404  1 10417 	; the female Dee to Bedroom.
-E 0 10403  0 16    	;   Hickey maker wielded (1)
-M 0 10414  1 10419 	; bloody severed arm to Room full of Body Parts.
-M 0 10415  1 10419 	; bloody severed foot to Room full of Body Parts.
-M 0 10416  1 10419 	; bloody severed nose to Room full of Body Parts.
-M 0 10417  1 10420 	; the blood from the fountain to Fountain of Blood.
-M 0 10418  1 10423 	; the lost soul to Room of Lost Souls
-M 0 10418  1 10424 	; the lost soul to Room of Lost Souls
-M 0 10419  1 10425 	; crispy critter to Pit of Fire
-E 0 10408  0 16    	;   Flaming claw wielded (1)
-M 0 10413  2 10426 	; skeletal warrior to Blackened Hallway
-E 0 10406  0 5     	;   Rotting flesh on the body
-E 0 10407  0 16    	;   Vorpal blade wielded (1)
-M 0 10413  2 10428 	; skeletal warrior to Blood Room
-E 0 10406  0 5     	;   Rotting flesh on the body
-E 0 10407  0 16    	;   Vorpal blade wielded (1)
-M 0 10412  1 10429 	; the living wall to Living Walls
-G 0 10404  0      	;   A black hilted sword called, "farslayer"
-M 0 10420  1 10430 	; pile of bones to Skeleton Factory
-M 0 10422  1 10433 	; the prisoner Raiden to Cell
-M 0 10425  3 10436 	; demonguard to Stone Hall
-E 0 10409  0 5     	;   Demonskin on the body
-E 0 10410  0 16    	;   Demon teeth wielded (1)
-M 0 10423  1 10437 	; a prisoner in hell to Cell
-M 0 10425  3 10438 	; demonguard to Stone Hall
-E 0 10409  0 5     	;   Demonskin on the body
-E 0 10410  0 16    	;   Demon teeth wielded (1)
-M 0 10421  2 10440 	; the manes to Cell
-E 0 10444  0 16    	;   Mane's claws wielded (1)
-M 0 10425  3 10442 	; demonguard to Stone Hall
-E 0 10409  0 5     	;   Demonskin on the body
-E 0 10410  0 16    	;   Demon teeth wielded (1)
-M 0 10421  2 10445 	; the manes to Cell
-E 0 10444  0 16    	;   Mane's claws wielded (1)
-M 0 10424  1 10449 	; a prisoner in hell to Cell
-M 0 10432  1 10454 	; hell hound to Hall of Fire
-E 0 10417  0 16    	;   Hell hound teeth wielded (1)
-M 0 10427  1 10456 	; male construction worker to Construction Area
-E 0 10445  0 16    	;   Welding torch wielded (1)
-M 0 10428  1 10456 	; female construction worker to Construction Area
-E 0 10412  0 16    	;   Rivet gun wielded (1)
-M 0 10428  1 10456 	; female construction worker to Construction Area
-E 0 10412  0 16    	;   Rivet gun wielded (1)
-M 0 10426  1 10460 	; the burning fool to Fire Pits of Hades
-E 0 10411  0 10    	;   Burning flesh on the arms
-M 0 10468  1 10460 	; Greater Fire Demon to Fire Pits of Hades
-E 0 10415  0 16    	;   Bloody black talon wielded (1)
-G 0 10416  0      	;   Jar of blood
-M 0 10440  1 10462 	; Demonic Foreman to Foreman's Office
-G 0 10422  0      	;   Blueprint
-M 0 10429  1 10465 	; female construction worker to Construction Area
-E 0 10413  0 16    	;   Circular saw wielded (1)
-M 0 10427  1 10467 	; male construction worker to Construction Area
-E 0 10445  0 16    	;   Welding torch wielded (1)
-M 0 10428  1 10467 	; female construction worker to Construction Area
-E 0 10412  0 16    	;   Rivet gun wielded (1)
-M 0 10431  1 10469 	; wall of fire to Wall of Fire
-M 0 10426  1 10470 	; the burning fool to Lake of Fire
-E 0 10411  0 10    	;   Burning flesh on the arms
-M 0 10430  1 10470 	; fire devil to Lake of Fire
-E 0 10414  0 16    	;   Box of matches wielded (1)
-M 0 10435  1 10473 	; soul trapped under the ice to Ice Room
-M 0 10469  1 10474 	; side of frozen beef to Meat Locker
-G 0 10421  0      	;   Meat
-M 0 10436  1 10475 	; half frozen body to Meat Locker
-E 0 10420  0 16    	;   Large meat hook wielded (1)
-M 0 10437  1 10476 	; killer penguin to Penguin Room
-M 0 10437  1 10477 	; killer penguin to Penguin Room
-M 0 10438  1 10478 	; I-scream worker to Ice Creamery
-M 0 10439  1 10479 	; Ice Screamer to Ice Creamery
-M 0 10434  1 10483 	; ice devil to Ice Room
-E 0 10419  0 16    	;   Ice spear wielded (1)
-M 0 10436  1 10484 	; half frozen body to Meat Locker
-E 0 10420  0 16    	;   Large meat hook wielded (1)
-M 0 10469  1 10485 	; side of frozen beef to Meat Locker
-G 0 10421  0      	;   Meat
-M 0 10437  1 10486 	; killer penguin to Penguin Room
-M 0 10437  1 10487 	; killer penguin to Penguin Room
-M 0 10438  1 10488 	; I-scream worker to Ice-Creamery
-M 0 10443  1 10491 	; records worker to Records Hall
-M 0 10443  1 10492 	; records worker to Records Hall
-M 0 10443  1 10493 	; records worker to Records Hall
-M 0 10444  1 10494 	; Santa Claus to Records Hall
-E 0 10424  0 6     	;   Spectacles over the head
-M 0 10446  1 10495 	; a bowl of blood to Small Altar
-M 0 10445  1 10497 	; High Priest of Hell to Office of the High Priest
-E 0 10425  0 17    	;   Unholy symbol held in the hands
-E 0 10426  0 12    	;   Unholy robe about the shoulders
-M 0 10442  1 10498 	; office worker from hell to Blackened Hall
-E 0 10423  0 16    	;   Electric eraser wielded (1)
-M 0 10441  1 10500 	; Secretary of Hell to Administration of Hell
-E 0 10446  0 6     	;   Blond wig over the head
-M 0 10442  1 10506 	; office worker from hell to Blackened Hall
-E 0 10423  0 16    	;   Electric eraser wielded (1)
-M 0 10447  6 10511 	; jury member to Court Room
-M 0 10447  6 10511 	; jury member to Court Room
-M 0 10447  6 10511 	; jury member to Court Room
-M 0 10447  6 10511 	; jury member to Court Room
-M 0 10447  6 10511 	; jury member to Court Room
-M 0 10447  6 10511 	; jury member to Court Room
-M 0 10449  1 10512 	; Lawyer from Hell to Lawyers Office
-E 0 10427  0 16    	;   Sharp teeth of a lawyer wielded (1)
-M 0 10450  1 10513 	; Complaints Officer to Office of Complaints
-M 0 10451  1 10514 	; bastard hiramoto to Pawn Shop
-G 0 10428  0      	;   Golden ring
-G 0 10429  0      	;   Engagement ring
-G 0 10430  0      	;   Prenuptial agreement
-M 0 10463  2 10515 	; frantic lady to Hallway of The Mall from Hell
-M 0 10452  1 10519 	; maintenance worker to Maintenance Walkway
-E 0 10431  0 16    	;   Ionic torque wrench wielded (1)
-E 0 10447  0 5     	;   Yellow jumpsuit on the body
-M 0 10452  1 10520 	; maintenance worker to Maintenance Walkway
-E 0 10431  0 16    	;   Ionic torque wrench wielded (1)
-E 0 10447  0 5     	;   Yellow jumpsuit on the body
-M 0 10448  1 10521 	; Judge Whopper to Judge's Chambers
-M 0 10453  1 10522 	; weeds to Courtyard
-M 0 10454  1 10524 	; Stanley to Stanely's Magical Steeds
-G 0 10432  0      	;   Figurine of a horse
-G 0 10433  0      	;   Figurine of a winged horse
-G 0 10434  0      	;   Figurine of a nightmare
-G 0 10435  0      	;   Figurine of a black dragon
-G 0 10436  0      	;   Figurine of a red dragon
-G 0 10437  0      	;   Figurine of a white dragon
-G 0 10438  0      	;   Figurine of a green dragon
-G 0 10439  0      	;   Figurine of a blue dragon
-M 0 10455  1 10526 	; half eaten horse carcass to Inside Big Mouth's Stomach
-M 0 10456  1 10526 	; stomach dragon to Inside Big Mouth's Stomach
-M 0 10457  1 10526 	; rancid turkey leg to Inside Big Mouth's Stomach
-M 0 10458  1 10528 	; reactor specialist to Reactor Control Room
-E 0 10440  0 17    	;   Geiger counter held in the hands
-E 0 10442  0 5     	;   Black jumpsuit on the body
-M 0 10459  1 10528 	; reactor worker to Reactor Control Room
-E 0 10441  0 16    	;   Photon displacement matrix wielded (1)
-E 0 10442  0 5     	;   Black jumpsuit on the body
-M 0 10452  1 10529 	; maintenance worker to Maintenance Room
-E 0 10431  0 16    	;   Ionic torque wrench wielded (1)
-E 0 10447  0 5     	;   Yellow jumpsuit on the body
-M 0 10470  2 10530 	; guard dog to Break Room
-M 0 10471  1 10531 	; juicy steak to Hell's Kitchen
-M 0 10461  1 10531 	; devils food cake to Hell's Kitchen
-M 0 10462  1 10531 	; mad cook to Hell's Kitchen
-E 0 10448  0 16    	;   Cleaver wielded (1)
-M 0 10453  1 10533 	; weeds to Courtyard
-M 0 10463  2 10535 	; frantic lady to Hallway of The Mall from Hell
-M 0 10465  1 10537 	; stray proton to Inside the Reactor Core
-M 0 10466  1 10537 	; radiation to Inside the Reactor Core
-M 0 10464  1 10538 	; nuclear technician to Reactor Room Floor
-E 0 10442  0 5     	;   Black jumpsuit on the body
-M 0 10466  1 10538 	; radiation to Reactor Room Floor
-M 0 10460  1 10539 	; Homer Simpson to Secondary Control Room
-M 0 10467  1 10540 	; the Chief Engineer of Hell to Office of the Chief Engineer
-G 0 10443  0      	;   Antacid pill
-M 0 10433  1 10541 	; frozen body to Ice Room
-G 0 10418  0      	;   Icy bottle
+M 0 10401 2 10405
+E 0 10401 0 16
+M 0 10401 2 10405
+E 0 10401 0 16
+M 0 10409 6 10406
+M 0 10409 6 10408
+M 0 10409 6 10410
+M 0 10412 1 10412
+G 0 10405 0
+M 0 10410 2 10413
+M 0 10411 1 10414
+M 0 10406 1 10415
+M 0 10407 1 10415
+M 0 10408 1 10415
+M 0 10402 1 10416
+M 0 10405 1 10416
+M 0 10403 1 10417
+E 0 10402 0 16
+M 0 10404 1 10417
+E 0 10403 0 16
+M 0 10414 1 10419
+M 0 10415 1 10419
+M 0 10416 1 10419
+M 0 10417 1 10420
+M 0 10418 1 10423
+M 0 10418 1 10424
+M 0 10419 1 10425
+E 0 10408 0 16
+M 0 10413 2 10426
+E 0 10406 0 5
+E 0 10407 0 16
+M 0 10413 2 10428
+E 0 10406 0 5
+E 0 10407 0 16
+M 0 10412 1 10429
+G 0 10404 0
+M 0 10420 1 10430
+M 0 10422 1 10433
+M 0 10425 3 10436
+E 0 10409 0 5
+E 0 10410 0 16
+M 0 10423 1 10437
+M 0 10425 3 10438
+E 0 10409 0 5
+E 0 10410 0 16
+M 0 10421 2 10440
+E 0 10444 0 16
+M 0 10425 3 10442
+E 0 10409 0 5
+E 0 10410 0 16
+M 0 10421 2 10445
+E 0 10444 0 16
+M 0 10424 1 10449
+M 0 10432 1 10454
+E 0 10417 0 16
+M 0 10427 1 10456
+E 0 10445 0 16
+M 0 10428 1 10456
+E 0 10412 0 16
+M 0 10428 1 10456
+E 0 10412 0 16
+M 0 10426 1 10460
+E 0 10411 0 10
+M 0 10468 1 10460
+E 0 10415 0 16
+G 0 10416 0
+M 0 10440 1 10462
+G 0 10422 0
+M 0 10429 1 10465
+E 0 10413 0 16
+M 0 10427 1 10467
+E 0 10445 0 16
+M 0 10428 1 10467
+E 0 10412 0 16
+M 0 10431 1 10469
+M 0 10426 1 10470
+E 0 10411 0 10
+M 0 10430 1 10470
+E 0 10414 0 16
+M 0 10435 1 10473
+M 0 10469 1 10474
+G 0 10421 0
+M 0 10436 1 10475
+E 0 10420 0 16
+M 0 10437 1 10476
+M 0 10437 1 10477
+M 0 10438 1 10478
+M 0 10439 1 10479
+M 0 10434 1 10483
+E 0 10419 0 16
+M 0 10436 1 10484
+E 0 10420 0 16
+M 0 10469 1 10485
+G 0 10421 0
+M 0 10437 1 10486
+M 0 10437 1 10487
+M 0 10438 1 10488
+M 0 10443 1 10491
+M 0 10443 1 10492
+M 0 10443 1 10493
+M 0 10444 1 10494
+E 0 10424 0 6
+M 0 10446 1 10495
+M 0 10445 1 10497
+E 0 10425 0 17
+E 0 10426 0 12
+M 0 10442 1 10498
+E 0 10423 0 16
+M 0 10441 1 10500
+E 0 10446 0 6
+M 0 10442 1 10506
+E 0 10423 0 16
+M 0 10447 6 10511
+M 0 10447 6 10511
+M 0 10447 6 10511
+M 0 10447 6 10511
+M 0 10447 6 10511
+M 0 10447 6 10511
+M 0 10449 1 10512
+E 0 10427 0 16
+M 0 10450 1 10513
+M 0 10451 1 10514
+G 0 10428 0
+G 0 10429 0
+G 0 10430 0
+M 0 10463 2 10515
+M 0 10452 1 10519
+E 0 10431 0 16
+E 0 10447 0 5
+M 0 10452 1 10520
+E 0 10431 0 16
+E 0 10447 0 5
+M 0 10448 1 10521
+M 0 10453 1 10522
+M 0 10454 1 10524
+G 0 10432 0
+G 0 10433 0
+G 0 10434 0
+G 0 10435 0
+G 0 10436 0
+G 0 10437 0
+G 0 10438 0
+G 0 10439 0
+M 0 10455 1 10526
+M 0 10456 1 10526
+M 0 10457 1 10526
+M 0 10458 1 10528
+E 0 10440 0 17
+E 0 10442 0 5
+M 0 10459 1 10528
+E 0 10441 0 16
+E 0 10442 0 5
+M 0 10452 1 10529
+E 0 10431 0 16
+E 0 10447 0 5
+M 0 10470 2 10530
+M 0 10471 1 10531
+M 0 10461 1 10531
+M 0 10462 1 10531
+E 0 10448 0 16
+M 0 10453 1 10533
+M 0 10463 2 10535
+M 0 10465 1 10537
+M 0 10466 1 10537
+M 0 10464 1 10538
+E 0 10442 0 5
+M 0 10466 1 10538
+M 0 10460 1 10539
+M 0 10467 1 10540
+G 0 10443 0
+M 0 10433 1 10541
+G 0 10418 0
 S
 
 
@@ -4477,7 +4477,7 @@ S
 
 
 #SHOPS
-10451  0  0  0  0  0 110  75  0 23 	; bastard hiramoto
+10451 0 0 0 0 0 110 75 0 23
 0
 
 

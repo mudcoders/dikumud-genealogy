@@ -390,6 +390,7 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int wpn )
 void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 {
     int sntemp;
+    char buf [ MAX_STRING_LENGTH ];
 
     if ( victim->position == POS_DEAD )
 	return;
@@ -591,6 +592,13 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
     case POS_DEAD:
 	send_to_char( "You have been KILLED!!\n\r\n\r", victim );
 	act( "$n is DEAD!!", victim, NULL, NULL, TO_ROOM );
+	if ( !IS_NPC( victim ) )
+	{
+	    sprintf( buf, "%s died at the hands of %s at %s [%d]", victim->name,
+		( IS_NPC( ch ) ? ch->short_descr : ch->name ),
+		victim->in_room->name, victim->in_room->vnum);
+	    wiznet ( ch, WIZ_DEATHS, get_trust( ch ), buf );
+	}
 	break;
 
     default:
@@ -741,6 +749,9 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 
 bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
 {
+    if ( victim == ch )
+	return FALSE;
+
     if ( !IS_NPC( ch ) && IS_AFFECTED( ch, AFF_GHOUL ) )
     {
 	send_to_char(
@@ -879,6 +890,9 @@ void check_killer( CHAR_DATA *ch, CHAR_DATA *victim )
 	sprintf( buf, "Help!  I'm being attacked by %s!", ch->name );
 	do_shout( victim, buf );
 	SET_BIT( ch->act, PLR_KILLER );
+	sprintf( buf, "%s became a killer by attacking %s", ch->name,
+	    victim->name );
+	wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 	gain_exp( ch, -600 );
 	demote_level( ch );
 

@@ -1,5 +1,5 @@
-MythranMud 3.1.1
-Monday, 21 October 1996
+MythranMud 3.1.8
+Sun, 2 March 1997
 
 Mark Janssen (Maniac)	mark@delftnet.nl
 Jeroen v/d Maat (Canth)	canth@xs4all.nl

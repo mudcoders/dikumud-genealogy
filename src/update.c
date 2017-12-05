@@ -58,6 +58,10 @@ void	obj_update      args( ( void ) );
 void	aggr_update     args( ( void ) );
 void    quest_update	args( ( void ) );
 
+/*
+ * External functions.
+ */
+void	birthday	args( ( CHAR_DATA *ch ) );
 
 
 /*
@@ -170,6 +174,8 @@ void demote_level( CHAR_DATA *ch )
 
 void gain_exp( CHAR_DATA *ch, int gain )
 {
+    char buf [ MAX_STRING_LENGTH ];
+
     if ( IS_NPC( ch ) || ch->level >= LEVEL_HERO )
 	return;
 
@@ -179,6 +185,9 @@ void gain_exp( CHAR_DATA *ch, int gain )
 	send_to_char( "You raise a level!!  ", ch );
 	ch->level += 1;
 	advance_level( ch );
+	sprintf( buf, "%s has levelled and is now level %d.", ch->name,
+	    ch->level );
+	wiznet( ch, WIZ_LEVELS, get_trust( ch ), buf );
     }
 
     return;
@@ -531,39 +540,39 @@ void weather_update( void )
 
     switch ( ++time_info.hour )
     {
-    case  6:
+    case  (int) ( ( HOUR_DAY / 5 ) + 1 ):
 	weather_info.sunlight = SUN_RISE;
 	strcat( buf, "The sun rises in the east.\n\r" );
 	break;
 
-    case  7:
+    case  (int) ( ( HOUR_DAY / 5 ) + 2 ):
 	weather_info.sunlight = SUN_LIGHT;
 	strcat( buf, "The day has begun.\n\r" );
 	break;
 
-    case 19:
+    case (int) ( HOUR_DAY * 4 / 5 ):
 	weather_info.sunlight = SUN_SET;
 	strcat( buf, "The sun slowly disappears in the west.\n\r" );
 	break;
 
-    case 20:
+    case (int) ( (HOUR_DAY * 4 / 5 ) + 1 ):
 	weather_info.sunlight = SUN_DARK;
 	strcat( buf, "The night has begun.\n\r" );
 	break;
 
-    case 24:
+    case HOUR_DAY:
 	time_info.hour = 0;
 	time_info.day++;
 	break;
     }
 
-    if ( time_info.day   >= 35 )
+    if ( time_info.day   >= DAY_MONTH )
     {
 	time_info.day = 0;
 	time_info.month++;
     }
 
-    if ( time_info.month >= 17 )
+    if ( time_info.month >= MONTH_YEAR )
     {
 	time_info.month = 0;
 	time_info.year++;
@@ -572,7 +581,7 @@ void weather_update( void )
     /*
      * Weather change.
      */
-    if ( time_info.month >= 9 && time_info.month <= 16 )
+    if ( time_info.month >= ( MONTH_YEAR / 2 ) && time_info.month <= MONTH_YEAR )
 	diff = weather_info.mmhg >  985 ? -2 : 2;
     else
 	diff = weather_info.mmhg > 1015 ? -2 : 2;
@@ -674,7 +683,8 @@ void bank_update(void)
         value -= 100;
         value /= 10;
 
-        share_value += value;
+        if ( ( share_value += value) < 0 )
+		share_value = 1;
 
         if ( !( fp = fopen ( BANK_FILE, "w" ) ) )
         {
@@ -706,6 +716,25 @@ void char_update( void )
 
 	if ( ch->deleted )
 	    continue;
+
+	if (IS_PC( ch ) )
+	{
+	    if ( ( ch->death_age > 0 ) && ( get_trust( ch ) <= LEVEL_HERO ) )
+	    {
+		if ( get_age( ch ) >= ch->death_age )	/* Player dies (old age) */
+		{
+		    die_old_age( ch );
+		    continue;
+		}
+	    }
+	    /* Check to see if a char ages here */
+	    if ( ch->pcdata->last_age < get_age( ch ) )
+	    {
+		ch->pcdata->last_age= get_age( ch );
+		birthday( ch );
+	    }
+
+	}
 
 	/*
 	 * Find dude with oldest save time.
@@ -1481,7 +1510,10 @@ void ban_update( void )
     }
 
     for ( pban = ban_list; pban; pban = pban->next )
-        fprintf( fp, "%s~\n", pban->name );
+    {
+        fprintf( fp, "%s~\n", pban->name  );
+	fprintf( fp, "%d\n",  pban->level );
+    }
 
     fclose( fp );
     fpReserve = fopen( NULL_FILE, "r" );
@@ -1514,12 +1546,14 @@ void update_handler( void )
 
     if ( --pulse_violence <= 0 )
     {
+	wiznet( NULL, WIZ_TICKS, L_APP, "Violence update pulse" );
 	pulse_violence  = PULSE_VIOLENCE;
 	violence_update ( );
     }
 
     if ( --pulse_mobile   <= 0 )
     {
+	wiznet( NULL, WIZ_TICKS, L_APP, "Mobile update pulse" );
 	pulse_mobile    =
 	  number_range( PULSE_MOBILE / 2, 3 * PULSE_MOBILE / 2 );
 	mobile_update   ( );

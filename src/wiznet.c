@@ -242,14 +242,18 @@ void wiznet( CHAR_DATA *ch, int chan, int level, char * string )
 
 	for ( d = descriptor_list; d != NULL; d = d->next )
 	{
-		if (d->connected == CON_PLAYING		/* Playing ??? */
+		if ( ( d->connected == CON_PLAYING )	/* Playing ??? */
 		&& (!d->original)			/* Fix ???? */
-		&& (get_trust(d->character) >= level)	/* Powerfull enuf */
+		&& (get_trust( d->character ) >= level)	/* Powerfull enuf */
 		&& (d->character != ch )		/* Not the sender */
-		&& (WCHAN(d->character, WIZ_ON ) )	/* Is wiznet on */
-		&& (WCHAN(d->character, chan ) ) )	/* Is this chan on */
+		&& (WCHAN( d->character, WIZ_ON ) )	/* Is wiznet on */
+		&& (WCHAN( d->character, chan ) )	/* Is this chan on */
+		&& (get_trust( d->character ) > L_HER )	/* Ex-imm's */
+		&& (ch ? can_see( d->character, ch ) : TRUE ) )	/* Can see each other */
+		/* Beware of NULL ch.. - Canth */
 		{
-			send_to_char (buf, d->character );
+			/* used bw to show {'s in the log instead of colour */
+			send_to_char_bw (buf, d->character );
 		}
 	}
 	return;

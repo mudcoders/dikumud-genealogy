@@ -407,7 +407,10 @@ char *fread_string( FILE *fp )
     char *ptr = buf;
     char  c;
 
-    do { c = getc( fp ); }
+    do
+    {
+	c = getc( fp );
+    }
     while( isspace( c ) );
 
     if( ( *ptr++ = c ) == '~' )

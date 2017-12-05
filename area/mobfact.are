@@ -1,5 +1,5 @@
 #AREADATA
-Name        Mob Factory~
+Name        {{ 5 35} PinkF   Mob Factory~
 Builders    None~
 VNUMs       9400 9424
 Security    1
@@ -18,7 +18,7 @@ You see a mutant beastly fido, glaring at you with green eyes!  You wonder if
 this factory meets ASPCA guidlines....
 ~
 481 8 -700 S
-3 18 0 3d6+20 2d4+1
+4 18 0 3d6+20 2d4+1
 5 0
 0 Animal~ 1
 #9402
@@ -31,7 +31,7 @@ of dedicated Mudding!  Rewarded for his years of dedication as a monster
 slayer, Floyd now creates the beasts for other adventurers to fight.
 ~
 67 168 2 S
-7 10 0 2d100+100 2d7+2
+12 10 0 2d100+100 2d7+2
 1000 0
 0 Human~ 1
 #9403
@@ -44,7 +44,7 @@ Obviously, this one got past quality control!  Careful, those teeth look
 sharp...
 ~
 65 524288 0 S
-16 12 0 3d15+30 2d6+2
+10 12 0 3d15+30 2d6+2
 0 0
 0 Undead~ 0
 #9404
@@ -56,7 +56,7 @@ You see and smell a drunk who looks much like other drunks...but he is spinning
 in place!  Someone should tell him that he is a REVOLTING drunk.
 ~
 197 0 1 S
-8 20 0 2d4+10 1d6+1
+3 20 0 2d4+10 1d6+1
 50 0
 0 Human~ 1
 #9405
@@ -68,7 +68,7 @@ Yick.  Looks like someone had digestion problems!  Either that, or the
 hydraulic fluid is leaking again.
 ~
 7 0 0 S
-3 17 0 3d10+30 2d4+0
+4 17 0 3d10+30 2d4+0
 0 0
 0 Plant~ 0
 #9406
@@ -80,7 +80,7 @@ The worker wears a bright orange pair of overalls, with the words "Mob
 Factory" written in a bright purple starburst.  Fashion plate, he's not.
 ~
 193 0 100 S
-7 18 0 4d20+5 1d4+1
+2 18 0 4d20+5 1d4+1
 50 0
 0 Dwarf~ 1
 #9407
@@ -92,7 +92,7 @@ If Floyd walks in, you can bet there'll be trouble.  Guess she shouldn't have
 worked the late shift!
 ~
 131 0 150 S
-6 18 0 4d20+5 1d4+1
+3 18 0 4d20+5 1d4+1
 75 0
 0 Dwarf~ 2
 #0
@@ -656,38 +656,38 @@ S
 
 
 #RESETS
-M 0 9405  7 9401  	; The toxic slime to Mob Factory Storage Area
-M 0 9401  5 9402  	; The mutant beastly fido to Mob Factory Storage Area
-M 0 9402  1 9403  	; Foreman Floyd to Foreman's Office
-M 0 9405  7 9404  	; The toxic slime to Foreman's Bathroom
-M 0 9403  9 9406  	; The Cityguard head to Mob Factory Storage Area
-M 0 9405  7 9408  	; The toxic slime to Mob Factory Cafeteria
-M 0 9401  5 9408  	; The mutant beastly fido to Mob Factory Cafeteria
-M 0 9405  7 9409  	; The toxic slime to Mob Factory Cafeteria
-M 0 9407  4 9410  	; The factory worker to Mob Factory Inspection Room
-M 0 9404  6 9410  	; The revolving drunk to Mob Factory Inspection Room
-M 0 9403  9 9410  	; The Cityguard head to Mob Factory Inspection Room
-M 0 9407  4 9411  	; The factory worker to Mob Factory Inspection Room
-M 0 9401  5 9411  	; The mutant beastly fido to Mob Factory Inspection Room
-M 0 9404  6 9413  	; The revolving drunk to Mob Factory Reject Room
-M 0 9403  9 9414  	; The Cityguard head to Mob Factory Reject Room
-M 0 9405  7 9415  	; The toxic slime to Primary Assembly Line
-M 0 9406  9 9415  	; The factory worker to Primary Assembly Line
-M 0 9406  9 9416  	; The factory worker to Primary Assembly Line
-M 0 9406  9 9417  	; The factory worker to Primary Assembly Line
-M 0 9406  9 9418  	; The factory worker to Primary Assembly Line
-M 0 9401  5 9418  	; The mutant beastly fido to Primary Assembly Line
-M 0 9406  9 9419  	; The factory worker to Primary Assembly Line
-M 0 9406  9 9420  	; The factory worker to Secondary Assembly Line
-M 0 9407  4 9420  	; The factory worker to Secondary Assembly Line
-M 0 9405  7 9421  	; The toxic slime to Secondary Assembly Line
-M 0 9403  9 9421  	; The Cityguard head to Secondary Assembly Line
-M 0 9403  9 9422  	; The Cityguard head to Secondary Assembly Line
-M 0 9406  9 9423  	; The factory worker to Secondary Assembly Line
-M 0 9403  9 9423  	; The Cityguard head to Secondary Assembly Line
-M 0 9403  9 9424  	; The Cityguard head to Secondary Assembly Line
-M 0 9406  9 9424  	; The factory worker to Secondary Assembly Line
-M 0 9405  7 9424  	; The toxic slime to Secondary Assembly Line
+M 0 9405 7 9401
+M 0 9401 5 9402
+M 0 9402 1 9403
+M 0 9405 7 9404
+M 0 9403 9 9406
+M 0 9405 7 9408
+M 0 9401 5 9408
+M 0 9405 7 9409
+M 0 9407 4 9410
+M 0 9404 6 9410
+M 0 9403 9 9410
+M 0 9407 4 9411
+M 0 9401 5 9411
+M 0 9404 6 9413
+M 0 9403 9 9414
+M 0 9405 7 9415
+M 0 9406 9 9415
+M 0 9406 9 9416
+M 0 9406 9 9417
+M 0 9406 9 9418
+M 0 9401 5 9418
+M 0 9406 9 9419
+M 0 9406 9 9420
+M 0 9407 4 9420
+M 0 9405 7 9421
+M 0 9403 9 9421
+M 0 9403 9 9422
+M 0 9406 9 9423
+M 0 9403 9 9423
+M 0 9403 9 9424
+M 0 9406 9 9424
+M 0 9405 7 9424
 S
 
 

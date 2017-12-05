@@ -1,5 +1,5 @@
 #AREADATA
-Name        Plains of the North~
+Name        {{ 1 20} Copper  Plains of the North~
 Builders    None~
 VNUMs       300 350
 Security    1
@@ -18,7 +18,7 @@ Aruncus is a tall, skinny druid with a face marked by nature.
 He seems to be in peace with himself and his surroundings.
 ~
 193 8 -500 S
-14 8 0 13d13+130 3d5+2
+13 8 0 13d13+130 3d5+2
 500 0
 0 Elf~ 1
 #301
@@ -31,7 +31,7 @@ He is dressed in simple clothing and looks like he has little
 or nothing to say.
 ~
 3 0 0 S
-6 16 0 4d4+40 1d9+2
+5 16 0 4d4+40 1d9+2
 1 0
 0 Hobbit~ 1
 #303
@@ -43,7 +43,7 @@ He seems like a nice person with no interest in harming you or others.
 He wears normal, light clothing and has an anonymous face.
 ~
 69 0 0 S
-7 15 0 6d6+60 2d4+2
+6 15 0 6d6+60 2d4+2
 200 0
 0 Halfdwarf~ 1
 #304
@@ -55,7 +55,7 @@ She seems like a nice person with no interest in harming you or others.
 She wears a minimum of clothing and has big ... eyes.
 ~
 69 0 0 S
-10 16 0 5d5+50 2d4+1
+5 16 0 5d5+50 2d4+1
 100 0
 0 Halfdwarf~ 2
 #305
@@ -82,7 +82,7 @@ His life is seems to be totally occupied with trading.
 He looks very fit and capable of protecting his goods.
 ~
 7 0 400 S
-29 0 0 1d1+30000 2d10+0
+24 0 0 1d1+30000 2d10+0
 8000 0
 0 Human~ 1
 #308
@@ -94,7 +94,7 @@ The Innkeeper looks skilled in brewing different beers and mixing the
 weirdest drinks known. He also looks very big.
 ~
 3 0 -100 S
-28 0 0 1d1+30000 2d10+1
+24 0 0 1d1+30000 2d10+1
 100 0
 0 Human~ 1
 #309
@@ -105,7 +105,7 @@ A cute rabbit is here.
 It is a small, furry creature with long ears and big feet.
 ~
 65 0 0 S
-1 20 0 1d4+1 1d4+0
+2 20 0 1d4+1 1d4+0
 0 0
 0 Animal~ 0
 #350
@@ -118,7 +118,7 @@ The small wings are eagerly trying to lift her from the ground,
 but so far they haven't succeeded.
 ~
 131 524424 1000 S
-6 0 0 10d10+100 10d10+0
+10 0 0 10d10+100 10d10+0
 0 0
 0 Dragon~ 2
 #0
@@ -1289,7 +1289,7 @@ S
 
 
 #SPECIALS
-M 350 spec_cast_mage 	; the pet dragon
+M 350 spec_cast_mage
 S
 
 
@@ -1300,25 +1300,25 @@ S
 
 
 #RESETS
-O 0 304  0 316   	; Wild flowers to Grassy plains
-M 0 309 10 318   	; the cute rabbit to Grassy plains
-O 0 301  0 319   	; A small dusk of black gyvel to Grassy plains
-O 0 304  0 323   	; Wild flowers to The steep foothills
-M 0 300  1 323   	; Aruncus the Druid to The steep foothills
-E 0 308  0 17    	;   A druish staff held in the hands
-E 0 307  0 3     	;   A strange amulet around the neck (1)
-G 0 312  0      	;   A scroll titled 'jhyfrdow'
-G 0 302  0      	;   A small dusk of poison ivy
-M 0 309 10 324   	; the cute rabbit to The steep foothills
-O 0 300  0 327   	; A small dusk of timian herbs to The foothills
-M 0 301  1 331   	; Sorbus the Hermit to Hermit's hut
-G 0 303  0      	;   A dark red jar
-O 0 309  0 331   	; A rabbit roast to Hermit's hut
-M 0 309 10 334   	; the cute rabbit to The ancient path
-O 0 304  0 338   	; Wild flowers to Grassy plains
-M 0 305  1 344   	; Shudde-M'ell to The Hall of G'harne
-G 0 310  0      	;   A strange template
-G 0 311  0      	;   A clear potion
+O 0 304 0 316
+M 0 309 10 318
+O 0 301 0 319
+O 0 304 0 323
+M 0 300 1 323
+E 0 308 0 17
+E 0 307 0 3
+G 0 312 0
+G 0 302 0
+M 0 309 10 324
+O 0 300 0 327
+M 0 301 1 331
+G 0 303 0
+O 0 309 0 331
+M 0 309 10 334
+O 0 304 0 338
+M 0 305 1 344
+G 0 310 0
+G 0 311 0
 S
 
 
@@ -1329,8 +1329,8 @@ S
 
 
 #SHOPS
-306  1 10 11 19  0 120  60  0 23 	; Luxan
-308  0  0  0  0  0 110 100  0 23 	; the Innkeeper
+306 1 10 11 19 0 120 60 0 23
+308 0 0 0 0 0 110 100 0 23
 0
 
 

@@ -141,6 +141,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Cla         %d\n",	ch->class		);
     if (!IS_NPC(ch) )
     {
+	fprintf( fp, "OldClass    %d\n",	ch->pcdata->oldclass);
         fprintf( fp, "Clan        %s~\n",	clan_name(ch->pcdata->clan) );
 	fprintf( fp, "Clanlev     %d\n",	ch->pcdata->clanlevel );
     }
@@ -151,7 +152,6 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Trst        %d\n",	ch->trust		);
     fprintf( fp, "Security    %d\n",    ch->pcdata->security    );  /* OLC */
 
-    /* Very badly done by canth... this should fix it... -- Maniac -- */
     if (ch->pcdata->spouse)
     {
 	fprintf( fp, "Spous       %s~\n",	ch->pcdata->spouse	);
@@ -159,6 +159,9 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 
     fprintf( fp, "Playd       %d\n",
 	ch->played + (int) ( current_time - ch->logon )		);
+    fprintf( fp, "Age         %d\n",
+	ch->current_age + (int) ( current_time - ch->logon )	);
+    fprintf( fp, "DeathAge    %d\n",	ch->death_age		);
     fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note );
     fprintf( fp, "Room        %d\n",
 	    (  ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
@@ -411,6 +414,8 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->name				= str_dup( name );
     ch->pcdata->prompt                  = str_dup( daPrompt );
     ch->last_note                       = 0;
+    ch->current_age			= 0;
+    ch->death_age			= 0;
     ch->act				= PLR_BLANK | PLR_COMBINE | PLR_PROMPT;
     ch->pcdata->pwd			= str_dup( "" );
     ch->pcdata->bamfin			= str_dup( "" );
@@ -430,6 +435,9 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->condition[COND_FULL]	= 48;
     ch->pcdata->pagelen                 = 20;
     ch->pcdata->security		= 0;
+    ch->pcdata->oldclass		= 0;	/* Remort code -- Maniac */
+    ch->pcdata->last_age		= 999;	/* So we don't have NEWBIE
+						 * birthdays :) Canth */
 
     ch->pcdata->switched                = FALSE;
 
@@ -495,6 +503,39 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     }
 
     fpReserve = fopen( NULL_FILE, "r" );
+
+    /* Assigning death_age for existing players */
+    if( ch->death_age == 0 )
+    {
+#if defined (DEATH_AGE_SYSTEM)
+	if (race_table[ch->race].death_age < 0)
+		ch->death_age = -1;
+	else
+	{
+	    ch->death_age = MUD_YEAR * ( race_table[ch->race].death_age +
+		dice( race_table[ch->race].death_age_mod[0],
+		    race_table[ch->race].death_age_mod[1]) );
+	}
+#else
+	ch->death_age = -1;
+#endif
+    }
+    if( ch->current_age == 0 )
+    {
+#if defined (START_AGE_SYSTEM)
+	if ( race_table[ ch->race ].start_age < 0 )
+	    ch->current_age = -1;
+	else
+	{
+	    ch->current_age = MUD_YEAR * ( race_table[ ch->race ].start_age +
+		dice( race_table[ ch->race ].start_age_mod[ 0 ],
+		    race_table[ ch->race ].start_age_mod[ 1 ] ) );
+	}
+#else
+	ch->current_age = -1;
+#endif
+    }
+
     return found;
 }
 
@@ -538,6 +579,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	case 'A':
 	    KEY( "Act",		ch->act,		fread_number( fp ) );
 	    KEY( "AffdBy",	ch->affected_by,	fread_number( fp ) );
+	    KEY( "Age",		ch->current_age,	fread_number( fp ) );
 	    KEY( "Align",	ch->alignment,		fread_number( fp ) );
 	    KEY( "Armr",	ch->armor,		fread_number( fp ) );
 
@@ -601,9 +643,21 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    break;
 
 	case 'C':
-	    KEY( "Cla", 	ch->class,		fread_number( fp ) );
+/*	    KEY( "Cla", 	ch->class,		fread_number( fp ) ); */
 	    KEY( "Clan",	ch->pcdata->clan, clan_lookup(fread_string(fp) ) );
 	    KEY( "Clanlev",	ch->pcdata->clanlevel,	fread_number( fp ) );
+
+	    if ( !str_cmp( word, "Cla" ) )	/* For remort by Maniac */
+	    {
+		fMatch = TRUE;
+		ch->class = fread_number( fp );
+		if (IS_PC( ch ) )
+		{
+		    if ( ch->pcdata->oldclass == 0 )
+			SET_BIT( ch->pcdata->oldclass, bitvalues[ch->class] );
+		}
+		break;
+	    }
 
 	    if ( !str_cmp( word, "Cond" ) )
 	    {
@@ -618,6 +672,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	case 'D':
 	    KEY( "Dam", 	ch->damroll,		fread_number( fp ) );
 	    KEY( "Deaf",	ch->deaf,		fread_number( fp ) );
+	    KEY( "DeathAge",	ch->death_age,		fread_number( fp ) );
 	    KEY( "Dscr",	ch->description,	fread_string( fp ) );
 	    break;
 
@@ -682,6 +737,10 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 		break;
 	    }
 	    KEY( "Note",        ch->last_note,          fread_number( fp ) );
+	    break;
+
+	case 'O':
+	    KEY( "Oldclass",	ch->pcdata->oldclass,	fread_number( fp ) );
 	    break;
 
 	case 'P':
@@ -795,6 +854,9 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    }
 	    break;
 	}
+
+	/* Assign this variable here as it is not necesary to save it */
+	ch->pcdata->last_age = get_age ( ch );
 
 	/* Make sure old chars have this field - Kahn */
 	if ( !ch->pcdata->pagelen )

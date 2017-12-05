@@ -436,6 +436,13 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	char		*lan_str;
 	char		buf	[ 256 ];
 
+	if( IS_NPC( ch ) )
+	{
+		send_to_char( "You can't speak any languages", ch );
+		do_say( ch, argument );
+		return;
+	}
+
 	lan_str = lang_table[language].name;
 
 	buf[0] = '\0';
@@ -461,8 +468,8 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	if(number_percent( ) <= chance )
 	{
 	   buf[0] = '\0';
-	   sprintf (buf,"In %s, you say '%s'\n\r", lan_str, argument);
-	   send_to_char(buf, ch);
+	   sprintf ( buf, "In %s, you say '{c$T{x'", lan_str );
+	   act( buf, ch, NULL, argument, TO_CHAR );
 	   for(och = ch->in_room->people; och != NULL; och = och->next_in_room )
 	   {
             if(!IS_NPC(och) && (och != ch))
@@ -473,14 +480,14 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 		if(number_percent( ) <= chance2)
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In %s, %s says, '%s'\n\r", lan_str, ch->name, argument);
-		   send_to_char(buf, och);
+		   sprintf (buf, "In %s, $n says, '{c%s{x'", lan_str, argument);
+		   act( buf, ch, NULL, och, TO_VICT );
 		}
 		else
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In %s, %s says something you can't understand.\n\r", lan_str, ch->name);
-		   send_to_char(buf, och);
+		   sprintf (buf, "In %s, $n says something you can't understand.", lan_str );
+		   act( buf, ch, NULL, och, TO_VICT );
 		}
              }
 	   }
@@ -488,8 +495,8 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	else
 	{
 	   buf[0] = '\0';
-	   sprintf (buf, "In %s, you try to say '%s', but it doesn't sound correct.\n\r", lan_str, argument);
-	   send_to_char(buf, ch);
+	   sprintf (buf, "In %s, you try to say '{c$T{x', but it doesn't sound correct.{x", lan_str );
+	   act( buf, ch, NULL, argument, TO_CHAR );
            for(och = ch->in_room->people; och != NULL; och = och->next_in_room )
            {
             if(!IS_NPC(och) && (och != ch))
@@ -500,14 +507,14 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
                 if(number_percent( ) <= chance2)
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In a weird form of %s, %s says something uncomprehensible.\n\r", lan_str, ch->name);
-                   send_to_char(buf, och);
+		   sprintf (buf, "In a weird form of %s, $n says something uncomprehensible.", lan_str );
+		   act( buf, ch, NULL, och, TO_VICT );
 		}
                 else
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In %s, %s says something you can't understand.\n\r", lan_str, ch->name);
-		   send_to_char(buf, och);
+		   sprintf (buf, "In %s, $n says something you can't understand.", lan_str );
+		   act( buf, ch, NULL, och, TO_VICT );
 		}
              }
            }

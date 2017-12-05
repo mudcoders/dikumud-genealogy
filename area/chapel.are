@@ -1,5 +1,5 @@
 #AREADATA
-Name        Chapel Catacombs~
+Name        {{15 25} Copper  Chapel Catacombs~
 Builders    None~
 VNUMs       3400 3475
 Security    1
@@ -18,7 +18,7 @@ Brown bones with tufts of clothing still hanging from them.  This
 skeleton looks very mindless but still dangerous ...
 ~
 33 0 0 S
-1 20 0 1d1+19 1d6+0
+2 20 0 1d1+19 1d6+0
 15 0
 0 Undead~ 1
 #3401
@@ -31,7 +31,7 @@ quite different from the next because they were, of course, once alive and
 human.
 ~
 35 40 -100 S
-9 17 0 1d1+49 1d8+0
+5 17 0 1d1+49 1d8+0
 50 0
 0 Undead~ 1
 #3402
@@ -43,7 +43,7 @@ The ghoul no longer resembles the adventurer he once was.  Nonetheless
 he looks like he hasn't forgot his fighting skills.
 ~
 33 8 -500 S
-6 15 0 1d1+79 2d5+1
+7 15 0 1d1+79 2d5+1
 150 0
 0 Undead~ 1
 #3403
@@ -56,7 +56,7 @@ black robe which hides all but the darkness of his face and the glimmer
 in his eyes.
 ~
 35 42 -750 S
-16 9 0 1d1+149 3d6+0
+10 9 0 1d1+149 3d6+0
 1000 0
 0 Undead~ 1
 #3404
@@ -68,7 +68,7 @@ The guardian vampire looks quite EVIL.  Just by looking at him the hair on your
 arms raises. He looks mighty tough to be just a minor minion.
 ~
 35 40 -1000 S
-27 0 0 1d1+385 4d5+15
+28 0 0 1d1+385 4d5+15
 15000 0
 0 Vampire~ 1
 #3405
@@ -81,7 +81,7 @@ Dressed in white, fine white hair, and a soft slightly wrinkled face ...
 this man has a sacred beauty.  You see a halo around his head.
 ~
 2051 168 1000 S
-17 5 0 15d15+150 1d4+8
+15 5 0 15d15+150 1d4+8
 400 0
 0 Human~ 1
 #3406
@@ -96,7 +96,7 @@ multitudes of very small antennae, where a head would ordinarily be.  These
 beings sometimes walk on all their legs and sometimes on the hind pair only.
 ~
 33 0 -500 S
-18 9 0 12d12+120 2d7+2
+10 9 0 12d12+120 2d7+2
 650 0
 0 Animal~ 0
 #3407
@@ -111,7 +111,7 @@ of all, it makes absolutely no sound or speech and smiles not at all because
 it has no face, only a suggestive blackness where a face ought to be ...
 ~
 97 98304 -1000 S
-1 11 0 10d10+100 2d6+3
+11 11 0 10d10+100 2d6+3
 150 0
 0 Animal~ 0
 #3408
@@ -126,7 +126,7 @@ and writhing, so it is hard to look at them.  They speak in great harsh
 voices.  A hunting horror is HUGE, normally around 40 feet long.
 ~
 33 40 -1000 S
-17 1 0 20d20+200 3d6+12
+22 1 0 20d20+200 3d6+12
 2000 0
 0 Snake~ 0
 #3409
@@ -137,7 +137,7 @@ Some weeds are creeping across the floor.
 Just some unpleasant looking vine-like growths ...
 ~
 37 98312 0 S
-1 15 0 1d1+75 1d8+1
+5 15 0 1d1+75 1d8+1
 83 0
 0 Plant~ 0
 #3410
@@ -150,7 +150,7 @@ bright red hair. Half his face is burnt off and he has a perpetual smile.
 He is called up from his service in hell in order to aid the Undying One.
 ~
 3 8 -750 S
-21 0 0 1d1+365 4d3+15
+20 0 0 1d1+365 4d3+15
 2222 0
 0 Undead~ 1
 #3411
@@ -165,7 +165,7 @@ It has dog-like face except ... different.  Bright glowing eyes and a grimace
 lead you to believe that he knew that you were coming.
 ~
 35 8 -1000 S
-21 4 0 1d1+215 4d2+7
+16 4 0 1d1+215 4d2+7
 1560 0
 0 Animal~ 1
 #3412
@@ -182,7 +182,7 @@ softly into the air:
     calls me but I am blocked from its quiet.
 ~
 3 40 350 S
-24 0 0 1d1+260 4d6+5
+21 0 0 1d1+260 4d6+5
 50 0
 0 Undead~ 1
 #3413
@@ -193,7 +193,7 @@ A rock slug is slowly creeping along, leaving a slime trail behind it.
 It is a large brownish slug.  Got any salt?  Didn't think so ...
 ~
 5 0 0 S
-5 18 0 1d1+42 1d7+0
+2 18 0 1d1+42 1d7+0
 5 0
 0 Worm~ 0
 #3414
@@ -214,7 +214,7 @@ Would you like hot or cold tea?  Yes the weather is ...'
 And on he babbles ...
 ~
 65 1 1000 S
-9 5 0 1d1+80 2d6+1
+3 5 0 1d1+80 2d6+1
 50 0
 0 Human~ 1
 #3415
@@ -229,7 +229,7 @@ insanely at you thru a broken jaw and missing teeth.  One hand of hers is
 resting on the shoulder of the etcher ... her husband.
 ~
 3 65536 1000 S
-10 14 0 1d1+86 2d4+3
+7 14 0 1d1+86 2d4+3
 125 0
 0 Undead~ 2
 #3416
@@ -240,7 +240,7 @@ A half-decomposed body is lying in the corner here.
 YUK! It's ugly, disgusting ... it smells ... it also moves a bit!
 ~
 37 0 -350 S
-7 15 0 1d1+80 2d5+1
+5 15 0 1d1+80 2d5+1
 83 0
 0 Undead~ 1
 #0
@@ -1791,20 +1791,20 @@ S
 
 
 #SPECIALS
-M 3400 spec_cast_undead 	; the bony skeleton
-M 3401 spec_cast_undead 	; the undead zombie
-M 3402 spec_cast_undead 	; The ghoul
-M 3403 spec_cast_undead 	; The wraith
-M 3404 spec_cast_undead 	; The guardian vampire
-M 3405 spec_cast_cleric 	; the priest
-M 3407 spec_cast_undead 	; The nightgaunt
-M 3408 spec_cast_undead 	; The hunting horror
-M 3410 spec_cast_undead 	; Snapper Joe
-M 3411 spec_cast_undead 	; The X-ist flesh eater
-M 3412 spec_cast_mage 	; the spirit of King Crotus
-M 3414 spec_cast_mage 	; The mad etcher
-M 3415 spec_cast_undead 	; The spectral etcher's wife
-M 3416 spec_cast_undead 	; The half-decomposed body
+M 3400 spec_cast_undead
+M 3401 spec_cast_undead
+M 3402 spec_cast_undead
+M 3403 spec_cast_undead
+M 3404 spec_cast_undead
+M 3405 spec_cast_cleric
+M 3407 spec_cast_undead
+M 3408 spec_cast_undead
+M 3410 spec_cast_undead
+M 3411 spec_cast_undead
+M 3412 spec_cast_mage
+M 3414 spec_cast_mage
+M 3415 spec_cast_undead
+M 3416 spec_cast_undead
 S
 
 
@@ -1815,110 +1815,110 @@ S
 
 
 #RESETS
-M 0 3405  1 3405  	; the priest to Inside the Chapel
-G 0 3430  0      	;   A silver key
-O 0 3400  0 3405  	; A candlestick to Inside the Chapel
-M 0 3401  8 3409  	; the undead zombie to The Acolyte's Bedroom
-M 0 3401  8 3409  	; the undead zombie to The Acolyte's Bedroom
-M 0 3401  8 3409  	; the undead zombie to The Acolyte's Bedroom
-M 0 3402  8 3409  	; The ghoul to The Acolyte's Bedroom
-R 0 3410  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3400  8 3410  	; the bony skeleton to The Lower Chambers and Tombs of the Undead
-E 0 3421  0 16    	;   A rusty curved scimitar wielded (1)
-R 0 3411  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3403  1 3411  	; The wraith to The Lower Chambers and Tombs of the Undead
-E 0 3425  0 17    	;   An auburn-colored orb held in the hands
-M 0 3416  4 3411  	; The half-decomposed body to The Lower Chambers and Tombs of the Undead
-M 0 3401  8 3414  	; the undead zombie to The Tomb of Shohan
-M 0 3401  8 3414  	; the undead zombie to The Tomb of Shohan
-M 0 3401  8 3414  	; the undead zombie to The Tomb of Shohan
-M 0 3401  8 3414  	; the undead zombie to The Tomb of Shohan
-R 0 3415  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3413  5 3417  	; the rock slug to The Grand Hall of Kings
-G 0 3422  0      	;   A piece of slime
-M 0 3413  5 3418  	; the rock slug to The Shrine of Cristis
-G 0 3422  0      	;   A piece of slime
-M 0 3400  8 3419  	; the bony skeleton to The Tomb of Cristis
-E 0 3421  0 16    	;   A rusty curved scimitar wielded (1)
-R 0 3420  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3412  1 3424  	; the spirit of King Crotus to The Tomb of Crotus
-E 0 3416  0 17    	;   A heavy iron key held in the hands
-O 0 3415  0 3424  	; A stone sarcophagus to The Tomb of Crotus
-P 0 3417  0 3415  	; A wineflask inside a wineflask
-P 0 3418  0 3415  	; A mound of coins fit for a dead king inside a mound of coins fit for a dead king
-R 0 3425  4      	; Randomize The Lower Chambers and Tombs of the Undead
-R 0 3426  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3409  4 3426  	; some cave weeds to The Lower Chambers and Tombs of the Undead
-M 0 3409  4 3426  	; some cave weeds to The Lower Chambers and Tombs of the Undead
-M 0 3416  4 3426  	; The half-decomposed body to The Lower Chambers and Tombs of the Undead
-R 0 3430  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3400  8 3430  	; the bony skeleton to The Lower Chambers and Tombs of the Undead
-E 0 3421  0 16    	;   A rusty curved scimitar wielded (1)
-R 0 3431  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3413  5 3432  	; the rock slug to The Grand Hall of Kings
-G 0 3422  0      	;   A piece of slime
-M 0 3411  1 3434  	; The X-ist flesh eater to The Tomb of Frath
-E 0 3414  0 16    	;   A whisper thin rapier wielded (1)
-G 0 3412  0      	;   The mummified head of jubal the benevolent
-P 0 3413  0 3412  	; A black marble ring inside a black marble ring
-R 0 3435  4      	; Randomize The Lower Chambers and Tombs of the Undead
-R 0 3436  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3402  8 3437  	; The ghoul to The Grand Hall of Kings
-R 0 3440  4      	; Randomize The Lower Chambers and Tombs of the Undead
-R 0 3441  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3400  8 3441  	; the bony skeleton to The Lower Chambers and Tombs of the Undead
-E 0 3421  0 16    	;   A rusty curved scimitar wielded (1)
-M 0 3413  5 3441  	; the rock slug to The Lower Chambers and Tombs of the Undead
-G 0 3422  0      	;   A piece of slime
-R 0 3442  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3416  4 3442  	; The half-decomposed body to The Lower Chambers and Tombs of the Undead
-R 0 3443  4      	; Randomize The Lower Chambers and Tombs of the Undead
-R 0 3444  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3409  4 3444  	; some cave weeds to The Lower Chambers and Tombs of the Undead
-M 0 3409  4 3444  	; some cave weeds to The Lower Chambers and Tombs of the Undead
-R 0 3445  4      	; Randomize The Lower Chambers and Tombs of the Undead
-R 0 3446  4      	; Randomize The Lower Chambers and Tombs of the Undead
-R 0 3447  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3402  8 3447  	; The ghoul to The Lower Chambers and Tombs of the Undead
-M 0 3416  4 3448  	; The half-decomposed body to The Lower Chambers and Tombs of the Undead
-O 0 3420  0 3448  	; A hidden compartment in the room to The Lower Chambers and Tombs of the Undead
-P 0 3410  0 3420  	; A queerly shaped rod inside a queerly shaped rod
-R 0 3449  4      	; Randomize The Lower Chambers and Tombs of the Undead
-M 0 3410  1 3449  	; Snapper Joe to The Lower Chambers and Tombs of the Undead
-E 0 3414  0 16    	;   A whisper thin rapier wielded (1)
-E 0 3429  0 5     	;   A worn and dented breast plate on the body
-E 0 3411  0 17    	;   A large black dirty key held in the hands
-M 0 3413  5 3450  	; the rock slug to Entrance to the Forbidden Catacombs
-G 0 3422  0      	;   A piece of slime
-M 0 3407  5 3452  	; The nightgaunt to The Catacombs
-E 0 3402  0 16    	;   A nightgaunt's tickler wielded (1)
-M 0 3407  5 3453  	; The nightgaunt to The Catacombs
-E 0 3402  0 16    	;   A nightgaunt's tickler wielded (1)
-M 0 3402  8 3454  	; The ghoul to The Catacombs
-M 0 3406  4 3455  	; the Mi-Go to The Catacombs
-E 0 3403  0 5     	;   Disgusting pinkish plasma webbing on the body
-M 0 3407  5 3457  	; The nightgaunt to The Catacombs
-E 0 3402  0 16    	;   A nightgaunt's tickler wielded (1)
-M 0 3404  1 3460  	; The guardian vampire to Den of the Vampire
-E 0 3428  0 16    	;   A pitch-black longsword that flames brightly... wielded (1)
-E 0 3427  0 12    	;   A dark black cape about the shoulders
-E 0 3419  0 17    	;   Key to the coffin held in the hands
-G 0 3424  0      	;   A tightly rolled scroll
-M 0 3402  8 3462  	; The ghoul to The Catacombs
-M 0 3406  4 3463  	; the Mi-Go to The Catacombs
-E 0 3403  0 5     	;   Disgusting pinkish plasma webbing on the body
-M 0 3407  5 3465  	; The nightgaunt to The Gilded Hallway
-E 0 3402  0 16    	;   A nightgaunt's tickler wielded (1)
-M 0 3407  5 3465  	; The nightgaunt to The Gilded Hallway
-E 0 3402  0 16    	;   A nightgaunt's tickler wielded (1)
-M 0 3406  4 3466  	; the Mi-Go to The Gilded Hallway
-E 0 3403  0 5     	;   Disgusting pinkish plasma webbing on the body
-M 0 3414  1 3468  	; The mad etcher to The Gilded Hallway
-E 0 3423  0 5     	;   An artist's smock on the body
-M 0 3415  1 3468  	; The spectral etcher's wife to The Gilded Hallway
-M 0 3408  1 3471  	; The hunting horror to A Secret Passageway
-E 0 3425  0 17    	;   An auburn-colored orb held in the hands
-G 0 3426  0      	;   A bar of gold
+M 0 3405 1 3405
+G 0 3430 0
+O 0 3400 0 3405
+M 0 3401 8 3409
+M 0 3401 8 3409
+M 0 3401 8 3409
+M 0 3402 8 3409
+R 0 3410 4
+M 0 3400 8 3410
+E 0 3421 0 16
+R 0 3411 4
+M 0 3403 1 3411
+E 0 3425 0 17
+M 0 3416 4 3411
+M 0 3401 8 3414
+M 0 3401 8 3414
+M 0 3401 8 3414
+M 0 3401 8 3414
+R 0 3415 4
+M 0 3413 5 3417
+G 0 3422 0
+M 0 3413 5 3418
+G 0 3422 0
+M 0 3400 8 3419
+E 0 3421 0 16
+R 0 3420 4
+M 0 3412 1 3424
+E 0 3416 0 17
+O 0 3415 0 3424
+P 0 3417 0 3415
+P 0 3418 0 3415
+R 0 3425 4
+R 0 3426 4
+M 0 3409 4 3426
+M 0 3409 4 3426
+M 0 3416 4 3426
+R 0 3430 4
+M 0 3400 8 3430
+E 0 3421 0 16
+R 0 3431 4
+M 0 3413 5 3432
+G 0 3422 0
+M 0 3411 1 3434
+E 0 3414 0 16
+G 0 3412 0
+P 0 3413 0 3412
+R 0 3435 4
+R 0 3436 4
+M 0 3402 8 3437
+R 0 3440 4
+R 0 3441 4
+M 0 3400 8 3441
+E 0 3421 0 16
+M 0 3413 5 3441
+G 0 3422 0
+R 0 3442 4
+M 0 3416 4 3442
+R 0 3443 4
+R 0 3444 4
+M 0 3409 4 3444
+M 0 3409 4 3444
+R 0 3445 4
+R 0 3446 4
+R 0 3447 4
+M 0 3402 8 3447
+M 0 3416 4 3448
+O 0 3420 0 3448
+P 0 3410 0 3420
+R 0 3449 4
+M 0 3410 1 3449
+E 0 3414 0 16
+E 0 3429 0 5
+E 0 3411 0 17
+M 0 3413 5 3450
+G 0 3422 0
+M 0 3407 5 3452
+E 0 3402 0 16
+M 0 3407 5 3453
+E 0 3402 0 16
+M 0 3402 8 3454
+M 0 3406 4 3455
+E 0 3403 0 5
+M 0 3407 5 3457
+E 0 3402 0 16
+M 0 3404 1 3460
+E 0 3428 0 16
+E 0 3427 0 12
+E 0 3419 0 17
+G 0 3424 0
+M 0 3402 8 3462
+M 0 3406 4 3463
+E 0 3403 0 5
+M 0 3407 5 3465
+E 0 3402 0 16
+M 0 3407 5 3465
+E 0 3402 0 16
+M 0 3406 4 3466
+E 0 3403 0 5
+M 0 3414 1 3468
+E 0 3423 0 5
+M 0 3415 1 3468
+M 0 3408 1 3471
+E 0 3425 0 17
+G 0 3426 0
 S
 
 

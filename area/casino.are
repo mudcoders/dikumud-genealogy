@@ -185,9 +185,9 @@ S
 
 
 #RESETS
-M 0 3162  1 509   	; the slick croupier to The Game of Seven Room
-M 0 3160  1 510   	; the slick croupier to The Upper Lower Triple Room
-M 0 3161  1 511   	; the slick croupier to The High-Dice Room
+M 0 3162 1 509
+M 0 3160 1 510
+M 0 3161 1 511
 S
 
 

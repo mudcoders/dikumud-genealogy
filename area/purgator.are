@@ -1,5 +1,5 @@
 #AREADATA
-Name        Purgatory~
+Name        {{ ALL } Envy    Purgatory~
 Builders    None~
 VNUMs       401 427
 Security    1
@@ -17,7 +17,7 @@ The Reaper of the Dead awaits here to decide your fate.
 Ever smiling, he doesn't seems to mind being stuck here for eternity.
 ~
 3 8328 -1000 S
-103 0 0 0d0+0 0d0+0
+100 0 0 0d0+0 0d0+0
 0 0
 0 God~ 0
 #402
@@ -921,7 +921,7 @@ S
 
 
 #SPECIALS
-M 401 spec_cast_mage 	; The Reaper of the Dead
+M 401 spec_cast_mage
 S
 
 
@@ -932,14 +932,14 @@ S
 
 
 #RESETS
-R 0 401  6      	; Randomize The Purgatory
-M 0 402  3 407   	; A lost soul to The Purgatory
-R 0 410  6      	; Randomize The Purgatory
-M 0 402  3 425   	; A lost soul to The Purgatory
-M 0 401  1 427   	; The Reaper of the Dead to The Judgement Room
-E 0 403  0 16    	;   A scythe of death wielded (1)
-E 0 402  0 17    	;   A book of judgement held in the hands
-G 0 401  0      	;   A drop of elves' tear
+R 0 401 6
+M 0 402 3 407
+R 0 410 6
+M 0 402 3 425
+M 0 401 1 427
+E 0 403 0 16
+E 0 402 0 17
+G 0 401 0
 S
 
 
@@ -950,7 +950,7 @@ S
 
 
 #SHOPS
-401  0  0  0  0  0 100   0  0 23 	; The Reaper of the Dead
+401 0 0 0 0 0 100 0 0 23
 0
 
 

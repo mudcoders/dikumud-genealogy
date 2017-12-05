@@ -117,6 +117,7 @@ typedef struct  char_data               CHAR_DATA;
 typedef struct  descriptor_data         DESCRIPTOR_DATA;
 typedef struct  exit_data               EXIT_DATA;
 typedef struct  extra_descr_data        EXTRA_DESCR_DATA;
+typedef struct	room_mana_data		ROOM_MANA_DATA;
 typedef struct  help_data               HELP_DATA;
 typedef struct  kill_data               KILL_DATA;
 typedef struct  mob_index_data          MOB_INDEX_DATA;
@@ -155,7 +156,7 @@ typedef void GAME_FUN		args( ( CHAR_DATA *ch,
  */
 #define MAX_KEY_HASH             1024
 #define MAX_STRING_LENGTH        4096
-#define MAX_INPUT_LENGTH          160
+#define MAX_INPUT_LENGTH          180
 
 
 
@@ -164,8 +165,8 @@ typedef void GAME_FUN		args( ( CHAR_DATA *ch,
  * Increase the max'es if you add more of something.
  * Adjust the pulse numbers to suit yourself.
  */
-#define MAX_CHUNKS		   27		/* Used in ssm.c */
-#define MAX_SKILL                 165
+#define MAX_CHUNKS		   29		/* Used in ssm.c */
+#define MAX_SKILL                 166
 #define MAX_CLASS                   8
 #define MAX_RACE                   41
 #define MAX_LEVEL                  54
@@ -176,6 +177,7 @@ typedef void GAME_FUN		args( ( CHAR_DATA *ch,
 #define L_APP                     ( L_JUN - 1 )
 #define LEVEL_IMMORTAL            L_APP
 #define LEVEL_HERO                ( LEVEL_IMMORTAL - 1 )
+#define L_HER			  LEVEL_HERO
 
 #define PULSE_PER_SECOND            4
 #define PULSE_VIOLENCE            (  2 * PULSE_PER_SECOND )
@@ -185,6 +187,29 @@ typedef void GAME_FUN		args( ( CHAR_DATA *ch,
 #define PULSE_AUCTION             ( 20 * PULSE_PER_SECOND ) /* 20 seconds */
 /* Save the database - OLC 1.1b */
 #define PULSE_DB_DUMP             (1800* PULSE_PER_SECOND ) /* 30 minutes  */
+#define MUD_HOUR		  ( PULSE_TICK / PULSE_PER_SECOND )
+#define MUD_DAY			  ( 24 * MUD_HOUR )
+#define MUD_WEEK		  ( 7 * MUD_DAY )
+#define MUD_MONTH		  ( 5 * MUD_WEEK )
+#define MUD_YEAR		  ( 10 * MUD_MONTH )
+/* hours per day, days per week, weeks per month, etc */
+#define HOUR_DAY		  ( MUD_DAY / MUD_HOUR )
+#define DAY_WEEK		  ( MUD_WEEK / MUD_DAY )
+#define WEEK_MONTH		  ( MUD_MONTH / MUD_WEEK )
+#define MONTH_YEAR		  ( MUD_YEAR / MUD_MONTH )
+#define DAY_MONTH		  ( DAY_WEEK * WEEK_MONTH )
+/* (Used for time_info.day... to name the days of the month) */
+/* MUD dates adjusted to make ppl age a little faster
+ * MUD_HOUR  =   7.5 seconds
+ * MUD_DAY   =   180 seconds (3 minutes)
+ * MUD_WEEK  =  1260 seconds (21 minutes)
+ * MUD_MONTH =  6300 seconds (1 hour, 45 minutes)
+ * MUD_YEAR  = 63000 seconds (17 hours, 30 minutes)
+ * So for every 17.5 hours a player spends on-line, he ages 1 year.
+ * (Humans start at +- 20, die at +- 60, so approx 40 life years
+ *  this means they can be on-line for 29 days non-stop)
+ * Canth - 7/6/97
+ */
 
 /*
  * Language stuff
@@ -221,6 +246,7 @@ struct  ban_data
 {
     BAN_DATA *  next;
     char *      name;
+    int		level;
 };
 
 /*
@@ -263,6 +289,7 @@ struct  time_info_data
 {
     int         hour;
     int         day;
+    int		week;
     int         month;
     int         year;
 };
@@ -275,6 +302,26 @@ struct  weather_data
     int         sunlight;
 };
 
+
+/*
+ * Colour stuff by Lope of Loping Through The MUD
+ */
+#define CLR_CLEAR	"[0m"		/* Resets Colour	*/
+#define CLR_RED		"[0;31m"	/* Normal Colours	*/
+#define CLR_GREEN	"[0;32m"
+#define CLR_YELLOW	"[0;33m"
+#define CLR_BLUE	"[0;34m"
+#define CLR_MAGENTA	"[0;35m"
+#define CLR_CYAN	"[0;36m"
+#define CLR_WHITE	"[0;37m"
+#define CLR_D_GREY	"[1;30m"  	/* Light Colors		*/
+#define CLR_B_RED	"[1;31m"
+#define CLR_B_GREEN	"[1;32m"
+#define CLR_B_YELLOW	"[1;33m"
+#define CLR_B_BLUE	"[1;34m"
+#define CLR_B_MAGENTA	"[1;35m"
+#define CLR_B_CYAN	"[1;36m"
+#define CLR_B_WHITE	"[1;37m"
 
 
 /*
@@ -326,11 +373,12 @@ struct  weather_data
  * Clans
  */
 /* The clans */
-#define CLAN_EXILE		-1
 #define CLAN_NONE		0
 #define CLAN_MYTHRAN		1
+#define CLAN_DRAGON		2
 
 /* Clan levels */
+#define CLAN_EXILE		-2
 #define CLAN_NOLEVEL		-1
 #define CLAN_APPLICANT		0
 #define CLAN_INITIATE		1
@@ -344,6 +392,21 @@ struct  weather_data
 #define CLAN_LEADER		9
 #define CLAN_GOD		10
 
+/* Mana types */
+#define MANA_NONE	BIT_0
+#define MANA_WHITE	BIT_1
+#define MANA_BLACK	BIT_2
+#define MANA_BLUE	BIT_3
+#define MANA_RED	BIT_4
+#define MANA_GREEN	BIT_5
+#define MANA_YELLOW	BIT_6
+#define MANA_PURPLE	BIT_7
+#define MANA_BROWN	BIT_8
+#define MANA_NEW1	BIT_9
+#define MANA_NEW2	BIT_10
+#define MANA_NEW3	BIT_11
+#define MANA_NEW4	BIT_12
+
 
 /*
  * Race structures
@@ -351,7 +414,11 @@ struct  weather_data
 struct  race_type
 {
     char *              name;
-    int			race_lang;
+    int			race_lang;	/* Languages by Maniac and Canth */
+    int			start_age;		/* Race ages for Mythran */
+    int			start_age_mod[2];	/* by Maniac and Canth */
+    int			death_age;		/* AD&D like age rules */
+    int			death_age_mod[2];	/* (C) Mythran Mud 1996 */
     int                 race_abilities;
     int                 size;
     int                 str_mod;
@@ -375,7 +442,6 @@ struct  race_type
 #define SIZE_HUGE		7	/* Giant ogre                        */
 #define SIZE_TITANIC		8	/* Troll Hydra                       */
 #define SIZE_GARGANTUAN		9	/* Dragon God                        */
-
 
 /* Race ability bits */
 #define RACE_NO_ABILITIES		BIT_0
@@ -524,7 +590,14 @@ struct clan_type
 	int	pitroom;		/* Clan don pit room vnum	*/
 	int	rooms		[ 3 ];	/* Clan rooms			*/
 	int	recall;			/* Clan recall room		*/
-};	
+};
+
+struct mana_type
+{
+	int	type;
+	char *	name;
+	int	opposite;
+};
 
 /*
  * Data structure for notes.
@@ -705,6 +778,13 @@ struct  kill_data
 #define OBJ_VNUM_DIAMOND_RING	3371	/* Wedding rings for Marriage code */
 #define OBJ_VNUM_WEDDING_BAND	3372	/* Canth (canth@xs4all.nl) of Mythran */
 
+#define OBJ_VNUM_PORTAL		62	/* Default portal for portal spell */
+
+#define OBJ_VNUM_BDAY_1		70	/* Birthday presents - Canth */
+#define OBJ_VNUM_BDAY_2		71
+#define OBJ_VNUM_BDAY_3		72
+#define OBJ_VNUM_BDAY_4		73
+#define OBJ_VNUM_BDAY_5		74
 
 /*
  * Item types.
@@ -736,6 +816,7 @@ struct  kill_data
 #define ITEM_FOUNTAIN                25
 #define ITEM_PILL                    26
 #define ITEM_JUKEBOX                 27
+#define ITEM_PORTAL		     28
 
 
 
@@ -809,23 +890,23 @@ struct  kill_data
 #define PUT_INSIDE		BIT_16
 
 #define FURNITURE_UNUSED	-1
-#define FURNITURE_NONE		0
-#define ST_AT			1	/*	Stand at	*/
-#define ST_ON			2	/*	Stand on	*/
-#define ST_IN			3	/*	Stand in	*/
-#define SI_AT			4	/*	Sit at		*/
-#define SI_ON			5	/*	Sit on		*/
-#define SI_IN			6	/*	Sit in		*/
-#define RE_AT			7	/*	Rest at		*/
-#define RE_ON			8	/*	Rest on		*/
-#define RE_IN			9	/*	Rest in		*/
-#define SL_AT			10	/*	Sleep at	*/
-#define SL_ON			11	/*	Sleep on	*/
-#define SL_IN			12	/*	Sleep in	*/
-#define PT_AT			13	/*	Put at		*/
-#define PT_ON			14	/*	Put on		*/
-#define PT_IN			15	/*	Put in		*/
-#define PT_INSIDE		16	/*	Put inside	*/
+#define FURNITURE_NONE		BIT_0
+#define ST_AT			BIT_1	/*	Stand at	*/
+#define ST_ON			BIT_2	/*	Stand on	*/
+#define ST_IN			BIT_3	/*	Stand in	*/
+#define SI_AT			BIT_4	/*	Sit at		*/
+#define SI_ON			BIT_5	/*	Sit on		*/
+#define SI_IN			BIT_6	/*	Sit in		*/
+#define RE_AT			BIT_7	/*	Rest at		*/
+#define RE_ON			BIT_8	/*	Rest on		*/
+#define RE_IN			BIT_9	/*	Rest in		*/
+#define SL_AT			BIT_10	/*	Sleep at	*/
+#define SL_ON			BIT_11	/*	Sleep on	*/
+#define SL_IN			BIT_12	/*	Sleep in	*/
+#define PT_AT			BIT_13	/*	Put at		*/
+#define PT_ON			BIT_14	/*	Put on		*/
+#define PT_IN			BIT_15	/*	Put in		*/
+#define PT_INSIDE		BIT_16	/*	Put inside	*/
 
 /*
  * Apply types (for affects).
@@ -1040,6 +1121,7 @@ struct  kill_data
 #define PLR_KILLER		BIT_24
 #define PLR_AUTOGOLD		BIT_25
 #define PLR_AFK			BIT_26
+#define PLR_COLOUR		BIT_27
 
 /* WIZnet flags */
 #define WIZ_ON			BIT_1	/* On / Off switch */
@@ -1161,6 +1243,8 @@ struct  char_data
     int                 level;
     int                 trust;
     int                 played;
+    int			current_age;		/* Current age */
+    int			death_age;		/* Death age */
     int                 mpactnum;		/* MP */
     time_t              logon;
     time_t              save_time;
@@ -1175,6 +1259,9 @@ struct  char_data
     int                 max_move;
     int                 gold;
     int                 exp;
+/* WHY is the queststuff CHAR_DATA and not PC_DATA??????
+ * Canth (canth@xs4all.nl)
+ * To be fixed... */
     int			questpoints;		/* Vassago */
     int			nextquest;		/* Vassago */
     int			countdown;		/* Vassago */
@@ -1229,12 +1316,14 @@ struct  pc_data
     int			language	[ MAX_LANGUAGE ];	/* Maniac */
     int			speaking;				/* Maniac */
     int			learn;					/* Maniac */
+    int			last_age;				/* Canth */
     int			balance;				/* Maniac */
     int			shares;					/* Maniac */
     int			security;				/* OLC */
     int			clan;					/* Maniac */
     int			clanlevel;				/* Maniac */
     int			wiznet;					/* Maniac */
+    int			oldclass;	/* remort, old classes	   Maniac */
     int			mprog_edit;	/* Mprog currently editing - Walker */
     bool                switched;
     bool		confirm_delete;				/* Maniac */
@@ -1267,6 +1356,16 @@ struct  extra_descr_data
     bool              deleted;
 };
 
+/*
+ * Room mana data for room mana... new feature by Maniac for
+ * Mythran Mud v3.1.5 (C) 1996 The Maniac
+ */
+struct	room_mana_data
+{
+	ROOM_MANA_DATA	*next;		/* Next in list for this room	*/
+	int		type;		/* Type of mana			*/
+	int		amount;		/* Amount of mana		*/
+};
 
 
 /*
@@ -1399,6 +1498,7 @@ struct  room_index_data
     EXIT_DATA *         exit    [ 6 ];
     RESET_DATA *        reset_first;    /* OLC */
     RESET_DATA *        reset_last;     /* OLC */
+    ROOM_MANA_DATA *	mana;		/* Maniac, room mana struct */
     char *              name;
     char *              description;
     int                 vnum;
@@ -1553,6 +1653,7 @@ extern  int     gsn_vampiric_bite;
 #define IS_QUESTOR(ch)		( IS_SET((ch)->act, PLR_QUESTOR))
 #define MOB_GAME_CHEAT(mob)	( mob->pIndexData->ac )
 #define WCHAN(ch, chan)         ( IS_SET(ch->pcdata->wiznet, chan) )
+#define PLAYED(ch)		( ch->played + (int) ( current_time - ch->logon ) )
 
 
 
@@ -1682,6 +1783,7 @@ extern  const   struct  con_app_type    con_app         [ 26 ];
 
 extern  const   struct  class_type      class_table     [ MAX_CLASS   ];
 extern	const	struct	clan_type	clan_table	[ ];
+extern	const	struct	mana_type	mana_table	[ ];
 extern  const   struct  cmd_type        cmd_table       [ ];
 extern  const   struct  liq_type        liq_table       [ LIQ_MAX     ];
 extern  const   struct  skill_type      skill_table     [ MAX_SKILL   ];
@@ -1712,6 +1814,7 @@ extern          BAN_DATA          *     ban_free;
 extern          CHAR_DATA         *     char_free;
 extern          DESCRIPTOR_DATA   *     descriptor_free;
 extern          EXTRA_DESCR_DATA  *     extra_descr_free;
+extern		ROOM_MANA_DATA    *	room_mana_free;
 extern          NOTE_DATA         *     note_free;
 extern          OBJ_DATA          *     obj_free;
 extern          PC_DATA           *     pcdata_free;
@@ -1756,6 +1859,7 @@ DECLARE_DO_FUN( do_bamfin       );
 DECLARE_DO_FUN( do_bamfout      );
 DECLARE_DO_FUN( do_ban          );
 DECLARE_DO_FUN( do_bash         );
+DECLARE_DO_FUN( do_beep		);		/* by Canth */
 DECLARE_DO_FUN( do_berserk      );              /* by Thelonius */
 DECLARE_DO_FUN( do_bet          );              /* by Thelonius */
 DECLARE_DO_FUN( do_bladethirst  );              /* by Maniac    */
@@ -1765,11 +1869,14 @@ DECLARE_DO_FUN( do_brief        );
 DECLARE_DO_FUN( do_bug          );
 DECLARE_DO_FUN( do_buy          );
 DECLARE_DO_FUN( do_cast         );
+DECLARE_DO_FUN( do_cdonate	);
 DECLARE_DO_FUN( do_chameleon    );              /* by Thelonius */
 DECLARE_DO_FUN( do_channels     );
 DECLARE_DO_FUN( do_chat         );
 DECLARE_DO_FUN( do_circle       );              /* by Thelonius */
+DECLARE_DO_FUN( do_clone	);
 DECLARE_DO_FUN( do_close        );
+DECLARE_DO_FUN( do_colour	);
 DECLARE_DO_FUN( do_combine      );
 DECLARE_DO_FUN( do_commands     );
 DECLARE_DO_FUN( do_compare      );
@@ -1965,6 +2072,7 @@ DECLARE_DO_FUN( do_clanrecall	);	/* Clan Recall shortcut to new recall */
 DECLARE_DO_FUN(	do_guild	);	/* Change chars clan options */
 DECLARE_DO_FUN(	do_clan		);	/* Clan command, manipulate clans */
 DECLARE_DO_FUN( do_wiznet	);	/* Wiznet stuff */
+DECLARE_DO_FUN( do_remort	);	/* Remorting */
 
 DECLARE_DO_FUN( do_mpasound     );
 DECLARE_DO_FUN( do_mpat         );
@@ -2008,6 +2116,7 @@ DECLARE_DO_FUN( do_for		);	/* super AT function */
 DECLARE_DO_FUN( do_rename	);	/* rename players */
 DECLARE_DO_FUN( do_exlist	);	/* Find exits between areas */
 DECLARE_DO_FUN( do_objlist	);	/* Dumps list of objects */
+DECLARE_DO_FUN( do_enter	);	/* Entering portqals */
 
 DECLARE_DO_FUN( do_marry	);	/* Marry 2 ppl - Canth */
 DECLARE_DO_FUN( do_divorce	);	/* Divorce 2 ppl - Canth */
@@ -2023,6 +2132,7 @@ DECLARE_DO_FUN( do_rings	);	/* Make rings 4 married ppl - Canth */
  */
 DECLARE_SPELL_FUN(      spell_null              );
 DECLARE_SPELL_FUN(      spell_acid_blast        );
+DECLARE_SPELL_FUN(	spell_age		);	/* Maniac and Canth */
 DECLARE_SPELL_FUN(      spell_animate_dead      );
 DECLARE_SPELL_FUN(      spell_armor             );
 DECLARE_SPELL_FUN(      spell_bless             );
@@ -2041,6 +2151,7 @@ DECLARE_SPELL_FUN(      spell_cone_of_silence   );      /* by Thelonius */
 DECLARE_SPELL_FUN(      spell_continual_light   );
 DECLARE_SPELL_FUN(      spell_control_weather   );
 DECLARE_SPELL_FUN(      spell_create_food       );
+DECLARE_SPELL_FUN(	spell_create_portal	);	/* by Canth */
 DECLARE_SPELL_FUN(      spell_create_spring     );
 DECLARE_SPELL_FUN(      spell_create_water      );
 DECLARE_SPELL_FUN(      spell_cure_blindness    );
@@ -2091,6 +2202,7 @@ DECLARE_SPELL_FUN(      spell_polymorph_other   );
 DECLARE_SPELL_FUN(      spell_protection        );
 DECLARE_SPELL_FUN(      spell_recharge_item     );      /* by Thelonius */
 DECLARE_SPELL_FUN(      spell_refresh           );
+DECLARE_SPELL_FUN(	spell_rejuvenate	);	/* Maniac and Canth */
 DECLARE_SPELL_FUN(      spell_remove_alignment  );      /* by Thelonius */
 DECLARE_SPELL_FUN(      spell_remove_curse      );
 DECLARE_SPELL_FUN(      spell_remove_silence    );      /* by Thelonius */
@@ -2398,6 +2510,7 @@ extern          int                     top_mob_index;
 extern          int                     top_obj_index;
 extern          int                     top_reset;
 extern          int                     top_room;
+extern		int			top_room_mana;
 extern          int                     top_shop;
 
 extern          int                     top_vnum_mob;
@@ -2481,6 +2594,7 @@ bool    check_blind     args( ( CHAR_DATA *ch ) );
 
 /* act_move.c */
 void    move_char       args( ( CHAR_DATA *ch, int door ) );
+void	die_old_age	args( ( CHAR_DATA *ch ) );
 
 /* act_obj.c */
 bool    remove_obj      args( ( CHAR_DATA *ch, int iWear, bool fReplace ) );
@@ -2502,12 +2616,17 @@ void    act              args( ( const char *format, CHAR_DATA *ch,
 				const void *arg1, const void *arg2,
 				int type ) );
 void	printf_to_char	args( ( CHAR_DATA *ch, char *fmt, ...) );
+int	colour		args( ( char type, CHAR_DATA *ch, char *string ) );
+void	colourconv	args( ( char *buffer, const char *txt, CHAR_DATA *ch ) );
+void	send_to_char_bw	args( ( const char *txt, CHAR_DATA *ch ) );
 
 /* db.c */
 void    boot_db         args( ( void ) );
 void    area_update     args( ( void ) );
 CD *    create_mobile   args( ( MOB_INDEX_DATA *pMobIndex ) );
+void	clone_mobile	args( ( CHAR_DATA *parent, CHAR_DATA *clone ) );
 OD *    create_object   args( ( OBJ_INDEX_DATA *pObjIndex, int level ) );
+void	clone_object	args( ( OBJ_DATA *parent, OBJ_DATA *clone ) );
 void    clear_char      args( ( CHAR_DATA *ch ) );
 void    free_char       args( ( CHAR_DATA *ch ) );
 char *  get_extra_descr args( ( const char *name, EXTRA_DESCR_DATA *ed ) );

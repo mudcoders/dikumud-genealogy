@@ -1,4 +1,4 @@
-#AREA	Prototype for New Area~
+#AREA	{{ 5 50} Envy    Prototype for New Area~
 
 
 #RECALL
@@ -26,11 +26,6 @@
 
 
 #RESETS
-S
-
-
-
-#MOBPROGS
 S
 
 

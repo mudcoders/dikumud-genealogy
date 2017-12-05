@@ -333,6 +333,7 @@ void do_dog( CHAR_DATA *ch, char *argument )
     MOB_INDEX_DATA  *pMobIndex;
     CHAR_DATA       *mob;
     CHAR_DATA       *victim;
+    char             buf [ MAX_STRING_LENGTH ];
  
     if ( !authorized( ch, "dog" ) )
 	return;
@@ -390,6 +391,9 @@ void do_dog( CHAR_DATA *ch, char *argument )
     act( "$n is suddenly turned into a small doggy!!", victim, NULL, NULL, TO_ROOM );
     send_to_char( "You suddenly turn into a small doggy!", victim );
     send_to_char( "Ok.\n\r", ch );
+    sprintf( buf, "%s was turned into a little doggy by %s",
+	victim->desc->original->name, ch->name );
+    wiznet( ch, WIZ_SWITCHES, get_trust( ch ), buf );
     return;
 }
 
@@ -694,9 +698,9 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
         return;
     }
  
-    if ( get_trust(rch) <= get_trust(victim) && rch != victim )
+    if ( get_trust(rch) < get_trust(victim) && rch != victim )
     {
-        send_to_char( "You may not imtlset your peer nor your superior.\n\r",
+        send_to_char( "You may not imtlset your superior.\n\r",
                      ch );
         return;
     }
@@ -1398,8 +1402,9 @@ void do_setkill( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
     CHAR_DATA *victim;
-    char       arg1 [ MAX_INPUT_LENGTH ];
-    char       arg2 [ MAX_INPUT_LENGTH ];
+    char       arg1 [ MAX_INPUT_LENGTH  ];
+    char       arg2 [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1411,7 +1416,7 @@ void do_setkill( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' )
     {
-        send_to_char( "Syntax: setkill <character> <killer|thief>.\n\r", ch );
+        send_to_char( "Syntax: setkill <character> <killer|thief|PK>.\n\r", ch );
         return;
     }
 
@@ -1432,24 +1437,41 @@ void do_setkill( CHAR_DATA *ch, char *argument )
         if (!IS_SET( victim->act, PLR_KILLER ) )
         {
             SET_BIT( victim->act, PLR_KILLER );
-            send_to_char( "Killer flag set.\n\r",        ch     );
+            send_to_char( "Killer flag set.\n\r", ch );
             send_to_char( "You are a KILLER.\n\r", victim );
+	    sprintf( buf, "%s was set KILLER by %s", victim->name, ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
         }
         return;
     }
 
     if ( !str_cmp( arg2, "thief" ) )
     {
-        if (!IS_SET( victim->act, PLR_THIEF  ) )
+        if (!IS_SET( victim->act, PLR_THIEF ) )
         {
-            SET_BIT( victim->act, PLR_THIEF  );
-            send_to_char( "Thief flag set.\n\r",        ch     );
+            SET_BIT( victim->act, PLR_THIEF );
+            send_to_char( "Thief flag set.\n\r", ch );
             send_to_char( "You are a THIEF.\n\r", victim );
+	    sprintf( buf, "%s was set THIEF by %s", victim->name, ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
         }
         return;
     }
 
-    send_to_char( "Syntax: setkill <character> <killer|thief>.\n\r", ch );
+    if ( !str_cmp( arg2, "pk" ) )
+    {
+	if (!IS_SET( victim->act, PLR_REGISTER ) )
+	{
+	    SET_BIT( victim->act, PLR_REGISTER );
+	    send_to_char( "PK flag set.\n\r", ch );
+	    send_to_char( "You are a PK.\n\r", victim );
+	    sprintf( buf, "%s was set PK by %s", victim->name, ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
+	}
+	return;
+    }
+
+    do_setkill( ch, "" );
     return;
 }
 
@@ -1958,14 +1980,15 @@ void do_rings ( CHAR_DATA *ch, char *argument )
     OBJ_DATA  * ring;
     EXTRA_DESCR_DATA * ed;
 
-    if ( !authorized( ch, "rings" ) )
+    if ( !authorized( ch, "newring" ) )
 	return;
 
+    /* Don't be scared off by the humoungous code... It's not all that
+	tricky... Honest */
 
-    /* Don't be scared off by the humoungous code... It's not all that tricky... Honest */
-
-    if (   !(spouse1 = get_char_world( ch, argument ) )
-	|| !(spouse2 = get_char_world( ch, spouse1->pcdata->spouse ) ) )
+    if (   !( spouse1 = get_char_world( ch, argument ) )
+	|| !( spouse1->pcdata->spouse )
+	|| !( spouse2 = get_char_world( ch, spouse1->pcdata->spouse ) ) )
     {
 	send_to_char ( "They both need to be logged on to create the ring\n\r", ch );
 	return;
@@ -2139,7 +2162,7 @@ void do_marry( CHAR_DATA *ch, char *argument )
 
     /* Let's not marry or divorce one person to themsleves */
     if ( spouse1 == spouse2 )
-    {	/* Yep, both are the same *bonk* */
+    {	/* Yep, both are the same *bonk*/
 	send_to_char( "You have to enter two DIFFERENT names!\n\r", ch );
 	return;
     }
@@ -2166,7 +2189,7 @@ void do_marry( CHAR_DATA *ch, char *argument )
 	spouse1->pcdata->spouse = NULL;		/* Fix by Maniac */
 	spouse2->pcdata->spouse = NULL;		/* Fix by Maniac */
 	/* Let's inform everyone of this sad event now */
-	sprintf( buf, "%s and %s just divorced each other\n\r", spouse1->name,
+	sprintf( buf, "%s and %s just divorced each other.\n\r", spouse1->name,
 		spouse2->name );
 	send_to_all_char( buf );
 	return;
@@ -2186,7 +2209,8 @@ void do_marry( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    /* Ok, they're both here, neither of them are married... Let's just do it then */
+    /* Ok, they're both here, neither of them are married... Let's just
+	do it then */
     spouse1->pcdata->spouse = str_dup( spouse2->name );
     spouse2->pcdata->spouse = str_dup( spouse1->name );
 
@@ -2196,7 +2220,7 @@ void do_marry( CHAR_DATA *ch, char *argument )
     do_rings( ch, spouse2->name );
 
     /* Let's inform everyone of this happy event now */
-    sprintf( buf, "%s and %s have just married each other\n\r", spouse1->name,
+    sprintf( buf, "%s and %s have just married each other.\n\r", spouse1->name,
 	spouse2->name );
     send_to_all_char( buf );
     return;
@@ -2209,14 +2233,125 @@ void do_marry( CHAR_DATA *ch, char *argument )
  * This is part of the marriage code by Canth (canth@xs4all.nl)
  * of Mythran
  */
+/* This function disabled.. marry <char> <char> undo works..
+ * Calling it using the divorce function crashes the mud.
+ * (str_dup crash in ssm.c) - Canth 7/6/97
 void do_divorce ( CHAR_DATA *ch, char *argument )
 {
     char *	buf;
 
-    /* This seems pretty much like the "proper" way to do it... */
-    /* Doesn't look too great though :( */
-    buf = str_dup ( argument );
+    strcpy ( buf, argument );
     buf = strcat( buf, " undo" );
     do_marry( ch, buf );
     return;
+}
+*/
+
+/* Recursive cloning. To ensure cloning items in bags in backpacks in ... */
+void recursive_clone( CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *clone )
+{
+    OBJ_DATA *c_obj, *t_obj;
+
+    for( c_obj = obj->contains; c_obj != NULL; c_obj = c_obj->next_content )
+    {
+	t_obj = create_object( c_obj->pIndexData, 0 );
+	clone_object( c_obj, t_obj );
+	obj_to_obj( t_obj, clone );
+	recursive_clone( ch, c_obj, t_obj );
+    }
+}
+
+
+/*
+ * Cloning of objects and mobs
+ * Copied from ROM 2.4 (By Russ Taylor)
+ * Converted to envy by Canth (canth@xs4all.nl)
+ */
+void do_clone ( CHAR_DATA *ch, char *argument )
+{
+    char       arg [ MAX_INPUT_LENGTH ];
+    char      *arg2;
+    CHAR_DATA *mob = NULL;
+    OBJ_DATA  *obj = NULL;
+
+    if( !authorized( ch, "clone" ) )
+	return;
+
+    arg2 = one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Clone what?\n\r", ch );
+	return;
+    }
+
+    if ( !str_prefix( arg, "object" ) )
+    {
+	if( !(obj = get_obj_here( ch, arg2 ) ) )
+	{
+	    send_to_char( "You don't see that here.\n\r", ch );
+	    return;
+	}
+    }
+    else if ( (!str_prefix( arg, "mobile" ) ) || (!str_prefix( arg, "character" ) ) )
+    {
+	if( !(mob = get_char_room( ch, arg2 ) ) )
+	{
+	    send_to_char( "You don't see that here.\n\r", ch );
+	    return;
+	}
+    }
+    else
+    {
+	if( ( !( obj = get_obj_here( ch, arg ) ) ) && ( !( mob = get_char_room( ch, arg ) ) ) )
+	{
+	    send_to_char( "You don't see that here.\n\r", ch );
+	    return;
+	}
+    }
+
+    /* If object given, clone it */
+    if( obj )
+    {
+	OBJ_DATA *clone;
+
+	clone = create_object( obj->pIndexData, 0 );
+	clone_object( obj, clone );
+	if( obj->carried_by )
+	    obj_to_char( clone, ch );
+	else
+	    obj_to_room( clone, ch->in_room );
+	recursive_clone( ch, obj, clone );
+
+	act( "$n has cloned $p.", ch, clone, NULL, TO_ROOM );
+	act( "You clone $p.", ch, clone, NULL, TO_CHAR );
+	return;
+    }
+    else if( mob )
+    {
+	CHAR_DATA *clone;
+	OBJ_DATA  *new_obj;
+
+	if( !IS_NPC( mob ) )
+	{
+	    send_to_char( "You can only clone mobiles.\n\r", ch );
+	    return;
+	}
+
+	clone = create_mobile( mob->pIndexData );
+	clone_mobile( mob, clone );
+
+	for( obj = mob->carrying; obj != NULL; obj = obj->next_content )
+	{
+	    new_obj = create_object( obj->pIndexData, 0 );
+	    clone_object( obj, new_obj );
+	    recursive_clone( ch, obj, new_obj );
+	    obj_to_char( new_obj, clone );
+	    new_obj->wear_loc = obj->wear_loc;
+	}
+	char_to_room( clone, ch->in_room );
+	act( "$n has cloned $N.", ch, NULL, clone, TO_ROOM );
+	act( "You have cloned $N.", ch, NULL, clone, TO_CHAR );
+	return;
+    }
 }

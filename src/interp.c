@@ -52,12 +52,6 @@ DISABLED_DATA *disabled_first;
 #define LOG_NEVER               2
 
 /*
- * God Levels - Check them out in merc.h
-*/
-
-#define L_HER                   LEVEL_HERO
-
-/*
  * Log-all switch.
  */
 bool				fLogAll		    = TRUE;	/* Maniac */
@@ -79,6 +73,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "west",		do_west,	POS_STANDING,	 0,  LOG_NORMAL },
     { "up",		do_up,		POS_STANDING,	 0,  LOG_NORMAL },
     { "down",		do_down,	POS_STANDING,	 0,  LOG_NORMAL },
+    { "enter",		do_enter,	POS_STANDING,	 0,  LOG_NORMAL },
 
     /*
      * Common other commands.
@@ -119,17 +114,17 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "help",		do_help,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "idea",		do_idea,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "report",		do_report,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "pagelength",     do_pagelen,     POS_DEAD,        0,  LOG_NORMAL },
+    { "pagelength",	do_pagelen,	POS_DEAD,        0,  LOG_NORMAL },
     { "read",		do_look,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "score",		do_score,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "slist",          do_slist,       POS_DEAD,        0,  LOG_NORMAL },
+    { "slist",		do_slist,	POS_DEAD,        0,  LOG_NORMAL },
     { "socials",	do_socials,	POS_DEAD,	 0,  LOG_NORMAL },
     { "time",		do_time,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "typo",		do_typo,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "weather",	do_weather,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "who",		do_who,		POS_DEAD,	 0,  LOG_NORMAL	},
     { "whois",		do_whois,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "wizlist",        do_wizlist,     POS_DEAD,        0,  LOG_NORMAL },
+    { "wizlist",	do_wizlist,	POS_DEAD,        0,  LOG_NORMAL },
 
     /*
      * Combat commands.
@@ -150,20 +145,21 @@ const	struct	cmd_type	cmd_table	[ ] =
     /*
      * Configuration commands.
      */
-    { "auto",           do_auto,        POS_DEAD,        0,  LOG_NORMAL },
-    { "autoexit",       do_autoexit,    POS_DEAD,        0,  LOG_NORMAL },
-    { "autogold",       do_autogold,    POS_DEAD,        0,  LOG_NORMAL },
-    { "autoloot",       do_autoloot,    POS_DEAD,        0,  LOG_NORMAL },
-    { "autosac",        do_autosac,     POS_DEAD,        0,  LOG_NORMAL },
-    { "blank",          do_blank,       POS_DEAD,        0,  LOG_NORMAL },
-    { "brief",          do_brief,       POS_DEAD,        0,  LOG_NORMAL },
+    { "auto",		do_auto,	POS_DEAD,        0,  LOG_NORMAL },
+    { "autoexit",	do_autoexit,	POS_DEAD,        0,  LOG_NORMAL },
+    { "autogold",	do_autogold,	POS_DEAD,        0,  LOG_NORMAL },
+    { "autoloot",	do_autoloot,	POS_DEAD,        0,  LOG_NORMAL },
+    { "autosac",	do_autosac,	POS_DEAD,        0,  LOG_NORMAL },
+    { "blank",		do_blank,	POS_DEAD,        0,  LOG_NORMAL },
+    { "brief",		do_brief,	POS_DEAD,        0,  LOG_NORMAL },
     { "channels",	do_channels,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "combine",        do_combine,     POS_DEAD,        0,  LOG_NORMAL },
+    { "color",		do_colour,	POS_DEAD,	 0,  LOG_NORMAL },
+    { "colour",		do_colour,	POS_DEAD,	 0,  LOG_NORMAL },
+    { "combine",	do_combine,	POS_DEAD,        0,  LOG_NORMAL },
     { "config",		do_config,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "description",	do_description,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "password",	do_password,	POS_DEAD,	 0,  LOG_NEVER	},
-    { "prompt",         do_prompt,      POS_DEAD,        0,  LOG_NORMAL },
-    { "sedit",		do_sedit,	POS_DEAD,	 3,  LOG_ALWAYS },
+    { "prompt",		do_prompt,	POS_DEAD,        0,  LOG_NORMAL },
     { "title",		do_title,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "wimpy",		do_wimpy,	POS_DEAD,	 0,  LOG_NORMAL	},
 
@@ -172,6 +168,7 @@ const	struct	cmd_type	cmd_table	[ ] =
      */
     { "answer",		do_answer,	POS_SLEEPING,	 3,  LOG_NORMAL },
     { "auction",	do_auction,	POS_SLEEPING,	 0,  LOG_NORMAL	},
+    { "beep",		do_beep,	POS_RESTING,	 3,  LOG_NORMAL },
     { "chat",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { ".",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "emote",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
@@ -195,7 +192,8 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "brew",		do_brew,	POS_STANDING,	 0,  LOG_NORMAL },
     { "brandish",	do_brandish,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "close",		do_close,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "donate",         do_donate,      POS_RESTING,     0,  LOG_NORMAL },
+    { "cdonate",	do_cdonate,	POS_RESTING,	 0,  LOG_NORMAL },
+    { "donate",		do_donate,	POS_RESTING,     0,  LOG_NORMAL },
     { "drink",		do_drink,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "drop",		do_drop,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "eat",		do_eat,		POS_RESTING,	 0,  LOG_NORMAL	},
@@ -211,6 +209,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "quaff",		do_quaff,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "recite",		do_recite,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "remove",		do_remove,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "remort",		do_remort,	POS_RESTING,	 0,  LOG_NORMAL },
     { "search",		do_search,	POS_STANDING,	 0,  LOG_NORMAL },
     { "sell",		do_sell,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "take",		do_get,		POS_RESTING,	 0,  LOG_NORMAL	},
@@ -224,20 +223,20 @@ const	struct	cmd_type	cmd_table	[ ] =
     /*
      * Miscellaneous commands.
      */
-    { "afk",            do_afk,         POS_SLEEPING,    0,  LOG_NORMAL },
-    { "bash",           do_bash,        POS_STANDING,    0,  LOG_NORMAL },
-    { "bet",            do_bet,         POS_STANDING,    0,  LOG_NORMAL },
+    { "afk",		do_afk,		POS_SLEEPING,    0,  LOG_NORMAL },
+    { "bash",		do_bash,	POS_STANDING,    0,  LOG_NORMAL },
+    { "bet",		do_bet,		POS_STANDING,    0,  LOG_NORMAL },
     { "bladethirst",	do_bladethirst,	POS_STANDING,	 0,  LOG_NORMAL },
     { "bring",		do_getspouse,	POS_RESTING,	 0,  LOG_NORMAL },
     { "delet",		do_delet,	POS_DEAD,	 0,  LOG_ALWAYS },
     { "delete",		do_delete,	POS_DEAD,	 0,  LOG_ALWAYS },
-    { "wager",          do_bet,         POS_STANDING,    0,  LOG_NORMAL },
-    { "chameleon power",do_chameleon,   POS_STANDING,    0,  LOG_NORMAL },
+    { "wager",		do_bet,		POS_STANDING,    0,  LOG_NORMAL },
+    { "chameleon power",do_chameleon,	POS_STANDING,    0,  LOG_NORMAL },
     { "follow",		do_follow,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "lose",		do_lose,	POS_RESTING,	 0,  LOG_NORMAL },
     { "group",		do_group,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "heal",		do_heal,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "heighten senses",do_heighten,    POS_STANDING,    0,  LOG_NORMAL },
+    { "heighten senses",do_heighten,	POS_STANDING,    0,  LOG_NORMAL },
     { "hide",		do_hide,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "hunt",		do_hunt,	POS_STANDING,	 0,  LOG_NORMAL },
     { "join",		do_gospouse,	POS_RESTING,	 0,  LOG_NORMAL },
@@ -252,11 +251,11 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "register",	do_register,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "rent",		do_rent,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "save",		do_save,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "shadow form",    do_shadow,      POS_STANDING,    0,  LOG_NORMAL },
+    { "shadow form",	do_shadow,	POS_STANDING,    0,  LOG_NORMAL },
     { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "snare",		do_snare,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "sneak",		do_sneak,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "spells",         do_spells,      POS_SLEEPING,    0,  LOG_NORMAL },
+    { "spells",		do_spells,	POS_SLEEPING,    0,  LOG_NORMAL },
     { "split",		do_split,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "steal",		do_steal,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "study",		do_study,	POS_STANDING,	 0,  LOG_NORMAL },
@@ -264,17 +263,17 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "untangle",	do_untangle,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "visible",	do_visible,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL	},
-    { "wed",		do_wed,		POS_DEAD,	 0,  LOG_NORMAL },
+    { "wed",		do_wed,		POS_DEAD,	 0,  LOG_NEVER  },
     { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL	},
 
     /*
      * Immortal commands.
      */
     { "advance",	do_advance,	POS_DEAD,    L_DIR,  LOG_ALWAYS	},
-    { "divorce",	do_divorce,	POS_STANDING,L_DIR,  LOG_ALWAYS },
+/*    { "divorce",	do_divorce,	POS_STANDING,L_DIR,  LOG_ALWAYS }, */
     { "imtlset",	do_imtlset,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
 /*    { "objlist",	do_objlist,	POS_DEAD,    L_DIR,  LOG_ALWAYS }, */
-    { "marry",		do_marry,       POS_STANDING,L_DIR,  LOG_ALWAYS },
+    { "marry",		do_marry,	POS_STANDING,L_DIR,  LOG_ALWAYS },
     { "newring",	do_rings,	POS_STANDING,L_DIR,  LOG_ALWAYS },
     { "rename",		do_rename,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
     { "sstime",		do_sstime,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
@@ -287,13 +286,15 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "bank",		do_bank,	POS_STANDING,	 0,  LOG_NORMAL },
     { "deny",		do_deny,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "disconnect",	do_disconnect,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
-    { "dog",            do_dog,         POS_DEAD,    L_SEN,  LOG_ALWAYS },
+    { "dog",		do_dog,		POS_DEAD,    L_SEN,  LOG_ALWAYS },
+    { "echo",		do_echo,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "for",		do_for,		POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "force",		do_force,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "freeze",		do_freeze,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "log",		do_log,		POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "lset",		do_lset,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "lstat",		do_lstat,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "memory",		do_memory,	POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "mset",		do_mset,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "noemote",	do_noemote,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "notell",		do_notell,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
@@ -314,23 +315,20 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "sla",		do_sla,		POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "slay",		do_slay,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "sset",		do_sset,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
-    { "sstat",          do_sstat,       POS_DEAD,    L_SEN,  LOG_ALWAYS },
+    { "sstat",		do_sstat,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "stat",		do_stat,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
-    { "string",		do_string,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "transfer",	do_transfer,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "update",		do_update,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "users",		do_users,	POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "vnum",		do_vnum,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
-    { "wiznet",		do_wiznet,	POS_DEAD,LEVEL_HERO, LOG_NORMAL },
     { "wizify", 	do_wizify,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "wizlock",	do_wizlock,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
 
     { "areacount",	do_area_count,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
-    { "echo",		do_echo,	POS_DEAD,    L_JUN,  LOG_ALWAYS	},
+    { "clone",		do_clone,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "disable",	do_disable,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "exlist",		do_exlist,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
-    { "iscore",         do_iscore,      POS_DEAD,    L_JUN,  LOG_ALWAYS },
-    { "memory",		do_memory,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
+    { "iscore",		do_iscore,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "mload",		do_mload,	POS_DEAD,    L_JUN,  LOG_ALWAYS	},
     { "mfind",		do_mfind,	POS_DEAD,    L_JUN,  LOG_NORMAL },
     { "mstat",		do_mstat,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
@@ -341,42 +339,46 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "ostat",		do_ostat,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
     { "owhere",		do_owhere,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
     { "peace",		do_peace,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
-    { "pecho",          do_pecho,       POS_DEAD,    L_JUN,  LOG_ALWAYS },
+    { "pecho",		do_pecho,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "recho",		do_recho,	POS_DEAD,    L_JUN,  LOG_ALWAYS	},
     { "return",		do_return,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
     { "rset",		do_rset,	POS_DEAD,    L_JUN,  LOG_ALWAYS	},
     { "rstat",		do_rstat,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
     { "slookup",	do_slookup,	POS_DEAD,    L_JUN,  LOG_NORMAL },
-    { "smite",          do_smite,       POS_DEAD,    L_JUN,  LOG_ALWAYS },
+    { "smite",		do_smite,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "snoop",		do_snoop,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
+    { "string",		do_string,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "switch",		do_switch,	POS_DEAD,    L_JUN,  LOG_ALWAYS	},
-    { "wizinvis",	do_invis,	POS_DEAD,    L_JUN,  LOG_NORMAL	},
 
     { "at",		do_at,		POS_DEAD,    L_APP,  LOG_NORMAL	},
     { "bamfin",		do_bamfin,	POS_DEAD,    L_APP,  LOG_NORMAL	},
     { "bamfout",	do_bamfout,	POS_DEAD,    L_APP,  LOG_NORMAL	},
     { "goto",		do_goto,	POS_DEAD,    L_APP,  LOG_NORMAL	},
     { "holylight",	do_holylight,	POS_DEAD,    L_APP,  LOG_NORMAL	},
+    { "sedit",		do_sedit,	POS_DEAD,    L_APP,  LOG_ALWAYS },
+    { "wizinvis",	do_invis,	POS_DEAD,    L_APP,  LOG_NORMAL	},
 
     { ":",		do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL	},
-    { "scan",           do_scan,        POS_DEAD,    L_HER,  LOG_ALWAYS },
+    { "scan",		do_scan,	POS_DEAD,    L_HER,  LOG_ALWAYS },
+    { "wiznet",		do_wiznet,	POS_DEAD,    L_HER,  LOG_NORMAL },
 
     { "guild",		do_guild,	POS_DEAD,    L_JUN,  LOG_ALWAYS },
     { "clan",		do_clan,	POS_DEAD,	 1,  LOG_NORMAL },
     { ">",		do_clantalk,	POS_DEAD,	 0,  LOG_NORMAL },
     { "clantalk",	do_clantalk,	POS_DEAD,	 0,  LOG_NORMAL },
+    { "ctalk",		do_clantalk,	POS_DEAD,	 0,  LOG_NORMAL },
 
     /*
      * OLC 1.1b
      */
-    { "aedit",          do_aedit,       POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "redit",          do_redit,       POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "oedit",          do_oedit,       POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "medit",          do_medit,       POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "mpedit",		do_mpedit,	POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "asave",          do_asave,       POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "alist",          do_alist,       POS_DEAD, L_SEN,  LOG_NORMAL },
-    { "resets",         do_resets,      POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "aedit",		do_aedit,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "redit",		do_redit,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "oedit",		do_oedit,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "medit",		do_medit,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "mpedit",		do_mpedit,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "asave",		do_asave,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "alist",		do_alist,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "resets",		do_resets,	POS_DEAD,    L_SEN,  LOG_NORMAL },
 
     /*
      * Languages.
@@ -398,20 +400,20 @@ const	struct	cmd_type	cmd_table	[ ] =
     /*
      * MOBprogram commands.
      */
-    { "mpstat",         do_mpstat,      POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpasound",       do_mpasound,    POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpjunk",         do_mpjunk,      POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpecho",         do_mpecho,      POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpechoat",       do_mpechoat,    POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpstat",         do_mpstat,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpasound",       do_mpasound,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpjunk",         do_mpjunk,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpecho",         do_mpecho,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpechoat",       do_mpechoat,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
     { "mpechoaround",   do_mpechoaround,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpkill",         do_mpkill      ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpmload",        do_mpmload     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpoload",        do_mpoload     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mppurge",        do_mppurge     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpgoto",         do_mpgoto      ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpat",           do_mpat        ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mptransfer",     do_mptransfer  ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
-    { "mpforce",        do_mpforce     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpkill",         do_mpkill,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpmload",        do_mpmload,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpoload",        do_mpoload,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mppurge",        do_mppurge,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpgoto",         do_mpgoto,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpat",           do_mpat,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mptransfer",     do_mptransfer,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpforce",        do_mpforce,	POS_DEAD, L_DIR + 1, LOG_NORMAL },
 
 
     /*
@@ -506,8 +508,8 @@ void interpret( CHAR_DATA *ch, char *argument )
     {
 	sprintf( log_buf, "Log %s(@%d): %s", ch->name, ch->in_room->vnum, logline );
 	log_string( log_buf );
-	/* Wiznet by Maniac, level+1 for securety */
-	wiznet (ch, WIZ_SECURE, ch->level + 1, log_buf );
+	/* Wiznet by Maniac */
+	wiznet (ch, WIZ_SECURE, get_trust( ch ), log_buf );
     }
 
     /* For pc's */
@@ -518,8 +520,8 @@ void interpret( CHAR_DATA *ch, char *argument )
     {
 	sprintf( log_buf, "Log %s(@%d): %s", ch->name, ch->in_room->vnum, logline );
 	log_string( log_buf );
-	/* Wiznet by Maniac, level+1 for securety */
-	wiznet (ch, WIZ_SECURE, ch->level + 1, log_buf );
+	/* Wiznet by Maniac */
+	wiznet (ch, WIZ_SECURE, get_trust( ch ), log_buf );
     }
 
 

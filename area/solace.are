@@ -1,5 +1,5 @@
 #AREADATA
-Name        Town Of Solace~
+Name        {{ 5 35} Strahd  Town Of Solace~
 Builders    None~
 VNUMs       10201 10317
 Security    1
@@ -20,7 +20,7 @@ with pride on his chestplate. The gold crest of two coins seems to match
 the wealth of this town.
 ~
 3 172 900 S
-36 2 0 1d1+30000 1d8+32
+29 2 0 1d1+30000 1d8+32
 100000 0
 0 Giant~ 1
 #10202
@@ -35,7 +35,7 @@ to test his abilities go right ahead. He looks as if he is quite an easy
 fight.
 ~
 67 164 800 S
-24 2 0 1d1+30000 1d8+32
+29 2 0 1d1+30000 1d8+32
 100000 0
 0 Orc~ 1
 #10203
@@ -48,7 +48,7 @@ war. He is a middle age man with graying hair that pokes out from under
 his helmet. He is always waiting for a fight.
 ~
 67 132 400 S
-23 2 0 1d1+30000 1d8+32
+21 2 0 1d1+30000 1d8+32
 100000 0
 0 Hobbit~ 1
 #10204
@@ -60,7 +60,7 @@ A big strong townguard of Solace.
 
 ~
 67 0 1000 S
-6 15 0 1d1+999 2d10+20
+14 15 0 1d1+999 2d10+20
 500 0
 0 Orc~ 1
 #10205
@@ -72,7 +72,7 @@ A big strong townguard of Solace.
 
 ~
 99 0 1000 S
-9 15 0 1d1+999 2d10+20
+13 15 0 1d1+999 2d10+20
 500 0
 0 Giant~ 1
 #10206
@@ -94,7 +94,7 @@ A woman is here.
 She is a beautiful woman.
 ~
 1 0 800 S
-8 20 0 2d6+10 1d5+0
+4 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 2
 #10208
@@ -116,7 +116,7 @@ A fat, nice looking baker. But you can see that he has many scars on his
 body.
 ~
 3 0 900 S
-26 2 0 1d1+30000 1d8+20
+22 2 0 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
 #10210
@@ -127,7 +127,7 @@ Cookie's Helper is here offering you a free cookie sample.
 A young neighborhood girl helps out cookie when she is not around.
 ~
 3 0 900 S
-25 2 0 1d1+30000 1d8+20
+19 2 0 1d1+30000 1d8+20
 12000 0
 0 Human~ 2
 #10211
@@ -139,7 +139,7 @@ She is a very pretty and loves her birds. Her black hair hangs behind her
 tied in a pony tail.
 ~
 3 128 900 S
-34 2 0 1d1+30000 1d8+20
+29 2 0 1d1+30000 1d8+20
 12000 0
 0 Human~ 2
 #10212
@@ -152,7 +152,7 @@ red hair. His clothes seems dirty and tattered. His bushy beard obscures
 his stone face.
 ~
 3 0 900 S
-12 2 0 1d1+30000 1d8+20
+14 2 0 1d1+30000 1d8+20
 12000 0
 0 Undead~ 1
 #10213
@@ -164,7 +164,7 @@ This is the ghost of a long dead waiter. Probably one of the many that
 Jander killed for spilling a drink or something.
 ~
 3 0 900 S
-13 2 0 1d1+30000 1d8+20
+14 2 0 1d1+30000 1d8+20
 12000 0
 0 Undead~ 1
 #10214
@@ -176,7 +176,7 @@ This is probably another of Jander's victims. Probably got caught with
 his hand in the cash or something.
 ~
 3 0 900 S
-12 2 0 1d1+30000 1d8+20
+14 2 0 1d1+30000 1d8+20
 12000 0
 0 Undead~ 2
 #10215
@@ -188,7 +188,7 @@ A big strong townguard of Solace.
 
 ~
 65 0 1000 S
-15 15 0 1d1+999 2d10+20
+16 15 0 1d1+999 2d10+20
 500 0
 0 Giant~ 1
 #10216
@@ -199,7 +199,7 @@ A field rat is here looking for food.
 A dirty nasty field rat . Obviously  looking for food in the town.
 ~
 65 65536 300 S
-3 15 0 1d1+999 2d10+20
+9 15 0 1d1+999 2d10+20
 500 0
 0 Rat~ 0
 #10217
@@ -211,7 +211,7 @@ A stringy rat like individual. He beams at you through his spectacles
 as if he can see the money in your pockets.
 ~
 3 128 800 S
-22 15 0 1d1+999 2d10+20
+16 15 0 1d1+999 2d10+20
 500 0
 0 Human~ 1
 #10218
@@ -223,7 +223,7 @@ These are like the biggest and meanest men you've every seen.
 They look more like trolls or ogres than men.
 ~
 3 172 800 S
-18 15 0 1d1+999 2d10+20
+17 15 0 1d1+999 2d10+20
 500 0
 0 Giant~ 1
 #10219
@@ -246,7 +246,7 @@ A pretty woman who works hard for her money. Travelling every year
 to the market to sell her fruits.
 ~
 3 0 800 S
-21 15 0 1d1+999 2d10+20
+24 15 0 1d1+999 2d10+20
 500 0
 0 Human~ 2
 #10221
@@ -257,7 +257,7 @@ Janni is here.
 Janni has spent his whole life making trinkets for people to enjoy.
 ~
 3 0 800 S
-15 15 0 1d1+999 2d10+20
+22 15 0 1d1+999 2d10+20
 500 0
 0 Dwarf~ 1
 #10222
@@ -268,7 +268,7 @@ Nisi is here.
 Nisi is a very interesting person. It shows in the wares she sells
 ~
 3 0 800 S
-21 15 0 1d1+999 2d10+20
+27 15 0 1d1+999 2d10+20
 500 0
 0 Elf~ 2
 #10223
@@ -279,7 +279,7 @@ Molin the brewer is here.
 Molin is a grey old man with hair down to his toes.
 ~
 3 0 800 S
-15 15 0 1d1+999 2d10+20
+24 15 0 1d1+999 2d10+20
 500 0
 0 Halfelf~ 1
 #10224
@@ -290,7 +290,7 @@ Rashan the farmer is here.
 Rashan is a middle aged man who grows his rutabagas by candlelight.
 ~
 3 0 800 S
-17 15 0 1d1+999 2d10+20
+21 15 0 1d1+999 2d10+20
 500 0
 0 Halfdwarf~ 1
 #10225
@@ -302,7 +302,7 @@ Lexie is an accomplish diver. But he seems to have problems keeping
 students.
 ~
 3 0 800 S
-23 15 0 1d1+999 2d10+20
+25 15 0 1d1+999 2d10+20
 500 0
 0 Human~ 1
 #10226
@@ -314,7 +314,7 @@ Croben is a young man who learned the art of container making from his
 grandfather.
 ~
 3 0 800 S
-21 15 0 1d1+999 2d10+20
+26 15 0 1d1+999 2d10+20
 500 0
 0 Human~ 1
 #10227
@@ -328,7 +328,7 @@ Otik whispers, "A magical staff! I bet it was forged by demons from the
 terrible Darken Wood. There are terrible mysteries in that place, there are."
 ~
 3 0 800 S
-26 15 0 1d1+999 2d10+20
+28 15 0 1d1+999 2d10+20
 500 0
 0 Human~ 1
 #10228
@@ -342,7 +342,7 @@ looks older than her 19 years. Rough living has hardened her and she
 presents a tough image as protection against her sense of vulnerablility.
 ~
 3 0 800 S
-17 15 0 1d1+999 2d10+20
+15 15 0 1d1+999 2d10+20
 500 0
 0 Orc~ 2
 #10229
@@ -354,7 +354,7 @@ A thin, cloaked figure sits alone at a table near the door, an untouched
 glass of ale before him.
 ~
 3 0 800 S
-13 15 0 1d1+999 2d10+20
+15 15 0 1d1+999 2d10+20
 500 0
 0 Hobbit~ 1
 #10230
@@ -380,7 +380,7 @@ ago! If only I could catch it. He who walks the paths of the white stag is
 blessed, I hear tell."
 ~
 3 0 800 S
-5 15 0 1d1+999 2d10+20
+6 15 0 1d1+999 2d10+20
 500 0
 0 Gnome~ 1
 #10232
@@ -391,7 +391,7 @@ A brat is here.
 He looks like a pain in the ass.
 ~
 3 0 800 S
-15 15 0 1d1+999 2d10+20
+13 15 0 1d1+999 2d10+20
 500 0
 0 Goblin~ 1
 #10233
@@ -402,7 +402,7 @@ A mage is here.
 He is the typical adventurer. He looks as if he has travelled far.
 ~
 3 0 800 S
-11 15 0 1d1+999 2d10+20
+12 15 0 1d1+999 2d10+20
 500 0
 0 Elf~ 1
 #10234
@@ -413,7 +413,7 @@ A thief is here.
 He is the typical adventurer. He looks as if he has travelled far.
 ~
 3 0 800 S
-6 15 0 1d1+999 2d10+20
+12 15 0 1d1+999 2d10+20
 500 0
 0 Halfdwarf~ 1
 #10235
@@ -424,7 +424,7 @@ A warrior is here.
 He is the typical adventurer. He looks as if he has travelled far.
 ~
 3 0 800 S
-12 15 0 1d1+999 2d10+20
+18 15 0 1d1+999 2d10+20
 500 0
 0 Giant~ 1
 #10236
@@ -435,7 +435,7 @@ A cleric is here.
 He is the typical adventurer. He looks as if he has travelled far.
 ~
 3 0 800 S
-20 15 0 1d1+999 2d10+20
+18 15 0 1d1+999 2d10+20
 500 0
 0 Halfelf~ 1
 #10237
@@ -446,7 +446,7 @@ A ghost of a gambler is floating here looking for something to bet on.
 Even in death this sad spirit is looking to gamble.
 ~
 3 0 -200 S
-11 15 0 1d1+999 2d10+20
+10 15 0 1d1+999 2d10+20
 500 0
 0 Undead~ 0
 #10238
@@ -456,7 +456,7 @@ A child is here eating bugs off the ground.
 ~
 ~
 1 0 800 S
-1 20 0 2d6+10 1d5+0
+6 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 0
 #10239
@@ -466,7 +466,7 @@ There is a large rat here.
 ~
 ~
 69 65536 -100 S
-6 20 0 2d6+10 1d5+0
+5 20 0 2d6+10 1d5+0
 34 0
 0 Rat~ 0
 #10240
@@ -476,7 +476,7 @@ There is a large bat here.
 ~
 ~
 35 8 100 S
-7 20 0 2d6+10 1d5+0
+4 20 0 2d6+10 1d5+0
 34 0
 0 Bat~ 0
 #10241
@@ -486,7 +486,7 @@ There is an old lady here.
 ~
 ~
 69 0 100 S
-6 20 0 2d6+10 1d5+0
+8 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 0
 #10242
@@ -496,7 +496,7 @@ There is a tired adventurer resting here.
 ~
 ~
 3 0 100 S
-16 20 0 2d6+10 1d5+0
+13 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 0
 #10243
@@ -506,7 +506,7 @@ Magnus the wizard is resting here from his long journeys.
 ~
 ~
 3 0 100 S
-21 20 0 2d6+10 1d5+0
+20 20 0 2d6+10 1d5+0
 34 0
 0 Elf~ 1
 #10244
@@ -526,7 +526,7 @@ A foreign trade representative is waiting here to meet with the Captain of the G
 ~
 ~
 3 0 100 S
-10 20 0 2d6+10 1d5+0
+14 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 1
 #10246
@@ -536,7 +536,7 @@ There is a bodyguard here.
 ~
 ~
 3 0 100 S
-14 20 0 2d6+10 1d5+0
+16 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 1
 #10247
@@ -549,7 +549,7 @@ The Secretary says 'Sorry, but the Captain is extremely busy today'.
 The Secretary says 'Please sit down and have a seat in the meantime'.
 ~
 3 0 100 S
-26 20 0 2d6+10 1d5+0
+24 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 2
 #10248
@@ -586,7 +586,7 @@ A large macaw is here.
 The macaw looks like a strong, fearless fighter. It is a beautiful bird.
 ~
 7 0 0 S
-9 17 0 1d12+47 1d8+0
+12 17 0 1d12+47 1d8+0
 0 0
 0 Halfelf~ 0
 #10251
@@ -597,7 +597,7 @@ A large, black raven is here.
 The raven looks like a strong, fearless fighter.
 ~
 7 0 0 S
-12 17 0 1d12+47 1d8+0
+14 17 0 1d12+47 1d8+0
 0 0
 0 Animal~ 0
 #10252
@@ -609,7 +609,7 @@ The hawk looks like a strong, fearless fighter. It has been trained for
 hunting game.
 ~
 7 0 0 S
-12 17 0 1d12+47 1d8+0
+17 17 0 1d12+47 1d8+0
 0 0
 0 Animal~ 0
 #10253
@@ -621,7 +621,7 @@ The battle falcon looks like a strong, fearless fighter. This giant breed has
 been trained especially for combat.
 ~
 7 0 0 S
-23 17 0 1d12+47 1d8+0
+20 17 0 1d12+47 1d8+0
 0 0
 0 Animal~ 0
 #0
@@ -4171,29 +4171,29 @@ S
 
 
 #SPECIALS
-M 10201 spec_cast_mage 	; Captain of the Guard
-M 10202 spec_cast_cleric 	; Lieutenant Commander
-M 10203 spec_cast_mage 	; Sergeant at Arms
-M 10204 spec_guard 	; Townguard
-M 10205 spec_guard 	; Townguard
-M 10208 spec_cast_cleric 	; Matt the brewmaster
-M 10211 spec_cast_cleric 	; Marilyn
-M 10212 spec_cast_undead 	; Ghost of Jander
-M 10213 spec_cast_undead 	; ghost of waiter
-M 10214 spec_cast_undead 	; ghost of a barkeeper
-M 10215 spec_guard 	; Townguard
-M 10217 spec_thief 	; Town Clerk
-M 10218 spec_guard 	; Treasury Guards
-M 10223 spec_cast_mage 	; Molin the brewer
-M 10224 spec_cast_mage 	; Rashan the farmer
-M 10226 spec_cast_mage 	; Croben
-M 10229 spec_thief 	; Thief
-M 10232 spec_thief 	; bratty boy
-M 10233 spec_cast_mage 	; mage
-M 10234 spec_thief 	; Thief
-M 10236 spec_cast_cleric 	; Cleric
-M 10242 spec_cast_undead 	; tired adventurer
-M 10243 spec_cast_mage 	; Magnus wizard
+M 10201 spec_cast_mage
+M 10202 spec_cast_cleric
+M 10203 spec_cast_mage
+M 10204 spec_guard
+M 10205 spec_guard
+M 10208 spec_cast_cleric
+M 10211 spec_cast_cleric
+M 10212 spec_cast_undead
+M 10213 spec_cast_undead
+M 10214 spec_cast_undead
+M 10215 spec_guard
+M 10217 spec_thief
+M 10218 spec_guard
+M 10223 spec_cast_mage
+M 10224 spec_cast_mage
+M 10226 spec_cast_mage
+M 10229 spec_thief
+M 10232 spec_thief
+M 10233 spec_cast_mage
+M 10234 spec_thief
+M 10236 spec_cast_cleric
+M 10242 spec_cast_undead
+M 10243 spec_cast_mage
 S
 
 
@@ -4204,456 +4204,456 @@ S
 
 
 #RESETS
-M 0 10215 40 10201 	; Townguard to Gateway to Solace
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10201 	; Townguard to Gateway to Solace
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10201 	; Townguard to Gateway to Solace
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10201 	; Townguard to Gateway to Solace
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10216 10 10201 	; field rat to Gateway to Solace
-M 0 10241  8 10203 	; old lady to Main Road
-M 0 10215 40 10205 	; Townguard to Intersection at Main Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10205 	; Townguard to Intersection at Main Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10205 	; Townguard to Intersection at Main Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10205 	; Townguard to Intersection at Main Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10216 10 10205 	; field rat to Intersection at Main Road.
-M 0 10215 40 10209 	; Townguard to Corner of East Gullen and Ketra Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10209 	; Townguard to Corner of East Gullen and Ketra Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10209 	; Townguard to Corner of East Gullen and Ketra Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10209 	; Townguard to Corner of East Gullen and Ketra Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10216 10 10210 	; field rat to Ketra Road.
-M 0 10206 10 10211 	; Citizen of Solace to Ketra Road.
-M 0 10204 12 10213 	; Townguard to Southeast Guardpost and Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10204 12 10213 	; Townguard to Southeast Guardpost and Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10216 10 10218 	; field rat to Small Alleyway.
-M 0 10204 12 10220 	; Townguard to Southwest Guardpost and Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10204 12 10220 	; Townguard to Southwest Guardpost and Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10216 10 10222 	; field rat to Harvest Road.
-M 0 10241  8 10222 	; old lady to Harvest Road.
-M 0 10215 40 10224 	; Townguard to Corner of West Gullen Way and Harvest Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10224 	; Townguard to Corner of West Gullen Way and Harvest Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10224 	; Townguard to Corner of West Gullen Way and Harvest Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10224 	; Townguard to Corner of West Gullen Way and Harvest Road.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10242  4 10226 	; tired adventurer to West Gullen Way
-M 0 10206 10 10231 	; Citizen of Solace to Marketplace.
-M 0 10241  8 10231 	; old lady to Marketplace.
-M 0 10215 40 10233 	; Townguard to Marketplace.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10233 	; Townguard to Marketplace.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10233 	; Townguard to Marketplace.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10233 	; Townguard to Marketplace.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10219  1 10234 	; Jhen the farmer to Jhen's Vegetable Cart.
-G 0 10251  0      	;   Carrot
-G 0 10252  0      	;   Cauliflower
-G 0 10253  0      	;   Bell pepper
-G 0 10254  0      	;   Celery stick
-M 0 10220  1 10235 	; Krista the fruit peddler to Krista's Fruit Stand.
-G 0 10259  0      	;   Apple
-G 0 10260  0      	;   A grape
-G 0 10261  0      	;   A orange
-G 0 10262  0      	;   A pear
-M 0 10221  1 10236 	; Janni to Janni's Souvenirs.
-G 0 10263  0      	;   The charm of solace.
-G 0 10264  0      	;   The ring of solace.
-G 0 10265  0      	;   The earrings of solace.
-M 0 10222  1 10237 	; Nisi the grocer to Nisi's Frozen Food
-G 0 10266  0      	;   A frozen pizza crust
-G 0 10267  0      	;   A frozen pumpkin
-G 0 10268  0      	;   A frozen side of beef
-G 0 10269  0      	;   A frozen asparagus spear
-M 0 10223  1 10238 	; Molin the brewer to Molin's Mulburry Extracts.
-G 0 10270  0      	;   Mulburry extract
-G 0 10270  0      	;   Mulburry extract
-G 0 10270  0      	;   Mulburry extract
-G 0 10270  0      	;   Mulburry extract
-M 0 10224  1 10239 	; Rashan the farmer to Rashan's Rutabagas
-G 0 10271  0      	;   Rutabaga
-G 0 10272  0      	;   Rutabaga
-G 0 10273  0      	;   Rutabaga
-G 0 10274  0      	;   Rutabaga
-M 0 10225  1 10240 	; Lexie to Lexie's Scuba Shop
-G 0 10275  0      	;   Scuba tank
-G 0 10276  0      	;   Scuba flippers
-G 0 10277  0      	;   Scuba snorkle
-G 0 10278  0      	;   Dive belt
-M 0 10226  1 10241 	; Croben to Croben's Containers.
-G 0 10279  0      	;   Belt pouch
-G 0 10280  0      	;   Cloak of storage
-G 0 10281  0      	;   Ring of holding
-M 0 10208  1 10242 	; Matt the brewmaster to Matt's Brewery.
-E 0 10240  0 5     	;   Chamorro ringmail on the body
-G 0 10255  0      	;   A glass of ice tea
-G 0 10256  0      	;   A glass of water
-G 0 10257  0      	;   A glass of koca colah
-G 0 10258  0      	;   A bottle of snapple ice tea
-M 0 10206 10 10243 	; Citizen of Solace to a House.
-M 0 10207  5 10243 	; woman to a House.
-M 0 10238 10 10243 	; child to a House.
-M 0 10206 10 10244 	; Citizen of Solace to a House.
-M 0 10207  5 10244 	; woman to a House.
-M 0 10238 10 10244 	; child to a House.
-M 0 10210  1 10245 	; Cookie's Helper to Cookie's Cookie Cookery.
-G 0 10245  0      	;   Chocolate chip cookie
-G 0 10246  0      	;   Peanut butter cookie
-G 0 10247  0      	;   Oatmeal  cookie
-G 0 10248  0      	;   Sugar cookie
-M 0 10206 10 10246 	; Citizen of Solace to a House.
-M 0 10207  5 10246 	; woman to a House.
-M 0 10238 10 10246 	; child to a House.
-M 0 10241  8 10246 	; old lady to a House.
-M 0 10216 10 10247 	; field rat to Old Gambling Parlor.
-M 0 10237  6 10247 	; Ghost of gambler to Old Gambling Parlor.
-M 0 10209  1 10248 	; the Mcbaker to The McBakery
-G 0 10241  0      	;   Mcbread
-G 0 10242  0      	;   Mcdonut
-G 0 10243  0      	;   Mcbagel
-G 0 10244  0      	;   Mcpastry
-M 0 10206 10 10249 	; Citizen of Solace to a House.
-M 0 10207  5 10249 	; woman to a House.
-M 0 10238 10 10249 	; child to a House.
-M 0 10206 10 10251 	; Citizen of Solace to a House.
-M 0 10207  5 10251 	; woman to a House.
-M 0 10238 10 10251 	; child to a House.
-M 0 10241  8 10251 	; old lady to a House.
-M 0 10211  1 10252 	; Marilyn to The Marilyn's Bird Factory.
-M 0 10253  1 10253 	; the battle falcon to Pet Storage
-M 0 10252  1 10253 	; the hunting hawk to Pet Storage
-M 0 10251  1 10253 	; the raven to Pet Storage
-M 0 10250  1 10253 	; the macaw to Pet Storage
-M 0 10216 10 10254 	; field rat to Storage Building
-M 0 10239  5 10254 	; rat to Storage Building
-M 0 10240  4 10254 	; bat to Storage Building
-M 0 10213  5 10255 	; ghost of waiter to Jander's
-M 0 10214  1 10255 	; ghost of a barkeeper to Jander's
-G 0 10307  0      	;   A drink called, "a flaming homer"
-G 0 10308  0      	;   A jello shot
-G 0 10309  0      	;   A drink called, "bloody heads"
-M 0 10216 10 10255 	; field rat to Jander's
-M 0 10213  5 10256 	; ghost of waiter to Jander's Poolhall
-M 0 10216 10 10256 	; field rat to Jander's Poolhall
-M 0 10213  5 10257 	; ghost of waiter to Jander's Restaurant
-M 0 10216 10 10257 	; field rat to Jander's Restaurant
-O 0 10310  0 10258 	; A giant skull throne to Death's Chambers
-M 0 10212  5 10259 	; Ghost of Jander to Jander's Office
-M 0 10205  4 10260 	; Townguard to Inside Southeast Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10205  4 10260 	; Townguard to Inside Southeast Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10205  4 10261 	; Townguard to Inside Southwest Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10205  4 10261 	; Townguard to Inside Southwest Watchtower.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10206 10 10262 	; Citizen of Solace to Dusty road.
-M 0 10215 40 10264 	; Townguard to Entrance Hall.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10264 	; Townguard to Entrance Hall.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10264 	; Townguard to Entrance Hall.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10264 	; Townguard to Entrance Hall.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10217  1 10266 	; Town Clerk to Town Clerk.
-E 0 10249  0 16    	;   Taxes and fines wielded (1)
-E 0 10305  0 17    	;   A depository key held in the hands
-M 0 10218  4 10267 	; Treasury Guards to Deposits Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10250  0 16    	;   Enchanted two-handed sword wielded (1)
-O 0 10302  0 10267 	; Safe deposit box to Deposits Room.
-P 0 10303  0 10302 	; Alot of gold coins. inside alot of gold coins.
-O 0 10302  0 10267 	; Safe deposit box to Deposits Room.
-P 0 10303  0 10302 	; Alot of gold coins. inside alot of gold coins.
-O 0 10302  0 10267 	; Safe deposit box to Deposits Room.
-P 0 10303  0 10302 	; Alot of gold coins. inside alot of gold coins.
-O 0 10302  0 10267 	; Safe deposit box to Deposits Room.
-P 0 10303  0 10302 	; Alot of gold coins. inside alot of gold coins.
-M 0 10241  8 10268 	; old lady to Marble Corridor.
-M 0 10232  1 10269 	; bratty boy to Water Fountain.
-O 0 10304  0 10269 	; A fountain to Water Fountain.
-M 0 10241  8 10273 	; old lady to Sergeant's Reception Room
-M 0 10249  1 10273 	; Secretary to Sergeant's Reception Room
-M 0 10233  5 10278 	; mage to West end of Common Room
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10284  0 17    	;   Travellers spellbook held in the hands
-M 0 10234  5 10278 	; Thief to West end of Common Room
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10286  0 5     	;   A travellers vest on the body
-E 0 10287  0 3     	;   A travellers cloak around the neck (1)
-M 0 10235  5 10278 	; Warrior to West end of Common Room
-E 0 10288  0 16    	;   A travellers sword wielded (1)
-E 0 10289  0 5     	;   A travellers scalemail on the body
-E 0 10290  0 11    	;   A travellers shield as a shield
-M 0 10236  5 10278 	; Cleric to West end of Common Room
-E 0 10285  0 17    	;   Travellers holy symbol held in the hands
-E 0 10291  0 16    	;   A travellers hammer wielded (1)
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-M 0 10233  5 10279 	; mage to East end of Common Room
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10284  0 17    	;   Travellers spellbook held in the hands
-M 0 10234  5 10279 	; Thief to East end of Common Room
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10286  0 5     	;   A travellers vest on the body
-E 0 10287  0 3     	;   A travellers cloak around the neck (1)
-M 0 10235  5 10279 	; Warrior to East end of Common Room
-E 0 10288  0 16    	;   A travellers sword wielded (1)
-E 0 10289  0 5     	;   A travellers scalemail on the body
-E 0 10290  0 11    	;   A travellers shield as a shield
-M 0 10236  5 10279 	; Cleric to East end of Common Room
-E 0 10285  0 17    	;   Travellers holy symbol held in the hands
-E 0 10291  0 16    	;   A travellers hammer wielded (1)
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-M 0 10242  4 10279 	; tired adventurer to East end of Common Room
-M 0 10233  5 10280 	; mage to West end of Bar.
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10284  0 17    	;   Travellers spellbook held in the hands
-M 0 10234  5 10280 	; Thief to West end of Bar.
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10286  0 5     	;   A travellers vest on the body
-E 0 10287  0 3     	;   A travellers cloak around the neck (1)
-M 0 10235  5 10280 	; Warrior to West end of Bar.
-E 0 10288  0 16    	;   A travellers sword wielded (1)
-E 0 10289  0 5     	;   A travellers scalemail on the body
-E 0 10290  0 11    	;   A travellers shield as a shield
-M 0 10236  5 10280 	; Cleric to West end of Bar.
-E 0 10285  0 17    	;   Travellers holy symbol held in the hands
-E 0 10291  0 16    	;   A travellers hammer wielded (1)
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-M 0 10242  4 10280 	; tired adventurer to West end of Bar.
-M 0 10233  5 10281 	; mage to Inn of the Last Home.
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10284  0 17    	;   Travellers spellbook held in the hands
-M 0 10234  5 10281 	; Thief to Inn of the Last Home.
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10286  0 5     	;   A travellers vest on the body
-E 0 10287  0 3     	;   A travellers cloak around the neck (1)
-M 0 10235  5 10281 	; Warrior to Inn of the Last Home.
-E 0 10288  0 16    	;   A travellers sword wielded (1)
-E 0 10289  0 5     	;   A travellers scalemail on the body
-E 0 10290  0 11    	;   A travellers shield as a shield
-M 0 10236  5 10281 	; Cleric to Inn of the Last Home.
-E 0 10285  0 17    	;   Travellers holy symbol held in the hands
-E 0 10291  0 16    	;   A travellers hammer wielded (1)
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-M 0 10206 10 10281 	; Citizen of Solace to Inn of the Last Home.
-M 0 10227  1 10281 	; Otik Sandath to Inn of the Last Home.
-G 0 10307  0      	;   A drink called, "a flaming homer"
-G 0 10308  0      	;   A jello shot
-G 0 10309  0      	;   A drink called, "bloody heads"
-M 0 10228  1 10281 	; Tika the barmaid to Inn of the Last Home.
-G 0 10307  0      	;   A drink called, "a flaming homer"
-G 0 10308  0      	;   A jello shot
-G 0 10309  0      	;   A drink called, "bloody heads"
-M 0 10215 40 10282 	; Townguard to Outside the Inn of the Last Home.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10282 	; Townguard to Outside the Inn of the Last Home.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10282 	; Townguard to Outside the Inn of the Last Home.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10282 	; Townguard to Outside the Inn of the Last Home.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10203  1 10283 	; Sergeant at Arms to Sergeant's Office
-E 0 10226  0 6     	;   The red helmet over the head
-E 0 10300  0 5     	;   A suit of red plate armor on the body
-E 0 10227  0 10    	;   Red scalemail sleeves on the arms
-E 0 10228  0 7     	;   Red scalemail leggings on the legs
-E 0 10229  0 9     	;   Red scalemail gauntlets on the hands
-E 0 10230  0 8     	;   Red scalemail boots on the feet
-E 0 10231  0 3     	;   The red sergeant's cloak around the neck (1)
-E 0 10232  0 13    	;   The red scalemail girth around the waist
-E 0 10209  0 4     	;   The amulet of solace around the neck (2)
-E 0 10233  0 11    	;   The large red shield as a shield
-E 0 10235  0 16    	;   A red steel warhammer called, "mage masher" wielded (1)
-E 0 10212  0 1     	;   An solace signet ring on the left finger
-E 0 10234  0 14    	;   A red bracer on the left wrist
-E 0 10234  0 15    	;   A red bracer on the right wrist
-M 0 10215 40 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10204 12 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10204 12 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10204 12 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10204 12 10285 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10215 40 10287 	; Townguard to Long Hallway
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10287 	; Townguard to Long Hallway
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10287 	; Townguard to Long Hallway
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10287 	; Townguard to Long Hallway
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10233  5 10291 	; mage to North End of Bar.
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10284  0 17    	;   Travellers spellbook held in the hands
-M 0 10234  5 10291 	; Thief to North End of Bar.
-E 0 10283  0 16    	;   Travellers dagger wielded (1)
-E 0 10286  0 5     	;   A travellers vest on the body
-E 0 10287  0 3     	;   A travellers cloak around the neck (1)
-M 0 10235  5 10291 	; Warrior to North End of Bar.
-E 0 10288  0 16    	;   A travellers sword wielded (1)
-E 0 10289  0 5     	;   A travellers scalemail on the body
-E 0 10290  0 11    	;   A travellers shield as a shield
-M 0 10236  5 10291 	; Cleric to North End of Bar.
-E 0 10285  0 17    	;   Travellers holy symbol held in the hands
-E 0 10291  0 16    	;   A travellers hammer wielded (1)
-E 0 10282  0 12    	;   Travellers robe about the shoulders
-M 0 10229  1 10291 	; Thief to North End of Bar.
-M 0 10230  3 10291 	; old man to North End of Bar.
-M 0 10231  1 10291 	; boy to North End of Bar.
-M 0 10201  1 10292 	; Captain of the Guard to Captain's Office.
-E 0 10201  0 6     	;   The obsidian helmet over the head
-E 0 10298  0 5     	;   A suit of obsidian plate armor on the body
-E 0 10202  0 10    	;   Obsidian sleeves on the arms
-E 0 10203  0 7     	;   Obsidian leggings on the legs
-E 0 10204  0 9     	;   Obsidian gauntlets on the hands
-E 0 10205  0 8     	;   Obsidian boots on the feet
-E 0 10206  0 3     	;   Obsidian cloak around the neck (1)
-E 0 10207  0 13    	;   The obsidian girth around the waist
-E 0 10209  0 4     	;   The amulet of solace around the neck (2)
-E 0 10208  0 11    	;   The large obsidian shield as a shield
-G 0 10210  0      	;   A obsidian key
-E 0 10306  0 17    	;   Key to the city of solace. held in the hands
-E 0 10211  0 16    	;   A black hilted sword called, "doomgiver" wielded (1)
-E 0 10212  0 1     	;   An solace signet ring on the left finger
-E 0 10213  0 14    	;   An obsidian bracer on the left wrist
-E 0 10213  0 15    	;   An obsidian bracer on the right wrist
-O 0 10214  0 10292 	; A weapons cabinet to Captain's Office.
-P 0 10215  0 10214 	; A black hilted sword called, "dragonslicer" inside a black hilted sword called, "Dragonslicer"
-M 0 10248  1 10295 	; Secretary to Lieutenant's Reception Area.
-M 0 10241  8 10296 	; old lady to Administration Hallway
-M 0 10242  4 10299 	; tired adventurer to Private Room
-M 0 10243  1 10300 	; Magnus wizard to Private Room
-E 0 10292  0 17    	;   Magnus's spellbook held in the hands
-E 0 10293  0 12    	;   Robe of the magi about the shoulders
-M 0 10244  1 10301 	; Lord Doom to Private Room
-E 0 10294  0 5     	;   Crystal plate armor on the body
-E 0 10297  0 16    	;   Crystal longsword wielded (1)
-E 0 10296  0 11    	;   Crystal shield as a shield
-M 0 10245  1 10302 	; Foreign Trade Representative to Captain's Meeting room.
-G 0 10303  0      	;   Alot of gold coins.
-M 0 10246  3 10302 	; bodyguard to Captain's Meeting room.
-M 0 10215 40 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10215 40 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10215 40 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10215 40 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10204 12 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10237  0 16    	;   Enchanted longsword wielded (1)
-M 0 10204 12 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10238  0 16    	;   Enchanted hammer wielded (1)
-M 0 10204 12 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10239  0 16    	;   Enchanted pike wielded (1)
-M 0 10204 12 10304 	; Townguard to Guards Room.
-E 0 10236  0 5     	;   Black platemail on the body
-E 0 10301  0 16    	;   Enchanted bow wielded (1)
-M 0 10202  1 10305 	; Lieutenant Commander to Lieutenant's Office.
-E 0 10216  0 6     	;   The steel helmet over the head
-E 0 10299  0 5     	;   A suit of steel plate armor on the body
-E 0 10217  0 10    	;   Steel sleeves on the arms
-E 0 10218  0 7     	;   Steel leggings on the legs
-E 0 10219  0 9     	;   Steel gauntlets on the hands
-E 0 10220  0 8     	;   Steel boots on the feet
-E 0 10221  0 3     	;   The lieutenant's cloak around the neck (1)
-E 0 10222  0 13    	;   The steel girth around the waist
-E 0 10209  0 4     	;   The amulet of solace around the neck (2)
-E 0 10223  0 11    	;   The large steel shield as a shield
-E 0 10225  0 16    	;   Black hilted sword called, "shieldbreaker" wielded (1)
-E 0 10212  0 1     	;   An solace signet ring on the left finger
-E 0 10224  0 14    	;   A steel bracer on the left wrist
-E 0 10224  0 15    	;   A steel bracer on the right wrist
-M 0 10206 10 10308 	; Citizen of Solace to Reading Room.
-M 0 10247  1 10312 	; Secretary to Captain's Waiting Room.
+M 0 10215 40 10201
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10201
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10201
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10201
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10216 10 10201
+M 0 10241 8 10203
+M 0 10215 40 10205
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10205
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10205
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10205
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10216 10 10205
+M 0 10215 40 10209
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10209
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10209
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10209
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10216 10 10210
+M 0 10206 10 10211
+M 0 10204 12 10213
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10204 12 10213
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10216 10 10218
+M 0 10204 12 10220
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10204 12 10220
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10216 10 10222
+M 0 10241 8 10222
+M 0 10215 40 10224
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10224
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10224
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10224
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10242 4 10226
+M 0 10206 10 10231
+M 0 10241 8 10231
+M 0 10215 40 10233
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10233
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10233
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10233
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10219 1 10234
+G 0 10251 0
+G 0 10252 0
+G 0 10253 0
+G 0 10254 0
+M 0 10220 1 10235
+G 0 10259 0
+G 0 10260 0
+G 0 10261 0
+G 0 10262 0
+M 0 10221 1 10236
+G 0 10263 0
+G 0 10264 0
+G 0 10265 0
+M 0 10222 1 10237
+G 0 10266 0
+G 0 10267 0
+G 0 10268 0
+G 0 10269 0
+M 0 10223 1 10238
+G 0 10270 0
+G 0 10270 0
+G 0 10270 0
+G 0 10270 0
+M 0 10224 1 10239
+G 0 10271 0
+G 0 10272 0
+G 0 10273 0
+G 0 10274 0
+M 0 10225 1 10240
+G 0 10275 0
+G 0 10276 0
+G 0 10277 0
+G 0 10278 0
+M 0 10226 1 10241
+G 0 10279 0
+G 0 10280 0
+G 0 10281 0
+M 0 10208 1 10242
+E 0 10240 0 5
+G 0 10255 0
+G 0 10256 0
+G 0 10257 0
+G 0 10258 0
+M 0 10206 10 10243
+M 0 10207 5 10243
+M 0 10238 10 10243
+M 0 10206 10 10244
+M 0 10207 5 10244
+M 0 10238 10 10244
+M 0 10210 1 10245
+G 0 10245 0
+G 0 10246 0
+G 0 10247 0
+G 0 10248 0
+M 0 10206 10 10246
+M 0 10207 5 10246
+M 0 10238 10 10246
+M 0 10241 8 10246
+M 0 10216 10 10247
+M 0 10237 6 10247
+M 0 10209 1 10248
+G 0 10241 0
+G 0 10242 0
+G 0 10243 0
+G 0 10244 0
+M 0 10206 10 10249
+M 0 10207 5 10249
+M 0 10238 10 10249
+M 0 10206 10 10251
+M 0 10207 5 10251
+M 0 10238 10 10251
+M 0 10241 8 10251
+M 0 10211 1 10252
+M 0 10253 1 10253
+M 0 10252 1 10253
+M 0 10251 1 10253
+M 0 10250 1 10253
+M 0 10216 10 10254
+M 0 10239 5 10254
+M 0 10240 4 10254
+M 0 10213 5 10255
+M 0 10214 1 10255
+G 0 10307 0
+G 0 10308 0
+G 0 10309 0
+M 0 10216 10 10255
+M 0 10213 5 10256
+M 0 10216 10 10256
+M 0 10213 5 10257
+M 0 10216 10 10257
+O 0 10310 0 10258
+M 0 10212 5 10259
+M 0 10205 4 10260
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10205 4 10260
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10205 4 10261
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10205 4 10261
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10206 10 10262
+M 0 10215 40 10264
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10264
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10264
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10264
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10217 1 10266
+E 0 10249 0 16
+E 0 10305 0 17
+M 0 10218 4 10267
+E 0 10236 0 5
+E 0 10250 0 16
+O 0 10302 0 10267
+P 0 10303 0 10302
+O 0 10302 0 10267
+P 0 10303 0 10302
+O 0 10302 0 10267
+P 0 10303 0 10302
+O 0 10302 0 10267
+P 0 10303 0 10302
+M 0 10241 8 10268
+M 0 10232 1 10269
+O 0 10304 0 10269
+M 0 10241 8 10273
+M 0 10249 1 10273
+M 0 10233 5 10278
+E 0 10282 0 12
+E 0 10283 0 16
+E 0 10284 0 17
+M 0 10234 5 10278
+E 0 10283 0 16
+E 0 10286 0 5
+E 0 10287 0 3
+M 0 10235 5 10278
+E 0 10288 0 16
+E 0 10289 0 5
+E 0 10290 0 11
+M 0 10236 5 10278
+E 0 10285 0 17
+E 0 10291 0 16
+E 0 10282 0 12
+M 0 10233 5 10279
+E 0 10282 0 12
+E 0 10283 0 16
+E 0 10284 0 17
+M 0 10234 5 10279
+E 0 10283 0 16
+E 0 10286 0 5
+E 0 10287 0 3
+M 0 10235 5 10279
+E 0 10288 0 16
+E 0 10289 0 5
+E 0 10290 0 11
+M 0 10236 5 10279
+E 0 10285 0 17
+E 0 10291 0 16
+E 0 10282 0 12
+M 0 10242 4 10279
+M 0 10233 5 10280
+E 0 10282 0 12
+E 0 10283 0 16
+E 0 10284 0 17
+M 0 10234 5 10280
+E 0 10283 0 16
+E 0 10286 0 5
+E 0 10287 0 3
+M 0 10235 5 10280
+E 0 10288 0 16
+E 0 10289 0 5
+E 0 10290 0 11
+M 0 10236 5 10280
+E 0 10285 0 17
+E 0 10291 0 16
+E 0 10282 0 12
+M 0 10242 4 10280
+M 0 10233 5 10281
+E 0 10282 0 12
+E 0 10283 0 16
+E 0 10284 0 17
+M 0 10234 5 10281
+E 0 10283 0 16
+E 0 10286 0 5
+E 0 10287 0 3
+M 0 10235 5 10281
+E 0 10288 0 16
+E 0 10289 0 5
+E 0 10290 0 11
+M 0 10236 5 10281
+E 0 10285 0 17
+E 0 10291 0 16
+E 0 10282 0 12
+M 0 10206 10 10281
+M 0 10227 1 10281
+G 0 10307 0
+G 0 10308 0
+G 0 10309 0
+M 0 10228 1 10281
+G 0 10307 0
+G 0 10308 0
+G 0 10309 0
+M 0 10215 40 10282
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10282
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10282
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10282
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10203 1 10283
+E 0 10226 0 6
+E 0 10300 0 5
+E 0 10227 0 10
+E 0 10228 0 7
+E 0 10229 0 9
+E 0 10230 0 8
+E 0 10231 0 3
+E 0 10232 0 13
+E 0 10209 0 4
+E 0 10233 0 11
+E 0 10235 0 16
+E 0 10212 0 1
+E 0 10234 0 14
+E 0 10234 0 15
+M 0 10215 40 10285
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10285
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10285
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10285
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10204 12 10285
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10204 12 10285
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10204 12 10285
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10204 12 10285
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10215 40 10287
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10287
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10287
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10287
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10233 5 10291
+E 0 10282 0 12
+E 0 10283 0 16
+E 0 10284 0 17
+M 0 10234 5 10291
+E 0 10283 0 16
+E 0 10286 0 5
+E 0 10287 0 3
+M 0 10235 5 10291
+E 0 10288 0 16
+E 0 10289 0 5
+E 0 10290 0 11
+M 0 10236 5 10291
+E 0 10285 0 17
+E 0 10291 0 16
+E 0 10282 0 12
+M 0 10229 1 10291
+M 0 10230 3 10291
+M 0 10231 1 10291
+M 0 10201 1 10292
+E 0 10201 0 6
+E 0 10298 0 5
+E 0 10202 0 10
+E 0 10203 0 7
+E 0 10204 0 9
+E 0 10205 0 8
+E 0 10206 0 3
+E 0 10207 0 13
+E 0 10209 0 4
+E 0 10208 0 11
+G 0 10210 0
+E 0 10306 0 17
+E 0 10211 0 16
+E 0 10212 0 1
+E 0 10213 0 14
+E 0 10213 0 15
+O 0 10214 0 10292
+P 0 10215 0 10214
+M 0 10248 1 10295
+M 0 10241 8 10296
+M 0 10242 4 10299
+M 0 10243 1 10300
+E 0 10292 0 17
+E 0 10293 0 12
+M 0 10244 1 10301
+E 0 10294 0 5
+E 0 10297 0 16
+E 0 10296 0 11
+M 0 10245 1 10302
+G 0 10303 0
+M 0 10246 3 10302
+M 0 10215 40 10304
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10215 40 10304
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10215 40 10304
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10215 40 10304
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10204 12 10304
+E 0 10236 0 5
+E 0 10237 0 16
+M 0 10204 12 10304
+E 0 10236 0 5
+E 0 10238 0 16
+M 0 10204 12 10304
+E 0 10236 0 5
+E 0 10239 0 16
+M 0 10204 12 10304
+E 0 10236 0 5
+E 0 10301 0 16
+M 0 10202 1 10305
+E 0 10216 0 6
+E 0 10299 0 5
+E 0 10217 0 10
+E 0 10218 0 7
+E 0 10219 0 9
+E 0 10220 0 8
+E 0 10221 0 3
+E 0 10222 0 13
+E 0 10209 0 4
+E 0 10223 0 11
+E 0 10225 0 16
+E 0 10212 0 1
+E 0 10224 0 14
+E 0 10224 0 15
+M 0 10206 10 10308
+M 0 10247 1 10312
 S
 
 
@@ -4664,20 +4664,20 @@ S
 
 
 #SHOPS
-10208  0  0  0  0  0 105  15  0 23 	; Matt the brewmaster
-10209  0  0  0  0  0 110 100  6 17 	; the Mcbaker
-10210  0  0  0  0  0 110 100  6 17 	; Cookie's Helper
-10211  0  0  0  0  0 110 100  0 23 	; Marilyn
-10214  0  0  0  0  0 110 100  0 23 	; ghost of a barkeeper
-10219  0  0  0  0  0 110 100  4 20 	; Jhen the farmer
-10220  0  0  0  0  0 110 100  4 20 	; Krista the fruit peddler
-10221  0  0  0  0  0 125  75  4 20 	; Janni
-10222  5  9 19  0  0 125  75  4 20 	; Nisi the grocer
-10223 10  0  0  0  0 125  75  4 20 	; Molin the brewer
-10224  0  0  0  0  0 125  75  4 20 	; Rashan the farmer
-10225 22  0  0  0  0 125  75  4 20 	; Lexie
-10226 15  0  0  0  0 125  75  4 20 	; Croben
-10227  0  0  0  0  0 105  15  0 23 	; Otik Sandath
+10208 0 0 0 0 0 105 15 0 23
+10209 0 0 0 0 0 110 100 6 17
+10210 0 0 0 0 0 110 100 6 17
+10211 0 0 0 0 0 110 100 0 23
+10214 0 0 0 0 0 110 100 0 23
+10219 0 0 0 0 0 110 100 4 20
+10220 0 0 0 0 0 110 100 4 20
+10221 0 0 0 0 0 125 75 4 20
+10222 5 9 19 0 0 125 75 4 20
+10223 10 0 0 0 0 125 75 4 20
+10224 0 0 0 0 0 125 75 4 20
+10225 22 0 0 0 0 125 75 4 20
+10226 15 0 0 0 0 125 75 4 20
+10227 0 0 0 0 0 105 15 0 23
 0
 
 

@@ -1,5 +1,5 @@
 #AREADATA
-Name        Dwarven Kingdom~
+Name        {{10 25} Anon    Dwarven Kingdom~
 Builders    None~
 VNUMs       6500 6554
 Security    1
@@ -17,7 +17,7 @@ A dwarven guard is here.
 The guard looks very tough and mean.
 ~
 67 8 500 S
-22 0 0 20d20+200 2d4+18
+21 0 0 20d20+200 2d4+18
 10000 0
 0 Dwarf~ 1
 #6501
@@ -28,7 +28,7 @@ A dwarven mining worker is here.
 He is very dirty, and looks extremely over-worked.
 ~
 2113 0 900 S
-11 4 0 12d12+120 1d7+7
+12 4 0 12d12+120 1d7+7
 3500 0
 0 Dwarf~ 1
 #6502
@@ -50,7 +50,7 @@ There is the Hide & Tooth storekeeper standing here, waiting patiently.
 The storekeeper is very rotund, but looks like a sharp guy.
 ~
 2051 0 900 S
-28 2 0 6d10+990 2d9+20
+34 2 0 6d10+990 2d9+20
 100000 0
 0 Dwarf~ 1
 #6504
@@ -61,7 +61,7 @@ Granite Head, the baker, is waiting for a customer here.
 Granite Head is covered with flour and grains.
 ~
 2051 0 900 S
-38 2 0 7d10+990 2d9+19
+35 2 0 7d10+990 2d9+19
 1000 0
 0 Dwarf~ 1
 #6505
@@ -73,7 +73,7 @@ This scaly creature looks like it is well adapted to it's underground
 habitat.  He looks very powerful.
 ~
 65 8 100 S
-17 7 0 10d20+500 4d4+5
+20 7 0 10d20+500 4d4+5
 1200 0
 0 Snake~ 1
 #6506
@@ -95,7 +95,7 @@ A dwarven miner is here.
 The mineworker is very tired, and very dirty, and he has bulging muscles.
 ~
 2051 0 0 S
-13 14 0 8d8+100 2d9+9
+11 14 0 8d8+100 2d9+9
 40 0
 0 Dwarf~ 1
 #6508
@@ -106,7 +106,7 @@ A dwarven mine leader is here.
 The mine leader is very big and very strong.
 ~
 2051 0 0 S
-24 0 0 5d3+400 3d9+3
+21 0 0 5d3+400 3d9+3
 20000 0
 0 Dwarf~ 1
 #6509
@@ -127,7 +127,7 @@ A dwarven peon is awaiting help here.
 ~
 ~
 2051 0 500 S
-7 16 0 5d3+33 2d4+3
+2 16 0 5d3+33 2d4+3
 75 0
 0 Dwarf~ 1
 #6511
@@ -147,7 +147,7 @@ An unwanted son is here.  You feel sorry for the guy.
 ~
 ~
 65 0 250 S
-4 12 0 3d4+125 3d5+5
+8 12 0 3d4+125 3d5+5
 50 0
 0 Dwarf~ 1
 #6513
@@ -157,7 +157,7 @@ An unwanted daughter is here.  You feel sorry for her.
 ~
 ~
 65 0 250 S
-9 11 0 3d4+135 3d5+7
+10 11 0 3d4+135 3d5+7
 50 0
 0 Dwarf~ 1
 #6514
@@ -167,7 +167,7 @@ A barrack guard is here.
 ~
 ~
 2051 0 100 S
-25 5 0 16d16+160 3d6+8
+17 5 0 16d16+160 3d6+8
 3000 0
 0 Dwarf~ 1
 #6515
@@ -177,7 +177,7 @@ A man in waiting is here.  He looks nervous and unsure of himself.
 ~
 ~
 2051 0 300 S
-19 12 0 6d8+180 3d7+5
+15 12 0 6d8+180 3d7+5
 6969 0
 0 Human~ 1
 #6516
@@ -188,7 +188,7 @@ A mazekeeper is here.
 He looks VERY tough.
 ~
 2083 128 -1000 S
-28 0 0 25d29+290 4d8+15
+29 0 0 25d29+290 4d8+15
 80000 0
 0 Dwarf~ 1
 #6517
@@ -198,7 +198,7 @@ There is a giant snake here.
 ~
 ~
 35 0 -1000 S
-16 7 0 3d7+432 3d7+6
+14 7 0 3d7+432 3d7+6
 3000 0
 0 Snake~ 1
 #0
@@ -1185,113 +1185,114 @@ S
 
 
 #RESETS
-M 0 6501  6 6501  	; the dwarven worker to Path, base of mountain
-M 0 6501  6 6502  	; the dwarven worker to Path, middle of mountain
-O 0 6507  0 6503  	; Long, black stick to Top of mountain
-M 0 6501  6 6503  	; the dwarven worker to Top of mountain
-M 0 6500  2 6505  	; the dwarven guard to Entrance to Mountain
-E 0 6504  0 16    	;   A hammer wielded (1)
-E 0 6505  0 5     	;   Dwarven plate mail on the body
-G 0 6502  0      	;   A deep green key
-M 0 6500  2 6505  	; the dwarven guard to Entrance to Mountain
-E 0 6504  0 16    	;   A hammer wielded (1)
-E 0 6505  0 5     	;   Dwarven plate mail on the body
-O 0 6507  0 6505  	; Long, black stick to Entrance to Mountain
-M 0 6506  2 6508  	; the giant to Narrow north-south path
-M 0 6500  2 6509  	; the dwarven guard to Door to Kingdom
-E 0 6509  0 16    	;   A two-handed dwarven axe wielded (1)
-E 0 6510  0 6     	;   A dwarven helmet over the head
-E 0 6511  0 1     	;   A dwarven golden ring on the left finger
-M 0 6500  2 6509  	; the dwarven guard to Door to Kingdom
-E 0 6512  0 9     	;   Dwarven gloves on the hands
-E 0 6509  0 16    	;   A two-handed dwarven axe wielded (1)
-E 0 6505  0 5     	;   Dwarven plate mail on the body
-M 0 6500  2 6512  	; the dwarven guard to Door to Castle
-E 0 6508  0 16    	;   Dwarven club wielded (1)
-M 0 6500  2 6512  	; the dwarven guard to Door to Castle
-E 0 6508  0 16    	;   Dwarven club wielded (1)
-O 0 6507  0 6513  	; Long, black stick to Inside the entrance
-M 0 6505  1 6515  	; the giant lizard to Turn in road
-M 0 6503  1 6516  	; the storekeeper to Hide & Tooth Shop
-G 0 6504  0      	;   A hammer
-G 0 6505  0      	;   Dwarven plate mail
-G 0 6510  0      	;   A dwarven helmet
-G 0 6511  0      	;   A dwarven golden ring
-G 0 6512  0      	;   Dwarven gloves
-E 0 6504  0 16    	;   A hammer wielded (1)
-M 0 6505  1 6520  	; the giant lizard to Path next to barracks
-M 0 6514  2 6521  	; the barracks guard to Entrance to barracks
-E 0 6509  0 16    	;   A two-handed dwarven axe wielded (1)
-M 0 6514  2 6521  	; the barracks guard to Entrance to barracks
-E 0 6509  0 16    	;   A two-handed dwarven axe wielded (1)
-M 0 6500  2 6521  	; the dwarven guard to Entrance to barracks
-M 0 6500  2 6521  	; the dwarven guard to Entrance to barracks
-M 0 6511  4 6523  	; the dwarf to First Barrack room
-M 0 6511  4 6523  	; the dwarf to First Barrack room
-E 0 6504  0 16    	;   A hammer wielded (1)
-E 0 6514  0 17    	;   A castle key held in the hands
-M 0 6511  4 6523  	; the dwarf to First Barrack room
-M 0 6511  4 6523  	; the dwarf to First Barrack room
-M 0 6511  4 6524  	; the dwarf to Back of Barracks
-O 0 6513  0 6524  	; A note to Back of Barracks
-M 0 6502  1 6524  	; the wraith to Back of Barracks
-M 0 6511  4 6524  	; the dwarf to Back of Barracks
-M 0 6502  1 6527  	; the wraith to Wine cellar
-G 0 6502  0      	;   A deep green key
-M 0 6512  3 6528  	; the unwanted son to Stairs in castle
-M 0 6512  3 6529  	; the unwanted son to Stairs
-M 0 6513  3 6529  	; the unwanted daughter to Stairs
-M 0 6513  3 6530  	; the unwanted daughter to Top of stairs
-M 0 6515  4 6531  	; the man in waiting to Queen's waiting room
-M 0 6515  4 6531  	; the man in waiting to Queen's waiting room
-O 0 6516  0 6532  	; A mine key to Bedroom
-O 0 6506  0 6534  	; Long, black stick to Hospital
-M 0 6510  4 6534  	; the dwarven peon to Hospital
-M 0 6510  4 6534  	; the dwarven peon to Hospital
-M 0 6509  1 6534  	; the dwarven doctor to Hospital
-E 0 6506  0 17    	;   Long, black stick held in the hands
-G 0 6519  0      	;   A box of birth control pills
-M 0 6504  1 6535  	; the baker to Granite Head's Bakery
-G 0 3000  0      	;   A barrel of beer
-G 0 3003  0      	;   A bottle of firebreather
-G 0 3009  0      	;   A big pot pie
-G 0 3031  0      	;   A hooded brass lantern
-E 0 6504  0 16    	;   A hammer wielded (1)
-M 0 6500  2 6540  	; the dwarven guard to Dark path
-E 0 6504  0 16    	;   A hammer wielded (1)
-E 0 6505  0 5     	;   Dwarven plate mail on the body
-G 0 6502  0      	;   A deep green key
-M 0 6500  2 6540  	; the dwarven guard to Dark path
-E 0 6504  0 16    	;   A hammer wielded (1)
-E 0 6505  0 5     	;   Dwarven plate mail on the body
-O 0 6507  0 6540  	; Long, black stick to Dark path
-M 0 6507  4 6542  	; the dwarven miner to Inside the mine
-E 0 6508  0 16    	;   Dwarven club wielded (1)
-M 0 6507  4 6543  	; the dwarven miner to Path in the mine
-E 0 6508  0 16    	;   Dwarven club wielded (1)
-M 0 6507  4 6543  	; the dwarven miner to Path in the mine
-E 0 6508  0 16    	;   Dwarven club wielded (1)
-M 0 6508  4 6543  	; the dwarven mine leader to Path in the mine
-E 0 6512  0 9     	;   Dwarven gloves on the hands
-E 0 6508  0 16    	;   Dwarven club wielded (1)
-O 0 6517  0 6545  	; A chunk of coal to Coal Room
-M 0 6517  2 6548  	; the giant snake to Maze
-M 0 6517  2 6549  	; the giant snake to Maze
-O 0 6518  0 6551  	; A mining pick to Mining equipment room
-M 0 6516  1 6553  	; the mazekeeper to The Mazekeeper's Room
-G 0 6519  0      	;   A box of birth control pills
+M 0 6501 6 6501
+M 0 6501 6 6502
+O 0 6507 0 6503
+M 0 6501 6 6503
+M 0 6500 2 6505
+E 0 6504 0 16
+E 0 6505 0 5
+G 0 6502 0
+M 0 6500 2 6505
+E 0 6504 0 16
+E 0 6505 0 5
+O 0 6507 0 6505
+M 0 6506 2 6508
+M 0 6500 2 6509
+E 0 6509 0 16
+E 0 6510 0 6
+E 0 6511 0 1
+M 0 6500 2 6509
+E 0 6512 0 9
+E 0 6509 0 16
+E 0 6505 0 5
+M 0 6500 2 6512
+E 0 6508 0 16
+M 0 6500 2 6512
+E 0 6508 0 16
+O 0 6507 0 6513
+M 0 6505 1 6515
+M 0 6503 1 6516
+G 0 6504 0
+G 0 6505 0
+G 0 6510 0
+G 0 6511 0
+G 0 6512 0
+E 0 6504 0 16
+M 0 6505 1 6520
+M 0 6514 2 6521
+E 0 6509 0 16
+M 0 6514 2 6521
+E 0 6509 0 16
+M 0 6500 2 6521
+M 0 6500 2 6521
+M 0 6511 4 6523
+M 0 6511 4 6523
+E 0 6504 0 16
+E 0 6514 0 17
+M 0 6511 4 6523
+M 0 6511 4 6523
+M 0 6511 4 6524
+O 0 6513 0 6524
+M 0 6502 1 6524
+M 0 6511 4 6524
+M 0 6502 1 6527
+G 0 6502 0
+M 0 6512 3 6528
+M 0 6512 3 6529
+M 0 6513 3 6529
+M 0 6513 3 6530
+M 0 6515 4 6531
+M 0 6515 4 6531
+O 0 6516 0 6532
+O 0 6506 0 6534
+M 0 6510 4 6534
+M 0 6510 4 6534
+M 0 6509 1 6534
+E 0 6506 0 17
+G 0 6519 0
+M 0 6504 1 6535
+G 0 3000 0
+G 0 3003 0
+G 0 3009 0
+G 0 3031 0
+E 0 6504 0 16
+M 0 6500 2 6540
+E 0 6504 0 16
+E 0 6505 0 5
+G 0 6502 0
+M 0 6500 2 6540
+E 0 6504 0 16
+E 0 6505 0 5
+O 0 6507 0 6540
+M 0 6507 4 6542
+E 0 6508 0 16
+M 0 6507 4 6543
+E 0 6508 0 16
+M 0 6507 4 6543
+E 0 6508 0 16
+M 0 6508 4 6543
+E 0 6512 0 9
+E 0 6508 0 16
+O 0 6517 0 6545
+M 0 6517 2 6548
+M 0 6517 2 6549
+O 0 6518 0 6551
+M 0 6516 1 6553
+G 0 6519 0
 S
 
 
 
 #MOBPROGS
+M 6504 6504.prg
 S
 
 
 
 #SHOPS
-6503  5  9  0  0  0 150  50  0 23 	; the storekeeper
-6504  0  0  0  0  0 150  50  0 23 	; the baker
+6503 5 9 0 0 0 150 50 0 23
+6504 0 0 0 0 0 150 50 0 23
 0
 
 

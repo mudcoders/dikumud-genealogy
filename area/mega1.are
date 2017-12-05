@@ -1,5 +1,5 @@
 #AREADATA
-Name        Mega-City One ~
+Name        {{ 5 35} Glop    Mega-City One ~
 Builders    None~
 VNUMs       8000 8028
 Security    1
@@ -19,7 +19,7 @@ mates have cost city authorities many millions of creds a week in
 vandalism repairs.
 ~
 5 0 -400 S
-4 0 0 0d0+0 0d0+0
+5 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8001
@@ -31,7 +31,7 @@ This punk is from one of the rowdiest, scruffiest, and definitely most
 fashionable of all gangs -- the Grunge Mongers.
 ~
 69 0 -500 S
-7 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8002
@@ -44,7 +44,7 @@ not be stopped by anyone who tries to deter him from revenge upon the
 Justice Department.
 ~
 35 8 0 S
-25 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8003
@@ -56,7 +56,7 @@ A member of a local Block's Citi-Def militia, this man is well-armed
 and undersupervised.
 ~
 69 512 0 S
-13 0 0 0d0+0 0d0+0
+17 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8004
@@ -67,7 +67,7 @@ A dunk is here blending into the crowd.
 He blends into the crowd as his hand travels into another citizen's pocket.
 ~
 197 0 -150 S
-10 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8005
@@ -79,7 +79,7 @@ A practitioner in Mega-City One's largest growth industry, mugging, is
 looking you over for a possible business transaction.
 ~
 69 0 -400 S
-14 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #8006
@@ -92,7 +92,7 @@ crimes you have committed.  Being a rookie he will probably be easier on
 you though.
 ~
 65 40 300 S
-24 0 0 0d0+0 0d0+0
+21 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8007
@@ -104,7 +104,7 @@ Wallaby Gleep is a heavy-set man who gives you the impression that he is
 unintelligent and unimaginative, but looks can be deceiving.
 ~
 7 552 -600 S
-26 0 0 0d0+0 0d0+0
+23 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8008
@@ -117,7 +117,7 @@ Scrooge.  Indeed, the only thing guaranteed to bring a spark to his dead
 eyes is the mention of money.
 ~
 39 40 -900 S
-31 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8009
@@ -130,7 +130,7 @@ deal out of life.  He is content to run the bite fights for Throt and
 Gleep.
 ~
 7 0 -400 S
-21 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8010
@@ -142,7 +142,7 @@ He is a dedicated, if somewhat pessimistic Judge.  He is the Senior Judge
 of the Downtown Quadrant.
 ~
 65 168 300 S
-22 0 0 0d0+0 0d0+0
+29 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8011
@@ -155,7 +155,7 @@ She is fanatically dedicated to her job and has no ambitions other than
 to enforce the LAW.
 ~
 65 40 500 S
-34 0 0 0d0+0 0d0+0
+25 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #8012
@@ -166,7 +166,7 @@ A bite fighter is here sharpening his teeth.
 A bite fighter is here with sharpened teeth and a bad attitude.
 ~
 35 0 -400 S
-18 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #0
@@ -902,11 +902,11 @@ S
 
 
 #SPECIALS
-M 8003 spec_cast_judge 	; a Citi-Def Militiaman
-M 8004 spec_thief 	; a dunk
-M 8006 spec_cast_judge 	; a rookie judge
-M 8010 spec_cast_judge 	; Judge Eckersely
-M 8011 spec_cast_judge 	; Judge Beddows
+M 8003 spec_cast_judge
+M 8004 spec_thief
+M 8006 spec_cast_judge
+M 8010 spec_cast_judge
+M 8011 spec_cast_judge
 S
 
 
@@ -917,64 +917,64 @@ S
 
 
 #RESETS
-M 0 8004  5 8003  	; a dunk to Intersection of Junket Way and Megway
-M 0 8000  5 8004  	; a juve to Mahmount Allesh Megway
-E 0 8006  0 16    	;   A bashball bat wielded (1)
-M 0 8000  5 8004  	; a juve to Mahmount Allesh Megway
-E 0 8009  0 16    	;   A knife wielded (1)
-M 0 8004  5 8005  	; a dunk to Mahmount Allesh Megway
-M 0 8000  5 8006  	; a juve to Central Plaza
-E 0 8009  0 16    	;   A knife wielded (1)
-M 0 8001  5 8006  	; a punk to Central Plaza
-E 0 8009  0 16    	;   A knife wielded (1)
-M 0 8004  5 8006  	; a dunk to Central Plaza
-M 0 8010  1 8007  	; Judge Eckersely to Corner of Ed Hilldreth Memorial Parkway and Megway
-E 0 8011  0 16    	;   A judge's club wielded (1)
-G 0 8003  0      	;   A lawgiver
-M 0 8001  5 8009  	; a punk to Mahmount Allesh Megway
-E 0 8009  0 16    	;   A knife wielded (1)
-E 0 8001  0 7     	;   A set of knee pads on the legs
-M 0 8011  1 8009  	; Judge Beddows to Mahmount Allesh Megway
-E 0 8011  0 16    	;   A judge's club wielded (1)
-G 0 8003  0      	;   A lawgiver
-M 0 8005  5 8010  	; a tap to Junket Way
-E 0 8006  0 16    	;   A bashball bat wielded (1)
-M 0 8001  5 8011  	; a punk to Davies Alley
-E 0 8006  0 16    	;   A bashball bat wielded (1)
-M 0 8012  2 8011  	; a bite fighter to Davies Alley
-M 0 8012  2 8011  	; a bite fighter to Davies Alley
-M 0 8006  5 8012  	; a rookie judge to Max Jaffa Boulevard
-E 0 8011  0 16    	;   A judge's club wielded (1)
-M 0 8003  5 8013  	; a Citi-Def Militiaman to Ed Hilldreth Memorial Parkway 
-E 0 8001  0 7     	;   A set of knee pads on the legs
-M 0 8003  5 8014  	; a Citi-Def Militiaman to Construction site of the Harold Finkelbaum Block.
-G 0 8000  0      	;   A spit gun
-M 0 8000  5 8015  	; a juve to Corner of Junket Way and Threep Lane
-E 0 8009  0 16    	;   A knife wielded (1)
-E 0 8001  0 7     	;   A set of knee pads on the legs
-M 0 8005  5 8017  	; a tap to Threep Lane
-E 0 8009  0 16    	;   A knife wielded (1)
-M 0 8006  5 8018  	; a rookie judge to Corner of Max Jaffa Blvd and Threep Way
-E 0 8011  0 16    	;   A judge's club wielded (1)
-M 0 8005  5 8019  	; a tap to Corner of Ed Hilldreth Mem. Prkwy and Threep Lane
-M 0 8009  1 8021  	; Ernie Ramirez to Pustule Palace Cafe
-E 0 8006  0 16    	;   A bashball bat wielded (1)
-G 0 8002  0      	;   A stooky gland
-G 0 8013  0      	;   A key card
-M 0 8002  4 8023  	; a Futsie to Bazza's Home for the Terminally Sarky
-E 0 8008  0 16    	;   A hoover vacuum cleaner wielded (1)
-M 0 8002  4 8024  	; a Futsie to Nu Phisog Parlour
-E 0 8010  0 16    	;   A wet noodle wielded (1)
-M 0 8006  5 8025  	; a rookie judge to Ziggi Piggi's Home for the Semi-Stiff
-E 0 8011  0 16    	;   A judge's club wielded (1)
-M 0 8007  1 8027  	; Wallaby Gleep to Stockroom of Throt & Gleep's Megger Store
-E 0 8009  0 16    	;   A knife wielded (1)
-G 0 8012  0      	;   A vault key
-O 0 8004  0 8028  	; The magnetically shielded safe to Throt & Gleep's Vault
-M 0 8008  1 8028  	; Pinkerton Throt to Throt & Gleep's Vault
-E 0 8009  0 16    	;   A knife wielded (1)
-G 0 8005  0      	;   A code box
-P 0 8007  0 8004  	; The vibroblade inside the Vibroblade
+M 0 8004 5 8003
+M 0 8000 5 8004
+E 0 8006 0 16
+M 0 8000 5 8004
+E 0 8009 0 16
+M 0 8004 5 8005
+M 0 8000 5 8006
+E 0 8009 0 16
+M 0 8001 5 8006
+E 0 8009 0 16
+M 0 8004 5 8006
+M 0 8010 1 8007
+E 0 8011 0 16
+G 0 8003 0
+M 0 8001 5 8009
+E 0 8009 0 16
+E 0 8001 0 7
+M 0 8011 1 8009
+E 0 8011 0 16
+G 0 8003 0
+M 0 8005 5 8010
+E 0 8006 0 16
+M 0 8001 5 8011
+E 0 8006 0 16
+M 0 8012 2 8011
+M 0 8012 2 8011
+M 0 8006 5 8012
+E 0 8011 0 16
+M 0 8003 5 8013
+E 0 8001 0 7
+M 0 8003 5 8014
+G 0 8000 0
+M 0 8000 5 8015
+E 0 8009 0 16
+E 0 8001 0 7
+M 0 8005 5 8017
+E 0 8009 0 16
+M 0 8006 5 8018
+E 0 8011 0 16
+M 0 8005 5 8019
+M 0 8009 1 8021
+E 0 8006 0 16
+G 0 8002 0
+G 0 8013 0
+M 0 8002 4 8023
+E 0 8008 0 16
+M 0 8002 4 8024
+E 0 8010 0 16
+M 0 8006 5 8025
+E 0 8011 0 16
+M 0 8007 1 8027
+E 0 8009 0 16
+G 0 8012 0
+O 0 8004 0 8028
+M 0 8008 1 8028
+E 0 8009 0 16
+G 0 8005 0
+P 0 8007 0 8004
 S
 
 

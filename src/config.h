@@ -1,5 +1,5 @@
 /*
- * Mythran Mud 3.1.1
+ * Mythran Mud 3.1.11
  * Mud Configuration file
  *
  * Various extra options to change the way the mud is run...
@@ -97,8 +97,8 @@
  * By defining AUTO_COMPRESS the player files will automatically
  * be compressed using the command 'gzip --best <pfile>'
  * If you don't have gzip or don't want to compress your pfiles
- * undefine this option NOW.
- * If you are low on disk space leave it untouched.
+ * leave this option untouched. 
+ * If you are low on disk space uncomment it.
  *
  */
 
@@ -144,10 +144,38 @@
  * Enable or disable automatic saving of all areas (every 30 minutes)
  *
  * If you define AUTO_SAVE_WORLD, the mud will save all area's every 30
- * minutes, this will cause a log of lag for 1-10 seconds (depending on
+ * minutes, this will cause a lot of lag for 1-10 seconds (depending on
  * CPU and harddisk speed) This is handy to have in a building port, but
  * very irritating in the playing port. So it's best to have this defined
  * in the building port, and undefined in the running port.
  *
  */
 #undef AUTO_WORLD_SAVE
+
+/* Player Age System
+ *
+ * This subsystem follows the AD&D second edition aging rules, this means
+ * players start playing on a specified age (dependant on race) become
+ * adult (allow's pkilling etc) and die at a specified age.
+ * This also makes sure your hero'd players don't hang around too long.
+ * Define START_AGE_SYSTEM to let players begin at different ages.
+ * Define DEATH_AGE_SYSTEM to let players die of old-age
+ */
+
+#define START_AGE_SYSTEM
+#define DEATH_AGE_SYSTEM
+
+/* Mythran Remorting system
+ *
+ * Enabling this let's players who reacht immortality (LEVEL_HERO)
+ * restart with better stats in another class
+ */
+#define ALLOW_REMORT TRUE
+
+/* Automatically disconnect chars
+ *
+ * Enabling this let's characters that login automatically disconnect
+ * their existing player that is on still. (Not disconnected due to lag)
+ * Undefining this will result in getting the "Already playing" line again
+ */
+#define AUTO_DISCONNECT_OLD

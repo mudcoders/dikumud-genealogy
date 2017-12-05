@@ -219,8 +219,9 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
     CHAR_DATA *victim;
-    char       arg1 [ MAX_INPUT_LENGTH ];
-    char       arg2 [ MAX_INPUT_LENGTH ];
+    char       arg1 [ MAX_INPUT_LENGTH  ];
+    char       arg2 [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -232,7 +233,7 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' )
     {
-	send_to_char( "Syntax: pardon <character> <k(iller)|t(hieaf)|a(ll)>.\n\r", ch );
+	send_to_char( "Syntax: pardon <character> <k(iller)|t(hieaf)|pk|a(ll)>.\n\r", ch );
 	return;
     }
 
@@ -255,39 +256,68 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	    REMOVE_BIT( victim->act, PLR_KILLER );
 	    send_to_char( "Killer flag removed.\n\r",		ch	);
 	    send_to_char( "You are no longer a killer.\n\r",	victim	);
+	    sprintf( buf, "%s was pardonned for KILLER by %s", victim->name,
+		ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 	}
 	if ( IS_SET( victim->act, PLR_THIEF ) )
 	{
 	    REMOVE_BIT( victim->act, PLR_THIEF );
 	    send_to_char( "Thief flag removed.\n\r",		ch	);
 	    send_to_char( "You are no longer a thief.\n\r",	victim	);
+	    sprintf( buf, "%s was pardonned for THIEF by %s", victim->name,
+		ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 	}
-	return;
-    }
-
-    if ( !str_prefix( arg2, "killer" ) )
-    {
-	if ( IS_SET( victim->act, PLR_KILLER ) )
+	if ( IS_SET( victim->act, PLR_REGISTER ) )
 	{
-	    REMOVE_BIT( victim->act, PLR_KILLER );
-	    send_to_char( "Killer flag removed.\n\r",        ch     );
-	    send_to_char( "You are no longer a KILLER.\n\r", victim );
+	    REMOVE_BIT( victim->act, PLR_REGISTER );
+	    send_to_char( "PK flag removed.\n\r",		ch	);
+	    send_to_char( "You can no longer PK.\n\r",		victim	);
+	    sprintf( buf, "%s was pardonned for PK by %s", victim->name,
+		ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 	}
 	return;
     }
 
-    if ( !str_prefix( arg2, "thief" ) )
+    if ( ( !str_prefix( arg2, "killer" ) )
+	&& ( IS_SET( victim->act, PLR_KILLER ) ) )
     {
-	if ( IS_SET( victim->act, PLR_THIEF  ) )
-	{
-	    REMOVE_BIT( victim->act, PLR_THIEF  );
-	    send_to_char( "Thief flag removed.\n\r",        ch     );
-	    send_to_char( "You are no longer a THIEF.\n\r", victim );
-	}
+	REMOVE_BIT( victim->act, PLR_KILLER );
+	send_to_char( "Killer flag removed.\n\r",        ch     );
+	send_to_char( "You are no longer a KILLER.\n\r", victim );
+	sprintf( buf, "%s was pardonned for KILLER by %s", victim->name,
+	    ch->name );
+	wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 	return;
     }
 
-    send_to_char( "Syntax: pardon <character> <k(iller)|t(hief)|a(ll)>.\n\r", ch );
+    if ( ( !str_prefix( arg2, "thief" ) )
+	&& ( IS_SET( victim->act, PLR_THIEF  ) ) )
+    {
+	REMOVE_BIT( victim->act, PLR_THIEF  );
+	send_to_char( "Thief flag removed.\n\r",        ch     );
+	send_to_char( "You are no longer a THIEF.\n\r", victim );
+	sprintf( buf, "%s was pardonned for THIEF by %s", victim->name,
+	    ch->name );
+	wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
+	return;
+    }
+
+    if ( ( !str_prefix( arg2, "pk" ) )
+	&& ( IS_SET( victim->act, PLR_REGISTER ) ) )
+    {
+	REMOVE_BIT( victim->act, PLR_REGISTER );
+	send_to_char( "PK flag removed.\n\r", ch );
+	send_to_char( "You can no longer PK.\n\r", victim );
+	sprintf( buf, "%s was pardonned for PK by %s", victim->name,
+	    ch->name );
+	wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
+	return;
+    }
+
+    do_pardon( ch, "" );
     return;
 }
 
@@ -659,6 +689,18 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	strcat( buf1, "'.\n\r" );
     }
 
+    if ( location->mana )
+    {
+	ROOM_MANA_DATA *mana;
+
+	strcat (buf1, "Room mana:\n");
+	for ( mana = location->mana; mana; mana = mana->next )
+	{
+	    sprintf( buf, "\tType: %d\tAmount: %d\n", mana->type, mana->amount );
+	    strcat( buf1, buf );
+	}
+    }
+
     sprintf(buf,"Room flags: %s.\n\r", room_flags_name(location->room_flags) );
     strcat( buf1, buf );
 
@@ -896,7 +938,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	sprintf (buf, "\n\rGold: %d.  Balance: %d.  Shares: %d. Securety: %d\n\r",
+	sprintf (buf, "\n\rGold: %d.  Balance: %d.  Shares: %d. Security: %d\n\r",
 	victim->gold, victim->pcdata->balance, victim->pcdata->shares, victim->pcdata->security );
 	strcat( buf1, buf );
     }
@@ -955,8 +997,10 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->carry_number, victim->carry_weight );
     strcat( buf1, buf );
 
-    sprintf( buf, "Age: %d.  Played: %d.  Timer: %d.\n\r",
+    sprintf( buf, "Age: %d(%d/%d).  Played: %d.  Timer: %d.\n\r",
 	    get_age( victim ),
+	    (int) victim->current_age,
+	    (int) victim->death_age,
 	    (int) victim->played,
 	    victim->timer);
     strcat( buf1, buf );
@@ -1207,6 +1251,8 @@ void do_reboot( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "reboot" ) )
         return;
 
+    interpret( ch, "asave changed" );
+
     sprintf( buf, "Reboot by %s.", ch->name );
     do_echo( ch, buf );
 
@@ -1244,6 +1290,8 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "shutdown" ) )
         return;
 
+    interpret( ch, "asave changed" );
+
     sprintf( buf, "Shutdown by %s.", ch->name );
     append_file( ch, SHUTDOWN_FILE, buf );
     strcat( buf, "\n\r" );
@@ -1262,7 +1310,8 @@ void do_snoop( CHAR_DATA *ch, char *argument )
     CHAR_DATA       *rch;
     CHAR_DATA       *victim;
     DESCRIPTOR_DATA *d;
-    char             arg [ MAX_INPUT_LENGTH ];
+    char             arg [ MAX_INPUT_LENGTH  ];
+    char             buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1326,6 +1375,8 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 
     victim->desc->snoop_by = ch->desc;
     send_to_char( "Ok.\n\r", ch );
+    sprintf( buf, "%s is snooping %s", ch->name, victim->name );
+    wiznet( ch, WIZ_SNOOPS, get_trust( ch ), buf );
     return;
 }
 
@@ -1335,7 +1386,8 @@ void do_switch( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
     CHAR_DATA *victim;
-    char       arg [ MAX_INPUT_LENGTH ];
+    char       arg [ MAX_INPUT_LENGTH  ];
+    char       buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1392,6 +1444,9 @@ void do_switch( CHAR_DATA *ch, char *argument )
     victim->desc          = ch->desc;
     ch->desc              = NULL;
     send_to_char( "Ok.\n\r", victim );
+    sprintf( buf, "%s switched into %s", ch->desc->original->name,
+	ch->desc->character->short_descr );
+    wiznet( ch, WIZ_SWITCHES, get_trust( ch->desc->original ), buf );
     return;
 }
 
@@ -1399,6 +1454,8 @@ void do_switch( CHAR_DATA *ch, char *argument )
 
 void do_return( CHAR_DATA *ch, char *argument )
 {
+    char buf [ MAX_STRING_LENGTH ];
+
     if ( !ch->desc )
 	return;
 
@@ -1419,6 +1476,9 @@ void do_return( CHAR_DATA *ch, char *argument )
     ch->desc->original                   = NULL;
     ch->desc->character->desc            = ch->desc; 
     ch->desc                             = NULL;
+
+    sprintf( buf, "%s returnes to his original body", ch->name );
+    wiznet( ch, WIZ_SWITCHES, get_trust( ch ), buf );
     return;
 }
 
@@ -1429,7 +1489,8 @@ void do_mload( CHAR_DATA *ch, char *argument )
     CHAR_DATA      *rch;
     CHAR_DATA      *victim;
     MOB_INDEX_DATA *pMobIndex;
-    char            arg [ MAX_INPUT_LENGTH ];
+    char            arg [ MAX_INPUT_LENGTH  ];
+    char            buf [ MAX_STRING_LENGTH ];
     
     rch = get_char( ch );
 
@@ -1456,6 +1517,9 @@ void do_mload( CHAR_DATA *ch, char *argument )
     char_to_room( victim, ch->in_room );
     send_to_char( "Ok.\n\r", ch );
     act( "$n has created $N!", ch, NULL, victim, TO_ROOM );
+    sprintf( buf, "%s has loaded %s at %s [%d]", ch->name, victim->short_descr,
+	ch->in_room->name, ch->in_room->vnum );
+    wiznet( ch, WIZ_LOAD, get_trust( ch ), buf );
     return;
 }
 
@@ -1466,8 +1530,9 @@ void do_oload( CHAR_DATA *ch, char *argument )
     OBJ_DATA       *obj;
     CHAR_DATA      *rch;
     OBJ_INDEX_DATA *pObjIndex;
-    char            arg1 [ MAX_INPUT_LENGTH ];
-    char            arg2 [ MAX_INPUT_LENGTH ];
+    char            arg1 [ MAX_INPUT_LENGTH  ];
+    char            arg2 [ MAX_INPUT_LENGTH  ];
+    char            buf  [ MAX_STRING_LENGTH ];
     int             level;
 
     rch = get_char( ch );
@@ -1523,6 +1588,9 @@ void do_oload( CHAR_DATA *ch, char *argument )
 	act( "$n has created $p!", ch, obj, NULL, TO_ROOM );
     }
     send_to_char( "Ok.\n\r", ch );
+    sprintf( buf, "%s has loaded %s at %s [%d]", ch->name, obj->short_descr,
+	ch->in_room->name, ch->in_room->vnum );
+    wiznet( ch, WIZ_LOAD, get_trust( ch ), buf );
     return;
 }
 
@@ -1596,6 +1664,7 @@ void do_advance( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     char       arg1 [ MAX_INPUT_LENGTH ];
     char       arg2 [ MAX_INPUT_LENGTH ];
+    char       buf  [ MAX_STRING_LENGTH ];
     int        level;
     int        iLevel;
 
@@ -1642,13 +1711,9 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    /*
-     * Little extra check by Canth (canth@xs4all.nl)
-     * This works seeing as I'm trusted 55 ;-)
-     */
-    if ( ( get_trust(ch) <= get_trust(victim) ) && (ch != victim) )
+    if ( ( get_trust(ch) < get_trust(victim) ) && (ch != victim) )
     {
-	send_to_char( "You cannot advance your peer nor your superior.\n\r", ch );
+	send_to_char( "You cannot advance your superior.\n\r", ch );
 	return;
     }
 
@@ -1658,8 +1723,6 @@ void do_advance( CHAR_DATA *ch, char *argument )
      *   Then raise again.
      *   Currently, an imp can lower another imp.
      *   -- Swiftest
-     *   Not anymore
-     *   -- Canth
      */
     if ( level <= victim->level )
     {
@@ -1678,12 +1741,19 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	victim->hit      = victim->max_hit;
 	victim->mana     = victim->max_mana;
 	victim->move     = victim->max_move;
+	victim->pcdata->learn = 0;
+	sprintf( buf, "%s has been demoted to level %d by %s", victim->name,
+	    level, ch->name );
+	wiznet( victim, WIZ_LEVELS, get_trust( ch ), buf );
 	advance_level( victim );
     }
     else
     {
 	send_to_char( "Raising a player's level!\n\r", ch );
 	send_to_char( "**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim );
+	sprintf( buf, "%s has been advanced to level %d by %s", victim->name,
+	    level, ch->name );
+	wiznet( victim, WIZ_LEVELS, get_trust( ch ), buf );
     }
 
     for ( iLevel = victim->level ; iLevel < level; iLevel++ )
@@ -1703,8 +1773,9 @@ void do_trust( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
     CHAR_DATA *victim;
-    char       arg1 [ MAX_INPUT_LENGTH ];
-    char       arg2 [ MAX_INPUT_LENGTH ];
+    char       arg1 [ MAX_INPUT_LENGTH  ];
+    char       arg2 [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
     int        level;
 
     rch = get_char( ch );
@@ -1744,15 +1815,15 @@ void do_trust( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    /*
-     * Little extra check by Canth (canth@xs4all.nl)
-     * This works seeing as I'm trusted 55 ;-)
-     */
-    if ( get_trust(ch) <= get_trust(victim) )
+    if ( get_trust(ch) < get_trust(victim) )
     {
-	send_to_char( "You cannot trust your peer nor your superior.\n\r", ch );
+	send_to_char( "You cannot trust your superior.\n\r", ch );
 	return;
     }
+
+    sprintf( buf, "%s has been trusted at level %d by %s", victim->name,
+	level, ch->name );
+    wiznet( ch, WIZ_LEVELS, get_trust( ch ), buf );
 
     victim->trust = level;
     return;
@@ -1765,6 +1836,7 @@ void do_restore( CHAR_DATA *ch, char *argument )
     CHAR_DATA *rch;
     CHAR_DATA *victim;
     char       arg [ MAX_INPUT_LENGTH ];
+    char       buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1791,7 +1863,9 @@ void do_restore( CHAR_DATA *ch, char *argument )
             update_pos( rch);
             act("$n has restored you.",ch,NULL, rch,TO_VICT);
         }
-	wiznet (ch, WIZ_RESTORE, ch->level + 1, ch->name );
+	sprintf( buf, "%s has restored room %d.\n\r",
+		ch->name, ch->in_room->vnum );
+	wiznet (ch, WIZ_RESTORE, get_trust( ch ), buf );
         send_to_char("Room restored.\n\r",ch);
         return;
 
@@ -1815,9 +1889,10 @@ void do_restore( CHAR_DATA *ch, char *argument )
             victim->mana = victim->max_mana;
             victim->move = victim->max_move;
             update_pos( victim );
-	    wiznet (ch, WIZ_RESTORE, ch->level + 1, ch->name );
             act( "$n has restored you.", ch, NULL, victim, TO_VICT );
         }
+	sprintf( buf, "%s has restored the whole mud.", ch->name );
+	wiznet (ch, WIZ_RESTORE, get_trust( ch ), buf );
         send_to_char( "Aww...how sweet :)...Done.\n\r", ch );
     }
     else
@@ -1839,7 +1914,8 @@ void do_restore( CHAR_DATA *ch, char *argument )
         victim->move = victim->max_move;
         update_pos( victim );
         act( "$n has restored you.", ch, NULL, victim, TO_VICT );
-	wiznet (ch, WIZ_RESTORE, ch->level + 1, ch->name );
+	sprintf( buf, "%s has restored %s.", ch->name, victim->name );
+	wiznet (ch, WIZ_RESTORE, get_trust( ch ), buf );
         send_to_char( "Ok.\n\r", ch );
     }
 
@@ -2187,8 +2263,10 @@ void do_ban( CHAR_DATA *ch, char *argument )
 {
     BAN_DATA  *pban;
     CHAR_DATA *rch;
-    char       buf [ MAX_STRING_LENGTH ];
-    char       arg [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
+    char       arg  [ MAX_INPUT_LENGTH  ];
+    char       arg2 [ MAX_STRING_LENGTH ];
+    int        level;
 
     if ( IS_NPC( ch ) )
 	return;
@@ -2198,17 +2276,17 @@ void do_ban( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "ban" ) )
         return;
 
-    one_argument( argument, arg );
+    argument = one_argument( argument, arg );
+    one_argument( argument, arg2 );
 
     if ( arg[0] == '\0' )
     {
 	strcpy( buf, "Banned sites:\n\r" );
 	for ( pban = ban_list; pban; pban = pban->next )
 	{
-	    strcat( buf, pban->name );
-	    strcat( buf, "\n\r" );
+	    sprintf( buf, "%50s      level: %d\n\r", pban->name, pban->level );
+	    send_to_char( buf, ch );
 	}
-	send_to_char( buf, ch );
 	return;
     }
 
@@ -2221,6 +2299,8 @@ void do_ban( CHAR_DATA *ch, char *argument )
 	}
     }
 
+    level = URANGE( 1, atoi( arg2 ), MAX_LEVEL );
+
     if ( !ban_free )
     {
 	pban		= alloc_perm( sizeof( *pban ) );
@@ -2232,6 +2312,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
     }
 
     pban->name	= str_dup( arg );
+    pban->level = level;
     pban->next	= ban_list;
     ban_list	= pban;
     send_to_char( "Ok.\n\r", ch );
@@ -2530,8 +2611,8 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
 	send_to_char( "  gold mhp mmana mmv practice learn align\n\r",	ch );
 	send_to_char( "  thirst drunk full hunt language whotext\n\r",	ch );
-	send_to_char( "  shares balance played chp cmana cmv exp\n\r",	ch );
-	send_to_char( "  qp qtime qnext securety\n\r",			ch );
+	send_to_char( "  shares balance age death chp cmana cmv\n\r", ch );
+	send_to_char( "  exp qp qtime qnext security\n\r",		ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "String being one of:\n\r",			ch );
 	send_to_char( "  name short long title spec game\n\r",		ch );
@@ -2814,7 +2895,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !str_prefix( arg2, "securety" ) )
+    if ( !str_prefix( arg2, "security" ) )
     {
 	if ( IS_NPC( victim ) )
 	{
@@ -2846,9 +2927,15 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !str_cmp( arg2, "played" ) )	/* Maniac */
+    if ( !str_cmp( arg2, "age" ) )		/* Canth */
     {
-	victim->played = value;
+	victim->current_age = value;
+	return;
+    }
+
+    if ( !str_cmp( arg2, "death" ) )		/* Canth */
+    {
+	victim->death_age = value;
 	return;
     }
 
@@ -3206,7 +3293,6 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	do_lset( ch, buf );
 	return;
     }
-
 
 
     /*

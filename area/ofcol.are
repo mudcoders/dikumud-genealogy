@@ -1,5 +1,5 @@
 #AREADATA
-Name        Ofcol~
+Name        {{ All } Alfa    Ofcol~
 Builders    None~
 VNUMs       5550 5577
 Security    1
@@ -193,18 +193,18 @@ S
 
 
 #RESETS
-M 0 303  5 5550  	; the citizen to Village street
-M 0 304  5 5552  	; the citizen to Village square
-E 0 3020  0 16    	;   A dagger wielded (1)
-M 0 304  5 5553  	; the citizen to The small alley
-M 0 306  1 5555  	; Luxan to Luxan's mixed shop
-G 0 304  0      	;   Wild flowers
-G 0 3030  0      	;   A torch
-M 0 303  5 5556  	; the citizen to The Local Inn
-M 0 308  1 5556  	; the Innkeeper to The Local Inn
-G 0 3000  0      	;   A barrel of beer
-G 0 3001  0      	;   A bottle of beer
-M 0 350  1 5577  	; the pet dragon to Ravan's hideout
+M 0 303 5 5550
+M 0 304 5 5552
+E 0 3020 0 16
+M 0 304 5 5553
+M 0 306 1 5555
+G 0 304 0
+G 0 3030 0
+M 0 303 5 5556
+M 0 308 1 5556
+G 0 3000 0
+G 0 3001 0
+M 0 350 1 5577
 S
 
 

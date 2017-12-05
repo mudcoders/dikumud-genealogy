@@ -1,5 +1,5 @@
 #AREADATA
-Name        Dwarven Catacombs~
+Name        {{10 20} Raff    Dwarven Catacombs~
 Builders    None~
 VNUMs       2001 2069
 Security    1
@@ -17,7 +17,7 @@ A bat flaps wildly at you!
 Your typical smelly, blind flying mammal.
 ~
 35 32 0 S
-2 18 0 5d5+50 2d3+3
+5 18 0 5d5+50 2d3+3
 0 0
 0 Bat~ 0
 #2002
@@ -28,7 +28,7 @@ A templar page in training is here looking mildly confused.
 He has lost his family and everything of his former life.
 ~
 129 0 200 S
-5 14 0 7d7+70 1d9+4
+7 14 0 7d7+70 1d9+4
 600 0
 0 Dwarf~ 1
 #2003
@@ -42,7 +42,7 @@ essential exploration gear; if there IS anything down here, he
 probably won't last long.
 ~
 133 32 100 S
-14 13 0 8d8+80 2d5+1
+8 13 0 8d8+80 2d5+1
 800 0
 0 Human~ 1
 #2004
@@ -65,7 +65,7 @@ Some mist swirls about you here ... it seems ALIVE!
 In fact it IS alive in a magical sort of sense.
 ~
 1 1081472 0 S
-7 10 0 10d10+100 2d6+4
+9 10 0 10d10+100 2d6+4
 200 0
 0 Mist~ 0
 #2006
@@ -74,7 +74,7 @@ It~
 ~
 ~
 33 0 0 S
-7 10 0 10d10+100 3d3+6
+11 10 0 10d10+100 3d3+6
 1000 0
 0 Animal~ 0
 #2007
@@ -86,7 +86,7 @@ Even though he has died in the physical sense of the word, the battle
 continues for him in his charmed state.
 ~
 37 0 -290 S
-7 10 0 11d11+110 2d8+1
+12 10 0 11d11+110 2d8+1
 1100 0
 0 Undead~ 1
 #2008
@@ -101,7 +101,7 @@ A templar tells you, "You are an evil force trying to spread your ways!".
 A templar tells you, "You must die for your sin!".
 ~
 37 0 600 S
-17 9 0 12d12+120 1d4+8
+13 9 0 12d12+120 1d4+8
 500 0
 0 Dwarf~ 1
 #2009
@@ -112,7 +112,7 @@ A mysterious ghostly wraith forms before your eyes.
 Hard to tell much about the mysterious form even upon further inspection.
 ~
 37 1048608 0 S
-17 9 0 12d12+120 2d7+1
+13 9 0 12d12+120 2d7+1
 600 0
 0 Undead~ 1
 #2010
@@ -123,7 +123,7 @@ A templar officer keeps an eye on things here.
 A templar officer tells you "Better move along evil one!"
 ~
 33 8 700 S
-10 8 0 13d13+130 1d6+8
+14 8 0 13d13+130 1d6+8
 600 0
 0 Dwarf~ 1
 #2011
@@ -145,7 +145,7 @@ Eerie shadows fill the room.
 Looks vaguely you-shaped.
 ~
 1 1081376 0 S
-19 6 0 14d14+140 2d9+1
+13 6 0 14d14+140 2d9+1
 800 0
 0 Vampire~ 0
 #2013
@@ -180,7 +180,7 @@ A slight, tolerant smile comes briefly across his face.  In the blink
 of an eye he seems stern again.
 ~
 3 168 1000 S
-18 5 0 16d16+160 1d8+12
+17 5 0 16d16+160 1d8+12
 1500 0
 0 Dwarf~ 1
 #2016
@@ -191,7 +191,7 @@ The light shines off a beautiful but dangerous dragon lurking here.
 The spray of colored light bouncing off his scales is almost blinding.
 ~
 35 40 -303 S
-26 0 0 20d20+200 6d3+14
+20 0 0 20d20+200 6d3+14
 30000 0
 0 Dragon~ 1
 #2017
@@ -202,7 +202,7 @@ You hear and smell the presence of the darkenbeast.
 You see nothing more than the sense of darkness and evil.
 ~
 35 0 -1000 S
-26 -2 0 24d24+240 3d7+7
+25 -2 0 24d24+240 3d7+7
 20000 0
 0 God~ 0
 #0
@@ -1610,13 +1610,13 @@ S
 
 
 #SPECIALS
-M 2007 spec_cast_undead 	; a skeleton
-M 2009 spec_cast_undead 	; a mysterious wraith
-M 2011 spec_cast_mage 	; zombie
-M 2013 spec_cast_undead 	; The vampire
-M 2014 spec_cast_undead 	; the evil necromancer
-M 2016 spec_breath_any 	; the prism dragon
-M 2017 spec_poison 	; The DarkenBeast
+M 2007 spec_cast_undead
+M 2009 spec_cast_undead
+M 2011 spec_cast_mage
+M 2013 spec_cast_undead
+M 2014 spec_cast_undead
+M 2016 spec_breath_any
+M 2017 spec_poison
 S
 
 
@@ -1627,123 +1627,123 @@ S
 
 
 #RESETS
-M 0 2003  2 2002  	; a spelunker to North/south tunnel
-M 0 2008 12 2003  	; a templar to Weapon training area
-E 0 2009  0 5     	;   A suit of chainmail on the body
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-M 0 2008 12 2004  	; a templar to Prayer training area
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-M 0 2008 12 2005  	; a templar to Junction of hallways
-M 0 2008 12 2006  	; a templar to Hallway
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2002  8 2008  	; a templar page to Pages' sleeping quarters
-M 0 2002  8 2008  	; a templar page to Pages' sleeping quarters
-M 0 2002  8 2008  	; a templar page to Pages' sleeping quarters
-M 0 2002  8 2008  	; a templar page to Pages' sleeping quarters
-M 0 2002  8 2008  	; a templar page to Pages' sleeping quarters
-M 0 2002  8 2009  	; a templar page to Templar Knights sleeping quarters
-M 0 2002  8 2009  	; a templar page to Templar Knights sleeping quarters
-M 0 2008 12 2009  	; a templar to Templar Knights sleeping quarters
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2008 12 2009  	; a templar to Templar Knights sleeping quarters
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-M 0 2008 12 2009  	; a templar to Templar Knights sleeping quarters
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2002  8 2010  	; a templar page to N/S hallway
-M 0 2010  6 2015  	; the templar officer to Mid-level leader's room
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2008 12 2016  	; a templar to Mess hall
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-M 0 2008 12 2016  	; a templar to Mess hall
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2008 12 2016  	; a templar to Mess hall
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2010  6 2016  	; the templar officer to Mess hall
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2010  6 2016  	; the templar officer to Mess hall
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2010  6 2016  	; the templar officer to Mess hall
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2010  6 2018  	; the templar officer to High officer's room
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2006  7 2019  	; It to Mossy intersection
-M 0 2008 12 2023  	; a templar to Mess hall
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-M 0 2008 12 2023  	; a templar to Mess hall
-M 0 2010  6 2023  	; the templar officer to Mess hall
-E 0 2009  0 5     	;   A suit of chainmail on the body
-E 0 2016  0 16    	;   A templar's sword wielded (1)
-M 0 2015  1 2025  	; the grand templar to Grand Templar's room
-E 0 2010  0 3     	;   A white cape around the neck (1)
-E 0 2001  0 0     	;   A glowing key as a light
-E 0 2008  0 17    	;   A flask of holy water held in the hands
-M 0 2012  2 2026  	; the shadow to Very dark passage
-E 0 2014  0 12    	;   A shadow cloak about the shoulders
-M 0 2006  7 2028  	; It to The holy grove
-M 0 2017  1 2030  	; The DarkenBeast to Deep within the catacombs
-E 0 2003  0 2     	;   An onyx ring on the right finger
-E 0 2002  0 5     	;   A suit of granite platemail on the body
-E 0 2006  0 17    	;   A kingly crown held in the hands
-O 0 2007  0 2032  	; Stone to The holy place
-P 0 2005  0 2007  	; The sword excalibur inside the sword Excalibur
-M 0 2006  7 2033  	; It to Misty passageway
-M 0 2005  9 2033  	; some mist to Misty passageway
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2007  4 2035  	; a skeleton to Entrance to the burial grounds
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2006  7 2036  	; It to The burial grounds
-M 0 2007  4 2036  	; a skeleton to The burial grounds
-M 0 2011  4 2036  	; zombie to The burial grounds
-M 0 2007  4 2037  	; a skeleton to The burial grounds
-E 0 2009  0 5     	;   A suit of chainmail on the body
-M 0 2011  4 2037  	; zombie to The burial grounds
-M 0 2007  4 2038  	; a skeleton to The burial grounds
-M 0 2006  7 2039  	; It to New graves
-M 0 2009  2 2039  	; a mysterious wraith to New graves
-M 0 2006  7 2040  	; It to Misty cavern
-M 0 2005  9 2040  	; some mist to Misty cavern
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2040  	; some mist to Misty cavern
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2041  	; some mist to Misty cavern
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2041  	; some mist to Misty cavern
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2042  	; some mist to Mist cavern
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2043  	; some mist to Waterfall of mist
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2043  	; some mist to Waterfall of mist
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2005  9 2043  	; some mist to Waterfall of mist
-E 0 2015  0 17    	;   A misty potion held in the hands
-M 0 2009  2 2047  	; a mysterious wraith to Fresh graves
-M 0 2011  4 2047  	; zombie to Fresh graves
-M 0 2006  7 2049  	; It to Striped tunnel
-M 0 2016  1 2050  	; the prism dragon to Prism cave
-E 0 2012  0 5     	;   A dragonscale shield on the body
-E 0 2013  0 17    	;   A prism wand held in the hands
-M 0 2001  6 2052  	; a bat to Basement
-M 0 2001  6 2052  	; a bat to Basement
-M 0 2001  6 2052  	; a bat to Basement
-M 0 2013  1 2052  	; The vampire to Basement
-E 0 2004  0 16    	;   The neutralizer wielded (1)
-M 0 2001  6 2052  	; a bat to Basement
-M 0 2001  6 2052  	; a bat to Basement
-M 0 2001  6 2052  	; a bat to Basement
-M 0 2004  4 2053  	; a graverobber to Fresh graves
-M 0 2004  4 2053  	; a graverobber to Fresh graves
-M 0 2011  4 2053  	; zombie to Fresh graves
-M 0 2004  4 2055  	; a graverobber to Scene of ghastly horror
-M 0 2004  4 2055  	; a graverobber to Scene of ghastly horror
-M 0 2014  1 2055  	; the evil necromancer to Scene of ghastly horror
-E 0 2011  0 11    	;   The shield of defense as a shield
-M 0 2003  2 2064  	; a spelunker to Tunnel
+M 0 2003 2 2002
+M 0 2008 12 2003
+E 0 2009 0 5
+E 0 2016 0 16
+M 0 2008 12 2004
+E 0 2016 0 16
+M 0 2008 12 2005
+M 0 2008 12 2006
+E 0 2009 0 5
+M 0 2002 8 2008
+M 0 2002 8 2008
+M 0 2002 8 2008
+M 0 2002 8 2008
+M 0 2002 8 2008
+M 0 2002 8 2009
+M 0 2002 8 2009
+M 0 2008 12 2009
+E 0 2009 0 5
+M 0 2008 12 2009
+E 0 2016 0 16
+M 0 2008 12 2009
+E 0 2009 0 5
+M 0 2002 8 2010
+M 0 2010 6 2015
+E 0 2016 0 16
+E 0 2009 0 5
+M 0 2008 12 2016
+E 0 2016 0 16
+M 0 2008 12 2016
+E 0 2009 0 5
+M 0 2008 12 2016
+E 0 2009 0 5
+M 0 2010 6 2016
+E 0 2016 0 16
+E 0 2009 0 5
+M 0 2010 6 2016
+E 0 2016 0 16
+E 0 2009 0 5
+M 0 2010 6 2016
+E 0 2016 0 16
+E 0 2009 0 5
+M 0 2010 6 2018
+E 0 2016 0 16
+E 0 2009 0 5
+M 0 2006 7 2019
+M 0 2008 12 2023
+E 0 2016 0 16
+M 0 2008 12 2023
+M 0 2010 6 2023
+E 0 2009 0 5
+E 0 2016 0 16
+M 0 2015 1 2025
+E 0 2010 0 3
+E 0 2001 0 0
+E 0 2008 0 17
+M 0 2012 2 2026
+E 0 2014 0 12
+M 0 2006 7 2028
+M 0 2017 1 2030
+E 0 2003 0 2
+E 0 2002 0 5
+E 0 2006 0 17
+O 0 2007 0 2032
+P 0 2005 0 2007
+M 0 2006 7 2033
+M 0 2005 9 2033
+E 0 2015 0 17
+M 0 2007 4 2035
+E 0 2009 0 5
+M 0 2006 7 2036
+M 0 2007 4 2036
+M 0 2011 4 2036
+M 0 2007 4 2037
+E 0 2009 0 5
+M 0 2011 4 2037
+M 0 2007 4 2038
+M 0 2006 7 2039
+M 0 2009 2 2039
+M 0 2006 7 2040
+M 0 2005 9 2040
+E 0 2015 0 17
+M 0 2005 9 2040
+E 0 2015 0 17
+M 0 2005 9 2041
+E 0 2015 0 17
+M 0 2005 9 2041
+E 0 2015 0 17
+M 0 2005 9 2042
+E 0 2015 0 17
+M 0 2005 9 2043
+E 0 2015 0 17
+M 0 2005 9 2043
+E 0 2015 0 17
+M 0 2005 9 2043
+E 0 2015 0 17
+M 0 2009 2 2047
+M 0 2011 4 2047
+M 0 2006 7 2049
+M 0 2016 1 2050
+E 0 2012 0 5
+E 0 2013 0 17
+M 0 2001 6 2052
+M 0 2001 6 2052
+M 0 2001 6 2052
+M 0 2013 1 2052
+E 0 2004 0 16
+M 0 2001 6 2052
+M 0 2001 6 2052
+M 0 2001 6 2052
+M 0 2004 4 2053
+M 0 2004 4 2053
+M 0 2011 4 2053
+M 0 2004 4 2055
+M 0 2004 4 2055
+M 0 2014 1 2055
+E 0 2011 0 11
+M 0 2003 2 2064
 S
 
 

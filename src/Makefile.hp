@@ -21,19 +21,20 @@ L_FLAGS = $(DEBUG) $(PROF)
 
 O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
           db.o fight.o handler.o interp.o magic.o save.o special.o update.o \
-          healer.o blade.o act_wiz2.o scan.o games.o drunk.o quest.o clan.o \
-          hunt.o brewscribe.o language.o social-edit.o objlist.o economy.o \
-          necromancer.o ssm.o
+          healer.o blade.o act_wiz2.o scan.o games.o hunt.o drunk.o quest.o \
+          brewscribe.o language.o social-edit.o economy.o clan.o \
+          mob_commands.o mob_prog.o wiznet.o ssm.o magic2.o \
+          necromancer.o bit.o mem.o olc.o olc_act.o olc_save.o string.o
 
 envy: $(O_FILES)
-	rm -f envy2
-	$(CC) $(L_FLAGS) -o envy2 $(O_FILES)
+	rm -f mythran.new
+	$(CC) $(L_FLAGS) -o mythran.new $(O_FILES)
 
 .c.o: merc.h
 	$(CC) -c $(C_FLAGS) $<
 
 clean:
-	rm  -f *.o *.core envy2
+	rm  -f *.o *.core mythran.new
 
 #didn't check this one yet...
 tar:

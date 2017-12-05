@@ -1,5 +1,5 @@
 #AREADATA
-Name        Mud School~
+Name        {{ 1  5} Hatchet Mud School~
 Builders    None~
 VNUMs       3700 3760
 Security    1
@@ -17,7 +17,7 @@ An acolyte of Overlord Frag is here, grinning at you.
 He is big and bad.  Don't mess with him.
 ~
 67 136 1000 S
-25 -10 0 1d1+29999 2d4+30
+28 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3701
@@ -30,7 +30,7 @@ Perhaps now would be a good time to flee from him!!!  If you don't flee, you
 would really suffer the consequences.
 ~
 67 8 0 S
-7 20 0 1d1+50 1d1+0
+5 20 0 1d1+50 1d1+0
 0 0
 0 Object~ 0
 #3702
@@ -42,7 +42,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 3 0 0 S
-1 20 0 1d1+10 1d3+0
+2 20 0 1d1+10 1d3+0
 100 0
 0 Animal~ 0
 #3703
@@ -54,7 +54,7 @@ He looks wimpy.  You feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 131 0 0 S
-3 20 0 1d1+10 1d3+0
+1 20 0 1d1+10 1d3+0
 100 0
 0 Animal~ 0
 #3704
@@ -66,7 +66,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 35 0 0 S
-11 20 0 1d1+10 1d3+0
+1 20 0 1d1+10 1d3+0
 100 0
 0 Bear~ 0
 #3705
@@ -78,7 +78,7 @@ He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
 163 0 0 S
-6 20 0 1d1+10 1d3+0
+1 20 0 1d1+10 1d3+0
 100 0
 0 Bear~ 0
 #3706
@@ -90,7 +90,7 @@ He looks mean, and you just might have a small problem killing him, but he
 looks like a great prize!!!
 ~
 3 512 0 S
-16 19 0 2d2+20 1d4+1
+1 19 0 2d2+20 1d4+1
 200 0
 0 Animal~ 0
 #3707
@@ -101,7 +101,7 @@ An adept of Overlord Kahn is here, contemplating your progress.
 He is big and bad.  Don't mess with him.
 ~
 67 136 1000 S
-27 -10 0 1d1+29999 2d4+30
+31 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3709
@@ -112,7 +112,7 @@ A rabbit is bouncing around here.
 The rabbit smiles at you, completely harmless!
 ~
 193 0 100 S
-2 20 0 1d1+10 1d3+0
+1 20 0 1d1+10 1d3+0
 10 0
 0 Animal~ 0
 #3710
@@ -123,7 +123,7 @@ A lizard slithers up to you.
 It smiles at you, and tries to eat your leg.
 ~
 65 0 -100 S
-5 19 0 2d2+20 1d4+1
+3 19 0 2d2+20 1d4+1
 10 0
 0 Snake~ 0
 #3711
@@ -145,7 +145,7 @@ A fox is here staring at you.
 His fur might be worth money.
 ~
 193 0 100 S
-4 20 0 1d1+10 1d3+0
+3 20 0 1d1+10 1d3+0
 10 0
 0 Animal~ 0
 #3713
@@ -156,7 +156,7 @@ A snail is trying to get out of your way.
 You don't see much but slime about it.
 ~
 65 0 0 S
-2 21 0 1d1+0 1d1+0
+1 21 0 1d1+0 1d1+0
 2 0
 0 Worm~ 0
 #3714
@@ -167,7 +167,7 @@ A beast tries to feed off of you.
 It looks mean.  You'd better run.
 ~
 97 0 0 S
-2 16 0 5d5+55 1d6+3
+5 16 0 5d5+55 1d6+3
 50 0
 0 Bear~ 0
 #3715
@@ -178,7 +178,7 @@ A bear is here growling at you.
 The bear must be bigger than you!  It wants to rip your head off.
 ~
 65 0 0 S
-2 17 0 4d4+44 1d6+2
+4 17 0 4d4+44 1d6+2
 40 0
 0 Bear~ 0
 #3716
@@ -200,7 +200,7 @@ An adept of Frag is here, grinning and selling you things.
 He is big and bad.  Don't mess with him.
 ~
 67 136 1000 S
-26 -10 0 1d1+29999 2d4+30
+28 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3718
@@ -211,7 +211,7 @@ An adept of Furey is here, training young students.
 He is big and bad.  Don't mess with him.
 ~
 579 136 1000 S
-29 -10 0 1d1+29999 2d4+30
+30 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3719
@@ -222,7 +222,7 @@ The priest of Hatchet is ready to help you practice.
 He is big and bad.  Don't mess with him.
 ~
 1091 136 1000 S
-29 -10 0 1d1+29999 2d4+30
+30 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3720
@@ -234,7 +234,7 @@ This horrible creature is your final test for mud school.  Kill him, and the
 diploma is yours.
 ~
 3 512 0 S
-3 18 0 2d4+30 1d6+1
+1 18 0 2d4+30 1d6+1
 300 0
 0 Bear~ 0
 #0
@@ -251,9 +251,9 @@ You see a sub issue mace here.~
 0~ 2~ 3~ 7~
 5 0 0
 A
-19 1
-A
 18 1
+A
+19 1
 E
 sub mace~
 You see a mace of great but cheap craftsmanship.  Imprinted on the side is:
@@ -268,9 +268,9 @@ You see a sub issue dagger here.~
 0~ 2~ 3~ 11~
 5 0 0
 A
-19 1
-A
 18 1
+A
+19 1
 E
 sub dagger~
 You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:
@@ -285,9 +285,9 @@ You see a sub issue sword here.~
 0~ 2~ 3~ 3~
 5 0 0
 A
-19 1
-A
 18 1
+A
+19 1
 E
 sub sword~
 You see a sword of great but cheap craftsmanship.  Imprinted on the side is:
@@ -453,9 +453,9 @@ You see a mud school diploma here.~
 0~ 0~ 0~ 0~
 1 0 0
 A
-4 1
-A
 5 1
+A
+4 1
 E
 diploma~
 This document shows that you have graduated from Mud School.
@@ -473,9 +473,9 @@ A war banner is on the floor here.~
 0~ 0~ -1~ 0~
 1 0 0
 A
-17 -1
-A
 24 -1
+A
+17 -1
 E
 banner~
 This is the official Merc war banner to see you through the darkest realm!
@@ -517,6 +517,11 @@ wall.
 ~
 0 12 0
 E
+plaque~
+This zone (Mud School) is created by Hatchet for any Merc Mud.
+Copyright 1992, 1993.
+~
+E
 sign~
 Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right
 now, you have just a vest, a shield, and a weapon.  As you go through Mud
@@ -531,11 +536,6 @@ To stop using a piece of equipment, type 'REMOVE item'.
 Finally, to see the items in your inventory, type 'INVENTORY'.
 
 When you are ready to continue, go west.
-~
-E
-plaque~
-This zone (Mud School) is created by Hatchet for any Merc Mud.
-Copyright 1992, 1993.
 ~
 D2
 You see a path into another room.
@@ -1967,8 +1967,8 @@ S
 
 
 #SPECIALS
-M 3707 spec_cast_adept 	; the adept of Kahn
-M 3714 spec_fido 	; the beast
+M 3707 spec_cast_adept
+M 3714 spec_fido
 S
 
 
@@ -1979,41 +1979,41 @@ S
 
 
 #RESETS
-M 0 3700  1 3701  	; the acolyte of Frag to A Room in Mud School
-M 0 3701  1 3710  	; the blob to The Blob Cage
-M 0 3707  1 3712  	; the adept of Kahn to The Cage Room
-M 0 3704  1 3713  	; the aggressive monster to A Cage
-E 0 3707  0 7     	;   A pair of sub issue leggings on the legs
-E 0 3712  0 13    	;   A sub issue belt around the waist
-M 0 3705  1 3714  	; the wimpy aggressive monster to A Cage
-E 0 3708  0 8     	;   A pair of sub issue boots on the feet
-E 0 3713  0 14    	;   A sub issue bracer on the left wrist
-M 0 3703  1 3715  	; the wimpy monster to A Cage
-E 0 3706  0 6     	;   A sub issue helmet over the head
-E 0 3711  0 12    	;   A sub issue cape about the shoulders
-M 0 3702  1 3716  	; the monster to A Cage
-E 0 3705  0 3     	;   A sub issue cloak around the neck (1)
-E 0 3705  0 4     	;   A sub issue cloak around the neck (2)
-M 0 3717  1 3718  	; the adept of Frag to The Store in Mud School
-G 0 3138  0      	;   A buffalo water skin
-G 0 3031  0      	;   A hooded brass lantern
-M 0 3706  1 3720  	; the big creature to The Darkened Room
-E 0 3709  0 9     	;   A pair of sub issue gloves on the hands
-E 0 3710  0 10    	;   A pair of sub issue sleeves on the arms
-E 0 3714  0 17    	;   A key held in the hands
-E 0 3713  0 14    	;   A sub issue bracer on the left wrist
-M 0 3720  1 3721  	; the diploma beast to The End of Mud School!
-E 0 3715  0 17    	;   A mud school diploma held in the hands
-M 0 3713  5 3724  	; the snail to South West Corner of Arena
-M 0 3712  3 3726  	; the fox to South East Corner of Arena
-M 0 3709  4 3734  	; the rabbit to Center of Arena
-M 0 3710  3 3742  	; the lizard to North West Corner of Arena
-M 0 3711  3 3746  	; the boar to North East Corner of Arena
-M 0 3714  1 3749  	; the beast to The North West Corner of the Dungeon
-M 0 3715  2 3751  	; the bear to The North East Corner of the Dungeon
-M 0 3716  2 3754  	; the wolf to The South West Corner of the Dungeon
-M 0 3718  1 3758  	; the adept of Furey to Furey's Training Room
-M 0 3719  1 3759  	; the priest of Hatchet to Hatchet's Guild Room
+M 0 3700 1 3701
+M 0 3701 1 3710
+M 0 3707 1 3712
+M 0 3704 1 3713
+E 0 3707 0 7
+E 0 3712 0 13
+M 0 3705 1 3714
+E 0 3708 0 8
+E 0 3713 0 14
+M 0 3703 1 3715
+E 0 3706 0 6
+E 0 3711 0 12
+M 0 3702 1 3716
+E 0 3705 0 3
+E 0 3705 0 4
+M 0 3717 1 3718
+G 0 3138 0
+G 0 3031 0
+M 0 3706 1 3720
+E 0 3709 0 9
+E 0 3710 0 10
+E 0 3714 0 17
+E 0 3713 0 14
+M 0 3720 1 3721
+E 0 3715 0 17
+M 0 3713 5 3724
+M 0 3712 3 3726
+M 0 3709 4 3734
+M 0 3710 3 3742
+M 0 3711 3 3746
+M 0 3714 1 3749
+M 0 3715 2 3751
+M 0 3716 2 3754
+M 0 3718 1 3758
+M 0 3719 1 3759
 S
 
 
@@ -2024,7 +2024,7 @@ S
 
 
 #SHOPS
-3717  1 15 17 19  0 100 100  0 23 	; the adept of Frag
+3717 1 15 17 19 0 100 100 0 23
 0
 
 

@@ -1,8 +1,8 @@
 #AREADATA
-Name        Midgaard~
+Name        {{ All } Diku    Midgaard~
 Builders    None~
 VNUMs       3000 3380
-Security    9
+Security    1
 Recall      3001
 End
 
@@ -42,7 +42,7 @@ A grocer stands at the counter, with a slightly impatient look on his face.
 A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.
 ~
 3 0 900 S
-57 2 0 1d1+30000 1d8+20
+52 2 0 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
 #3003
@@ -53,7 +53,7 @@ A weaponsmith.
 A young weaponsmith, who still has lots to learn.
 ~
 3 0 900 S
-56 2 0 1d1+30000 1d8+32
+52 2 0 1d1+30000 1d8+32
 100000 0
 0 Human~ 1
 #3004
@@ -65,7 +65,7 @@ An old but very strong armourer, he has made more armours in his
 lifetime than you have ever seen.
 ~
 3 0 900 S
-57 2 0 1d1+30000 1d8+32
+49 2 0 1d1+30000 1d8+32
 150000 0
 0 Human~ 1
 #3005
@@ -76,7 +76,7 @@ A thief, all dressed in black.
 Well COUNT your money!
 ~
 133 98304 100 S
-1 13 0 8d8+80 1d5+5
+7 13 0 8d8+80 1d5+5
 100 0
 0 Human~ 1
 #3006
@@ -87,7 +87,7 @@ A retired captain stands here, selling boats.
 This captain has killed more sharks than you have eaten peas.
 ~
 3 0 900 S
-55 2 0 1d1+30000 1d8+32
+49 2 0 1d1+30000 1d8+32
 12000 0
 0 Human~ 1
 #3007
@@ -98,7 +98,7 @@ A sailor stands here, waiting to train you.
 He looks like a strong, fit sailor.
 ~
 515 0 900 S
-51 -2 0 23d23+230 1d4+23
+49 -2 0 23d23+230 1d4+23
 2000 0
 0 Human~ 1
 #3008
@@ -109,7 +109,7 @@ A pet shop boy is here, humming gently.
 He is young and close-cropped and looks quite happy.
 ~
 3 0 900 S
-44 2 0 1d1+30000 1d8+20
+47 2 0 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
 #3009
@@ -120,7 +120,7 @@ The jeweller is standing behind the desk.
 He is fat and has a content although watchful look on his face.
 ~
 3 0 900 S
-53 2 0 1d1+30000 1d8+22
+50 2 0 1d1+30000 1d8+22
 300000 0
 0 Human~ 1
 #3010
@@ -132,7 +132,7 @@ He looks as an honest, hard-working artisan who only just earns enough to
 keep himself going.
 ~
 3 0 900 S
-55 2 0 1d1+30000 1d8+20
+51 2 0 1d1+30000 1d8+20
 100000 0
 0 Human~ 1
 #3011
@@ -144,7 +144,7 @@ A masked man with muscles bulging all over his body.  You can tell by
 the look in his eyes that he enjoys seeing you cower in his presence.
 ~
 67 136 1000 S
-55 -10 0 1d1+1499 1d4+30
+52 -10 0 1d1+1499 1d4+30
 5000 0
 0 Human~ 1
 #3012
@@ -155,7 +155,7 @@ A healer is here.
 Although retired from adventuring, the healer still lends a hand.
 ~
 8267 136 1000 S
-37 -10 0 1d1+29999 2d4+30
+40 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3013
@@ -166,7 +166,7 @@ A banker is here.
 The banker is taking good care of your money.
 ~
 4163 136 1000 S
-40 -10 0 1d1+29999 2d4+30
+42 -10 0 1d1+29999 2d4+30
 0 0
 0 Human~ 1
 #3020
@@ -179,7 +179,7 @@ vast amount of knowledge she possesses. She is wearing fine magic clothing,
 and you notice that she is surrounded by a blue shimmering aura.
 ~
 1027 0 1000 S
-18 0 0 6d10+440 3d8+24
+25 0 0 6d10+440 3d8+24
 8794 0
 0 Human~ 2
 #3021
@@ -191,7 +191,7 @@ You are in no doubt that this guildmaster is truly close to your god; he has
 a peaceful, loving look. You notice that he is surrounded by a white aura.
 ~
 1027 128 1000 S
-26 0 0 6d10+440 3d8+24
+23 0 0 6d10+440 3d8+24
 8794 0
 0 Human~ 1
 #3022
@@ -204,7 +204,7 @@ the way of the true thief.  She is dressed in poor clothing, having
 the appearance of a beggar.
 ~
 1027 0 1000 S
-25 0 0 6d10+440 3d8+24
+23 0 0 6d10+440 3d8+24
 8794 0
 0 Human~ 2
 #3023
@@ -230,7 +230,7 @@ He is here to guard the Mage's Guild and his superior knowledge of offensive
 as well as defensive spells make him a deadly opponent.
 ~
 3 2 800 S
-26 2 0 6d10+3900 1d8+22
+22 2 0 6d10+3900 1d8+22
 2000 0
 0 Human~ 1
 #3025
@@ -244,7 +244,7 @@ his religious devotion combined with his superior skill makes him a deadly
 opponent.
 ~
 3 0 800 S
-17 2 0 6d10+3900 1d8+22
+23 2 0 6d10+3900 1d8+22
 2000 0
 0 Human~ 1
 #3026
@@ -257,7 +257,7 @@ using all sorts of weapons.  His superior knowledge of how and where to use
 them combined with his extraordinary stealth makes him a deadly opponent.
 ~
 3 65536 800 S
-27 4 0 6d10+3900 1d8+22
+22 4 0 6d10+3900 1d8+22
 2000 0
 0 Human~ 1
 #3027
@@ -271,7 +271,7 @@ extreme skill combined with his experience in warfare makes him a deadly
 opponent.
 ~
 3 0 800 S
-24 0 0 6d10+5900 1d8+32
+22 0 0 6d10+5900 1d8+32
 2000 0
 0 Human~ 1
 #3040
@@ -282,7 +282,7 @@ A bartender watches you calmly, while he skillfully mixes a drink.
 A tired looking Bartender who hates trouble in his bar.
 ~
 3 0 900 S
-45 2 0 1d1+30000 1d8+18
+49 2 0 1d1+30000 1d8+18
 2000 0
 0 Human~ 1
 #3041
@@ -293,7 +293,7 @@ A waiter is going around from one place to another.
 A tired looking waiter.
 ~
 3 0 900 S
-43 2 0 6d10+390 1d8+18
+52 2 0 6d10+390 1d8+18
 2000 0
 0 Human~ 1
 #3042
@@ -304,7 +304,7 @@ peaceful life as a waiter.
 ~
 ~
 3 0 600 S
-56 1 0 6d10+390 1d8+18
+52 1 0 6d10+390 1d8+18
 2000 0
 0 Human~ 1
 #3043
@@ -314,7 +314,7 @@ A waiter who seems to have reached contact with God.
 ~
 ~
 3 0 600 S
-59 1 0 6d10+390 1d8+18
+49 1 0 6d10+390 1d8+18
 2000 0
 0 Human~ 1
 #3044
@@ -324,7 +324,7 @@ A waiter who knows where all his customers keep their money.
 ~
 ~
 3 0 600 S
-51 1 0 6d10+390 1d8+18
+48 1 0 6d10+390 1d8+18
 2000 0
 0 Human~ 1
 #3045
@@ -334,7 +334,7 @@ A waiter who easily could kill you, and still carry quite a few firebreathers.
 ~
 ~
 3 0 600 S
-46 1 0 6d10+390 1d8+18
+52 1 0 6d10+390 1d8+18
 2000 0
 0 Human~ 1
 #3046
@@ -346,7 +346,7 @@ Filthy looks real, ehm, dirty. He likes to keep his costumers happy,
 but do not mess with him or else he'll get upset.
 ~
 3 0 600 S
-54 1 0 1d1+30000 1d8+18
+51 1 0 1d1+30000 1d8+18
 2000 0
 0 Human~ 1
 #3050
@@ -360,7 +360,7 @@ He's here to sell you trash.  Or is it?
 
 Because he is a Sensitive Ponytail Man, ~
 69 552 0 S
-59 15 0 1d1+999 2d10+20
+51 15 0 1d1+999 2d10+20
 500 0
 0 Human~ 1
 #3060
@@ -371,7 +371,7 @@ A cityguard stands here.
 A big, strong, helpful, trustworthy guard.
 ~
 69 0 1000 S
-19 15 0 15d15+150 1d4+10
+15 15 0 15d15+150 1d4+10
 500 0
 0 Dwarf~ 1
 #3061
@@ -393,7 +393,7 @@ Fido is a small dog that has a foul smell and pieces of rotted meat hanging
 around his teeth.
 ~
 161 0 -200 S
-1 20 0 1d6+4 1d4+0
+2 20 0 1d6+4 1d4+0
 10 0
 0 Animal~ 1
 #3063
@@ -404,7 +404,7 @@ A vagabond is here, looking for victims.
 He looks pretty mean.
 ~
 5 0 -200 S
-15 16 0 2d6+60 1d8+0
+5 16 0 2d6+60 1d8+0
 47 0
 0 Human~ 1
 #3064
@@ -415,7 +415,7 @@ A singing, happy drunk.
 A drunk who seems to be too happy, and to carry too much money.
 ~
 1 0 400 S
-6 19 0 2d6+22 1d6+0
+3 19 0 2d6+22 1d6+0
 85 0
 0 Human~ 1
 #3065
@@ -426,7 +426,7 @@ A beggar is here, asking for a few coins.
 The beggar looks like she is fed up with life.
 ~
 3 0 400 S
-6 20 0 2d6+10 1d5+0
+2 20 0 2d6+10 1d5+0
 0 0
 0 Human~ 2
 #3066
@@ -448,7 +448,7 @@ A cityguard is here, guarding the gate.
 A big, strong, helpful, trustworthy guard.
 ~
 67 0 1000 S
-11 5 0 15d15+150 1d4+10
+13 5 0 15d15+150 1d4+10
 500 0
 0 Human~ 1
 #3068
@@ -459,7 +459,7 @@ A cityguard is here, guarding the gate.
 A big, strong, helpful, trustworthy guard.
 ~
 67 0 1000 S
-16 5 0 15d15+150 1d4+10
+15 5 0 15d15+150 1d4+10
 500 0
 0 Dwarf~ 1
 #3069
@@ -470,7 +470,7 @@ A cityguard is here, guarding the mayor.
 A big, strong, helpful, trustworthy guard.
 ~
 67 65538 1000 S
-25 0 0 20d20+200 1d4+15
+19 0 0 20d20+200 1d4+15
 500 0
 0 Human~ 1
 #3090
@@ -481,7 +481,7 @@ A small loyal kitten is here.
 The kitten looks like a cute, little, fierce fighter.
 ~
 7 0 400 S
-4 20 0 1d6+11 1d4+0
+2 20 0 1d6+11 1d4+0
 0 0
 0 Animal~ 0
 #3091
@@ -492,7 +492,7 @@ A small loyal puppy is here.
 The puppy looks like a cute, little, fierce fighter.
 ~
 7 0 400 S
-14 20 0 1d6+11 1d4+0
+2 20 0 1d6+11 1d4+0
 0 0
 0 Animal~ 0
 #3092
@@ -514,7 +514,7 @@ A large, loyal rottweiler is here.
 The rottweiler looks like a strong, fierce fighter.
 ~
 7 0 400 S
-9 18 0 1d12+35 1d7+0
+8 18 0 1d12+35 1d7+0
 0 0
 0 Animal~ 0
 #3094
@@ -525,7 +525,7 @@ A large, trained wolf is here.
 The wolf looks like a strong, fearless fighter.
 ~
 7 0 0 S
-4 17 0 1d12+47 1d8+0
+10 17 0 1d12+47 1d8+0
 0 0
 0 Animal~ 0
 #3100
@@ -537,7 +537,7 @@ She is very beautiful with golden hair, and deep blue eyes. A good reason
 for coming here more often.
 ~
 3 0 1000 S
-48 2 0 6d10+390 1d8+12
+50 2 0 6d10+390 1d8+12
 2000 0
 0 Human~ 2
 #3120
@@ -548,7 +548,7 @@ A sexton is sitting here, drinking hot tea.
 The sexton looks like he is relaxing after another grave-digging job.
 ~
 3 0 800 S
-1 18 0 2d6+35 1d7+0
+3 18 0 2d6+35 1d7+0
 13 0
 0 Human~ 1
 #3121
@@ -559,7 +559,7 @@ A swan is swimming around in the pond.
 The white swan is very elegant.
 ~
 3 0 1000 S
-1 20 0 2d6+10 1d5+0
+2 20 0 2d6+10 1d5+0
 0 0
 0 Animal~ 0
 #3122
@@ -570,7 +570,7 @@ A duckling is swimming around in the pond.
 The duckling is adorable, it looks most of all like a tiny furball.
 ~
 3 0 1000 S
-3 20 0 1d1+0 1d1+0
+1 20 0 1d1+0 1d1+0
 0 0
 0 Animal~ 0
 #3123
@@ -581,7 +581,7 @@ A sparrow is flapping around on the ground.
 The sparrow looks like it is enjoying life.
 ~
 193 0 1000 S
-2 20 0 2d6+0 1d3+0
+1 20 0 2d6+0 1d3+0
 0 0
 0 Animal~ 0
 #3124
@@ -614,7 +614,7 @@ A cityguard stands here, looking very upset.
 A big, strong, angry guard.
 ~
 39 0 1000 S
-10 5 0 15d15+150 1d4+10
+13 5 0 15d15+150 1d4+10
 0 0
 0 Human~ 1
 #3142
@@ -627,7 +627,7 @@ The Secretary says 'Sorry, but the Mayor is extremely busy today'.
 The Secretary says 'Please sit down and have a seat in the meantime'.
 ~
 3 0 900 S
-8 9 0 1d12+148 2d7+1
+12 9 0 1d12+148 2d7+1
 100 0
 0 Human~ 2
 #3143
@@ -649,7 +649,7 @@ The town crier is here, weeping quietly.
 He is very good at his job - completely dissolved in tears.
 ~
 129 0 900 S
-13 20 0 2d6+10 1d5+0
+1 20 0 2d6+10 1d5+0
 34 0
 0 Human~ 1
 #3150
@@ -663,7 +663,7 @@ enter, but you can tell that you take up only a small portion of her
 attention.
 ~
 1027 0 1000 S
-23 0 0 6d10+440 3d8+24
+26 0 0 6d10+440 3d8+24
 1333 0
 0 Human~ 2
 #3151
@@ -676,7 +676,7 @@ is acting as the guard to the Psionicist's Guild.  She may be small,
 but so was Yoda.  I wouldn't cross her.
 ~
 3 2 500 S
-20 2 0 6d10+3900 1d8+22
+21 2 0 6d10+3900 1d8+22
 1333 0
 0 Human~ 2
 #3152
@@ -688,7 +688,7 @@ A man who once bent spoons with the best of them, he is now content to
 mix drinks and make conversation.
 ~
 3 0 600 S
-51 1 0 6d10+390 1d8+18
+49 1 0 6d10+390 1d8+18
 1333 0
 0 Human~ 1
 #3153
@@ -700,7 +700,7 @@ A rather old man, wearing spectacles from his years spent staring at pieces
 of parchment under poor lighting.
 ~
 3 0 900 S
-43 2 0 1d1+30000 1d8+20
+50 2 0 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
 #3160
@@ -712,8 +712,8 @@ He's a seedy-looking character, who doesn't look like he's happy to be
 playing by the rules.
 ~
 2115 0 0 S
-58 1 0 6d8+200 1d6+12
-5000 0
+51 1 0 6d8+200 1d6+12
+1000 0
 0 Human~ 1
 #3161
 croupier~
@@ -724,8 +724,8 @@ He's a seedy-looking character, who doesn't look like he's happy to be
 playing by the rules.
 ~
 2115 0 0 S
-47 1 0 6d8+200 1d6+12
-5000 0
+50 1 0 6d8+200 1d6+12
+1000 0
 0 Human~ 1
 #3162
 croupier~
@@ -737,7 +737,7 @@ playing by the rules.
 ~
 2115 0 0 S
 52 1 0 6d8+200 1d6+12
-5000 0
+1000 0
 0 Human~ 1
 #0
 
@@ -2026,6 +2026,10 @@ This entire world has been integrated, modified, debugged, and enhanced by
 Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.
 1992 December 17
 ~
+M 4 40
+M 3 30
+M 2 20
+M 1 10
 D0
 At the northern end of the temple hall is a statue and a huge altar.
 ~
@@ -3303,10 +3307,6 @@ long, grey hair and beard and a strict look on his face.  On top of the
 throne, just above his shoulders, his two ravens Hugin and Munin are sitting
 and at his feet are his wolves Gere and Freke.
 ~
-D0
-~
-~
-0 0 507
 D2
 You see the southern end of the temple.
 ~
@@ -4533,336 +4533,339 @@ S
 
 
 #SPECIALS
-M 3000 spec_cast_mage 	; the wizard
-M 3005 spec_thief 	; the thief
-M 3011 spec_executioner 	; the executioner
-M 3012 spec_cast_adept 	; the healer
-M 3020 spec_cast_mage 	; the guildmaster
-M 3021 spec_cast_cleric 	; the guildmaster
-M 3022 spec_thief 	; the guildmaster
-M 3024 spec_cast_mage 	; the sorcerer
-M 3042 spec_cast_mage 	; the waiter
-M 3043 spec_cast_cleric 	; the waiter
-M 3044 spec_thief 	; the waiter
-M 3050 spec_cast_psionicist 	; Dave the Dealer
-M 3060 spec_guard 	; the cityguard
-M 3061 spec_janitor 	; the janitor
-M 3062 spec_fido 	; the beastly fido
-M 3066 spec_fido 	; an alley cat
-M 3067 spec_guard 	; the cityguard
-M 3068 spec_guard 	; the cityguard
-M 3069 spec_guard 	; the cityguard
-M 3100 spec_cast_cleric 	; the maid
-M 3120 spec_cast_cleric 	; the sexton
-M 3143 spec_mayor 	; the mayor
-M 3150 spec_cast_psionicist 	; the guildmaster
-M 3151 spec_cast_psionicist 	; the gypsy
-M 3152 spec_cast_psionicist 	; the waiter
+M 3000 spec_cast_mage
+M 3005 spec_thief
+M 3011 spec_executioner
+M 3012 spec_cast_adept
+M 3020 spec_cast_mage
+M 3021 spec_cast_cleric
+M 3022 spec_thief
+M 3024 spec_cast_mage
+M 3042 spec_cast_mage
+M 3043 spec_cast_cleric
+M 3044 spec_thief
+M 3050 spec_cast_psionicist
+M 3060 spec_guard
+M 3061 spec_janitor
+M 3062 spec_fido
+M 3066 spec_fido
+M 3067 spec_guard
+M 3068 spec_guard
+M 3069 spec_guard
+M 3100 spec_cast_cleric
+M 3120 spec_cast_cleric
+M 3143 spec_mayor
+M 3150 spec_cast_psionicist
+M 3151 spec_cast_psionicist
+M 3152 spec_cast_psionicist
 S
 
 
 
 #GAMES
-M 3160 game_u_l_t~ 5000 100 0	; the slick croupier
-M 3161 game_high_dice~ 5000 100 0	; the slick croupier
-M 3162 game_seven~ 5000 100 0	; the slick croupier
 S
 
 
 
 #RESETS
-M 0 3011  1 3001  	; the executioner to The Temple Of Midgaard
-E 0 3005  0 16    	;   An executioner's axe wielded (1)
-E 0 3005  0 18    	;   An executioner's axe wielded (2)
-M 0 3021  1 3002  	; the guildmaster to Cleric's Inner Sanctum
-M 0 3043  1 3003  	; the waiter to Cleric's Bar
-G 0 3002  0      	;   A bottle of ale
-G 0 3004  0      	;   A bottle of local specialty
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3025  1 3004  	; the knight templar to Entrance to Cleric's Guild
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3060 12 3004  	; the cityguard to Entrance to Cleric's Guild
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3355  0 4     	;   A standard issue cloak around the neck (2)
-O 0 3135  0 3005  	; A fountain to The Temple Square
-M 0 3061  5 3006  	; the janitor to Entrance to the Grunting Boar Inn
-M 0 3040  1 3007  	; the bartender to The Grunting Boar
-G 0 3000  0      	;   A barrel of beer
-G 0 3001  0      	;   A bottle of beer
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3064  3 3007  	; the drunk to The Grunting Boar
-M 0 3013  1 3008  	; the banker to The Bank Reception
-M 0 3001  1 3009  	; the baker to The Bakery
-G 0 3009  0      	;   A big pot pie
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3002  1 3010  	; the grocer to The General Store
-G 0 3030  0      	;   A torch
-G 0 3031  0      	;   A hooded brass lantern
-G 0 3138  0      	;   A buffalo water skin
-G 0 3043  0      	;   A clean parchment
-G 0 3044  0      	;   An empty vial
-G 0 3011  0      	;   A license to kill
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3003  1 3011  	; the weaponsmith to The Weapon Shop
-G 0 3020  0      	;   A dagger
-G 0 3021  0      	;   A small sword
-G 0 3022  0      	;   A long sword
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3062 15 3012  	; the beastly fido to Main Street
-M 0 3060 12 3014  	; the cityguard to Market Square
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3356  0 6     	;   A standard issue helmet over the head
-M 0 3062 15 3016  	; the beastly fido to The Main Street
-M 0 3024  1 3017  	; the sorcerer to Entrance to Mage's Guild
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3060 12 3017  	; the cityguard to Entrance to Mage's Guild
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3357  0 7     	;   A pair of standard issue leggings on the legs
-M 0 3042  1 3018  	; the waiter to Mage's Bar
-G 0 3002  0      	;   A bottle of ale
-G 0 3003  0      	;   A bottle of firebreather
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3020  1 3019  	; the guildmaster to Mage's Laboratory
-M 0 3004  1 3020  	; the armourer to The Armoury
-G 0 3072  0      	;   A scale mail jerkin
-G 0 3073  0      	;   A scale mail coif
-G 0 3074  0      	;   A long scale mail skirt
-G 0 3075  0      	;   A pair of reinforced boots
-G 0 3076  0      	;   A pair of reinforced gloves
-G 0 3077  0      	;   A pair of scale mail sleeves
-G 0 3097  0      	;   A small metal shield
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3027  1 3021  	; the knight to Entrance Hall to the Guild of Swordsmen
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3060 12 3021  	; the cityguard to Entrance Hall to the Guild of Swordsmen
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3358  0 8     	;   A pair of standard issue boots on the feet
-M 0 3045  1 3022  	; the waiter to The Bar of Swordsmen
-G 0 3002  0      	;   A bottle of ale
-G 0 3003  0      	;   A bottle of firebreather
-G 0 3004  0      	;   A bottle of local specialty
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3023  1 3023  	; the guildmaster to The Tournament and Practice Yard
-M 0 3062 15 3024  	; the beastly fido to Eastern End of Poor Alley
-M 0 3050  1 3025  	; Dave the Dealer to The Common Square
-G 0 3352  0      	;   A standard issue mace
-G 0 1113  0      	;   A bardiche
-G 0 1521  0      	;   A large club
-M 0 3062 15 3025  	; the beastly fido to The Common Square
-M 0 3063  5 3026  	; the vagabond to The Dark Alley
-E 0 3021  0 16    	;   A small sword wielded (1)
-M 0 3066  1 3026  	; an alley cat to The Dark Alley
-M 0 3026  1 3027  	; the assassin to Entrance Hall to the Guild of Thieves
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3060 12 3027  	; the cityguard to Entrance Hall to the Guild of Thieves
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3359  0 9     	;   A pair of standard issue gloves on the hands
-M 0 3005  5 3027  	; the thief to Entrance Hall to the Guild of Thieves
-E 0 3020  0 16    	;   A dagger wielded (1)
-M 0 3044  1 3028  	; the waiter to The Thieves Bar
-G 0 3003  0      	;   A bottle of firebreather
-G 0 3004  0      	;   A bottle of local specialty
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3022  1 3029  	; the guildmaster to The Secret Yard
-M 0 3008  1 3031  	; the pet shop boy to The Pet Shop
-M 0 3090  1 3032  	; the kitten to Pet Shop Store
-M 0 3091  1 3032  	; the puppy to Pet Shop Store
-M 0 3092  1 3032  	; the beagle to Pet Shop Store
-M 0 3093  1 3032  	; the rottweiler to Pet Shop Store
-M 0 3094  1 3032  	; the wolf to Pet Shop Store
-M 0 3000  1 3033  	; the wizard to The Magic Shop
-G 0 3040  0      	;   A scroll of identify
-G 0 3041  0      	;   A yellow potion of see invisible
-G 0 3170  0      	;   A wand of water breathing
-G 0 3043  0      	;   A clean parchment
-G 0 3044  0      	;   An empty vial
-G 0 24  0      	;   An executioners hood
-G 0 25  0      	;   A drop of blood
-G 0 26  0      	;   A bone
-G 0 27  0      	;   A piece of wood
-G 0 28  0      	;   A bit of dirt
-G 0 29  0      	;   A pinch of blackmoor
-M 0 3009  1 3034  	; the jeweller to The Jeweller's Shop
-M 0 3010  1 3035  	; the leather worker to The Leather Shop
-G 0 3066  0      	;   A studded leather jerkin
-G 0 3067  0      	;   A hard leather cap
-G 0 3068  0      	;   A pair of studded leather pants
-G 0 3069  0      	;   A pair of hard leather boots
-G 0 3070  0      	;   A pair of hard leather gloves
-G 0 3071  0      	;   A pair of studded leather sleeves
-M 0 3068  2 3040  	; the cityguard to Inside the West Gate of Midgaard
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3361  0 12    	;   A standard issue cape about the shoulders
-M 0 3068  2 3040  	; the cityguard to Inside the West Gate of Midgaard
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3362  0 13    	;   A standard issue belt around the waist
-M 0 3067  2 3041  	; the cityguard to Inside the East Gate of Midgaard
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3360  0 10    	;   A pair of standard issue sleeves on the arms
-M 0 3067  2 3041  	; the cityguard to Inside the East Gate of Midgaard
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3354  0 11    	;   A standard issue shield as a shield
-M 0 3065  2 3044  	; the beggar to Poor Alley
-M 0 3046  1 3048  	; Filthy to Grubby Inn
-G 0 3003  0      	;   A bottle of firebreather
-G 0 3004  0      	;   A bottle of local specialty
-E 0 3022  0 16    	;   A long sword wielded (1)
-M 0 3065  2 3048  	; the beggar to Grubby Inn
-M 0 3006  1 3049  	; the captain to Levee
-G 0 3050  0      	;   A raft
-G 0 3051  0      	;   A canoe
-M 0 3007  1 3050  	; the sailor to Abandoned Warehouse
-O 0 3010  0 3054  	; The donation pit to By the Temple Altar
-M 0 3012  1 3054  	; the healer to By the Temple Altar
-M 0 3153  1 3065  	; the Map Maker to The Cartography Store
-G 0 3373  0      	;   A map of the city of midgaard
-G 0 3374  0      	;   A map leading to the drow homeland
-G 0 3375  0      	;   A map leading to shadow grove, galaxy, and towers of sorcery and draconians
-G 0 3376  0      	;   A map leading to the land of mahn-tor
-G 0 3377  0      	;   A map leading to the antarctic land of haven
-G 0 3378  0      	;   A map leading to the eastern desert, and adjacent lands
-G 0 3379  0      	;   A map leading to the caves of moria
-G 0 3380  0      	;   A map leading to the king of the goblins
-O 0 3134  0 3101  	; The bench to Promenade
-O 0 3134  0 3102  	; The bench to Promenade
-O 0 3134  0 3103  	; The bench to Promenade
-M 0 3100  1 3106  	; the maid to Park Cafe
-G 0 3100  0      	;   A cup of tea
-G 0 3101  0      	;   A cup of coffee
-G 0 3102  0      	;   A cup of water
-M 0 3120  1 3106  	; the sexton to Park Cafe
-G 0 3121  0      	;   A key
-M 0 3123  1 3109  	; the sparrow to Small path in the park
-M 0 3060 20 3111  	; the cityguard to Park Road
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-G 0 3120  0      	;   A key
-M 0 3060 20 3111  	; the cityguard to Park Road
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-E 0 3363  0 15    	;   A standard issue bracer on the right wrist
-M 0 3060 20 3111  	; the cityguard to Park Road
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-M 0 3060 20 3111  	; the cityguard to Park Road
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-E 0 3353  0 5     	;   A standard issue vest on the body
-M 0 3124  2 3113  	; the duck to A path in the park
-M 0 3121  1 3114  	; the swan to The Pond
-M 0 3122  1 3114  	; the duckling to The Pond
-M 0 3124  2 3115  	; the duck to A path in the park
-M 0 3144  1 3120  	; the town crier to Road Crossing
-M 0 3005  5 3128  	; the thief to On the Concourse
-E 0 3020  0 16    	;   A dagger wielded (1)
-M 0 3142  1 3137  	; the secretary to The Waiting Room
-M 0 3143  1 3138  	; the mayor to The Mayor's Office
-E 0 3133  0 17    	;   The city key held in the hands
-E 0 3124  0 16    	;   A long sword wielded (1)
-M 0 3069  4 3138  	; the cityguard to The Mayor's Office
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-M 0 3069  4 3138  	; the cityguard to The Mayor's Office
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-M 0 3069  4 3138  	; the cityguard to The Mayor's Office
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-M 0 3069  4 3138  	; the cityguard to The Mayor's Office
-E 0 3365  0 0     	;   A war banner as a light
-E 0 3364  0 1     	;   A city guard signet ring on the left finger
-E 0 3350  0 16    	;   A standard issue sword wielded (1)
-O 0 3135  0 3141  	; A fountain to End of Penny Lane
-O 0 3136  0 3141  	; A small pile of gold coins to End of Penny Lane
-M 0 3140  1 3142  	; the captain to Captain's Office
-G 0 3122  0      	;   A key
-G 0 3137  0      	;   A steel key
-M 0 3141  4 3142  	; the cityguard to Captain's Office
-M 0 3141  4 3142  	; the cityguard to Captain's Office
-M 0 3141  4 3142  	; the cityguard to Captain's Office
-M 0 3141  4 3142  	; the cityguard to Captain's Office
-O 0 3130  0 3142  	; The desk to Captain's Office
-P 0 3123  0 3130  	; A key inside a key
-O 0 3131  0 3142  	; The safe to Captain's Office
-P 0 3132  0 3131  	; The gold inside the gold
-M 0 3150  1 3150  	; the guildmaster to Psionicist's Meditation Chamber
-M 0 3152  1 3151  	; the waiter to Spoonbender Lounge
-G 0 3002  0      	;   A bottle of ale
-G 0 3003  0      	;   A bottle of firebreather
-G 0 3004  0      	;   A bottle of local specialty
-M 0 3151  1 3152  	; the gypsy to Entrance to Psionicist's Guild
+M 0 3011 1 3001
+E 0 3005 0 16
+E 0 3005 0 18
+M 0 3021 1 3002
+M 0 3043 1 3003
+G 0 3002 0
+G 0 3004 0
+E 0 3022 0 16
+M 0 3025 1 3004
+E 0 3022 0 16
+M 0 3060 12 3004
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3355 0 4
+O 0 3135 0 3005
+M 0 3061 5 3006
+M 0 3040 1 3007
+G 0 3000 0
+G 0 3001 0
+E 0 3022 0 16
+M 0 3064 3 3007
+M 0 3013 1 3008
+M 0 3001 1 3009
+G 0 3009 0
+E 0 3022 0 16
+M 0 3002 1 3010
+G 0 3030 0
+G 0 3031 0
+G 0 3138 0
+G 0 3043 0
+G 0 3044 0
+G 0 3011 0
+E 0 3022 0 16
+M 0 3003 1 3011
+G 0 3020 0
+G 0 3021 0
+G 0 3022 0
+E 0 3022 0 16
+M 0 3062 15 3012
+M 0 3060 12 3014
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3356 0 6
+M 0 3062 15 3016
+M 0 3024 1 3017
+E 0 3022 0 16
+M 0 3060 12 3017
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3357 0 7
+M 0 3042 1 3018
+G 0 3002 0
+G 0 3003 0
+E 0 3022 0 16
+M 0 3020 1 3019
+M 0 3004 1 3020
+G 0 3072 0
+G 0 3073 0
+G 0 3074 0
+G 0 3075 0
+G 0 3076 0
+G 0 3077 0
+G 0 3097 0
+E 0 3022 0 16
+M 0 3027 1 3021
+E 0 3022 0 16
+M 0 3060 12 3021
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3358 0 8
+M 0 3045 1 3022
+G 0 3002 0
+G 0 3003 0
+G 0 3004 0
+E 0 3022 0 16
+M 0 3023 1 3023
+M 0 3062 15 3024
+M 0 3050 1 3025
+G 0 3352 0
+G 0 1113 0
+G 0 1521 0
+M 0 3062 15 3025
+M 0 3063 5 3026
+E 0 3021 0 16
+M 0 3066 1 3026
+M 0 3026 1 3027
+E 0 3022 0 16
+M 0 3060 12 3027
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3359 0 9
+M 0 3005 5 3027
+E 0 3020 0 16
+M 0 3044 1 3028
+G 0 3003 0
+G 0 3004 0
+E 0 3022 0 16
+M 0 3022 1 3029
+M 0 3008 1 3031
+M 0 3090 1 3032
+M 0 3091 1 3032
+M 0 3092 1 3032
+M 0 3093 1 3032
+M 0 3094 1 3032
+M 0 3000 1 3033
+G 0 3040 0
+G 0 3041 0
+G 0 3170 0
+G 0 3043 0
+G 0 3044 0
+G 0 24 0
+G 0 25 0
+G 0 26 0
+G 0 27 0
+G 0 28 0
+G 0 29 0
+M 0 3009 1 3034
+M 0 3010 1 3035
+G 0 3066 0
+G 0 3067 0
+G 0 3068 0
+G 0 3069 0
+G 0 3070 0
+G 0 3071 0
+M 0 3068 2 3040
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3361 0 12
+M 0 3068 2 3040
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3362 0 13
+M 0 3067 2 3041
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3360 0 10
+M 0 3067 2 3041
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3354 0 11
+M 0 3065 2 3044
+M 0 3046 1 3048
+G 0 3003 0
+G 0 3004 0
+E 0 3022 0 16
+M 0 3065 2 3048
+M 0 3006 1 3049
+G 0 3050 0
+G 0 3051 0
+M 0 3007 1 3050
+O 0 3010 0 3054
+M 0 3012 1 3054
+M 0 3153 1 3065
+G 0 3373 0
+G 0 3374 0
+G 0 3375 0
+G 0 3376 0
+G 0 3377 0
+G 0 3378 0
+G 0 3379 0
+G 0 3380 0
+O 0 3134 0 3101
+O 0 3134 0 3102
+O 0 3134 0 3103
+M 0 3100 1 3106
+G 0 3100 0
+G 0 3101 0
+G 0 3102 0
+M 0 3120 1 3106
+G 0 3121 0
+M 0 3123 1 3109
+M 0 3060 20 3111
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+G 0 3120 0
+M 0 3060 20 3111
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+E 0 3363 0 15
+M 0 3060 20 3111
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+M 0 3060 20 3111
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+E 0 3353 0 5
+M 0 3124 2 3113
+M 0 3121 1 3114
+M 0 3122 1 3114
+M 0 3124 2 3115
+M 0 3144 1 3120
+M 0 3005 5 3128
+E 0 3020 0 16
+M 0 3142 1 3137
+M 0 3143 1 3138
+E 0 3133 0 17
+E 0 3124 0 16
+M 0 3069 4 3138
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+M 0 3069 4 3138
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+M 0 3069 4 3138
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+M 0 3069 4 3138
+E 0 3365 0 0
+E 0 3364 0 1
+E 0 3350 0 16
+O 0 3135 0 3141
+O 0 3136 0 3141
+M 0 3140 1 3142
+G 0 3122 0
+G 0 3137 0
+M 0 3141 4 3142
+M 0 3141 4 3142
+M 0 3141 4 3142
+M 0 3141 4 3142
+O 0 3130 0 3142
+P 0 3123 0 3130
+O 0 3131 0 3142
+P 0 3132 0 3131
+M 0 3150 1 3150
+M 0 3152 1 3151
+G 0 3002 0
+G 0 3003 0
+G 0 3004 0
+M 0 3151 1 3152
 S
 
 
 
 #MOBPROGS
+M 3001 3001.prg
+M 3002 3002.prg
+M 3004 3004.prg
 M 3060 3060.prg
 M 3061 3061.prg
 M 3062 3062.prg
+M 3063 3063.prg
+M 3065 3065.prg
 M 3067 3067.prg
 M 3068 3068.prg
 M 3069 3069.prg
+M 3144 3144.prg
 S
 
 
 
 #SHOPS
-3000  2  3  4 10  0 105  15  0 23 	; the wizard
-3001  0  0  0  0  0 110 100  0 23 	; the baker
-3002  1  8 13 15 19 150  40  0 23 	; the grocer
-3003  5  0  0  0  0 130  40  0 23 	; the weaponsmith
-3004  9  0  0  0  0 100  50  0 23 	; the armourer
-3006 22  0  0  0  0 120  90  6 22 	; the captain
-3008  0  0  0  0  0 100 100  0 23 	; the pet shop boy
-3009  8  0  0  0  0 150  50  9 17 	; the jeweller
-3010  9  0  0  0  0 110  90  8 21 	; the leather worker
-3040  0  0  0  0  0 110 100  0 23 	; the bartender
-3042  0  0  0  0  0 100 100  0 23 	; the waiter
-3043  0  0  0  0  0 110 100  0 23 	; the waiter
-3044  0  0  0  0  0 170 100  0 23 	; the waiter
-3045  0  0  0  0  0 150 100  0 23 	; the waiter
-3046  0  0  0  0  0 100  90  0 23 	; Filthy
-3050  5 13  8  0  0 120  50  0 23 	; Dave the Dealer
-3100  0  0  0  0  0 110  90  6 23 	; the maid
-3152  0  0  0  0  0 150 100  0 23 	; the waiter
-3153  0  0  0  0  0 150 100  0 23 	; the Map Maker
+3000 2 3 4 10 0 105 15 0 23
+3001 0 0 0 0 0 110 100 0 23
+3002 1 8 13 15 19 150 40 0 23
+3003 5 0 0 0 0 130 40 0 23
+3004 9 0 0 0 0 100 50 0 23
+3006 22 0 0 0 0 120 90 6 22
+3008 0 0 0 0 0 100 100 0 23
+3009 8 0 0 0 0 150 50 9 17
+3010 9 0 0 0 0 110 90 8 21
+3040 0 0 0 0 0 110 100 0 23
+3042 0 0 0 0 0 100 100 0 23
+3043 0 0 0 0 0 110 100 0 23
+3044 0 0 0 0 0 170 100 0 23
+3045 0 0 0 0 0 150 100 0 23
+3046 0 0 0 0 0 100 90 0 23
+3050 5 13 8 0 0 120 50 0 23
+3100 0 0 0 0 0 110 90 6 23
+3152 0 0 0 0 0 150 100 0 23
+3153 0 0 0 0 0 150 100 0 23
 0
 
 

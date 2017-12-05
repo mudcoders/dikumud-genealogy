@@ -1,5 +1,5 @@
 #AREADATA
-Name        {51 54} Envy    God Rooms~
+Name        {{51 54} Envy    God Rooms~
 Builders    None~
 VNUMs       1200 4475
 Security    1
@@ -20,7 +20,7 @@ The looks you are getting from him is a "feed me, pet me, love me, but I
 don't need you" sort of thing. Guess it's just a cat thing...
 ~
 65 60 400 S
-27 40 0 10d8+10 3d6+20
+29 40 0 10d8+10 3d6+20
 0 0
 0 Animal~ 1
 #1202
@@ -34,7 +34,7 @@ for food or perhaps affection. Just when you're about to bend down and pet
 him, he bounds off with a playful look in his eyes.
 ~
 65 60 400 S
-33 40 0 10d8+10 3d6+20
+30 40 0 10d8+10 3d6+20
 0 0
 0 Animal~ 1
 #1203
@@ -46,7 +46,7 @@ A present from his best-friend, Scrappy stands here, protecting his
 master's bed
 ~
 5 128 0 S
-1 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #1204
@@ -84,7 +84,7 @@ seemed to suit her tastes.  She is wearing a Sunday dress which looks
 quite stunning, even for her.
 ~
 129 40 1000 S
-79 0 0 0d0+0 0d0+0
+82 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #1220
@@ -109,7 +109,7 @@ Angel is a parakeet. He is about 4 inches tall and is a
 bluish-whitish color.
 ~
 7 65664 1000 S
-22 13 0 13d13+13 13d13+1
+18 13 0 13d13+13 13d13+1
 13 0
 0 Animal~ 1
 #1222
@@ -122,7 +122,7 @@ looks down at you. When you look at him, you have a sudden
 urge to rip his brain out and eat his heart.
 ~
 7 1032 -1000 S
-39 13 0 13d13+13 13d13+13
+37 13 0 13d13+13 13d13+13
 1000 0
 0 Human~ 0
 #1223
@@ -136,7 +136,7 @@ while his master is away.  He glowers at you, and asks : 'Do you walk
 in the Shadow, or the Light?'.
 ~
 67 29909162 1000 S
-58 0 0 0d0+0 0d0+0
+60 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #1224
@@ -151,7 +151,7 @@ temptation to just forget the world and just sleep on this comfortable
 bed with a faithful kitten beside you.
 ~
 67 25258 1000 S
-56 0 0 0d0+0 0d0+0
+48 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 1
 #1230
@@ -163,7 +163,7 @@ Tara looks at you cautiously.  She purrs loudly and pays no attention to you.
 For some reason you think that you best not taunt this happy cat.
 ~
 71 700 1000 S
-30 20 0 1d1+4 8d8+15
+31 20 0 1d1+4 8d8+15
 0 0
 0 Animal~ 2
 #1231
@@ -175,7 +175,7 @@ Rex snarls and seems to not like your presence in his master's chambers.
 I'd not provoke him if I was you...
 ~
 71 700 1000 S
-30 20 0 1d1+5 8d9+20
+35 20 0 1d1+5 8d9+20
 0 0
 0 Animal~ 1
 #1232
@@ -1072,16 +1072,6 @@ The door  you entered is the only exit from this room.
 door~
 3 -1 1200
 S
-#1234
-Maniac's Mud Room~
-This is Maniac's computer room, this is THE room where all the important
-things of this mud are planned and programmed...  Maniac spends many late
-hours in this room creating new features and functions for Mythran.  He also
-thinks he spends to much time here looking for bugs in pieces of code
-written by other 'so-called' coders. 
-~
-0 20 0
-S
 #1244
 Zelda's Zany Zoo~
 A room filled with stuffed animals.  A bunny named wish and a bear named
@@ -1107,12 +1097,12 @@ S
 
 
 #SPECIALS
-M 1220 spec_poison 	; Snoopy
-M 1221 spec_poison 	; Angel
-M 1222 spec_breath_any 	; James
-M 1223 spec_cast_mage 	; the Guardian of Twilight
-M 1230 spec_cast_mage 	; Tara the black cat
-M 1231 spec_poison 	; Rex the armadilio
+M 1220 spec_poison
+M 1221 spec_poison
+M 1222 spec_breath_any
+M 1223 spec_cast_mage
+M 1230 spec_cast_mage
+M 1231 spec_poison
 S
 
 
@@ -1123,46 +1113,46 @@ S
 
 
 #RESETS
-M 0 1201  1 1203  	; Gandalf the gray cat to Ben's Room
-M 0 1202  1 1203  	; Merlin the pinto cat to Ben's Room
-O 0 1201  0 1203  	; A boxspring & mattress bed to Ben's Room
-O 0 1202  0 1203  	; A stereo to Ben's Room
-O 0 1203  0 1203  	; A macintosh quadra 990/av to Ben's Room
-M 0 1203  1 1204  	; Scrappy to Mephisto's Pad
-E 0 1209  0 12    	;   An akpsi rush t-shirt about the shoulders
-E 0 1208  0 8     	;   A worn pair of nike shoes on the feet
-M 0 1204  1 1204  	; Tobie to Mephisto's Pad
-E 0 1206  0 3     	;   A gund tag around the neck (1)
-O 0 1204  0 1204  	; Kenwood stereo unit to Mephisto's Pad
-O 0 1205  0 1204  	; Mephi's computer to Mephisto's Pad
-O 0 1207  0 1205  	; A toilet to The Bathroom
-O 0 1214  0 1211  	; A heater to The Living Room
-P 0 1213  0 1214  	; A partially burnt log inside a partially burnt log
-M 0 1210  1 1211  	; Grandpa Strickland to The Living Room
-E 0 1210  0 6     	;   A farm bureau cap over the head
-E 0 1211  0 5     	;   A pair of overalls on the body
-O 0 1215  0 1212  	; A refrigerator to The Kitchen
-P 0 1216  0 1215  	; A can of coke inside a can of Coke
-P 0 1217  0 1215  	; A pecan pie inside a pecan pie
-M 0 1211  1 1212  	; Grandma Strickland to The Kitchen
-E 0 1212  0 5     	;   A sunday dress on the body
-O 0 1200  0 1213  	; A large bed to Picard's Hideaway
-M 0 1220  1 1220  	; Snoopy to Smoof's bedroom
-E 0 1220  0 3     	;   A collar around the neck (1)
-M 0 1221  1 1220  	; Angel to Smoof's bedroom
-E 0 1221  0 7     	;   A leg band on the legs
-M 0 1222  1 1222  	; James to James' bedroom
-E 0 1222  0 17    	;   Keyboard held in the hands
-O 0 1223  0 1223  	; The sapphire throne to Horizon
-M 0 1223  1 1223  	; the Guardian of Twilight to Horizon
-E 0 1225  0 3     	;   A swirling, dark blue cloak around the neck (1)
-E 0 1224  0 16    	;   The sapphire sword wielded (1)
-M 0 1224  1 1224  	; Robbie to The Hideout
-M 0 1230  1 1230  	; Tara the black cat to Alexander's private enclave
-E 0 1230  0 3     	;   A sparkling diamond collar around the neck (1)
-O 0 1231  0 1230  	; A sparkling clear fountain to Alexander's private enclave
-M 0 1231  1 1232  	; Rex the armadilio to Alexander's laboratory
-M 0 1232  1 1233  	; Lady Jessica Quechard to Wyrmclaw's Council of War Room
+M 0 1201 1 1203
+M 0 1202 1 1203
+O 0 1201 0 1203
+O 0 1202 0 1203
+O 0 1203 0 1203
+M 0 1203 1 1204
+E 0 1209 0 12
+E 0 1208 0 8
+M 0 1204 1 1204
+E 0 1206 0 3
+O 0 1204 0 1204
+O 0 1205 0 1204
+O 0 1207 0 1205
+O 0 1214 0 1211
+P 0 1213 0 1214
+M 0 1210 1 1211
+E 0 1210 0 6
+E 0 1211 0 5
+O 0 1215 0 1212
+P 0 1216 0 1215
+P 0 1217 0 1215
+M 0 1211 1 1212
+E 0 1212 0 5
+O 0 1200 0 1213
+M 0 1220 1 1220
+E 0 1220 0 3
+M 0 1221 1 1220
+E 0 1221 0 7
+M 0 1222 1 1222
+E 0 1222 0 17
+O 0 1223 0 1223
+M 0 1223 1 1223
+E 0 1225 0 3
+E 0 1224 0 16
+M 0 1224 1 1224
+M 0 1230 1 1230
+E 0 1230 0 3
+O 0 1231 0 1230
+M 0 1231 1 1232
+M 0 1232 1 1233
 S
 
 

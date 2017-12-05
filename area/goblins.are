@@ -1,5 +1,5 @@
 #AREADATA
-Name        Goblin Caves~
+Name        {{10 26} Manx    Goblin Caves~
 Builders    None~
 VNUMs       20000 20031
 Security    1
@@ -18,7 +18,7 @@ He looks like a powerful man that could easily defeat an opponent.
 The Sentry to the Goblin Caves tells you, 'Abandon all hope ye who enter here'
 ~
 3 128 500 S
-11 3 0 10d10+100 10d10+100
+18 3 0 10d10+100 10d10+100
 1000 0
 0 Goblin~ 1
 #20001
@@ -31,7 +31,7 @@ combat before you can enter the caves.  Why waste the effort, you should really
 take the easy way out and leave.
 ~
 3 8192 0 S
-8 3 0 10d9+50 10d9+70
+9 3 0 10d9+50 10d9+70
 1000 0
 0 Goblin~ 1
 #20002
@@ -53,7 +53,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 35 8192 0 S
-16 3 0 2d7+1 2d7+5
+12 3 0 2d7+1 2d7+5
 1000 0
 0 Goblin~ 1
 #20004
@@ -75,7 +75,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-4 3 0 2d7+1 2d7+5
+11 3 0 2d7+1 2d7+5
 1000 0
 0 Goblin~ 1
 #20006
@@ -86,7 +86,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-10 3 0 2d7+1 2d7+5
+9 3 0 2d7+1 2d7+5
 1000 0
 0 Goblin~ 1
 #20007
@@ -97,7 +97,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-3 3 0 2d7+1 2d7+5
+8 3 0 2d7+1 2d7+5
 1000 0
 0 Goblin~ 1
 #20008
@@ -119,7 +119,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-7 3 0 3d11+5 3d17+9
+13 3 0 3d11+5 3d17+9
 1000 0
 0 Goblin~ 1
 #20010
@@ -130,7 +130,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-9 3 0 3d11+5 3d17+9
+11 3 0 3d11+5 3d17+9
 1000 0
 0 Goblin~ 1
 #20011
@@ -141,7 +141,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-20 3 0 3d11+5 3d17+9
+16 3 0 3d11+5 3d17+9
 1000 0
 0 Goblin~ 1
 #20012
@@ -152,7 +152,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-20 3 0 3d11+5 3d17+9
+13 3 0 3d11+5 3d17+9
 1000 0
 0 Goblin~ 1
 #20013
@@ -163,7 +163,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-14 3 0 6d9+11 6d9+15
+12 3 0 6d9+11 6d9+15
 1000 0
 0 Goblin~ 1
 #20014
@@ -174,7 +174,7 @@ A Loyal soldier to the Goblin King stands at attention here.
 You have never in your life seen anything so ugly!!!
 ~
 33 8192 0 S
-15 3 0 6d9+11 6d9+15
+13 3 0 6d9+11 6d9+15
 1000 0
 0 Goblin~ 1
 #20015
@@ -185,7 +185,7 @@ The Goblin King is here ordering you to kneel.
 As you bow toward this king you end up falling over in a fit of laughter.
 ~
 3 8192 0 S
-28 3 0 9d17+11 9d17+15
+23 3 0 9d17+11 9d17+15
 1000 0
 0 Goblin~ 1
 #20016
@@ -209,7 +209,7 @@ torture anymore.  In return i shall give you the key to a secret doorway that
 leads to the king.  This door is .....'.  The poor creature faints.
 ~
 3 8192 0 S
-4 3 0 2d7+1 2d7+5
+1 3 0 2d7+1 2d7+5
 1000 0
 0 Animal~ 1
 #0
@@ -846,48 +846,48 @@ S
 
 
 #RESETS
-M 0 20000  1 20000 	; The Sentry to the Goblin Caves to Base of the Mountain
-E 0 20006  0 16    	;   A goblin sentry's sword wielded (1)
-M 0 20001  1 20006 	; An Ancient Wizard to At the entrance
-G 0 20000  0      	;   A granite key
-M 0 20002  1 20007 	; Goblin Soldier to Within the Entrance
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-G 0 20001  0      	;   A stone key
-M 0 20003  1 20007 	; Goblin Soldier to Within the Entrance
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20004  1 20009 	; Goblin Soldier to Hallway
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-O 0 20005  0 20011 	; A goblin breast plate to Armory
-O 0 20004  0 20011 	; A goblin sword to Armory
-M 0 20005  1 20011 	; Goblin Soldier to Armory
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20006  1 20012 	; Goblin Soldier to Intersection
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20008  1 20014 	; Goblin Soldier to End of the Hallway
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20016  1 20015 	; Captain of the Goblin Soldiers to Guard Room
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-E 0 20005  0 5     	;   A goblin breast plate on the body
-G 0 20002  0      	;   A jailor's key
-M 0 20017  1 20016 	; Captive of the Goblins to Dark Cell
-G 0 20003  0      	;   A secret looking key
-M 0 20007  1 20018 	; Goblin Soldier to Alcove
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20009  1 20021 	; A Goblin Soldier to Eroded Hallway
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20010  1 20023 	; A Goblin Soldier to Dark Tunnel
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20011  1 20025 	; A Goblin Soldier to Great Waterfall
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20012  1 20027 	; A Goblin Soldier to Underground Pool
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20013  1 20029 	; A Goblin Soldier to Below Waterfall
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20015  1 20030 	; Goblin King to Large Cave
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-M 0 20014  1 20031 	; A Goblin Soldier to Storage Cave
-E 0 20004  0 16    	;   A goblin sword wielded (1)
-E 0 20005  0 5     	;   A goblin breast plate on the body
+M 0 20000 1 20000
+E 0 20006 0 16
+M 0 20001 1 20006
+G 0 20000 0
+M 0 20002 1 20007
+E 0 20004 0 16
+G 0 20001 0
+M 0 20003 1 20007
+E 0 20004 0 16
+M 0 20004 1 20009
+E 0 20004 0 16
+O 0 20005 0 20011
+O 0 20004 0 20011
+M 0 20005 1 20011
+E 0 20004 0 16
+M 0 20006 1 20012
+E 0 20004 0 16
+M 0 20008 1 20014
+E 0 20004 0 16
+M 0 20016 1 20015
+E 0 20004 0 16
+E 0 20005 0 5
+G 0 20002 0
+M 0 20017 1 20016
+G 0 20003 0
+M 0 20007 1 20018
+E 0 20004 0 16
+M 0 20009 1 20021
+E 0 20004 0 16
+M 0 20010 1 20023
+E 0 20004 0 16
+M 0 20011 1 20025
+E 0 20004 0 16
+M 0 20012 1 20027
+E 0 20004 0 16
+M 0 20013 1 20029
+E 0 20004 0 16
+M 0 20015 1 20030
+E 0 20004 0 16
+M 0 20014 1 20031
+E 0 20004 0 16
+E 0 20005 0 5
 S
 
 

@@ -1,5 +1,5 @@
-Mythran Mud release 3.1.1
-Mon Oct 21, 1996
+Mythran Mud release 3.1.11
+Wed Mar 19, 1997
 
 
 === The src directory
@@ -71,6 +71,7 @@ hunt.c		- Contains hunt and track commands
 interp.c	- Contains procedures and tables for game user commands
 language.c	- Contains language related functions
 magic.c		- Contains procedures for spells
+magic2.c	- Contains even more procedures for spells
 mem.c		- Contains OLC memory functions
 merc.h		- Contains data types/prototypes/macros used within the game
 mob_commands.c	- Contains mob-prog mob-commands
@@ -145,7 +146,7 @@ workings have changed and some player visible improvements have been made.
 We've been developing the code for the past 3 years with extensive playing.
 Unfortunately, there might be bugs we have missed.  If you encounter errors
 or bugs, first check your code additions then forward questions to the
-mailing list at merc-l@webnexus.com.
+Mythran Staff at mythran@envy.com.
 
 All in all, Mythran will "feel" like any other envy mud out there.  Mythran is
 designed to go beyond the envy releases and make into reality many

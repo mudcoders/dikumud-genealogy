@@ -2413,6 +2413,23 @@ bool set_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *pObj, int value_num, char *a
 	            break;
 	    }
             break;
+
+	case ITEM_FURNITURE:
+	    switch ( value_num )
+	    {
+		default:
+		    do_help( ch, "ITEM_FURNITURE" );
+		    return FALSE;
+		case 0:
+		    send_to_char( "MAX USERS SET.\n\r\n\r", ch );
+		    pObj->value[0] = atoi( argument );
+		    break;
+		case 2:
+		    send_to_char( "OBJECT USAGE BITS SET.\n\r\n\r", ch );
+		    pObj->value[2] = atoi( argument );
+		    break;
+	    }
+	    break;
     }
 
     show_obj_values( ch, pObj );

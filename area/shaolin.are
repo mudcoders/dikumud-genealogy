@@ -1,5 +1,5 @@
 #AREADATA
-Name        Shaolin Temple~
+Name        {{15 25} Boom    Shaolin Temple~
 Builders    None~
 VNUMs       20101 20137
 Security    1
@@ -17,7 +17,7 @@ A monk child is here sweeping the floor.
 He is only a child, surely you will want to pick on someone your own size.
 ~
 197 0 500 S
-2 0 0 0d0+0 0d0+0
+7 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20102
@@ -28,7 +28,7 @@ A female prisoner cringes away from you in terror.
 Judging from what is left of her clothes, she appears to be a nun.
 ~
 69 0 0 S
-10 0 0 0d0+0 0d0+0
+7 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #20103
@@ -40,7 +40,7 @@ One of the many who came here to learn the Shaolin martial skills. Like
 many others, he seems quite hopeless.
 ~
 135 0 100 S
-7 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20104
@@ -51,7 +51,7 @@ A monk is here practicing his skills. Watch it!
 You take a step back to ensure you're out of the range of his deadly moves.
 ~
 7 0 201 S
-19 0 0 0d0+0 0d0+0
+14 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20105
@@ -74,7 +74,7 @@ This extremely ugly creature looks very familiar. Wait a minute, it looks
 exactly like you. In fact, it is you!
 ~
 39 680 -201 S
-22 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #20107
@@ -86,7 +86,7 @@ He looks about the same with the rest of the monks here.  In fact,he looks
 more friendly than the rest.  Too bad he doesn't like your face.
 ~
 101 552 -300 S
-23 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
 0 Werewolf~ 1
 #20108
@@ -98,7 +98,7 @@ Made entirely of hard wood and controlled mechanically by chains and pulleys,
 this is one tough bugger.
 ~
 35 552 0 S
-20 0 0 0d0+0 0d0+0
+18 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 0
 #20109
@@ -110,7 +110,7 @@ Recently promoted to warrior status, he takes a look at your puny size and
 laughs in your face.
 ~
 197 8192 201 S
-23 0 0 0d0+0 0d0+0
+21 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20110
@@ -122,7 +122,7 @@ With skin as tough as bronze, these monks are among the most highly skilled.
 You don't want to mess with them.  Then again, do you have a choice?
 ~
 7 8320 500 S
-29 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
 #20111
@@ -134,7 +134,7 @@ Looking every bit like a pervert, he just can't wait to lay his filthy
 claws on you.
 ~
 101 680 -500 S
-19 0 0 0d0+0 0d0+0
+24 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20112
@@ -158,7 +158,7 @@ Hmm.. Are monks supposed to do this? You pondered as you look at this
 pathetic excuse for a human being.
 ~
 197 8320 250 S
-18 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20114
@@ -170,7 +170,7 @@ Wow. What a amazing feat! Such demonstration of strength and control.
 Don't you wish you can do that.
 ~
 197 8322 500 S
-25 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20115
@@ -182,7 +182,7 @@ Looking strong and healthy even at this age, the Abbot cuts an impressive
 figure.
 ~
 197 532608 800 S
-30 0 0 0d0+0 0d0+0
+33 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20116
@@ -194,7 +194,7 @@ Covered from head to toe with gold flakes, this mortal shell of a former
 high monk has been perfectly preserved.
 ~
 3 73866 1000 S
-35 0 0 0d0+0 0d0+0
+32 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 0
 #20117
@@ -205,7 +205,7 @@ A visiting guest stands here.
 Looking at his best in his fine clothing, he looks rather wealthy.
 ~
 197 0 50 S
-17 0 0 0d0+0 0d0+0
+15 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #20118
@@ -218,7 +218,7 @@ I know your name, KhyrhaZenin, and I will come get you! HAHAHAHA'
 He must be crazy.'
 ~
 35 0 0 S
-3 0 0 0d0+0 0d0+0
+1 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #0
@@ -1221,19 +1221,19 @@ S
 
 
 #SPECIALS
-M 20102 spec_cast_cleric 	; An imprisoned nun
-M 20105 spec_cast_mage 	; A monk guard
-M 20106 spec_cast_mage 	; Your own inner demon
-M 20107 spec_poison 	; An evil monk
-M 20109 spec_cast_mage 	; The monk warrior
-M 20110 spec_cast_mage 	; The Luohan
-M 20111 spec_poison 	; Wuhua
-M 20112 spec_cast_cleric 	; The Master of Books
-M 20113 spec_cast_mage 	; The Drunken Master
-M 20114 spec_cast_mage 	; The Master Trainer
-M 20115 spec_breath_fire 	; The Abbot of Shaolin
-M 20116 spec_breath_any 	; The Jinshen
-M 20117 spec_thief 	; The visiting guest
+M 20102 spec_cast_cleric
+M 20105 spec_cast_mage
+M 20106 spec_cast_mage
+M 20107 spec_poison
+M 20109 spec_cast_mage
+M 20110 spec_cast_mage
+M 20111 spec_poison
+M 20112 spec_cast_cleric
+M 20113 spec_cast_mage
+M 20114 spec_cast_mage
+M 20115 spec_breath_fire
+M 20116 spec_breath_any
+M 20117 spec_thief
 S
 
 
@@ -1244,75 +1244,75 @@ S
 
 
 #RESETS
-M 0 20106  1 20105 	; Your own inner demon to A dark cave
-M 0 20101  2 20109 	; A monk child to The Dining Hall
-O 0 20106  0 20110 	; A steaming hot bun to The Kitchen
-M 0 20109  1 20111 	; The monk warrior to The Monks' Bunk
-E 0 20120  0 5     	;   A cane armor on the body
-E 0 20118  0 8     	;   Monk's garters on the feet
-E 0 20119  0 12    	;   A monk's robe about the shoulders
-E 0 20125  0 11    	;   A cane shield as a shield
-E 0 20114  0 16    	;   A chain whip wielded (1)
-G 0 20106  0      	;   A steaming hot bun
-M 0 20108  2 20114 	; The wooden man to The Chamber of Wooden Men
-M 0 20110  2 20115 	; The Luohan to The Luohan Chamber
-G 0 20115  0      	;   A bronze key
-M 0 20104  1 20117 	; A monk to A Training Arena
-E 0 20116  0 16    	;   A horse spear wielded (1)
-M 0 20104  1 20117 	; A monk to A Training Arena
-E 0 20116  0 16    	;   A horse spear wielded (1)
-M 0 20103  3 20118 	; A disciple to A Training Arena
-O 0 20102  0 20121 	; A lighted candle to A Master's Chamber
-M 0 20113  1 20121 	; The Drunken Master to A Master's Chamber
-G 0 20109  0      	;   A jiuyangzhenjing manual
-E 0 20118  0 7     	;   Monk's garters on the legs
-E 0 20119  0 12    	;   A monk's robe about the shoulders
-O 0 20102  0 20122 	; A lighted candle to A Master's Chamber
-M 0 20114  1 20122 	; The Master Trainer to A Master's Chamber
-E 0 20118  0 7     	;   Monk's garters on the legs
-E 0 20119  0 12    	;   A monk's robe about the shoulders
-E 0 20125  0 11    	;   A cane shield as a shield
-E 0 20114  0 16    	;   A chain whip wielded (1)
-M 0 20115  1 20123 	; The Abbot of Shaolin to The Abbot's Chamber
-E 0 20121  0 1024  	;   Abbot's jiasha none
-E 0 20122  0 4     	;   Abbot's fozhu around the neck (2)
-E 0 20123  0 16384 	;   The staff of abbot none
-O 0 20102  0 20123 	; A lighted candle to The Abbot's Chamber
-M 0 20112  1 20124 	; The Master of Books to The Library
-G 0 20101  0      	;   A lighted candle
-G 0 20111  0      	;   A yijinjing manual
-E 0 20118  0 7     	;   Monk's garters on the legs
-E 0 20119  0 12    	;   A monk's robe about the shoulders
-O 0 20107  0 20125 	; A huge treasure to A Secret Chamber
-O 0 20110  0 20125 	; A jiuyingzhenjing manual to A Secret Chamber
-O 0 20102  0 20127 	; A lighted candle to A Guest Room
-M 0 20117  2 20127 	; The visiting guest to A Guest Room
-G 0 20106  0      	;   A steaming hot bun
-P 0 20108  0 20137 	; The flame of mercy inside the Flame of Mercy
-P 0 20107  0 20137 	; A huge treasure inside a huge treasure
-O 0 20102  0 20128 	; A lighted candle to A Guest Room
-M 0 20101  2 20128 	; A monk child to A Guest Room
-O 0 20136  0 20129 	; A lighted candle to A Guest Room
-O 0 20102  0 20130 	; A lighted candle to A Guest Room
-M 0 20105  1 20131 	; A monk guard to The Dungeons
-E 0 20120  0 5     	;   A cane armor on the body
-E 0 20125  0 11    	;   A cane shield as a shield
-E 0 20113  0 16    	;   A half-moon knife wielded (1)
-M 0 20105  1 20131 	; A monk guard to The Dungeons
-E 0 20120  0 5     	;   A cane armor on the body
-E 0 20125  0 11    	;   A cane shield as a shield
-E 0 20113  0 16    	;   A half-moon knife wielded (1)
-G 0 20131  0      	;   A chain of keys
-M 0 20107  2 20132 	; An evil monk to A prison cell
-E 0 20119  0 12    	;   A monk's robe about the shoulders
-M 0 20111  1 20134 	; Wuhua to Cell of Wuhua
-E 0 20117  0 17    	;   A kamasutra held in the hands
-M 0 20102  3 20135 	; An imprisoned nun to A female prison cell
-G 0 20124  0      	;   A lock of nun's hair
-M 0 20116  1 20136 	; The Jinshen to A Mysterious Room
-E 0 20112  0 16    	;   The dragon sabre wielded (1)
-G 0 20115  0      	;   A bronze key
-O 0 20137  0 20137 	; The mortal shell of boom to A Workshop
+M 0 20106 1 20105
+M 0 20101 2 20109
+O 0 20106 0 20110
+M 0 20109 1 20111
+E 0 20120 0 5
+E 0 20118 0 8
+E 0 20119 0 12
+E 0 20125 0 11
+E 0 20114 0 16
+G 0 20106 0
+M 0 20108 2 20114
+M 0 20110 2 20115
+G 0 20115 0
+M 0 20104 1 20117
+E 0 20116 0 16
+M 0 20104 1 20117
+E 0 20116 0 16
+M 0 20103 3 20118
+O 0 20102 0 20121
+M 0 20113 1 20121
+G 0 20109 0
+E 0 20118 0 7
+E 0 20119 0 12
+O 0 20102 0 20122
+M 0 20114 1 20122
+E 0 20118 0 7
+E 0 20119 0 12
+E 0 20125 0 11
+E 0 20114 0 16
+M 0 20115 1 20123
+E 0 20121 0 1024
+E 0 20122 0 4
+E 0 20123 0 16384
+O 0 20102 0 20123
+M 0 20112 1 20124
+G 0 20101 0
+G 0 20111 0
+E 0 20118 0 7
+E 0 20119 0 12
+O 0 20107 0 20125
+O 0 20110 0 20125
+O 0 20102 0 20127
+M 0 20117 2 20127
+G 0 20106 0
+P 0 20108 0 20137
+P 0 20107 0 20137
+O 0 20102 0 20128
+M 0 20101 2 20128
+O 0 20136 0 20129
+O 0 20102 0 20130
+M 0 20105 1 20131
+E 0 20120 0 5
+E 0 20125 0 11
+E 0 20113 0 16
+M 0 20105 1 20131
+E 0 20120 0 5
+E 0 20125 0 11
+E 0 20113 0 16
+G 0 20131 0
+M 0 20107 2 20132
+E 0 20119 0 12
+M 0 20111 1 20134
+E 0 20117 0 17
+M 0 20102 3 20135
+G 0 20124 0
+M 0 20116 1 20136
+E 0 20112 0 16
+G 0 20115 0
+O 0 20137 0 20137
 S
 
 

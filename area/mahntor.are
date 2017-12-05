@@ -1,5 +1,5 @@
 #AREADATA
-Name        The Keep of Mahn-Tor~
+Name        {{15 35} Chris   The Keep of Mahn-Tor~
 Builders    None~
 VNUMs       2300 2399
 Security    1
@@ -19,7 +19,7 @@ was involved in the carnage that occurred here. His soul is trapped here, as
 he waits for release.
 ~
 3 136 -1000 S
-28 0 0 550d1+75 1d8+15
+26 0 0 550d1+75 1d8+15
 25000 0
 0 Undead~ 1
 #2301
@@ -32,7 +32,7 @@ Very few leaves remain. Its limbs are crooked and gnarled. It moans as the
 wind pushes it back and forth.
 ~
 3 0 250 S
-22 0 0 250d1+50 3d6+5
+18 0 0 250d1+50 3d6+5
 5000 0
 0 Plant~ 0
 #2302
@@ -45,7 +45,7 @@ a bird's beak, huge white eyes, a furry body, and long clawed hands and feet.
 It sees you and snarls.
 ~
 35 32788 0 S
-9 5 0 150d1+75 3d6+3
+15 5 0 150d1+75 3d6+3
 2500 0
 0 Animal~ 0
 #2303
@@ -56,7 +56,7 @@ A rather large rock toad sits here, croaking loudly.
 A grey toad. Its about the size of a cow. Small horns grow all over its body.
 ~
 3 0 -250 S
-9 6 0 150d1+35 2d8+3
+16 6 0 150d1+35 2d8+3
 2550 0
 0 Animal~ 0
 #2304
@@ -68,7 +68,7 @@ The weeping willow has long thins branches. These branches seem to droop in
 anguish and dismay. You hear a faint sound of crying.
 ~
 3 136 1000 S
-24 0 0 550d1+50 4d6+5
+26 0 0 550d1+50 4d6+5
 20000 0
 0 Plant~ 2
 #2305
@@ -79,7 +79,7 @@ A mistling emerges from the mist surrounding you.
 It looks like a thin wisp of mist that has gained substance and size.
 ~
 35 65536 0 S
-16 1 0 200d1+20 2d9+3
+15 1 0 200d1+20 2d9+3
 1000 0
 0 Mist~ 0
 #2306
@@ -92,7 +92,7 @@ appears to emerge from the mist. You feel the cold radiating from his form as
 he nears you.
 ~
 39 0 -1000 S
-18 0 0 250d1+25 6d4+5
+20 0 0 250d1+25 6d4+5
 25000 0
 0 Mist~ 1
 #2307
@@ -104,7 +104,7 @@ You see a pitifully overworked ogre. It is dressed in rags and shuffles along
 with its head hung low. It sees you and cringes in mortal terror.
 ~
 193 0 -200 S
-10 11 0 100d1+20 2d6+2
+11 11 0 100d1+20 2d6+2
 200 0
 0 Ogre~ 0
 #2308
@@ -116,7 +116,7 @@ The ogre warrior is dressed in thick fur armor. He looks quite large and
 formidable.
 ~
 229 0 -350 S
-11 6 0 175d1+25 3d6+3
+14 6 0 175d1+25 3d6+3
 5000 0
 0 Ogre~ 1
 #2309
@@ -128,7 +128,7 @@ The ogre guard stands here manning his post. It appears as though he would
 fight to the death before abandoning his post.
 ~
 103 0 -500 S
-18 0 0 200d1+50 3d6+5
+20 0 0 200d1+50 3d6+5
 10000 0
 0 Ogre~ 1
 #2310
@@ -140,7 +140,7 @@ The ogre shaman is draped in thick fur cloaks and pelts. He has all types of
 charms and holy symbols draped about him. He looks at you and snarls.
 ~
 231 136 -750 S
-18 0 0 250d1+50 4d6+5
+21 0 0 250d1+50 4d6+5
 50000 0
 0 Ogre~ 1
 #2311
@@ -152,7 +152,7 @@ This is the biggest ogre you have ever seen. He is heavily equipped and looks
 quite formidable. He towers high above you and growls menacingly.
 ~
 231 136 -1000 S
-26 -4 0 550d1+50 5d5+5
+27 -4 0 550d1+50 5d5+5
 50000 0
 0 Ogre~ 1
 #2312
@@ -164,7 +164,7 @@ The plains barbarian is clad in heavy furs. He seems used to the chilling cold
 and icy wastes.
 ~
 231 0 0 S
-15 0 0 250d1+50 3d6+4
+19 0 0 250d1+50 3d6+4
 5000 0
 0 Ogre~ 1
 #2313
@@ -176,7 +176,7 @@ The white yeti looks like a huge white snow ape. Its long arms end in long
 curved talons and its mouth is full of sharp teeth.
 ~
 231 0 -350 S
-22 1 0 200d1+25 3d7+3
+15 1 0 200d1+25 3d7+3
 1000 0
 0 Animal~ 0
 #2314
@@ -189,7 +189,7 @@ The huge worm is almost 50 feet long. Its huge gaping mouth spews ice and snow
 as it charges directly at you.
 ~
 103 0 0 S
-16 0 0 250d1+75 3d6+5
+19 0 0 250d1+75 3d6+5
 3500 0
 0 Worm~ 0
 #2315
@@ -201,7 +201,7 @@ You see a rather ragged and cold minotaur. It appears to be looking for a warm
 place to seek refuge from the cold.
 ~
 199 0 100 S
-10 5 0 100d1+90 2d5+5
+17 5 0 100d1+90 2d5+5
 10000 0
 0 Minotaur~ 0
 #2316
@@ -213,7 +213,7 @@ The minotaur is clad in heavy furs. Beneath these furs, you see the gleam of
 his armor.
 ~
 103 0 -330 S
-18 -2 0 400d1+40 4d6+5
+22 -2 0 400d1+40 4d6+5
 25000 0
 0 Minotaur~ 1
 #2317
@@ -225,7 +225,7 @@ You see a huge minotaur that is dressed in thick furs and armor. He has black
 fur and red eyes. He looks quite capable of protecting the city.
 ~
 101 0 -330 S
-16 -1 0 300d1+50 3d7+5
+19 -1 0 300d1+50 3d7+5
 25000 0
 0 Minotaur~ 1
 #2318
@@ -237,7 +237,7 @@ The minotaur stands rigidly before the gates of the keep. It looks quite
 miserable standing in the driven snow and ice.
 ~
 71 8 -330 S
-24 -4 0 550d1+50 5d5+5
+26 -4 0 550d1+50 5d5+5
 25000 0
 0 Minotaur~ 0
 #2319
@@ -249,7 +249,7 @@ The high guard is dressed in blue plate armour. He looks quite dangerous and
 skilled.
 ~
 103 8 -330 S
-20 -4 0 600d1+20 4d7+4
+24 -4 0 600d1+20 4d7+4
 45000 0
 0 Minotaur~ 1
 #2320
@@ -261,7 +261,7 @@ The royal guard is quite huge. He is dressed in heavy red armor and wields a
 huge glaive. He looks quite capable of protecting the keep.
 ~
 103 8 -330 S
-25 -6 0 650d1+50 5d5+4
+28 -6 0 650d1+50 5d5+4
 50000 0
 0 Minotaur~ 1
 #2321
@@ -273,7 +273,7 @@ This minotaur wields a huge morningstar and is clad in heavy crimson plate and
 furs.
 ~
 103 8 -250 S
-35 -8 0 800d1+50 6d5+5
+30 -8 0 800d1+50 6d5+5
 75000 0
 0 Minotaur~ 1
 #2322
@@ -285,7 +285,7 @@ She looks quite attractive. Her low cut gown reveals why she was chosen to be
 in the harem.
 ~
 199 0 1000 S
-2 20 0 50d1+10 3d1+5
+1 20 0 50d1+10 3d1+5
 10 0
 0 Human~ 2
 #2323
@@ -296,7 +296,7 @@ A minotaur butler stands here rigidly, awaiting orders.
 He looks quite regal and refined to be a minotaur.
 ~
 199 0 250 S
-17 1 0 1d12+247 3d6+4
+19 1 0 1d12+247 3d6+4
 5000 0
 0 Minotaur~ 1
 #2324
@@ -308,7 +308,7 @@ The ring-keeper is a huge minotaur. You notice a huge ring of multicolored
 keys hanging from his belt. He wears huge, spiked brass knuckles.
 ~
 71 136 -300 S
-30 -9 0 100d3+700 5d7+5
+32 -9 0 100d3+700 5d7+5
 50000 0
 0 Minotaur~ 1
 #2325
@@ -320,7 +320,7 @@ Gorak is HUGE. His bulging muscles are confined beneath heavy armor. He is the
 master of the warrior guild of Mahn-Tor.
 ~
 35 136 -300 S
-31 -9 0 2500d1+500 6d6+5
+28 -9 0 2500d1+500 6d6+5
 100000 0
 0 Minotaur~ 1
 #2326
@@ -332,7 +332,7 @@ Darkoth is a living incarnation of evil. He radiates a dark aura, and a cold
 chill runs down your spine. He is the master of the Mahn-Tor anti-paladins.
 ~
 35 136 -1000 S
-27 -9 0 2500d1+500 6d6+5
+32 -9 0 2500d1+500 6d6+5
 100000 0
 0 Minotaur~ 1
 #2327
@@ -344,7 +344,7 @@ Tyrgoth is the minotaur incarnation of good. You feel safe and at ease in his
 presence. He is the leader of the Mahn-Tor paladins.
 ~
 3 136 1000 S
-36 -9 0 2500d1+500 6d6+5
+30 -9 0 2500d1+500 6d6+5
 100000 0
 0 Minotaur~ 1
 #2328
@@ -357,7 +357,7 @@ power. He appears quite dangerous, despite his size. He is the leader of the
 mages of Mahn-Tor.
 ~
 35 136 300 S
-30 -9 0 2500d1+500 6d6+5
+29 -9 0 2500d1+500 6d6+5
 100000 0
 0 Minotaur~ 1
 #2329
@@ -369,7 +369,7 @@ Sumaron is clad in white glowing robes. He is goodness incarnate. He is the
 master of all the clerics of Mahn-Tor.
 ~
 35 136 1000 S
-21 -9 0 2500d1+500 6d6+5
+28 -9 0 2500d1+500 6d6+5
 100000 0
 0 Minotaur~ 1
 #2330
@@ -393,7 +393,7 @@ Belrak is clad in green and brown leather. He looks quite agile and thin, when
 compared to the normal minotaur. He looks at you with a slight smirk.
 ~
 35 136 500 S
-32 -9 0 2500d1+500 6d6+5
+30 -9 0 2500d1+500 6d6+5
 100000 0
 0 Minotaur~ 1
 #2332
@@ -418,7 +418,7 @@ armor and robes. He wields the largest axe you have ever seen. You can see why
 Mahn-Tor is the leader of the minotaurs. He is awe-inspiring.
 ~
 7 1573002 -500 S
-31 -10 0 3000d1+500 6d7+5
+35 -10 0 3000d1+500 6d7+5
 100000 0
 0 Minotaur~ 1
 #0
@@ -3508,18 +3508,18 @@ S
 
 
 #SPECIALS
-M 2300 spec_cast_undead 	; the Dark Ethereal Knight
-M 2302 spec_breath_acid 	; the Cave Dweller
-M 2306 spec_poison 	; the Swamp Wraith
-M 2310 spec_cast_cleric 	; The Ogre Shaman
-M 2313 spec_breath_frost 	; the White Yeti
-M 2314 spec_breath_acid 	; the Ice Worm
-M 2324 spec_cast_mage 	; the Minotaur Ring-Keeper
-M 2326 spec_cast_undead 	; Darkoth
-M 2328 spec_cast_mage 	; Amyrok
-M 2329 spec_cast_cleric 	; Sumaron
-M 2330 spec_cast_cleric 	; Nasturn
-M 2333 spec_cast_mage 	; Mahn-Tor
+M 2300 spec_cast_undead
+M 2302 spec_breath_acid
+M 2306 spec_poison
+M 2310 spec_cast_cleric
+M 2313 spec_breath_frost
+M 2314 spec_breath_acid
+M 2324 spec_cast_mage
+M 2326 spec_cast_undead
+M 2328 spec_cast_mage
+M 2329 spec_cast_cleric
+M 2330 spec_cast_cleric
+M 2333 spec_cast_mage
 S
 
 
@@ -3530,234 +3530,234 @@ S
 
 
 #RESETS
-M 0 2300  1 2307  	; the Dark Ethereal Knight to The bloody intersection
-E 0 2346  0 5     	;   A suit of ethereal plate on the body
-E 0 2347  0 6     	;   An ethereal helm over the head
-E 0 2348  0 16    	;   An ethereal blade wielded (1)
-M 0 2303  4 2311  	; the Rock Toad to The sparse foothills
-M 0 2303  4 2312  	; the Rock Toad to Standing on level ground
-M 0 2303  4 2313  	; the Rock Toad to In the foothills
-M 0 2301  1 2314  	; the Old Treant to Before the huge tree
-M 0 2302  1 2316  	; the Cave Dweller to Inside the horrid cave
-M 0 2303  4 2319  	; the Rock Toad to The hills above the shoreline
-M 0 2304  1 2330  	; the Weeping Willow to The turn in the swampy path
-G 0 2349  0      	;   A willow branch
-M 0 2305  3 2332  	; the Mistling to Lost in the Mist
-R 0 2332  4      	; Randomize Lost in the Mist
-M 0 2305  3 2333  	; the Mistling to Lost in the Mist
-R 0 2333  4      	; Randomize Lost in the Mist
-R 0 2334  4      	; Randomize Lost in the Mist
-R 0 2335  4      	; Randomize Lost in the Mist
-M 0 2306  1 2336  	; the Swamp Wraith to Lost in the Mist
-G 0 2384  0      	;   A misty potion
-R 0 2336  4      	; Randomize Lost in the Mist
-M 0 2305  3 2337  	; the Mistling to Lost in the Mist
-R 0 2337  4      	; Randomize Lost in the Mist
-R 0 2338  4      	; Randomize Lost in the Mist
-M 0 2309  4 2341  	; the Ogre Guard to The gate before the Ogre Village
-E 0 2387  0 16    	;   An ogre war club wielded (1)
-M 0 2309  4 2341  	; the Ogre Guard to The gate before the Ogre Village
-E 0 2387  0 16    	;   An ogre war club wielded (1)
-M 0 2308  4 2342  	; the Ogre Warrior to Among the crude huts
-E 0 2386  0 16    	;   An ogre spear wielded (1)
-M 0 2309  4 2342  	; the Ogre Guard to Among the crude huts
-E 0 2387  0 16    	;   An ogre war club wielded (1)
-M 0 2307  5 2343  	; the Ogre Villager to Inside the gates
-E 0 2385  0 13    	;   A belt pouch around the waist
-M 0 2307  5 2344  	; the Ogre Villager to Among the crude huts
-M 0 2307  5 2345  	; the Ogre Villager to The gathering place
-M 0 2307  5 2346  	; the Ogre Villager to The firepit before the lodge
-E 0 2385  0 13    	;   A belt pouch around the waist
-M 0 2308  4 2346  	; the Ogre Warrior to The firepit before the lodge
-E 0 2386  0 16    	;   An ogre spear wielded (1)
-M 0 2308  4 2347  	; the Ogre Warrior to The village dump
-E 0 2386  0 16    	;   An ogre spear wielded (1)
-M 0 2307  5 2348  	; the Ogre Villager to The entryway to the lodge
-M 0 2308  4 2348  	; the Ogre Warrior to The entryway to the lodge
-E 0 2386  0 16    	;   An ogre spear wielded (1)
-M 0 2309  4 2348  	; the Ogre Guard to The entryway to the lodge
-E 0 2387  0 16    	;   An ogre war club wielded (1)
-M 0 2310  1 2349  	; The Ogre Shaman to The throne room
-E 0 2388  0 12    	;   A bearskin cloak about the shoulders
-E 0 2389  0 6     	;   A pair of feathered earrings over the head
-M 0 2311  1 2350  	; the Ogre Chieftain to The chieftain's room
-E 0 2390  0 9     	;   Gauntlets of ogre power on the hands
-E 0 2391  0 16    	;   A massive club wielded (1)
-M 0 2312  3 2351  	; the Plains Barbarian to The frigid wastelands
-E 0 2392  0 4     	;   A thick fur cape around the neck (2)
-E 0 2393  0 5     	;   A fur lined tunic on the body
-E 0 2360  0 8     	;   A pair of fur lined boots on the feet
-R 0 2351  4      	; Randomize The frigid wastelands
-M 0 2314  3 2352  	; the Ice Worm to The frigid wastelands
-R 0 2352  4      	; Randomize The frigid wastelands
-M 0 2312  3 2354  	; the Plains Barbarian to The frigid wastelands
-E 0 2392  0 4     	;   A thick fur cape around the neck (2)
-E 0 2393  0 5     	;   A fur lined tunic on the body
-E 0 2360  0 8     	;   A pair of fur lined boots on the feet
-M 0 2314  3 2354  	; the Ice Worm to The frigid wastelands
-R 0 2354  4      	; Randomize The frigid wastelands
-M 0 2313  3 2355  	; the White Yeti to The frigid wastelands
-E 0 2361  0 12    	;   The white pelt of a yeti about the shoulders
-R 0 2355  4      	; Randomize The frigid wastelands
-M 0 2314  3 2356  	; the Ice Worm to The frigid wastelands
-R 0 2356  4      	; Randomize The frigid wastelands
-M 0 2313  3 2357  	; the White Yeti to The frigid wastelands
-E 0 2361  0 12    	;   The white pelt of a yeti about the shoulders
-R 0 2357  4      	; Randomize The frigid wastelands
-R 0 2358  4      	; Randomize The frigid wastelands
-M 0 2312  3 2359  	; the Plains Barbarian to The frigid wastelands
-E 0 2392  0 4     	;   A thick fur cape around the neck (2)
-E 0 2393  0 5     	;   A fur lined tunic on the body
-E 0 2360  0 8     	;   A pair of fur lined boots on the feet
-M 0 2313  3 2359  	; the White Yeti to The frigid wastelands
-E 0 2361  0 12    	;   The white pelt of a yeti about the shoulders
-R 0 2359  4      	; Randomize The frigid wastelands
-M 0 2316  3 2362  	; the Minotaur Guard to Before the gates of Mahn-Tor
-E 0 2363  0 10    	;   A pair of steel vambraces on the arms
-E 0 2364  0 7     	;   A pair of steel greaves on the legs
-E 0 2365  0 16    	;   A battle axe wielded (1)
-M 0 2315  5 2363  	; the Minotaur Citizen to The city streets of Mahn-Tor
-E 0 2362  0 16    	;   A kopesh sword wielded (1)
-M 0 2315  5 2364  	; the Minotaur Citizen to Inside the gates of Mahn-Tor
-E 0 2362  0 16    	;   A kopesh sword wielded (1)
-M 0 2315  5 2365  	; the Minotaur Citizen to The city streets of Mahn-Tor
-E 0 2362  0 16    	;   A kopesh sword wielded (1)
-M 0 2316  3 2366  	; the Minotaur Guard to The city streets of Mahn-Tor
-E 0 2363  0 10    	;   A pair of steel vambraces on the arms
-E 0 2364  0 7     	;   A pair of steel greaves on the legs
-E 0 2365  0 16    	;   A battle axe wielded (1)
-M 0 2315  5 2367  	; the Minotaur Citizen to The Square of Mahn-Tor
-E 0 2362  0 16    	;   A kopesh sword wielded (1)
-M 0 2317  3 2367  	; the Minotaur Warrior to The Square of Mahn-Tor
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2367  0 6     	;   A steel helm over the head
-E 0 2368  0 16    	;   A huge halberd wielded (1)
-M 0 2316  3 2368  	; the Minotaur Guard to The streets of Mahn-Tor
-E 0 2363  0 10    	;   A pair of steel vambraces on the arms
-E 0 2364  0 7     	;   A pair of steel greaves on the legs
-E 0 2365  0 16    	;   A battle axe wielded (1)
-M 0 2315  5 2370  	; the Minotaur Citizen to The Mahn-Tor Equipment Shop
-E 0 2362  0 16    	;   A kopesh sword wielded (1)
-M 0 2325  1 2372  	; Gorak to Gorak's Training Room
-E 0 2300  0 9     	;   A pair of minotaur combat gloves on the hands
-E 0 2301  0 5     	;   A suit of spiked garde armor on the body
-E 0 2302  0 7     	;   A pair of black minotaur greaves on the legs
-E 0 2303  0 10    	;   A pair of black minotaur vambraces on the arms
-E 0 2304  0 16    	;   The rod of weaponry wielded (1)
-M 0 2326  1 2373  	; Darkoth to Darkoth's Dark Study
-E 0 2305  0 12    	;   A pitch black cloak about the shoulders
-E 0 2306  0 4     	;   A black plate neckguard around the neck (2)
-E 0 2307  0 9     	;   A pair of spiked gauntlets on the hands
-E 0 2308  0 11    	;   The shadow shield as a shield
-E 0 2309  0 16    	;   A shortsword named "nightbringer" wielded (1)
-M 0 2327  1 2374  	; Tyrgoth to Tyrgoth's Inner Sanctum
-E 0 2310  0 6     	;   A golden helm and visor over the head
-E 0 2311  0 5     	;   A gilded gold breast plate on the body
-E 0 2312  0 4     	;   A billowing white cape  around the neck (2)
-E 0 2313  0 11    	;   A huge tower shield as a shield
-E 0 2314  0 16    	;   A huge mace named "dawnbringer" wielded (1)
-M 0 2317  3 2376  	; the Minotaur Warrior to A small guard house
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2367  0 6     	;   A steel helm over the head
-E 0 2368  0 16    	;   A huge halberd wielded (1)
-M 0 2318  1 2377  	; the Minotaur Gatekeeper to Before the Keep of Mahn-Tor
-G 0 2350  0      	;   The keep key
-M 0 2317  3 2378  	; the Minotaur Warrior to A small guard house
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2367  0 6     	;   A steel helm over the head
-E 0 2368  0 16    	;   A huge halberd wielded (1)
-M 0 2319  2 2379  	; the High Minotaur Guard to The entryway to the Keep of Mahn-Tor
-E 0 2369  0 6     	;   A blue steel helm and visor over the head
-E 0 2370  0 7     	;   A pair of blue steel greaves on the legs
-E 0 2371  0 10    	;   A pair of blue steel vambraces on the arms
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2372  0 16    	;   A two-handed sword wielded (1)
-M 0 2319  2 2380  	; the High Minotaur Guard to The Hall
-E 0 2369  0 6     	;   A blue steel helm and visor over the head
-E 0 2370  0 7     	;   A pair of blue steel greaves on the legs
-E 0 2371  0 10    	;   A pair of blue steel vambraces on the arms
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2372  0 16    	;   A two-handed sword wielded (1)
-M 0 2320  2 2382  	; the Royal Minotaur Guard to The Great Hall
-E 0 2373  0 6     	;   A red steel helm and visor over the head
-E 0 2374  0 7     	;   A pair of red steel greaves on the legs
-E 0 2375  0 10    	;   A pair of red steel vambraces on the arms
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2376  0 16    	;   A minotaur glaive wielded (1)
-M 0 2320  2 2383  	; the Royal Minotaur Guard to Standing before the throne
-E 0 2373  0 6     	;   A red steel helm and visor over the head
-E 0 2374  0 7     	;   A pair of red steel greaves on the legs
-E 0 2375  0 10    	;   A pair of red steel vambraces on the arms
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2376  0 16    	;   A minotaur glaive wielded (1)
-M 0 2321  2 2385  	; the Elite Minotaur Guard to The secret hallway
-E 0 2377  0 6     	;   A crimson steel helm and visor over the head
-E 0 2378  0 7     	;   A pair of crimson steel greaves on the legs
-E 0 2379  0 10    	;   A pair of crimson steel vambraces on the arms
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2380  0 16    	;   A huge morningstar wielded (1)
-M 0 2321  2 2385  	; the Elite Minotaur Guard to The secret hallway
-E 0 2377  0 6     	;   A crimson steel helm and visor over the head
-E 0 2378  0 7     	;   A pair of crimson steel greaves on the legs
-E 0 2379  0 10    	;   A pair of crimson steel vambraces on the arms
-E 0 2366  0 5     	;   A steel breast plate on the body
-E 0 2380  0 16    	;   A huge morningstar wielded (1)
-G 0 2359  0      	;   A runed key
-M 0 2324  1 2387  	; the Minotaur Ring-Keeper to The Guard Post
-E 0 2383  0 16    	;   A huge wooden maul wielded (1)
-E 0 2381  0 17    	;   Some huge spiked brass knuckles held in the hands
-E 0 2382  0 13    	;   A multi-colored key ring around the waist
-P 0 2351  0 2382  	; A red key inside a red key
-P 0 2352  0 2382  	; A black key inside a black key
-P 0 2353  0 2382  	; A white key inside a white key
-P 0 2354  0 2382  	; A brown key inside a brown key
-P 0 2355  0 2382  	; A yellow key inside a yellow key
-P 0 2356  0 2382  	; A maroon key inside a maroon key
-P 0 2357  0 2382  	; A green key inside a green key
-P 0 2358  0 2382  	; A grey key inside a grey key
-M 0 2329  1 2390  	; Sumaron to Sumaron's Sanctum
-E 0 2320  0 12    	;   A heavy woolen robe about the shoulders
-E 0 2321  0 3     	;   A brooch of life around the neck (1)
-E 0 2322  0 17    	;   A manual of healing arts held in the hands
-E 0 2323  0 16    	;   A huge mithril mace wielded (1)
-E 0 2324  0 4     	;   A golden holy symbol around the neck (2)
-M 0 2328  1 2391  	; Amyrok to Amyrok's Arcane Study
-E 0 2315  0 6     	;   A pair of wire rimmed spectacles over the head
-E 0 2316  0 2     	;   A banded ring on the right finger
-E 0 2317  0 12    	;   A minor globe of invulnerability about the shoulders
-E 0 2318  0 16    	;   A gnarled magius staff wielded (1)
-E 0 2319  0 13    	;   A girdle of many pouches around the waist
-M 0 2322  5 2393  	; the Harem Girl to The Harem Room
-M 0 2322  5 2393  	; the Harem Girl to The Harem Room
-M 0 2322  5 2393  	; the Harem Girl to The Harem Room
-M 0 2322  5 2393  	; the Harem Girl to The Harem Room
-M 0 2322  5 2393  	; the Harem Girl to The Harem Room
-M 0 2330  1 2394  	; Nasturn to Nasturn's Humble Abode
-E 0 2325  0 1     	;   A thick marble ring on the left finger
-E 0 2326  0 15    	;   A thick marble bracelet on the right wrist
-E 0 2327  0 8     	;   Boots of striding on the feet
-E 0 2328  0 12    	;   An icy white cloak about the shoulders
-E 0 2329  0 16    	;   An ice staff wielded (1)
-M 0 2323  1 2395  	; the Minotaur Butler to The main living room
-M 0 2333  1 2396  	; Mahn-Tor to The Master Bedroom
-E 0 2340  0 12    	;   A major globe of invulnerability about the shoulders
-E 0 2341  0 5     	;   A suit of black minotaur chainmail on the body
-E 0 2342  0 14    	;   A spiked buckler on the left wrist
-E 0 2343  0 2     	;   A studded ring on the right finger
-E 0 2344  0 6     	;   A horned minotaur helm over the head
-E 0 2345  0 16    	;   Mahn-tor's great axe wielded (1)
-M 0 2332  1 2398  	; Dorgar to Dorgar's Dismal Domicile
-E 0 2335  0 12    	;   A small leather pack about the shoulders
-E 0 2336  0 6     	;   A black leather hood over the head
-E 0 2337  0 10    	;   A pair of black leather sleeves on the arms
-E 0 2338  0 7     	;   A pair of black leather pants on the legs
-E 0 2339  0 16    	;   A wicked shortsword wielded (1)
-M 0 2331  1 2399  	; Belrak to Belrak's Green Room
-E 0 2330  0 2     	;   A carved wooden ring on the right finger
-E 0 2331  0 17    	;   The horn of life held in the hands
-E 0 2332  0 13    	;   The belt of life around the waist
-G 0 2333  0      	;   A blood red stone
-E 0 2334  0 16    	;   A huge crossbow wielded (1)
+M 0 2300 1 2307
+E 0 2346 0 5
+E 0 2347 0 6
+E 0 2348 0 16
+M 0 2303 4 2311
+M 0 2303 4 2312
+M 0 2303 4 2313
+M 0 2301 1 2314
+M 0 2302 1 2316
+M 0 2303 4 2319
+M 0 2304 1 2330
+G 0 2349 0
+M 0 2305 3 2332
+R 0 2332 4
+M 0 2305 3 2333
+R 0 2333 4
+R 0 2334 4
+R 0 2335 4
+M 0 2306 1 2336
+G 0 2384 0
+R 0 2336 4
+M 0 2305 3 2337
+R 0 2337 4
+R 0 2338 4
+M 0 2309 4 2341
+E 0 2387 0 16
+M 0 2309 4 2341
+E 0 2387 0 16
+M 0 2308 4 2342
+E 0 2386 0 16
+M 0 2309 4 2342
+E 0 2387 0 16
+M 0 2307 5 2343
+E 0 2385 0 13
+M 0 2307 5 2344
+M 0 2307 5 2345
+M 0 2307 5 2346
+E 0 2385 0 13
+M 0 2308 4 2346
+E 0 2386 0 16
+M 0 2308 4 2347
+E 0 2386 0 16
+M 0 2307 5 2348
+M 0 2308 4 2348
+E 0 2386 0 16
+M 0 2309 4 2348
+E 0 2387 0 16
+M 0 2310 1 2349
+E 0 2388 0 12
+E 0 2389 0 6
+M 0 2311 1 2350
+E 0 2390 0 9
+E 0 2391 0 16
+M 0 2312 3 2351
+E 0 2392 0 4
+E 0 2393 0 5
+E 0 2360 0 8
+R 0 2351 4
+M 0 2314 3 2352
+R 0 2352 4
+M 0 2312 3 2354
+E 0 2392 0 4
+E 0 2393 0 5
+E 0 2360 0 8
+M 0 2314 3 2354
+R 0 2354 4
+M 0 2313 3 2355
+E 0 2361 0 12
+R 0 2355 4
+M 0 2314 3 2356
+R 0 2356 4
+M 0 2313 3 2357
+E 0 2361 0 12
+R 0 2357 4
+R 0 2358 4
+M 0 2312 3 2359
+E 0 2392 0 4
+E 0 2393 0 5
+E 0 2360 0 8
+M 0 2313 3 2359
+E 0 2361 0 12
+R 0 2359 4
+M 0 2316 3 2362
+E 0 2363 0 10
+E 0 2364 0 7
+E 0 2365 0 16
+M 0 2315 5 2363
+E 0 2362 0 16
+M 0 2315 5 2364
+E 0 2362 0 16
+M 0 2315 5 2365
+E 0 2362 0 16
+M 0 2316 3 2366
+E 0 2363 0 10
+E 0 2364 0 7
+E 0 2365 0 16
+M 0 2315 5 2367
+E 0 2362 0 16
+M 0 2317 3 2367
+E 0 2366 0 5
+E 0 2367 0 6
+E 0 2368 0 16
+M 0 2316 3 2368
+E 0 2363 0 10
+E 0 2364 0 7
+E 0 2365 0 16
+M 0 2315 5 2370
+E 0 2362 0 16
+M 0 2325 1 2372
+E 0 2300 0 9
+E 0 2301 0 5
+E 0 2302 0 7
+E 0 2303 0 10
+E 0 2304 0 16
+M 0 2326 1 2373
+E 0 2305 0 12
+E 0 2306 0 4
+E 0 2307 0 9
+E 0 2308 0 11
+E 0 2309 0 16
+M 0 2327 1 2374
+E 0 2310 0 6
+E 0 2311 0 5
+E 0 2312 0 4
+E 0 2313 0 11
+E 0 2314 0 16
+M 0 2317 3 2376
+E 0 2366 0 5
+E 0 2367 0 6
+E 0 2368 0 16
+M 0 2318 1 2377
+G 0 2350 0
+M 0 2317 3 2378
+E 0 2366 0 5
+E 0 2367 0 6
+E 0 2368 0 16
+M 0 2319 2 2379
+E 0 2369 0 6
+E 0 2370 0 7
+E 0 2371 0 10
+E 0 2366 0 5
+E 0 2372 0 16
+M 0 2319 2 2380
+E 0 2369 0 6
+E 0 2370 0 7
+E 0 2371 0 10
+E 0 2366 0 5
+E 0 2372 0 16
+M 0 2320 2 2382
+E 0 2373 0 6
+E 0 2374 0 7
+E 0 2375 0 10
+E 0 2366 0 5
+E 0 2376 0 16
+M 0 2320 2 2383
+E 0 2373 0 6
+E 0 2374 0 7
+E 0 2375 0 10
+E 0 2366 0 5
+E 0 2376 0 16
+M 0 2321 2 2385
+E 0 2377 0 6
+E 0 2378 0 7
+E 0 2379 0 10
+E 0 2366 0 5
+E 0 2380 0 16
+M 0 2321 2 2385
+E 0 2377 0 6
+E 0 2378 0 7
+E 0 2379 0 10
+E 0 2366 0 5
+E 0 2380 0 16
+G 0 2359 0
+M 0 2324 1 2387
+E 0 2383 0 16
+E 0 2381 0 17
+E 0 2382 0 13
+P 0 2351 0 2382
+P 0 2352 0 2382
+P 0 2353 0 2382
+P 0 2354 0 2382
+P 0 2355 0 2382
+P 0 2356 0 2382
+P 0 2357 0 2382
+P 0 2358 0 2382
+M 0 2329 1 2390
+E 0 2320 0 12
+E 0 2321 0 3
+E 0 2322 0 17
+E 0 2323 0 16
+E 0 2324 0 4
+M 0 2328 1 2391
+E 0 2315 0 6
+E 0 2316 0 2
+E 0 2317 0 12
+E 0 2318 0 16
+E 0 2319 0 13
+M 0 2322 5 2393
+M 0 2322 5 2393
+M 0 2322 5 2393
+M 0 2322 5 2393
+M 0 2322 5 2393
+M 0 2330 1 2394
+E 0 2325 0 1
+E 0 2326 0 15
+E 0 2327 0 8
+E 0 2328 0 12
+E 0 2329 0 16
+M 0 2323 1 2395
+M 0 2333 1 2396
+E 0 2340 0 12
+E 0 2341 0 5
+E 0 2342 0 14
+E 0 2343 0 2
+E 0 2344 0 6
+E 0 2345 0 16
+M 0 2332 1 2398
+E 0 2335 0 12
+E 0 2336 0 6
+E 0 2337 0 10
+E 0 2338 0 7
+E 0 2339 0 16
+M 0 2331 1 2399
+E 0 2330 0 2
+E 0 2331 0 17
+E 0 2332 0 13
+G 0 2333 0
+E 0 2334 0 16
 S
 
 

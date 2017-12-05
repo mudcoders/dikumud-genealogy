@@ -251,20 +251,20 @@ void    bzero           args( ( char *b, int length ) );
 int     close           args( ( int fd ) );
 int     getpeername     args( ( int s, struct sockaddr *name, int *namelen ) );
 int     getsockname     args( ( int s, struct sockaddr *name, int *namelen ) );
-int     gettimeofday    args( ( struct timeval *tp, struct timezone *tzp ) );
-int     listen          args( ( int s, int backlog ) );
-int     read            args( ( int fd, char *buf, int nbyte ) );
 int     select          args( ( int width, fd_set *readfds, fd_set *writefds,
 			       fd_set *exceptfds, struct timeval *timeout ) );
 #if defined( SYSV )
 int     setsockopt      args( ( int s, int level, int optname,
 			       const char *optval, int optlen ) );
 #else
+int     gettimeofday    args( ( struct timeval *tp, struct timezone *tzp ) );
+int     listen          args( ( int s, int backlog ) );
+int     read            args( ( int fd, char *buf, int nbyte ) );
+int     write           args( ( int fd, char *buf, int nbyte ) );
 int     setsockopt      args( ( int s, int level, int optname, void *optval,
 			       int optlen ) );
 #endif
 int     socket          args( ( int domain, int type, int protocol ) );
-int     write           args( ( int fd, char *buf, int nbyte ) );
 #endif
 
 #if defined( ultrix )
@@ -874,7 +874,6 @@ void game_loop_unix( int control )
 #if defined( unix )
 void new_descriptor( int control )
 {
-	   BAN_DATA        *pban;
     static DESCRIPTOR_DATA  d_zero;
 	   DESCRIPTOR_DATA *dnew;
     struct sockaddr_in      sock;
@@ -954,30 +953,10 @@ void new_descriptor( int control )
 	from = gethostbyaddr( (char *) &sock.sin_addr,
 			     sizeof(sock.sin_addr), AF_INET );
 	dnew->host = str_dup( from ? from->h_name : buf );
+	sprintf( log_buf, "New connection: %s (%s)", dnew->host, buf );
+	wiznet ( NULL, WIZ_LOGINS, L_DIR, log_buf );
     }
 
-    /*
-     * Swiftest: I added the following to ban sites.  I don't
-     * endorse banning of sites, but Copper has few descriptors now
-     * and some people from certain sites keep abusing access by
-     * using automated 'autodialers' and leaving connections hanging.
-     *
-     * Furey: added suffix check by request of Nickel of HiddenWorlds.
-     */
-    for ( pban = ban_list; pban; pban = pban->next )
-    {
-	if ( !str_suffix( pban->name, dnew->host ) )
-	{
-	    write_to_descriptor( desc,
-		"Your site has been banned from this Mud.\n\r", 0 );
-	    close( desc );
-	    free_string( dnew->host );
-	    free_mem( dnew->outbuf, dnew->outsize );
-	    dnew->next          = descriptor_free;
-	    descriptor_free     = dnew;
-	    return;
-	}
-    }
 
     /*
      * Init descriptor data.
@@ -1218,6 +1197,7 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 	    {
 		sprintf( log_buf, "%s input spamming!", d->host );
 		log_string( log_buf );
+		wiznet( NULL, WIZ_SPAM, 0, log_buf );
 		write_to_descriptor( d->descriptor,
 		    "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
 		strcpy( d->incomm, "quit" );
@@ -1255,7 +1235,11 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
     /*
      * Bust a prompt.
      */
-    if ( fPrompt && !merc_down && d->connected == CON_PLAYING )
+    if ( d->pString )			/* Disable prompt in editors !! */
+    {					/* By Maniac!			*/
+	write_to_buffer( d, "> ", 0 );
+    }
+    else if ( fPrompt && !merc_down && d->connected == CON_PLAYING )
     {
 	if ( d->showstr_point )
 	{
@@ -1355,8 +1339,10 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
    const char      *str;
    const char      *i;
 	 char      *point;
-	 char       buf  [ MAX_STRING_LENGTH ];
-	 char       buf2 [ MAX_STRING_LENGTH ];
+	 char      *pbuff;
+	 char       buffer [ MAX_STRING_LENGTH ];
+	 char       buf    [ MAX_STRING_LENGTH ];
+	 char       buf2   [ MAX_STRING_LENGTH ];
 
    /* Will always have a pc ch after this */
    ch = ( d->original ? d->original : d->character );
@@ -1458,7 +1444,10 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
       while( ( *point = *i ) != '\0' )
 	 ++point, ++i;
    }
-   write_to_buffer( d, buf, point - buf );
+   *point = '\0';
+   pbuff = buffer;
+   colourconv( pbuff, buf, ch );
+   write_to_buffer( d, buffer, 0 );
    return;
 }
 
@@ -1544,6 +1533,7 @@ bool write_to_descriptor( int desc, char *txt, int length )
  */
 void nanny( DESCRIPTOR_DATA *d, char *argument )
 {
+    BAN_DATA  *pban;
     CHAR_DATA *ch;
     NOTE_DATA *pnote;
     char      *pwdnew;
@@ -1593,6 +1583,40 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    sprintf( log_buf, "Denying access to %s@%s.", argument, d->host );
 	    log_string( log_buf );
 	    write_to_buffer( d, "You are denied access.\n\r", 0 );
+	    close_socket( d );
+	    return;
+	}
+
+	/*
+	 * Swiftest: I added the following to ban sites.  I don't
+	 * endorse banning of sites, but Copper has few descriptors now
+	 * and some people from certain sites keep abusing access by
+	 * using automated 'autodialers' and leaving connections hanging.
+	 *
+	 * Furey: added suffix check by request of Nickel of HiddenWorlds.
+	 *
+	 * Bell: Added level check to allow cool players from banned sites
+	 * to log on after all :)
+	 */
+	for ( pban = ban_list; pban; pban = pban->next )
+	{
+	    if ( ( !str_suffix( pban->name, d->host ) )
+		&& ( ch->level < pban->level ) )
+	    {
+		write_to_buffer( d,
+		    "Your site has been banned from this Mud.\n\r", 0 );
+		close_socket( d );
+		return;
+	    }
+	}
+
+	if ( ( ch->current_age > ch->death_age ) && ( ch->death_age > 0) &&
+		( get_trust( ch ) <= LEVEL_HERO ) )
+	{
+	    sprintf( log_buf, "%s tried to get out of its grave.", ch->name );
+	    log_string ( log_buf );
+	    wiznet( ch, WIZ_LOGINS, get_trust( ch ), log_buf );
+	    write_to_buffer( d, "You are dead and burried... remember?\n\r", 0 );
 	    close_socket( d );
 	    return;
 	}
@@ -1693,6 +1717,10 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	switch ( *argument )
 	{
 	case 'y': case 'Y':
+	    sprintf( log_buf, "%s@%s new player.", ch->name, d->host );
+	    log_string( log_buf );
+	    wiznet(ch, WIZ_NEWBIE, 0, log_buf);
+
 	    sprintf( buf, "New character.\n\rGive me a password for %s: %s",
 		    ch->name, echo_off_str );
 	    write_to_buffer( d, buf, 0 );
@@ -1901,9 +1929,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	      return;
 	}
 
-	sprintf( log_buf, "%s@%s new player.", ch->name, d->host );
-	log_string( log_buf );
-	wiznet(ch, WIZ_NEWBIE, get_trust(ch) + 1, ch->name);
+	SET_BIT(ch->pcdata->oldclass, bitvalues[ch->class]);
 
 	write_to_buffer( d, "\n\r", 2 );
 	ch->pcdata->pagelen = 20;
@@ -1952,6 +1978,20 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 #endif
 	    ch->pcdata->clan = CLAN_NONE;
 	    ch->pcdata->clanlevel = CLAN_NOLEVEL;
+#if defined (START_AGE_SYSTEM)
+	    ch->current_age = MUD_YEAR * ( race_table[ch->race].start_age +
+		dice(race_table[ch->race].start_age_mod[0],
+		    race_table[ch->race].start_age_mod[1]) );
+#else
+	    ch->current_age = -1;
+#endif
+#if defined (DEATH_AGE_SYSTEM)
+	    ch->death_age = MUD_YEAR * ( race_table[ch->race].death_age +
+		dice(race_table[ch->race].death_age_mod[0],
+		    race_table[ch->race].death_age_mod[1]) );
+#else
+	    ch->death_age = -1;		/* Immortality (No death of old age) */
+#endif
 
 	    sprintf( buf, "the %s",
 		    title_table [ch->class] [ch->level]
@@ -2004,11 +2044,9 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
         }
 #endif
 
-        if ( !IS_SET( ch->act, PLR_WIZINVIS )
-            && !IS_AFFECTED( ch, AFF_INVISIBLE ) )
-            sprintf( log_buf, "%s has entered the game.\n\r", ch->name );
-            wiznet(ch, WIZ_LOGINS, 0, log_buf );
-	    act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
+	sprintf( log_buf, "%s has entered the game.", ch->name );
+	wiznet(ch, WIZ_LOGINS, get_trust( ch ), log_buf );
+	act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
 
 	do_look( ch, "auto" );
 	/* check for new notes */
@@ -2184,6 +2222,11 @@ bool check_playing( DESCRIPTOR_DATA *d, char *name )
 			? dold->original->name : dold->character->name )
 	    && !dold->character->deleted )
 	{
+#if defined (AUTO_DISCONNECT_OLD)	/* Disconnect the old char */
+	    write_to_buffer( d, "Already playing. Disconnecting old socket!\n\r", 0 );
+	    close_socket( dold );
+	    return FALSE;
+#else
 	    write_to_buffer( d, "Already playing.\n\rName: ", 0 );
 	    d->connected = CON_GET_NAME;
 	    if ( d->character )
@@ -2192,6 +2235,7 @@ bool check_playing( DESCRIPTOR_DATA *d, char *name )
 		d->character = NULL;
 	    }
 	    return TRUE;
+#endif
 	}
     }
 
@@ -2249,7 +2293,7 @@ void send_to_all_char( const char *text )
 /*
  * Write to one char.
  */
-void send_to_char( const char *txt, CHAR_DATA *ch )
+void send_to_char_bw( const char *txt, CHAR_DATA *ch )
 {
     if ( !txt || !ch->desc )
 	return;
@@ -2270,6 +2314,68 @@ void send_to_char( const char *txt, CHAR_DATA *ch )
 
     return;
 }
+
+void send_to_char( const char *txt, CHAR_DATA *ch )
+{
+    const char	*point;
+	  char	*point2;
+	  char	 buf [MAX_STRING_LENGTH * 4 ];
+	  int	 skip = 0;
+
+    buf[0] = '\0';
+    point2 = buf;
+
+    if ( txt && ch->desc )
+    {
+	if ( IS_SET( ch->act, PLR_COLOUR ) )
+	{
+	    for ( point = txt; *point; point++ )
+	    {
+		if ( *point == '{' )
+		{
+		    point++;
+		    skip = colour( *point, ch, point2 );
+		    while( skip-- > 0 )
+			++point2;
+		    continue;
+		}
+
+		*point2 = *point;
+		*++point2 = '\0';
+	    }
+	    *point2 = '\0';
+	    free_string( ch->desc->showstr_head );
+	    ch->desc->showstr_head = str_dup( buf );
+	    ch->desc->showstr_point = ch->desc->showstr_head;
+	    show_string( ch->desc, "" );
+	}
+	else
+	{
+	    for ( point = txt; *point; point++ )
+	    {
+		if ( *point == '{' )
+		{
+		    point++;
+		    if ( *point == '{' )
+		    {
+			*point2 = *point;
+			*++point2 = '\0';
+		    }
+		    continue;
+		}
+		*point2 = *point;
+		*++point2 = '\0';
+	    }
+	    *point2 = '\0';
+	    free_string( ch->desc->showstr_head );
+	    ch->desc->showstr_head = str_dup( buf );
+	    ch->desc->showstr_point = ch->desc->showstr_head;
+	    show_string( ch->desc, "" );
+	}
+    }
+    return;
+}
+
 
 /* OLC, new pager for editing long descriptions. */
 /* ========================================================================= */
@@ -2393,9 +2499,11 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
     const  char            *str;
     const  char            *i;
 	   char            *point;
-	   char             buf     [ MAX_STRING_LENGTH ];
-	   char             buf1    [ MAX_STRING_LENGTH ];
-	   char             fname   [ MAX_INPUT_LENGTH  ];
+	   char            *pbuff;
+	   char             buf     [ MAX_STRING_LENGTH     ];
+	   char             buf1    [ MAX_STRING_LENGTH     ];
+	   char             buffer  [ MAX_STRING_LENGTH * 2 ];
+	   char             fname   [ MAX_INPUT_LENGTH      ];
 
     /* Discard NULL and zero length messages */
     if ( !format || format[0] == '\0' )
@@ -2500,10 +2608,13 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 
 	*point++ = '\n';
 	*point++ = '\r';
+	*point   = '\0';
 	buf[0]   = UPPER( buf[0] );
+	pbuff    = buffer;
+	colourconv( pbuff, buf, to );
 	/* Bugfix by maniac */
 	if (to->desc)
-		write_to_buffer( to->desc, buf, point - buf );
+		write_to_buffer( to->desc, buffer, 0 );
 	if (MOBtrigger)
 	    mprog_act_trigger( buf, to, ch, obj1, vch );
     }
@@ -2521,3 +2632,127 @@ int gettimeofday( struct timeval *tp, void *tzp )
     tp->tv_usec = 0;
 }
 #endif
+
+
+int colour( char type, CHAR_DATA *ch, char *string )
+{
+    char  code [ 20 ];
+    char *p = '\0';
+
+    if ( IS_NPC( ch ) )
+	return( 0 );
+
+    switch( type )
+    {
+	default:
+	    sprintf( code, CLR_CLEAR );
+	    break;
+	case 'x':
+	    sprintf( code, CLR_CLEAR );
+	    break;
+	case 'b':
+	    sprintf( code, CLR_BLUE );
+	    break;
+	case 'c':
+	    sprintf( code, CLR_CYAN );
+	    break;
+	case 'g':
+	    sprintf( code, CLR_GREEN );
+	    break;
+	case 'm':
+	    sprintf( code, CLR_MAGENTA );
+	    break;
+	case 'r':
+	    sprintf( code, CLR_RED );
+	    break;
+	case 'w':
+	    sprintf( code, CLR_WHITE );
+	    break;
+	case 'y':
+	    sprintf( code, CLR_YELLOW );
+	    break;
+	case 'B':
+	    sprintf( code, CLR_B_BLUE );
+	    break;
+	case 'C':
+	    sprintf( code, CLR_B_CYAN );
+	    break;
+	case 'G':
+	    sprintf( code, CLR_B_GREEN );
+	    break;
+	case 'M':
+	    sprintf( code, CLR_B_MAGENTA );
+	    break;
+	case 'R':
+	    sprintf( code, CLR_B_RED );
+	    break;
+	case 'W':
+	    sprintf( code, CLR_B_WHITE );
+	    break;
+	case 'Y':
+	    sprintf( code, CLR_B_YELLOW );
+	    break;
+	case 'D':
+	    sprintf( code, CLR_D_GREY );
+	    break;
+	case '*':
+	    sprintf( code, "%c", 007 );
+	    break;
+	case '/':
+	    sprintf( code, "%c", 012 );
+	    break;
+	case '{':
+	    sprintf( code, "%c", '{' );
+	    break;
+    }
+
+    p = code;
+    while ( *p != '\0' )
+    {
+	*string = *p++;
+	*++string = '\0';
+    }
+
+    return( strlen( code ) );
+}
+
+void colourconv( char *buffer, const char *txt, CHAR_DATA *ch )
+{
+    const char *point;
+	  int   skip = 0;
+
+    if ( ch->desc && txt )
+    {
+	if ( IS_SET( ch->act, PLR_COLOUR ) )
+	{
+	    for ( point = txt; *point; point++ )
+	    {
+		if ( *point == '{' )
+		{
+		    point++;
+		    skip = colour( *point, ch, buffer );
+		    while ( skip-- > 0 )
+			++buffer;
+		    continue;
+		}
+		*buffer = *point;
+		*++buffer = '\0';
+	    }
+	}
+	else
+	{
+	    for ( point = txt; *point; point++ )
+	    {
+		if ( *point == '{' )
+		{
+		    point++;
+		    continue;
+		}
+		*buffer = *point;
+		*++buffer = '\0';
+	    }
+	    *buffer = '\0';
+	}
+    }
+    return;
+}

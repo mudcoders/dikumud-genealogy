@@ -240,6 +240,12 @@ An up-to-date list of liquids can be obtained by typing
    value 3    unused
 ~
 
+0 ITEM_FURNITURE~
+.   value 0    max users of object
+   value 1    unused
+   value 2    object usage bits (sit on/at/in, rest on/at/in, etc)
+   value 3    unused
+~
 
 0 MPEDIT~
 Syntax: mpedit <vnum> [#num]     - Enters the mobprog editor for the selected 

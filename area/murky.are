@@ -1,5 +1,5 @@
 #AREADATA
-Name        Murky Land~
+Name        {{ 3 50} Hatchet Murky Land~
 Builders    None~
 VNUMs       10700 10791
 Security    1
@@ -19,7 +19,7 @@ nothing about what you think, and he wishes you share the same sentiments with
 him, too.
 ~
 67 40 -100 S
-9 0 0 0d0+0 0d0+0
+18 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10701
@@ -33,7 +33,7 @@ artificial.  Also, just from the look of him you can bet that he has a night
 job as a bouncer.  You wonder if he's guarding something here.
 ~
 67 40 -300 S
-25 0 0 0d0+0 0d0+0
+21 0 0 0d0+0 0d0+0
 0 0
 0 Troll~ 1
 #10702
@@ -46,7 +46,7 @@ intelligence.  He smiles at you briefly and then resumes his fun with
 Iccy.
 ~
 67 8320 750 S
-3 0 0 0d0+0 0d0+0
+7 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10703
@@ -71,7 +71,7 @@ more reflections of him than you do of yourself.  However, you DO notice
 that KahnO is nothing more than a modified troll with limited intelligence.
 ~
 67 98434 500 S
-11 0 0 0d0+0 0d0+0
+6 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10705
@@ -83,7 +83,7 @@ You notice that Fraggie is just a modified young spider.  He licks his lips
 and grins at you.
 ~
 67 128 -400 S
-4 0 0 0d0+0 0d0+0
+5 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10706
@@ -95,7 +95,7 @@ The cook looks at you momentarily, yells 'Hey, you ain't supposed to be
 here!', but quickly loses her train of thought and ignores you after that.
 ~
 195 0 -50 S
-10 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #10707
@@ -109,7 +109,7 @@ whispers to you with a grin.  He quickly reverts back to his degenerate
 self.
 ~
 67 0 -200 S
-14 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10708
@@ -133,7 +133,7 @@ This small blob is trying to morph into an evil, powerful creature.  It's
 also crawling toward you, trying to consume you!
 ~
 67 0 -400 S
-7 0 0 0d0+0 0d0+0
+3 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10710
@@ -169,7 +169,7 @@ Little Dave makes a lot of money off his wares, not to mention a huge
 following.
 ~
 67 0 -200 S
-5 0 0 0d0+0 0d0+0
+4 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10713
@@ -181,7 +181,7 @@ The little boy sits here, bleeding from many small cuts.  He smiles at you
 and offers a bloody razor.
 ~
 67 0 0 S
-3 0 0 0d0+0 0d0+0
+1 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10714
@@ -193,7 +193,7 @@ The little girl smirks at you, and splashes some Kerosene at you!  She
 then lights a match and stares at it in wonder.
 ~
 195 0 -400 S
-6 0 0 0d0+0 0d0+0
+3 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 2
 #10715
@@ -205,7 +205,7 @@ This big bruiser doesn't like you being here,and knows of only one way to
 get rid of you, and that's by killing you!
 ~
 103 40 -600 S
-11 0 0 0d0+0 0d0+0
+10 0 0 0d0+0 0d0+0
 0 0
 0 Troll~ 1
 #10716
@@ -217,7 +217,7 @@ He's dressed in rags, and shouts 'Don't come any closer!' 'Hey, I saw you
 move!'  He immediately attacks you!
 ~
 103 0 -100 S
-5 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10717
@@ -229,7 +229,7 @@ The roomskeeper looks bored.  He says to you 'Hi.  Rooms D and G are taken.
 If you want a whore, rent room F'.  He then goes back to his introversion.
 ~
 67 0 -500 S
-14 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10718
@@ -241,7 +241,7 @@ This little kid zips around you, between your legs, over your heads.  You
 can't believe the energy this little dude has!
 ~
 65 0 0 S
-1 0 0 0d0+0 0d0+0
+5 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 1
 #10719
@@ -253,7 +253,7 @@ This strange creature has four sets of boobs and 2 penises.  You recoil from
 this monstrosity in disgust!  Better get out of here, quick!
 ~
 67 0 -50 S
-7 0 0 0d0+0 0d0+0
+8 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #10720
@@ -268,7 +268,7 @@ willing to pay my price?"
 (type list to see what he has to sell)
 ~
 67 0 -200 S
-13 0 0 0d0+0 0d0+0
+10 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10721
@@ -292,7 +292,7 @@ A gruff warrior is sitting at the table, eating messily.
 The warrior looks to be quite barbaric.  He ignores you completely.
 ~
 67 0 0 S
-19 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Dwarf~ 1
 #10723
@@ -303,7 +303,7 @@ The lady bartender serves up drinks and mops up the counter robotically.
 You can tell she's had days like this many times before.
 ~
 67 0 0 S
-1 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Halfelf~ 2
 #10724
@@ -314,7 +314,7 @@ A dark shadow looms over you.
 You see a dark silhouette of a human sized creature.
 ~
 225 1146922 -700 S
-11 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10725
@@ -325,7 +325,7 @@ A dark shadow looms over you.
 You see a silhouette of a human-sized creature.
 ~
 99 1146922 -700 S
-13 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10726
@@ -338,7 +338,7 @@ what I found!  Ha Ha!"  He won't give up this little treasure to you, but
 he MAY be convinced to sell it to you for neato shiny coins!
 ~
 193 0 0 S
-5 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10727
@@ -364,7 +364,7 @@ consider approaching her, but only for a brief moment and quickly
 reconsider that idea.
 ~
 67 0 100 S
-17 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 2
 #10729
@@ -377,7 +377,7 @@ skeleton key.  If you find it, PLEASE return it to me!!!!"  He goes back
 to his search.
 ~
 195 0 -200 S
-12 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10730
@@ -388,7 +388,7 @@ A bundle is wriggling beneath you.
 The bundle is a tied victim!  He squirms, trying to get out!
 ~
 67 0 0 S
-3 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10731
@@ -399,7 +399,7 @@ An employee is here, discussing with a shade.
 The employee spots you, and attacks!
 ~
 99 0 -400 S
-17 0 0 0d0+0 0d0+0
+15 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #10732
@@ -411,7 +411,7 @@ The shade is not happy that you have intruded upon it's discussion and
 decides to attack you.
 ~
 99 1146922 -700 S
-18 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10733
@@ -423,7 +423,7 @@ The shadow warrior is so insubstantial, even its weapons and armor are
 mere silhouettes!
 ~
 99 1146922 -750 S
-22 0 0 0d0+0 0d0+0
+25 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10734
@@ -434,7 +434,7 @@ A big hulking beast hovers over you.
 You watch with dread as the shadow dragon claws and breathes at you!
 ~
 99 1671210 -999 S
-31 0 0 0d0+0 0d0+0
+35 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10735
@@ -445,7 +445,7 @@ A shadow leans over the scrolls.
 The shadow librarian ignores you completely, engrossed in its scrolls.
 ~
 67 98346 -800 S
-27 0 0 0d0+0 0d0+0
+29 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10736
@@ -457,7 +457,7 @@ The shadow conjurer ignores you completely, engrossed in its potions and
 other concoctions.
 ~
 67 98346 -800 S
-29 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10737
@@ -468,7 +468,7 @@ A shadow leans over the scrolls.
 The shadow scriber ignores you compeletely, engrossed in its scrolls.
 ~
 67 98346 -800 S
-35 0 0 0d0+0 0d0+0
+30 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10738
@@ -479,7 +479,7 @@ A shadow looms over the weapons.
 The shadow enchanter ignores you completely, engrossed with its weapons.
 ~
 67 98346 -800 S
-40 0 0 0d0+0 0d0+0
+26 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10739
@@ -502,7 +502,7 @@ A shadow is here, turturing its victim with acid.
 You can bet this turturer likes its job!
 ~
 195 0 -750 S
-12 0 0 0d0+0 0d0+0
+14 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10741
@@ -513,7 +513,7 @@ A shadow is here, torturing its victim by stabbing it repeatedly.
 You can bet this torturer likes its job!
 ~
 195 0 -750 S
-23 0 0 0d0+0 0d0+0
+14 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10742
@@ -524,7 +524,7 @@ A shadow is here, torturing its victim with fire.
 You can bet this torturer loves its job!
 ~
 195 0 -750 S
-15 0 0 0d0+0 0d0+0
+14 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10743
@@ -552,7 +552,7 @@ oblivion.  KhyrhaShohan serves the Shadow Lord without reserve, although
 it envies the other Khyrha for being first before itself.
 ~
 195 1147562 -1000 S
-30 0 0 0d0+0 0d0+0
+36 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #10745
@@ -567,7 +567,7 @@ his unlife destroying humanity.  His singular purpose leaves him very
 predictable, but also very, very powerful.
 ~
 195 1147562 -1000 S
-46 0 0 0d0+0 0d0+0
+42 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 1
 #0
@@ -2800,32 +2800,32 @@ S
 
 
 #SPECIALS
-M 10700 spec_cast_judge 	; a bored cashier
-M 10701 spec_repairman 	; the Greeter/Bouncer
-M 10704 spec_thief 	; KahnO, predecesser of KahnI
-M 10705 spec_poison 	; Fraggie
-M 10708 spec_cast_undead 	; an unspawned demon
-M 10709 spec_cast_undead 	; a morphing blob
-M 10710 spec_thief 	; Blinky
-M 10712 spec_cast_psionicist 	; Little Dave, the evil Monk
-M 10718 spec_thief 	; the little \/\/ildrunner
-M 10720 spec_cast_mage 	; a weaslly-looking man
-M 10724 spec_cast_undead 	; a shade
-M 10725 spec_cast_undead 	; a shade sentry
-M 10727 spec_cast_mage 	; an old man
-M 10732 spec_cast_undead 	; a shade
-M 10733 spec_cast_undead 	; a shadow warrior
-M 10734 spec_breath_acid 	; Shadow Dragon
-M 10735 spec_cast_judge 	; the shadow librarian
-M 10736 spec_cast_cleric 	; the shadow conjurer
-M 10737 spec_cast_psionicist 	; the shadow scriber
-M 10738 spec_cast_mage 	; the shadow enchanter
-M 10740 spec_cast_undead 	; the torturer
-M 10741 spec_cast_undead 	; the torturer
-M 10742 spec_cast_undead 	; the torturer
-M 10743 spec_cast_undead 	; the Shadow Demon
-M 10744 spec_cast_undead 	; the Shadow Demon
-M 10745 spec_cast_undead 	; the Shadow Lord
+M 10700 spec_cast_judge
+M 10701 spec_repairman
+M 10704 spec_thief
+M 10705 spec_poison
+M 10708 spec_cast_undead
+M 10709 spec_cast_undead
+M 10710 spec_thief
+M 10712 spec_cast_psionicist
+M 10718 spec_thief
+M 10720 spec_cast_mage
+M 10724 spec_cast_undead
+M 10725 spec_cast_undead
+M 10727 spec_cast_mage
+M 10732 spec_cast_undead
+M 10733 spec_cast_undead
+M 10734 spec_breath_acid
+M 10735 spec_cast_judge
+M 10736 spec_cast_cleric
+M 10737 spec_cast_psionicist
+M 10738 spec_cast_mage
+M 10740 spec_cast_undead
+M 10741 spec_cast_undead
+M 10742 spec_cast_undead
+M 10743 spec_cast_undead
+M 10744 spec_cast_undead
+M 10745 spec_cast_undead
 S
 
 
@@ -2836,246 +2836,246 @@ S
 
 
 #RESETS
-M 0 10700  1 10701 	; a bored cashier to At the Cashier's Booth
-E 0 10701  0 16    	;   A heavy cudgel wielded (1)
-G 0 10700  0      	;   A ticket to murky land
-M 0 10701  1 10702 	; the Greeter/Bouncer to Inside the Entrance to Murky Land
-E 0 10701  0 16    	;   A heavy cudgel wielded (1)
-M 0 10724  3 10704 	; a shade to Restroom Hallway
-M 0 10707  1 10707 	; the cafeteria counterperson to Cafeteria
-E 0 10708  0 13    	;   An apron around the waist
-E 0 10701  0 16    	;   A heavy cudgel wielded (1)
-G 0 10709  0      	;   A bag of yellow popcorn
-G 0 10710  0      	;   A candy cane
-G 0 10711  0      	;   A plastic cup of cola
-G 0 10712  0      	;   A plastic cup of lemonade
-G 0 10713  0      	;   Some type of jerky
-M 0 10706  1 10708 	; the cook to Kitchen
-E 0 10708  0 13    	;   An apron around the waist
-E 0 10707  0 16    	;   A cooking spatula wielded (1)
-M 0 10726  1 10710 	; a little brat to Along a Path in Murky Land
-G 0 10758  0      	;   A skeleton key
-M 0 10702  1 10711 	; a Hatchling to Hatchling's and Iccy's Playpen
-E 0 10702  0 16    	;   A small hatchet wielded (1)
-E 0 10704  0 1     	;   A simple engagement ring on the left finger
-M 0 10703  1 10711 	; Iccy to Hatchling's and Iccy's Playpen
-E 0 10703  0 16    	;   A small icepick wielded (1)
-E 0 10704  0 1     	;   A simple engagement ring on the left finger
-M 0 10705  1 10712 	; Fraggie to Fraggie's Dark Hovel
-E 0 10706  0 5     	;   A hard spider carapace on the body
-M 0 10704  1 10713 	; KahnO, predecesser of KahnI to KahnO's Hall of Mirrors
-E 0 10705  0 16    	;   Blacktooth wielded (1)
-M 0 10708  1 10715 	; an unspawned demon to A Small Hell
-M 0 10709  1 10715 	; a morphing blob to A Small Hell
-M 0 10710  1 10716 	; Blinky to Blinky's Kitchenette
-E 0 10707  0 16    	;   A cooking spatula wielded (1)
-M 0 10711  1 10717 	; the unmixed Atom to Atom's Little Galaxy
-M 0 10718  1 10718 	; the little \/\/ildrunner to Along a Path in Murky Land
-E 0 10734  0 8     	;   \/\/ildrunner(tm) running shoes on the feet
-M 0 10712  1 10719 	; Little Dave, the evil Monk to A Monk's Temple/Crackhouse
-G 0 10716  0      	;   A green pill
-G 0 10717  0      	;   A pink pill
-G 0 10718  0      	;   An orange pill
-G 0 10719  0      	;   A red pill
-G 0 10720  0      	;   A silver pill
-M 0 10713  1 10720 	; a little boy to A Junkyard
-E 0 10714  0 16    	;   A bloody razor wielded (1)
-M 0 10714  1 10721 	; a little girl to An Ash Heap
-E 0 10715  0 17    	;   A lit match held in the hands
-M 0 10715  1 10722 	; a big bruiser to Behind the Hidden Door
-E 0 10722  0 12    	;   A dark cape about the shoulders
-E 0 10721  0 16    	;   A spiked cudgel wielded (1)
-M 0 10724  3 10723 	; a shade to Beneath Murky Land
-M 0 10721  1 10724 	; a serving wench to Inside a Tavern
-E 0 10757  0 16    	;   A dirk wielded (1)
-G 0 10747  0      	;   A bowl of soup
-G 0 10746  0      	;   A pitcher of ale
-G 0 10745  0      	;   A slice of lemon pie
-G 0 10744  0      	;   Baked bread
-G 0 10743  0      	;   A roast chicken
-M 0 10722  1 10724 	; a gruff warrior to Inside a Tavern
-E 0 10749  0 5     	;   Splintmail vest on the body
-E 0 10748  0 16    	;   A spear wielded (1)
-M 0 10729  1 10724 	; an employee to Inside a Tavern
-E 0 10757  0 16    	;   A dirk wielded (1)
-M 0 10717  1 10725 	; the roomskeeper to The Shady Rooms Counter
-E 0 10721  0 16    	;   A spiked cudgel wielded (1)
-G 0 10723  0      	;   Key a
-G 0 10724  0      	;   Key b
-G 0 10725  0      	;   Key c
-G 0 10727  0      	;   Key e
-G 0 10728  0      	;   Key f
-O 0 10730  0 10727 	; A smelly bed to Room A
-O 0 10731  0 10727 	; A chair to Room A
-O 0 10730  0 10728 	; A smelly bed to Room B
-O 0 10731  0 10728 	; A chair to Room B
-O 0 10735  0 10730 	; A chair to Room C
-P 0 10729  0 10735 	; Key g inside key G
-O 0 10730  0 10730 	; A smelly bed to Room C
-O 0 10730  0 10731 	; A smelly bed to Room D
-M 0 10716  1 10731 	; a madman to Room D
-E 0 10731  0 16    	;   A chair wielded (1)
-M 0 10724  3 10732 	; a shade to At the End of the Hallway
-O 0 10730  0 10733 	; A smelly bed to Room E
-O 0 10736  0 10733 	; A chair to Room E
-P 0 10737  0 10736 	; A scrap of paper inside a scrap of paper
-O 0 10732  0 10734 	; A smelly bed to Room F
-P 0 10726  0 10732 	; Key d inside key D
-M 0 10719  1 10734 	; the hermophroditic prostitute to Room F
-O 0 10731  0 10734 	; A chair to Room F
-O 0 10730  0 10735 	; A smelly bed to Room G
-O 0 10731  0 10735 	; A chair to Room G
-O 0 10733  0 10735 	; A desk to Room G
-M 0 10720  1 10735 	; a weaslly-looking man to Room G
-E 0 10738  0 12    	;   A thin black robe about the shoulders
-G 0 10742  0      	;   A scrap of paper
-G 0 10741  0      	;   Portions of the scroll of prophecy
-G 0 10740  0      	;   Portions of a journal
-G 0 10739  0      	;   A black scroll
-M 0 10723  1 10736 	; the lady bartender to The Bar
-E 0 10757  0 16    	;   A dirk wielded (1)
-G 0 10756  0      	;   A shot of the local specialty
-G 0 10755  0      	;   A shot of firebreather
-G 0 10754  0      	;   A mug of beer
-G 0 10753  0      	;   A glass of wine
-G 0 10752  0      	;   A shot of whisky
-G 0 10751  0      	;   A shot of rum
-G 0 10750  0      	;   A shot of vodka
-G 0 10746  0      	;   A pitcher of ale
-M 0 10727  1 10736 	; an old man to The Bar
-E 0 10738  0 12    	;   A thin black robe about the shoulders
-E 0 10757  0 16    	;   A dirk wielded (1)
-G 0 10753  0      	;   A glass of wine
-M 0 10728  1 10736 	; a lady mercenary to The Bar
-E 0 10749  0 5     	;   Splintmail vest on the body
-E 0 10760  0 11    	;   A square shield as a shield
-E 0 10759  0 16    	;   A sabre wielded (1)
-G 0 10750  0      	;   A shot of vodka
-M 0 10725  1 10737 	; a shade sentry to Hallway
-O 0 10761  0 10738 	; A hidden panel to An Office
-P 0 10762  0 10761 	; An ivory bracelet inside an ivory bracelet
-O 0 10733  0 10741 	; A desk to An Office
-O 0 10733  0 10742 	; A desk to An Office
-M 0 10731  1 10742 	; an employee to An Office
-E 0 10721  0 16    	;   A spiked cudgel wielded (1)
-M 0 10732  1 10742 	; a shade to An Office
-M 0 10730  5 10744 	; a tied victim to A Holding Room
-O 0 10763  0 10745 	; An eagle statuette to An Empty Hallway
-O 0 10763  0 10747 	; An eagle statuette to At the End of a Hallway
-O 0 10764  0 10748 	; An eagle statuette to An Empty Hallway
-O 0 10765  0 10750 	; An eagle statuette to At the End of a Hallway
-P 0 10766  0 10765 	; A black key inside a black key
-M 0 10733  1 10751 	; a shadow warrior to A Dark Room
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10769  0 6     	;   A shadow helm over the head
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10733  2 10754 	; a shadow warrior to A Dark Hallway
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10772  0 9     	;   Shadow gauntlets on the hands
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10733  1 10754 	; a shadow warrior to A Dark Hallway
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10771  0 8     	;   Shadow boots on the feet
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10734  1 10755 	; Shadow Dragon to Shadow Dragon's Lair
-E 0 10776  0 17    	;   The shadow orb held in the hands
-O 0 10777  0 10755 	; A large pile of coins to Shadow Dragon's Lair
-M 0 10733  1 10757 	; a shadow warrior to A Dark Hallway
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10769  0 6     	;   A shadow helm over the head
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10739  1 10758 	; the sacrificial victim to The Altar of the Shadow Demon
-M 0 10740  1 10758 	; the torturer to The Altar of the Shadow Demon
-E 0 10778  0 17    	;   A jar of acid held in the hands
-M 0 10743  1 10758 	; the Shadow Demon to The Altar of the Shadow Demon
-E 0 10780  0 16    	;   Staff of despair wielded (1)
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10771  0 8     	;   Shadow boots on the feet
-E 0 10772  0 9     	;   Shadow gauntlets on the hands
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-M 0 10735  1 10759 	; the shadow librarian to A Library
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-G 0 10741  0      	;   Portions of the scroll of prophecy
-G 0 10782  0      	;   A scroll
-G 0 10783  0      	;   A scroll
-M 0 10736  1 10760 	; the shadow conjurer to A Laboratory
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-G 0 10786  0      	;   A dark orange potion
-G 0 10785  0      	;   An ice blue potion
-G 0 10784  0      	;   A bubbly red potion
-M 0 10733  1 10762 	; a shadow warrior to A Dark Hallway
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10739  1 10763 	; the sacrificial victim to The Altar of the Shadow Demon
-M 0 10741  1 10763 	; the torturer to The Altar of the Shadow Demon
-E 0 10757  0 16    	;   A dirk wielded (1)
-M 0 10744  1 10763 	; the Shadow Demon to The Altar of the Shadow Demon
-E 0 10780  0 16    	;   Staff of despair wielded (1)
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10771  0 8     	;   Shadow boots on the feet
-E 0 10772  0 9     	;   Shadow gauntlets on the hands
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-M 0 10737  1 10764 	; the shadow scriber to A Scribing Room
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-G 0 10789  0      	;   A scroll of curing
-G 0 10788  0      	;   A scroll of fire
-G 0 10787  0      	;   A scroll of rage
-M 0 10738  1 10765 	; the shadow enchanter to A Weapon Room
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-E 0 10790  0 16    	;   A shadow pike wielded (1)
-G 0 10791  0      	;   A shadow whip
-G 0 10767  0      	;   A shadow sword
-R 0 10766  6      	; Randomize A Nether Room
-R 0 10767  6      	; Randomize A Nether Room
-M 0 10733  2 10769 	; a shadow warrior to A Dark Hallway
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10771  0 8     	;   Shadow boots on the feet
-E 0 10772  0 9     	;   Shadow gauntlets on the hands
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10733  2 10769 	; a shadow warrior to A Dark Hallway
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10771  0 8     	;   Shadow boots on the feet
-E 0 10772  0 9     	;   Shadow gauntlets on the hands
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10767  0 16    	;   A shadow sword wielded (1)
-M 0 10739  1 10770 	; the sacrificial victim to The Altar of the Shadow Lord
-M 0 10742  1 10770 	; the torturer to The Altar of the Shadow Lord
-E 0 10779  0 17    	;   A magical torch held in the hands
-M 0 10745  1 10770 	; the Shadow Lord to The Altar of the Shadow Lord
-E 0 10768  0 5     	;   A shadow vest on the body
-E 0 10770  0 7     	;   Shadow leggings on the legs
-E 0 10771  0 8     	;   Shadow boots on the feet
-E 0 10772  0 9     	;   Shadow gauntlets on the hands
-E 0 10773  0 10    	;   Shadow sleeves on the arms
-E 0 10774  0 11    	;   A shadow shield as a shield
-E 0 10775  0 16    	;   Blackfang wielded (1)
-E 0 10781  0 12    	;   Cloak of shadows about the shoulders
-R 0 10771  6      	; Randomize A Nether Room
+M 0 10700 1 10701
+E 0 10701 0 16
+G 0 10700 0
+M 0 10701 1 10702
+E 0 10701 0 16
+M 0 10724 3 10704
+M 0 10707 1 10707
+E 0 10708 0 13
+E 0 10701 0 16
+G 0 10709 0
+G 0 10710 0
+G 0 10711 0
+G 0 10712 0
+G 0 10713 0
+M 0 10706 1 10708
+E 0 10708 0 13
+E 0 10707 0 16
+M 0 10726 1 10710
+G 0 10758 0
+M 0 10702 1 10711
+E 0 10702 0 16
+E 0 10704 0 1
+M 0 10703 1 10711
+E 0 10703 0 16
+E 0 10704 0 1
+M 0 10705 1 10712
+E 0 10706 0 5
+M 0 10704 1 10713
+E 0 10705 0 16
+M 0 10708 1 10715
+M 0 10709 1 10715
+M 0 10710 1 10716
+E 0 10707 0 16
+M 0 10711 1 10717
+M 0 10718 1 10718
+E 0 10734 0 8
+M 0 10712 1 10719
+G 0 10716 0
+G 0 10717 0
+G 0 10718 0
+G 0 10719 0
+G 0 10720 0
+M 0 10713 1 10720
+E 0 10714 0 16
+M 0 10714 1 10721
+E 0 10715 0 17
+M 0 10715 1 10722
+E 0 10722 0 12
+E 0 10721 0 16
+M 0 10724 3 10723
+M 0 10721 1 10724
+E 0 10757 0 16
+G 0 10747 0
+G 0 10746 0
+G 0 10745 0
+G 0 10744 0
+G 0 10743 0
+M 0 10722 1 10724
+E 0 10749 0 5
+E 0 10748 0 16
+M 0 10729 1 10724
+E 0 10757 0 16
+M 0 10717 1 10725
+E 0 10721 0 16
+G 0 10723 0
+G 0 10724 0
+G 0 10725 0
+G 0 10727 0
+G 0 10728 0
+O 0 10730 0 10727
+O 0 10731 0 10727
+O 0 10730 0 10728
+O 0 10731 0 10728
+O 0 10735 0 10730
+P 0 10729 0 10735
+O 0 10730 0 10730
+O 0 10730 0 10731
+M 0 10716 1 10731
+E 0 10731 0 16
+M 0 10724 3 10732
+O 0 10730 0 10733
+O 0 10736 0 10733
+P 0 10737 0 10736
+O 0 10732 0 10734
+P 0 10726 0 10732
+M 0 10719 1 10734
+O 0 10731 0 10734
+O 0 10730 0 10735
+O 0 10731 0 10735
+O 0 10733 0 10735
+M 0 10720 1 10735
+E 0 10738 0 12
+G 0 10742 0
+G 0 10741 0
+G 0 10740 0
+G 0 10739 0
+M 0 10723 1 10736
+E 0 10757 0 16
+G 0 10756 0
+G 0 10755 0
+G 0 10754 0
+G 0 10753 0
+G 0 10752 0
+G 0 10751 0
+G 0 10750 0
+G 0 10746 0
+M 0 10727 1 10736
+E 0 10738 0 12
+E 0 10757 0 16
+G 0 10753 0
+M 0 10728 1 10736
+E 0 10749 0 5
+E 0 10760 0 11
+E 0 10759 0 16
+G 0 10750 0
+M 0 10725 1 10737
+O 0 10761 0 10738
+P 0 10762 0 10761
+O 0 10733 0 10741
+O 0 10733 0 10742
+M 0 10731 1 10742
+E 0 10721 0 16
+M 0 10732 1 10742
+M 0 10730 5 10744
+O 0 10763 0 10745
+O 0 10763 0 10747
+O 0 10764 0 10748
+O 0 10765 0 10750
+P 0 10766 0 10765
+M 0 10733 1 10751
+E 0 10768 0 5
+E 0 10769 0 6
+E 0 10770 0 7
+E 0 10773 0 10
+E 0 10767 0 16
+M 0 10733 2 10754
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10772 0 9
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10767 0 16
+M 0 10733 1 10754
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10771 0 8
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10767 0 16
+M 0 10734 1 10755
+E 0 10776 0 17
+O 0 10777 0 10755
+M 0 10733 1 10757
+E 0 10768 0 5
+E 0 10769 0 6
+E 0 10770 0 7
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10767 0 16
+M 0 10739 1 10758
+M 0 10740 1 10758
+E 0 10778 0 17
+M 0 10743 1 10758
+E 0 10780 0 16
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10771 0 8
+E 0 10772 0 9
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10781 0 12
+M 0 10735 1 10759
+E 0 10781 0 12
+G 0 10741 0
+G 0 10782 0
+G 0 10783 0
+M 0 10736 1 10760
+E 0 10781 0 12
+G 0 10786 0
+G 0 10785 0
+G 0 10784 0
+M 0 10733 1 10762
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10767 0 16
+M 0 10739 1 10763
+M 0 10741 1 10763
+E 0 10757 0 16
+M 0 10744 1 10763
+E 0 10780 0 16
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10771 0 8
+E 0 10772 0 9
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10781 0 12
+M 0 10737 1 10764
+E 0 10781 0 12
+G 0 10789 0
+G 0 10788 0
+G 0 10787 0
+M 0 10738 1 10765
+E 0 10781 0 12
+E 0 10790 0 16
+G 0 10791 0
+G 0 10767 0
+R 0 10766 6
+R 0 10767 6
+M 0 10733 2 10769
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10771 0 8
+E 0 10772 0 9
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10767 0 16
+M 0 10733 2 10769
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10771 0 8
+E 0 10772 0 9
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10767 0 16
+M 0 10739 1 10770
+M 0 10742 1 10770
+E 0 10779 0 17
+M 0 10745 1 10770
+E 0 10768 0 5
+E 0 10770 0 7
+E 0 10771 0 8
+E 0 10772 0 9
+E 0 10773 0 10
+E 0 10774 0 11
+E 0 10775 0 16
+E 0 10781 0 12
+R 0 10771 6
 S
 
 
@@ -3086,14 +3086,14 @@ S
 
 
 #SHOPS
-10700  0  0  0  0  0 100 100  0 23 	; a bored cashier
-10707  0  0  0  0  0 100 100  0 23 	; the cafeteria counterperson
-10712  0  0  0  0  0 100 100  0 23 	; Little Dave, the evil Monk
-10717  0  0  0  0  0 1000 100  0 23 	; the roomskeeper
-10720  0  0  0  0  0 1000 100  0 23 	; a weaslly-looking man
-10721  0  0  0  0  0 110 100  0 23 	; a serving wench
-10723  0  0  0  0  0 110 100  0 23 	; the lady bartender
-10726  0  0  0  0  0 1000 100  0 23 	; a little brat
+10700 0 0 0 0 0 100 100 0 23
+10707 0 0 0 0 0 100 100 0 23
+10712 0 0 0 0 0 100 100 0 23
+10717 0 0 0 0 0 1000 100 0 23
+10720 0 0 0 0 0 1000 100 0 23
+10721 0 0 0 0 0 110 100 0 23
+10723 0 0 0 0 0 110 100 0 23
+10726 0 0 0 0 0 1000 100 0 23
 0
 
 

@@ -101,7 +101,8 @@ An area file contains the following sections:
     #RESETS
     #SHOPS
     #SPECIALS
-    #GAMES
+    #GAMES				/* Only in Mythran 3 and beyond */
+    #MOBPROGS				/* Only in Mythran 3 and beyond */
     #$
 
 An area is a collection of sections starting with #AREA until the next #AREA. 
@@ -472,7 +473,7 @@ ITEM_ types:
   FOUNTAIN   25
   PILL       26
   JUKEBOX    27		(not implemented yet)
-  PORTAL     28		(not implemented yet)
+  PORTAL     28
 
 The 'extra-flags' describe more attributes of the object.  The 'wear-flags'
 describe whether the item can be picked up, and if so, what bodily locations
@@ -747,8 +748,8 @@ ITEM_CONTAINER, value[1])
 
 28 ITEM_PORTAL
    value[0]    to room vnum
-   value[1]    portal level (to enter)
-   value[2]    unused
+   value[1]    portal min level (to enter)
+   value[2]    portal max level (to enter)
    value[3]    portal duration (timer)
 
 Examples:
@@ -813,6 +814,9 @@ The syntax of this section is:
          E
          <keywords:string>
          <description:string>
+     }
+     {			/* M section only in Mythran 3 and above -- Maniac */
+         M <manatype:number> <manaamount:number>
      }
      S
     }
@@ -898,6 +902,30 @@ specify just one then you'll get a one-way exit.
 An 'E' section (extended description) contains a 'keywords' string and a
 'description' string.  As you might guess, looking at one of the words in
 'keywords' yields the 'description' string.
+
+An 'M' section (mana) contains a 'manatype' number and a 'manaamount' number
+manatype is the type of mana in the area, amount it the amount.
+
+MANA_TYPES:
+
+MANA_NONE	0
+MANA_GOOD	1
+MANA_NEUTRAL	2
+MANA_EVIL	3
+
+Amount can be any value, but here are some directions:
+BAD_MANA_STRONG	-50
+BAD_MANA_NORMAL	-30
+BAD_MANA_WEAK	-10
+NO_MANA		  0
+SOME_MANA	 15
+LITTLE_MANA	 30
+NORMAL_MANA	 50
+MORE_MANA	 70
+MUCH_MANA	 85
+VMUCH_MANA	 95
+MAX_MANA	100
+
 
 The 'S' at the end marks the end of the room.  It is not optional.
 
@@ -1236,6 +1264,22 @@ M  3161 blackjack~		1000000   8	0	/* Dealer      */
 *
 S
 
+=== The #MOBPROGS section
+For more information see the in-game help on mobprogs
+
+The syntax of this section is
+
+#MOBPROGS
+    {
+     * <comment_to_eol>
+    }
+    {
+     M <mob-vnum:number> <mobprogfile:word>
+    }
+    S
+
+mobprogfile is a file with the mobprog source, this file is found
+in the MOB_DIR directory (Usually /area/MOBProgs/ )
 
 
 === The #$ section

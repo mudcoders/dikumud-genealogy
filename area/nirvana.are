@@ -1,5 +1,5 @@
 #AREADATA
-Name        The Plane of Nirvana~
+Name        {{20 45} Forstal The Plane of Nirvana~
 Builders    None~
 VNUMs       8100 8159
 Security    1
@@ -28,7 +28,7 @@ A quadrone is here, watching for trespassers.
 A cubic creature, with spiny arms and legs.
 ~
 101 8 0 S
-11 9 0 14d10+70 2d8+0
+19 9 0 14d10+70 2d8+0
 0 0
 0 Arachnid~ 0
 #8102
@@ -39,7 +39,7 @@ A pentadrone is here, policing the area.
 A five-armed creature which resembles a starfish on thin stilt-like legs.
 ~
 99 8 0 S
-23 8 0 15d12+80 3d4+3
+24 8 0 15d12+80 3d4+3
 0 0
 0 Arachnid~ 0
 #8103
@@ -50,7 +50,7 @@ A decaton is here, overseeing the other modrons.
 A Decaton  appear as a 10 tentacled sphere on stumpy legs.
 ~
 99 8 0 S
-19 6 0 25d10+50 2d8+2
+25 6 0 25d10+50 2d8+2
 0 0
 0 Arachnid~ 0
 #8104
@@ -61,7 +61,7 @@ A nonaton is here, preserving law and order.
 A cylidrical modron with 9 tentacles and stubby legs.
 ~
 99 136 0 S
-26 5 0 11d8+150 2d10+1
+29 5 0 11d8+150 2d10+1
 0 0
 0 Arachnid~ 0
 #8105
@@ -73,7 +73,7 @@ An octon has a collar at shoulder level with 8 tentacled arms outside his
 collar.
 ~
 99 8 0 S
-34 4 0 25d10+75 3d6+5
+30 4 0 25d10+75 3d6+5
 0 0
 0 Arachnid~ 0
 #8106
@@ -97,7 +97,7 @@ A hexton appears as a humanoid with 6 arms: 2 large human arms with 6 fingers,
 and 4 tentalces below tipped with sharp claws.
 ~
 99 136 0 S
-31 1 0 1d1+249 5d6+5
+34 1 0 1d1+249 5d6+5
 2000 0
 0 Arachnid~ 0
 #8108
@@ -110,7 +110,7 @@ shoulders.  A prehensile tail serves as the creature's 5th arm, and it has
 fan-like wings attached to their shoulders.
 ~
 99 8 0 S
-35 1 0 8d12+150 4d5+4
+34 1 0 8d12+150 4d5+4
 500 0
 0 Arachnid~ 0
 #8109
@@ -123,7 +123,7 @@ the sides of their bald heads, and the long prehensile tail ending in a mace-
 like ball.
 ~
 99 8 0 S
-38 0 0 1d1+349 4d6+5
+39 0 0 1d1+349 4d6+5
 1000 0
 0 Arachnid~ 0
 #8110
@@ -135,7 +135,7 @@ The secundi appear as incredibly thin, tall humanoids with long, narrow faces
 and deepset eyes.
 ~
 99 136 0 S
-52 0 0 1d1+499 5d6+10
+44 0 0 1d1+499 5d6+10
 2500 0
 0 Human~ 0
 #8111
@@ -148,7 +148,7 @@ violet eyes. His right hand is wreathed in darkness, his left in light, and
 he looks very displeased to see you.
 ~
 99 136 0 S
-59 0 0 1d1+1999 3d20+20
+58 0 0 1d1+1999 3d20+20
 10000 0
 0 God~ 0
 #0
@@ -1282,13 +1282,13 @@ S
 
 
 #SPECIALS
-M 8100 spec_thief 	; a tridrone
-M 8106 spec_cast_cleric 	; a septon
-M 8107 spec_cast_cleric 	; a hexton
-M 8108 spec_cast_cleric 	; a quinton
-M 8109 spec_cast_mage 	; a tertian
-M 8110 spec_cast_mage 	; Secundus
-M 8111 spec_cast_mage 	; Primus
+M 8100 spec_thief
+M 8106 spec_cast_cleric
+M 8107 spec_cast_cleric
+M 8108 spec_cast_cleric
+M 8109 spec_cast_mage
+M 8110 spec_cast_mage
+M 8111 spec_cast_mage
 S
 
 
@@ -1299,54 +1299,54 @@ S
 
 
 #RESETS
-M 0 8101  9 8101  	; a quadrone to The Plane of Nirvana
-M 0 8100 10 8102  	; a tridrone to The Plane of Nirvana
-M 0 8100 10 8103  	; a tridrone to A Change in Direction
-M 0 8102  6 8111  	; a pentadrone to An intersection in the Tower of Nirvana
-M 0 8101  9 8112  	; a quadrone to At the door to the Tower of Nirvana
-M 0 8100 10 8113  	; a tridrone to At the door to the Tower of Nirvana
-M 0 8108  4 8116  	; a quinton to Dead End
-M 0 8108  4 8117  	; a quinton to Dead End
-M 0 8109  4 8118  	; a tertian to A Tertain's lair
-M 0 8109  4 8119  	; a tertian to A Tertian's lair
-M 0 8111  1 8120  	; Primus to The Lair of Primus
-E 0 8100  0 16    	;   Realms sword wielded (1)
-E 0 8101  0 5     	;   A radiant vest on the body
-E 0 8102  0 6     	;   A radiant helm over the head
-E 0 8103  0 10    	;   Aura of radiance on the arms
-E 0 8104  0 11    	;   A shimmering field of power as a shield
-M 0 8109  4 8121  	; a tertian to A Tertian's lair
-M 0 8108  4 8122  	; a quinton to The office of a Quinton
-M 0 8109  4 8124  	; a tertian to A Tertian's lair
-M 0 8108  4 8125  	; a quinton to A north south tunnel
-M 0 8100 10 8127  	; a tridrone to A change of direction
-M 0 8101  9 8128  	; a quadrone to A change of direction
-M 0 8100 10 8129  	; a tridrone to An east-west route on the Plane of Nirvana
-M 0 8102  6 8131  	; a pentadrone to At a door into the Tower of Nirvana
-M 0 8105  4 8133  	; An octon to The office of the Octon
-M 0 8106  2 8134  	; a septon to A small room
-M 0 8107  8 8136  	; a hexton to Lair of a Hexton
-M 0 8107  8 8137  	; a hexton to Office of a Hexton
-M 0 8102  6 8138  	; a pentadrone to Office of a Secundus
-M 0 8110  4 8138  	; Secundus to Office of a Secundus
-M 0 8105  4 8140  	; An octon to Office of an Octon
-M 0 8106  2 8141  	; a septon to Office of a Septon
-M 0 8107  8 8143  	; a hexton to The Barracks
-M 0 8107  8 8144  	; a hexton to The Commander's Post
-M 0 8102  6 8145  	; a pentadrone to The chamber of the second Secundus
-M 0 8110  4 8145  	; Secundus to The chamber of the second Secundus
-M 0 8105  4 8147  	; An octon to Chamber of the Octon
-M 0 8104  1 8148  	; A nonaton to Chamber of the Nonaton
-M 0 8107  8 8150  	; a hexton to Chamber of a Hexton
-M 0 8102  6 8152  	; a pentadrone to Chamber of the Secudus
-M 0 8110  4 8152  	; Secundus to Chamber of the Secudus
-M 0 8105  4 8154  	; An octon to A small chamber
-M 0 8103  1 8155  	; a decaton to A cramped room
-M 0 8107  8 8155  	; a hexton to A cramped room
-M 0 8107  8 8156  	; a hexton to A large room
-M 0 8107  8 8157  	; a hexton to A room
-M 0 8102  6 8158  	; a pentadrone to Chamber of The First Secundus
-M 0 8110  4 8158  	; Secundus to Chamber of The First Secundus
+M 0 8101 9 8101
+M 0 8100 10 8102
+M 0 8100 10 8103
+M 0 8102 6 8111
+M 0 8101 9 8112
+M 0 8100 10 8113
+M 0 8108 4 8116
+M 0 8108 4 8117
+M 0 8109 4 8118
+M 0 8109 4 8119
+M 0 8111 1 8120
+E 0 8100 0 16
+E 0 8101 0 5
+E 0 8102 0 6
+E 0 8103 0 10
+E 0 8104 0 11
+M 0 8109 4 8121
+M 0 8108 4 8122
+M 0 8109 4 8124
+M 0 8108 4 8125
+M 0 8100 10 8127
+M 0 8101 9 8128
+M 0 8100 10 8129
+M 0 8102 6 8131
+M 0 8105 4 8133
+M 0 8106 2 8134
+M 0 8107 8 8136
+M 0 8107 8 8137
+M 0 8102 6 8138
+M 0 8110 4 8138
+M 0 8105 4 8140
+M 0 8106 2 8141
+M 0 8107 8 8143
+M 0 8107 8 8144
+M 0 8102 6 8145
+M 0 8110 4 8145
+M 0 8105 4 8147
+M 0 8104 1 8148
+M 0 8107 8 8150
+M 0 8102 6 8152
+M 0 8110 4 8152
+M 0 8105 4 8154
+M 0 8103 1 8155
+M 0 8107 8 8155
+M 0 8107 8 8156
+M 0 8107 8 8157
+M 0 8102 6 8158
+M 0 8110 4 8158
 S
 
 

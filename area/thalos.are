@@ -1,5 +1,5 @@
 #AREADATA
-Name        Thalos~
+Name        {{10 25} Anon    Thalos~
 Builders    None~
 VNUMs       5200 5280
 Security    1
@@ -19,7 +19,7 @@ eyestalks atop the round body which can do anything from charm you
 to disintegrate you.  Beholders are not known for their personality.
 ~
 163 8 -870 S
-25 6 0 25d25+250 6d6+5
+24 6 0 25d25+250 6d6+5
 22560 0
 0 Giant~ 0
 #5201
@@ -31,7 +31,7 @@ This is a creature with the upper torso of a beautiful woman, but the lower
 body of a four-legged beast.  She licks her lips as she looks at you greedily.
 ~
 101 0 -999 S
-12 12 0 9d9+99 1d5+4
+8 12 0 9d9+99 1d5+4
 1000 0
 0 Animal~ 2
 #5202
@@ -43,7 +43,7 @@ A strong, wooden chest bound with iron straps and a heavy pad-lock on the
 front.
 ~
 229 32768 10 S
-9 10 0 11d11+110 2d7+0
+11 10 0 11d11+110 2d7+0
 0 0
 0 Object~ 0
 #5203
@@ -53,7 +53,7 @@ Two skeletons lie crushed under a large boulder.
 ~
 ~
 229 32768 -10 S
-10 10 0 11d11+110 3d5+1
+11 10 0 11d11+110 3d5+1
 0 0
 0 Object~ 0
 #5204
@@ -63,7 +63,7 @@ The stone floor of this house has been ripped apart.
 ~
 ~
 229 32768 -140 S
-6 10 0 11d11+110 2d6+0
+12 10 0 11d11+110 2d6+0
 0 0
 0 Object~ 0
 #5205
@@ -73,7 +73,7 @@ Some broken shards of pottery lie strewn about the floor.
 ~
 ~
 229 32768 200 S
-12 10 0 11d11+110 2d5+1
+13 10 0 11d11+110 2d5+1
 0 0
 0 Object~ 0
 #5206
@@ -83,7 +83,7 @@ A few wooden planks lie stacked on a low shelf.
 ~
 ~
 229 32768 0 S
-7 9 0 11d11+110 4d3+1
+10 9 0 11d11+110 4d3+1
 0 0
 0 Object~ 0
 #5207
@@ -94,7 +94,7 @@ A small horned lizard flicks his tongue and slithers away.
 A cute little lizard, that is, if you like reptiles!
 ~
 129 0 0 S
-5 17 0 1d4+30 1d4+0
+4 17 0 1d4+30 1d4+0
 0 0
 0 Snake~ 0
 #5208
@@ -106,7 +106,7 @@ It is a big chunk of rock that has been magically formed into a giant
 stone creature. He stands here still guarding the city.
 ~
 3 8192 600 S
-32 0 0 6d10+600 3d7+15
+23 0 0 6d10+600 3d7+15
 4250 0
 0 God~ 0
 #0
@@ -2071,7 +2071,7 @@ S
 
 
 #SPECIALS
-M 5200 spec_cast_mage 	; The mighty beholder
+M 5200 spec_cast_mage
 S
 
 
@@ -2082,111 +2082,111 @@ S
 
 
 #RESETS
-O 0 5230  0 5202  	; A pale blue stone to Main Street
-M 0 5201 20 5203  	; The lamia to A Garden Path
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5204  	; The lamia to A Garden Path
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5205  	; The lamia to A Garden Path
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5231  0 5205  	; A scarlet and blue stone to A Garden Path
-M 0 5201 20 5206  	; The lamia to A Garden Path
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5232  0 5208  	; An incandescent blue stone to The market place
-O 0 5233  0 5211  	; A deep red stone to A Side Street
-M 0 5201 20 5216  	; The lamia to A back alley
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5219  0 5217  	; A chunk of venison to The meat stand
-O 0 5235  0 5217  	; A pearly white stone to The meat stand
-M 0 5207  4 5217  	; The horned lizard to The meat stand
-M 0 5201 20 5218  	; The lamia to A back alley
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5219  	; The lamia to The guild house
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5204  1 5219  	; The mimic to The guild house
-G 0 5218  0      	;   A demon-faced talisman
-M 0 5201 20 5220  	; The lamia to The produce stand
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5221  	; The lamia to The smithy
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5224  	; The lamia to Under the watchtower
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5237  0 5224  	; A lavender and green stone to Under the watchtower
-M 0 5201 20 5225  	; The lamia to The jewelery stand
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5226  	; The lamia to A ruined clay dwelling
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5203  1 5226  	; The mimic to A ruined clay dwelling
-G 0 5215  0      	;   A tattered scroll
-M 0 5207  4 5227  	; The horned lizard to A collapsed stone dwelling
-M 0 5201 20 5229  	; The lamia to An abandoned shop
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5207  0 5229  	; A battered iron breast plate to An abandoned shop
-M 0 5202  1 5229  	; The mimic to An abandoned shop
-E 0 5214  0 17    	;   A smooth quartz ball held in the hands
-O 0 5217  0 5230  	; A silver flute to The Tavern of the Sun
-O 0 5250  0 5230  	; A mandolin to The Tavern of the Sun
-O 0 5251  0 5230  	; A golden harp to The Tavern of the Sun
-O 0 5239  0 5230  	; A dull grey stone to The Tavern of the Sun
-O 0 5225  0 5231  	; The desk to South wing of the city hall
-P 0 5215  0 5225  	; A tattered scroll inside a tattered scroll
-P 0 5216  0 5225  	; A bound scroll inside a bound scroll
-M 0 5201 20 5232  	; The lamia to The city hall
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5207  4 5232  	; The horned lizard to The city hall
-O 0 5227  0 5233  	; The glass cabinet to East wing of the city hall
-P 0 3105  0 5227  	; A bronze bracer inside a bronze bracer
-M 0 5201 20 5234  	; The lamia to The private gardens and courtyard of Thalos
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5220  0 5234  	; A large cracked fountain to The private gardens and courtyard of Thalos
-M 0 5201 20 5235  	; The lamia to A small guard house
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5236  	; The lamia to A collapsed home
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5206  1 5236  	; The mimic to A collapsed home
-E 0 5222  0 12    	;   A black silk robe about the shoulders
-M 0 5201 20 5237  	; The lamia to A tall dwelling
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5210  0 5238  	; A black potion to A small shack
-O 0 5211  0 5238  	; An orange potion to A small shack
-O 0 5241  0 5238  	; A pink and green stone to A small shack
-M 0 5205  1 5238  	; The mimic to A small shack
-E 0 5214  0 17    	;   A smooth quartz ball held in the hands
-M 0 5201 20 5240  	; The lamia to A back alley
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-M 0 5201 20 5242  	; The lamia to A bath house
-E 0 5252  0 16    	;   A long slim dagger wielded (1)
-O 0 5228  0 5242  	; A rotten arm to A bath house
-M 0 5207  4 5244  	; The horned lizard to An upright house
-O 0 5243  0 5246  	; A clear stone to The north-west watchtower
-M 0 5208  8 5246  	; The stone golem to The north-west watchtower
-E 0 5221  0 16    	;   A two-handed sword wielded (1)
-E 0 5226  0 17    	;   An engraved ivory seal held in the hands
-E 0 5203  0 10    	;   Some mithril sleeves on the arms
-M 0 5208  8 5247  	; The stone golem to The south-west watchtower
-E 0 5221  0 16    	;   A two-handed sword wielded (1)
-E 0 5224  0 17    	;   An engraved ebony seal held in the hands
-E 0 5200  0 5     	;   A mithril vest on the body
-E 0 5204  0 8     	;   A pair of mithril boots on the feet
-M 0 5208  8 5248  	; The stone golem to The north-east watchtower
-E 0 5221  0 16    	;   A two-handed sword wielded (1)
-E 0 5205  0 7     	;   A set of mithril leggings on the legs
-E 0 5206  0 13    	;   A mithril girth around the waist
-M 0 5200  1 5250  	; The mighty beholder to The Temple of Thalos
-E 0 5208  0 11    	;   A sturdy iron shield as a shield
-E 0 5223  0 3     	;   A dark green cloak around the neck (1)
-M 0 5208  8 5254  	; The stone golem to The south-east watchtower
-E 0 5221  0 16    	;   A two-handed sword wielded (1)
-E 0 5201  0 6     	;   A mithril helm over the head
-E 0 5202  0 9     	;   A pair of mithril gauntlets on the hands
-M 0 5111  2 5267  	; the drow scout to A valley in the dark dwarf forest
-E 0 5100  0 16    	;   A commoner's longsword wielded (1)
-M 0 5110  2 5270  	; the drow guard to Down the path into a dead end
-E 0 5100  0 16    	;   A commoner's longsword wielded (1)
-M 0 5110  2 5270  	; the drow guard to Down the path into a dead end
-E 0 5100  0 16    	;   A commoner's longsword wielded (1)
-M 0 5111  2 5272  	; the drow scout to A dim trail in the dwarf forest
-E 0 5100  0 16    	;   A commoner's longsword wielded (1)
+O 0 5230 0 5202
+M 0 5201 20 5203
+E 0 5252 0 16
+M 0 5201 20 5204
+E 0 5252 0 16
+M 0 5201 20 5205
+E 0 5252 0 16
+O 0 5231 0 5205
+M 0 5201 20 5206
+E 0 5252 0 16
+O 0 5232 0 5208
+O 0 5233 0 5211
+M 0 5201 20 5216
+E 0 5252 0 16
+O 0 5219 0 5217
+O 0 5235 0 5217
+M 0 5207 4 5217
+M 0 5201 20 5218
+E 0 5252 0 16
+M 0 5201 20 5219
+E 0 5252 0 16
+M 0 5204 1 5219
+G 0 5218 0
+M 0 5201 20 5220
+E 0 5252 0 16
+M 0 5201 20 5221
+E 0 5252 0 16
+M 0 5201 20 5224
+E 0 5252 0 16
+O 0 5237 0 5224
+M 0 5201 20 5225
+E 0 5252 0 16
+M 0 5201 20 5226
+E 0 5252 0 16
+M 0 5203 1 5226
+G 0 5215 0
+M 0 5207 4 5227
+M 0 5201 20 5229
+E 0 5252 0 16
+O 0 5207 0 5229
+M 0 5202 1 5229
+E 0 5214 0 17
+O 0 5217 0 5230
+O 0 5250 0 5230
+O 0 5251 0 5230
+O 0 5239 0 5230
+O 0 5225 0 5231
+P 0 5215 0 5225
+P 0 5216 0 5225
+M 0 5201 20 5232
+E 0 5252 0 16
+M 0 5207 4 5232
+O 0 5227 0 5233
+P 0 3105 0 5227
+M 0 5201 20 5234
+E 0 5252 0 16
+O 0 5220 0 5234
+M 0 5201 20 5235
+E 0 5252 0 16
+M 0 5201 20 5236
+E 0 5252 0 16
+M 0 5206 1 5236
+E 0 5222 0 12
+M 0 5201 20 5237
+E 0 5252 0 16
+O 0 5210 0 5238
+O 0 5211 0 5238
+O 0 5241 0 5238
+M 0 5205 1 5238
+E 0 5214 0 17
+M 0 5201 20 5240
+E 0 5252 0 16
+M 0 5201 20 5242
+E 0 5252 0 16
+O 0 5228 0 5242
+M 0 5207 4 5244
+O 0 5243 0 5246
+M 0 5208 8 5246
+E 0 5221 0 16
+E 0 5226 0 17
+E 0 5203 0 10
+M 0 5208 8 5247
+E 0 5221 0 16
+E 0 5224 0 17
+E 0 5200 0 5
+E 0 5204 0 8
+M 0 5208 8 5248
+E 0 5221 0 16
+E 0 5205 0 7
+E 0 5206 0 13
+M 0 5200 1 5250
+E 0 5208 0 11
+E 0 5223 0 3
+M 0 5208 8 5254
+E 0 5221 0 16
+E 0 5201 0 6
+E 0 5202 0 9
+M 0 5111 2 5267
+E 0 5100 0 16
+M 0 5110 2 5270
+E 0 5100 0 16
+M 0 5110 2 5270
+E 0 5100 0 16
+M 0 5111 2 5272
+E 0 5100 0 16
 S
 
 

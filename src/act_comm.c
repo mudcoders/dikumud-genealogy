@@ -69,14 +69,17 @@ void do_delete( CHAR_DATA *ch, char *argument)
 		{
 			send_to_char("Delete status removed.\n\r",ch);
 			ch->pcdata->confirm_delete = FALSE;
-			sprintf (buf, "%s has decided not to self-delete.\n\r", ch->name );
-			wiznet(ch, WIZ_LOGINS,0, buf);
+			sprintf (buf, "%s has decided not to self-delete.",
+			    ch->name );
+			wiznet(ch, WIZ_LOGINS, get_trust( ch ), buf);
 			return;
 		}
 		else
 		{
-			sprintf (buf, "%s has been turned into line noise.\n\r", ch->name );
-			wiznet(ch, WIZ_LOGINS,0, buf);
+			sprintf (buf, "%s has been turned into line noise.",
+			    ch->name );
+			wiznet(ch, WIZ_LOGINS, get_trust( ch ), buf);
+			log_string( buf );
 
 #if !defined( macintosh ) && !defined( MSDOS )
 			sprintf( strsave, "%s%s%s%s", PLAYER_DIR,
@@ -103,8 +106,8 @@ void do_delete( CHAR_DATA *ch, char *argument)
 	send_to_char("Typing delete with an argument will undo.\n\r", ch);
 	ch->pcdata->confirm_delete = TRUE;
 
-	sprintf (buf, "%s is contemplating deletion.\n\r", ch->name );
-	wiznet(ch, WIZ_LOGINS,0, buf);
+	sprintf (buf, "%s is contemplating deletion.", ch->name );
+	wiznet(ch, WIZ_LOGINS, get_trust( ch ), buf);
 }
 
 bool is_note_to( CHAR_DATA *ch, NOTE_DATA *pnote )
@@ -408,7 +411,14 @@ void do_note( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (!str_cmp(arg,"-"))
+    if ( !str_cmp( arg, "write" ) )
+    {
+	note_attach( ch );
+	string_append( ch, &ch->pnote->text );
+	return;
+    }
+
+    if ( !str_cmp( arg, "-" ) )
     {
         int len;
         bool found = FALSE;
@@ -633,13 +643,37 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
     switch ( channel )
     {
     default:
-	sprintf( buf, "You %s '%s'\n\r", verb, argument );
+	sprintf( buf, "You %s '{c%s{x'\n\r", verb, argument );
 	send_to_char( buf, ch );
-	sprintf( buf, "$n %ss '$t'",     verb );
+	sprintf( buf, "$n %ss '{c$t{x'",     verb );
+	break;
+
+    case CHANNEL_MUSIC:
+	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+	send_to_char( buf, ch );
+	sprintf( buf, "{y$n %ss '$t'{x", verb );
+	break;
+
+    case CHANNEL_CHAT:
+	sprintf( buf, "{mYou %s '{c%s{m'{x\n\r", verb, argument );
+	send_to_char( buf, ch );
+	sprintf( buf, "{m$n %ss '{c$t{m'{x\n\r", verb );
+	break;
+
+    case CHANNEL_SHOUT:
+	sprintf( buf, "{rYou %s '%s'{x\n\r", verb, argument );
+	send_to_char( buf, ch );
+	sprintf( buf, "{r$n %ss '$t'{x\n\r", verb );
+	break;
+
+    case CHANNEL_QUESTION:
+	sprintf( buf, "{YYou %s '%s'{x\n\r", verb, argument );
+	send_to_char( buf, ch );
+	sprintf( buf, "{Y$n %ss '$t'{x\n\r", verb );
 	break;
 
     case CHANNEL_IMMTALK:
-	sprintf( buf, "$n: $t" );
+	sprintf( buf, "{c$n:{y $t{x" );
 	position	= ch->position;
 	ch->position	= POS_STANDING;
 	act( buf, ch, argument, NULL, TO_CHAR );
@@ -773,15 +807,15 @@ void do_say( CHAR_DATA *ch, char *argument )
 	}
 	else
 	{
-		act( "$n says '$T'", ch, NULL, argument, TO_ROOM );
-		act( "You say '$T'", ch, NULL, argument, TO_CHAR );
+		act( "$n says '{c$T{x'", ch, NULL, argument, TO_ROOM );
+		act( "You say '{c$T{x'", ch, NULL, argument, TO_CHAR );
 		mprog_speech_trigger( argument, ch );
 		return;
 	}
 #else
 	argument = makedrunk(argument,ch);
-	act( "$n says '$T'", ch, NULL, argument, TO_ROOM );
-	act( "You say '$T'", ch, NULL, argument, TO_CHAR );
+	act( "$n says '{c$T{x'", ch, NULL, argument, TO_ROOM );
+	act( "You say '{c$T{x'", ch, NULL, argument, TO_CHAR );
 	mprog_speech_trigger( argument, ch );
 	return;
 #endif
@@ -838,10 +872,10 @@ void do_tell( CHAR_DATA *ch, char *argument )
     }
 
     argument = makedrunk(argument,ch);
-    act( "You tell $N '$t'", ch, argument, victim, TO_CHAR );
+    act( "You tell $N '{g$t{x'", ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
+    act( "$n tells you '{g$t{x'", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -892,10 +926,10 @@ void do_reply( CHAR_DATA *ch, char *argument )
     }
 
     argument = makedrunk(argument,ch);
-    act( "You tell $N '$t'",  ch, argument, victim, TO_CHAR );
+    act( "You tell $N '{g$t{x'",  ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
+    act( "$n tells you '{g$t{x'", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -931,8 +965,8 @@ void do_emote( CHAR_DATA *ch, char *argument )
     if ( isalpha( plast[-1] ) )
 	strcat( buf, "." );
 
-    act( "$n $T", ch, NULL, buf, TO_ROOM );
-    act( "$n $T", ch, NULL, buf, TO_CHAR );
+    act( "{c$n $T{x", ch, NULL, buf, TO_ROOM );
+    act( "{c$n $T{x", ch, NULL, buf, TO_CHAR );
     return;
 }
 
@@ -1341,7 +1375,7 @@ void do_quit( CHAR_DATA *ch, char *argument )
     act( "$n has left the game.", ch, NULL, NULL, TO_ROOM );
     sprintf( log_buf, "%s has quit.", ch->name );
     log_string( log_buf );
-    wiznet (ch, WIZ_LOGINS, 0, log_buf );
+    wiznet (ch, WIZ_LOGINS, get_trust( ch ), log_buf );
 
     /*
      * After extract_char the ch is no longer valid!
@@ -1859,7 +1893,7 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     /*
      * Note use of send_to_char, so gtell works on sleepers.
      */
-    sprintf( buf, "%s tells the group '%s'.\n\r", ch->name, argument );
+    sprintf( buf, "%s tells the group '{g%s{x'.\n\r", ch->name, argument );
     for ( gch = char_list; gch; gch = gch->next )
     {
 	if ( is_same_group( gch, ch )
@@ -1894,6 +1928,38 @@ bool is_same_group( CHAR_DATA *ach, CHAR_DATA *bch )
 }
 
 /*
+ * Colour setting and unsetting, way cool, Lope Oct '94
+ */
+void do_colour( CHAR_DATA *ch, char *argument )
+{
+    char	arg[ MAX_STRING_LENGTH];
+
+    argument = one_argument( argument, arg );
+
+    if( !*arg )
+    {
+	if( !IS_SET( ch->act, PLR_COLOUR ) )
+	{
+	    SET_BIT( ch->act, PLR_COLOUR );
+	    send_to_char( "{bC{ro{yl{co{mu{gr{x is now {rON{x, Way Cool!\n\r", ch );
+	}
+	else
+	{
+	    REMOVE_BIT( ch->act, PLR_COLOUR );
+	    send_to_char( "Colour is now OFF, <sigh>\n\r", ch );
+	}
+	return;
+    }
+    else
+    {
+	send_to_char( "Colour configuration is unavailable in this version ", ch );
+	send_to_char( "of colour, sorry.\n\r", ch );
+    }
+    return;
+}
+
+
+/*
  * this function sends raw argument over the AUCTION: channel
  * I am not too sure if this method is right..
  */
@@ -1904,7 +1970,7 @@ void talk_auction (char *argument)
     char buf[MAX_STRING_LENGTH];
     CHAR_DATA *original;
 
-    sprintf (buf,"AUCTION: %s", argument);
+    sprintf (buf,"{WAUCTION: %s{x", argument);
 
     for (d = descriptor_list; d != NULL; d = d->next)
     {
@@ -1954,10 +2020,10 @@ void do_wed ( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    sprintf( buf,"You whisper '$t'" );
+    sprintf( buf,"You whisper '{g$t{x'" );
     act( buf, ch, argument, victim, TO_CHAR );
     
-    sprintf( buf,"$n whispers '$t'" );
+    sprintf( buf,"$n whispers '{g$t{x'" );
     act( buf, ch,argument,victim,TO_VICT );
     victim->reply	= ch;
 
@@ -1965,4 +2031,41 @@ void do_wed ( CHAR_DATA *ch, char *argument )
 	act( "Just so you know, $E is AFK.", ch, NULL, victim, TO_CHAR );
 
     return;
+}
+
+
+/*
+ * Beep routine by Canth (canth@xs4all.nl)
+ * Sounds 5 beeps and shows big coloured notice to user
+ */
+void do_beep( CHAR_DATA *ch, char *argument)
+{
+    CHAR_DATA *victim;
+    char buf [ MAX_STRING_LENGTH ];
+
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "Usage: beep <person>\n\r", ch );
+	return;
+    }
+
+    if( !( victim = get_char_world( ch, argument ) ) || ( IS_NPC( victim ) ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    buf[0] = '\0';
+    strcat ( buf, "{*{YBBB  {REEEE {CEEEE {MPPP {/" );
+    strcat ( buf, "{*{YB  B {RE    {CE    {MP  P{/" );
+    strcat ( buf, "{*{YBBB  {REEE  {CEEE  {MPPP {/" );
+    strcat ( buf, "{*{YB  B {RE    {CE    {MP   {/" );
+    strcat ( buf, "{*{YBBB  {REEEE {CEEEE {MP   {x\n\r" );
+
+    send_to_char( buf, victim );
+    act( "$n is requesting your attention.", ch, NULL, victim, TO_VICT );
+    act( "$N has been beeped.", ch, NULL, victim, TO_CHAR );
+
+    return;
+
 }

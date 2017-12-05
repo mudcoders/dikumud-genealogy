@@ -1,5 +1,5 @@
 #AREADATA
-Name        The Circus~
+Name        {{ 1 12} Binky   The Circus~
 Builders    None~
 VNUMs       4400 4469
 Security    1
@@ -18,7 +18,7 @@ The ticket clerk is bored, but is not so bored that he really wants to talk
 to you.  So are you going to buy a ticket or what????
 ~
 3 0 250 S
-31 8 0 8d8+8 10d10+10
+33 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4401
@@ -42,7 +42,7 @@ The child's father seems irked that you have been pushing past the others
 in line.
 ~
 3 0 0 S
-2 8 0 8d8+8 10d10+10
+5 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4403
@@ -54,7 +54,7 @@ The mother is tired of taking care of her son, and wishes she was in a bubble
 bath at home right now.
 ~
 3 0 0 S
-1 8 0 8d8+8 10d10+10
+2 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 2
 #4404
@@ -78,7 +78,7 @@ Bobby's mother is looking quite worried.  If you see Bobby, you will tell her,
 won't you?
 ~
 197 0 1000 S
-10 8 0 8d8+8 10d10+10
+3 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 2
 #4406
@@ -90,7 +90,7 @@ The Bearded Lady is kind of scary looking.  She looks at you with lust in her
 eyes.   RUN!!!!
 ~
 3 0 0 S
-8 8 0 8d8+8 10d10+10
+5 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 2
 #4407
@@ -102,7 +102,7 @@ He puts on quite a show.  If you couldn't see the wires on half of his
 creations, you might actually be amazed.
 ~
 3 40 0 S
-8 8 0 8d8+8 10d10+10
+4 8 0 8d8+8 10d10+10
 8 0
 0 Elf~ 1
 #4408
@@ -114,7 +114,7 @@ The Midget acts very silly, but you see a cunning gleam in his eye.  This is
 one to watch out for.
 ~
 135 512 -300 S
-6 8 0 8d8+8 10d10+10
+2 8 0 8d8+8 10d10+10
 8 0
 0 Dwarf~ 1
 #4409
@@ -126,7 +126,7 @@ Ivan really is an impressive figure of a man.  You will want to think twice
 before tangling with him.
 ~
 199 8396800 100 S
-6 8 0 8d8+8 10d10+10
+7 8 0 8d8+8 10d10+10
 8 0
 0 Giant~ 1
 #4410
@@ -138,7 +138,7 @@ This guy has eaten more swords than you have even seen.  He probably knows how
 to use his sword as well.
 ~
 3 0 0 S
-8 8 0 8d8+8 10d10+10
+2 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4411
@@ -161,7 +161,7 @@ The clown is laughing and throwing pies, and generally being a nuisance.
 He turns towards you with a pie.  DUCK!
 ~
 135 0 500 S
-6 8 0 8d8+8 10d10+10
+1 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4413
@@ -173,7 +173,7 @@ The clown is trying to fit his shoes into the carriage.  It will be a tight
 fit.
 ~
 135 0 500 S
-4 8 0 8d8+8 10d10+10
+5 8 0 8d8+8 10d10+10
 8 0
 0 Halfdwarf~ 1
 #4414
@@ -185,7 +185,7 @@ The big clown has a bucket full of confetti.  Or is it water?  Better stay
 away from him until you know.
 ~
 135 0 300 S
-14 8 0 8d8+8 10d10+10
+4 8 0 8d8+8 10d10+10
 8 0
 0 Giant~ 1
 #4415
@@ -198,7 +198,7 @@ He was probably hired because he has a voice you could hear over a roaring
 dragon (which, incidently, is the next act).
 ~
 7 8192 0 S
-5 8 0 8d8+8 10d10+10
+9 8 0 8d8+8 10d10+10
 8 0
 0 Halfelf~ 1
 #4416
@@ -212,7 +212,7 @@ wiping his face with.  You here him mumble, 'maybe I shouldn't have stopped
 by the Grunting Boar before my act'.
 ~
 7 0 0 S
-7 8 0 8d8+8 10d10+10
+4 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4417
@@ -226,7 +226,7 @@ throwers rehearsal last night.  She did wonder why the dashing knife thrower
 invited her out to dinner.
 ~
 3 131072 0 S
-1 8 0 8d8+8 10d10+10
+2 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 2
 #4418
@@ -238,7 +238,7 @@ He is a dashing man, who seems at home with the deadly beasts.  He controls
 the animals with whip and force of mind.
 ~
 3 8388608 500 S
-12 8 0 8d8+8 10d10+10
+6 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4419
@@ -250,7 +250,7 @@ This is the King of the Beasts, and you understand why as he tears a chunk of
 flesh from your body!
 ~
 39 0 -1000 S
-6 8 0 8d8+8 10d10+10
+10 8 0 8d8+8 10d10+10
 8 0
 0 Bear~ 0
 #4420
@@ -262,7 +262,7 @@ The only way past him seems to be to push him off.  You wouldn't do that,
 would you?  
 ~
 7 0 200 S
-6 8 0 8d8+8 10d10+10
+4 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4421
@@ -286,7 +286,7 @@ This is a gigantic animal!  But he seems pretty docile.  Good thing.  You
 probably would not want to get him angry.
 ~
 3 0 0 S
-14 8 0 8d8+8 10d10+10
+8 8 0 8d8+8 10d10+10
 8 0
 0 Animal~ 0
 #4423
@@ -298,7 +298,7 @@ The bear hasn't been fed for a long time.  The Circus Owner figures he can
 save a lot of money buy feeding the bear on unwary adventurers like yourself.
 ~
 35 0 0 S
-10 8 0 8d8+8 10d10+10
+7 8 0 8d8+8 10d10+10
 8 0
 0 Bear~ 0
 #4424
@@ -323,7 +323,7 @@ This poor animal had the unfortunate luck of being white.  Just what the
 Circus Owner was looking for.
 ~
 3 0 0 S
-2 8 0 8d8+8 10d10+10
+4 8 0 8d8+8 10d10+10
 8 0
 0 Animal~ 0
 #4426
@@ -337,7 +337,7 @@ delight.  This man is in trouble if the ASPCA ever finds out, but until then,
 he will probably keep making a LOT of money.
 ~
 135 0 -1000 S
-12 8 0 8d8+8 10d10+10
+8 8 0 8d8+8 10d10+10
 8 0
 0 Drow~ 1
 #4427
@@ -349,7 +349,7 @@ He is wearing a colorful pair of overalls and a bright painter's cap.  He
 makes cotton candy in a big tub, where all the kids can watch him.
 ~
 3 0 1000 S
-10 8 0 8d8+8 10d10+10
+6 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4428
@@ -373,7 +373,7 @@ He looks like he has been purposely abused to keep him mean.  Maybe if you
 gave him a pie, he would be your friend?
 ~
 39 40 -500 S
-6 8 0 8d8+8 10d10+10
+4 8 0 8d8+8 10d10+10
 8 0
 0 Animal~ 1
 #4430
@@ -384,7 +384,7 @@ A burly worker coming to the aid of the Circus Owner.
 The burly worker has sweat dripping off of every inch of his body.
 ~
 35 0 -1000 S
-14 8 0 8d8+8 10d10+10
+10 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4450
@@ -394,7 +394,7 @@ Binky's chef stands here, ready to carve the turkey.
 ~
 ~
 3 0 0 S
-16 8 0 8d8+8 10d10+10
+20 8 0 8d8+8 10d10+10
 8 0
 0 Human~ 1
 #4451
@@ -406,7 +406,7 @@ The Midget is very good at his trade, and makes quit a bit of money buy picking
 pockets of the unwary. 
 ~
 65 512 -900 S
-5 8 0 8d8+8 10d10+10
+1 8 0 8d8+8 10d10+10
 8 0
 0 Dwarf~ 1
 #0
@@ -1819,7 +1819,7 @@ S
 
 
 #SPECIALS
-M 4451 spec_thief 	; the Midget
+M 4451 spec_thief
 S
 
 
@@ -1830,126 +1830,126 @@ S
 
 
 #RESETS
-M 0 4400  1 4402  	; the Ticket Clerk to The Entrance to the Circus
-G 0 4400  0      	;   A ticket
-O 0 4429  0 4402  	; A note to The Entrance to the Circus
-M 0 4401  1 4403  	; a small child to The Path to the Big Top
-M 0 4403  1 4403  	; the child's mother to The Path to the Big Top
-M 0 4403  1 4404  	; the child's mother to The Game Booths
-M 0 4421  6 4404  	; an animal keeper to The Game Booths
-O 0 4415  0 4404  	; A letter to The Game Booths
-M 0 4401  1 4405  	; a small child to The Game Booths
-O 0 4415  0 4405  	; A letter to The Game Booths
-M 0 4401  1 4406  	; a small child to The Path to the Big Top
-M 0 4403  1 4406  	; the child's mother to The Path to the Big Top
-M 0 4427  1 4407  	; the cotton candy vendor to The Cotton Candy Vendor
-G 0 4401  0      	;   Cotton candy
-M 0 4404  1 4408  	; little Bobby to The Entrance to the Freak Shows
-M 0 4406  1 4409  	; the Bearded Lady to The Tent of the Bearded Lady
-E 0 4402  0 17    	;   A hairy key held in the hands
-M 0 4407  1 4410  	; the Illusionist to The Tent of the Illusionist
-E 0 4405  0 17    	;   A shimmering key held in the hands
-M 0 4408  1 4411  	; the Midget to The Midget's Tent
-E 0 4404  0 17    	;   A small key held in the hands
-G 0 4411  0      	;   The midget's purse
-P 0 4437  0 4411  	; A bunch of coins inside a bunch of coins
-M 0 4410  1 4412  	; the Sword Swallower to The Sword Swallower's Tent
-E 0 4406  0 17    	;   A slender key held in the hands
-M 0 4409  1 4413  	; Ivan to The Strongman's Tent
-E 0 4403  0 17    	;   A huge key held in the hands
-O 0 4414  0 4413  	; A barbell to The Strongman's Tent
-M 0 4401  1 4414  	; a small child to The Path to the Big Top
-M 0 4402  1 4414  	; the child's father to The Path to the Big Top
-M 0 4403  1 4414  	; the child's mother to The Path to the Big Top
-M 0 4401  1 4415  	; a small child to The Entrance to the Big Top.
-M 0 4402  1 4415  	; the child's father to The Entrance to the Big Top.
-M 0 4403  1 4415  	; the child's mother to The Entrance to the Big Top.
-M 0 4405  1 4415  	; Bobby's mother to The Entrance to the Big Top.
-M 0 4411  1 4417  	; a member of the audience to Under the Grand Stands
-M 0 4411  1 4418  	; a member of the audience to In the Grand Stands
-M 0 4411  1 4418  	; a member of the audience to In the Grand Stands
-M 0 4411  1 4419  	; a member of the audience to First Look at the Big Top
-M 0 4415  1 4419  	; the Ringmaster to First Look at the Big Top
-E 0 4421  0 6     	;   A tophat over the head
-M 0 4411  1 4420  	; a member of the audience to In the Grand Stands
-M 0 4411  1 4420  	; a member of the audience to In the Grand Stands
-M 0 4411  1 4420  	; a member of the audience to In the Grand Stands
-M 0 4412  1 4422  	; a red-nosed clown to The 2nd Ring - You'd better read the description of this room. 
-E 0 4439  0 5     	;   A red clown nose on the body
-M 0 4413  1 4422  	; a clown with big shoes to The 2nd Ring - You'd better read the description of this room. 
-E 0 4420  0 8     	;   Big clown shoes on the feet
-M 0 4416  1 4423  	; the knife thrower to The 3rd Ring
-E 0 4416  0 16    	;   A sharp knife wielded (1)
-G 0 4431  0      	;   Drugged food
-M 0 4417  1 4423  	; the knife thrower's assistant to The 3rd Ring
-E 0 4417  0 17    	;   A blindfold held in the hands
-M 0 4418  1 4424  	; the lion tamer to The 1st Ring
-E 0 4418  0 16    	;   A whip wielded (1)
-M 0 4419  3 4424  	; a ferocious Lion to The 1st Ring
-M 0 4419  3 4424  	; a ferocious Lion to The 1st Ring
-M 0 4419  3 4424  	; a ferocious Lion to The 1st Ring
-M 0 4420  1 4425  	; a tightrope walker to On the High Wire
-E 0 4419  0 17    	;   Tightrope walker's pole held in the hands
-M 0 4420  1 4426  	; a tightrope walker to On the High Wire
-E 0 4419  0 17    	;   Tightrope walker's pole held in the hands
-M 0 4412  1 4429  	; a red-nosed clown to Behind the Big Top
-E 0 4439  0 5     	;   A red clown nose on the body
-M 0 4421  6 4430  	; an animal keeper to The Animal Pens
-M 0 4422  2 4431  	; an elephant to The Elephant Pen
-M 0 4423  2 4432  	; a trained bear to The Bear Pen
-M 0 4423  2 4432  	; a trained bear to The Bear Pen
-M 0 4424  1 4433  	; a horse to The Horse Corral
-M 0 4421  6 4434  	; an animal keeper to The Row of Trailers
-O 0 4424  0 4435  	; A chest to The Strongman's Trailer
-P 0 4407  0 4424  	; The strongman's bracers inside the strongman's bracers
-O 0 4422  0 4436  	; A chest to The Bearded Lady's Trailer
-P 0 4413  0 4422  	; A razor inside a razor
-O 0 4426  0 4437  	; Another chest to The Sword Swallower's Trailer
-P 0 4410  0 4426  	; The sword swallower's sword inside the sword swallower's sword
-O 0 4425  0 4439  	; A chest to The Midget's Tiny Trailer
-P 0 4438  0 4425  	; A bunch of coins inside a bunch of coins
-P 0 4408  0 4425  	; A small, thin sword inside a small, thin sword
-M 0 4429  1 4439  	; a guard dog to The Midget's Tiny Trailer
-M 0 4421  6 4440  	; an animal keeper to The Row of Trailers
-O 0 4423  0 4441  	; A chest to The Illusionist's Trailer
-P 0 4409  0 4423  	; A pointy translucent staff inside a pointy translucent staff
-M 0 4425  1 4442  	; a poor horse to The Circus Owner's Trailer
-M 0 4426  1 4442  	; the Circus Owner to The Circus Owner's Trailer
-E 0 4448  0 16    	;   A scalpel wielded (1)
-G 0 4427  0      	;   A paper
-P 0 4412  0 4428  	; A bunch of coins inside a bunch of coins
-O 0 4428  0 4443  	; A combination safe to The Secret Room
-M 0 4412  1 4444  	; a red-nosed clown to The Clown's Room below the 2nd Ring
-E 0 4439  0 5     	;   A red clown nose on the body
-M 0 4412  1 4444  	; a red-nosed clown to The Clown's Room below the 2nd Ring
-E 0 4439  0 5     	;   A red clown nose on the body
-M 0 4413  1 4444  	; a clown with big shoes to The Clown's Room below the 2nd Ring
-E 0 4420  0 8     	;   Big clown shoes on the feet
-M 0 4414  1 4444  	; a big clown to The Clown's Room below the 2nd Ring
-E 0 4430  0 17    	;   A bucket held in the hands
-M 0 4414  1 4444  	; a big clown to The Clown's Room below the 2nd Ring
-E 0 4430  0 17    	;   A bucket held in the hands
-M 0 4421  6 4445  	; an animal keeper to Behind the Big Top
-M 0 4412  1 4446  	; a red-nosed clown to Behind the Big Top
-E 0 4439  0 5     	;   A red clown nose on the body
-M 0 4421  6 4447  	; an animal keeper to Behind the Big Top
-M 0 4420  1 4448  	; a tightrope walker to The Tightrope Walkers Trailer
-E 0 4419  0 17    	;   Tightrope walker's pole held in the hands
-G 0 4441  0      	;   A key
-O 0 4440  0 4448  	; A chest to The Tightrope Walkers Trailer
-P 0 4442  0 4440  	; A clear potion inside a clear potion
-O 0 4449  0 4469  	; Binky's refrigerator to Binky's Kitchen
-P 0 4434  0 4449  	; A delicious bigmac inside a delicious BigMac
-P 0 4435  0 4449  	; A can of coke inside a can of Coke
-P 0 4432  0 4449  	; A slice of tombstone sausage and pepperoni pizza inside a slice of Tombstone Sausage and Pepperoni pizza
-P 0 4433  0 4449  	; A juicy steak inside a juicy steak
-O 0 4443  0 4469  	; A roast to Binky's Kitchen
-O 0 4444  0 4469  	; A slice of turkey to Binky's Kitchen
-O 0 4445  0 4469  	; Homemade stuffing to Binky's Kitchen
-O 0 4446  0 4469  	; A slice of cherry pie to Binky's Kitchen
-O 0 4447  0 4469  	; A wineskin to Binky's Kitchen
-M 0 4450  1 4469  	; Binky's chef to Binky's Kitchen
-E 0 4450  0 16    	;   A carving knife wielded (1)
+M 0 4400 1 4402
+G 0 4400 0
+O 0 4429 0 4402
+M 0 4401 1 4403
+M 0 4403 1 4403
+M 0 4403 1 4404
+M 0 4421 6 4404
+O 0 4415 0 4404
+M 0 4401 1 4405
+O 0 4415 0 4405
+M 0 4401 1 4406
+M 0 4403 1 4406
+M 0 4427 1 4407
+G 0 4401 0
+M 0 4404 1 4408
+M 0 4406 1 4409
+E 0 4402 0 17
+M 0 4407 1 4410
+E 0 4405 0 17
+M 0 4408 1 4411
+E 0 4404 0 17
+G 0 4411 0
+P 0 4437 0 4411
+M 0 4410 1 4412
+E 0 4406 0 17
+M 0 4409 1 4413
+E 0 4403 0 17
+O 0 4414 0 4413
+M 0 4401 1 4414
+M 0 4402 1 4414
+M 0 4403 1 4414
+M 0 4401 1 4415
+M 0 4402 1 4415
+M 0 4403 1 4415
+M 0 4405 1 4415
+M 0 4411 1 4417
+M 0 4411 1 4418
+M 0 4411 1 4418
+M 0 4411 1 4419
+M 0 4415 1 4419
+E 0 4421 0 6
+M 0 4411 1 4420
+M 0 4411 1 4420
+M 0 4411 1 4420
+M 0 4412 1 4422
+E 0 4439 0 5
+M 0 4413 1 4422
+E 0 4420 0 8
+M 0 4416 1 4423
+E 0 4416 0 16
+G 0 4431 0
+M 0 4417 1 4423
+E 0 4417 0 17
+M 0 4418 1 4424
+E 0 4418 0 16
+M 0 4419 3 4424
+M 0 4419 3 4424
+M 0 4419 3 4424
+M 0 4420 1 4425
+E 0 4419 0 17
+M 0 4420 1 4426
+E 0 4419 0 17
+M 0 4412 1 4429
+E 0 4439 0 5
+M 0 4421 6 4430
+M 0 4422 2 4431
+M 0 4423 2 4432
+M 0 4423 2 4432
+M 0 4424 1 4433
+M 0 4421 6 4434
+O 0 4424 0 4435
+P 0 4407 0 4424
+O 0 4422 0 4436
+P 0 4413 0 4422
+O 0 4426 0 4437
+P 0 4410 0 4426
+O 0 4425 0 4439
+P 0 4438 0 4425
+P 0 4408 0 4425
+M 0 4429 1 4439
+M 0 4421 6 4440
+O 0 4423 0 4441
+P 0 4409 0 4423
+M 0 4425 1 4442
+M 0 4426 1 4442
+E 0 4448 0 16
+G 0 4427 0
+P 0 4412 0 4428
+O 0 4428 0 4443
+M 0 4412 1 4444
+E 0 4439 0 5
+M 0 4412 1 4444
+E 0 4439 0 5
+M 0 4413 1 4444
+E 0 4420 0 8
+M 0 4414 1 4444
+E 0 4430 0 17
+M 0 4414 1 4444
+E 0 4430 0 17
+M 0 4421 6 4445
+M 0 4412 1 4446
+E 0 4439 0 5
+M 0 4421 6 4447
+M 0 4420 1 4448
+E 0 4419 0 17
+G 0 4441 0
+O 0 4440 0 4448
+P 0 4442 0 4440
+O 0 4449 0 4469
+P 0 4434 0 4449
+P 0 4435 0 4449
+P 0 4432 0 4449
+P 0 4433 0 4449
+O 0 4443 0 4469
+O 0 4444 0 4469
+O 0 4445 0 4469
+O 0 4446 0 4469
+O 0 4447 0 4469
+M 0 4450 1 4469
+E 0 4450 0 16
 S
 
 
@@ -1960,8 +1960,8 @@ S
 
 
 #SHOPS
-4400  0  0  0  0  0 100  50  0 23 	; the Ticket Clerk
-4427  0  0  0  0  0 100  50  0 23 	; the cotton candy vendor
+4400 0 0 0 0 0 100 50 0 23
+4427 0 0 0 0 0 100 50 0 23
 0
 
 

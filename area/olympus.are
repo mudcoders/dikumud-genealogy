@@ -1,5 +1,5 @@
 #AREADATA
-Name        Olympus~
+Name        {{15 50} Generic Olympus~
 Builders    None~
 VNUMs       900 954
 Security    1
@@ -19,7 +19,7 @@ destroy you with a thought.  Every glance penetrates deep into your soul.
 You now know what true fear is.
 ~
 7 532650 1000 S
-60 0 0 35d35+1000 20d3+25
+53 0 0 35d35+1000 20d3+25
 100000 0
 0 God~ 1
 #902
@@ -31,7 +31,7 @@ This mortal risked the wrath of Zeus to give the gift of fire to humans.  He
 looks up at you and smiles.
 ~
 7 532650 1000 S
-32 0 0 31d31+310 15d2+20
+42 0 0 31d31+310 15d2+20
 40000 0
 0 God~ 1
 #903
@@ -44,7 +44,7 @@ darts from place to place.  He looks very busy, and it seems as if he doesn't
 even notice your presence.
 ~
 5 565418 1000 S
-46 0 0 33d33+330 20d2+20
+43 0 0 33d33+330 20d2+20
 50000 0
 0 God~ 1
 #904
@@ -57,7 +57,7 @@ visiting Mount Olympus.  He nods at you and motions for you to enter and
 have a seat.
 ~
 7 532650 1000 S
-51 0 0 35d35+1000 20d3+25
+47 0 0 35d35+1000 20d3+25
 100000 0
 0 God~ 1
 #905
@@ -70,7 +70,7 @@ join him.  You notice a dangerous looking bow by his side, however, and think
 that he knows more than music.
 ~
 7 532650 1000 S
-38 0 0 34d34+340 15d3+25
+43 0 0 34d34+340 15d3+25
 40000 0
 0 God~ 1
 #906
@@ -82,7 +82,7 @@ The God of War is here, studying some maps.  He scowls at you as you enter
 and says 'I am very busy.  What do you want?'
 ~
 39 524458 -1000 S
-50 0 0 35d35+1500 10d2+25
+44 0 0 35d35+1500 10d2+25
 50000 0
 0 God~ 1
 #907
@@ -94,7 +94,7 @@ Zeus' favorite daughter is sitting on a couch eating grapes.  She smiles at
 you and invites you to join her.
 ~
 7 532650 1000 S
-50 0 0 33d33+330 15d2+10
+45 0 0 33d33+330 15d2+10
 60000 0
 0 God~ 2
 #908
@@ -107,7 +107,7 @@ ugly.  You get the impression that he is kind, however, and would go out of his
 way to help you.  He is attended by three golden maidens.
 ~
 7 532650 1000 S
-34 0 0 33d33+330 12d2+26
+40 0 0 33d33+330 12d2+26
 60000 0
 0 God~ 1
 #909
@@ -131,7 +131,7 @@ This man is waiting on Ares.  Although he does not look very strong, you
 realize that Ares would not have any weaklings working for him.
 ~
 39 524458 0 S
-25 0 0 2d8+250 3d6+12
+29 0 0 2d8+250 3d6+12
 5000 0
 0 Human~ 1
 #911
@@ -143,7 +143,7 @@ This man has mastered his first profession, and is now studying music from the
 immortal Apollo.
 ~
 1031 524458 1000 S
-8 9 0 2d8+80 2d5+2
+7 9 0 2d8+80 2d5+2
 2500 0
 0 Human~ 1
 #912
@@ -154,7 +154,7 @@ A servant is here, feeding Athena her grapes.
 This boy is truly lucky to be able to serve Athena herself.
 ~
 7 524458 1000 S
-7 15 0 2d8+200 2d3+2
+6 15 0 2d8+200 2d3+2
 500 0
 0 Human~ 1
 #913
@@ -166,7 +166,7 @@ This great beast can barely be called a dog.  It has been bred to cause fear
 on the battle field, and you have no doubt that it does its job well.
 ~
 39 524458 -600 S
-21 0 0 1d8+450 2d12+10
+25 0 0 1d8+450 2d12+10
 0 0
 0 Animal~ 0
 #914
@@ -179,7 +179,7 @@ over you, and is so intent on his activities that he barely recognizes your
 presence.
 ~
 7 532650 1000 S
-46 0 0 35d35+1000 10d2+25
+50 0 0 35d35+1000 10d2+25
 100000 0
 0 God~ 1
 #915
@@ -193,7 +193,7 @@ not to underestimate him.  He smiles warmly at you and shows you his selection
 of delicious looking foods.
 ~
 7 532650 1000 S
-34 0 0 1d1+1999 3d10+10
+37 0 0 1d1+1999 3d10+10
 10000 0
 0 Human~ 1
 #916
@@ -218,7 +218,7 @@ Clive looks VERY big and VERY tough.  All those years in the army must have
 paid off.
 ~
 7 532650 1000 S
-44 0 0 30d30+300 10d3+20
+40 0 0 30d30+300 10d3+20
 40000 0
 0 Giant~ 1
 #918
@@ -230,7 +230,7 @@ Samuel looks just like Clive the Weapons Master: VERY big and VERY tough.
 He doesn't like what you've been doing in his city.
 ~
 39 532650 1000 S
-24 0 0 1d8+400 10d3+20
+28 0 0 1d8+400 10d3+20
 10000 0
 0 Drow~ 1
 #919
@@ -243,7 +243,7 @@ about his appearance.  What you can tell, however, suggests that he is no one
 to be trifled with.
 ~
 7 532650 1000 S
-50 0 0 1d8+2500 25d2+25
+49 0 0 1d8+2500 25d2+25
 100000 0
 0 God~ 1
 #920
@@ -255,7 +255,7 @@ This bizarre creature has three heads - one of a goat, one of a lion, and one
 of a dragon.  It growls at you as you enter the cell, then suddenly attacks!
 ~
 39 524458 -1000 S
-27 0 0 20d20+200 5d5+15
+22 0 0 20d20+200 5d5+15
 1000 0
 0 Animal~ 1
 #921
@@ -267,7 +267,7 @@ Hera, the wife of Zeus is here.  She smiles at you as you enter and invites you
 to rest and sit for a while.
 ~
 7 532650 1000 S
-48 0 0 1d8+1500 15d3+15
+51 0 0 1d8+1500 15d3+15
 100000 0
 0 God~ 2
 #922
@@ -279,7 +279,7 @@ This is a giant bird.  It looks at you quizzically, then makes a noise and
 looks away.
 ~
 5 532650 0 S
-13 0 0 1d8+400 3d8+6
+16 0 0 1d8+400 3d8+6
 5000 0
 0 God~ 0
 #923
@@ -290,7 +290,7 @@ A citizen of this town is strolling down the street here.
 He looks happy and carefree.  He smiles and tips his hat to you.
 ~
 5 532714 1000 S
-2 16 0 1d8+60 2d4+1
+6 16 0 1d8+60 2d4+1
 69 0
 0 Ogre~ 1
 #924
@@ -302,7 +302,7 @@ This horse is snow white with large wings.  Although it doesn't look very
 threatening, it seems as though it would be dangerous if provoked.
 ~
 5 532650 0 S
-13 12 0 1d8+110 2d5+3
+8 12 0 1d8+110 2d5+3
 800 0
 0 Animal~ 0
 #925
@@ -313,7 +313,7 @@ A cook is here, hard at work.
 This man looks as is he has been spending WAY too much time in the kitchen.
 ~
 7 532650 1000 S
-7 15 0 1d8+75 2d4+2
+4 15 0 1d8+75 2d4+2
 100 0
 0 Human~ 1
 #926
@@ -325,7 +325,7 @@ He looks as though he has spent a lot of time underground, guarding the
 prisoners.
 ~
 7 532650 0 S
-11 8 0 1d8+620 2d6+1
+14 8 0 1d8+620 2d6+1
 1000 0
 0 Human~ 1
 #0
@@ -1371,19 +1371,19 @@ S
 
 
 #SPECIALS
-M 901 spec_cast_cleric 	; Zeus
-M 902 spec_breath_fire 	; Prometheus
-M 904 spec_cast_mage 	; Poseidon
-M 905 spec_cast_mage 	; Apollo
-M 907 spec_cast_mage 	; Athena
-M 908 spec_breath_lightning 	; Hephaestus
-M 909 spec_guard 	; A Golden Maiden
-M 914 spec_breath_any 	; Odin
-M 919 spec_breath_any 	; Ra the Sun God
-M 920 spec_breath_fire 	; a chimera
-M 921 spec_cast_cleric 	; Hera
-M 922 spec_poison 	; a roc
-M 926 spec_cast_mage 	; The Jailer
+M 901 spec_cast_cleric
+M 902 spec_breath_fire
+M 904 spec_cast_mage
+M 905 spec_cast_mage
+M 907 spec_cast_mage
+M 908 spec_breath_lightning
+M 909 spec_guard
+M 914 spec_breath_any
+M 919 spec_breath_any
+M 920 spec_breath_fire
+M 921 spec_cast_cleric
+M 922 spec_poison
+M 926 spec_cast_mage
 S
 
 
@@ -1394,109 +1394,109 @@ S
 
 
 #RESETS
-M 0 923 10 904   	; A citizen to Entrance
-M 0 923 10 905   	; A citizen to Zeus Street
-M 0 923 10 906   	; A citizen to Zeus Street
-M 0 923 10 907   	; A citizen to Zeus Street
-M 0 923 10 908   	; A citizen to Zeus Street
-M 0 901  1 910   	; Zeus to Throne Room
-E 0 900  0 5     	;   The aegis on the body
-E 0 901  0 16    	;   The thunder bolt wielded (1)
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 925  4 914   	; A Cook to Kitchen
-M 0 925  4 914   	; A Cook to Kitchen
-M 0 926  1 918   	; The Jailer to Dungeon
-G 0 927  0      	;   A cell key
-M 0 902  1 920   	; Prometheus to Cell
-E 0 908  0 9     	;   Flaming gauntlets on the hands
-M 0 920  2 921   	; a chimera to Cell
-M 0 920  2 922   	; a chimera to Cell
-M 0 915  1 924   	; Julius the Green Grocer to Bakery
-G 0 914  0      	;   A bunch of grapes
-G 0 918  0      	;   An apple
-G 0 919  0      	;   A pear
-G 0 920  0      	;   A orange
-G 0 921  0      	;   A kiwi
-M 0 907  1 925   	; Athena to Residence
-E 0 910  0 3     	;   A glowing necklace around the neck (1)
-E 0 905  0 17    	;   An ivory staff held in the hands
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 912  4 925   	; A serving boy to Residence
-E 0 915  0 17    	;   A fan made of peacock feathers held in the hands
-G 0 914  0      	;   A bunch of grapes
-M 0 912  4 925   	; A serving boy to Residence
-E 0 915  0 17    	;   A fan made of peacock feathers held in the hands
-G 0 914  0      	;   A bunch of grapes
-M 0 905  1 926   	; Apollo to Residence
-E 0 907  0 16    	;   A silver bow wielded (1)
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 911  4 926   	; an apprentice musician to Residence
-E 0 916  0 17    	;   A lute held in the hands
-G 0 921  0      	;   A kiwi
-M 0 911  4 926   	; an apprentice musician to Residence
-E 0 916  0 17    	;   A lute held in the hands
-G 0 921  0      	;   A kiwi
-M 0 916  1 927   	; the Alchemist to Mystic Shop
-G 0 905  0      	;   An ivory staff
-G 0 909  0      	;   Ambrosia
-G 0 910  0      	;   A glowing necklace
-G 0 926  0      	;   Nectar
-M 0 923 10 928   	; A citizen to Ares Street
-M 0 914  1 929   	; Odin to Guest Quarters
-E 0 924  0 12    	;   A blue robe about the shoulders
-E 0 925  0 6     	;   A wide brimmed hat over the head
-M 0 919  1 931   	; Ra the Sun God to Guest Quarters
-E 0 922  0 3     	;   The amulet of ra around the neck (1)
-E 0 923  0 16    	;   The sword of the sun wielded (1)
-M 0 922  3 933   	; a roc to Stable
-M 0 922  3 933   	; a roc to Stable
-M 0 924  3 933   	; a pegasus to Stable
-M 0 924  3 933   	; a pegasus to Stable
-M 0 923 10 934   	; A citizen to Ares Street
-M 0 918  1 935   	; Samuel the Armourer to Armoury
-G 0 904  0      	;   A pair of winged sandals
-G 0 908  0      	;   Flaming gauntlets
-G 0 911  0      	;   A sapphire ring
-M 0 917  1 936   	; Clive the Weapons Master to Weapon Shop
-G 0 907  0      	;   A silver bow
-G 0 913  0      	;   A notched axe
-M 0 908  1 937   	; Hephaestus to Smithy
-E 0 912  0 11    	;   A brightly glowing shield as a shield
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 909  4 937   	; A Golden Maiden to Smithy
-G 0 917  0      	;   A gold nugget
-M 0 909  4 937   	; A Golden Maiden to Smithy
-G 0 917  0      	;   A gold nugget
-M 0 906  1 938   	; Ares to The Planning Room
-E 0 903  0 16    	;   The spear of ares wielded (1)
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 910  4 938   	; A Soldier to The Planning Room
-E 0 913  0 16    	;   A notched axe wielded (1)
-G 0 919  0      	;   A pear
-M 0 910  4 938   	; A Soldier to The Planning Room
-E 0 913  0 16    	;   A notched axe wielded (1)
-G 0 919  0      	;   A pear
-M 0 921  1 945   	; Hera to Bed Room
-E 0 911  0 1     	;   A sapphire ring on the left finger
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 904  1 946   	; Poseidon to Bed Room
-E 0 906  0 16    	;   Poseidon's trident wielded (1)
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 903  1 947   	; Hermes to Bed Room
-E 0 904  0 8     	;   A pair of winged sandals on the feet
-E 0 902  0 6     	;   A winged helmet over the head
-G 0 926  0      	;   Nectar
-G 0 909  0      	;   Ambrosia
-M 0 913  5 954   	; A hound of war to The Believer
-M 0 913  5 954   	; A hound of war to The Believer
-M 0 913  5 954   	; A hound of war to The Believer
+M 0 923 10 904
+M 0 923 10 905
+M 0 923 10 906
+M 0 923 10 907
+M 0 923 10 908
+M 0 901 1 910
+E 0 900 0 5
+E 0 901 0 16
+G 0 926 0
+G 0 909 0
+M 0 925 4 914
+M 0 925 4 914
+M 0 926 1 918
+G 0 927 0
+M 0 902 1 920
+E 0 908 0 9
+M 0 920 2 921
+M 0 920 2 922
+M 0 915 1 924
+G 0 914 0
+G 0 918 0
+G 0 919 0
+G 0 920 0
+G 0 921 0
+M 0 907 1 925
+E 0 910 0 3
+E 0 905 0 17
+G 0 926 0
+G 0 909 0
+M 0 912 4 925
+E 0 915 0 17
+G 0 914 0
+M 0 912 4 925
+E 0 915 0 17
+G 0 914 0
+M 0 905 1 926
+E 0 907 0 16
+G 0 926 0
+G 0 909 0
+M 0 911 4 926
+E 0 916 0 17
+G 0 921 0
+M 0 911 4 926
+E 0 916 0 17
+G 0 921 0
+M 0 916 1 927
+G 0 905 0
+G 0 909 0
+G 0 910 0
+G 0 926 0
+M 0 923 10 928
+M 0 914 1 929
+E 0 924 0 12
+E 0 925 0 6
+M 0 919 1 931
+E 0 922 0 3
+E 0 923 0 16
+M 0 922 3 933
+M 0 922 3 933
+M 0 924 3 933
+M 0 924 3 933
+M 0 923 10 934
+M 0 918 1 935
+G 0 904 0
+G 0 908 0
+G 0 911 0
+M 0 917 1 936
+G 0 907 0
+G 0 913 0
+M 0 908 1 937
+E 0 912 0 11
+G 0 926 0
+G 0 909 0
+M 0 909 4 937
+G 0 917 0
+M 0 909 4 937
+G 0 917 0
+M 0 906 1 938
+E 0 903 0 16
+G 0 926 0
+G 0 909 0
+M 0 910 4 938
+E 0 913 0 16
+G 0 919 0
+M 0 910 4 938
+E 0 913 0 16
+G 0 919 0
+M 0 921 1 945
+E 0 911 0 1
+G 0 926 0
+G 0 909 0
+M 0 904 1 946
+E 0 906 0 16
+G 0 926 0
+G 0 909 0
+M 0 903 1 947
+E 0 904 0 8
+E 0 902 0 6
+G 0 926 0
+G 0 909 0
+M 0 913 5 954
+M 0 913 5 954
+M 0 913 5 954
 S
 
 
@@ -1507,7 +1507,7 @@ S
 
 
 #SHOPS
-915  1  8 13 15 19 120  80  0 23 	; Julius the Green Grocer
+915 1 8 13 15 19 120 80 0 23
 0
 
 

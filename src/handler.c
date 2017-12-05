@@ -69,10 +69,16 @@ int get_trust( CHAR_DATA *ch )
  */
 int get_age( CHAR_DATA *ch )
 {
-    return 17 + ( ch->played + (int) ( current_time - ch->logon ) ) / 428400;
+    return ( ( ch->current_age + current_time - ch->logon ) / MUD_YEAR );
+
+    /* MUD_YEAR defined in merc.h.. (252000) */
 
     /* 428400 assumes 30 secs/mud hour * 24 hours/day * 35 days/month *
        17 months/year - Kahn */
+
+    /* Changed to 252000, assuming 30 secs/mud hour * 24 hours/day *
+       7 days/week * 5 weeks/month * 10 months/year - Canth */
+
 }
 
 
@@ -1029,7 +1035,10 @@ void obj_to_obj( OBJ_DATA *obj, OBJ_DATA *obj_to )
 	    continue;
 	if ( obj_to->carried_by )
 	{
-	    obj_to->carried_by->carry_number += get_obj_number( obj );
+/*	    obj_to->carried_by->carry_number += get_obj_number( obj );
+ * Disabled by Canth (canth@xs4all.nl)
+ * This way putting items in a container they no longer count against
+ * the number of items you can carry */
 	    obj_to->carried_by->carry_weight += get_obj_weight( obj );
 	}
     }
@@ -1085,7 +1094,8 @@ void obj_from_obj( OBJ_DATA *obj )
 	    continue;
 	if ( obj_from->carried_by )
 	{
-	    obj_from->carried_by->carry_number -= get_obj_number( obj );
+/*	    obj_from->carried_by->carry_number -= get_obj_number( obj );
+ * Disabled by Canth (canth@xs4all.nl) */
 	    obj_from->carried_by->carry_weight -= get_obj_weight( obj );
 	}
     }
@@ -1502,14 +1512,17 @@ int get_obj_number( OBJ_DATA *obj )
     int number;
 
     number = 0;
-    if ( obj->item_type == ITEM_CONTAINER )
-        for ( obj = obj->contains; obj; obj = obj->next_content )
-	{
-	    if ( obj->deleted )
-	        continue;
-	    number += get_obj_number( obj );
-	}
-    else
+/*    if ( obj->item_type == ITEM_CONTAINER )
+ *        for ( obj = obj->contains; obj; obj = obj->next_content )
+ *	{
+ *	    if ( obj->deleted )
+ *	        continue;
+ *	    number += get_obj_number( obj );
+ *	}
+ *    else
+ * Disabled by Canth (canth@xs4all.nl)
+ * This way items in containers no longer count against max items you can
+ * carry. */
 	number = 1;
 
     return number;
@@ -1734,6 +1747,7 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_FOUNTAIN:		return "fountain";
     case ITEM_PILL:		return "pill";
     case ITEM_JUKEBOX:		return "jukebox";
+    case ITEM_PORTAL:		return "portal";
     }
 
     for ( in_obj = obj; in_obj->in_obj; in_obj = in_obj->in_obj )

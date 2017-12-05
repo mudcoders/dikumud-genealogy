@@ -1,5 +1,5 @@
 #AREADATA
-Name        Redferne's Residence~
+Name        {{20 30} Diku    Redferne's Residence~
 Builders    None~
 VNUMs       7900 7918
 Security    1
@@ -19,7 +19,7 @@ white, blue and silver. He looks VERY strong, as he stands here, ready to
 help the innocent.
 ~
 65 136 1000 S
-35 -5 0 20d10+700 2d6+14
+30 -5 0 20d10+700 2d6+14
 0 0
 0 Human~ 1
 #0
@@ -461,7 +461,7 @@ S
 
 
 #SPECIALS
-M 7900 spec_cast_cleric 	; the Grand Knight of paladins
+M 7900 spec_cast_cleric
 S
 
 
@@ -472,22 +472,22 @@ S
 
 
 #RESETS
-M 0 7900  1 7900  	; the Grand Knight of paladins to Outside Redferne's residence
-E 0 7216  0 16    	;   A red dragon claw wielded (1)
-E 0 7217  0 5     	;   A silvery breast plate on the body
-E 0 7218  0 7     	;   Some silvery leg plates on the legs
-E 0 7219  0 9     	;   A pair of silvery gloves on the hands
-E 0 7220  0 6     	;   A silvery helmet over the head
-E 0 7221  0 11    	;   The shield of the rose as a shield
-E 0 7223  0 10    	;   Some silvery arm plates on the arms
-E 0 7222  0 8     	;   A pair of silvery boots on the feet
-E 0 7224  0 12    	;   A white cloak about the shoulders
-G 0 7911  0      	;   A small brass key
-O 0 7909  0 7903  	; A huge treasure to The Artifact room of Naris
-O 0 6013  0 7908  	; The barrel to The Fridge
-O 0 7910  0 7910  	; A wooden chest to The Treasure room
-P 0 7298  0 7910  	; A huge treasure inside a huge treasure
-P 0 7208  0 7910  	; A small stick inside a small stick
+M 0 7900 1 7900
+E 0 7216 0 16
+E 0 7217 0 5
+E 0 7218 0 7
+E 0 7219 0 9
+E 0 7220 0 6
+E 0 7221 0 11
+E 0 7223 0 10
+E 0 7222 0 8
+E 0 7224 0 12
+G 0 7911 0
+O 0 7909 0 7903
+O 0 6013 0 7908
+O 0 7910 0 7910
+P 0 7298 0 7910
+P 0 7208 0 7910
 S
 
 

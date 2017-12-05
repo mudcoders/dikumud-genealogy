@@ -1,7 +1,7 @@
 #AREADATA
-Name        Limbo~
+Name        {{None } Diku    Limbo~
 Builders    None~
-VNUMs       1 99
+VNUMs       1 69
 Security    1
 Recall      3001
 End
@@ -16,7 +16,7 @@ Puff the Fractal Dragon is here, contemplating a higher reality.
 ~
 ~
 1 0 1000 S
-24 1 0 5d10+550 4d6+3
+25 1 0 5d10+550 4d6+3
 10000 0
 0 Dragon~ 2
 #2
@@ -29,7 +29,7 @@ eyestalks atop the round body which can do anything from charm you
 to disintegrate you.  Beholders are not known for their personality.
 ~
 163 8 -870 S
-29 6 0 25d25+250 6d6+5
+27 6 0 25d25+250 6d6+5
 22560 0
 0 God~ 0
 #0
@@ -250,16 +250,86 @@ gold and silver.~
 13 0 1
 0~ 0~ 0~ 0~
 20 0 0
-#50
-hot tub~
-a hot tub all naked~
-A hot tub is bubbling here~
+#45
+bed~
+a bed~
+A long bed~
 ~
-12 1048578 0
-2~ 0~ 65535~ 0~
-100 100 0
+12 2 0
+1~ 0~ 8191~ 0~
+0 0 0
+#62
+portal~
+a shimmering portal~
+A shimmering magical portal is here~
+~
+28 0 0
+0~ 0~ 0~ 0~
+100 0 0
+#70
+birthday suit~
+a birthday suit~
+A garish purple and mauve suit complete with orange suspenders and a neon pink tie~
+~
+9 1 1|8
+0~ 0~ 0~ 0~
+3 0 0
 A
-17 -100
+17 15
+A
+2 2
+#71
+hat paper birthday~
+a paper birthday hat~
+A paper birthday hat with a tinkling bell on top has been blown here by the wind~
+~
+9 64 1|16
+0~ 0~ 0~ 0~
+1 0 0
+A
+17 15
+A
+3 2
+#72
+ball thaumaturgy~
+a ball of pure magic~
+A magic ball emenating green light and pulsing with positive energy lies humming on the floor~
+~
+9 1|2|64 1|16384
+0~ 0~ 0~ 0~
+1 0 0
+A
+13 100
+#73
+ring birthday topaz~
+a topaz birthday ring~
+A golden ring inset with a glowing topaz stone is lodged between the flagstones at your feet~
+~
+9 1|64 1|2
+0~ 0~ 0~ 0~
+1 0 0
+A
+1 2
+A
+17 1
+E
+topaz ring birthday~
+Engraved on the inside of the ring in ancient Celtic runes is the time honoured phrase.... HAPPY BIRTHDAY!~
+#74
+birthday watch~
+a magic birthday watch~
+A glowing birthday watch has been dropped here. Perhaps the strap is broken?~
+~
+9 1 1|4096
+0~ 0~ 0~ 0~
+1 0 0
+A
+5 2
+A
+17 1
+E
+watch birthday~
+This watch tells not the time, but reminds you of your mortality and the little time left till your next birthday~
 #0
 
 
@@ -279,67 +349,6 @@ darkness around you without any trace of edges or shadow.
    There is a "No Tipping" notice pinned to the darkness.
 ~
 0 12 1
-S
-#64
-Maniac's bathroom~
-This is maniac's bathroom, the wall's are covered with nice bathtiles
-displaying all kinds of unix manual-pages.  
-~
-0 0 0
-D3
-~
-~
-0 0 67
-S
-#65
-Maniac's livingroom~
-You are now in maniac's livingroom.
-It is a very cosy place, but it is not like any other livingroom
-Maniac's livingroom is filled with computers and the walls are papered with
-printouts and post-it notes.
-On several computers you see mud's and hacking programs running
-~
-0 0 0
-D1
-~
-~
-4 0 67
-D3
-~
-~
-0 0 66
-D5
-~
-~
-0 0 3001
-S
-#66
-Maniac's Computer and Coding room~
-This is maniac's computer and coding room...
-in this room he writes new pieces of mud code and other programs
-The entire room is filled with computers, cables, printouts and monitors.
-~
-0 4 0
-D1
-~
-~
-0 0 65
-S
-#67
-Maniac's bedroom~
-This is Maniac's bedroom, he doesn't spend much time here, since
-he spends to much time mudding and coding, but when he is here
-(well you know....)
-~
-0 0 0
-D1
-~
-~
-0 0 64
-D3
-~
-~
-4 0 65
 S
 #69
 Frag's Hovel~
@@ -369,8 +378,7 @@ S
 
 
 #RESETS
-O 0 50  0 1     	; A hot tub all naked to The Void
-M 0 1  1 2     	; Puff to Limbo
+M 0 1 1 2
 S
 
 

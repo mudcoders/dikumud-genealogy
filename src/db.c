@@ -52,6 +52,8 @@ SHOP_DATA *		shop_last;
 
 CHAR_DATA *		char_free;
 EXTRA_DESCR_DATA *	extra_descr_free;
+EXTRA_DESCR_DATA *	new_extra_descr	args( ( void ) );
+ROOM_MANA_DATA *	room_mana_free;
 NOTE_DATA *		note_free;
 OBJ_DATA *		obj_free;
 PC_DATA *		pcdata_free;
@@ -153,6 +155,7 @@ int			top_mob_index;
 int			top_obj_index;
 int			top_reset;
 int			top_room;
+int			top_room_mana;
 int			top_shop;
 int         top_vnum_room;  /* OLC */
 int         top_vnum_mob;   /* OLC */
@@ -281,22 +284,24 @@ void boot_db( void )
 
 	lhour		= ( current_time - 650336715 )
 			   / ( PULSE_TICK / PULSE_PER_SECOND );
-	time_info.hour  = lhour  % 24;
-	lday		= lhour  / 24;
-	time_info.day	= lday   % 35;
-	lmonth		= lday   / 35;
-	time_info.month	= lmonth % 17;
-	time_info.year	= lmonth / 17;
+	/* Damn, check these new ones out.. Now no matter how many days/
+	week/month/year, it always works. Canth - 9-6-97 */
+	time_info.hour  = lhour  % HOUR_DAY;
+	lday		= lhour  / HOUR_DAY;
+	time_info.day	= lday   % DAY_MONTH;
+	lmonth		= lday   / DAY_MONTH;
+	time_info.month	= lmonth % MONTH_YEAR;
+	time_info.year	= lmonth / MONTH_YEAR;
 
-	     if ( time_info.hour <  5 ) weather_info.sunlight = SUN_DARK;
-	else if ( time_info.hour <  6 ) weather_info.sunlight = SUN_RISE;
-	else if ( time_info.hour < 19 ) weather_info.sunlight = SUN_LIGHT;
-	else if ( time_info.hour < 20 ) weather_info.sunlight = SUN_SET;
+	     if ( time_info.hour < ( HOUR_DAY / 5 ) ) weather_info.sunlight = SUN_DARK;
+	else if ( time_info.hour < ( HOUR_DAY / 5 ) + 1 ) weather_info.sunlight = SUN_RISE;
+	else if ( time_info.hour < ( HOUR_DAY * 4 / 5 ) ) weather_info.sunlight = SUN_LIGHT;
+	else if ( time_info.hour < ( HOUR_DAY * 4 / 5 ) + 1 ) weather_info.sunlight = SUN_SET;
 	else                            weather_info.sunlight = SUN_DARK;
 
 	weather_info.change	= 0;
 	weather_info.mmhg	= 960;
-	if ( time_info.month >= 7 && time_info.month <=12 )
+	if ( time_info.month >= (MONTH_YEAR / 5) && time_info.month <= MONTH_YEAR )
 	    weather_info.mmhg += number_range( 1, 50 );
 	else
 	    weather_info.mmhg += number_range( 1, 80 );
@@ -881,7 +886,6 @@ void load_objects( FILE *fp )
 	    else if ( letter == 'E' )
 	    {
 		EXTRA_DESCR_DATA *ed;
-
 		ed			= alloc_perm( sizeof( *ed ) );
 		ed->keyword		= fread_string( fp );
 		ed->description		= fread_string( fp );
@@ -1140,6 +1144,7 @@ void load_rooms( FILE *fp )
 	pRoomIndex->people		= NULL;
 	pRoomIndex->contents		= NULL;
 	pRoomIndex->extra_descr		= NULL;
+	pRoomIndex->mana		= NULL;
 	pRoomIndex->area		= area_last;
 	pRoomIndex->vnum		= vnum;
 	pRoomIndex->name		= fread_string( fp );
@@ -1213,9 +1218,20 @@ void load_rooms( FILE *fp )
 		pRoomIndex->extra_descr	= ed;
 		top_ed++;
 	    }
+	    else if ( letter == 'M' )
+	    {
+		ROOM_MANA_DATA *room_mana;
+
+		room_mana		= alloc_perm( sizeof( *room_mana ) );
+		room_mana->type		= fread_number( fp );
+		room_mana->amount	= fread_number( fp );
+		room_mana->next		= pRoomIndex->mana;
+		pRoomIndex->mana	= room_mana;
+		top_room_mana++;
+	    }
 	    else
 	    {
-		bug( "Load_rooms: vnum %d has flag not 'DES'.", vnum );
+		bug( "Load_rooms: vnum %d has flag not 'DESM'.", vnum );
 		exit( 1 );
 	    }
 	}
@@ -1272,6 +1288,7 @@ void new_load_rooms( FILE *fp )
         pRoomIndex->people              = NULL;
         pRoomIndex->contents            = NULL;
         pRoomIndex->extra_descr         = NULL;
+	pRoomIndex->mana		= NULL;
         pRoomIndex->area                = area_last;
         pRoomIndex->vnum                = vnum;
         pRoomIndex->name                = fread_string( fp );
@@ -1330,6 +1347,17 @@ void new_load_rooms( FILE *fp )
                 pRoomIndex->extra_descr = ed;
                 top_ed++;
             }
+	    else if ( letter == 'M' )
+	    {
+		ROOM_MANA_DATA *room_mana;
+
+		room_mana		= alloc_perm( sizeof( *room_mana ) );
+		room_mana->type		= fread_number( fp );
+		room_mana->amount	= fread_number( fp );
+		room_mana->next		= pRoomIndex->mana;
+		pRoomIndex->mana	= room_mana;
+		top_room_mana++;
+	    }
             else
             {
                 bug( "Load_rooms: vnum %d has flag not 'DES'.", vnum );
@@ -1647,6 +1675,7 @@ void load_ban( void )
 	}
 
 	pban->name   = fread_string( fp );
+	pban->level  = fread_number( fp );
 
 	pban->next   = ban_list;
 	ban_list     = pban;
@@ -2139,6 +2168,71 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 }
 
 
+/* Copies a mobile exactly (except inventory/equip) */
+void clone_mobile( CHAR_DATA *parent, CHAR_DATA *clone )
+{
+    AFFECT_DATA *paf;
+
+    if( ( parent == NULL ) || ( clone == NULL ) || ( !IS_NPC( parent ) ) )
+	return;
+
+    clone->name         = str_dup( parent->name );
+    clone->short_descr  = str_dup( parent->short_descr );
+    clone->long_descr   = str_dup( parent->long_descr );
+    clone->description  = str_dup( parent->description );
+    clone->sex          = parent->sex;
+    clone->class        = parent->class;
+    clone->race         = parent->race;
+    clone->level        = parent->level;
+    clone->trust        = 0;
+    clone->timer        = parent->timer;
+    clone->wait         = parent->wait;
+    clone->hit          = parent->hit;
+    clone->max_hit      = parent->max_hit;
+    clone->mana         = parent->mana;
+    clone->max_mana     = parent->max_mana;
+    clone->move         = parent->move;
+    clone->max_move     = parent->max_move;
+    clone->gold         = parent->gold;
+    clone->exp          = parent->exp;
+    clone->act          = parent->act;
+    clone->affected_by  = parent->affected_by;
+    clone->position     = parent->position;
+    clone->practice     = parent->practice;
+    clone->saving_throw = parent->saving_throw;
+    clone->alignment    = parent->alignment;
+    clone->hitroll      = parent->hitroll;
+    clone->damroll      = parent->damroll;
+    clone->armor        = parent->armor;
+    clone->wimpy        = parent->wimpy;
+    clone->deaf         = parent->deaf;
+    clone->questpoints  = parent->questpoints;
+    clone->nextquest    = parent->nextquest;
+    clone->countdown    = parent->countdown;
+    clone->questobj     = parent->questobj;
+    clone->questmob     = parent->questmob;
+    clone->mpactnum     = parent->mpactnum;
+    clone->current_age  = parent->current_age;
+    clone->death_age    = parent->death_age;
+    clone->played       = parent->played;
+
+/* The weird stuff Any additions/changes anyone? - Canth (canth@xs4all.nl) */
+    clone->master       = parent->master; /* Can we do this??? */
+    clone->leader       = parent->leader; /* Uh huh... */
+    clone->hunting      = parent->hunting; /* That would be cool :) */
+    clone->questgiver   = parent->questgiver; /* WHY on NPC's anyways? */
+    clone->riding       = parent->riding; /* The ride's getting bigger */
+    clone->spec_fun     = parent->spec_fun; /* This *should* work... */
+    clone->game_fun     = parent->game_fun; /* They keep multiplying! */
+/*  clone->pnote        Yeah.. let's skip this one... */
+    clone->on           = parent->on; /*crack* There goes the chair.. */
+    clone->mpact        = parent->mpact; /* VERY unsure bout this one */
+    clone->fur_pos      = parent->fur_pos;
+
+    for( paf = parent->affected; paf != NULL; paf = paf->next )
+	affect_to_char( clone, paf );
+}
+
 
 /*
  * Create an instance of an object.
@@ -2236,6 +2330,10 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     case ITEM_MONEY:
 	obj->value[0]   = obj->cost;
 	break;
+
+    case ITEM_PORTAL:
+	obj->timer	= obj->value[3];
+	break;
     }
 
     obj->next		= object_list;
@@ -2245,6 +2343,61 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     return obj;
 }
 
+
+/* Copies an object exactly (except contents) */
+void clone_object( OBJ_DATA *parent, OBJ_DATA *clone )
+{
+    int i;
+    AFFECT_DATA *paf, *paf_new;
+    EXTRA_DESCR_DATA *ed, *ed_new;
+
+    if( ( parent == NULL ) || ( clone == NULL ) )
+	return;
+
+    clone->name        = str_dup( parent->name );
+    clone->short_descr = str_dup( parent->short_descr );
+    clone->description = str_dup( parent->description );
+    clone->item_type   = parent->item_type;
+    clone->extra_flags = parent->extra_flags;
+    clone->wear_flags  = parent->wear_flags;
+    clone->weight      = parent->weight;
+    clone->cost        = parent->cost;
+    clone->level       = parent->level;
+    clone->timer       = parent->timer;
+
+    for( i = 0; i < 4; i++ )
+	clone->value[i] = parent->value[i];
+
+    for( paf = parent->affected; paf != NULL; paf = paf->next )
+    {
+	if( !affect_free )
+	{
+	    paf_new = alloc_perm( sizeof( *paf ) );
+	}
+	else
+	{
+	    paf_new = affect_free;
+	    affect_free = affect_free->next;
+	}
+
+	paf_new->type        = paf->type;
+	paf_new->duration    = paf->duration;
+	paf_new->location    = paf->location;
+	paf_new->modifier    = paf->modifier;
+	paf_new->bitvector   = paf->bitvector;
+	paf_new->next        = clone->affected;
+	clone->affected      = paf_new;
+    }
+
+    for( ed = parent->extra_descr; ed != NULL; ed = ed->next )
+    {
+	ed_new              = new_extra_descr();
+	ed_new->keyword     = str_dup( ed->keyword );
+	ed_new->description = str_dup( ed->description );
+	ed_new->next        = clone->extra_descr;
+	clone->extra_descr  = ed_new;
+    }
+}
 
 
 /*

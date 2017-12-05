@@ -1,5 +1,5 @@
 #AREADATA
-Name        Kingdom of Juargan~
+Name        {{10 25} Anon    Kingdom of Juargan~
 Builders    None~
 VNUMs       4700 4785
 Security    1
@@ -18,7 +18,7 @@ The small dwarf is dirty and dressed only in a small tunic and leggings.  His
 beard is encrusted with cracked rock and dust from the tunnel walls.
 ~
 5 0 500 S
-4 13 0 1d10+150 1d8+0
+6 13 0 1d10+150 1d8+0
 50 0
 0 Dwarf~ 1
 #4701
@@ -31,7 +31,7 @@ beard.  His eyes are keen and sharp, well suited for sight in the dark tunnels
 of the mines.
 ~
 5 0 500 S
-4 18 0 1d12+60 1d8+0
+6 18 0 1d12+60 1d8+0
 100 0
 0 Dwarf~ 1
 #4702
@@ -44,7 +44,7 @@ small body is strong which makes him a match for any foe.  The armor of the
 dwarf is of no use to anyone but him, but provides adequate defense.
 ~
 3 0 700 S
-14 10 0 1d12+170 1d8+6
+10 10 0 1d12+170 1d8+6
 150 0
 0 Dwarf~ 1
 #4703
@@ -70,7 +70,7 @@ but a noble robe made of a grey silk.  His face has a visage of stone like his
 surroundings, as if his burden has become to much for him.
 ~
 3 8 1000 S
-31 -1 0 27d27+270 3d6+9
+25 -1 0 27d27+270 3d6+9
 1000 0
 0 Dwarf~ 1
 #4705
@@ -83,7 +83,7 @@ their isolation from the rest of the dwarven population and have become bitter
 enemies with them.
 ~
 37 8 -1000 S
-5 13 0 2d10+150 2d4+0
+7 13 0 2d10+150 2d4+0
 100 0
 0 Dwarf~ 1
 #4706
@@ -96,7 +96,7 @@ his once cherished body has fallen into utter decay.  His once cheery face has
 turned into a crude scowl as you can feel that his soul is not at ease.
 ~
 35 40 -999 S
-25 -1 0 27d27+270 2d10+9
+26 -1 0 27d27+270 2d10+9
 0 0
 0 Undead~ 1
 #4707
@@ -109,7 +109,7 @@ into.  Judging by the size you can see that is has been eating quite a few too
 many dwarves as it's body is at least five feet in diameter.
 ~
 35 8 0 S
-23 10 0 4d10+250 3d4+6
+20 10 0 4d10+250 3d4+6
 4000 0
 0 Worm~ 0
 #4708
@@ -122,7 +122,7 @@ The soul of some unfortunate dwarf now has to fly aimlessly through this chamber
 of eternal pain.
 ~
 35 168 -999 S
-15 6 0 5d10+150 2d6+3
+16 6 0 5d10+150 2d6+3
 0 0
 0 Undead~ 0
 #0
@@ -1642,70 +1642,70 @@ S
 
 
 #RESETS
-M 0 4700 10 4705  	; the small dwarf to Unfinished Mine
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4700 10 4709  	; the small dwarf to Dwarven mine
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4700 10 4713  	; the small dwarf to Dwarven mine
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4705 10 4715  	; the duergar dwarf to Dwarven mines
-M 0 4700 10 4716  	; the small dwarf to Dwarven mines
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4700 10 4720  	; the small dwarf to Unfinished shaft
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4707  1 4720  	; The dreaded rock worm to Unfinished shaft
-M 0 4700 10 4723  	; the small dwarf to Unfinished mine
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4700 10 4725  	; the small dwarf to Dwarven mine
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4700 10 4727  	; the small dwarf to Dwarven mines
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4700 10 4729  	; the small dwarf to Dwarven mines
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4705 10 4729  	; the duergar dwarf to Dwarven mines
-M 0 4705 10 4729  	; the duergar dwarf to Dwarven mines
-M 0 4705 10 4732  	; the duergar dwarf to Duergar Outcamp
-M 0 4705 10 4733  	; the duergar dwarf to Duergar Barracks
-M 0 4705 10 4733  	; the duergar dwarf to Duergar Barracks
-M 0 4705 10 4733  	; the duergar dwarf to Duergar Barracks
-M 0 4705 10 4733  	; the duergar dwarf to Duergar Barracks
-M 0 4705 10 4735  	; the duergar dwarf to By a small fire
-M 0 4705 10 4735  	; the duergar dwarf to By a small fire
-M 0 4700 10 4738  	; the small dwarf to Carved Tunnel
-E 0 4701  0 16    	;   A mining pick wielded (1)
-M 0 4702 11 4739  	; the dwarf guard to Stone Gates
-M 0 4702 11 4739  	; the dwarf guard to Stone Gates
-M 0 4701  6 4740  	; the small dwarf to Walkway
-M 0 4701  6 4740  	; the small dwarf to Walkway
-M 0 4703  1 4743  	; Yentle the dwarf to Rock Garden
-M 0 4702 11 4749  	; the dwarf guard to Temple of Juargan
-E 0 4702  0 6     	;   A dwarven helm over the head
-E 0 4703  0 5     	;   A dwarven breast plate on the body
-M 0 4702 11 4749  	; the dwarf guard to Temple of Juargan
-E 0 4702  0 6     	;   A dwarven helm over the head
-E 0 4703  0 5     	;   A dwarven breast plate on the body
-M 0 4704  1 4749  	; Juargan the Dwarven King to Temple of Juargan
-G 0 4700  0      	;   A small key
-M 0 4702 11 4757  	; the dwarf guard to Path in the Rock
-M 0 4702 11 4757  	; the dwarf guard to Path in the Rock
-M 0 4701  6 4759  	; the small dwarf to Walkway
-M 0 4701  6 4759  	; the small dwarf to Walkway
-M 0 4701  6 4763  	; the small dwarf to Walkway
-M 0 4701  6 4763  	; the small dwarf to Walkway
-M 0 4702 11 4766  	; the dwarf guard to Guard Barrack
-M 0 4702 11 4766  	; the dwarf guard to Guard Barrack
-M 0 4702 11 4766  	; the dwarf guard to Guard Barrack
-M 0 4702 11 4766  	; the dwarf guard to Guard Barrack
-M 0 4702 11 4766  	; the dwarf guard to Guard Barrack
-M 0 4706  1 4769  	; Grimdale the ancient king to Ancients Tomb
-E 0 4706  0 16    	;   A large dwarven battle axe wielded (1)
-M 0 4708  3 4769  	; a dwarven spirit to Ancients Tomb
-M 0 4708  3 4769  	; a dwarven spirit to Ancients Tomb
-M 0 4708  3 4769  	; a dwarven spirit to Ancients Tomb
-O 0 4707  0 4769  	; A large stone sarcophagus to Ancients Tomb
-P 0 4708  0 4707  	; The staff of ruling inside the staff of ruling
-O 0 4704  0 4770  	; A large dwarven shield to Ancients Vault
-O 0 4705  0 4770  	; A large pile of coins to Ancients Vault
+M 0 4700 10 4705
+E 0 4701 0 16
+M 0 4700 10 4709
+E 0 4701 0 16
+M 0 4700 10 4713
+E 0 4701 0 16
+M 0 4705 10 4715
+M 0 4700 10 4716
+E 0 4701 0 16
+M 0 4700 10 4720
+E 0 4701 0 16
+M 0 4707 1 4720
+M 0 4700 10 4723
+E 0 4701 0 16
+M 0 4700 10 4725
+E 0 4701 0 16
+M 0 4700 10 4727
+E 0 4701 0 16
+M 0 4700 10 4729
+E 0 4701 0 16
+M 0 4705 10 4729
+M 0 4705 10 4729
+M 0 4705 10 4732
+M 0 4705 10 4733
+M 0 4705 10 4733
+M 0 4705 10 4733
+M 0 4705 10 4733
+M 0 4705 10 4735
+M 0 4705 10 4735
+M 0 4700 10 4738
+E 0 4701 0 16
+M 0 4702 11 4739
+M 0 4702 11 4739
+M 0 4701 6 4740
+M 0 4701 6 4740
+M 0 4703 1 4743
+M 0 4702 11 4749
+E 0 4702 0 6
+E 0 4703 0 5
+M 0 4702 11 4749
+E 0 4702 0 6
+E 0 4703 0 5
+M 0 4704 1 4749
+G 0 4700 0
+M 0 4702 11 4757
+M 0 4702 11 4757
+M 0 4701 6 4759
+M 0 4701 6 4759
+M 0 4701 6 4763
+M 0 4701 6 4763
+M 0 4702 11 4766
+M 0 4702 11 4766
+M 0 4702 11 4766
+M 0 4702 11 4766
+M 0 4702 11 4766
+M 0 4706 1 4769
+E 0 4706 0 16
+M 0 4708 3 4769
+M 0 4708 3 4769
+M 0 4708 3 4769
+O 0 4707 0 4769
+P 0 4708 0 4707
+O 0 4704 0 4770
+O 0 4705 0 4770
 S
 
 

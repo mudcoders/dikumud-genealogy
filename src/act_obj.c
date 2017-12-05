@@ -1457,8 +1457,8 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
     /* Godname idea from CU-mud, code by The Maniac from Mythran */
     static char * god_name_table [ ] =		/* Numbered from 0 !! */
     {
-	"Maniac", "Canth", "Gandalf", "Vangelis", "Phule",
-	"Angel", "Eclipse", "Kahn", "Hatchet", "Furey"
+	"Maniac", "Canth", "Phule", "Kahn", "Hatchet",
+	"Furey", "Alander", "God", "Someone", "Mythran"
     };
 
     strcpy(godname, god_name_table[number_range(0,9)]);
@@ -1491,45 +1491,80 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
     }
     gain = UMIN(number_range(1, obj->level), ch->level);
 
-#if defined (VAR_SAC_REWARD)
+#if defined (SAC_VAR_REWARD)
     /* Idea by Bram (Unicorn Mud) Mythran Code by Maniac */
-    switch(number_range(1, 10))
-    {
+    switch(number_range(1, 50))
+    {	/* Approx. 42% chance at something special.. 6% at something real good */
+	    default:
+	    	sprintf( arg, "%s gives you %d gold coin%s for your sacrifice.\n\r",
+		    godname, gain, ((gain == 1) ? "" : "s") );
+    		ch->gold += gain;
+		break;
 	    case 1:
-	    	sprintf(arg, "%s gives you %d move points for your sacrifice.\n\r", godname, gain);
-		ch->move += gain;
+	    	sprintf( arg, "%s gives you 1 permanent move point for your sacrifice!\n\r",
+		    godname );
+		ch->max_move += 1;
 		break;
 	    case 2:
-	    	sprintf(arg, "%s gives you %d hit points for your sacrifice.\n\r", godname, gain);
-		ch->hit += gain;
+	    	sprintf( arg, "%s gives you 1 permanent hit point for your sacrifice!\n\r",
+			godname );
+		ch->max_hit += 1;
 		break;
 	    case 3:
-		sprintf(arg, "%s gives you %d mana for your sacrifice.\n\r", godname, gain);
-		ch->mana += gain;
+		sprintf( arg, "%s gives you 1 permanent mana point for your sacrifice!\n\r",
+		    godname );
+		ch->max_mana += 1;
 		break;
 	    case 4:
+	    case 5:
+	    case 6:
+		sprintf(arg, "%s gives you %d move points for yor sacrifice.\n\r",
+		    godname, gain );
+		ch->move += gain;
+		break;
+	    case 7:
+	    case 8:
+	    case 9:
+		sprintf( arg, "%s gives you %d hit points for your sacrifice.\n\r",
+		    godname, gain );
+		ch->hit += gain;
+		break;
+	    case 10:
+	    case 11:
+	    case 12:
+		sprintf( arg, "%s gives you %d mana points for your sacrifice.\n\r",
+		    godname, gain );
+		ch->mana +=gain;
+		break;
+	    case 13:
+	    case 14:
+	    case 15:
 	    	if (IS_NPC(ch))
 		{
-			sprintf(arg, "%s gives you 1 gp for your sacrifice.\n\r", godname);
+			sprintf(arg, "%s gives you 1 gp for your sacrifice.\n\r",
+			    godname);
 			ch->gold += 1;
 		}
 		else
 		{
-	    		sprintf(arg, "%s gives you 1 learning session for your sacrifice.\n\r", godname);
+	    		sprintf(arg, "%s gives you 1 learning session for your sacrifice.\n\r",
+			    godname);
 			ch->pcdata->learn += 1;
 		}
 		break;
-	    case 5:
-	    	sprintf(arg, "%s gives you %d experience point%s for your sacrifice.\n\r", godname, gain, (gain == 1) ? "" : "s");
+	    case 16:
+	    case 17:
+	    case 18:
+	    	sprintf(arg, "%s gives you %d experience point%s for your sacrifice.\n\r",
+		    godname, gain, (gain == 1) ? "" : "s");
 		ch->exp += gain;
 		break;
-	    case 6:
-	    case 7:
-	    case 8:
-	    case 9:
-	    case 10:
-	    	sprintf(arg, "%s gives you %d gold coin%s for your sacrifice.\n\r", godname, gain, ((gain == 1) ? "" : "s") );
-    		ch->gold += gain;
+	    case 19:
+	    case 20:
+	    case 21:
+		sprintf( arg, "%s gives you 1 practice session for your sacrifice.\n\r",
+		    godname );
+		ch->practice += 1;
 		break;
     }
 #else
@@ -1538,10 +1573,10 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 #endif
 
     send_to_char(arg, ch);
-    sprintf (arg, "%s: %s(%d).\n\r", ch->name,
+    sprintf (arg, "%s: %s(%d).", ch->name,
 	obj->short_descr, obj->pIndexData->vnum );
     act( "$n sacrifices $p to God.", ch, obj, NULL, TO_ROOM );
-    wiznet (ch, WIZ_SACCING, get_trust(ch) + 1, arg );
+    wiznet (ch, WIZ_SACCING, get_trust(ch), arg );
     extract_obj( obj );
     return;
 }
@@ -2171,8 +2206,9 @@ void do_steal( CHAR_DATA *ch, char *argument )
 		    SET_BIT( ch->act, PLR_THIEF );
 		    send_to_char( "*** You are now a THIEF!! ***\n\r", ch );
 		    save_char_obj( ch );
-                    sprintf( buf, "[NEWS] %s is a THIEF", ch->name );
-                    send_to_all_char( buf );
+		    sprintf( buf, "%s became a THIEF by stealing from %s",
+			ch->name, victim->name );
+		    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 		}
 	    }
 	}
@@ -2933,9 +2969,12 @@ void do_donate( CHAR_DATA *ch, char *arg )
     ROOM_INDEX_DATA *	room;
     int		pitvnum = 0;
     int		roomvnum = 0;
-    char	arg1[MAX_INPUT_LENGTH];
+    char	arg1 [ MAX_INPUT_LENGTH  ];
+    char	arg2 [ MAX_INPUT_LENGTH  ];
+    char	buf  [ MAX_STRING_LENGTH ];
 
     arg = one_argument( arg, arg1 );
+    arg = one_argument( arg, arg2 );
 
     if ( arg1[0] == '\0' )
     {
@@ -2943,19 +2982,30 @@ void do_donate( CHAR_DATA *ch, char *arg )
 	return;
     }
 
-    if (is_in_clan( ch ) )
+    if( !str_cmp( arg2, "clan" ) )
     {
 	pitvnum = clan_table[ch->pcdata->clan].pit;
 	roomvnum = clan_table[ch->pcdata->clan].pitroom;
 
-	room = get_room_index (roomvnum);
-	for (container = room->contents ; container; container = container->next_content )
+	if( ( room = get_room_index (roomvnum) ) )
 	{
+	    for (container = room->contents ; container; container = container->next_content )
+	    {
 		if (container->pIndexData->vnum == pitvnum )
 		{
-			log_string ("Found clan donation pit");
-			break;
+		    break;
 		}
+	    }
+	}
+	else
+	{
+	    sprintf( buf, "Clan %s donation room doesn't exist", clan_name( ch->pcdata->clan ) );
+	    log_string( buf );
+	}
+	if (!container)
+	{
+	    sprintf( buf, "No clan donation pit for %s", clan_name( ch->pcdata->clan ) );
+	    log_string ( buf );
 	}
     }
     if (!container)
@@ -3052,6 +3102,24 @@ void do_donate( CHAR_DATA *ch, char *arg )
 }
 
 
+void do_cdonate( CHAR_DATA *ch, char *argument )
+{
+    char *buf;
+
+    if( !is_in_clan( ch ) )
+    {
+	send_to_char( "Huh?", ch );
+	return;
+    }
+
+    buf = str_dup( argument );
+    buf = strcat( buf, " clan" );
+    do_donate( ch, buf );
+    return;
+}
+
+
+
 void do_register( CHAR_DATA *ch, char *arg )
 {
     CHAR_DATA *mob;
@@ -3099,6 +3167,9 @@ void do_register( CHAR_DATA *ch, char *arg )
     ch->gold -= cost;
 
     SET_BIT( ch->act, PLR_REGISTER );
+
+    sprintf( buf, "%s just registered to PK at %s", ch->name, mob->short_descr );
+    wiznet( ch, WIZ_FLAGS, get_trust( ch ), buf );
 
     return;
 
