@@ -1,10 +1,11 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.82! (HomeCooked Envy2.2)
-Monday, 23th June 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.83! (HomeCooked Envy2.2)
+Monday, 30th June 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 === Greetings!
+
 My name in MUDs is Zen... in rl i'm called Vasco Costa.
 The first MUD i ever played was Envy 2.0 and Envy is my favorite mud still.
 Reasons? No need of scrolls of recall, no need to retrieve corpse, need i go
@@ -12,12 +13,18 @@ on? Envy is soo much user friendly... This is the first time ever i took a real
 stab at Envy coding so here's what i came up with.
 
 
+=== BUGS/UNDOCUMENTED FEATURES in this release of HomeCooked:
+
+None i know of. I usually squash them when i see them. But see changes.txt also,
+just in case i forgot to add something here.
+
+
 === BUGS/UNDOCUMENTED FEATURES in Envy 2.2:
 
-Zen			There seems to be a bug in Envy2.2 do_imtlset when you
-			use the '-' option. The problem is in the pointer buf2
-			this should not be a pointer. I will fix it later in
-			another release... Or better, you fix it!
+Zen			do_imtlset has a bug when you use the '-' option.
+			Sometimes the mud crashes with a segmentation fault...
+			Fixed!
+
 
 Zen			If you set a mobile in the area files to have
 			AFF_CHARM and try to kill him the mud crashes... :(
@@ -90,7 +97,7 @@ Zen & Joguel 		Wand of water breathing in Midgaard magic shop is
 			can't move in ROOM_UNDERWATER (see act_move.c)
 			Fish and God race have gills so why bother with the
 			wand? Zen's suggestion: new swim skill.
-			SWIM SKILL IMPLEMENTED!
+			Swim skill implemented!
 
 
 - Zen

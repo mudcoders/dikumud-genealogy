@@ -3,26 +3,27 @@
 
 -1 GREETING~
 .
-                   __ ____  ./|        ./\     ____ ____
-Based on          / __|_/"`/ /|_______/ / |   '"\_|_  @ \       By:
-Envy 2.2        /  /#/      | @/ _@@@@ \ @/          \#\  @ \     The EnvyMud
-( see 'help   / @/##/        \|  .\ @ /. >            \##\  @ \       Staff
- envy' &    / @ |###|        | < .!| |!.|              |##\   @ \  ( see 'help
- 'help     | @  |###|        |@ \  \ /  /\             |###|   @@|   wizlist' )
- merc' )   |@@  |###_\___    |@| \(o o)/\@\            |###|    @|
-           |@@  .\/'/'/'/\__  \ \_\___/_/\@ \ ________/####|  __@|__
-           |@@  | \_\_\_\   |\ \@\  |   | |\@ \  |    |###/  /     /
-           |@@  |   \)\)\)__|  \\@ \|   | |/\ @@\|    |#/  /     /
-           | @  |  |_____|       \@ |   | |/ \ @@|    | \/     /@|  Mud Version
-            \ @ |   _____|   |\    \|   |  \/ \ /     |      /  @|   2.2
-DikuMud       \ |  |_____|__ |  \       |    \/      /      |   @|
-was created    \|           ||    \     |          / |      |\ @@|
-by:  Han Henrik |___________||  ____\___| \______/___|______|@ \@|
-Staerfeldt, Katja    |     \  /     |   | |   |   _     \     @@ \   Kahn,
-Nyboe, Tom Madsen,   |      \/      |   | |   |  | |     |     @@ \   Hatchet,
-Michael Seifert,     |   |\    /|   |   |_|   |  |_|     |      @@ \   and
-and Sebastian Hammer |___| \__/ |___|\_______/|_________/           |   Staff
-( see 'help diku' )		 (C) '93 - '97	email: envy@mud.envy.com
+[1;32m                          _..--+-/[1;31m@[1;32m----.
+                    _-=-      (  .    "}
+                 _--     _.--=.\ [1;37m\""""[1;32m
+               _-      _-       \ [1;37m\_\[1;32m
+              =      _=          '--'
+             '      =                             .
+            :      :       [1;34m____[1;32m                   '=_. ___
+       [1;34m___[1;32m  |      ;                            [1;34m____ [1;32m[1;32m'---.-.
+[1;32m            ;      ;                               [1;34m_____[1;32m  } |
+         [1;34m___[1;32m=       \ [1;34m___ __[1;32m     __..-...__           [1;34m___[1;32m/[1;34m__[1;32m/[1;34m__
+[1;32m            :        =_     _.---          ----.__
+       [1;34m_____[1;32m \         --+--                   [1;34m___[1;32m-=[1;34m_______[1;32m
+            [1;34m-@#-- == ...______ __ ___ _------_[0m
+
+                       [1;31mENVY MUD 2.2 - HOMECOOKED 0.83!
+
+[0;36m    DikuMud was created by:  Han Henrik Staerfeldt, Katja Nyboe, Tom Madsen,
+           Michael Seifert, and Sebastian Hammer ( see 'help diku' )
+              Based on Envy 2.2 ( see 'help envy' & 'help merc' )
+     By: Kahn, Hatchet, and Staff The EnvyMud Staff ( see 'help wizlist' )
+                  (C) '93 - '97   email: envy@mud.envy.com[0m
 
 State thy name: ~
 
@@ -1200,25 +1201,27 @@ they _SHAPE YOUR MUD FUTURE!_
 ~
 -1 WIZLIST~
 
-*******************************************************************************
-*  These people have achieved immortality and superior powers in this realm.  *
-*  They should be treated with respect and kindness..a few prayers wouldn't be*
-*  a bad idea now and again either. Lying or stealing from them is punishable *
-*  by Death. Word of advice....dont do it. *grin*                             *
-*******************************************************************************
+{R   These people have achieved immortality and superior powers in this realm.
+   They should be treated with respect and kindness..a few prayers wouldn't be
+   a bad idea now and again either. Lying or stealing from them is punishable
+   by Death. Word of advice....dont do it. *grin*{x
 
-				 Directors
-				===========
-
-				  Seniors
-				 =========
-
-                                  Juniors
-                                 =========
-
-                                Apprentices
-                               =============
-
+{R                                 Directors
+{D        / \      _-'            ===========                 '-_      / \
+      _/|  \-''- _ /                                        \ _ -''-/  |\_
+ __-' {{ |          \                                        /          | } '-__
+      /             \             {MSeniors                 {D /       
+     /       "{go{D.  |{go{D }           =========                {{ {go{D|  .{go{D"
+     |            \ ;                                      ; /
+                   ',                                      ,'
+        \_         __\            {rJuniors{D                 /__         _/
+          ''-_    \.//           =========                \\./    _-''
+            / '-____'                                      '____-' \
+           /                                                        \
+          _'                    {mApprentices{D                         '_
+       _-'                     =============                          '-_
+                                               
+                                                                {x
 ~ 
 
 0 AUTO CONFIG~

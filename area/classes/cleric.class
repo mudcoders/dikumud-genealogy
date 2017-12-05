@@ -1,0 +1,244 @@
+Class       1
+Name        Cle~
+AtrPrm      4
+Weapon      3700
+Guild       3003
+Skilladept  95
+Thac0       18
+Thac47      9
+Hpmin       7
+Hpmax       10
+Mana        1
+Skll        'armor' 1
+Skll        'bless' 5
+Skll        'blindness' 5
+Skll        'call lightning' 12
+Skll        'cause critical' 9
+Skll        'cause light' 1
+Skll        'cause serious' 5
+Skll        'continual light' 2
+Skll        'control weather' 13
+Skll        'create buffet' 8
+Skll        'create food' 3
+Skll        'create water' 2
+Skll        'cure blindness' 4
+Skll        'cure critical' 9
+Skll        'cure light' 1
+Skll        'cure poison' 9
+Skll        'cure serious' 5
+Skll        'curse' 12
+Skll        'destroy cursed' 20
+Skll        'detect evil' 4
+Skll        'detect hidden' 7
+Skll        'detect invis' 5
+Skll        'detect magic' 3
+Skll        'detect poison' 5
+Skll        'dispel evil' 10
+Skll        'dispel magic' 31
+Skll        'earthquake' 7
+Skll        'exorcise' 40
+Skll        'faerie fire' 2
+Skll        'faerie fog' 14
+Skll        'flamestrike' 13
+Skll        'flaming shield' 35
+Skll        'fly' 12
+Skll        'harm' 15
+Skll        'heal' 14
+Skll        'identify' 10
+Skll        'infravision' 9
+Skll        'know alignment' 5
+Skll        'locate object' 10
+Skll        'mass heal' 20
+Skll        'mass invis' 17
+Skll        'mute' 18
+Skll        'poison' 8
+Skll        'protection evil' 6
+Skll        'protection good' 6
+Skll        'refresh' 3
+Skll        'remove curse' 12
+Skll        'remove silence' 16
+Skll        'sanctuary' 13
+Skll        'summon' 8
+Skll        'turn undead' 1
+Skll        'scrolls' 5
+Skll        'staves' 7
+Skll        'wands' 5
+Skll        'stake' 1
+Skll        'shield block' 37
+Skll        'fast healing' 37
+Skll        'brew' 31
+Skll        'scribe' 32
+Skll        'swim' 15
+Skll        'meditate' 37
+Skll        'scry' 35
+Skll        'mass vortex lift' 40
+Skll        'detect good' 4
+Skll        'dispel good' 10
+Skll        'portal' 30
+Skll        'nexus' 35
+Title
+Man~
+Woman~
+Title
+Believer~
+Believer~
+Title
+Attendant~
+Attendant~
+Title
+Acolyte~
+Acolyte~
+Title
+Novice~
+Novice~
+Title
+Missionary~
+Missionary~
+Title
+Adept~
+Adept~
+Title
+Deacon~
+Deaconess~
+Title
+Vicar~
+Vicaress~
+Title
+Priest~
+Priestess~
+Title
+Minister~
+Lady Minister~
+Title
+Canon~
+Canon~
+Title
+Levite~
+Levitess~
+Title
+Curate~
+Curess~
+Title
+Monk~
+Nun~
+Title
+Healer~
+Healess~
+Title
+Chaplain~
+Chaplain~
+Title
+Expositor~
+Expositress~
+Title
+Bishop~
+Bishop~
+Title
+Arch Bishop~
+Arch Lady of the Church~
+Title
+Patriarch~
+Matriarch~
+Title
+Elder Patriarch~
+Elder Matriarch~
+Title
+Grand Patriarch~
+Grand Matriarch~
+Title
+Great Patriarch~
+Great Matriarch~
+Title
+Demon Killer~
+Demon Killer~
+Title
+Greater Demon Killer~
+Greater Demon Killer~
+Title
+Cardinal of the Sea~
+Cardinal of the Sea~
+Title
+Cardinal of the Earth~
+Cardinal of the Earth~
+Title
+Cardinal of the Air~
+Cardinal of the Air~
+Title
+Cardinal of the Ether~
+Cardinal of the Ether~
+Title
+Cardinal of the Heavens~
+Cardinal of the Heavens~
+Title
+Avatar of an Immortal~
+Avatar of an Immortal~
+Title
+Avatar of a Deity~
+Avatar of a Deity~
+Title
+Avatar of a Supremity~
+Avatar of a Supremity~
+Title
+Avatar of an Implementor~
+Avatar of an Implementor~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Master of all Divinity~
+Mistress of all Divinity~
+Title
+Holy Hero~
+Holy Heroine~
+Title
+Angel~
+Angel~
+Title
+Deity~
+Deity~
+Title
+Supreme Master~
+Supreme Mistress~
+Title
+Implementor~
+Implementress~
+End

@@ -1,11 +1,48 @@
 ILAB OLC Beta 1.1 For Envy2.0
-11th May 1997
+25th June 1997
 
 Christopher Smith	stoked@iastate.edu
 
 
 
-=== What's new in ILAB OLC Beta 1.1 For Envy2.0
+=== Changes for Envy2.0:
+
+
+	Lots of porting - reset_room, etc :)
+	Removed number_fuzzy in load_mobiles() to keep Mobiles at constant level
+	Added table race_flags to bit.c and improved medit to edit mob races
+	Removed the race_flags table and created a new function race_full_lookup
+	Fixed many small bugs, like do_mstat, fwrite_char
+	Changed AREA_VERBOSE to 8, not 5...  Mind wasn't cooperating
+	Fixed bust_a_prompt to check descriptors to avoid switched players
+	Fixed bust_a_prompt to include both %c and %C options (name and number)
+	Changed medit_shop delete to Erwin's suggestion
+	Hopefully fixed reset editing due to Mythran example?
+	Created a TEMP_CONE_OF_SILENCE flag, so real CONE_OF_SILENCE will save,
+	  and the TEMP one won't.
+	oedit_addaffect checks if flag_value is NO_FLAG first.
+	oedit_weight and cost can't set negatives anymore
+	added a snippit in the install/options directory for those players
+	  who want to use the help editor (hedit), including a new home-brewed
+	  function by yours truly.
+
+- Christopher
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+ILAB OLC Beta 1.0 For Envy1.0
+7th April 1995
+
+Jason Dinkel	jdinkel@mines.colorado.edu
+
+
+
+=== What's new in ILAB OLC Beta 1.1 For Envy1.0
+
 
 These are some of the changes that I have made to this version of OLC.
 Notice that I will not be keeping a running tally of repairs I have
@@ -62,30 +99,6 @@ version I released.
 	List obj <type (? types)>, <name (name)>
 	List room
 
-
-=== Changes for Envy2.0:
-
-	Lots of porting - reset_room, etc :)
-	Removed number_fuzzy in load_mobiles() to keep Mobiles at constant level
-	Added table race_flags to bit.c and improved medit to edit mob races
-
-
-- Christopher
-
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-ILAB OLC Beta 1.0 For Envy1.0
-7th April 1995
-
-Jason Dinkel	jdinkel@mines.colorado.edu
-
-
-
-=== What's new in ILAB OLC Beta 1.1 For Envy1.0
 
 	Changed string_add() function in string.c. New function is cleaned up
 	  and removes problem with editing strings longer than

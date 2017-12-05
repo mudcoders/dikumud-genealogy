@@ -1032,6 +1032,9 @@ void new_descriptor( int control )
     dnew->connected	= CON_GET_NAME;
     dnew->showstr_head  = str_dup( "" );
     dnew->showstr_point = 0;
+    dnew->pEdit         = NULL;                 /* OLC */
+    dnew->pString       = NULL;                 /* OLC */
+    dnew->editor        = 0;                    /* OLC */
     dnew->outsize	= 2000;
     dnew->outbuf	= alloc_mem( dnew->outsize );
 
@@ -1529,9 +1532,9 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
                sprintf( buf2, " "                                      );
             i = buf2; break;
          case 'c' :				/* OLC */
-            i = olc_ed_name( ch ); break;
+            i = olc_ed_name( d->character ); break;
          case 'C' :				/* OLC */
-            i = olc_ed_vnum( ch ); break;
+            i = olc_ed_vnum( d->character ); break;
          case '%' :
             sprintf( buf2, "%%"                                        );
             i = buf2; break;
@@ -1923,7 +1926,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	{
 	    if ( iClass > 0 )
 		strcat( buf, " " );
-	    strcat( buf, class_table[iClass].who_name );
+	    strcat( buf, class_table[iClass]->who_name );
 	}
 	strcat( buf, "]: " );
 	write_to_buffer( d, buf, 0 );
@@ -1933,7 +1936,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     case CON_GET_NEW_CLASS:
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 	{
-	    if ( !str_prefix( argument, class_table[iClass].who_name ) )
+	    if ( !str_prefix( argument, class_table[iClass]->who_name ) )
 	    {
 		ch->class = iClass;
 		break;
@@ -2000,7 +2003,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	{
 	    OBJ_DATA *obj;
 
-	    switch ( class_table[ch->class].attr_prime )
+	    switch ( class_table[ch->class]->attr_prime )
 	    {
 	    case APPLY_STR: ch->pcdata->perm_str = 16; break;
 	    case APPLY_INT: ch->pcdata->perm_int = 16; break;
@@ -2036,7 +2039,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    equip_char( ch, obj, WEAR_SHIELD );
 
 	    obj = create_object( 
-				get_obj_index( class_table[ch->class].weapon ),
+				get_obj_index( class_table[ch->class]->weapon ),
 				0 );
 	    obj_to_char( obj, ch );
 	    equip_char( ch, obj, WEAR_WIELD );
@@ -2636,55 +2639,73 @@ int colour( char type, CHAR_DATA *ch, char *string )
     switch( type )
     {
 	default:
-	    sprintf( code, CLEAR );
+	    sprintf( code, MOD_CLEAR );
 	    break;
 	case 'x':
-	    sprintf( code, CLEAR );
+	    sprintf( code, MOD_CLEAR );
+	    break;
+	case 's':
+	    sprintf( code, MOD_STANDOUT );
+	    break;
+	case 'F':
+	    sprintf( code, MOD_FLASH );
+	    break;
+	case 'f':
+	    sprintf( code, MOD_FAINT );
+	    break;
+	case 'u':
+	    sprintf( code, MOD_UNDERLINE );
+	    break;
+	case 'i':
+	    sprintf( code, MOD_INVERT );
 	    break;
 	case 'b':
-	    sprintf( code, C_BLUE );
+	    sprintf( code, FG_BLUE );
 	    break;
 	case 'c':
-	    sprintf( code, C_CYAN );
+	    sprintf( code, FG_CYAN );
+	    break;
+	case 'd':
+	    sprintf( code, FG_DARK );
 	    break;
 	case 'g':
-	    sprintf( code, C_GREEN );
+	    sprintf( code, FG_GREEN );
 	    break;
 	case 'm':
-	    sprintf( code, C_MAGENTA );
+	    sprintf( code, FG_MAGENTA );
 	    break;
 	case 'r':
-	    sprintf( code, C_RED );
+	    sprintf( code, FG_RED );
 	    break;
 	case 'w':
-	    sprintf( code, C_WHITE );
+	    sprintf( code, FG_WHITE );
 	    break;
 	case 'y':
-	    sprintf( code, C_YELLOW );
+	    sprintf( code, FG_YELLOW );
 	    break;
 	case 'B':
-	    sprintf( code, C_B_BLUE );
+	    sprintf( code, FG_B_BLUE );
 	    break;
 	case 'C':
-	    sprintf( code, C_B_CYAN );
+	    sprintf( code, FG_B_CYAN );
 	    break;
 	case 'G':
-	    sprintf( code, C_B_GREEN );
+	    sprintf( code, FG_B_GREEN );
 	    break;
 	case 'M':
-	    sprintf( code, C_B_MAGENTA );
+	    sprintf( code, FG_B_MAGENTA );
 	    break;
 	case 'R':
-	    sprintf( code, C_B_RED );
+	    sprintf( code, FG_B_RED );
 	    break;
 	case 'W':
-	    sprintf( code, C_B_WHITE );
+	    sprintf( code, FG_B_WHITE );
 	    break;
 	case 'Y':
-	    sprintf( code, C_B_YELLOW );
+	    sprintf( code, FG_B_YELLOW );
 	    break;
 	case 'D':
-	    sprintf( code, C_D_GREY );
+	    sprintf( code, FG_D_GREY );
 	    break;
 	case '{':
 	    sprintf( code, "%c", '{' );

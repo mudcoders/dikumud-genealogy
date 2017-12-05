@@ -75,9 +75,9 @@ void advance_level( CHAR_DATA *ch )
     set_title( ch, buf );
 
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
-		    class_table[ch->class].hp_min,
-		    class_table[ch->class].hp_max );
-    add_mana    = class_table[ch->class].fMana
+		    class_table[ch->class]->hp_min,
+		    class_table[ch->class]->hp_max );
+    add_mana    = class_table[ch->class]->fMana
         ? number_range(2, ( 2 * get_curr_int( ch ) + get_curr_wis( ch ) ) / 8 )
 	: 0;
     add_move    =
@@ -126,9 +126,9 @@ void demote_level( CHAR_DATA *ch )
     set_title( ch, buf );
 
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
-		    class_table[ch->class].hp_min,
-		    class_table[ch->class].hp_max );
-    add_mana    = class_table[ch->class].fMana
+		    class_table[ch->class]->hp_min,
+		    class_table[ch->class]->hp_max );
+    add_mana    = class_table[ch->class]->fMana
         ? number_range(2, ( 2 * get_curr_int( ch ) + get_curr_wis( ch ) ) / 8 )
 	: 0;
     add_move    =
@@ -923,6 +923,32 @@ void obj_update( void )
 	        obj_next = previous->next;
 	    }
 	}
+
+	/* Slash's Merc Snippet - Falling objects (slightly changed by Zen) */
+	if ( !obj->carried_by && obj->in_room
+	    && obj->in_room->sector_type == SECT_AIR
+	    && IS_SET( obj->wear_flags, ITEM_TAKE )
+	    && obj->in_room->exit[5]
+	    && obj->in_room->exit[5]->to_room )
+	{
+	    ROOM_INDEX_DATA *new_room = obj->in_room->exit[5]->to_room;
+
+	    if ( ( rch = obj->in_room->people ) )
+	    {
+		act( "$p falls away.", rch, obj, NULL, TO_ROOM );
+		act( "$p falls away.", rch, obj, NULL, TO_CHAR );
+	    }
+
+	    obj_from_room( obj );
+	    obj_to_room( obj, new_room );
+
+	    if ( ( rch = obj->in_room->people ) )
+	    {
+		act( "$p falls by.", rch, obj, NULL, TO_ROOM );
+		act( "$p falls by.", rch, obj, NULL, TO_CHAR );
+	    }
+	}
+
     }
 
     return;
@@ -1126,12 +1152,12 @@ void time_update( void )
  */
 void list_update( void )
 {
-            CHAR_DATA *ch;
-            CHAR_DATA *ch_next;
-            OBJ_DATA  *obj;
-            OBJ_DATA  *obj_next;
-    extern  bool       delete_obj;
-    extern  bool       delete_char;
+            CHAR_DATA   *ch;
+            CHAR_DATA   *ch_next;
+            OBJ_DATA    *obj;
+            OBJ_DATA    *obj_next;
+    extern  bool         delete_obj;
+    extern  bool         delete_char;
 
     if ( delete_char )
         for ( ch = char_list; ch; ch = ch_next )
@@ -1306,8 +1332,8 @@ void list_update( void )
 	    }
 	}
 
-    delete_obj  = FALSE;
-    delete_char = FALSE;
+    delete_obj		= FALSE;
+    delete_char		= FALSE;
     return;
 }
 
@@ -1351,7 +1377,7 @@ void update_handler( void )
     static int pulse_point;
     static int pulse_db_dump;			/* OLC 1.1b */
 
-    /* OLC 1.1b */
+    /* OLC 1.1b - Comment out in case you don't want auto-saving */
     if ( --pulse_db_dump  <= 0 )
     {
         pulse_db_dump   = PULSE_DB_DUMP;

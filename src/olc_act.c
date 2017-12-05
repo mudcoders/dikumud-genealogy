@@ -39,12 +39,12 @@ struct olc_help_type
  * Added by Zen. Substitutes the C macros they were making a do_switch bug!
  * Return pointers to what is being edited.
  */
-bool is_builder( CHAR_DATA *ch, AREA_DATA *area )
+bool is_builder( CHAR_DATA *ch, AREA_DATA * area )
 {
     CHAR_DATA * rch;
 
     /* Will always have a pc ch after this */
-    rch = ( ch->desc->original ? ch->desc->original : ch->desc->character );
+    rch = get_char( ch );
     if ( ( rch->pcdata->security >= area->security
 	|| strstr( area->builders, rch->name )
 	|| strstr( area->builders, "All" ) ) )
@@ -110,7 +110,6 @@ const struct olc_help_type help_table[] =
     {	"weapon", 	weapon_flags, 	"Type of weapon."		},
     {	"container", 	container_flags, "Container status."		},
     {	"liquid", 	liquid_flags, 	"Types of liquids."		},
-    {	"race", 	race_flags, 	"Mobile races."			},
     {	"mobprogs", 	mprog_type_flags, "Types of Mob Programs."	},
     {	"", 		0, 		""				}
 };
@@ -249,7 +248,7 @@ bool show_help(CHAR_DATA * ch, char *argument)
 	send_to_char("[command]  [description]\n\r", ch);
 	for (cnt = 0; help_table[cnt].command[0] != '\0'; cnt++)
 	{
-	    sprintf(buf, "%-10.10s -%s\n\r",
+	    sprintf(buf, "%-10.10s - %s\n\r",
 		    capitalize(help_table[cnt].command),
 		    help_table[cnt].desc);
 	    send_to_char(buf, ch);
@@ -312,109 +311,115 @@ bool show_help(CHAR_DATA * ch, char *argument)
 }
 
 
-bool redit_mlist(CHAR_DATA * ch, char *argument)
+bool redit_mlist( CHAR_DATA * ch, char *argument )
 {
     MOB_INDEX_DATA *pMobIndex;
-    AREA_DATA *pArea;
-    char buf[MAX_STRING_LENGTH];
-    char buf1[MAX_STRING_LENGTH * 2];
-    char arg[MAX_INPUT_LENGTH];
-    bool fAll, found;
-    int vnum;
-    int col = 0;
+    AREA_DATA      *pArea;
+    char            buf		[ MAX_STRING_LENGTH ];
+    char            buf1	[ MAX_STRING_LENGTH * 2 ];
+    char            arg		[ MAX_INPUT_LENGTH ];
+    bool            fAll;
+    bool            found;
+    int             vnum;
+    int             col = 0;
 
-    one_argument(argument, arg);
-    if (arg[0] == '\0')
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
     {
-	send_to_char("Syntax:  mlist <all/name>\n\r", ch);
+	send_to_char( "Syntax:  mlist <all/name>\n\r", ch );
 	return FALSE;
     }
 
     pArea = ch->in_room->area;
     buf1[0] = '\0';
-    fAll = !str_cmp(arg, "all");
+    fAll = !str_cmp( arg, "all" );
     found = FALSE;
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++ )
     {
-	if ((pMobIndex = get_mob_index(vnum)))
+	if ( !( pMobIndex = get_mob_index( vnum ) )
+	    || pArea != pMobIndex->area )
+	    continue;
+
+	if ( fAll || is_name( arg, pMobIndex->player_name ) )
 	{
-	    if (fAll || is_name(arg, pMobIndex->player_name))
-	    {
-		found = TRUE;
-		sprintf(buf, "[%5d] %-17.16s",
-		    pMobIndex->vnum, capitalize(pMobIndex->short_descr));
-		strcat(buf1, buf);
-		if (++col % 3 == 0)
-		    strcat(buf1, "\n\r");
-	    }
+	    found = TRUE;
+	    sprintf( buf, "[%5d] %-17.16s",
+		    pMobIndex->vnum, capitalize( pMobIndex->short_descr ) );
+	    strcat( buf1, buf );
+	    if ( ++col % 3 == 0 )
+		strcat( buf1, "\n\r" );
 	}
     }
 
-    if (!found)
+    if ( !found )
     {
-	send_to_char("Mobile(s) not found in this area.\n\r", ch);
+	send_to_char( "Mobile(s) not found in this area.\n\r", ch );
 	return FALSE;
     }
 
-    if (col % 3 != 0)
-	strcat(buf1, "\n\r");
+    if ( col % 3 != 0 )
+	strcat( buf1, "\n\r" );
 
-    send_to_char(buf1, ch);
+    send_to_char( buf1, ch );
     return FALSE;
 }
 
 
-bool redit_olist(CHAR_DATA * ch, char *argument)
+bool redit_olist( CHAR_DATA * ch, char *argument )
 {
     OBJ_INDEX_DATA *pObjIndex;
-    AREA_DATA *pArea;
-    char buf[MAX_STRING_LENGTH];
-    char buf1[MAX_STRING_LENGTH * 2];
-    char arg[MAX_INPUT_LENGTH];
-    bool fAll, found;
-    int vnum;
-    int col = 0;
+    AREA_DATA      *pArea;
+    char            buf		[ MAX_STRING_LENGTH ];
+    char            buf1	[ MAX_STRING_LENGTH * 2 ];
+    char            arg		[ MAX_INPUT_LENGTH ];
+    bool            fAll;
+    bool            found;
+    int             vnum;
+    int             col = 0;
 
-    one_argument(argument, arg);
-    if (arg[0] == '\0')
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
     {
-	send_to_char("Syntax:  olist <all/name/item_type>\n\r", ch);
+	send_to_char( "Syntax:  olist <all/name/item_type>\n\r", ch );
 	return FALSE;
     }
 
     pArea = ch->in_room->area;
     buf1[0] = '\0';
-    fAll = !str_cmp(arg, "all");
+    fAll = !str_cmp( arg, "all" );
     found = FALSE;
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++ )
     {
-	if ((pObjIndex = get_obj_index(vnum)))
+	if ( !( pObjIndex = get_obj_index( vnum ) )
+	    || pArea != pObjIndex->area )
+	    continue;
+
+	if ( fAll || is_name( arg, pObjIndex->name )
+	    || flag_value( type_flags, arg ) == pObjIndex->item_type )
 	{
-	    if (fAll || is_name(arg, pObjIndex->name)
-		|| flag_value(type_flags, arg) == pObjIndex->item_type)
-	    {
-		found = TRUE;
-		sprintf(buf, "[%5d] %-17.16s",
-		    pObjIndex->vnum, capitalize(pObjIndex->short_descr));
-		strcat(buf1, buf);
-		if (++col % 3 == 0)
-		    strcat(buf1, "\n\r");
-	    }
+	    found = TRUE;
+	    sprintf( buf, "[%5d] %-17.16s",
+		    pObjIndex->vnum, capitalize( pObjIndex->short_descr ) );
+	    strcat( buf1, buf );
+	    if ( ++col % 3 == 0 )
+		strcat( buf1, "\n\r" );
 	}
     }
 
-    if (!found)
+    if ( !found )
     {
-	send_to_char("Object(s) not found in this area.\n\r", ch);
+	send_to_char( "Object(s) not found in this area.\n\r", ch );
 	return FALSE;
     }
 
-    if (col % 3 != 0)
-	strcat(buf1, "\n\r");
+    if ( col % 3 != 0 )
+	strcat( buf1, "\n\r" );
 
-    send_to_char(buf1, ch);
+    send_to_char( buf1, ch );
     return FALSE;
 }
 
@@ -2603,6 +2608,7 @@ bool oedit_addaffect(CHAR_DATA * ch, char *argument)
     AFFECT_DATA *pAf;
     char loc[MAX_STRING_LENGTH];
     char mod[MAX_STRING_LENGTH];
+    int value;
 
     pObj = edit_obj(ch);
 
@@ -2613,6 +2619,12 @@ bool oedit_addaffect(CHAR_DATA * ch, char *argument)
     {
 	send_to_char("Syntax:  addaffect [location] [#mod]\n\r", ch);
 	return FALSE;
+    }
+
+    if ( ( value = flag_value( affect_flags, argument ) ) == NO_FLAG )
+    {
+        send_to_char( "OEdit: Invalid value.  '? addaffect'\n\r", ch );
+        return FALSE;
     }
 
     pAf = new_affect();
@@ -2847,6 +2859,7 @@ bool oedit_value4(CHAR_DATA * ch, char *argument)
 bool oedit_weight(CHAR_DATA * ch, char *argument)
 {
     OBJ_INDEX_DATA *pObj;
+    int weight;
 
     pObj = edit_obj(ch);
 
@@ -2856,7 +2869,15 @@ bool oedit_weight(CHAR_DATA * ch, char *argument)
 	return FALSE;
     }
 
-    pObj->weight = atoi(argument);
+    weight = atoi( argument );
+
+    if ( weight < 0 )
+    {
+        send_to_char( "You may not set negative weight.\n\r", ch );
+        return FALSE;
+    }
+
+    pObj->weight = weight;
 
     send_to_char("Weight set.\n\r", ch);
     return TRUE;
@@ -2866,6 +2887,7 @@ bool oedit_weight(CHAR_DATA * ch, char *argument)
 bool oedit_cost(CHAR_DATA * ch, char *argument)
 {
     OBJ_INDEX_DATA *pObj;
+    int cost;
 
     pObj = edit_obj(ch);
 
@@ -2875,7 +2897,15 @@ bool oedit_cost(CHAR_DATA * ch, char *argument)
 	return FALSE;
     }
 
-    pObj->cost = atoi(argument);
+    cost = atoi( argument );
+
+    if ( cost < 0 )
+    {
+        send_to_char( "You may not set negative cost.\n\r", ch );
+        return FALSE;
+    }
+
+    pObj->cost = cost;
 
     send_to_char("Cost set.\n\r", ch);
     return TRUE;
@@ -3489,45 +3519,20 @@ bool medit_shop(CHAR_DATA * ch, char *argument)
 
     if (!str_cmp(command, "delete"))
     {
-	SHOP_DATA *pShop;
-	SHOP_DATA *pShop_next;
-	int value;
-	int cnt = 0;
+        SHOP_DATA *pShop;
 
-	if (arg1[0] == '\0' || !is_number(arg1))
-	{
-	    send_to_char("Syntax:  shop delete [#0-4]\n\r", ch);
-	    return FALSE;
-	}
+        if (!pMob->pShop)
+        {
+            send_to_char ("REdit:  Non-existant shop.\n\r", ch);
+            return FALSE;
+        }
 
-	value = atoi(argument);
+        pShop = pMob->pShop;
+        free_shop (pShop);
+        pMob->pShop = NULL;
 
-	if (!pMob->pShop)
-	{
-	    send_to_char("REdit:  Non-existant shop.\n\r", ch);
-	    return FALSE;
-	}
-
-	if (value == 0)
-	{
-	    pShop = pMob->pShop;
-	    pMob->pShop = pMob->pShop->next;
-	    free_shop(pShop);
-	}
-	else
-	    for (pShop = pMob->pShop, cnt = 0; pShop; pShop = pShop_next, cnt++)
-	    {
-		pShop_next = pShop->next;
-		if (cnt + 1 == value)
-		{
-		    pShop->next = pShop_next->next;
-		    free_shop(pShop_next);
-		    break;
-		}
-	    }
-
-	send_to_char("Shop deleted.\n\r", ch);
-	return TRUE;
+        send_to_char ("Shop deleted.\n\r", ch);
+        return TRUE;
     }
 
     medit_shop(ch, "");

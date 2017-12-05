@@ -98,6 +98,8 @@ typedef struct	time_info_data		TIME_INFO_DATA;
 typedef struct	weather_data		WEATHER_DATA;
 typedef struct  mob_prog_data           MPROG_DATA;
 typedef struct  mob_prog_act_list       MPROG_ACT_LIST;
+typedef struct	soc_index_data		SOC_INDEX_DATA;
+typedef struct	class_type		CLASS_TYPE;
 
 /*
  * Function types.
@@ -118,6 +120,7 @@ typedef void GAME_FUN                   args( ( CHAR_DATA *ch,
 #define MAX_STRING_LENGTH	 4096
 #define MAX_INPUT_LENGTH	  160
 
+#define	MAX_WORD_HASH		   27	/* The latin alphabet has 26 letters */
 
 
 /*
@@ -133,7 +136,7 @@ typedef void GAME_FUN                   args( ( CHAR_DATA *ch,
 #define MAX_RACE                   41
 #define MAX_LEVEL		   54
 #define MAX_CLAN		    6
-#define MAX_ALIAS		    5
+#define MAX_ALIAS		   10
 #define L_DIR		           MAX_LEVEL
 #define L_SEN		          ( L_DIR - 1 )
 #define L_JUN	        	  ( L_SEN - 1 )
@@ -211,22 +214,29 @@ struct	weather_data
 /*
  * Colour stuff by Lope of Loping Through The MUD
  */
-#define CLEAR		"[0m"		/* Resets Colour	*/
-#define C_RED		"[0;31m"	/* Normal Colours	*/
-#define C_GREEN		"[0;32m"
-#define C_YELLOW	"[0;33m"
-#define C_BLUE		"[0;34m"
-#define C_MAGENTA	"[0;35m"
-#define C_CYAN		"[0;36m"
-#define C_WHITE		"[0;37m"
-#define C_D_GREY	"[1;30m"  	/* Light Colors		*/
-#define C_B_RED		"[1;31m"
-#define C_B_GREEN	"[1;32m"
-#define C_B_YELLOW	"[1;33m"
-#define C_B_BLUE	"[1;34m"
-#define C_B_MAGENTA	"[1;35m"
-#define C_B_CYAN	"[1;36m"
-#define C_B_WHITE	"[1;37m"
+#define MOD_CLEAR	"[0m"		/* Resets Colour	*/
+#define MOD_STANDOUT	"[1m"
+#define MOD_FAINT	"[2m"
+#define MOD_UNDERLINE	"[4m"
+#define MOD_FLASH	"[5m"
+#define MOD_INVERT	"[7m"
+
+#define FG_RED		"[0;31m"	/* Normal Colours	*/
+#define FG_GREEN	"[0;32m"
+#define FG_YELLOW	"[0;33m"
+#define FG_BLUE		"[0;34m"
+#define FG_MAGENTA	"[0;35m"
+#define FG_CYAN		"[0;36m"
+#define FG_WHITE	"[0;37m"
+#define FG_DARK		"[0;30m"
+#define FG_D_GREY	"[1;30m"  	/* Light Colors		*/
+#define FG_B_RED	"[1;31m"
+#define FG_B_GREEN	"[1;32m"
+#define FG_B_YELLOW	"[1;33m"
+#define FG_B_BLUE	"[1;34m"
+#define FG_B_MAGENTA	"[1;35m"
+#define FG_B_CYAN	"[1;36m"
+#define FG_B_WHITE	"[1;37m"
 
 
 
@@ -409,7 +419,7 @@ struct	shop_data
  */
 struct	class_type
 {
-    char 	who_name	[ 4 ];	/* Three-letter name for 'who'	*/
+    char *	who_name;		/* Three-letter name for 'who'	*/
     int 	attr_prime;		/* Prime attribute		*/
     int 	weapon;			/* First weapon			*/
     int 	guild;			/* Vnum of guild room		*/
@@ -419,6 +429,7 @@ struct	class_type
     int  	hp_min;			/* Min hp gained on leveling	*/
     int	        hp_max;			/* Max hp gained on leveling	*/
     bool	fMana;			/* Class gains mana on level	*/
+    char *	filename;		/* Class filename		*/
 };
 
 /*
@@ -757,7 +768,7 @@ struct	kill_data
 #define ROOM_NO_RECALL		   8192
 #define ROOM_CONE_OF_SILENCE      16384
 #define ROOM_ARENA		  32768		/* by Zen */
-
+#define ROOM_TEMP_CONE_OF_SILENCE 65536 /* So spell doesn't save into areas */
 
 /*
  * Directions.
@@ -1462,16 +1473,30 @@ struct	cmd_type
 /*
  * Structure for a social in the socials table.
  */
+struct	soc_index_data
+{
+    SOC_INDEX_DATA *	next;
+    char *		name;
+    char *		char_no_arg;
+    char *		others_no_arg;
+    char *		char_found;
+    char *		others_found;
+    char *		vict_found;
+    char *		char_auto;
+    char *		others_auto;
+    bool		deleted;
+};
+
 struct	social_type
 {
-    char * const	name;
-    char * const	char_no_arg;
-    char * const	others_no_arg;
-    char * const	char_found;
-    char * const	others_found;
-    char * const	vict_found;
-    char * const	char_auto;
-    char * const	others_auto;
+    char *		name;
+    char *		char_no_arg;
+    char *		others_no_arg;
+    char *		char_found;
+    char *		others_found;
+    char *		vict_found;
+    char *		char_auto;
+    char *		others_auto;
 };
 
 
@@ -1485,12 +1510,13 @@ extern	const	struct	wis_app_type	wis_app		[ 26 ];
 extern	const	struct	dex_app_type	dex_app		[ 26 ];
 extern	const	struct	con_app_type	con_app		[ 26 ];
 
-extern	const	struct	class_type	class_table	[ MAX_CLASS   ];
+extern		struct	class_type *	class_table	[ MAX_CLASS   ];
 extern	const	struct	cmd_type	cmd_table	[ ];
 extern	const	struct	liq_type	liq_table	[ LIQ_MAX     ];
-extern	const	struct	skill_type	skill_table	[ MAX_SKILL   ];
+extern		struct	skill_type	skill_table	[ MAX_SKILL   ];
 extern	const	struct	social_type	social_table	[ ];
-extern	char *	const			title_table	[ MAX_CLASS   ]
+
+extern	char *				title_table	[ MAX_CLASS   ]
 							[ MAX_LEVEL+1 ]
 							[ 2 ];
 extern  const   struct  race_type       race_table      [ MAX_RACE ];
@@ -1751,15 +1777,17 @@ DECLARE_DO_FUN(	do_enter	);		/* by Zen */
 DECLARE_DO_FUN(	do_retir	);		/* by Zen */
 DECLARE_DO_FUN(	do_retire	);		/* by Zen */
 DECLARE_DO_FUN(	do_alia		);		/* by Zen */
-DECLARE_DO_FUN(	do_alias	);		/* by Zen */
+DECLARE_DO_FUN(	do_alias	);
 DECLARE_DO_FUN(	do_unalia	);		/* by Zen */
-DECLARE_DO_FUN(	do_unalias	);		/* by Zen */
+DECLARE_DO_FUN(	do_unalias	);
 DECLARE_DO_FUN(	do_join		);		/* by Zen */
 DECLARE_DO_FUN(	do_members	);		/* by Zen */
 DECLARE_DO_FUN(	do_clookup	);		/* by Zen */
 DECLARE_DO_FUN(	do_dirt		);
-DECLARE_DO_FUN(	do_grats	);
-DECLARE_DO_FUN(	do_clantalk	);
+DECLARE_DO_FUN(	do_grats	);		/* by Zen */
+DECLARE_DO_FUN(	do_clantalk	);		/* by Zen */
+DECLARE_DO_FUN(	do_sober	);
+DECLARE_DO_FUN(	do_showclass	);
 
 
 /*
@@ -1910,6 +1938,7 @@ DECLARE_SPELL_FUN(      spell_home_sick		);
 DECLARE_SPELL_FUN(      spell_portal		);
 DECLARE_SPELL_FUN(      spell_nexus		);
 DECLARE_SPELL_FUN(	spell_protection_good	);
+DECLARE_SPELL_FUN(	spell_create_buffet	);
 
 
 
@@ -2020,27 +2049,37 @@ int     close           args( ( int fd ) );
 #define PLAYER_DIR	""		/* Player files			*/
 #define NULL_FILE	"proto.are"	/* To reserve one stream	*/
 #define MOB_DIR		""	        /* MOBProg files		*/
+#define CLASS_DIR	""	        /* New class loading scheme	*/
+#define BACKUP_DIR	""		/* Backup player files		*/
 #endif
 
 #if defined( unix ) || defined( linux )
 #define PLAYER_DIR	"../player/"	/* Player files			*/
 #define NULL_FILE	"/dev/null"	/* To reserve one stream	*/
-#define MOB_DIR		"MOBProgs/"	/* MOBProg files		*/
+#define MOB_DIR		"mobprogs/"	/* MOBProg files		*/
+#define CLASS_DIR	"classes/" 	/* New class loading scheme	*/
+#define BACKUP_DIR	"../backup/"	/* Backup player files		*/
 #endif
 
 #if defined( AmigaTCP )
 #define PLAYER_DIR      "envy:player/"  /* Player files                 */
 #define NULL_FILE       "proto.are"     /* To reserve one stream        */
-#define MOB_DIR         "MOBprogs/"     /* MOBProg files                */
+#define MOB_DIR         "mobprogs/"     /* MOBProg files                */
+#define CLASS_DIR	"classes/"      /* New class loading scheme	*/
+#define BACKUP_DIR	"envy:backup/"	/* Backup player files		*/
 #endif
 
 #if defined( WIN32 )
 #define PLAYER_DIR      "..\\player\\"  /* Player files                 */
 #define NULL_FILE       "nul"           /* To reserve one stream        */
-#define MOB_DIR         "..\\MOBprogs\\"     /* MOBProg files		*/
+#define MOB_DIR         "mobprogs\\"	/* MOBProg files		*/
+#define CLASS_DIR	"classes\\"	/* New class loading scheme	*/
+#define BACKUP_DIR	"..\\backup\\"	/* Backup player files		*/
 #endif
 
 #define AREA_LIST	"AREA.LST"	/* List of areas		*/
+
+#define CLASS_LIST	"CLASS.LST"	/* List of classes		*/
 
 #define BUG_FILE	"BUGS.TXT"      /* For 'bug' and bug( )		*/
 #define IDEA_FILE	"IDEAS.TXT"	/* For 'idea'			*/
@@ -2050,6 +2089,7 @@ int     close           args( ( int fd ) );
 #define SHUTDOWN_FILE	"SHUTDOWN.TXT"	/* For 'shutdown'		*/
 #define DOWN_TIME_FILE  "TIME.TXT"      /* For automatic shutdown       */
 #define BAN_FILE        "BAN.TXT"       /* For banned site save         */
+#define SOCIAL_FILE	"SOCIALS.TXT"   /* For socials (by Zen)		*/
 
 
 /*
@@ -2064,6 +2104,7 @@ int     close           args( ( int fd ) );
 #define OID	OBJ_INDEX_DATA
 #define RID	ROOM_INDEX_DATA
 #define SF	SPEC_FUN
+#define SID	SOC_INDEX_DATA
 
 /* act_comm.c */
 void	add_follower	args( ( CHAR_DATA *ch, CHAR_DATA *master ) );
@@ -2229,6 +2270,7 @@ void    end_of_game     args( ( void ) );
 int     race_lookup     args( ( const char *race ) );
 int     affect_lookup   args( ( const char *race ) );
 int	clan_lookup	args( ( const char *name ) );
+int	race_full_lookup args( ( const char *race ) );
 
 /* interp.c */
 void    substitute_alias args( ( DESCRIPTOR_DATA *d, char *input ) );
@@ -2271,12 +2313,24 @@ void    mprog_random_trigger    args ( ( CHAR_DATA* mob ) );
 void    mprog_speech_trigger    args ( ( char* txt, CHAR_DATA* mob ) );
 
 /* save.c */
+void	backup_char_obj	args( ( CHAR_DATA *ch ) ); /* Zen was here :) */
 void	delete_char_obj	args( ( CHAR_DATA *ch ) ); /* Zen was here :) */
 void	save_char_obj	args( ( CHAR_DATA *ch ) );
 bool	load_char_obj	args( ( DESCRIPTOR_DATA *d, char *name ) );
 
 /* special.c */
 SF *	spec_lookup	args( ( const char *name ) );
+
+/* tables.c */
+void	clear_social		args( ( SOC_INDEX_DATA *soc ) );
+void	extract_social		args( ( SOC_INDEX_DATA *soc ) );
+SID *	new_social		args( ( ) );
+void	free_social		args( ( SOC_INDEX_DATA *soc ) );
+
+void	load_socials		args( ( ) );
+void	save_socials		args( ( ) );
+void	load_classes		args( ( ) );
+void	save_classes		args( ( ) );
 
 /* update.c */
 void	advance_level	args( ( CHAR_DATA *ch ) );
@@ -2331,7 +2385,7 @@ struct flag_type
 #define         AREA_CHANGED    1       /* Area has been modified. */
 #define         AREA_ADDED      2       /* Area has been added to. */
 #define         AREA_LOADING    4       /* Used for counting in db.c */
-#define         AREA_VERBOSE    5       /* OLC */
+#define         AREA_VERBOSE    8       /* OLC */
 
 
 #define MAX_DIR 6
@@ -2383,9 +2437,10 @@ extern          int                     top_vnum_room;
 
 extern          char                    str_empty       [1];
 
-extern  MOB_INDEX_DATA *        mob_index_hash  [MAX_KEY_HASH];
-extern  OBJ_INDEX_DATA *        obj_index_hash  [MAX_KEY_HASH];
-extern  ROOM_INDEX_DATA *       room_index_hash [MAX_KEY_HASH];
+extern  MOB_INDEX_DATA *        mob_index_hash  [ MAX_KEY_HASH ];
+extern  OBJ_INDEX_DATA *        obj_index_hash  [ MAX_KEY_HASH ];
+extern  ROOM_INDEX_DATA *       room_index_hash [ MAX_KEY_HASH ];
+extern  SOC_INDEX_DATA *        soc_index_hash  [ MAX_WORD_HASH ];
 
 
 /* db.c */
@@ -2430,7 +2485,6 @@ extern const struct flag_type   wear_loc_flags[];
 extern const struct flag_type   weapon_flags[];
 extern const struct flag_type   container_flags[];
 extern const struct flag_type   liquid_flags[];
-extern const struct flag_type   race_flags[];
 extern const struct flag_type	mprog_type_flags[];
 extern const struct flag_type   portal_door_flags[];
 extern const struct flag_type   portal_flags[];

@@ -91,7 +91,7 @@ int get_curr_str( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class].attr_prime == APPLY_STR )
+    if ( class_table[ch->class]->attr_prime == APPLY_STR )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -116,7 +116,7 @@ int get_curr_int( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class].attr_prime == APPLY_INT )
+    if ( class_table[ch->class]->attr_prime == APPLY_INT )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -141,7 +141,7 @@ int get_curr_wis( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class].attr_prime == APPLY_WIS )
+    if ( class_table[ch->class]->attr_prime == APPLY_WIS )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -166,7 +166,7 @@ int get_curr_dex( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class].attr_prime == APPLY_DEX )
+    if ( class_table[ch->class]->attr_prime == APPLY_DEX )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -191,7 +191,7 @@ int get_curr_con( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class].attr_prime == APPLY_CON )
+    if ( class_table[ch->class]->attr_prime == APPLY_CON )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -1844,6 +1844,18 @@ int race_lookup( const char *race )
 	    return index;
 
     return -1;
+
+}
+
+int race_full_lookup( const char *race )
+{
+    int index;
+
+    for ( index = 0; index < MAX_RACE; index++ )
+        if ( !str_cmp( race, race_table[index].name ) )
+            return index;
+
+    return NO_FLAG;
 
 }
 

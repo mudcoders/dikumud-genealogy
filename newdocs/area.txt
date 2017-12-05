@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.82! (HomeCooked Envy2.2)
-Monday, 23th June 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.83! (HomeCooked Envy2.2)
+Monday, 30th June 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -13,7 +13,7 @@ and then you can do 'asave world' to save the entire database in the new format.
 It's nice to have OLC! You may need to do some tweaking to your old area files
 but they will work. This file format is picky on the #RESETS section. You may
 need to erase one or two lines but it will warn of that in the log file.
-After 'asaving' the Envy2.2 release areas it will warn you of bugs in
+If 'asaving' the Envy2.2 release areas it will warn you of bugs in
 'ocean.are' and 'grove.are' #RESETS. Just delete the lines it gives the
 warning and swap the order of haon.are and arachnos.are in the AREA.LST file
 so that the resets will load correctly.  The order in your AREA.LST file
@@ -24,6 +24,8 @@ should now be:
 
 Also read README.install if you want to convert old Envy areas. It's in
 newdocs/OLC11
+The area format is a work in progress, so it may change and i'm not certain i'll
+bother doing a converter from my old format.
 
 					- Zen
 
@@ -1475,7 +1477,7 @@ In order to simplify the code, the EnvyMud server has a fixed maximum size on
 strings in the area database.  This size is defined at the beginning
 of 'ssm.c'.  As distributed, this size is:
 
-#define MAX_CHUNKS 27
+#define MAX_CHUNKS 30	/* Increased size a little an Alpha complained :) */
 
 This size is about 6% (100k) larger than needed for the areas we
 distribute.  Thus, you can add about 2 more areas without touching the

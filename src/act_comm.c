@@ -571,7 +571,8 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
@@ -659,7 +660,8 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	if ( d->connected == CON_PLAYING
 	    && vch != ch
 	    && !IS_SET( och->deaf, channel )
-	    && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	    && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	    && !IS_SET( och->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	{
 	    if ( channel == CHANNEL_IMMTALK && !IS_HERO( och ) )
 		continue;
@@ -738,7 +740,7 @@ void do_shout( CHAR_DATA *ch, char *argument )
 
 void do_grats( CHAR_DATA *ch, char *argument )
 {
-    talk_channel( ch, argument, CHANNEL_GRATS, "grats" );
+    talk_channel( ch, argument, CHANNEL_GRATS, "congratulate" );
     return;
 }
 
@@ -794,7 +796,8 @@ void do_say( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char_bw( "Your lips move but no sound comes out.\n\r", ch );
         return;
@@ -818,7 +821,8 @@ void do_tell( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
@@ -839,7 +843,8 @@ void do_tell( CHAR_DATA *ch, char *argument )
 
     if ( ( !IS_NPC( ch ) && (   IS_SET( ch->act, PLR_SILENCE )
 			     || IS_SET( ch->act, PLR_NO_TELL ) ) )
-	|| IS_SET( victim->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -889,7 +894,8 @@ void do_reply( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
@@ -903,7 +909,8 @@ void do_reply( CHAR_DATA *ch, char *argument )
 
     if ( ( !IS_NPC( ch ) && (   IS_SET( ch->act, PLR_SILENCE )
  			     || IS_SET( ch->act, PLR_NO_TELL ) ) )
-	|| IS_SET( victim->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -1612,7 +1619,7 @@ void do_group( CHAR_DATA *ch, char *argument )
 		"[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
 			gch->level,
 			IS_NPC( gch ) ? "Mob"
-			              : (char *)class_table[gch->class].who_name,
+			              : (char *)class_table[gch->class]->who_name,
 			capitalize( PERS( gch, ch ) ),
 			gch->hit,   gch->max_hit,
 			gch->mana,  gch->max_mana,
@@ -1774,7 +1781,8 @@ void do_gtell( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
@@ -1797,6 +1805,7 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     {
 	if ( is_same_group( gch, ch )
 	    && !IS_SET( gch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	    && !IS_SET( gch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE )
 	    && !IS_SET( race_table[gch->race].race_abilities, RACE_MUTE )
 	    && !IS_AFFECTED( gch, AFF_MUTE ) )
 	    send_to_char( buf, gch );

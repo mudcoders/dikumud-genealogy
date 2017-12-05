@@ -120,6 +120,7 @@ const struct olc_cmd_type hedit_table[] =
     {   "level",	hedit_level	},
     {	"keywords",	hedit_keywords	},
     {	"show",		hedit_show	},
+    {   "text",		hedit_desc	},
 
     {   "?",		show_help	},
 
@@ -160,9 +161,9 @@ void hedit( CHAR_DATA *ch, char *argument )
     }
 
     /* Search Table and Dispatch Command. */
-    for ( cmd = 0; hedit_table[cmd].name[0] != '\0'; cmd++ )
+    for ( cmd = 0; @hedit_table[cmd].name; cmd++ )
     {
-	if ( !str_cmp( command, hedit_table[cmd].name ) )
+	if ( !str_prefix( command, hedit_table[cmd].name ) )
 	{
 	    (*hedit_table[cmd].olc_fun) ( ch, argument );
 	    return;
@@ -189,7 +190,7 @@ void do_hedit( CHAR_DATA *ch, char *argument )
 
     if( arg[0] == '\0' )
     {
-	send_to_char( "Syntax:  edit help <keywords>\n\r", ch );
+	send_to_char( "Syntax:  hedit <keyword>\n\r", ch );
 	return;
     }
     else
@@ -223,6 +224,7 @@ void do_hedit( CHAR_DATA *ch, char *argument )
 	    ch->desc->editor = ED_HELP;
 	}
     }
+    hedit_show( ch, "" );
     return;
 }
 
@@ -306,7 +308,7 @@ HEDIT( hedit_create )
 HEDIT( hedit_delete )
 {
     HELP_DATA *pHelp;
-    HELP_DATA *PrevHelp;
+    HELP_DATA *PrevHelp = help_first;
 
     if ( !EDIT_HELP( ch, pHelp ) )
     {

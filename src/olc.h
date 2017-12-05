@@ -8,7 +8,6 @@
  *  This code was freely distributed with the The Isles 1.1 source code,   *
  *  and has been used here for OLC - OLC would not be what it is without   *
  *  all the previous coders who released their source code.                *
- *                                                                         *
  ***************************************************************************/
 
 /*
@@ -208,6 +207,7 @@ DECLARE_OLC_FUN( mpedit_program	);
 /*
  * Macros
  */
+
 #define TOGGLE_BIT(var, bit)    ((var) ^= (bit))
 
 
@@ -215,7 +215,6 @@ DECLARE_OLC_FUN( mpedit_program	);
 /*
  * Prototypes
  */
-
 
 /* mem.c - memory prototypes */
 #define ED		EXTRA_DESCR_DATA
@@ -249,5 +248,5 @@ void 		delete_mprog args( ( CHAR_DATA * ch, int pnum ) );
 MOB_INDEX_DATA *	edit_mob args( ( CHAR_DATA * ch ) );
 OBJ_INDEX_DATA *	edit_obj args( ( CHAR_DATA * ch ) );
 ROOM_INDEX_DATA *	edit_room args( ( CHAR_DATA * ch ) );
-AREA_DATA *	edit_area args( ( CHAR_DATA * ch ) );
-bool	is_builder args( ( CHAR_DATA * ch, AREA_DATA * area ) );
+AREA_DATA *		edit_area args( ( CHAR_DATA * ch ) );
+bool			is_builder args( ( CHAR_DATA * ch, AREA_DATA * area ) );

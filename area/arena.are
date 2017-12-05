@@ -18,10 +18,31 @@ Sunbam the magician is VERY powerful. In fact he is so powerful he charmed the
 holy dragon Hatraxx so he could do his bidding and destroy all that is good.
 Don't be fooled by his frail appearance as he is highly dangerous!
 ~
-35 0 -1000 S
-48 0 0 0d0+0 0d0+0
+3 0 -1000 S
+50 0 0 0d0+0 0d0+0
 0 0
 0 God~ 1
+>greet_prog 100~
+if isimmort($n)
+	bow $n
+else
+	look $n
+	say It shall not be you $n who will prevent me from destroying good!
+	muhaha
+	say I will send you to hell!
+	cast blindness $n
+	mpkill $n
+endif
+~
+>fight_prog 20~
+cackle
+~
+>death_prog 60~
+yell Damned you $n! I shall return and have my revenge!
+mpecho Sunbam's corpse fades away...
+mpgoto 2
+~
+|
 #11001
 justak hero~
 Justak~
@@ -35,6 +56,12 @@ Sunbam. They have failed so far... No one has even found him and lived.
 40 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
+>greet_prog 50~
+look $n
+say When will i get out of this dump?
+sig
+~
+|
 #11002
 hatraxx dragon~
 Hatraxx~
@@ -47,6 +74,16 @@ His eyes penetrate deep into your soul, and you feel frozen by fear!
 52 0 0 0d0+0 0d0+0
 0 0
 0 Dragon~ 1
+>greet_prog 100~
+if isimmort($n)
+	bow $n
+else
+	look $n
+	say I shall do your bidding master Sunbam!
+	mpkill $n
+endif
+~
+|
 #11003
 psikotik~
 Psikotik~
@@ -54,10 +91,22 @@ The psionicist Psikotik is here. WATCH OUT!
 ~
 Psikotik looks disturbed by your presence.
 ~
-35 8932 -750 S
+3 8932 -750 S
 45 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
+>greet_prog 100~
+if isimmort($n)
+	bow $n
+else
+	look $n
+	say So you are the one supposed to challenge me?
+	cackle
+	say I will squash you like an insect!
+	mpkill $n
+endif
+~
+|
 #11004
 brominol vampire lord~
 Brominol~
@@ -148,10 +197,20 @@ Krusher is here looking for someone to maim today!
 Krusher is big, and when i say big i mean BIG!
 He is full of muscle but hasn't much of a brain.
 ~
-97 8736 -1000 S
+65 8736 -1000 S
 25 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
+>greet_prog 50~
+if isgood($n)
+	look $n
+	say So... A Mr. Nice Guy huh? Let's see how much you like my hammer!
+	cackle
+	say You fool! You should have stayed home!
+	mpkill $n
+endif
+~
+|
 #11012
 autoexec bat~
 AutoExec~
@@ -170,10 +229,20 @@ The guardian of the gate stands here. He ATTACKS YOU!
 ~
 He looks like he could break your back with only two fingers!
 ~
-35 8746 -1000 S
+3 8746 -1000 S
 42 0 0 0d0+0 0d0+0
 0 0
 0 Minotaur~ 1
+>greet_prog 100~
+if isimmort($n)
+	bow $n
+else
+	look $n
+	say NO ONE SHALL PASS! ESPECIALLY YOU $n!
+	mpkill $n
+endif
+~
+|
 #11014
 trurg guardian~
 Trurg~
@@ -182,16 +251,29 @@ The guardian of the gate Trurg stands here. He ATTACKS YOU!
 Trurg looks at you and says:
 NO TRESPASSERS ALLOWED! BANZAI!!!!
 ~
-35 556 -1000 S
-40 0 0 0d0+0 0d0+0
+3 556 -1000 S
+44 0 0 0d0+0 0d0+0
 0 0
 0 Minotaur~ 1
+>greet_prog 100~
+if isimmort($n)
+	bow $n
+else
+	if isgood($n)
+		look $n
+		say GOOD SHALL NOT ENTER THIS DOMAIN!
+		grin $n
+		mpkill $n
+	endif
+endif
+~
+|
 #11015
 thing~
 the Thing~
 There is something in here... You can't figure out what! LOOK OUT!
 ~
-The mob looks back at you!
+The thing looks back at you!
 ~
 37 16818696 0 S
 38 0 0 0d0+0 0d0+0
@@ -204,12 +286,18 @@ The food vendor is here selling his stuff.
 ~
 The food vendor is an old man. He has grey hair and could be your grandfather.
 Has he notices you are looking at him he looks at you and shouts:
-HEY! YOU SONNY! ARE YOU GOING TO BUY SOMETHING OR NOT!
+HEY! ARE YOU GOING TO BUY SOMETHING OR WHAT!
 ~
 3 8704 -250 S
 30 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
+>greet_prog 50~
+look $n
+say HEY! YOU SONNY! ARE YOU GOING TO BUY SOMETHING OR NOT!
+endif
+~
+|
 #11017
 gladiator~
 The gladiator~

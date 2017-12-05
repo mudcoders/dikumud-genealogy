@@ -1,14 +1,58 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.82! (HomeCooked Envy2.2)
-Monday, 23th June 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.84! (HomeCooked Envy2.2)
+Monday, 7th July 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
 
-=== INFO:
+=== General info (version 0.83)
 
-This code is now complete. I spell checked the new area and spells and 
-corrected the spelling errors. The code is very stable and i think that a 
-regular character can't crash the mud (unless there are some mean bugs in 
-Envy2.2 code i don't know).
+USE THIS AT YOUR OWN RISK! (Can't find bugs though)
+
+The code is very stable and i think that a regular character can't crash the
+mud. I have squashed all the bugs i could find and so this should be mostly
+bug free. The reason i made this new release so soon was because Christopher
+Smith made a new release of OLC for Envy20 one day after i released the previous
+version... So i'm releasing this one with his changes (all of them i think) and
+since i hate to release a new version only with bug fixes i bashed a couple of
+new features as well. Major changes include:
+
+	Class table now is loaded from a file
+	Socials table now is loaded from a file
+
+This makes new socials/classes easier to add. No more need to change all the
+skills/spells in const.c when you want to add a new class...
+
+Also i didn't say it in the last release, but the Beastly Fido, Executioner and
+the Beggars in Poor Alley have MobPrograms so you can check these out.
+
+Also check the docs/info in the MobProg2.1/ and OLC11/ directories
+
+
+=== New changes... (version 0.84) :-)
+
+Hello there! Erm... I said i wouldn't make a new release so soon eh? Well i
+noticed the version of alias code i was using in 0.83 used bzero and this isn't
+standard in some platforms... Oooops! :-( So i am back to the nice old Rom2.4b4
+version of the code which is cleaner and doesn't use bzero... Updated one or
+two docs but that's it i think. Sheeesh... It's official. I made my first bug
+fix version just one day after the previous one! This isn't a serious bug but
+people might bother me if they use AIX i think. Since i use Linux i didn't
+notice it until the day after i uploaded to ftp.game.org. Don't bother too much
+with the release date above it's just for reference.
+
+
+=== Future Plans
+
+HomeCooked contains some structure improvements over Envy 2.2.  Some ideas
+which have been incorporated were suggested by MUD/RPG games-playing and fellow
+mud addicts/implementors.
+A few of these ideas have been created using the 'Reverse Engineering' method.
+
+Do not expect a new release so soon. This was highly unusual. I expect to have
+the next release made in September, and this will have MAJOR changes i think.
+Probably... But don't hold your breath :-) I have to study you know...
+
+Enjoy!
+
 
 - Zen

@@ -1,0 +1,239 @@
+Class       0
+Name        Mag~
+AtrPrm      3
+Weapon      3701
+Guild       3018
+Skilladept  95
+Thac0       18
+Thac47      6
+Hpmin       6
+Hpmax       8
+Mana        1
+Skll        'acid blast' 20
+Skll        'armor' 5
+Skll        'blindness' 8
+Skll        'burning hands' 5
+Skll        'charm person' 14
+Skll        'chill touch' 3
+Skll        'colour spray' 11
+Skll        'cone of silence' 22
+Skll        'continual light' 4
+Skll        'control weather' 10
+Skll        'create spring' 10
+Skll        'curse' 12
+Skll        'detect invis' 2
+Skll        'detect magic' 2
+Skll        'dispel magic' 26
+Skll        'enchant weapon' 12
+Skll        'energy drain' 13
+Skll        'faerie fire' 4
+Skll        'faerie fog' 10
+Skll        'fireball' 15
+Skll        'fly' 7
+Skll        'giant strength' 7
+Skll        'identify' 10
+Skll        'infravision' 6
+Skll        'invis' 4
+Skll        'know alignment' 8
+Skll        'lightning bolt' 9
+Skll        'locate object' 6
+Skll        'magic missile' 1
+Skll        'mass invis' 15
+Skll        'pass door' 18
+Skll        'recharge item' 11
+Skll        'refresh' 5
+Skll        'remove alignment' 16
+Skll        'shield' 13
+Skll        'shocking grasp' 7
+Skll        'sleep' 14
+Skll        'stone skin' 17
+Skll        'teleport' 8
+Skll        'ventriloquate' 1
+Skll        'weaken' 7
+Skll        'acid breath' 33
+Skll        'fire breath' 34
+Skll        'frost breath' 31
+Skll        'gas breath' 35
+Skll        'lightning breath' 32
+Skll        'scrolls' 3
+Skll        'staves' 3
+Skll        'wands' 3
+Skll        'stake' 1
+Skll        'shield block' 37
+Skll        'fast healing' 37
+Skll        'brew' 27
+Skll        'scribe' 28
+Skll        'swim' 15
+Skll        'meditate' 20
+Skll        'meteor swarm' 25
+Skll        'chain lightning' 16
+Skll        'scry' 35
+Skll        'vortex lift' 27
+Skll        'portal' 35
+Skll        'nexus' 40
+Title
+Man~
+Woman~
+Title
+Apprentice of Magic~
+Apprentice of Magic~
+Title
+Spell Student~
+Spell Student~
+Title
+Scholar of Magic~
+Scholar of Magic~
+Title
+Delver in Spells~
+Delveress in Spells~
+Title
+Medium of Magic~
+Medium of Magic~
+Title
+Scribe of Magic~
+Scribess of Magic~
+Title
+Seer~
+Seeress~
+Title
+Sage~
+Sage~
+Title
+Illusionist~
+Illusionist~
+Title
+Abjurer~
+Abjuress~
+Title
+Invoker~
+Invoker~
+Title
+Enchanter~
+Enchantress~
+Title
+Conjurer~
+Conjuress~
+Title
+Magician~
+Witch~
+Title
+Creator~
+Creator~
+Title
+Savant~
+Savant~
+Title
+Magus~
+Craftess~
+Title
+Wizard~
+Wizard~
+Title
+Warlock~
+War Witch~
+Title
+Sorcerer~
+Sorceress~
+Title
+Elder Sorcerer~
+Elder Sorceress~
+Title
+Grand Sorcerer~
+Grand Sorceress~
+Title
+Great Sorcerer~
+Great Sorceress~
+Title
+Golem Maker~
+Golem Maker~
+Title
+Greater Golem Maker~
+Greater Golem Maker~
+Title
+Maker of Stones~
+Maker of Stones~
+Title
+Maker of Potions~
+Maker of Potions~
+Title
+Maker of Scrolls~
+Maker of Scrolls~
+Title
+Maker of Wands~
+Maker of Wands~
+Title
+Maker of Staves~
+Maker of Staves~
+Title
+Demon Summoner~
+Demon Summoner~
+Title
+Greater Demon Summoner~
+Greater Demon Summoner~
+Title
+Dragon Charmer~
+Dragon Charmer~
+Title
+Greater Dragon Charmer~
+Greater Dragon Charmer~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Master of all Magic~
+Master of all Magic~
+Title
+Mage Hero~
+Mage Heroine~
+Title
+Angel of Magic~
+Angel of Magic~
+Title
+Deity of Magic~
+Deity of Magic~
+Title
+Supremity of Magic~
+Supremity of Magic~
+Title
+Implementor~
+Implementress~
+End

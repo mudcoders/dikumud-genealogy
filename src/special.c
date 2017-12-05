@@ -240,7 +240,8 @@ bool spec_cast_adept( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -314,7 +315,8 @@ bool spec_cast_cleric( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )  
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -369,7 +371,8 @@ bool spec_cast_judge( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )  
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -401,7 +404,8 @@ bool spec_cast_mage( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )  
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -457,7 +461,8 @@ bool spec_cast_undead( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )  
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -838,7 +843,8 @@ bool spec_cast_psionicist( CHAR_DATA *ch )
         return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )  
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -913,7 +919,8 @@ bool spec_cast_ghost( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )  
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )

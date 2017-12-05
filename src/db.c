@@ -214,7 +214,7 @@ int			sAllocPerm;
  */
 bool			fBootDb;
 FILE *			fpArea;
-char			strArea                 [ MAX_INPUT_LENGTH   ];
+char			strArea			[ MAX_INPUT_LENGTH   ];
 
 void    init_string_space( void );
 void    boot_done( );
@@ -271,6 +271,12 @@ void boot_db( void )
         init_string_space( );
 	fBootDb		= TRUE;
     }
+
+    log_string( "Loading socials." );
+    load_socials();
+
+    log_string( "Loading classes." );
+    load_classes();
 
     /*
      * Init random number generator.
@@ -2193,7 +2199,6 @@ void reset_area( AREA_DATA *pArea )
 
     return;
 }
-
 
 
 /*

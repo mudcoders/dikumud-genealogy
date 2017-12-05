@@ -676,7 +676,7 @@ void medit(CHAR_DATA * ch, char *argument)
 	return;
     }
 
-    if ((value = flag_value(race_flags, arg)) != NO_FLAG)
+    if ((value = race_full_lookup( arg ) ) != NO_FLAG)
     {
 	pMob->race = value;
 
@@ -1494,7 +1494,7 @@ void do_resets(CHAR_DATA * ch, char *argument)
 		     */
 		if (!str_cmp(arg4, "room"))
 		{
-		    pReset = new_reset_data();
+		    /* pReset = new_reset_data(); */
 		    pReset->command = 'O';
 		    pReset->arg1 = atoi(arg3);
 		    pReset->arg2 = 0;
@@ -1511,7 +1511,7 @@ void do_resets(CHAR_DATA * ch, char *argument)
 			send_to_char("Resets: '? wear-loc'\n\r", ch);
 			return;
 		    }
-		    pReset = new_reset_data();
+		    /* pReset = new_reset_data(); */
 		    pReset->arg3 = flag_value(wear_loc_flags, arg4);
 		    if (pReset->arg2 == WEAR_NONE)
 			pReset->command = 'G';

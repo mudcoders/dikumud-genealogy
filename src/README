@@ -1,3 +1,10 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.84! (HomeCooked Envy2.2)
+Monday, 7th July 1997
+
+Zen		vasc@camoes.rnl.ist.utl.pt
+
+
+
 EnvyMud Release 2.2
 Friday, 14th February 1997
 
@@ -94,6 +101,17 @@ ssm.c		- Contains procedures for string management
 special.c	- Contains procedures for mobile special abilities
 update.c	- Contains procedures for game operation
 
++++ Added in HomeCooked (as of version 0.83) +++
+
+bit.c		- Contains tables used within OLC
+mem.c		- Contains procedures for OLC mem operations
+olc.c		- Contains procedures for OLC commands
+olc_act.c	- Contains procedures for OLC
+olc_save.c	- Contains procedures for OLC area file write
+string.c	- Contains procedures for OLC's string editor
+mob_prog.c	- Contains procedures for MobPrograms
+mob_commands.c	- Contains procedures for mob commands (used by MobPrograms)
+tables.c	- Contains tables/procs used for class/social loading/saving
 
 
 === The startup scripts

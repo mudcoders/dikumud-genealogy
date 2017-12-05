@@ -2308,12 +2308,14 @@ void do_sset( CHAR_DATA *ch, char *argument )
 	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
 	    if ( skill_table[sn].name )
-	        if ( skill_table[sn].skill_level[victim->class] <= LEVEL_HERO )
-		    victim->pcdata->learned[sn]	= value;
-		else
-		    if ( skill_table[sn].skill_level[victim->class]
-			<= get_trust( victim ) )
-		        victim->pcdata->learned[sn] = 1;
+		if ( skill_table[sn].skill_level[victim->class] <= LEVEL_HERO
+		    || IS_IMMORTAL( victim ) )
+		    victim->pcdata->learned[sn] = value;
+	    else
+		if ( skill_table[sn].skill_level[victim->class]
+		    <= get_trust( victim ) )
+		    victim->pcdata->learned[sn] = 1;
+
 	}
     }
     else
@@ -2355,7 +2357,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char( "Field being one of:\n\r",			ch );
 	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
 	send_to_char( "  gold hp mana move practice align\n\r",		ch );
-	send_to_char( "  thirst drunk full clan rank",			ch );
+	send_to_char( "  thirst drunk full security clan rank",		ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "String being one of:\n\r",			ch );
 	send_to_char( "  name short long title spec\n\r",               ch );
@@ -2384,7 +2386,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class].attr_prime == APPLY_STR )
+	if ( class_table[ch->class]->attr_prime == APPLY_STR )
 	    max = 25;
 	else
 	    max = 18;
@@ -2408,7 +2410,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class].attr_prime == APPLY_INT )
+	if ( class_table[ch->class]->attr_prime == APPLY_INT )
 	    max = 25;
 	else
 	    max = 18;
@@ -2432,7 +2434,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class].attr_prime == APPLY_WIS )
+	if ( class_table[ch->class]->attr_prime == APPLY_WIS )
 	    max = 25;
 	else
 	    max = 18;
@@ -2456,7 +2458,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class].attr_prime == APPLY_DEX )
+	if ( class_table[ch->class]->attr_prime == APPLY_DEX )
 	    max = 25;
 	else
 	    max = 18;
@@ -2480,7 +2482,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class].attr_prime == APPLY_CON )
+	if ( class_table[ch->class]->attr_prime == APPLY_CON )
 	    max = 25;
 	else
 	    max = 18;
@@ -3702,7 +3704,7 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 		    if (   cmd_table[cmd].level <= victim->level
 			&& cmd_table[cmd].level >= LEVEL_HERO
 			&& str_infix( cmd_table[cmd].name,
-				     "reboo sla shutdow :" ) )
+				     "delet reboo sla shutdow :" ) )
 		    {
 			strcat( buf, cmd_table[cmd].name );
 			strcat( buf, " " );
@@ -3718,7 +3720,7 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 	    if ( !fAll )
 	    {
 		if (   cmd_table[cmd].name[0] == '\0'
-		    || is_name( argument, "reboo sla shutdow :" ) )
+		    || is_name( argument, "delet reboo sla shutdow :" ) )
 		{
 		    send_to_char( "That is not an immskill.\n\r", ch );
 		    return;
@@ -3740,7 +3742,7 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 	    }
 	    else /* Remove one skill */
 	    {
-	        char *buf2;
+	        char  buf2[ MAX_STRING_LENGTH ];
 		char  arg3[ MAX_INPUT_LENGTH ];
 		char  arg2[ MAX_INPUT_LENGTH ];
 
@@ -3756,7 +3758,7 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 
 		while ( buf2[0] != '\0' )
 		  {
-		    buf2 = one_argument( buf2, arg3 );
+		    strcpy ( buf2, one_argument( buf2, arg3 ) );
 		    if ( str_cmp( arg3, arg2 ) )
 		      {
 			strcat( buf, arg3 );
@@ -3860,6 +3862,7 @@ void do_delete( CHAR_DATA *ch, char *argument )
              * i know it's stupid and probably useless but... Zen.
              */
             save_char_obj( victim );
+    	    backup_char_obj( victim ); /* handy function huh? :) */
     	    delete_char_obj( victim ); /* handy function huh? :) */
 	    extract_char( victim, TRUE );
 	    close_socket( d );
@@ -3872,6 +3875,7 @@ void do_delete( CHAR_DATA *ch, char *argument )
     send_to_char( "Descriptor not found!\n\r", ch );
     return;
 }
+
 
 
 void do_clookup( CHAR_DATA *ch, char *argument )
@@ -3936,5 +3940,200 @@ void do_clookup( CHAR_DATA *ch, char *argument )
 	send_to_char( buf, ch );
     }
 
+    return;
+}
+
+
+/* 
+ * Simple function to let any imm make any player instantly sober.
+ * Saw no need for level restrictions on this.
+ * Written by Narn, Apr/96 
+ */
+void do_sober( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *victim;
+    char arg1 [ MAX_INPUT_LENGTH ];
+
+    smash_tilde( argument );
+    argument = one_argument( argument, arg1 );
+    if ( !( victim = get_char_room( ch, arg1 ) ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( IS_NPC( victim ) )
+    {
+	send_to_char( "Not on mobs.\n\r", ch );
+	return;    
+    }
+
+    if ( victim->pcdata ) 
+	victim->pcdata->condition[COND_DRUNK] = 0;
+    send_to_char( "Ok.\n\r", ch );
+    send_to_char( "You feel sober again.\n\r", victim );
+
+    return;    
+}
+
+
+
+void do_showclass( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA         *rch;
+    char               buf  [ MAX_STRING_LENGTH * 2 ];
+    char               buf1 [ MAX_STRING_LENGTH * 6 ];
+    int                num;
+    int                level;
+    int                sn;
+    int                col;
+    int                nNumber;
+    int                iLevelLower;
+    int                iLevelUpper;
+    bool               pSpell;
+    struct class_type *class;
+
+    rch = get_char( ch );
+    num = rch->class;
+
+    if ( !authorized( rch, "showclass" ) )
+        return;
+
+    /*
+     * Set default arguments.
+     */
+    iLevelLower    = 0;
+    iLevelUpper    = MAX_LEVEL;
+    class          = class_table[rch->class];
+
+    /*
+     * Parse arguments.
+     */
+    nNumber = 0;
+    for ( ;; )
+    {
+	char arg [ MAX_STRING_LENGTH ];
+
+	argument = one_argument( argument, arg );
+	if ( arg[0] == '\0' )
+	    break;
+
+	if ( is_number( arg ) )
+	{
+	    switch ( ++nNumber )
+	    {
+	    case 1: iLevelLower = atoi( arg ); break;
+	    case 2: iLevelUpper = atoi( arg ); break;
+	    default:
+		send_to_char( "Only two level numbers allowed.\n\r", ch );
+		return;
+	    }
+	}
+	else
+	{
+	    int iClass;
+
+	    if ( strlen( arg ) < 3 )
+	    {
+		send_to_char( "Classes must be longer than that.\n\r", ch );
+		return;
+	    }
+
+	    /*
+	     * Look for classes to turn on.
+	     */
+	    arg[3]    = '\0';
+
+	    for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
+	    {
+		if ( !str_cmp( arg, class_table[iClass]->who_name ) )
+		{
+		    num = iClass;
+		    class = class_table[iClass];
+		    break;
+		}
+	    }
+	}
+    }
+
+    if ( !class )
+    {
+        send_to_char( "No such class.\n\r", ch );
+        return;
+    }
+
+    buf1[0] = '\0';
+
+    if ( iLevelLower < 0 || iLevelUpper < 0 )
+	return;
+
+    sprintf( buf, "{R>> Class: %s  File: %s <<{x\n\r",
+	    class->who_name, class->filename );
+    strcat( buf1, buf );
+
+    sprintf( buf, "Prime Attribute: %-14s  Weapon: %-5d\n\r",
+	    affect_loc_name( class->attr_prime ), class->weapon );
+    strcat( buf1, buf );
+
+    sprintf( buf, "Max Skill Adept: %-3d  Thac0: %-5d  Thac47: %d\n\r",
+    	    class->skill_adept, class->thac0_00, class->thac0_47 );
+    strcat( buf1, buf );
+
+    sprintf( buf, "Hp Min/Hp Max: %d/%-2d  Mana: %s\n\r\n\r",
+    	    class->hp_min, class->hp_max, class->fMana ? "yes" : "no" );
+    strcat( buf1, buf );
+
+    strcat ( buf1, "{mALL Titles available for this class.{x\n\r\n\r" );
+
+    for ( level = iLevelLower; level <= iLevelUpper; level++ )
+    {
+	sprintf( buf, "{R%2d: {MMale:{B %-30s {MFemale:{B %-30s{x\n\r",
+		level, title_table[num][level][0], title_table[num][level][1] );
+	strcat( buf1, buf );
+    }
+
+    strcat ( buf1, "\n\r{mALL Abilities available for this class.{x\n\r\n\r" );
+    strcat ( buf1, "{RLv          Abilities{x\n\r\n\r" );
+
+    if ( iLevelUpper >= LEVEL_IMMORTAL )
+	iLevelUpper = LEVEL_HERO;
+
+    for ( level = iLevelLower; level <= iLevelUpper; level++ )
+    {
+      col = 0;
+      pSpell = TRUE;
+
+      for ( sn = 0; sn < MAX_SKILL; sn++ )
+      {
+        if ( !skill_table[sn].name )
+          break;
+        if ( skill_table[sn].skill_level[num] != level )
+          continue;
+
+        if ( pSpell )
+        {
+          sprintf ( buf, "{R%2d:{x", level );
+          strcat ( buf1, buf );
+          pSpell = FALSE;
+        }
+
+        /* format fix by Koala */ 
+        if ( ++col % 4 == 0 )
+          strcat ( buf1, "   " );
+
+        sprintf ( buf, "{B%18s{x", skill_table[sn].name );
+        strcat ( buf1, buf );
+
+        if ( col % 4 == 0 )
+          strcat ( buf1, "\n\r" );
+
+      }
+
+      if ( col % 4 != 0 )
+        strcat ( buf1, "\n\r" );
+
+    }
+
+    send_to_char( buf1, rch );
     return;
 }

@@ -1584,7 +1584,8 @@ void do_recite( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
@@ -3076,7 +3077,7 @@ void imprint_spell( int sn, int level, CHAR_DATA *ch, void *vo )
 
     if ( number_percent( ) > sucess_rate [ free_slots-1 ] )
     {
-	sprintf(buf, "The magic enchantment has failed --- the %svanishes.\n\r", item_type_name( obj ) );
+	sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\n\r", item_type_name( obj ) );
 	send_to_char( buf, ch );
 	extract_obj( obj );
 	return;

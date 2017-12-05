@@ -5,18 +5,10 @@
  *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
  *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
- *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
- *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
- *                                                                         *
- *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
- *  Mitchell Tse.                                                          *
- *                                                                         *
- *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
- *                                                                         *
- *  In order to use any part of this Envy Diku Mud, you must comply with   *
- *  the original Diku license in 'license.doc', the Merc license in        *
- *  'license.txt', as well as the Envy license in 'license.nvy'.           *
- *  In particular, you may not remove either of these copyright notices.   *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
  *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
@@ -1123,7 +1115,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
  * in theory, but it is 'guaranteed' to work on syntactically correct
  * MOBprograms, so if the mud crashes here, check the mob carefully!
  */
-char null[1];
+static char null[1];
 
 char *mprog_process_if( char *ifchck, char *com_list, CHAR_DATA * mob,
 		       CHAR_DATA * actor, OBJ_DATA * obj, void *vo,

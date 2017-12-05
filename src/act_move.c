@@ -151,7 +151,7 @@ void move_char( CHAR_DATA *ch, int door )
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 	{
 	    if ( iClass != ch->class
-		&& to_room->vnum == class_table[iClass].guild
+		&& to_room->vnum == class_table[iClass]->guild
 		&& ch->level < LEVEL_IMMORTAL )
 	    {
 		send_to_char( "You aren't allowed in there.\n\r", ch );
@@ -1159,7 +1159,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( argument, "str" ) )
     {
-	if ( class_table[ch->class].attr_prime == APPLY_STR )
+	if ( class_table[ch->class]->attr_prime == APPLY_STR )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_str;
 	pOutput     = "strength";
@@ -1167,7 +1167,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "int" ) )
     {
-	if ( class_table[ch->class].attr_prime == APPLY_INT )
+	if ( class_table[ch->class]->attr_prime == APPLY_INT )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_int;
 	pOutput     = "intelligence";
@@ -1175,7 +1175,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "wis" ) )
     {
-	if ( class_table[ch->class].attr_prime == APPLY_WIS )
+	if ( class_table[ch->class]->attr_prime == APPLY_WIS )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_wis;
 	pOutput     = "wisdom";
@@ -1183,7 +1183,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "dex" ) )
     {
-	if ( class_table[ch->class].attr_prime == APPLY_DEX )
+	if ( class_table[ch->class]->attr_prime == APPLY_DEX )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_dex;
 	pOutput     = "dexterity";
@@ -1191,7 +1191,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "con" ) )
     {
-	if ( class_table[ch->class].attr_prime == APPLY_CON )
+	if ( class_table[ch->class]->attr_prime == APPLY_CON )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_con;
 	pOutput     = "constitution";
@@ -1849,7 +1849,8 @@ void do_bet( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;

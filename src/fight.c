@@ -310,8 +310,8 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int wpn )
     }
     else
     {
-	thac0_00 = class_table[ch->class].thac0_00;
-	thac0_47 = class_table[ch->class].thac0_47;
+	thac0_00 = class_table[ch->class]->thac0_00;
+	thac0_47 = class_table[ch->class]->thac0_47;
     }
     /* Weapon-specific hitroll and damroll */
 
@@ -2407,8 +2407,7 @@ void do_dirt( CHAR_DATA *ch, char *argument )
 
     percent = ( ch->level - victim->level ) * 2;
 
-    percent += get_curr_dex( ch );
-    percent -= 2 * get_curr_dex( victim );
+    percent += get_curr_dex( ch ) - 2 * get_curr_dex( victim );
 
     switch(ch->in_room->sector_type)
     {
@@ -2450,6 +2449,7 @@ void do_dirt( CHAR_DATA *ch, char *argument )
 	affect_to_char( victim, &af );
 
     }
+
     WAIT_STATE( ch, skill_table[gsn_dirt].beats );
 
     return;

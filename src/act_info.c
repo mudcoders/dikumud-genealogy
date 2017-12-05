@@ -527,8 +527,9 @@ void do_look( CHAR_DATA *ch, char *argument )
 	    send_to_char( buf, ch );
 	}
 	
-        if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
-            send_to_char( "{BIt seems eerily quiet.{x\n\r", ch );
+	if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) 
+	    || IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
+	    send_to_char( "{BIt seems eerily quiet.{x\n\r", ch );
 
 	show_list_to_char( ch->in_room->contents, ch, FALSE, FALSE );
 	show_char_to_char( ch->in_room->people,   ch );
@@ -1203,7 +1204,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 		fClassRestrict = TRUE;
 		for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 		{
-		    if ( !str_cmp( arg, class_table[iClass].who_name ) )
+		    if ( !str_cmp( arg, class_table[iClass]->who_name ) )
 		    {
 			rgfClass[iClass] = TRUE;
 			break;
@@ -1249,7 +1250,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	/*
 	 * Figure out what to print for class.
 	 */
-	class = class_table[wch->class].who_name;
+	class = class_table[wch->class]->who_name;
 	if ( wch->level >= LEVEL_IMMORTAL )
 	    switch ( wch->level )
 	      {
@@ -1324,7 +1325,7 @@ void do_whois( CHAR_DATA *ch, char *argument )
 	if( str_prefix( name, wch->name ) )
 	    continue;
 
-	class = class_table[ wch->class ].who_name;
+	class = class_table[ wch->class ]->who_name;
 	if( wch->level >= LEVEL_IMMORTAL )
 	    switch( wch->level )
 	    {
@@ -1912,7 +1913,7 @@ void do_practice( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	adept = IS_NPC( ch ) ? 100 : class_table[ch->class].skill_adept;
+	adept = IS_NPC( ch ) ? 100 : class_table[ch->class]->skill_adept;
 
 	if ( ch->pcdata->learned[sn] >= adept )
 	{
@@ -2083,19 +2084,28 @@ void do_password( CHAR_DATA *ch, char *argument )
 
 void do_socials( CHAR_DATA *ch, char *argument )
 {
-    char buf  [ MAX_STRING_LENGTH ];
-    char buf1 [ MAX_STRING_LENGTH ];
-    int  iSocial;
-    int  col;
+    SOC_INDEX_DATA *social;
+    char            buf  [ MAX_STRING_LENGTH ];
+    char            buf1 [ MAX_STRING_LENGTH ];
+    int             col;
+    int             x;
+    
 
     buf1[0] = '\0';
     col = 0;
-    for ( iSocial = 0; social_table[iSocial].name[0] != '\0'; iSocial++ )
+
+    for ( x = 0; x < 27; x++ )
     {
-	sprintf( buf, "%-12s", social_table[iSocial].name );
+	for ( social = soc_index_hash[x]; social; social = social->next )
+	{
+	    if ( !social->name || social->name[0] == '\0' )
+		continue;
+
+	sprintf( buf, "%-12s", social->name );
 	strcat( buf1, buf );
 	if ( ++col % 6 == 0 )
 	    strcat( buf1, "\n\r" );
+	}
     }
  
     if ( col % 6 != 0 )
@@ -2394,7 +2404,7 @@ void do_spells ( CHAR_DATA *ch, char *argument )
     int  col;
 
     if ( IS_NPC( ch )
-	|| ( !IS_NPC( ch ) && !class_table[ch->class].fMana ) )
+	|| ( !IS_NPC( ch ) && !class_table[ch->class]->fMana ) )
     {  
        send_to_char ( "You don't need no stinking spells!\n\r", ch );
        return;

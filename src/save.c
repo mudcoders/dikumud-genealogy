@@ -78,11 +78,54 @@ char *initial( const char *str )
 }
 
 /*
- * Delete a character's file.
- * Used for retire command for now. Maybe i will make an imm command.
+ * Backups a character and inventory.
  * Courtesy of Zen :)
  */
- 
+void backup_char_obj( CHAR_DATA *ch )
+{
+    FILE *fp;
+    char  buf     [ MAX_STRING_LENGTH ];
+    char  strsave [ MAX_INPUT_LENGTH  ];
+
+    if ( IS_NPC( ch ) || ch->level < 2 )
+	return;
+
+    if ( ch->desc && ch->desc->original )
+	ch = ch->desc->original;
+
+    ch->save_time = current_time;
+    fclose( fpReserve );
+
+    /* player files parsed directories by Yaz 4th Realm */
+#if !defined( macintosh ) && !defined( WIN32 )
+    sprintf( strsave, "%s%s%s%s", BACKUP_DIR, initial( ch->name ),
+	    "/", capitalize( ch->name ) );
+#else
+    sprintf( strsave, "%s%s", BACKUP_DIR, capitalize( ch->name ) );
+#endif
+    if ( !( fp = fopen( strsave, "w" ) ) )
+    {
+        sprintf( buf, "Backup_char_obj: fopen %s: ", ch->name );
+	bug( buf, 0 );
+	perror( strsave );
+    }
+    else
+    {
+	fwrite_char( ch, fp );
+	if ( ch->carrying )
+	    fwrite_obj( ch, ch->carrying, fp, 0 );
+	fprintf( fp, "#END\n" );
+    }
+    fclose( fp );
+    fpReserve = fopen( NULL_FILE, "r" );
+    return;
+}
+
+/*
+ * Delete a character's file.
+ * Used for retire & delete commands for now.
+ * Courtesy of Zen :)
+ */
 void delete_char_obj( CHAR_DATA *ch )
 {
     char  buf     [ MAX_STRING_LENGTH ];

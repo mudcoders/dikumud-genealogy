@@ -213,7 +213,8 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
 	send_to_char( "You can't...you are in a Cone of Silence!\n\r", ch );
 	return;
@@ -809,9 +810,10 @@ void spell_cone_of_silence( int sn, int level, CHAR_DATA *ch, void *vo )
 	return;
     }
 
-    if ( !IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE ) )
+    if ( !IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE )
+	|| !IS_SET( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
     {
-	SET_BIT( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE );
+	SET_BIT( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE );
 	send_to_char( "You have created a cone of silence!\n\r", ch );
 	act( "$n has created a cone of silence!", ch, NULL, NULL, TO_ROOM );
     }
@@ -859,6 +861,26 @@ void spell_create_food( int sn, int level, CHAR_DATA *ch, void *vo )
 
     act( "$p suddenly appears.", ch, mushroom, NULL, TO_CHAR );
     act( "$p suddenly appears.", ch, mushroom, NULL, TO_ROOM );
+    return;
+}
+
+
+
+void spell_create_buffet( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    OBJ_DATA *mushroom;
+    int       num;
+
+    for ( num = 0; num < level / 5 + 1; num++ )
+    {
+	mushroom = create_object( get_obj_index( OBJ_VNUM_MUSHROOM ), 0 );
+	mushroom->value[0] = 5 + level;
+	obj_to_room( mushroom, ch->in_room );
+
+	act( "$p suddenly appears.", ch, mushroom, NULL, TO_CHAR );
+	act( "$p suddenly appears.", ch, mushroom, NULL, TO_ROOM );
+    }
+
     return;
 }
 
@@ -2306,9 +2328,9 @@ void spell_remove_silence( int sn, int level, CHAR_DATA *ch, void *vo )
 	pRoomIndex   = ch->in_room;
 	DidSomething = FALSE;
 
-	if ( IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE ) )
+	if ( IS_SET( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
         {
-	    REMOVE_BIT( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE );
+	    REMOVE_BIT( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE );
 	    send_to_char( "You have lifted the cone of silence!\n\r", ch );
 	    act( "$n has lifted the cone of silence!",
 		ch, NULL, NULL,   TO_ROOM );
@@ -3918,9 +3940,7 @@ void spell_vortex_lift( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| victim->level >= level + 3
 	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
 	    && !is_same_clan( ch, victim ) )
-	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
-	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
-
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO ) )
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -3991,9 +4011,7 @@ void spell_mass_vortex_lift( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| victim->level >= level + 3
 	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
 	    && !is_same_clan( ch, victim ) )
-	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
-	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
-
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO ) )
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -4246,8 +4264,7 @@ void spell_nexus( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| victim->level >= level + 3
 	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
 	    && !is_same_clan( ch, victim ) )
-	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
-	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO ) )
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -4322,8 +4339,7 @@ void spell_portal( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| victim->level >= level + 3
 	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
 	    && !is_same_clan( ch, victim ) )
-	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
-	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO ) )
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
