@@ -51,10 +51,10 @@ char version_str[] = "$VER: EnvyMud 2.0 Windows 32 Bit Version";
 #if defined( AmigaTCP )
 char version_str[] = "$VER: Merc/Diku Mud Envy2.0 AmiTCP Version";
 /*
- * You must rename or delete the sc:sys/types.h, so the
+ * You must rename or delete the sc:sys/types.h, so the 
  * amitcp:netinclude/sys/types.h will be used instead.
  * Also include these assigns in your user-startup (After the SC assigns)
- *    assign lib: Amitcp:netlib add
+ *    assign lib: Amitcp:netlib add 
  *    assign include: Amitcp:netinclude add
  * If you haven't allready :)
  * Compilled with SasC 6.56 and AmiTCP 4.2
@@ -481,7 +481,7 @@ int init_socket( u_short port )
 {
     static struct sockaddr_in sa_zero;
            struct sockaddr_in sa;
-                  int         x        = 1;
+                  int         x        = 1; 
                   int         fd;
 
 #if !defined( WIN32 )
@@ -494,7 +494,7 @@ int init_socket( u_short port )
 #else
     WORD wVersionRequested = MAKEWORD( 1, 1 );
     WSADATA wsaData;
-    int err = WSAStartup( wVersionRequested, &wsaData );
+    int err = WSAStartup( wVersionRequested, &wsaData ); 
     if ( err != 0 )
     {
 	perror("No useable WINSOCK.DLL");
@@ -601,6 +601,9 @@ void game_loop_mac_msdos( void )
     dcon.outbuf		= alloc_mem( dcon.outsize );
     dcon.showstr_head   = str_dup( "" );
     dcon.showstr_point  = 0;
+    dcon.pEdit          = NULL;			/* OLC */
+    dcon.pString        = NULL;			/* OLC */
+    dcon.editor         = 0;			/* OLC */
     dcon.next		= descriptor_list;
     descriptor_list	= &dcon;
 
@@ -651,11 +654,18 @@ void game_loop_mac_msdos( void )
 		d->fcommand	= TRUE;
 		stop_idling( d->character );
 
-		if ( d->connected == CON_PLAYING )
-		    if ( d->showstr_point )
-		        show_string( d, d->incomm );
-		    else
-		        interpret( d->character, d->incomm );
+                /* OLC */
+                if ( d->connected == CON_PLAYING )
+                {
+                    if ( d->showstr_point )
+                       show_string( d, d->incomm );
+                    else
+                    if ( d->pString )
+                        string_add( d->character, d->incomm );
+                    else
+                    if ( !run_olc_editor( d ) )
+			substitute_alias( d, d->incomm );
+                }
 		else
 		    nanny( d, d->incomm );
 
@@ -788,7 +798,7 @@ void game_loop_unix( int control )
 	 */
 	for ( d = descriptor_list; d; d = d_next )
 	{
-	    d_next = d->next;
+	    d_next = d->next;   
 	    if ( FD_ISSET( d->descriptor, &exc_set ) )
 	    {
 		FD_CLR( d->descriptor, &in_set  );
@@ -835,13 +845,20 @@ void game_loop_unix( int control )
 		d->fcommand	= TRUE;
 		stop_idling( d->character );
 
-		if ( d->connected == CON_PLAYING )
-		    if ( d->showstr_point )
-		        show_string( d, d->incomm );
-		    else
-		        interpret( d->character, d->incomm );
+		/* OLC */
+		if ( d->showstr_point )
+		    show_string( d, d->incomm );
 		else
-		    nanny( d, d->incomm );
+		if ( d->pString )
+		    string_add( d->character, d->incomm );
+		else
+		    if ( d->connected == CON_PLAYING )
+		    {
+			if ( !run_olc_editor( d ) )
+			    substitute_alias( d, d->incomm );
+		    }
+		    else
+			nanny( d, d->incomm );
 
 		d->incomm[0]	= '\0';
 	    }
@@ -1035,7 +1052,7 @@ void new_descriptor( int control )
 			 sizeof(sock.sin_addr), AF_INET );
     dnew->host = str_dup( from ? from->h_name : buf );
 
-
+	
     /*
      * Swiftest: I added the following to ban sites.  I don't
      * endorse banning of sites, but Copper has few descriptors now
@@ -1126,7 +1143,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
     }
 
     if ( d_next == dclose )
-	d_next = d_next->next;
+	d_next = d_next->next;   
 
     if ( dclose == descriptor_list )
     {
@@ -1361,6 +1378,9 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	    write_to_buffer( d,
   "[Please type (c)ontinue, (r)efresh, (b)ack, (q)uit, or RETURN]:  ", 0 );
 	}
+	else	
+	  if ( d->pString )
+	    write_to_buffer( d, "> ", 2 );
 	else
 	{
 	    CHAR_DATA *ch;
@@ -1419,6 +1439,8 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
          char      *point;
          char       buf  [ MAX_STRING_LENGTH ];
          char       buf2 [ MAX_STRING_LENGTH ];
+         char      *pbuff;
+         char       buffer [ 4 * MAX_STRING_LENGTH ];
 
    /* Will always have a pc ch after this */
    ch = ( d->original ? d->original : d->character );
@@ -1456,7 +1478,7 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
             sprintf( buf2, "%d", ch->max_mana                          );
             i = buf2; break;
          case 'v' :
-            sprintf( buf2, "%d", ch->move                              );
+            sprintf( buf2, "%d", ch->move                              ); 
             i = buf2; break;
          case 'V' :
             sprintf( buf2, "%d", ch->max_move                          );
@@ -1506,6 +1528,10 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
             else
                sprintf( buf2, " "                                      );
             i = buf2; break;
+         case 'c' :				/* OLC */
+            i = olc_ed_name( ch ); break;
+         case 'C' :				/* OLC */
+            i = olc_ed_vnum( ch ); break;
          case '%' :
             sprintf( buf2, "%%"                                        );
             i = buf2; break;
@@ -1514,7 +1540,11 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
       while( ( *point = *i ) != '\0' )
          ++point, ++i;
    }
-   write_to_buffer( d, buf, point - buf );
+   *point = '\0';
+
+   pbuff	= buffer;
+   colourconv( pbuff, buf, ch );
+   write_to_buffer( d, buffer, 0 );
    return;
 }
 
@@ -1592,7 +1622,7 @@ bool write_to_descriptor( int desc, char *txt, int length )
 	if ( ( nWrite = send( desc, txt + iStart, nBlock , 0) ) < 0 )
 #endif
 	    { perror( "Write_to_descriptor" ); return FALSE; }
-    }
+    } 
 
     return TRUE;
 }
@@ -1886,7 +1916,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	d->connected = CON_DISPLAY_CLASS;
 	write_to_buffer( d, "\n\rPress Return to continue:\n\r", 0 );
 	break;
-
+	
     case CON_DISPLAY_CLASS:
 	strcpy( buf, "Select a class [" );
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
@@ -1991,7 +2021,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 		    [ch->sex == SEX_FEMALE ? 1 : 0] );
 	    set_title( ch, buf );
 	    free_string( ch->pcdata->prompt );
-	    ch->pcdata->prompt = str_dup( "<%hhp %mm %vmv> " );
+	    ch->pcdata->prompt = str_dup( "{c<%hhp %mm %vmv>{x " );
 
 	    obj = create_object( get_obj_index( OBJ_VNUM_SCHOOL_BANNER ), 0 );
 	    obj_to_char( obj, ch );
@@ -2005,7 +2035,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    obj_to_char( obj, ch );
 	    equip_char( ch, obj, WEAR_SHIELD );
 
-	    obj = create_object(
+	    obj = create_object( 
 				get_obj_index( class_table[ch->class].weapon ),
 				0 );
 	    obj_to_char( obj, ch );
@@ -2065,7 +2095,7 @@ bool check_parse_name( char *name )
     /*
      * Reserved words.
      */
-    if ( is_name( name, "all auto imm immortal self someone . .. ./ ../ /" ) )
+    if ( is_name( name, "all auto imm immortal self someone none . .. ./ ../ /" ) )
 	return FALSE;
 
     /*
@@ -2228,7 +2258,7 @@ void stop_idling( CHAR_DATA *ch )
 void send_to_room( const char *txt, ROOM_INDEX_DATA *room )
 {
     DESCRIPTOR_DATA *d;
-
+    
     for ( d = descriptor_list; d; d = d->next )
         if ( d->character != NULL )
 	    if ( d->character->in_room == room )
@@ -2254,16 +2284,16 @@ void send_to_all_char( const char *text )
 /*
  * Write to one char.
  */
-void send_to_char( const char *txt, CHAR_DATA *ch )
+void send_to_char_bw( const char *txt, CHAR_DATA *ch )
 {
-    if ( !txt || !ch->desc )
+    if( !txt || !ch->desc )
         return;
 
     /*
      * Bypass the paging procedure if the text output is small
      * Saves process time.
      */
-    if ( strlen( txt ) < 600 )
+    if( strlen( txt ) < 600 )
 	write_to_buffer( ch->desc, txt, strlen( txt ) );
     else
     {
@@ -2273,6 +2303,68 @@ void send_to_char( const char *txt, CHAR_DATA *ch )
 	show_string( ch->desc, "" );
     }
 
+    return;
+}
+
+/*
+ * Send to one char, new colour version, by Lope.
+ */
+void send_to_char( const char *txt, CHAR_DATA *ch )
+{
+    const	char 	*point;
+    		char 	*point2;
+    		char 	buf[ MAX_STRING_LENGTH*4 ];
+		int	skip = 0;
+
+    buf[0] = '\0';
+    point2 = buf;
+    if ( txt && ch->desc )
+	{
+	    if ( IS_SET( ch->act, PLR_COLOUR ) )
+	    {
+		for( point = txt ; *point ; point++ )
+	        {
+		    if( *point == '{' )
+		    {
+			point++;
+			skip = colour( *point, ch, point2 );
+			while( skip-- > 0 )
+			    ++point2;
+			continue;
+		    }
+
+		    *point2 = *point;		    *++point2 = '\0';
+		}			
+		*point2 = '\0';
+		free_string( ch->desc->showstr_head );
+		ch->desc->showstr_head  = str_dup( buf );
+		ch->desc->showstr_point = ch->desc->showstr_head;
+		show_string( ch->desc, "" );
+	    }
+	    else
+	    {
+		for( point = txt ; *point ; point++ )
+	        {
+		    if( *point == '{' )
+		    {
+			point++;
+			if( *point == '{' )
+			{
+			    *point2 = *point;
+			    *++point2 = '\0';
+			}
+			continue;
+		    }
+		    *point2 = *point;
+		    *++point2 = '\0';
+		}
+		*point2 = '\0';
+		free_string( ch->desc->showstr_head );
+		ch->desc->showstr_head  = str_dup( buf );
+		ch->desc->showstr_point = ch->desc->showstr_head;
+		show_string( ch->desc, "" );
+	    }
+	}
     return;
 }
 
@@ -2338,7 +2430,7 @@ void show_string( struct descriptor_data *d, char *input )
 	    d->showstr_point--;
 	} while( d->showstr_point != d->showstr_head );
     }
-
+    
     line    = 0;
     *buffer = 0;
     scan    = buffer;
@@ -2361,9 +2453,10 @@ void show_string( struct descriptor_data *d, char *input )
     }
 
     /* On advice by Scott Mobley and others */
+/*
     *scan++ = '\n';
     *scan++ = '\r';
-
+*/
     *scan = 0;
 
     write_to_buffer( d, buffer, strlen( buffer ) );
@@ -2393,8 +2486,10 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
     const  char            *str;
     const  char            *i;
            char            *point;
+           char            *pbuff;
            char             buf     [ MAX_STRING_LENGTH ];
            char             buf1    [ MAX_STRING_LENGTH ];
+           char             buffer  [ MAX_STRING_LENGTH*2 ];
            char             fname   [ MAX_INPUT_LENGTH  ];
 
     /*
@@ -2415,7 +2510,7 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 	}
 	to = vch->in_room->people;
     }
-
+    
     for ( ; to; to = to->next_in_room )
     {
 	if ( ( to->deleted )
@@ -2495,19 +2590,25 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 		    break;
 		}
 	    }
-
+		
 	    ++str;
 	    while ( ( *point = *i ) != '\0' )
 		++point, ++i;
 	}
 
-	*point++ = '\n';
-	*point++ = '\r';
-	buf[0]   = UPPER( buf[0] );
-	if ( to->desc )
-	    write_to_buffer( to->desc, buf, point - buf );
+        *point++	= '\n';
+        *point++	= '\r';
+        *point		= '\0';
+	buf[0]		= UPPER( buf[0] );
+	pbuff		= buffer;
+	colourconv( pbuff, buf, to );
+	if( to->desc )
+	    write_to_buffer( to->desc, buffer, 0 );
+	if ( MOBtrigger )
+	   mprog_act_trigger( buf, to, ch, obj1, vch );
     }
 
+    MOBtrigger = TRUE;
     return;
 }
 
@@ -2524,6 +2625,121 @@ int gettimeofday( struct timeval *tp, void *tzp )
 }
 #endif
 
+int colour( char type, CHAR_DATA *ch, char *string )
+{
+    char	code[ 20 ];
+    char	*p = '\0';
+
+    if( IS_NPC( ch ) )
+	return( 0 );
+
+    switch( type )
+    {
+	default:
+	    sprintf( code, CLEAR );
+	    break;
+	case 'x':
+	    sprintf( code, CLEAR );
+	    break;
+	case 'b':
+	    sprintf( code, C_BLUE );
+	    break;
+	case 'c':
+	    sprintf( code, C_CYAN );
+	    break;
+	case 'g':
+	    sprintf( code, C_GREEN );
+	    break;
+	case 'm':
+	    sprintf( code, C_MAGENTA );
+	    break;
+	case 'r':
+	    sprintf( code, C_RED );
+	    break;
+	case 'w':
+	    sprintf( code, C_WHITE );
+	    break;
+	case 'y':
+	    sprintf( code, C_YELLOW );
+	    break;
+	case 'B':
+	    sprintf( code, C_B_BLUE );
+	    break;
+	case 'C':
+	    sprintf( code, C_B_CYAN );
+	    break;
+	case 'G':
+	    sprintf( code, C_B_GREEN );
+	    break;
+	case 'M':
+	    sprintf( code, C_B_MAGENTA );
+	    break;
+	case 'R':
+	    sprintf( code, C_B_RED );
+	    break;
+	case 'W':
+	    sprintf( code, C_B_WHITE );
+	    break;
+	case 'Y':
+	    sprintf( code, C_B_YELLOW );
+	    break;
+	case 'D':
+	    sprintf( code, C_D_GREY );
+	    break;
+	case '{':
+	    sprintf( code, "%c", '{' );
+	    break;
+    }
+
+    p = code;
+    while( *p != '\0' )
+    {
+	*string = *p++;
+	*++string = '\0';
+    }
+
+    return( strlen( code ) );
+}
+
+void colourconv( char *buffer, const char *txt , CHAR_DATA *ch )
+{
+   const char	*point;
+   int		 skip = 0;
+
+   if ( !txt )
+	return;
+
+   if ( ch->desc && IS_SET( ch->act, PLR_COLOUR ) )
+	for( point = txt ; *point ; point++ )
+	{
+	   if( *point == '{' )
+	   {
+		point++;
+		skip = colour( *point, ch, buffer );
+		while( skip-- > 0 )
+		   ++buffer;
+		continue;
+	   }
+	   *buffer = *point;
+	   *++buffer = '\0';
+	}
+   else
+	for( point = txt ; *point ; point++ )
+	{
+	    if( *point == '{' )
+	    {
+		point++;
+		continue;
+	    }
+	    *buffer = *point;
+	    *++buffer = '\0';
+	}
+
+    *buffer = '\0';
+    return;
+}
+
+
 /*
  * Windows 95 and Windows NT support functions
  */
@@ -2532,5 +2748,6 @@ void gettimeofday( struct timeval *tp, void *tzp )
 {
     tp->tv_sec  = time( NULL );
     tp->tv_usec = 0;
-  }
+}
 #endif
+

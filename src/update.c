@@ -185,6 +185,7 @@ void gain_exp( CHAR_DATA *ch, int gain )
 int hit_gain( CHAR_DATA *ch )
 {
     int gain;
+    int number;
     int racehpgainextra = ( ch->max_hit * race_table[ ch->race ].hp_gain )
                             / ch->max_hit;
     
@@ -195,6 +196,10 @@ int hit_gain( CHAR_DATA *ch )
     else
     {
 	gain = UMIN( 5, ch->level );
+
+	number = number_percent();
+	if (number < ch->pcdata->learned[gsn_fast_healing])
+	     gain += number * gain / 100;
 
 	switch ( ch->position )
 	{
@@ -223,6 +228,7 @@ int hit_gain( CHAR_DATA *ch )
 int mana_gain( CHAR_DATA *ch )
 {
     int gain;
+    int number;
     int racemanaextra = ( ch->max_mana * race_table[ ch->race ].mana_gain )
                           / ch->max_mana;
     
@@ -234,10 +240,18 @@ int mana_gain( CHAR_DATA *ch )
     {
 	gain = UMIN( 5, ch->level / 2 );
 
+	number = number_percent();
+
 	switch ( ch->position )
 	{
-	case POS_SLEEPING: gain += get_curr_int( ch ) * 2;  	break;
-	case POS_RESTING:  gain += get_curr_int( ch );  	break;
+	case POS_SLEEPING: gain += get_curr_int( ch ) * 2;
+	                   if (number < ch->pcdata->learned[gsn_meditate])
+             		     gain += number * gain / 100;
+  			   break;
+	case POS_RESTING:  gain += get_curr_int( ch );
+	                   if (number < ch->pcdata->learned[gsn_meditate])
+             		     gain += number * gain / 100;
+  			   break;
 	}
 
 	if ( ch->pcdata->condition[COND_FULL  ] == 0 )
@@ -364,6 +378,17 @@ void mobile_update( void )
 	if ( ch->position < POS_STANDING )
 	    continue;
 
+        /* MOBprogram random trigger */
+        if ( ch->in_room->area->nplayer > 0 )
+        {
+            mprog_random_trigger( ch );
+                                                /* If ch dies or changes
+                                                position due to it's random
+                                                trigger, continue - Kahn */
+            if ( ch->position < POS_STANDING )
+                continue;
+        }
+
 	/* Scavenge */
 	if ( IS_SET( ch->act, ACT_SCAVENGER )
 	    && ch->in_room->contents
@@ -414,6 +439,13 @@ void mobile_update( void )
 	        act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
 		  
 	    move_char( ch, door );
+	                                        /* If ch changes
+	                                        position due
+                                                to it's or someother mob's
+                                                movement via MOBProgs,
+                                                continue - Kahn */
+            if ( ch->position < POS_STANDING )
+                continue;
 
 	    /* If people are in the room, then flee. */
 	    if ( rnum == 3 )
@@ -760,7 +792,9 @@ void char_update( void )
 		  && ( !IS_IMMORTAL( ch ) && !IS_AFFECTED( ch, AFF_GILLS )
 		      && !IS_SET( race_table[ ch->race ].race_abilities,
 				 RACE_WATERBREATH ) ) )
-		|| ( ch->in_room->sector_type != SECT_UNDERWATER
+		|| ( (    ch->in_room->sector_type != SECT_UNDERWATER
+		       && ch->in_room->sector_type != SECT_WATER_NOSWIM
+		       && ch->in_room->sector_type != SECT_WATER_SWIM )
 		    && IS_SET( race_table[ ch->race ].race_abilities,
 			      RACE_WATERBREATH )
 		    && ( strcmp( race_table[ ch->race ].name, "Object" )
@@ -847,6 +881,8 @@ void obj_update( void )
     		case ITEM_CORPSE_NPC: message = "$p decays into dust."; break;
     		case ITEM_CORPSE_PC:  message = "$p decays into dust."; break;
     		case ITEM_FOOD:       message = "$p decomposes.";       break;
+		case ITEM_PORTAL:     message = "$p fades out of existence."; 
+									break;
 	    }
     
 	    if ( obj->carried_by )
@@ -931,6 +967,34 @@ void aggr_update( void )
 	    int count;
 	    bool hate = FALSE;
 
+            /* MOBProgs ACT_PROG trigger.  Walker. */
+            /* Modified to free the mpact list w/o regard to nplayer.  Walker */
+            if( IS_NPC( mch ) && mch->mpactnum > 0 )
+            {
+                MPROG_ACT_LIST * tmp_act, *tmp2_act;
+
+                if( mch->in_room->area->nplayer > 0 )  /* meaningless test? */
+                {
+                    for ( tmp_act = mch->mpact; tmp_act;
+                             tmp_act = tmp_act->next )
+                    {
+                         mprog_wordlist_check( tmp_act->buf, mch, tmp_act->ch,
+                                          tmp_act->obj, tmp_act->vo, ACT_PROG );
+                         free_string( tmp_act->buf );
+                         tmp_act->buf = NULL;
+                    }
+                }
+		for ( tmp_act = mch->mpact; tmp_act; tmp_act = tmp2_act )
+		{
+                         tmp2_act = tmp_act->next;
+                         free_string( tmp_act->buf ); /* if wasn't freed */
+                         free_mem( tmp_act, sizeof( MPROG_ACT_LIST ) );
+                }
+                mch->mpactnum = 0;
+                mch->mpact    = NULL;
+            }
+            /* end of MOBProg trigger.  Walker */
+                
 	    if ( !IS_NPC( mch )
 		|| mch->deleted
 		|| mch->fighting
@@ -1026,6 +1090,7 @@ void time_update( void )
     }
     if ( current_time > down_time )
     {
+	do_asave( NULL, "" );			/* OLC */
         sprintf( buf, "%s by system.\n\r", Reboot ? "Reboot" : "Shutdown" );
 	send_to_all_char( buf );
 	log_string( buf );
@@ -1284,6 +1349,14 @@ void update_handler( void )
     static int pulse_mobile;
     static int pulse_violence;
     static int pulse_point;
+    static int pulse_db_dump;			/* OLC 1.1b */
+
+    /* OLC 1.1b */
+    if ( --pulse_db_dump  <= 0 )
+    {
+        pulse_db_dump   = PULSE_DB_DUMP;
+        do_asave( NULL, "" );
+    }
 
     if ( --pulse_area     <= 0 )
     {

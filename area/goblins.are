@@ -1,4 +1,12 @@
-#AREA  {10 26} Manx    Goblin Caves~
+#AREADATA
+Name        {{10 26} Manx    Goblin Caves~
+Builders    None~
+VNUMs       20000 20031
+Security    1
+Recall      3001
+End
+
+
 
 #MOBILES
 #20000
@@ -9,11 +17,10 @@ The Sentry to the Goblin Caves stands at attention here.
 He looks like a powerful man that could easily defeat an opponent.
 The Sentry to the Goblin Caves tells you, 'Abandon all hope ye who enter here'
 ~
-2 128 500 S
+3 128 500 S
 19 3 0 10d10+100 10d10+100
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20001
 wizard~
 An Ancient Wizard~
@@ -23,11 +30,10 @@ You realize as you look upon this wizened Wizard, that you must defeat him in
 combat before you can enter the caves.  Why waste the effort, you should really 
 take the easy way out and leave.
 ~
-2 8192 0 S
+3 8192 0 S
 10 3 0 10d9+50 10d9+70
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20002
 goblin~
 Goblin Soldier~
@@ -35,11 +41,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-34 8192 0 S
+35 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20003
 goblin~
 Goblin Soldier~
@@ -47,11 +52,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-34 8192 0 S
+35 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20004
 goblin~
 Goblin Soldier~
@@ -59,11 +63,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20005
 goblin~
 Goblin Soldier~
@@ -71,11 +74,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20006
 goblin~
 Goblin Soldier~
@@ -83,11 +85,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20007
 goblin~
 Goblin Soldier~
@@ -95,11 +96,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20008
 goblin~
 Goblin Soldier~
@@ -107,11 +107,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 10 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20009
 goblin~
 A Goblin Soldier~
@@ -119,11 +118,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 12 3 20 3d11+5 3d17+9
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20010
 goblin~
 A Goblin Soldier~
@@ -131,11 +129,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 12 3 20 3d11+5 3d17+9
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20011
 goblin~
 A Goblin Soldier~
@@ -143,11 +140,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 13 3 20 3d11+5 3d17+9
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20012
 goblin~
 A Goblin Soldier~
@@ -155,11 +151,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 13 3 20 3d11+5 3d17+9
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20013
 goblin~
 A Goblin Soldier~
@@ -167,11 +162,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 13 3 0 6d9+11 6d9+15
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20014
 goblin~
 A Goblin Soldier~
@@ -179,11 +173,10 @@ A Loyal soldier to the Goblin King stands at attention here.
 ~
 You have never in your life seen anything so ugly!!!
 ~
-32 8192 0 S
+33 8192 0 S
 13 3 0 6d9+11 6d9+15
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20015
 goblin king~
 Goblin King~
@@ -191,11 +184,10 @@ The Goblin King is here ordering you to kneel.
 ~
 As you bow toward this king you end up falling over in a fit of laughter.
 ~
-2 8192 0 S
+3 8192 0 S
 23 3 40 9d17+11 9d17+15
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20016
 goblin captain~
 Captain of the Goblin Soldiers~
@@ -203,11 +195,10 @@ The Captain of the Goblin Soldiers stands here.
 ~
 The Captain of the Goblin Guard appears to be drunk...
 ~
-32 8192 0 S
+33 8192 0 S
 17 3 40 2d7+1 2d7+5
-1000 900
-0 goblin~ 1
-
+1000 0
+0 Goblin~ 1
 #20017
 captive creature~
 Captive of the Goblins~
@@ -217,83 +208,80 @@ The Creature tells you, 'Please kill me, my life is over and i can't take the
 torture anymore.  In return i shall give you the key to a secret doorway that 
 leads to the king.  This door is .....'.  The poor creature faints.
 ~
-2 8192 0 S
+3 8192 0 S
 1 3 40 2d7+1 2d7+5
-1000 900
-0 animal~ 1
-
+1000 0
+0 Animal~ 1
 #0
 
-#OBJECTS
+
+
+#NEWOBJECTS
 #20000
 key granite~
 a granite key~
 The key to the Goblin Caves lies here.~
 ~
 18 0 1
-0~ 0~ 0~ 0~
+0~ 0~ 0~ 0~ 0~
 1 0 0
-
 #20001
 key stone~
 a stone key~
 A strange stone key is here.~
 ~
 18 0 1
-0~ 0~ 0~ 0~
+0~ 0~ 0~ 0~ 0~
 1 0 0
-
 #20002
 key~
-A Jailor's key~
+a Jailor's key~
 The key to some horrible place of torture is here.~
 ~
 18 0 1
-0~ 0~ 0~ 0~
+0~ 0~ 0~ 0~ 0~
 1 0 0
-
 #20003
 key dust~
 a secret looking key~
 There is some dust on the ground here.~
 ~
 18 0 1
-0~ 0~ 0~ 0~
+0~ 0~ 0~ 0~ 0~
 1 0 0
-
 #20004
 sword goblin~
 a Goblin Sword~
 A plain but affective Goblin Sword lies here.~
 ~
-5 512 8192|1
-0~ 10~ 25~ 3~
-20 100 3
+5 512 8193
+0~ 10~ 25~ 3~ 0~
+20 100 0
 A
 19 1
-
 #20005
 plate~
 a Goblin Breast Plate~
 Some plain looking armor lies here.~
 ~
-9 512 8|1
-0~ 0~ 0~ 0~
-20 100 3
-
+9 512 9
+0~ 0~ 0~ 0~ 0~
+20 100 0
 #20006
 sword~
 a Goblin Sentry's Sword~
 A deadly looking Goblin Sentry's sword~
 ~
-5 1024 8192|1
-0~ 10~ 25~ 3~
-20 100 3
+5 1024 8193
+0~ 10~ 25~ 3~ 0~
+20 100 0
 A
 19 3
 #0
 
-#ROOMS
+
+
+#ROOMDATA
 #20000
 Base of the Mountain~
 You are standing at the base of the Infamous Goblin Caves.
@@ -385,6 +373,10 @@ that many a brave adventurer has set foot within, but few have ever returned.
 However, you think to yourself "Yeah as if!!"...
 ~
 0 0 0
+E
+door~
+A huge granite door is here daring you to enter.
+~
 D3
 ~
 ~
@@ -393,17 +385,18 @@ D5
 A huge granite door is here daring you to enter.
 ~
 door~
-2 20000 20007
-E
-door~
-A huge granite door is here daring you to enter.
-~
+39 20000 20007
 S
 #20007
 Within the Entrance~
 You stand inside the entrance to some very dank, dark and smelly caves.
 ~
 0 9 0
+E
+door~
+A huge granite door is here providing your only escape out, until you finish 
+off the Goblin King.
+~
 D0
 ~
 ~
@@ -412,12 +405,7 @@ D4
 A huge granite door is here daring you to enter.
 ~
 Door~
-2 20000 20006
-E
-door~
-A huge granite door is here providing your only escape out, until you finish 
-off the Goblin King.
-~
+39 20000 20006
 S
 #20008
 Hallway~
@@ -468,7 +456,7 @@ D1
 A strange looking wall.
 ~
 wall~
-1 20001 20011
+7 20001 20011
 S
 #20011
 Armory~
@@ -482,7 +470,7 @@ D3
 A strange looking wall.
 ~
 wall~
-1 20001 20010
+7 20001 20010
 S
 #20012
 Intersection~
@@ -496,12 +484,10 @@ D0
 ~
 ~
 0 0 20017
-
 D2
 ~
 ~
 0 0 20008
-
 D3
 ~
 ~
@@ -543,7 +529,7 @@ D3
 A dark, metal cell door lies upon the west wall.
 ~
 cell door~
-1 20002 20016
+7 20002 20016
 S
 #20015
 Guard Room~
@@ -571,7 +557,7 @@ D1
 A dark, metal cell door lies upon the west wall.
 ~
 cell door~
-1 20002 20014
+7 20002 20014
 S
 #20017
 Hallway~
@@ -602,7 +588,7 @@ D1
 Secret Doorway
 ~
 secret~
-1 20003 20019
+7 20003 20019
 D3
 ~
 ~
@@ -619,7 +605,7 @@ D3
 Secret Doorway
 ~
 secret~
-1 20003 20018
+7 20003 20018
 D5
 ~
 ~
@@ -839,7 +825,7 @@ D2
 A large, glowing portal lies against the south wall.
 ~
 portal~
-1 0 20000
+3 0 20000
 D3
 ~
 ~
@@ -848,90 +834,62 @@ S
 #0
 
 
-#RESETS
-D 0 20006 5 2
-D 0 20007 4 2
-D 0 20010 1 2
-D 0 20011 3 2
-D 0 20016 1 2
-D 0 20014 3 2
-D 0 20018 1 2
-D 0 20019 3 2
-D 0 20031 2 1
-*
-O 0 20005 0 20011
-O 0 20004 0 20011
-*
-M 0 20000 1 20000
-E 1 20006 0 16
-*
-M 0 20001 1 20006
-G 1 20000 100
-*
-M 0 20002 1 20007
-E 1 20004 0 16
-G 1 20001 100
-*
-M 0 20003 1 20007
-E 1 20004 0 16
-*
-M 0 20004 1 20009
-E 1 20004 0 16
-*
-M 0 20005 1 20011
-E 1 20004 0 16
-*
-M 0 20006 1 20012
-E 1 20004 0 16
-*
-M 0 20007 1 20018
-E 1 20004 0 16
-*
-M 0 20008 1 20014
-E 1 20004 0 16
-*
-M 0 20009 1 20021
-E 1 20004 0 16
-*
-M 0 20010 1 20023
-E 1 20004 0 16
-*
-M 0 20011 1 20025
-E 1 20004 0 16
-*
-M 0 20012 1 20027
-E 1 20004 0 16
-*
-M 0 20013 1 20029
-E 1 20004 0 16
-*
-M 0 20014 1 20031
-E 1 20004 0 16
-E 1 20005 0 5
-*
-M 0 20015 1 20030
-E 1 20004 0 16
-*
-M 0 20016 1 20015
-E 1 20004 0 16
-E 1 20005 0 5
-G 1 20002 100
-*
-M 0 20017 1 20016
-G 1 20003 100
-
-S
 
 #SPECIALS
-
-*updated 1/7/95 by Zelda
-
-*Spelling errors fixed:
-
-*    room#20000  imfamous should be infamous
-*    room#20022  extrodinarily should be extraordinarily
-*    room#20027  eastwards should be eastward
 S
 
-#$
 
+
+#RESETS
+M 0 20000 1 20000
+E 0 20006 0 16
+M 0 20001 1 20006
+G 0 20000 0
+M 0 20002 1 20007
+E 0 20004 0 16
+G 0 20001 0
+M 0 20003 1 20007
+E 0 20004 0 16
+M 0 20004 1 20009
+E 0 20004 0 16
+O 0 20005 0 20011
+O 0 20004 0 20011
+M 0 20005 1 20011
+E 0 20004 0 16
+M 0 20006 1 20012
+E 0 20004 0 16
+M 0 20008 1 20014
+E 0 20004 0 16
+M 0 20016 1 20015
+E 0 20004 0 16
+E 0 20005 0 5
+G 0 20002 0
+M 0 20017 1 20016
+G 0 20003 0
+M 0 20007 1 20018
+E 0 20004 0 16
+M 0 20009 1 20021
+E 0 20004 0 16
+M 0 20010 1 20023
+E 0 20004 0 16
+M 0 20011 1 20025
+E 0 20004 0 16
+M 0 20012 1 20027
+E 0 20004 0 16
+M 0 20013 1 20029
+E 0 20004 0 16
+M 0 20015 1 20030
+E 0 20004 0 16
+M 0 20014 1 20031
+E 0 20004 0 16
+E 0 20005 0 5
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

@@ -1,0 +1,65 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.82! (HomeCooked Envy2.2)
+Monday, 23th June 1997
+
+Zen             vasc@camoes.rnl.ist.utl.pt
+
+
+=== Clans code changes
+
+For the clans code i had to:
+	Make a new clan_table in const.c with the clans info.
+	Make a new home_sick spell to goto your clans castle.
+	Make a "join" command to enable the clan leader to join members.
+	Make a log_clan() function to log all clan activity to CLANS.TXT
+	Make a "members" command to see the logged on clan members.
+	Add info of the clan member to the "look" command.
+	Add player's clan info to "score".
+	Add Clan info to player save file (still compatible with old files).
+	Add set clan bits in mset.
+	Make "clookup" command to see the numbers/names of all the clans.
+	Added IS_CLAN( ch ) and is_same_clan( ach, bch ).
+	Added "clantalk" CHANNEL.
+
+=== The fundamental structures in memory are
+
+	The clans table.
+	ch->pcdata->clan	/* number of the player's clan */
+	ch->pcdata->rank	/* clan rank/act bits */
+
+rank == 0 means that the player isn't a member of any clan (default).
+rank == 1 means that the player is member of said clan.
+rank == 2 means that the player is the leader of said clan.
+
+WARNING: A CLAN LEADER IS A MEMBER TOO! SO WHEN MAKING A LEADER SET 
+rank TO 3 NOT 2!!!
+
+
+=== What's still needed to be done
+
+After 2 days i finished most of the code; and now i have met a stumbling block:
+	The code is great so far but what will be the rules i will put on it?
+	The only way to know this for sure is do some real hard testing.
+
+The rules i made are:
+	* Only give leader the "join" command.
+	* No command to leave the clan (only an imm can set these clan bits)
+	  (if the leader had this command the players could do some very nasty 
+	  stuff if they won prizes for other clans deaths or so).
+	* If your level is < 20 or >= 40 you can not join a clan.
+	* When you join you win a nifty clan vest automatically via "join".
+	* To be able to use the join command the target must have HELD a 
+	  clan card object so the leader doesn't join him without the player's 
+	  consent.
+	* Players can recall for their castle defined in const.c using a
+	  scroll with "home sick" spell. (But i haven't done castles!)
+	* To make a leader you need to set his bits to be a leader with
+	  mset. (TIRESOME)
+	* Every time you, a leader joins a member it is logged in CLANS.TXT
+
+Ideas for new rules:
+	* If a clan member murders his leader he becomes the leader.
+	* If you murder another clan's member you win a nice prize or some
+	  blood points (for prizes of course).
+
+
+- Zen

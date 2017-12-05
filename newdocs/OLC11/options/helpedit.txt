@@ -1,0 +1,36 @@
+Notes for installing Talen's Help Editor.
+=========================================
+
+Date: 3/26/95
+Time: 10:37pm
+
+olc.h
+=====
+(1) Added ED_HELP 5.
+(2) Added DECLARE_DO_FUN( hedit );
+
+olc.c
+=====
+(1) run_olc_editor: added case ED_HELP.
+(2) olc_ed_name: added case ED_HELP.
+(3) olc_ed_vnum: added case ED_HELP.
+(4) editor_table: added "help" command.
+
+mem.c
+=====
+(1) Added new and free help functions.
+(2) Needed: HELP_DATA		*	help_free;
+(3) Needed: HELP_DATA		*	help_last;
+olc.c
+=====
+(1) Added hedit
+(2) Added do_hedit
+
+help.are
+========
+need help file.
+
+
+Then just drop olc_help.c into your src directory and compile
+olc*.c.  Enjoy.
+

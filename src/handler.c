@@ -1573,6 +1573,9 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_HOLYLIGHT ) )
 	return TRUE;
 
+    if ( IS_SET( obj->extra_flags,ITEM_VIS_DEATH ) )
+        return FALSE;
+
     if ( IS_AFFECTED( ch, AFF_BLIND ) )
 	return FALSE;
 
@@ -1640,6 +1643,8 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_CORPSE_PC:        return "pc corpse";
     case ITEM_FOUNTAIN:		return "fountain";
     case ITEM_PILL:		return "pill";
+    case ITEM_PORTAL:		return "portal";
+    case ITEM_WARP_STONE:	return "warp stone";
     }
 
     for ( in_obj = obj; in_obj->in_obj; in_obj = in_obj->in_obj )
@@ -1711,6 +1716,7 @@ char *affect_bit_name( int vector )
     if ( vector & AFF_BLIND         ) strcat( buf, " blind"          );
     if ( vector & AFF_INVISIBLE     ) strcat( buf, " invisible"      );
     if ( vector & AFF_DETECT_EVIL   ) strcat( buf, " detect_evil"    );
+    if ( vector & AFF_DETECT_GOOD   ) strcat( buf, " detect_good"    );
     if ( vector & AFF_DETECT_INVIS  ) strcat( buf, " detect_invis"   );
     if ( vector & AFF_DETECT_MAGIC  ) strcat( buf, " detect_magic"   );
     if ( vector & AFF_DETECT_HIDDEN ) strcat( buf, " detect_hidden"  );
@@ -1721,7 +1727,8 @@ char *affect_bit_name( int vector )
     if ( vector & AFF_CURSE         ) strcat( buf, " curse"          );
     if ( vector & AFF_CHANGE_SEX    ) strcat( buf, " change_sex"     );
     if ( vector & AFF_POISON        ) strcat( buf, " poison"         );
-    if ( vector & AFF_PROTECT       ) strcat( buf, " protect"        );
+    if ( vector & AFF_PROTECT_EVIL  ) strcat( buf, " protect_evil"   );
+    if ( vector & AFF_PROTECT_GOOD  ) strcat( buf, " protect_good"   );
     if ( vector & AFF_POLYMORPH     ) strcat( buf, " polymorph"      );
     if ( vector & AFF_SLEEP         ) strcat( buf, " sleep"          );
     if ( vector & AFF_SNEAK         ) strcat( buf, " sneak"          );
@@ -1765,6 +1772,7 @@ char *extra_bit_name( int extra_flags )
     if ( extra_flags & ITEM_POISONED     ) strcat( buf, " poisoned"     );
     if ( extra_flags & ITEM_VAMPIRE_BANE ) strcat( buf, " vampire bane" );
     if ( extra_flags & ITEM_HOLY         ) strcat( buf, " holy"         );
+    if ( extra_flags & ITEM_VIS_DEATH    ) strcat( buf, " vis_death"    );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
@@ -1849,4 +1857,23 @@ int affect_lookup( const char *affectname )
 
     return -1;
 
+}
+
+/*
+ * Lookup a clan by name.
+ */
+int clan_lookup( const char *name )
+{
+    int cn;
+
+    for ( cn = 0; cn < MAX_CLAN; cn++ )
+    {
+	if ( !clan_table[cn].name )
+	    break;
+	if ( LOWER( name[0] ) == LOWER( clan_table[cn].name[0] )
+	    && !str_prefix( name, clan_table[cn].name ) )
+	    return cn;
+    }
+
+    return -1;
 }

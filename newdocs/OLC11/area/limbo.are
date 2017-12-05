@@ -1,0 +1,17 @@
+Add this object to limbo.are.  If vnum is taken already
+then give it a new vnum and look in merc.h for DUMMY_OBJECT_VNUM
+and change it to the vnum you assign this dummy object.
+This object is used in OLC to ensure that a player will
+boot if they get an item that has been created but not saved
+and the game crashes before the object gets put into the database.
+
+
+#OBJECTS
+#1
+dummy object~
+a dummy object~
+Dummy object is used for loading non-existant objects~
+~
+13 0 0
+0~ 0~ 0~ 0~
+0 0 0

@@ -103,13 +103,13 @@ void move_char( CHAR_DATA *ch, int door )
     if ( IS_SET( pexit->exit_info, EX_CLOSED ) )
     {
         if ( !IS_AFFECTED( ch, AFF_PASS_DOOR )
-	    && !IS_SET( race_table[ ch->race ].race_abilities,
-		       RACE_PASSDOOR ) )
+	   && !IS_SET( race_table[ ch->race ].race_abilities, RACE_PASSDOOR ) )
         {
 	    act( "The $d is closed.",
 		ch, NULL, pexit->keyword, TO_CHAR );
 	    return;
 	}
+	
 	if ( IS_SET( pexit->exit_info, EX_PASSPROOF ) )
         {
 	    act( "You are unable to pass through the $d.  Ouch!",
@@ -132,6 +132,17 @@ void move_char( CHAR_DATA *ch, int door )
 	return;
     }
 
+    if (   to_room->sector_type != SECT_WATER_SWIM
+	&& to_room->sector_type != SECT_WATER_NOSWIM
+	&& to_room->sector_type != SECT_UNDERWATER
+	&& strcmp( race_table[ ch->race ].name, "God" )
+	&& strcmp( race_table[ ch->race ].name, "Bear" )
+	&& IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+    {
+	send_to_char( "You flap around but you cant move!\n\r", ch );
+	return;
+    }
+
     if ( !IS_NPC( ch ) )
     {
 	int iClass;
@@ -140,7 +151,8 @@ void move_char( CHAR_DATA *ch, int door )
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 	{
 	    if ( iClass != ch->class
-		&& to_room->vnum == class_table[iClass].guild )
+		&& to_room->vnum == class_table[iClass].guild
+		&& ch->level < LEVEL_IMMORTAL )
 	    {
 		send_to_char( "You aren't allowed in there.\n\r", ch );
 		return;
@@ -158,17 +170,6 @@ void move_char( CHAR_DATA *ch, int door )
 	    }
 	}
 
-	if (   to_room->sector_type != SECT_WATER_NOSWIM
-	    && to_room->sector_type != SECT_UNDERWATER
-	    && strcmp( race_table[ ch->race ].name, "God" )
-	    && strcmp( race_table[ ch->race ].name, "Bear" )
-	    && IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
-	{
-	    send_to_char( "You flap around but you cant move!\n\r", ch );
-	    return;
-	}
-
-
 	if (   in_room->sector_type == SECT_WATER_NOSWIM
 	    || to_room->sector_type == SECT_WATER_NOSWIM )
 	{
@@ -185,9 +186,9 @@ void move_char( CHAR_DATA *ch, int door )
 	     */
 	    if ( IS_AFFECTED( ch, AFF_FLYING )
 		|| IS_SET( race_table[ ch->race ].race_abilities,  RACE_FLY )
-		|| IS_SET( race_table[ ch->race ].race_abilities,
-			                                     RACE_WATERWALK )
-		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+		|| IS_SET(race_table[ ch->race ].race_abilities,RACE_WATERWALK)
+		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM )
+		|| number_percent( ) <= ch->pcdata->learned[gsn_swim] )
 	        found = TRUE;
 
 	    for ( obj = ch->carrying; obj; obj = obj->next_content )
@@ -207,9 +208,10 @@ void move_char( CHAR_DATA *ch, int door )
 
 	if ( (   in_room->sector_type == SECT_UNDERWATER
 	      || to_room->sector_type == SECT_UNDERWATER )
-	    &&   !IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+	    &&   !IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM )
+	    &&   number_percent( ) > ch->pcdata->learned[gsn_swim] )
 	{
-	    send_to_char( "You need to be able to swim to go there.\n\r", ch );
+	    send_to_char( "You need to be able to swim better to go there.\n\r", ch );
 	    return;
 	}
 
@@ -292,6 +294,8 @@ void move_char( CHAR_DATA *ch, int door )
     }
 
     REMOVE_BIT( ch->act, moved );
+    mprog_entry_trigger( ch );
+    mprog_greet_trigger( ch );
     return;
 }
 
@@ -403,6 +407,22 @@ void do_open( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) )
     {
+	/* 'open portal' */
+	if ( obj->item_type == ITEM_PORTAL )
+	{
+	    if ( !IS_SET( obj->value[1], PORTAL_CLOSEABLE ) )
+		{ send_to_char( "You can't do that.\n\r",      ch ); return; }
+	    if ( !IS_SET( obj->value[1], PORTAL_CLOSED )    )
+		{ send_to_char( "It's already open.\n\r",      ch ); return; }
+	    if (  IS_SET( obj->value[1], PORTAL_LOCKED )    )
+		{ send_to_char( "It's locked.\n\r",            ch ); return; }
+
+	    REMOVE_BIT( obj->value[1], PORTAL_CLOSED );
+	    send_to_char( "Ok.\n\r", ch );
+	    act( "$n opens $p.", ch, obj, NULL, TO_ROOM );
+	    return;
+        }
+
 	/* 'open object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -474,6 +494,20 @@ void do_close( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) )
     {
+	/* 'close portal' */
+	if ( obj->item_type == ITEM_PORTAL )
+	{
+	    if (  IS_SET( obj->value[1], PORTAL_CLOSED )    )
+		{ send_to_char( "It's already closed.\n\r",    ch ); return; }
+	    if ( !IS_SET( obj->value[1], PORTAL_CLOSEABLE ) )
+		{ send_to_char( "You can't do that.\n\r",      ch ); return; }
+
+	    SET_BIT( obj->value[1], PORTAL_CLOSED );
+	    send_to_char( "Ok.\n\r", ch );
+	    act( "$n closes $p.", ch, obj, NULL, TO_ROOM );
+	    return;
+	}
+
 	/* 'close object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -566,6 +600,24 @@ void do_lock( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) )
     {
+	/* 'lock portal' */
+	if ( obj->item_type == ITEM_PORTAL )
+	{
+	    if ( !IS_SET( obj->value[1], PORTAL_CLOSED ) )
+		{ send_to_char( "It's not closed.\n\r",        ch ); return; }
+	    if ( obj->value[2] < 0 )
+		{ send_to_char( "It can't be locked.\n\r",     ch ); return; }
+	    if ( !has_key( ch, obj->value[2] ) )
+		{ send_to_char( "You lack the key.\n\r",       ch ); return; }
+	    if (  IS_SET( obj->value[1], PORTAL_LOCKED ) )
+		{ send_to_char( "It's already locked.\n\r",    ch ); return; }
+
+	    SET_BIT( obj->value[1], PORTAL_LOCKED );
+	    send_to_char( "*Click*\n\r", ch );
+	    act( "$n locks $p.", ch, obj, NULL, TO_ROOM );
+	    return;
+	}
+
 	/* 'lock object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -635,6 +687,24 @@ void do_unlock( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) )
     {
+	/* 'unlock portal' */
+	if ( obj->item_type == ITEM_PORTAL )
+	{
+	    if ( !IS_SET( obj->value[1], PORTAL_CLOSED ) )
+		{ send_to_char( "It's not closed.\n\r",        ch ); return; }
+	    if ( obj->value[2] < 0 )
+		{ send_to_char( "It can't be unlocked.\n\r",   ch ); return; }
+	    if ( !has_key( ch, obj->value[2] ) )
+		{ send_to_char( "You lack the key.\n\r",       ch ); return; }
+	    if ( !IS_SET( obj->value[1], PORTAL_LOCKED ) )
+		{ send_to_char( "It's already unlocked.\n\r",  ch ); return; }
+
+	    REMOVE_BIT( obj->value[1], PORTAL_LOCKED );
+	    send_to_char( "*Click*\n\r", ch );
+	    act( "$n unlocks $p.", ch, obj, NULL, TO_ROOM );
+	    return;
+	}
+
 	/* 'unlock object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -729,6 +799,24 @@ void do_pick( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) )
     {
+	/* 'pick portal' */
+	if ( obj->item_type == ITEM_PORTAL )
+	{
+	    if ( !IS_SET( obj->value[1], PORTAL_CLOSED )    )
+		{ send_to_char( "It's not closed.\n\r",        ch ); return; }
+	    if ( obj->value[2] < 0 )
+		{ send_to_char( "It can't be unlocked.\n\r",   ch ); return; }
+	    if ( !IS_SET( obj->value[1], PORTAL_LOCKED )    )
+		{ send_to_char( "It's already unlocked.\n\r",  ch ); return; }
+	    if (  IS_SET( obj->value[1], PORTAL_PICKPROOF ) )
+		{ send_to_char( "You failed.\n\r",             ch ); return; }
+
+	    REMOVE_BIT( obj->value[1], PORTAL_LOCKED );
+	    send_to_char( "*Click*\n\r", ch );
+	    act( "$n picks $p.", ch, obj, NULL, TO_ROOM );
+	    return;
+	}
+
 	/* 'pick object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -1269,6 +1357,65 @@ void do_chameleon ( CHAR_DATA *ch, char *argument )
         SET_BIT( ch->affected_by, AFF_HIDE );
 
     return;
+}
+
+/* 
+ * returns everything the character can see at that location in buf
+ * returns number of creatures seen 
+ */
+
+int scan_room (CHAR_DATA *ch, const ROOM_INDEX_DATA *room,char *buf)
+{
+    CHAR_DATA *target = room->people;
+    int number_found = 0;
+
+    while (target != NULL) /* repeat as long more peple in the room */
+    {
+        if (can_see(ch,target)) /* show only if the character can see the target */
+        {
+            strcat (buf, " - ");
+            strcat (buf, IS_NPC(target) ? target->short_descr : target->name);
+            strcat (buf, "\n\r");
+            number_found++;
+        }
+        target = target->next_in_room;
+    }
+
+    return number_found;
+}
+
+void do_scan (CHAR_DATA *ch, char *argument)
+{
+    EXIT_DATA * pexit;
+    ROOM_INDEX_DATA * room;
+    extern char * const dir_name[];
+    char buf[MAX_STRING_LENGTH];
+    int dir;
+    int distance;
+
+    sprintf (buf, "Right here you see:\n\r");
+    if (scan_room(ch,ch->in_room,buf) == 0)
+        strcat (buf, "Noone\n\r");
+    send_to_char (buf,ch);
+
+    for (dir = 0; dir < 6; dir++) /* look in every direction */
+    {
+        room = ch->in_room; /* starting point */
+
+        for (distance = 1 ; distance < 4; distance++)
+        {
+            pexit = room->exit[dir]; /* find the door to the next room */
+            if ((pexit == NULL) || (pexit->to_room == NULL) || (IS_SET(pexit->exit_info, EX_CLOSED)))
+                break; /* exit not there OR points to nothing OR is closed */
+
+            /* char can see the room */
+            sprintf (buf, "%d %s from here you see:\n\r", distance, dir_name[dir]);
+            if (scan_room(ch,pexit->to_room,buf)) /* if there is something there */
+                send_to_char (buf,ch);
+
+            room = pexit->to_room; /* go to the next room */
+        } /* for distance */
+    } /* for dir */
 }
 
 void do_heighten ( CHAR_DATA *ch, char *argument )
@@ -1874,3 +2021,141 @@ void game_u_l_t( CHAR_DATA *ch, CHAR_DATA *croupier, char *argument )
     return;
 }
 
+
+/* 
+ * Random room generation function.
+ */
+ROOM_INDEX_DATA  *get_random_room()
+{
+    ROOM_INDEX_DATA *pRoomIndex;
+
+    for ( ; ; )
+    {
+        pRoomIndex = get_room_index( number_range( 0, 65535 ) );
+        if ( pRoomIndex )
+            if (   !IS_SET( pRoomIndex->room_flags, ROOM_PRIVATE  )
+                && !IS_SET( pRoomIndex->room_flags, ROOM_SOLITARY ) )
+            break;
+    }
+
+    return pRoomIndex;
+}
+
+void do_enter(CHAR_DATA * ch, char *argument)
+{
+    ROOM_INDEX_DATA *location;
+    ROOM_INDEX_DATA *original;
+    OBJ_DATA *portal;
+    CHAR_DATA *fch;
+
+    if (argument[0] == '\0')
+    {
+	send_to_char("Enter what?\n\r", ch);
+	return;
+    }
+
+    original = ch->in_room;
+    portal = get_obj_list(ch, argument, ch->in_room->contents);
+
+    if (!portal)
+    {
+	act("There is no $t in here.", ch, argument, NULL, TO_CHAR);
+	return;
+    }
+
+    if (portal->item_type != ITEM_PORTAL
+	|| IS_SET(portal->value[1], PORTAL_CLOSED))
+    {
+	send_to_char("You can't seem to find a way in.\n\r", ch);
+	return;
+    }
+
+    if (portal->value[0] == 0)
+    {
+	act("$p has no power left.", ch, portal, NULL, TO_CHAR);
+	return;
+    }
+
+    if (!IS_SET(portal->value[3], PORTAL_NO_CURSED)
+	&& (IS_AFFECTED(ch, AFF_CURSE)
+	    || IS_SET(original->room_flags, ROOM_NO_RECALL)))
+    {
+	send_to_char("God has forsaken you.\n\r", ch);
+	return;
+    }
+
+    location = get_room_index(portal->value[4]);
+
+    if (IS_SET(portal->value[3], PORTAL_RANDOM))
+    {
+	location = get_random_room();
+	portal->value[4] = location->vnum;
+    }
+
+    if (IS_SET(portal->value[3], PORTAL_BUGGY) && (number_percent() < 5))
+	location = get_random_room();
+
+    if (!location
+	|| location == original
+	|| room_is_private(location))
+    {
+	act("$p doesn't seem to go anywhere.", ch, portal, NULL, TO_CHAR);
+	return;
+    }
+
+    act("$n steps into $p.", ch, portal, NULL, TO_ROOM);
+    if (IS_SET(portal->value[3], PORTAL_RANDOM)
+	|| IS_SET(portal->value[3], PORTAL_BUGGY))
+	act("You walk through $p and find yourself somewhere else...",
+	    ch, portal, NULL, TO_CHAR);
+    else
+	act("You enter $p.", ch, portal, NULL, TO_CHAR);
+
+    char_from_room(ch);
+    char_to_room(ch, location);
+    if (IS_SET(portal->value[3], PORTAL_RANDOM)
+	|| IS_SET(portal->value[3], PORTAL_BUGGY))
+	act("$n has arrived through $p.", ch, portal, NULL, TO_ROOM);
+    else
+	act("$n has arrived.", ch, portal, NULL, TO_ROOM);
+
+    do_look(ch, "auto");
+
+    if (portal->value[0] > 0)	/*
+				 * This way i prevent an underflow 
+				 */
+	portal->value[0]--;
+
+    if (portal->value[0] == 0)	/*
+				 * If there are no more charges; remove 
+				 */
+    {
+	act("$p fades out of existence.", ch, portal, NULL, TO_CHAR);
+	act("$p fades out of existence.", ch, portal, NULL, TO_ROOM);
+	extract_obj(portal);
+	return;
+    }
+
+    if (IS_SET(portal->value[3], PORTAL_GO_WITH))
+    {
+	obj_from_room(portal);
+	obj_to_room(portal, location);
+    }
+
+    for (fch = original->people; fch; fch = fch->next_in_room)
+    {
+	if (fch->master != ch || !IS_AFFECTED(fch, AFF_CHARM))
+	    continue;
+
+	if (fch->position < POS_STANDING)
+	    do_stand(fch, "");
+
+	if (fch->position == POS_STANDING)
+	{
+	    act("You follow $N.", fch, NULL, ch, TO_CHAR);
+	    do_enter(fch, argument);
+	}
+    }
+
+    return;
+}

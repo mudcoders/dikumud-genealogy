@@ -1,4 +1,10 @@
-#AREA	{ 5 35} Glop    Mega-City One ~
+#AREADATA
+Name        {{ 5 35} Glop    Mega-City One ~
+Builders    None~
+VNUMs       8000 8028
+Security    1
+Recall      3001
+End
 
 
 
@@ -12,10 +18,10 @@ He is a tall, thin boy.  He is looking for his gang mates.  He and his
 mates have cost city authorities many millions of creds a week in
 vandalism repairs.
 ~
-4 0 -400 S
+5 0 -400 S
 5 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8001
 punk~
 a punk~
@@ -24,10 +30,10 @@ A punk is here plotting a crime wave.
 This punk is from one of the rowdiest, scruffiest, and definitely most
 fashionable of all gangs -- the Grunge Mongers.
 ~
-4|64 0 -500 S
+69 0 -500 S
 10 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8002
 Futsie~
 a Futsie~
@@ -37,10 +43,10 @@ A sad victim of Future Shock, this man is immensely dangerous and will
 not be stopped by anyone who tries to deter him from revenge upon the
 Justice Department.
 ~
-2|32 8 0 S
+35 8 0 S
 17 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8003
 Citi-Def Militiaman~
 a Citi-Def Militiaman~
@@ -49,10 +55,10 @@ A Citi-Def Militiaman is here contemplating a Block War.
 A member of a local Block's Citi-Def militia, this man is well-armed
 and undersupervised.
 ~
-4|64 512 0 S
+69 512 0 S
 16 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8004
 dunk~
 a dunk~
@@ -60,10 +66,10 @@ A dunk is here blending into the crowd.
 ~
 He blends into the crowd as his hand travels into another citizen's pocket.
 ~
-4|64|128 0 -150 S
+197 0 -150 S
 10 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8005
 tap~
 a tap~
@@ -72,10 +78,10 @@ A tap is here eyeing your belongings.
 A practitioner in Mega-City One's largest growth industry, mugging, is
 looking you over for a possible business transaction.
 ~
-4|64 0 -400 S
+69 0 -400 S
 14 0 0 0d0+0 0d0+0
 0 0
-0 human~ 2
+0 Human~ 2
 #8006
 rookie judge~
 a rookie judge~
@@ -85,10 +91,10 @@ A member of Mega-City One's Justice Department is here considering what
 crimes you have committed.  Being a rookie he will probably be easier on
 you though.
 ~
-64 8|32 300 S
+65 40 300 S
 20 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8007
 Wallaby Gleep~
 Wallaby Gleep~
@@ -97,10 +103,10 @@ Mr. Gleep is here wanting to know what you want.
 Wallaby Gleep is a heavy-set man who gives you the impression that he is
 unintelligent and unimaginative, but looks can be deceiving.
 ~
-2|4 8|32|512 -600 S
+7 552 -600 S
 22 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8008
 Pinkerton Throt~
 Pinkerton Throt~
@@ -110,10 +116,10 @@ He is a thin angular crook, pretty close to everyone's idea of Ebeneezer
 Scrooge.  Indeed, the only thing guaranteed to bring a spark to his dead
 eyes is the mention of money.
 ~
-2|4|32 8|32 -900 S
+39 40 -900 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8009
 Ernie Ramirez~
 Ernie Ramirez~
@@ -123,10 +129,10 @@ Ramirez is a dour man who knows that he's never going to get a better
 deal out of life.  He is content to run the bite fights for Throt and
 Gleep.
 ~
-2|4 0 -400 S
+7 0 -400 S
 19 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8010
 Judge Eckersely~
 Judge Eckersely~
@@ -135,10 +141,10 @@ Judge Eckersely is here shaking down a Perp.
 He is a dedicated, if somewhat pessimistic Judge.  He is the Senior Judge
 of the Downtown Quadrant.
 ~
-64 8|32|128 300 S
+65 168 300 S
 30 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #8011
 Judge Sara Beddows~
 Judge Beddows~
@@ -148,10 +154,10 @@ Beddows is a clone from the same stock as the ex-Chief Judge McGruder.
 She is fanatically dedicated to her job and has no ambitions other than
 to enforce the LAW.
 ~
-64 8|32 500 S
+65 40 500 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 human~ 2
+0 Human~ 2
 #8012
 bite fighter~
 a bite fighter~
@@ -159,22 +165,22 @@ A bite fighter is here sharpening his teeth.
 ~
 A bite fighter is here with sharpened teeth and a bad attitude.
 ~
-2|32 0 -400 S
+35 0 -400 S
 20 0 0 0d0+0 0d0+0
 0 0
-0 human~ 1
+0 Human~ 1
 #0
 
 
 
-#OBJECTS
+#NEWOBJECTS
 #8000
 spit gun~
 a spit gun~
 There is a spit gun laying here.~
 ~
-3 0 1|16384
-37~ 10~ 10~ general purpose~
+3 0 16385
+37~ 10~ 10~ general purpose~ 0~
 2 0 0
 E
 spit gun~
@@ -186,8 +192,8 @@ knee pads~
 a set of knee pads~
 There are some knee pads laying here.~
 ~
-9 0 1|32
-0~ 0~ 0~ 0~
+9 0 33
+0~ 0~ 0~ 0~ 0~
 3 0 0
 E
 knee pads~
@@ -200,21 +206,21 @@ a stooky gland~
 There is a stooky gland laying here.~
 ~
 26 0 1
-20~ cure poison~ heal~ ~
+20~ cure poison~ heal~  ~  ~
 1 0 0
+A
+9 -1
 E
 stooky gland~
 Stooky glands are known for the restorative properties.
 ~
-A
-9 -1
 #8003
 lawgiver~
 a lawgiver~
 There is a lawgiver laying here.~
 ~
-3 0 1|16384
-37~ 10~ 10~ high explosive~
+3 0 16385
+37~ 10~ 10~ high explosive~ 0~
 2 0 0
 E
 lawgiver gun~
@@ -227,7 +233,7 @@ the magnetically shielded safe~
 A indestructible, immobile safe is here.~
 ~
 15 2 0
-1005~ 13~ 8005~ 0~
+1005~ 13~ 8005~ 0~ 0~
 1000 0 0
 E
 safe~
@@ -239,8 +245,8 @@ code box~
 a code box~
 A code box of indeterminate use is here.~
 ~
-18 2 1|16384
-0~ 0~ 0~ 0~
+18 2 16385
+0~ 0~ 0~ 0~ 0~
 1 0 0
 E
 code box~
@@ -251,8 +257,8 @@ bashball bat~
 a bashball bat~
 A bashball bat is laying here.~
 ~
-5 0 1|8192
-0~ 0~ 0~ 7~
+5 0 8193
+0~ 0~ 0~ 7~ 0~
 3 0 0
 E
 bashball bat~
@@ -264,14 +270,9 @@ vibroblade~
 the Vibroblade~
 The Vibroblade is here.~
 ~
-5 1|2|32 1|8192
-0~ 0~ 0~ 3~
+5 35 8193
+0~ 0~ 0~ 3~ 0~
 2 0 0
-E
-vibroblade~
-Obviously of alien manufacture, this blade enhances fighting
-and survival skills.
-~
 A
 18 2
 A
@@ -280,13 +281,18 @@ A
 5 1
 A
 2 1
+E
+vibroblade~
+Obviously of alien manufacture, this blade enhances fighting
+and survival skills.
+~
 #8008
 vacuum cleaner~
 a Hoover vacuum cleaner~
 A Hoover vacuum cleaner is here idling.~
 ~
-5 2 1|8192
-0~ 0~ 0~ 12~
+5 2 8193
+0~ 0~ 0~ 12~ 0~
 10 0 0
 E
 vacuum cleaner~
@@ -298,8 +304,8 @@ knife~
 a knife~
 A knife is sitting here...contemplating life.~
 ~
-5 0 1|8192
-0~ 0~ 0~ 1~
+5 0 8193
+0~ 0~ 0~ 1~ 0~
 3 0 0
 E
 knife~
@@ -310,37 +316,37 @@ wet noodle~
 a wet noodle~
 A wet noodle is laying here with clam sauce on it.~
 ~
-5 0 1|8192
-0~ 0~ 0~ 4~
+5 0 8193
+0~ 0~ 0~ 4~ 0~
 1 0 0
+A
+3 1
 E
 noodle~
 It looks like a noodle freshly made at the Olive Garden.
 ~
-A
-3 1
 #8011
 judge club~
 a Judge's club~
 A Judge's club is resting here.~
 ~
-5 0 1|8192
-0~ 0~ 0~ 7~
+5 0 8193
+0~ 0~ 0~ 7~ 0~
 3 0 0
+A
+19 2
 E
 judge club~
 It is a standard Justice Hall issue club.  Many a Perp's
 head has been bashed with this baby.
 ~
-A
-19 2
 #8012
 vault key~
 a vault key~
 A vault key is here.~
 ~
-18 2 1|16384
-0~ 0~ 0~ 0~
+18 2 16385
+0~ 0~ 0~ 0~ 0~
 1 0 0
 E
 vault key~
@@ -351,8 +357,8 @@ key card~
 a key card~
 A key card is laying here.~
 ~
-18 0 1|16384
-0~ 0~ 0~ 0~
+18 0 16385
+0~ 0~ 0~ 0~ 0~
 1 0 0
 E
 key card~
@@ -360,13 +366,15 @@ It looks like it fits a slot somewhere.
 ~
 #0
 
-#ROOMS
+
+
+#ROOMDATA
 #8001
 Entrance to Mega-City One~
 A road begins here in the glowing sands.  You follow it through a gate
 in a Plasteen wall onto the Megway of Mega-City One.
 ~
-80 0 1
+0 0 1
 D0
 You see the glowing sand of the badlands.
 ~
@@ -383,7 +391,7 @@ Mahmount Allesh Megway~
 You are on one mile of over 13 and a half billion kilometers of
 roadway in Mega-City One.  The Megway continues north and south.
 ~
-80 0 1
+0 0 1
 D0
 The entrance to Mega-City One is in this direction.
 ~
@@ -401,7 +409,7 @@ The Megway intersects with Junket Way here.  Junket Way is to the east,
 the Megway continues north and south, and the Pustule Palace Cafe is
 to the west.
 ~
-80 0 1
+0 0 1
 D0
 The Megway continues in this direction.
 ~
@@ -430,7 +438,7 @@ people driving Mo-Pads, the mobile homes which are constantly on the
 move until their owners can find an apartment in one of the City-blocks.
 The Megway continues north and south.
 ~
-80 0 1
+0 0 1
 D0
 An intersection lies in this direction.
 ~
@@ -451,7 +459,7 @@ be totally unemployed, and that a further five will not work more
 than ten hours a week.  To the east there is a dark alley and to the
 west is Rietzik's Shuggy Hall.
 ~
-80 0 1
+0 0 1
 D0
 The Megway continues in this direction.
 ~
@@ -480,7 +488,7 @@ of juves Boingging (tm) in the air above you.  Max Jaffa Boulevard goes
 east, the Megway continues north and south, and Bazza's Home for the
 Terminally Sarky is to the west.
 ~
-80 0 1
+0 0 1
 D0
 The Megway continues in this direction.
 ~
@@ -509,7 +517,7 @@ are bound to minimum speed limits.  Many Slow Driving offenses are being
 handed out by the Judges.  The Megway goes north and south, a Parkway
 goes east, and Nu Phisog Parlour is west.
 ~
-80 0 1
+0 0 1
 D0
 A plaza is to the north.
 ~
@@ -538,7 +546,7 @@ favorite hobbies such as spot welding and metalwork, scratch building
 fashion Kneepads, giving blood, or just looking out the window.  The
 Megway continues north and south.
 ~
-80 0 1
+0 0 1
 D0
 The Megway continues in this direction.
 ~
@@ -556,7 +564,7 @@ The Megway ends here.  To the west is Ziggi Piggi's Home for the
 Semi-Stiff, to the east and south are construction areas, and the
 Megway goes north.
 ~
-80 0 1
+0 0 1
 D0
 The Megway is ahead.
 ~
@@ -582,7 +590,7 @@ S
 Junket Way~
 Junket Way a small Skedway continues east and west.
 ~
-80 0 1
+0 0 1
 D1
 An intersection is ahead.
 ~
@@ -600,7 +608,7 @@ You are in a very dark and seedy alley.  This is just the right place for
 a bite fight.  Bite fighting is an illegal activity where both combatants
 can only use their sharpened teeth as weapons.
 ~
-80 1 1
+0 1 1
 D1
 An intersection is ahead.
 ~
@@ -616,7 +624,7 @@ S
 Max Jaffa Boulevard~
 Max Jaffa Boulevard continues east and west.
 ~
-80 0 1
+0 0 1
 D1
 An intersection is ahead.
 ~
@@ -632,7 +640,7 @@ S
 Ed Hilldreth Memorial Parkway ~
 The Parkway goes east and west.
 ~
-80 0 1
+0 0 1
 D1
 An intersection is ahead.
 ~
@@ -650,7 +658,7 @@ A Mega-City One City Block is being constructed at this site.  A
 typical block is from 100 to 1000 stories high with hundreds of
 thousands inhabitants.
 ~
-80 0 1
+0 0 1
 D3
 An intersection is ahead.
 ~
@@ -663,7 +671,7 @@ There is a second-hand kneepad stall is doing a brisk business with a
 group of juves on their way to school.  Junket Way goes west and Threep
 Lane travels south.
 ~
-80 0 1
+0 0 1
 D2
 Threep Lane continues ahead.
 ~
@@ -680,7 +688,11 @@ Threep Lane~
 Threep Lane continues north and south.  There is a building to the east
 with a sign next to the door.
 ~
-80 0 1
+0 0 1
+E
+sign~
+Throt and Gleep's Megger Store est. 2107
+~
 D0
 An intersection is ahead.
 ~
@@ -690,22 +702,18 @@ D1
 A door to the east bodes ill.
 ~
 door~
-1 0 8026
+3 0 8026
 D2
 Threep Lane continues south.
 ~
 ~
 0 0 8017
-E
-sign~
-Throt and Gleep's Megger Store est. 2107
-~
 S
 #8017
 Threep Lane~
 Threep Lane continues north and south.  There is a dark alley to the west.
 ~
-80 0 1
+0 0 1
 D0
 Threep Lane continues north.
 ~
@@ -727,7 +735,7 @@ Corner of Max Jaffa Blvd and Threep Way~
 A proprietor of Uncle Sumpty's Ugly Emporium meanders by.  Threep Lane
 continues north and south while Max Jaffa Boulevard goes west.
 ~
-80 0 1
+0 0 1
 D0
 Threep Lane continues north.
 ~
@@ -749,7 +757,7 @@ Corner of Ed Hilldreth Mem. Prkwy and Threep Lane~
 Threep Lane goes north from here while Ed Hilldreth Memorial Parkway goes
 west.
 ~
-80 0 1
+0 0 1
 D0
 Threep Lane continues north.
 ~
@@ -766,7 +774,7 @@ Construction Site for the Brit-Cit One tunnel.~
 Construction is under way for the Black Atlantic Tunnel to connect
 Mega-City One and Brit-Cit One.
 ~
-80 0 1
+0 0 1
 D0
 An intersection lies north.
 ~
@@ -778,7 +786,7 @@ Pustule Palace Cafe~
 A scabrous hole.  Run by Ernie Ramirez, an ex-perp, it is a meeting place
 for the low-life in the area.
 ~
-80 8 0
+0 8 0
 D1
 An intersection lies east.
 ~
@@ -791,7 +799,7 @@ A sleazy dive and the meeting place of a lot of perps.  Shuggy is a
 twenty-second Century version of pool, played on a hilly table, usually
 with large side bets.
 ~
-80 8 0
+0 8 0
 D1
 An intersection lies east.
 ~
@@ -804,7 +812,7 @@ This is an experimental psychiatric home.  Named after a 20th Century
 vid-critic, the home attempts, by various methods, to readjust the
 socially unacceptable attitudes of the inmates.
 ~
-80 8 0
+0 8 0
 D1
 A large plaza lies east.
 ~
@@ -818,7 +826,7 @@ and cheap face-changing facilities to the general public.  However,
 since the closure of Sump's Ugly clinics, the craze for face-changing has
 died down.
 ~
-80 8 0
+0 8 0
 D1
 An intersection lies east.
 ~
@@ -831,7 +839,7 @@ The only suspended animation parlour in the area.  It has a high turnover
 rate.  It is rumored that the patrons are being used in body sharking and
 organ legging activities.
 ~
-80 8 0
+0 8 0
 D1
 An intersection lies east.
 ~
@@ -845,148 +853,129 @@ with the utmost discourtesy.  Of course, something as crazy as this was
 bound to succeed.  There is a door to the north with a slot next to it.
 There is also a sign next to the slot.
 ~
-80 8 0
-D0
-~
-door~
-2 8013 8027
-D3
-~
-door~
-1 0 8016
+0 8 0
 E
 sign~
 To open insert card.
 ~
+D0
+~
+door~
+39 8013 8027
+D3
+~
+door~
+3 0 8016
 S
 #8027
 Stockroom of Throt & Gleep's Megger Store~
 Many useless items stock the shelves of this stockroom.  A door leads
 south and large vault door is to the north.
 ~
-80 8 0
-D0
-~
-vault door~
-2 8012 8028
-D2
-~
-door~
-2 8013 8026
+0 8 0
 E
 vault door~
 This vault seems impervious to breaking.  There is a keyhole in the lock
 however.
 ~
+D0
+~
+vault door~
+39 8012 8028
+D2
+~
+door~
+39 8013 8026
 S
 #8028
 Throt & Gleep's Vault~
 The vault is musty with a slight smell of ozone in the air.
 ~
-80 8 0
+0 8 0
 D2
 ~
 vault door~
-2 8012 8027
+39 8012 8027
 S
 #0
 
 
 
+#SPECIALS
+M 8003 spec_cast_judge
+M 8004 spec_thief
+M 8006 spec_cast_judge
+M 8010 spec_cast_judge
+M 8011 spec_cast_judge
+S
+
+
+
 #RESETS
-M 0 8000 5 8004			juve
-E 0 8006 40 16			bashball bat
-M 0 8000 5 8004		 	juve
-E 0 8009 40 16			knife
-M 0 8000 5 8006			juve
-E 0 8009 40 16			knife
-M 0 8000 5 8015			juve
-E 0 8009 40 16			knife
-E 0 8001 40 7			kneepad
-*
-M 0 8001 5 8006			punk
-E 0 8009 40 16			knife
-M 0 8001 5 8009			punk
-E 0 8009 40 16			knife
-E 0 8001 40 7			kneepad
-M 0 8001 5 8011			punk
-E 0 8006 40 16			bashball bat
-*
-M 0 8003 5 8013			militiaman
-E 0 8001 40 7			kneepads
-M 0 8003 5 8014			militiaman
-G 0 8000 10 0			spit gun
-*
-M 0 8002 4 8023			futsie
-E 0 8008 40 16	 		vacuum
-M 0 8002 4 8024			futsie
-E 0 8010 40 16			noodle
-*
-M 0 8004 5 8003			dunk
-M 0 8004 5 8006			dunk
-M 0 8004 5 8005			dunk
-*
-M 0 8005 5 8010			tap
-E 0 8006 40 16			bashball bat
-M 0 8005 5 8017			tap
-E 0 8009 40 16			knife
-M 0 8005 5 8019			tap
-*
-M 0 8006 5 8018			rookie
-E 0 8011 40 16			club
-M 0 8006 5 8012			rookie
-E 0 8011 40 16			club
-M 0 8006 5 8025			rookie
-E 0 8011 40 16			club
-*
-M 0 8007 1 8027			Gleep
-E 0 8009 40 16			knife
-G 0 8012 10 0			key
-*
-M 0 8009 1 8021			Ernie
-E 0 8006 40 16			bat
-G 0 8002 10 0			gland
-G 0 8013 5 0                    key card
-*
-M 0 8010 1 8007			Eckersley
-E 0 8011 40 16			club
-G 0 8003 20 0			lawgiver
-*
-M 0 8011 1 8009			Beggers
-E 0 8011 40 16			club
-G 0 8003 20 0			lawgiver
-*
-M 0 8012 2 8011			bite fighter
-M 0 8012 2 8011			bite fighter
-*
-O 0 8004 1 8028			safe
-M 0 8008 1 8028			Throt
-E 0 8009 40 16			knife
-G 0 8005 10 0			box
-P 0 8007 10 8004		vibroblade
-*
-D 0 8016 1 1
-D 0 8026 3 1
-D 0 8026 0 2
-D 0 8027 2 2
-D 0 8027 0 2
-D 0 8028 2 2
+M 0 8004 5 8003
+M 0 8000 5 8004
+E 0 8006 0 16
+M 0 8000 5 8004
+E 0 8009 0 16
+M 0 8004 5 8005
+M 0 8000 5 8006
+E 0 8009 0 16
+M 0 8001 5 8006
+E 0 8009 0 16
+M 0 8004 5 8006
+M 0 8010 1 8007
+E 0 8011 0 16
+G 0 8003 0
+M 0 8001 5 8009
+E 0 8009 0 16
+E 0 8001 0 7
+M 0 8011 1 8009
+E 0 8011 0 16
+G 0 8003 0
+M 0 8005 5 8010
+E 0 8006 0 16
+M 0 8001 5 8011
+E 0 8006 0 16
+M 0 8012 2 8011
+M 0 8012 2 8011
+M 0 8006 5 8012
+E 0 8011 0 16
+M 0 8003 5 8013
+E 0 8001 0 7
+M 0 8003 5 8014
+G 0 8000 0
+M 0 8000 5 8015
+E 0 8009 0 16
+E 0 8001 0 7
+M 0 8005 5 8017
+E 0 8009 0 16
+M 0 8006 5 8018
+E 0 8011 0 16
+M 0 8005 5 8019
+M 0 8009 1 8021
+E 0 8006 0 16
+G 0 8002 0
+G 0 8013 0
+M 0 8002 4 8023
+E 0 8008 0 16
+M 0 8002 4 8024
+E 0 8010 0 16
+M 0 8006 5 8025
+E 0 8011 0 16
+M 0 8007 1 8027
+E 0 8009 0 16
+G 0 8012 0
+O 0 8004 0 8028
+M 0 8008 1 8028
+E 0 8009 0 16
+G 0 8005 0
+P 0 8007 0 8004
 S
 
 
 
 #SHOPS
 0
-
-
-
-#SPECIALS
-M 8003 spec_cast_judge
-M 8006 spec_cast_judge
-M 8010 spec_cast_judge
-M 8011 spec_cast_judge
-M 8004 spec_thief
-S
 
 
 

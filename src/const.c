@@ -35,6 +35,21 @@
 
 
 /*
+ * Clan table (by Zen).
+ */
+const	struct	clan_type	clan_table	[MAX_CLAN]	=
+{
+    /*	name,			clan_vest,		castle	*/
+    {	"none",			OBJ_VNUM_SCHOOL_VEST,	3001	},
+    {	"Shining Clan",		3383,			3001	},
+    {	"Klowns Clan",		3383,			3001	},
+    {	"Berserkers Clan",	3383,			3001	},
+    {	"Krushers Clan",	3383,			3001	},
+    {	"White Dragon Clan",	3383,			3001	}
+};
+
+
+/*
  * Class table.
  */
 const	struct	class_type	class_table	[MAX_CLASS]	=
@@ -63,7 +78,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
         "Psi", APPLY_WIS,  OBJ_VNUM_SCHOOL_DAGGER,
         3151,  95,  18,  9,   6,  9, TRUE
     }
-    
+
 };
 
 #define CLASS_MAGE       0
@@ -74,7 +89,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 
 /*
  * Immort Levels
-*/
+ */
 #define L_HER            LEVEL_HERO
 
 /*
@@ -791,6 +806,7 @@ const	struct	con_app_type	con_app		[26]		=
  */
 const	struct	liq_type	liq_table	[LIQ_MAX]	=
 {
+/*    name                      colour       drunk, food, thirst */
     { "water",			"clear",	{  0, 0, 10 }	},  /*  0 */
     { "beer",			"amber",	{  3, 2,  5 }	},
     { "wine",			"rose",		{  5, 2,  5 }	},
@@ -809,7 +825,21 @@ const	struct	liq_type	liq_table	[LIQ_MAX]	=
     { "blood",			"red",		{  0, 2, -1 }	},
     { "salt water",		"clear",	{  0, 1, -2 }	},
 
-    { "cola",			"cherry",	{  0, 1,  5 }	}   /* 15 */
+    { "cola",			"cherry",	{  0, 1,  5 }	},   /* 15 */
+    { "white wine",		"golden",	{  5, 2,  5 }	},
+    { "root beer",		"brown",	{  0, 3,  6 }	},
+    { "champagne",		"golden",	{  5, 2,  5 }	},
+    { "vodka",			"clear",	{  7, 1,  4 }	},
+
+    { "absinth",		"green",	{ 10, 0,  0 }	},   /* 20 */
+    { "brandy",			"golden",	{  5, 1,  4 }	},
+    { "schnapps",		"clear",	{  6, 1,  4 }	},
+    { "orange juice",		"orange",	{  0, 2,  8 }	},
+    { "sherry",			"red",		{  3, 2,  4 }	},
+
+    { "rum",			"amber",	{  8, 1,  4 }	},   /* 25 */
+    { "port",			"red",		{  3, 3,  4 }	}
+
 };
 
 
@@ -1028,7 +1058,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"detect hidden",	{ L_APP,     7, L_APP, L_APP, L_APP },
 	spell_detect_hidden,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"You feel less aware of your suroundings."
+	"",			"You feel less aware of your surroundings."
     },
 
     {
@@ -1040,7 +1070,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 
     {
 	"detect magic",		{     2,     3, L_APP, L_APP, L_APP },
-	spell_detect_magic,	TAR_CHAR_SELF,		POS_STANDING,
+	spell_detect_magic,	TAR_CHAR_SELF,		POS_STANDING, 
 	NULL,			5,	12,
 	"",			"The detect magic wears off."
     },
@@ -1179,7 +1209,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-	"invis",		{  4, L_APP, L_APP, L_APP,    14 },
+	"invis",		{  4, L_APP, L_APP, L_APP,       14 },
 	spell_invis,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	&gsn_invis,		5,	12,
 	"",			"You are no longer invisible."
@@ -1256,8 +1286,15 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-	"protection",		{ L_APP,     6, L_APP, L_APP, L_APP },
-	spell_protection,	TAR_CHAR_SELF,		POS_STANDING,
+	"protection evil",	{ L_APP,     6, L_APP, L_APP, L_APP },
+	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less protected."
+    },
+
+    {
+	"protection good",	{ L_APP,     6, L_APP, L_APP, L_APP },
+	spell_protection_good,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
 	"",			"You feel less protected."
     },
@@ -1279,7 +1316,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     {
         "remove alignment",	{    16, L_APP, L_APP, L_APP, L_APP },
         spell_remove_alignment,	TAR_OBJ_INV,		POS_STANDING,
-        NULL,			10,	12,
+        NULL,			100,	12,
         "",                     "!Remove Alignment!"
     },
 
@@ -1406,7 +1443,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-	"lightning breath",	{  32, L_APP, L_APP, L_APP, L_APP },
+	"lightning breath",	{    32, L_APP, L_APP, L_APP, L_APP },
 	spell_lightning_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
 	"breath of lightning",	"!Lightning Breath!"
@@ -1563,7 +1600,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-	"third attack",		{ L_APP, L_APP, L_APP,     1, L_APP },
+	"third attack",		{ L_APP, L_APP,    20,     1, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_third_attack,	 0,	 0,
 	"",			"!Third Attack!"
@@ -1607,7 +1644,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
      */
 
     {
-        "adrenaline control",           { L_APP, L_APP, L_APP, L_APP,    10 },
+        "adrenaline control",   { L_APP, L_APP, L_APP, L_APP,    10 },
         spell_adrenaline_control,       TAR_CHAR_SELF,  POS_STANDING,
         NULL,                           6,      12,
         "",                             "The adrenaline rush wears off."
@@ -1663,7 +1700,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-        "combat mind",          { L_APP, L_APP, L_APP, L_APP,   15 },
+        "combat mind",          { L_APP, L_APP, L_APP, L_APP,    15 },
         spell_combat_mind,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   15,     12,
         "",                     "Your battle sense has faded."
@@ -1740,7 +1777,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-        "energy containment",           { L_APP, L_APP, L_APP, L_APP,    10 },
+        "energy containment",   { L_APP, L_APP, L_APP, L_APP,    10 },
         spell_energy_containment,       TAR_CHAR_SELF,  POS_STANDING,
         NULL,                           10,     12,
         "",                             "You no longer absorb energy."
@@ -1754,7 +1791,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-        "enhanced strength",            { L_APP, L_APP, L_APP, L_APP,     7 },
+        "enhanced strength",    { L_APP, L_APP, L_APP, L_APP,     7 },
         spell_enhanced_strength,        TAR_CHAR_SELF,  POS_STANDING,
         NULL,                           20,     12,
         "",                             "You no longer feel so HUGE."
@@ -1789,7 +1826,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
-        "intellect fortress",           { L_APP, L_APP, L_APP, L_APP,    12 },
+        "intellect fortress",   { L_APP, L_APP, L_APP, L_APP,    12 },
         spell_intellect_fortress,       TAR_IGNORE,     POS_STANDING,
         NULL,                           25,     24,
         "",                     "Your intellectual fortress crumbles."
@@ -1893,9 +1930,146 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
         "carefully aimed stake","!Stake!"
     },
 
+	/* New abilities added by Zen made by other ppl */
+    {
+        "scan",			{ L_APP, L_APP,    30, L_APP, L_APP },
+        spell_null,		TAR_IGNORE,     POS_STANDING,
+        &gsn_scan,		0,       24,
+        "",			"!Scan!"
+    },
+
+    {
+        "shield block",         {    37,    37,    17,     7,    37 },
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_shield_block,      0,      0,
+        "",                     "!Shield Block!"
+    },
+
+    {
+        "fast healing",         {    37,    37,    27,    20,    37 },
+        spell_null,             TAR_IGNORE,             POS_DEAD,
+        &gsn_fast_healing,      0,      0,
+        "",                     "!Fast Healing!"
+    },
+
+   {
+        "fourth attack",        { L_APP, L_APP, L_APP,    30,  L_APP },
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_fourth_attack,     0,      0,
+        "",                     "!Fourth Attack!"
+    },
+
+    {
+	"brew",			{    27,    31, L_APP, L_APP,  L_APP },
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_brew,		0,	 24,
+	"blunder",		"!Brew!"
+    },
+
+    {
+	"scribe",		{    28,    32, L_APP, L_APP,  L_APP },
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_scribe,		0,	 24,
+	"blunder",		"!Scribe!"
+    },
+
+	/*
+	 * spells & skills here by Zen :)
+	 */
+    {
+        "dirt kicking",		{ L_APP, L_APP,    20,    25,  L_APP },
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_dirt,              0,      24,
+        "kicked dirt",          "You rub the dirt out of your eyes."
+    },
+
+    {
+        "swim",                  {   15,    15,    15,    15,     15 },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_swim,		 0,	 0,
+	"",			"!Swim!"
+    },
+
+    {
+        "meditate",         	{    20,    37, L_APP, L_APP,    20 },
+        spell_null,             TAR_IGNORE,             POS_DEAD,
+        &gsn_meditate,      	0,      0,
+        "",			"!Meditate!"
+    },
+
+    {
+        "meteor swarm",		{    25, L_APP, L_APP, L_APP, L_APP },
+        spell_meteor_swarm,	TAR_IGNORE,     POS_FIGHTING,
+        NULL,			20,       12,
+        "meteor swarm",		"!Meteor Swarm!"
+    },
+
+    {   
+	"chain lightning",	{    16, L_APP, L_APP, L_APP, L_APP },
+	spell_chain_lightning,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			25,	12,
+	"lightning",		"!Chain Lightning!"
+    }, 
+
+    {
+	"scry",			{    35,    35, L_APP, L_APP,    35 },
+	spell_scry, 		TAR_IGNORE,		POS_STANDING,
+	NULL,			15,	12,
+	"",			"!Scry!"
+    },
+    
+    {
+	"vortex lift",		{    27, L_APP, L_APP, L_APP,    27 },
+	spell_vortex_lift,	TAR_IGNORE,		POS_STANDING,
+	NULL,			50,	12,
+	"",			"!Vortex Lift!"
+    },
+    
+    {
+	"mass vortex lift",	{ L_APP,    40, L_APP, L_APP, L_APP },
+	spell_mass_vortex_lift,	TAR_IGNORE,		POS_STANDING,
+	&gsn_mass_vortex_lift,	150,	12,
+	"",			"!Mass Vortex Lift!"
+    },
+
+    {
+	"home sick",		{ L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_home_sick,	TAR_CHAR_SELF,		POS_FIGHTING,
+	NULL,			0,	2,
+	"",			"!Home Sick!"
+    },
+
+    {
+	"detect good",		{ L_APP,     4, L_APP, L_APP, L_APP },
+	spell_detect_good,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"The gold in your vision disappears."
+    },
+
+    {
+	"dispel good",		{ L_APP,    10, L_APP, L_APP, L_APP },
+	spell_dispel_good,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"unholy fire",		"!Dispel Good!"
+    },
+
+    {
+        "portal",               {    35,    30, L_APP, L_APP,    40 },
+        spell_portal,           TAR_IGNORE,             POS_STANDING,
+        NULL,                   100,     24,
+        "",                     "!Portal!",
+    },
+
+    {
+        "nexus",                {    40,    35, L_APP, L_APP,    45 },
+        spell_nexus,            TAR_IGNORE,             POS_STANDING,
+        NULL,                   150,   36,
+        "",                     "!Nexus!"
+    },
+
 	  /* Race ability spells */
     {
-        "vampiric bite",        { L_APP, L_APP, L_APP, L_APP, L_APP },
+        "vampiric bite",        { L_APP, L_APP, L_APP, L_APP ,L_APP },
         spell_vampiric_bite,    TAR_CHAR_DEFENSIVE,     POS_FIGHTING,
         &gsn_vampiric_bite,     0,     0,
         "vampiric bite",        "You feel well fed."

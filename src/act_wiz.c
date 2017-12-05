@@ -729,8 +729,9 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 	    obj->wear_loc );
     strcat( buf1, buf );
     
-    sprintf( buf, "Values: %d %d %d %d.\n\r",
-	    obj->value[0], obj->value[1], obj->value[2], obj->value[3] );
+    sprintf( buf, "Values: %d %d %d %d %d.\n\r",
+	    obj->value[0], obj->value[1], obj->value[2], obj->value[3],
+								obj->value[4] );
     strcat( buf1, buf );
 
     if ( obj->extra_descr || obj->pIndexData->extra_descr )
@@ -879,6 +880,11 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 		victim->pcdata->condition[COND_DRUNK ],
 		victim->saving_throw );
 	strcat( buf1, buf );
+	sprintf( buf,
+		"Clan: %d (%s).  Rank: %d.\n\r",
+		 victim->pcdata->clan, clan_table[ victim->pcdata->clan ].name,
+		victim->pcdata->rank );
+	strcat( buf1, buf );
     }
 
     sprintf( buf, "Carry number: %d.  Carry weight: %d.\n\r",
@@ -897,6 +903,12 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->leader      ? victim->leader->name   : "(none)",
 	    affect_bit_name( victim->affected_by ) );
     strcat( buf1, buf );
+
+    if ( !IS_NPC( victim ) )    /* OLC */
+    {
+        sprintf( buf, "Security: %d.\n\r", ch->pcdata->security );
+        strcat( buf1, buf );
+    }
 
     sprintf( buf, "Short description: %s.\n\rLong  description: %s",
 	    victim->short_descr,
@@ -2343,7 +2355,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char( "Field being one of:\n\r",			ch );
 	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
 	send_to_char( "  gold hp mana move practice align\n\r",		ch );
-	send_to_char( "  thirst drunk full",				ch );
+	send_to_char( "  thirst drunk full clan rank",			ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "String being one of:\n\r",			ch );
 	send_to_char( "  name short long title spec\n\r",               ch );
@@ -2791,6 +2803,68 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( !str_cmp( arg2, "clan" ) )
+    {
+	if ( IS_NPC( victim ) )
+	{
+	    send_to_char( "Not on NPC's.\n\r", ch );
+	    return;
+	}
+
+	if ( value < 0 || value > MAX_CLAN-1 )
+	{
+	    send_to_char( "That clan doesn't exist.\n\r", ch );
+	    return;
+	}
+
+	victim->pcdata->clan = value;
+	return;
+    }
+
+    if ( !str_cmp( arg2, "rank" ) )
+    {
+	if ( IS_NPC( victim ) )
+	{
+	    send_to_char( "Not on NPC's.\n\r", ch );
+	    return;
+	}
+
+	if ( value < 0 )
+	{
+	    send_to_char( "You shouldn't insert negative values.\n\r", ch );
+	    return;
+	}
+
+	victim->pcdata->rank = value;
+	return;
+    }
+
+    if ( !str_cmp( arg2, "security" ) ) /* OLC */
+    {
+        if ( IS_NPC( victim ) )
+        {
+            send_to_char( "Not on NPC's.\n\r", ch );
+            return;
+        }
+
+        if ( value > ch->pcdata->security || value < 0 )
+        {
+            if ( ch->pcdata->security != 0 )
+            {
+                sprintf( buf, "Valid security is 0-%d.\n\r",
+                    ch->pcdata->security );
+                send_to_char( buf, ch );
+            }
+            else
+            {
+                send_to_char( "Valid security is 0 only.\n\r", ch );
+            }
+            return;
+        }
+        victim->pcdata->security = value;
+        return;
+    }
+
     /*
      * Generate usage message.
      */
@@ -2826,7 +2900,7 @@ void do_oset( CHAR_DATA *ch, char *argument )
 	send_to_char( "or:     oset <object> <string> <value>\n\r",	ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "Field being one of:\n\r",			ch );
-	send_to_char( "  value0 value1 value2 value3\n\r",		ch );
+	send_to_char( "  value0 value1 value2 value3 value4\n\r",		ch );
 	send_to_char( "  extra wear level weight cost timer\n\r",	ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "String being one of:\n\r",			ch );
@@ -2869,6 +2943,12 @@ void do_oset( CHAR_DATA *ch, char *argument )
     if ( !str_cmp( arg2, "value3" ) || !str_cmp( arg2, "v3" ) )
     {
 	obj->value[3] = value;
+	return;
+    }
+
+    if ( !str_cmp( arg2, "value4" ) || !str_cmp( arg2, "v4" ) )
+    {
+	obj->value[4] = value;
 	return;
     }
 
@@ -3712,4 +3792,149 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 
     return;
 
+}
+
+void do_delet( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "delete" ) )
+        return;
+
+    send_to_char( "If you want to DELETE, spell it out.\n\r", ch );
+    return;
+}
+
+void do_delete( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA       *rch;
+    CHAR_DATA       *victim;
+    DESCRIPTOR_DATA *d;
+    char             arg [ MAX_INPUT_LENGTH ];
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "delete" ) )
+        return;
+
+    one_argument( argument, arg );
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Delete whom?\n\r", ch );
+	return;
+    }
+
+    if ( !( victim = get_char_world( rch, arg ) ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( !victim->desc )
+    {
+	act( "$N doesn't have a descriptor.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    if ( rch == victim )
+    {
+	send_to_char( "You may not delete yourself, use RETIRE.\n\r",
+		     ch );
+	return;
+    }
+
+    if ( rch->level <= victim->level && rch != victim )
+    {
+	send_to_char( "You may not delete your peer nor your superior.\n\r",
+		     ch );
+	return;
+    }
+
+    for ( d = descriptor_list; d; d = d->next )
+    {
+	if ( d == victim->desc && victim->level >= 2 )
+	{
+            /* By saving first i assure i am not removing a non existing file
+             * i know it's stupid and probably useless but... Zen.
+             */
+            save_char_obj( victim );
+    	    delete_char_obj( victim ); /* handy function huh? :) */
+	    extract_char( victim, TRUE );
+	    close_socket( d );
+	    send_to_char( "Ok.\n\r", rch );
+	    return;
+	}
+    }
+
+    bug( "Do_delete: desc not found.", 0 );
+    send_to_char( "Descriptor not found!\n\r", ch );
+    return;
+}
+
+
+void do_clookup( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    char       buf  [ MAX_STRING_LENGTH ];
+    char       buf1 [ MAX_STRING_LENGTH*3];
+    char       arg  [ MAX_INPUT_LENGTH ];
+    int        cn;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "clookup" ) )
+        return;
+
+    one_argument( argument, arg );
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Syntax: clookup all\n\r",			ch );
+	send_to_char( "or:     clookup <clan number>\n\r",		ch );
+	send_to_char( "or:     clookup <clan name>\n\r",		ch );
+	return;
+    }
+
+    if ( !str_cmp( arg, "all" ) )
+    {
+        buf1[0] = '\0';
+	for ( cn = 0; cn < MAX_CLAN; cn++ )
+	{
+	    if ( !clan_table[cn].name )
+		break;
+	    sprintf( buf, "Clan: %2d Title: '%s'\n\r",
+		    cn, clan_table[cn].name );
+	    strcat( buf1, buf );
+	}
+	send_to_char( buf1, ch );
+    }
+    else
+    {
+	if ( is_number( arg ) )
+        {
+	    cn = atoi( arg );
+	    if (   cn >= 0
+		&& cn  < MAX_CLAN
+		&& clan_table[cn].name )
+	    {
+		sprintf( buf, "Clan: %2d Title: '%s'\n\r",
+			cn, clan_table[cn].name );
+		send_to_char( buf, ch );
+		return;
+	    }
+	}
+
+        if ( ( cn = clan_lookup( arg ) ) < 0 )
+	{
+	    send_to_char( "No such clan.\n\r", ch );
+	    return;
+	}
+
+		sprintf( buf, "Clan: %2d Title: '%s'\n\r",
+			cn, clan_table[cn].name );
+	send_to_char( buf, ch );
+    }
+
+    return;
 }

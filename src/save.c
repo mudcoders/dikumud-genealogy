@@ -78,6 +78,36 @@ char *initial( const char *str )
 }
 
 /*
+ * Delete a character's file.
+ * Used for retire command for now. Maybe i will make an imm command.
+ * Courtesy of Zen :)
+ */
+ 
+void delete_char_obj( CHAR_DATA *ch )
+{
+    char  buf     [ MAX_STRING_LENGTH ];
+    char  strremove [ MAX_INPUT_LENGTH  ];
+
+    if ( IS_NPC( ch ) || ch->level < 2 )
+	return;
+
+    /* player files parsed directories by Yaz 4th Realm */
+#if !defined( macintosh ) && !defined( WIN32 )
+    sprintf( strremove, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
+	    "/", capitalize( ch->name ) );
+#else
+    sprintf( strremove, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
+#endif
+    if ( remove( strremove ) )
+    {
+        sprintf( buf, "Delete_char_obj: remove %s: ", ch->name );
+	bug( buf, 0 );
+	perror( strremove );
+    }
+    return;
+}
+
+/*
  * Save a character and inventory.
  * Would be cool to save NPC's too for quest purposes,
  *   some of the infrastructure is provided.
@@ -131,6 +161,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 {
     AFFECT_DATA *paf;
     int          sn;
+    int		 pos;
 
     fprintf( fp, "#%s\n", IS_NPC( ch ) ? "MOB" : "PLAYER"	);
 
@@ -204,7 +235,20 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		ch->pcdata->condition[1],
 		ch->pcdata->condition[2] );
 
+	fprintf( fp, "Security    %d\n",   ch->pcdata->security     );
+	fprintf( fp, "Clan        %d %d\n",   ch->pcdata->rank,
+						ch->pcdata->clan);
 	fprintf( fp, "Pglen       %d\n",   ch->pcdata->pagelen     );
+
+        for ( pos = 0; pos < MAX_ALIAS; pos++ )
+	{
+	    if ( !ch->pcdata->alias[pos]
+		||  !ch->pcdata->alias_sub[pos] )
+		break;
+
+	    fprintf( fp, "Alias       %d '%s' %s~\n", pos,
+	            ch->pcdata->alias[pos], ch->pcdata->alias_sub[pos] );
+	}
 
 	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
@@ -272,8 +316,9 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
     fprintf( fp, "Level        %d\n",	obj->level		     );
     fprintf( fp, "Timer        %d\n",	obj->timer		     );
     fprintf( fp, "Cost         %d\n",	obj->cost		     );
-    fprintf( fp, "Values       %d %d %d %d\n",
-	obj->value[0], obj->value[1], obj->value[2], obj->value[3]   );
+    fprintf( fp, "Values       %d %d %d %d %d\n",
+	obj->value[0], obj->value[1], obj->value[2], obj->value[3],
+							obj->value[4]   );
 
     switch ( obj->item_type )
     {
@@ -386,6 +431,9 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->condition[COND_THIRST]	= 48;
     ch->pcdata->condition[COND_FULL]	= 48;
     ch->pcdata->pagelen                 = 20;
+    ch->pcdata->security		= 0;    /* OLC */
+    ch->pcdata->rank			= 0;
+    ch->pcdata->clan	                = 0;
 
     ch->pcdata->switched                = FALSE;
 
@@ -513,7 +561,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
     int         num_keys;
     int         last_key = 0;
 
-    char        def_prompt [] = "<%hhp %mm %vmv> ";
+    char        def_prompt [] = "{c<%hhp %mm %vmv>{x ";
     char        def_sdesc  [] = "Your short description was corrupted.";
     char        def_ldesc  [] = "Your long description was corrupted.";
     char        def_desc   [] = "Your description was corrupted.";
@@ -572,6 +620,11 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
       { "Cond",   FALSE, DEFLT,			{ &ch->pcdata->condition [0],
 						  &ch->pcdata->condition [1],
 						  &ch->pcdata->condition [2],
+						                      NULL } },
+      { "Security",   FALSE, DEFLT,             { &ch->pcdata->security,
+								      NULL } },
+      { "Clan",   FALSE, DEFLT,			{ &ch->pcdata->rank,
+						  &ch->pcdata->clan,
 						                      NULL } },
       { "Pglen",  FALSE, 20,			{ &ch->pcdata->pagelen,
 						                      NULL } },
@@ -663,6 +716,29 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 		  bug( "Fread_char: Unknown Race.", 0 );
 	      else
 		  ch->race = i;
+	  }
+
+	else if ( !str_cmp( word, "Alias" ) )
+	  {
+
+	      i  = fread_number( fp, &status );
+
+	      if ( status  )
+	      {
+		  bug( "Fread_char: Error reading alias.", 0 );
+		  fread_to_eol( fp );
+		  continue;
+	      }
+
+	      if ( i >= MAX_ALIAS )
+	      {
+		  bug( "Fread_char: too many aliases.", 0 );
+		  fread_to_eol( fp );
+		  continue;
+	      }
+
+	      ch->pcdata->alias[i] = str_dup( fread_word( fp, &status1 ) );
+	      ch->pcdata->alias_sub[i] = fread_string( fp, &status );
 	  }
 
         else if ( !str_cmp( word, "Skll" ) )
@@ -817,7 +893,8 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
 	{ "Values",      FALSE, MAND,             { &obj.value [0],
 						    &obj.value [1],
 						    &obj.value [2],
-						    &obj.value [3],   NULL } },
+						    &obj.value [3],
+						    &obj.value [4],   NULL } },
 	{ "\0",          FALSE, 0                                          } };
 
     memset( &obj, 0, sizeof( OBJ_DATA ) );

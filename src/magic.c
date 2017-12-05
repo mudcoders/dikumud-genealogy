@@ -2109,24 +2109,49 @@ void spell_polymorph_other( int sn, int level, CHAR_DATA *ch, void *vo )
 
 
 
-void spell_protection( int sn, int level, CHAR_DATA *ch, void *vo )
+void spell_protection_evil( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA  *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
 
-    if ( IS_AFFECTED( victim, AFF_PROTECT ) )
+    if ( IS_AFFECTED( victim, AFF_PROTECT_EVIL )
+        || IS_AFFECTED( victim, AFF_PROTECT_GOOD ) )
 	return;
 
     af.type      = sn;
     af.duration  = 24;
     af.location  = APPLY_NONE;
     af.modifier  = 0;
-    af.bitvector = AFF_PROTECT;
+    af.bitvector = AFF_PROTECT_EVIL;
     affect_to_char( victim, &af );
 
     if ( ch != victim )
 	send_to_char( "Ok.\n\r", ch );
-    send_to_char( "You feel protected.\n\r", victim );
+    send_to_char( "You feel holy and pure.\n\r", victim );
+    return;
+}
+
+
+
+void spell_protection_good( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+
+    if ( IS_AFFECTED( victim, AFF_PROTECT_GOOD )
+        || IS_AFFECTED( victim, AFF_PROTECT_EVIL ) )
+	return;
+
+    af.type      = sn;
+    af.duration  = 24;
+    af.location  = APPLY_NONE;
+    af.modifier  = 0;
+    af.bitvector = AFF_PROTECT_GOOD;
+    affect_to_char( victim, &af );
+
+    if ( ch != victim )
+	send_to_char( "Ok.\n\r", ch );
+    send_to_char( "You feel aligned with darkness.\n\r", victim );
     return;
 }
 
@@ -2463,6 +2488,7 @@ void spell_summon( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| IS_SET( victim->in_room->room_flags, ROOM_NO_RECALL )
 	|| IS_AFFECTED( victim, AFF_CURSE )
 	|| victim->level >= level + 3
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_IMMORTAL )
 	|| victim->fighting
 	|| victim->in_room->area != ch->in_room->area
 	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
@@ -3394,7 +3420,7 @@ void spell_inertial_barrier ( int sn, int level, CHAR_DATA *ch, void *vo )
 
     for ( gch = ch->in_room->people; gch; gch = gch->next_in_room )
     {
-	if ( !is_same_group( gch, ch ) || IS_AFFECTED( gch, AFF_PROTECT ) )
+	if ( !is_same_group( gch, ch ) || IS_AFFECTED( gch, AFF_PROTECT_EVIL ) )
 	    continue;
 
 	act( "An inertial barrier forms around $n.", gch, NULL, NULL,
@@ -3405,7 +3431,7 @@ void spell_inertial_barrier ( int sn, int level, CHAR_DATA *ch, void *vo )
 	af.duration  = 24;
 	af.modifier  = 0;
 	af.location  = APPLY_NONE;
-	af.bitvector = AFF_PROTECT;
+	af.bitvector = AFF_PROTECT_EVIL;
 	affect_to_char( gch, &af );
     }
     return;
@@ -3818,4 +3844,523 @@ void spell_flaming( int sn, int level, CHAR_DATA *ch, void *vo )
 	victim, NULL, NULL, TO_ROOM );
     return;
 
+}
+
+
+/*
+ * ------------------------- by Zen ----------------------------------
+ */
+void spell_meteor_swarm( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *vch;
+    int        dam;
+    static const int        dam_each [ ] =
+    {
+	  0,
+	  0,   0,   0,   0,   0,        0,   0,   0,   0,   0,
+	  0,   0,   0,   0,  50,       55,  60,  65,  70,  75,
+	 80,  85,  90,  95, 100,      102, 104, 106, 108, 110,
+	112, 114, 116, 118, 120,      122, 124, 126, 128, 130,
+	132, 134, 136, 138, 140,      142, 144, 146, 148, 150
+    };
+
+    if ( !IS_OUTSIDE( ch ) )
+    {
+	send_to_char( "You must be out of doors.\n\r", ch );
+	return;
+    }
+
+    send_to_char( "Meteors are falling from the sky!\n\r", ch );
+    act( "$n causes a meteor swarm.", ch, NULL, NULL, TO_ROOM );
+
+    level    = UMIN( level, sizeof( dam_each ) / sizeof( dam_each[0] ) - 1 );
+    level    = UMAX( 0, level );
+    dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
+
+    for ( vch = char_list; vch; vch = vch->next )
+    {
+        if ( vch->deleted || !vch->in_room )
+	    continue;
+	if ( vch->in_room == ch->in_room )
+	{
+	    if ( vch != ch && ( IS_NPC( ch ) ? !IS_NPC( vch )
+			                     :  IS_NPC( vch ) ) )
+	    {
+    		if ( saves_spell( level, vch ) )
+        		dam /= 2;
+    		damage( ch, vch, dam, sn, WEAR_NONE );
+	    }
+
+	    continue;
+	}
+
+	if ( vch->in_room->area == ch->in_room->area
+	    && IS_OUTSIDE( vch )
+	    && IS_AWAKE( vch ) )
+	    send_to_char( "Meteors fall from the sky.\n\r", vch );
+    }
+
+    return;
+}
+
+
+void spell_vortex_lift( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim;
+
+    if ( !( victim = get_char_world( ch, target_name ) )
+	|| victim == ch
+	|| !victim->in_room
+	|| ch->in_room == victim->in_room
+	|| IS_SET( victim->in_room->room_flags, ROOM_SAFE      )
+	|| IS_SET( victim->in_room->room_flags, ROOM_PRIVATE   )
+	|| IS_SET( victim->in_room->room_flags, ROOM_SOLITARY  )
+	|| victim->level >= level + 3
+	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
+	    && !is_same_clan( ch, victim ) )
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
+	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
+
+    {
+	send_to_char( "You failed.\n\r", ch );
+	return;
+    }
+
+    act( "$n leaves in a swirling vortex.", ch, NULL, NULL, TO_ROOM );
+    char_from_room( ch );
+    char_to_room( ch, victim->in_room );
+    act( "$n appears in a swirling vortex.", ch, NULL, NULL, TO_ROOM );
+
+    do_look( ch, "auto" );
+    return;
+}
+
+
+void spell_scry( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    ROOM_INDEX_DATA *original;
+    CHAR_DATA       *wch;
+    CHAR_DATA 	    *victim;
+
+    if ( !( victim = get_char_world( ch, target_name ) )
+	|| victim == ch
+	|| !victim->in_room )
+
+    {
+	send_to_char( "You have failed.\n\r", ch );
+	return;
+    }
+
+    original = ch->in_room;
+    char_from_room( ch );
+    char_to_room( ch, victim->in_room );
+
+    do_look( ch, "auto" );
+
+    /*
+     * See if 'ch' still exists before continuing!
+     * Handles 'c scry XXXX quit' case.
+     */
+    for ( wch = char_list; wch; wch = wch->next )
+    {
+	if ( wch == ch )
+	{
+	    char_from_room( ch );
+	    char_to_room( ch, original );
+	    break;
+	}
+    }
+
+    return;
+}
+
+
+void spell_mass_vortex_lift( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA        *victim;
+    CHAR_DATA  		*gch;
+    int		      number;
+
+    if ( !( victim = get_char_world( ch, target_name ) )
+	|| victim == ch
+	|| !victim->in_room
+	|| ch->in_room == victim->in_room
+	|| IS_SET( victim->in_room->room_flags, ROOM_SAFE      )
+	|| IS_SET( victim->in_room->room_flags, ROOM_PRIVATE   )
+	|| IS_SET( victim->in_room->room_flags, ROOM_SOLITARY  )
+	|| victim->level >= level + 3
+	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
+	    && !is_same_clan( ch, victim ) )
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
+	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
+
+    {
+	send_to_char( "You failed.\n\r", ch );
+	return;
+    }
+
+    for ( gch = ch->in_room->people; gch; gch = gch->next_in_room )
+    {
+	if ( !is_same_group( gch, ch ) || !can_see( ch, gch ) || gch==ch )
+	    continue;
+
+	number = number_percent();
+ 	if ( number < ch->pcdata->learned[gsn_mass_vortex_lift]  )
+ 	{
+          act( "$n leaves in a swirling vortex.", gch, NULL, NULL, TO_ROOM );
+          char_from_room( gch );
+          char_to_room( gch, victim->in_room );
+          act( "$n appears in a swirling vortex.", gch, NULL, NULL, TO_ROOM );
+          do_look( gch, "auto" );
+        }
+        else
+        {
+          act( "You have failed to vortex lift $N.", ch, NULL, gch, TO_CHAR );
+          act( "$n has failed to vortex lift you.", ch, NULL, gch, TO_VICT );
+        }
+    }
+ 
+    act( "$n leaves in a swirling vortex.", ch, NULL, NULL, TO_ROOM );
+    char_from_room( ch );
+    char_to_room( ch, victim->in_room );
+    act( "$n appears in a swirling vortex.", ch, NULL, NULL, TO_ROOM );
+    do_look( ch, "auto" );
+
+    return;
+}
+
+
+/* 
+ * spell_home_sick made by Zen
+ */
+void spell_home_sick( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    ROOM_INDEX_DATA *location;
+    char             buf [ MAX_STRING_LENGTH ];
+    OBJ_DATA *scroll;
+
+    if ( !IS_SET( ch->pcdata->rank, CLAN_MEMBER ) )
+    {
+	send_to_char( "You are not a clansman!\n\r", ch );
+    	return;
+    }
+    
+    scroll = create_object( get_obj_index( OBJ_VNUM_CLAN_SCROLL ), 20 );
+    obj_to_char( scroll, ch );
+    act( "$n has called upon his clan-return capability!", ch , NULL, NULL, TO_ROOM );
+
+    if ( IS_SET( ch->in_room->room_flags, ROOM_NO_RECALL )
+	|| IS_AFFECTED( ch, AFF_CURSE ) )
+    {
+	send_to_char( "God has forsaken you.\n\r", ch );
+	return;
+    }
+
+    location = get_room_index( clan_table[ ch->pcdata->clan ].castle );
+    if ( ch->in_room == location )
+    {
+	scroll = create_object( get_obj_index( OBJ_VNUM_CLAN_SCROLL ), 20 );
+	obj_to_char( scroll, ch );
+	return;
+    }
+
+
+    if ( ch->fighting )
+    {
+	int lose;
+
+	if ( number_bits( 1 ) == 0 )
+	{
+	    WAIT_STATE( ch, 4 );
+	    lose = ( ch->desc ) ? 25 : 50;
+	    gain_exp( ch, 0 - lose );
+	    sprintf( buf, "You failed!  You lose %d exps.\n\r", lose );
+	    send_to_char( buf, ch );
+	    return;
+	}
+    }
+
+    ch->move /= 2;
+    act( "$n disappears.", ch, NULL, NULL, TO_ROOM );
+    char_from_room( ch );
+    char_to_room( ch, location );
+    act( "$n appears in the room.", ch, NULL, NULL, TO_ROOM );
+    do_look( ch, "auto" );
+    return;
+}
+
+void spell_chain_lightning( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_DATA *vch;
+    CHAR_DATA *vch_last;
+    bool found;
+    int dam;
+
+    act( "A lightning bolt leaps from $n's hand and arcs to $N.",
+						ch, NULL, victim, TO_ROOM );
+    act( "A lightning bolt leaps from your hand and arcs to $N.",
+						ch, NULL, victim, TO_CHAR );
+    act( "A lightning bolt leaps from $n's hand and hits you!",
+						ch, NULL, victim, TO_VICT );  
+
+    dam = dice( level, 6 );
+    if ( saves_spell( level, victim ) )
+ 	dam /= 3;
+    damage( ch, victim, dam, sn, WEAR_NONE );
+    vch_last = victim;
+    level -= 4;
+
+    while ( level > 0 )
+    {
+	found = FALSE;
+	for ( vch = char_list; vch; vch = vch->next )
+	{
+	    if ( vch->deleted || !vch->in_room )
+		continue;
+	    if ( vch->in_room == ch->in_room )
+	    {
+		if ( !saves_spell( level, vch ) && vch != vch_last )
+		{
+		    found = TRUE;
+		    vch_last = vch;
+		    act( "The bolt arcs to $n!", vch, NULL, NULL, TO_ROOM );
+		    act( "The bolt hits you!", vch, NULL, NULL, TO_CHAR );
+		    dam = dice( level, 6 );
+		    if ( saves_spell( level, vch ) )
+			dam /= 3;
+		    damage( ch, vch, dam, sn, WEAR_NONE);
+		    level -= 4;  /* decrement damage */
+		}
+
+		    continue;
+	    }
+
+	    if ( vch->in_room->area == ch->in_room->area
+		&& IS_OUTSIDE( vch )
+		&& IS_AWAKE( vch ) )
+		    send_to_char( "Your hear a thundering noise.\n\r", vch );
+	}
+	
+	if ( !found )
+	{
+	    if ( ch->deleted || !ch )
+		return;
+
+	    if ( vch_last == ch )
+	    {
+		act( "The bolt seems to have fizzled out.",
+						ch, NULL, NULL, TO_ROOM );
+		act( "The bolt grounds out through your body.",
+						ch, NULL, NULL, TO_CHAR );
+		return;
+	    }
+	
+	  vch_last = ch;
+	  act( "The bolt arcs to $n...whoops!", ch, NULL, NULL, TO_ROOM );
+	  send_to_char( "You are struck by your own lightning!\n\r", ch );
+	  dam = dice( level, 6 );
+	  if ( saves_spell( level, ch ) )
+	    dam /= 3;
+	  damage( ch, ch, dam, sn, WEAR_NONE);
+	  level -= 4;
+	  if ( ch->deleted || !ch ) 
+	    return;
+	}
+    }
+    return;
+}
+
+
+void spell_detect_good( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+
+    if ( IS_AFFECTED( victim, AFF_DETECT_GOOD ) )
+	return;
+
+    af.type      = sn;
+    af.duration  = level;
+    af.location  = APPLY_NONE;
+    af.modifier  = 0;
+    af.bitvector = AFF_DETECT_GOOD;
+    affect_to_char( victim, &af );
+
+    if ( ch != victim )
+	send_to_char( "Ok.\n\r", ch );
+    send_to_char( "Your eyes tingle.\n\r", victim );
+    return;
+}
+
+void spell_dispel_good( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    int        dam;
+  
+    if ( !IS_NPC( ch ) && IS_GOOD( ch ) )
+    {
+	send_to_char( "You are too GOOD to cast this.\n\r", ch );
+	return;
+    }
+  
+    if ( IS_EVIL( victim ) )
+    {
+	act( "$N is protected by $S evil.", ch, NULL, victim, TO_ROOM );
+	act( "$N does not seem to be affected.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    if ( IS_NEUTRAL( victim ) )
+    {
+	act( "$N does not seem to be affected.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    dam = dice( level, 4 );
+    if ( saves_spell( level, victim ) )
+	dam /= 2;
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
+    return;
+}
+
+void spell_nexus( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim;
+    ROOM_INDEX_DATA *location;
+    ROOM_INDEX_DATA *original;
+    OBJ_DATA *portal;
+    OBJ_DATA *stone;
+
+    original = ch->in_room;
+ 
+    if ( !( victim = get_char_world( ch, target_name ) )
+	|| victim == ch
+	|| !( location = victim->in_room )
+	|| ch->in_room == victim->in_room
+	|| IS_SET( victim->in_room->room_flags, ROOM_SAFE      )
+	|| IS_SET( victim->in_room->room_flags, ROOM_PRIVATE   )
+	|| IS_SET( victim->in_room->room_flags, ROOM_SOLITARY  )
+	|| victim->level >= level + 3
+	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
+	    && !is_same_clan( ch, victim ) )
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
+	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
+    {
+	send_to_char( "You failed.\n\r", ch );
+	return;
+    }
+ 
+    stone = get_eq_char( ch, WEAR_HOLD );
+    if ( !IS_IMMORTAL( ch )
+	&& ( !stone || stone->item_type != ITEM_WARP_STONE ) )
+    {
+        send_to_char( "You lack the proper component for this spell.\n\r", ch );
+        return;
+    }
+ 
+    if ( stone && stone->item_type == ITEM_WARP_STONE )
+    {
+        act( "You draw upon the power of $p.", ch, stone, NULL, TO_CHAR );
+        act( "It flares brightly and vanishes!", ch, stone, NULL, TO_CHAR );
+        extract_obj( stone );
+    }
+
+    /* portal one */ 
+    portal = create_object( get_obj_index( OBJ_VNUM_PORTAL ), 0 );
+    portal->timer = 1 + level / 10;
+    portal->value[0] = level / 6;
+    portal->value[4] = location->vnum;
+ 
+    obj_to_room( portal, original );
+ 
+    act( "$p rises up from the ground.", ch, portal, NULL, TO_ROOM );
+    act( "$p rises up before you.", ch, portal, NULL, TO_CHAR );
+
+    /* no second portal if rooms are the same */
+    if (location == original)
+	return;
+
+    /* portal two */
+    portal = create_object( get_obj_index( OBJ_VNUM_PORTAL ), 0 );
+    portal->timer = 1 + level / 10;
+    portal->value[0] = level / 6;
+    portal->value[4] = original->vnum;
+
+    obj_to_room( portal, location );
+
+    if ( location->people )
+    {
+	act( "$p rises up from the ground.", location->people, portal, NULL,
+								      TO_ROOM );
+	act( "$p rises up from the ground.", location->people, portal, NULL,
+								      TO_CHAR );
+    }
+
+    return;
+}
+
+void spell_portal( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim;
+    ROOM_INDEX_DATA *location;
+    ROOM_INDEX_DATA *original;
+    OBJ_DATA *portal;
+    OBJ_DATA *stone;
+
+    original = ch->in_room;
+ 
+    if ( !( victim = get_char_world( ch, target_name ) )
+	|| victim == ch
+	|| !( location = victim->in_room )
+	|| ch->in_room == victim->in_room
+	|| IS_SET( victim->in_room->room_flags, ROOM_SAFE      )
+	|| IS_SET( victim->in_room->room_flags, ROOM_PRIVATE   )
+	|| IS_SET( victim->in_room->room_flags, ROOM_SOLITARY  )
+	|| victim->level >= level + 3
+	|| ( !IS_NPC( victim ) && IS_CLAN( victim ) 
+	    && !is_same_clan( ch, victim ) )
+	|| ( !IS_NPC( victim ) && victim->level >= LEVEL_HERO )
+	|| ( IS_NPC( victim ) && saves_spell( level, victim ) ) )
+    {
+	send_to_char( "You failed.\n\r", ch );
+	return;
+    }
+ 
+    stone = get_eq_char( ch, WEAR_HOLD );
+    if ( !IS_IMMORTAL( ch )
+	&& ( !stone || stone->item_type != ITEM_WARP_STONE ) )
+    {
+        send_to_char( "You lack the proper component for this spell.\n\r", ch );
+        return;
+    }
+ 
+    if ( stone && stone->item_type == ITEM_WARP_STONE )
+    {
+        act( "You draw upon the power of $p.", ch, stone, NULL, TO_CHAR );
+        act( "It flares brightly and vanishes!", ch, stone, NULL, TO_CHAR );
+        extract_obj( stone );
+    }
+
+    portal = create_object( get_obj_index( OBJ_VNUM_PORTAL ), 0 );
+    portal->timer = 2 + level / 25;
+    portal->value[0] = level / 6;
+    portal->value[4] = location->vnum;
+ 
+    obj_to_room( portal, original );
+ 
+    act( "$p rises up from the ground.", ch, portal, NULL, TO_ROOM );
+    act( "$p rises up before you.", ch, portal, NULL, TO_CHAR );
+
+    if ( location->people )
+    {
+	act( "$p rises up from the ground.", location->people, portal, NULL,
+								      TO_ROOM );
+	act( "$p rises up from the ground.", location->people, portal, NULL,
+								      TO_CHAR );
+    }
+
+    return;
 }

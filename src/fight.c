@@ -41,6 +41,7 @@
  */
 bool	check_dodge	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool	check_parry	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool	check_shield_block   args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void	dam_message	     args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dam,
 				    int dt, int wpn ) );
 void	death_cry	     args( ( CHAR_DATA *ch ) );
@@ -79,11 +80,16 @@ void violence_update( void )
 
 	if ( ( victim = ch->fighting ) )
 	{
+	    mprog_hitprcnt_trigger( ch, victim );
+	    mprog_fight_trigger( ch, victim );
+
 	    if ( IS_AWAKE( ch ) && ch->in_room == victim->in_room
 		&& !victim->deleted )
 	    {
 	        /* Ok here we test for switch if victim is charmed */
 	        if ( IS_AFFECTED( victim, AFF_CHARM )
+		    && victim->master
+		    && !victim->master->deleted
 		    && victim->in_room == victim->master->in_room
 		    && number_percent() > 40 )
 		{
@@ -213,6 +219,15 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 
     chance = IS_NPC( ch ) ? ch->level
                           : ch->pcdata->learned[gsn_third_attack] / 4;
+    if ( number_percent( ) < chance )
+    {
+	one_hit( ch, victim, dt, WEAR_WIELD );
+	if ( ch->fighting != victim )
+	    return;
+    }
+
+    chance = IS_NPC( ch ) ? ch->level
+                          : ch->pcdata->learned[gsn_fourth_attack] / 4;
     if ( number_percent( ) < chance )
     {
 	one_hit( ch, victim, dt, WEAR_WIELD );
@@ -466,17 +481,22 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 		      RACE_SANCT ) )
 	    dam /= 2;
 
-	if ( (   IS_AFFECTED( victim, AFF_PROTECT      )
+	if ( (   IS_AFFECTED( victim, AFF_PROTECT_EVIL )
 	      || IS_SET( race_table[ victim->race ].race_abilities,
 			RACE_PROTECTION )              )
 	    && IS_EVIL( ch )                           )
+	    dam -= dam / 4;
+	else if ( (   IS_AFFECTED( victim, AFF_PROTECT_GOOD )
+	      || IS_SET( race_table[ victim->race ].race_abilities,
+			RACE_PROTECTION )              )
+	    && IS_GOOD( ch )                           )
 	    dam -= dam / 4;
 
 	if ( dam < 0 )
 	    dam = 0;
 
 	/*
-	 * Check for disarm, trip, parry, and dodge.
+	 * Check for disarm, trip, parry, and dodge. (and shield block)
 	 */
 	if ( dt >= TYPE_HIT || dt == gsn_kick )
 	{
@@ -498,6 +518,8 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	        use_magical_item( ch );
 	    if ( check_parry( ch, victim ) && dam > 0 )
 		return;
+	    if ( check_shield_block( ch, victim ) && dam > 0 )
+	         return;
 	    if ( check_dodge( ch, victim ) && dam > 0 )
 		return;
 	}
@@ -618,7 +640,9 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	     * Dying penalty:
 	     * 1/2 way back to previous 2 levels.
 	     */
-	    if ( IS_NPC( ch ) )
+	    if ( IS_NPC( ch )
+		&& !IS_SET(victim->in_room->room_flags, ROOM_ARENA) )
+
 	    {
 	        if ( victim->exp > EXP_PER_LEVEL * ( victim->level - 1 ) )
 		    gain_exp( victim, ( EXP_PER_LEVEL * ( victim->level - 1 ) 
@@ -628,7 +652,8 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	    {
 	        if ( ch != victim )
 		{
-		    if ( IS_SET( victim->act, PLR_REGISTER ) )
+		    if ( IS_SET( victim->act, PLR_REGISTER )
+			&& !IS_SET(victim->in_room->room_flags, ROOM_ARENA) )
 		    {
 			exp = number_range( 250, 750 );
 			gain_exp( victim, 0 - exp );
@@ -643,6 +668,9 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 			    SET_BIT( victim->act, PLR_DENY );
 			}
 		    }
+		    else
+	send_to_char( "You don't lose exps from fighting in an Arena.\n\r",
+					victim );
 
 		    gold = victim->gold * number_range( 10, 20 ) / 100;
 		    ch->gold += gold;
@@ -754,6 +782,9 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
 	|| IS_SET( victim->act, PLR_THIEF ) )
         return FALSE;
 
+    if ( IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+        return FALSE;
+
     if ( ch->level < 16 && !ch->fighting )
     {
 	send_to_char(
@@ -819,7 +850,8 @@ void check_killer( CHAR_DATA *ch, CHAR_DATA *victim )
      */
     if ( IS_SET( victim->act, PLR_KILLER )
 	|| IS_SET( victim->act, PLR_THIEF )
-	|| ( IS_SET( ch->act, PLR_KILLER ) && ch->fighting ) )
+	|| ( IS_SET( ch->act, PLR_KILLER ) && ch->fighting )
+        || IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
         return;
 
     /*
@@ -936,6 +968,35 @@ bool check_parry( CHAR_DATA *ch, CHAR_DATA *victim )
 
     act( "$N parries your attack.", ch, NULL, victim, TO_CHAR );
     act( "You parry $n's attack.",  ch, NULL, victim, TO_VICT );
+    return TRUE;
+}
+
+
+
+/*
+ * Check for block.
+ */
+bool check_shield_block( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    int chance;
+ 
+    if ( !IS_AWAKE( victim ) )
+        return FALSE;
+ 
+    if ( !get_eq_char( victim, WEAR_SHIELD ) )
+	return FALSE;
+
+    if ( IS_NPC( victim ) )
+	/* Zen was here.  :) */
+        chance  = UMIN( 60, 2 * victim->level );
+    else
+	chance  = victim->pcdata->learned[gsn_shield_block] / 2;
+ 
+    if ( number_percent( ) >= chance + victim->level - ch->level )
+        return FALSE;
+ 
+    act( "You block $n's attack with your shield.", ch, NULL, victim, TO_VICT );
+    act( "$N blocks your attack with a shield.", ch, NULL, victim, TO_CHAR    );
     return TRUE;
 }
 
@@ -1115,6 +1176,8 @@ void make_corpse( CHAR_DATA *ch )
 	  continue;
 	obj_from_char( obj );
 
+	REMOVE_BIT( obj->extra_flags, ITEM_VIS_DEATH );
+
 	/*
 	 * Remove item inventories from all corpses.
 	 * Includes licenses to kill
@@ -1241,7 +1304,7 @@ void raw_kill( CHAR_DATA *ch, CHAR_DATA *victim )
 
     stop_fighting( victim, TRUE );
     if ( ch != victim )
-        death_cry( victim );
+	mprog_death_trigger( victim );
     make_corpse( victim );
 
     if ( !IS_NPC( victim ) && IS_AFFECTED( victim, AFF_VAMP_BITE ) )
@@ -1342,6 +1405,12 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	    send_to_char( "You are too low level for this group.\n\r",  gch );
 	    continue;
 	}
+
+        if ( IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+        {
+	    send_to_char( "No exps from fighting in an Arena.\n\r",  gch );
+	    continue;
+        }
 
 	xp = xp_compute( gch, victim ) / members;
 
@@ -2287,7 +2356,104 @@ void do_kick( CHAR_DATA *ch, char *argument )
 }
 
 
+void do_dirt( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *victim;
+    char       arg [ MAX_INPUT_LENGTH ];
+    int        percent;
 
+    /* Don't allow charmed mobs to do this, check player's level */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+        || ( !IS_NPC( ch )
+            && ch->level < skill_table[gsn_dirt].skill_level[ch->class] ) )
+    {
+        send_to_char( "You get your feet dirty.\n\r", ch );
+        return;
+    }
+
+    if ( !ch->fighting )
+    {
+        send_to_char( "You aren't fighting anyone.\n\r", ch );
+        return;
+    }
+
+    if ( !check_blind( ch ) )
+        return;
+
+    one_argument( argument, arg );
+
+    victim = ch->fighting;
+
+    if (arg[0] != '\0')
+    {
+        if ( !( victim = get_char_room( ch, arg ) ) )
+        {
+            send_to_char( "They aren't here.\n\r", ch );
+            return;
+        }
+    }
+
+    if (victim == ch)
+    {
+	send_to_char( "Very funny.\n\r", ch );
+	return;
+    }
+
+    if ( IS_AFFECTED( victim, AFF_BLIND ) )
+    {
+	act("$E's already been blinded.",ch,NULL,victim,TO_CHAR);
+	return;
+    }
+
+    percent = ( ch->level - victim->level ) * 2;
+
+    percent += get_curr_dex( ch );
+    percent -= 2 * get_curr_dex( victim );
+
+    switch(ch->in_room->sector_type)
+    {
+	case SECT_INSIDE:		percent -= 20; break;
+	case SECT_CITY:			percent -= 10; break;
+	case SECT_FIELD:		percent +=  5; break;
+	case SECT_FOREST:			      break;
+	case SECT_HILLS:			      break;
+	case SECT_MOUNTAIN:		percent -= 10; break;
+	case SECT_UNDERWATER:		percent  =  0; break;
+	case SECT_WATER_SWIM:		percent  =  0; break;
+	case SECT_WATER_NOSWIM:		percent  =  0; break;
+	case SECT_AIR:			percent  =  0; break;
+	case SECT_DESERT:		percent += 10; break;
+	default:				      break;
+    }
+
+    if (percent <= 0)
+    {
+	send_to_char( "There isn't any dirt to kick.\n\r", ch );
+	return;
+    }
+
+    if ( percent > number_percent() )
+    {
+	AFFECT_DATA af;
+
+	act( "$n is blinded by the dirt in $s eyes!", victim, NULL, NULL,
+								    TO_ROOM );
+	act( "$n kicks dirt into your eyes!", ch, NULL, victim, TO_VICT );
+        damage( ch, victim, 5, gsn_dirt, WEAR_NONE );
+	send_to_char( "You can't see a thing!\n\r", victim );
+
+	af.type      = gsn_dirt;
+	af.duration  = 0;
+	af.location  = APPLY_HITROLL;
+	af.modifier  = -4;
+	af.bitvector = AFF_BLIND;
+	affect_to_char( victim, &af );
+
+    }
+    WAIT_STATE( ch, skill_table[gsn_dirt].beats );
+
+    return;
+}
 
 void do_disarm( CHAR_DATA *ch, char *argument )
 {
@@ -2809,6 +2975,9 @@ bool licensed ( CHAR_DATA *ch )
     if ( ch->race == race_lookup( "Vampire" ) )
         return TRUE;
 
+    if ( IS_SET( ch->in_room->room_flags, ROOM_ARENA ) )
+        return TRUE;
+
     if ( !IS_SET( ch->act, PLR_REGISTER ) )
         return FALSE;
 
@@ -2835,6 +3004,9 @@ bool registered ( CHAR_DATA *ch, CHAR_DATA *victim )
         return TRUE;
 
     if ( ch->race == race_lookup( "Vampire" ) )
+        return TRUE;
+
+    if ( IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
         return TRUE;
 
     return FALSE;

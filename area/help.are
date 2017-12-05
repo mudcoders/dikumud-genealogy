@@ -527,6 +527,12 @@ to use it properly.
 
 REMOVE will take any object from your equipment and put it back into your
 inventory.
+
+REMOVE as well as most other object manipulation commands,
+allow the use of #.object format, where # is a number or the word "all".
+For example, if you had two bracers and you wanted to remove the second
+one, you would type "remove 2.bracer".  Or if you wanted to remove all your
+equipment you would type "remove all".
 ~
 
 0 'ARMOR WEAR' 'BASIC ARMOR'~
@@ -713,27 +719,27 @@ SOCIALS shows you all of the social commands available to you.
 ~
 
 -1 SUMMARY~
-MOVEMENT                          GROUP
-north south east west up down     follow group gtell split
-exits recall
-sleep wake rest stand
+{RMOVEMENT                          GROUP{x
+{Bnorth south east west up down     follow group gtell split{x
+{Bexits recall{x
+{Bsleep wake rest stand{x
 
-OBJECTS                           INFORMATION / COMMUNICATION
-get put drop give sacrifice       help credits areas commands socials
-donate wear wield hold            report score time weather where who
-recite quaff zap brandish         channels config description password title
-lock unlock open close pick bash  auction chat music question answer shout yell
-inventory equipment look compare  emote pose say tell
-eat drink fill                    bug idea typo
-list buy sell value               note wizlist slist spells autoexit
-				  autoloot autosac blank brief combine prompt
+{ROBJECTS                           INFORMATION / COMMUNICATION{x
+{Bget put drop give sacrifice       help credits areas commands socials{x
+{Bdonate wear wield hold            report score time weather where who{x
+{Brecite quaff zap brandish         channels config description password title{x
+{Block unlock open close pick bash  auction chat music question answer shout yell{x
+{Binventory equipment look compare  emote pose say tell{x
+{Beat drink fill                    bug idea typo{x
+{Blist buy sell value               note wizlist slist spells autoexit{x
+{B				  autoloot autosac blank brief combine prompt{x
 
-COMBAT                            OTHER
-kill flee kick rescue disarm      ! save quit pagelength
-backstab cast wimpy               practice train
+{RCOMBAT                            OTHER{x
+{Bkill flee kick rescue disarm      ! save quit pagelength{x
+{Bbackstab cast wimpy               practice train{x
 
-For more help, type 'help <topic>' for any command, skill, or spell.
-Also help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK
+{BFor more help, type 'help <topic>' for any command, skill, or spell.{x
+{BAlso help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK{x
 ~
 
 0 DAMAGE~
@@ -853,23 +859,35 @@ when it comes to bodily health.
 
 -1 NEWS~
 New Commands:
+"join" allows the leader to join new members (by Zen).
+"retire" allows you to erase your character (by Zen).
+"members" allows you to see info on the clansmen logged on (by Zen).
 "whois" gives information on characters.
 Many socials added by Binky and Katrina.
 
 New Areas:
+Zen's Arena
 Binky's Circus
 Solace
 
 Features:
+ANSI color code (by Lope ant@solace.mh.se).
+New ARENA code (by Zen).
+New CLANS code (by Zen).
+New spells: Mass Vortex Lift, Vortex Lift, Scry, Meteor Swarm.
+New skills: Meditate, Fast Healing, Shield Block, Scan, Swim
+  Many spells/skills by Zen some by others in src/Contributions.
 Psionicist class added, with 40-some spells (coded entirely by Thelonius).
 Bash Door skill for Warriors, as well as spec_repairman to fix bashed doors.
 Poison Weapon skill for Thieves.
 Dispel Magic now works.
 Purgatory added, so corpse retrieval parties are not necessary.
+Sacrifice and Remove changed so commands such as "sacrifice all.corpse" are
+  possible.
 
 Changes:
 50 mortal levels instead of 36.
-Dragon breath spells, now avaiable to mages for many levels, have increased
+Dragon breath spells, now available to mages for many levels, have increased
   mana cost and waitstate.
 Changed linked-list structure updates char_list, object_list, and extra
   descriptions every tick in one function rather than instantaneously in many
@@ -1348,6 +1366,8 @@ PROMPT <%*> where the %* are the various variables you may set yourself.
 	%z :  Display the area name you are in (IMMORTAL ONLY)
 	%i :  Display whether or not you are invisible
 	%I :  Display whether or not you are wizinvis (IMMORTAL ONLY)
+	%c :  Display the editing mode you are in (IMMORTAL ONLY)
+	%C :  Display the number of the area you are editing (IMMORTAL ONLY)
 
 Example:  PROMPT <%hhp %mm %vmv>
 	Will set your prompt to "<10hp 100m 100mv>"
@@ -1529,6 +1549,12 @@ SACRIFICE offers an object to your God.  God may reward you for the sacrifice.
 The nature of the reward depends upon the type of object.
 
 Hint: God likes corpses.
+
+SACRIFICE as well as most other object manipulation commands,
+allow the use of #.object format, where # is a number or the word "all".
+For example, if you had five daggers and you wanted to sacrifice the third
+one, you would type "sacrifice 3.dagger".  Or if you wanted to clean up all the
+trash on the floor you would type "sacrifice all".
 ~
 
 0 FLEE RESCUE~
@@ -2545,11 +2571,14 @@ rewarding or problematic.  Because of the power of this spell, all currently
 known magics are not able to remove the affects of this spell.
 ~
 
-0 PROTECTION SANCTUARY~
+0 PROTECTION 'PROTECTION EVIL' 'PROTECTION GOOD' SANCTUARY~
 Syntax: cast protection
 Syntax: cast sanctuary  <character>
 
-The PROTECTION spell reduces the damage taken from any attack by an evil
+The PROTECTION EVIL spell reduces the damage taken from any attack by an evil
+creature by one quarter.
+
+The PROTECTION GOOD spell reduces the damage taken from any attack by a good
 creature by one quarter.
 
 The SANCTUARY spell reduces the damage taken by the character from any attack
@@ -3286,6 +3315,195 @@ With this skill, a psionicist can augment the strength of a companion.
 However, the psionicist's own strength is reduced at the same time.  It is
 possible to augment the strength of several others, as long as the psionicist
 does not become too weak.
+~
+
+0 'METEOR SWARM'~
+Syntax: cast 'meteor swarm'
+
+This high level magic-user spell inflicts damage on every enemy character in
+the room. Beware that other characters who are not yet fighting may attack you
+as a result!
+~
+
+0 'VORTEX LIFT'~
+Syntax: cast 'vortex lift' <character>
+
+This spell takes the caster from his current location to another caracter's 
+location somewhere in the world.
+You cannot vortex lift to characters who are in a private or solitary room.
+~
+
+0 'SCRY'~
+Syntax: cast 'scry' <character>
+
+This spell enables the caster to see the location of another caracter somewhere
+in the world.
+~
+
+0 'MASS VORTEX LIFT'~
+Syntax: cast 'mass vortex lift' <character>
+
+This spell takes the caster & group from his current location to another
+character's location somewhere in the world.
+You cannot vortex lift to characters who are in a private or solitary room.
+If you aren't skilled enough some of your group members may not be able to
+vortex lift with you.
+~
+
+0 'SHIELD BLOCK'~
+
+This skill wards off incoming attacks, taking no damage from them.  Use of the
+skill is automatic once you have practiced it.  You must be wielding a shield
+to shield block.
+~
+
+
+0 MEDITATE~
+
+This skill enables you to regain mana faster than normal.
+Use of the skill is automatic once you have practiced it. You may meditate
+while resting or sleeping. EXTREMELLY high level casters (>= level 45) may
+meditate even while fighting thus making then highly deadly!
+~
+
+0 'FAST HEALING'~
+
+This skill makes you heal much faster than normal.
+Use of the skill is automatic once you have practiced it.
+~
+
+0 JOIN~
+Syntax: join <character>
+
+This command enables a clan leader to join someone to his clan.
+To be able to join someone he must be helding a clan card sold in Midgaard.
+The one who wants to join must also have 20 <= level < 40.
+This command automagically creates the armor and scroll to recall to the clan's
+castle and gives them to the target.
+~
+
+0 MEMBERS~
+Syntax: members
+
+This command enables you to see the ranks and clans info of the characters
+which are logged on.
+~
+
+0 SCAN~
+Syntax: scan
+
+This skill high-level thief to sense there characters around him.
+You may SCAN characters upto 4 squares away from you.
+~
+
+0 CLANS CLAN~
+
+When you are above level 20 you may wish to join a clan in order to do a special
+type of pkilling. Clan killing. By killing other clan's members you may win
+fantastic prizes! All pkilling rules apply here also.
+
+See also:  JOIN, MEMBERS, PKILL
+~
+
+0 ARENA~
+
+If you feel bored you may go out and try to kill your friend in the Steel Cage
+Arena. Here there is no need for the respect of pkilling rules and anyone may
+kill anyone, no restrictions! Of course if you do kill anyone in the Arena you
+will not win any exps, only gold. Can't have something for nothing you know!
+The Steel Cage Arena is west from the entrance to the Big Top (Binky's Circus).
+
+See also:  PKILL, CLANS
+~
+
+0 RETIR~
+Syntax: retir
+
+RETIR is a command trap to prevent you from mistakenly typing RETIRE.
+
+If you wish to RETIRE and erase you char type RETIRE in whole.
+~
+
+0 RETIRE~
+Syntax: retire <password>
+
+This command makes you quit the game and erase your player file.
+WARNING! ONCE ERASED YOUR PLAYER FILE IS NOT RECOVERABLE!
+~
+
+54 DELET~
+Syntax: DELET
+
+DELET is a command trap to prevent you from mistakenly typing DELETE.
+
+If you wish to DELETE and erase the target char type DELETE in whole.
+~
+
+54 DELETE~
+Syntax: delete <character>
+
+This Directorship command makes you disconnect the char and erase his player
+file. USE WITH GREAT CARE!
+WARNING! ONCE ERASED HIS PLAYER FILE IS NOT RECOVERABLE!
+~
+
+52 CLOOKUP~
+Syntax: clookup <clan number>
+Syntax: clookup all
+
+CLOOKUP shows the clan's name for the given clan number.
+
+CLOOKUP ALL shows this information for all clans.
+~
+
+0 SWIM~
+
+This skill enables the character to swim.
+Use of the skill is automatic once you have practiced it.
+The better skilled you are, better will you swim.
+~
+
+0 SCAN~
+Syntax: scan
+
+This skill high-level thief to sense there characters around him.
+You may SCAN characters upto 4 squares away from you.
+~
+
+0 COLOUR COLOR ANSI~
+Syntax: colour    Toggles colour mode on/off
+
+        You may also talk in colour; the format is like this:
+        the 'escape character' to specify a colour is the left
+        handed brace '{{', following 
+        that you should use one of the following letters,
+                {r{{r     red     {c{{c     cyan
+                {g{{g     green   {y{{y     yellow
+                {b{{b     blue    {w{{w     white
+                {m{{m     magenta {x{{x     clear(reset colour)
+                {{{{      {{ char {{*       beep
+                {{/       newline
+        when using colour, it looks better if you finish the line
+        with whatever colour it would normally be in, such as a
+        gossip, the colour is magenta, so:
+                {mLope gossips '{ghello,{r world{m'{x
+        looks better than:
+                {mLope gossips '{ghello,{r world'{x
+
+        ColoUr is written by Lope (ant@solace.mh.se)
+~
+
+-1 MOBINFO~
+.             Our Mobiles have been infused with the breath of a
+             shy faeyrie to give them a slightly warmer nature.
+             Perhaps you have noticed this already.  If not, do
+             take a moment to ask a mobile to tea.  The code is
+             written by J Murphy, N'Atas-Ha of ThePrincedom and
+             based on a concept created on Worlds of Carnage by
+             Aaron Buhr. questions/comments to murph@cs.cmu.edu
+             A little rewriting of the code/DOC/INSTALL done by
+             Kahn of MERC Industries and tested extensively on
+             Marble Mud (marble.bu.edu 4000).
 ~
 
 0 $~

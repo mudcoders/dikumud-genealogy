@@ -174,7 +174,7 @@ void do_get( CHAR_DATA *ch, char *argument )
 		}
 	    }
 
-	    if ( !found ) 
+	    if ( !found )
 	    {
 		if ( arg1[3] == '\0' )
 		    send_to_char( "I see nothing here.\n\r", ch );
@@ -228,7 +228,7 @@ void do_get( CHAR_DATA *ch, char *argument )
 	      if ( str_cmp( name, ch->name ) && !IS_IMMORTAL( ch ) )
 	      {
 		  bool fGroup;
-		  
+
 		  fGroup = FALSE;
 		  for ( gch = char_list; gch; gch = gch->next )
 		  {
@@ -584,6 +584,7 @@ void do_give( CHAR_DATA *ch, char *argument )
 	act( buf, ch, NULL, victim, TO_VICT    );
 
 	act( "$n gives $N some gold.",  ch, NULL, victim, TO_NOTVICT );
+	mprog_bribe_trigger( victim, ch, amount );
 	return;
     }
 
@@ -646,7 +647,8 @@ void do_give( CHAR_DATA *ch, char *argument )
     act( "You give $p to $N.", ch, obj, victim, TO_CHAR    );
     act( "$n gives you $p.",   ch, obj, victim, TO_VICT    );
     act( "$n gives $p to $N.", ch, obj, victim, TO_NOTVICT );
-    return;
+    mprog_give_trigger( victim, ch, obj );
+     return;
 }
 
 
@@ -800,7 +802,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 
 	amount = number_range( 3, 10 );
 	amount = UMIN( amount, obj->value[1] );
-	
+
 	gain_condition( ch, COND_DRUNK,
 	    amount * liq_table[liquid].liq_affect[COND_DRUNK  ] );
 	if ( ch->race != race_lookup( "vampire" ) )
@@ -824,7 +826,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	    send_to_char( "You are full.\n\r", ch );
 	if ( !IS_NPC( ch ) && ch->pcdata->condition[COND_THIRST] > 40 )
 	    send_to_char( "You do not feel thirsty.\n\r", ch );
-	
+
 	if ( obj->value[3] != 0
 	    && ( ch->race != race_lookup( "Vampire" )
 		&& ch->race != race_lookup( "Undead" ) ) )
@@ -841,7 +843,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	    af.bitvector = AFF_POISON;
 	    affect_join( ch, &af );
 	}
-	
+
 	obj->value[1] -= amount;
 	if ( obj->value[1] <= 0 )
 	{
@@ -886,7 +888,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	}
 
 	if ( !IS_NPC( ch ) && ch->pcdata->condition[COND_FULL] > 40 )
-	{   
+	{
 	    send_to_char( "You are too full to eat more.\n\r", ch );
 	    return;
 	}
@@ -1363,6 +1365,7 @@ void do_remove( CHAR_DATA *ch, char *argument )
 {
     OBJ_DATA *obj;
     char      arg [ MAX_INPUT_LENGTH ];
+    bool      found;
 
     one_argument( argument, arg );
 
@@ -1372,13 +1375,46 @@ void do_remove( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !( obj = get_obj_wear( ch, arg ) ) )
+    if ( str_cmp( arg, "all" ) && str_prefix( "all.", arg ) )
     {
-	send_to_char( "You do not have that item.\n\r", ch );
-	return;
+	/* 'remove obj' */
+	if ( !( obj = get_obj_wear( ch, arg ) ) )
+	{
+	    send_to_char( "You do not have that item.\n\r", ch );
+	    return;
+	}
+
+	remove_obj( ch, obj->wear_loc, TRUE );
+
+    }
+    else
+    {
+	/* 'remove all' or 'remove all.obj' */
+	OBJ_DATA *obj_next;
+
+	found = FALSE;
+	for ( obj = ch->carrying; obj; obj = obj_next )
+	{
+            obj_next = obj->next_content;
+
+	    if ( ( arg[3] == '\0' || is_name( &arg[4], obj->name ) )
+		 && obj->wear_loc != WEAR_NONE )
+	    {
+		found = TRUE;
+		remove_obj( ch, obj->wear_loc, TRUE );
+	    }
+	}
+
+	if ( !found )
+	{
+	    if ( arg[3] == '\0' )
+		send_to_char( "You can't find anything to remove.\n\r", ch );
+	    else
+		act( "You can't find any $T to remove.",
+		    ch, NULL, &arg[4], TO_CHAR );
+	}
     }
 
-    remove_obj( ch, obj->wear_loc, TRUE );
     return;
 }
 
@@ -1388,8 +1424,9 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 {
     OBJ_DATA *obj;
     char      arg [ MAX_INPUT_LENGTH ];
+    bool      found;
 
-    one_argument( argument, arg );
+    argument = one_argument( argument, arg );
 
     if ( arg[0] == '\0' || !str_cmp( arg, ch->name ) )
     {
@@ -1400,24 +1437,60 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    obj = get_obj_list( ch, arg, ch->in_room->contents );
-    if ( !obj )
+    if ( str_cmp( arg, "all" ) && str_prefix( "all.", arg ) )
     {
-	send_to_char( "You can't find it.\n\r", ch );
-	return;
+	/* 'sac obj' */
+	obj = get_obj_list( ch, arg, ch->in_room->contents );
+	if ( !obj )
+	{
+	    send_to_char( "You can't find it.\n\r", ch );
+	    return;
+	}
+
+	if ( !CAN_WEAR( obj, ITEM_TAKE ) )
+	{
+	    act( "$p is not an acceptable sacrifice.", ch, obj, NULL, TO_CHAR );
+	    return;
+	}
+
+	send_to_char( "God gives you one gold coin for your sacrifice.\n\r", ch );
+	ch->gold += 1;
+
+	act( "$n sacrifices $p to God.", ch, obj, NULL, TO_ROOM );
+	extract_obj( obj );
+    }
+    else
+    {
+	/* 'sac all' or 'sac all.obj' */
+	OBJ_DATA *obj_next;
+
+	found = FALSE;
+	for ( obj = ch->in_room->contents; obj; obj = obj_next )
+	{
+            obj_next = obj->next_content;
+
+	    if ( ( arg[3] == '\0' || is_name( &arg[4], obj->name ) )
+		&& CAN_WEAR( obj, ITEM_TAKE ) )
+	    {
+		found = TRUE;
+		send_to_char( "God gives you one gold coin for your sacrifice.\n\r", ch );
+		ch->gold += 1;
+
+		act( "$n sacrifices $p to God.", ch, obj, NULL, TO_ROOM );
+		extract_obj( obj );
+	    }
+	}
+
+	if ( !found )
+	{
+	    if ( arg[3] == '\0' )
+		send_to_char( "You can't find anything to sacrifice.\n\r", ch );
+	    else
+		act( "You can't find any $T to sacrifice.",
+		    ch, NULL, &arg[4], TO_CHAR );
+	}
     }
 
-    if ( !CAN_WEAR( obj, ITEM_TAKE ) )
-    {
-	act( "$p is not an acceptable sacrifice.", ch, obj, NULL, TO_CHAR );
-	return;
-    }
-
-    send_to_char( "God gives you one gold coin for your sacrifice.\n\r", ch );
-    ch->gold += 1;
-
-    act( "$n sacrifices $p to God.", ch, obj, NULL, TO_ROOM );
-    extract_obj( obj );
     return;
 }
 
@@ -1451,7 +1524,7 @@ void do_quaff( CHAR_DATA *ch, char *argument )
     act( "You quaff $p.", ch, obj, NULL ,TO_CHAR );
     act( "$n quaffs $p.", ch, obj, NULL, TO_ROOM );
 
-    if ( obj->level > ch->level ) 
+    if ( obj->level > ch->level )
         act( "$p is too high level for you.", ch, obj, NULL, TO_CHAR );
     else
     {
@@ -1522,7 +1595,7 @@ void do_recite( CHAR_DATA *ch, char *argument )
     {
 	act( "You try to recite $p, but you have no free will.",
 	    ch, scroll, NULL, TO_CHAR );
-	act( "$n tries to recite $p, but has no free will.", 
+	act( "$n tries to recite $p, but has no free will.",
 	    ch, scroll, NULL, TO_ROOM );
 	return;
     }
@@ -1538,18 +1611,18 @@ void do_recite( CHAR_DATA *ch, char *argument )
     {
 	switch ( number_bits( 3 ) )
 	{
-	case 0: 
-	case 1:                      
+	case 0:
+	case 1:
 	case 2:
-	case 3: 
+	case 3:
 	    act( "You can't understand $p at all.",
 		ch, scroll, NULL, TO_CHAR );
 	    act( "$n can't understand $p at all.",
 		ch, scroll, NULL, TO_ROOM );
-	    return;                    
-	case 4:                
-	case 5:                      
-	case 6:                      
+	    return;
+	case 4:
+	case 5:
+	case 6:
 	    send_to_char( "You must have said something incorrectly.\n\r",
 			 ch );
 	    act( "$n must have said something incorrectly.",
@@ -1561,10 +1634,10 @@ void do_recite( CHAR_DATA *ch, char *argument )
 	    extract_obj( scroll );
 	    return;
 	case 7:
-	    act( 
-	"You completely botch the recitation, and $p bursts into flames!!", 
+	    act(
+	"You completely botch the recitation, and $p bursts into flames!!",
 		ch, scroll, NULL, TO_CHAR );
-	    act( "$p glows and then bursts into flame!", 
+	    act( "$p glows and then bursts into flame!",
 		ch, scroll, NULL, TO_ROOM );
 	    /*
 	     * damage( ) call after extract_obj in case the damage would
@@ -1578,7 +1651,7 @@ void do_recite( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    if ( scroll->level > ch->level ) 
+    if ( scroll->level > ch->level )
         act( "$p is too high level for you.", ch, scroll, NULL, TO_CHAR );
     else
     {
@@ -1619,7 +1692,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
     {
 	act( "You try to brandish $p, but you have no free will.",
 	    ch, staff, NULL, TO_CHAR );
-	act( "$n tries to brandish $p, but has no free will.", 
+	act( "$n tries to brandish $p, but has no free will.",
 	    ch, staff, NULL, TO_ROOM );
 	return;
     }
@@ -1642,23 +1715,23 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	act( "$n brandishes $p.", ch, staff, NULL, TO_ROOM );
 
 	/* Staves skill by Binky for EnvyMud, modified by Thelonius */
-	if ( !IS_NPC( ch ) 
+	if ( !IS_NPC( ch )
 	    && !( number_percent( ) < ch->pcdata->learned[gsn_staves] ) )
-	{ 
+	{
 	    switch ( number_bits( 3 ) )
 	    {
-	    case 0: 
-	    case 1:                      
-	    case 2:                      
-	    case 3: 
+	    case 0:
+	    case 1:
+	    case 2:
+	    case 3:
 	        act( "You are unable to invoke the power of $p.",
 		    ch, staff, NULL, TO_CHAR );
 		act( "$n is unable to invoke the power of $p.",
 		    ch, staff, NULL, TO_ROOM );
-		return;                    
-	    case 4:                
-	    case 5:                      
-	    case 6:                      
+		return;
+	    case 4:
+	    case 5:
+	    case 6:
 		act( "You summon the power of $p, but it fizzles away.",
 		    ch, staff, NULL, TO_CHAR );
 		act( "$n summons the power of $p, but it fizzles away.",
@@ -1675,7 +1748,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	    case 7:
 		act( "You can't control the power of $p, and it shatters!",
 		    ch, staff, NULL, TO_CHAR );
-		act( "$p shatters into tiny pieces!", 
+		act( "$p shatters into tiny pieces!",
 		    ch, staff, NULL, TO_ROOM );
 		/*
 		 * damage( ) call after extract_obj in case the damage would
@@ -1711,7 +1784,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 		if ( IS_NPC( ch ) ? IS_NPC( vch ) : !IS_NPC( vch ) )
 		    continue;
 		break;
-		
+
 	    case TAR_CHAR_DEFENSIVE:
 		if ( IS_NPC( ch ) ? !IS_NPC( vch ) : IS_NPC( vch ) )
 		    continue;
@@ -1797,7 +1870,7 @@ void do_zap( CHAR_DATA *ch, char *argument )
     {
 	act( "You try to zap $p, but you have no free will.",
 	    ch, wand, NULL, TO_CHAR );
-	act( "$n tries to zap $p, but has no free will.", 
+	act( "$n tries to zap $p, but has no free will.",
 	    ch, wand, NULL, TO_ROOM );
 	return;
     }
@@ -1832,23 +1905,23 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	}
 
 	/* Wands skill by Binky for EnvyMud, modified by Thelonius */
-	if ( !IS_NPC( ch ) 
+	if ( !IS_NPC( ch )
 	    && !( number_percent( ) < ch->pcdata->learned[gsn_wands] ) )
-	{ 
+	{
 	    switch ( number_bits( 3 ) )
 	    {
-	    case 0: 
-	    case 1:                      
-	    case 2:                      
-	    case 3: 
+	    case 0:
+	    case 1:
+	    case 2:
+	    case 3:
 	        act( "You are unable to invoke the power of $p.",
 		    ch, wand, NULL, TO_CHAR );
 		act( "$n is unable to invoke the power of $p.",
 		    ch, wand, NULL, TO_ROOM );
-		return;                    
-	    case 4:                
-	    case 5:                      
-	    case 6:                      
+		return;
+	    case 4:
+	    case 5:
+	    case 6:
 		act( "You summon the power of $p, but it fizzles away.",
 		    ch, wand, NULL, TO_CHAR );
 		act( "$n summons the power of $p, but it fizzles away.",
@@ -1865,7 +1938,7 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	    case 7:
 		act( "You can't control the power of $p, and it explodes!",
 		    ch, wand, NULL, TO_CHAR );
-		act( "$p explodes into fragments!", 
+		act( "$p explodes into fragments!",
 		    ch, wand, NULL, TO_ROOM );
 		/*
 		 * damage( ) call after extract_obj in case the damage would
@@ -1977,7 +2050,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
 		  break;
 	    }
 	}
-	
+
 	if ( !obj )
 	{
 	    send_to_char( "You can't find it.\n\r", ch );
@@ -1997,7 +2070,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
 		&& !IS_SET( victim->act, PLR_REGISTER )
 		&& victim->race != race_lookup( "Vampire" ) )
 	      ||   ch->level - victim->level < 5 ) )
-	|| percent > number_percent( ) )
+	|| percent < number_percent( ) )
     {
 	/*
 	 * Failure.
@@ -2143,7 +2216,7 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch, char *argument )
 	do_say( keeper, "Sorry, come back later." );
 	return NULL;
     }
-    
+
     if ( time_info.hour > pShop->close_hour )
     {
 	do_say( keeper, "Sorry, come back tomorrow." );
@@ -2359,7 +2432,7 @@ void do_buy( CHAR_DATA *ch, char *argument )
 		return;
 	    }
 	}
-	
+
 	if ( obj->level > ch->level )
 	{
 	    act( "$n tells you 'You can't use $p yet'.",
@@ -2484,7 +2557,7 @@ void do_list( CHAR_DATA *ch, char *argument )
 
 	if ( !( keeper = find_keeper( ch, arg2 ) ) )
 	    return;
-	  
+
 	found = FALSE;
 	for ( obj = keeper->carrying; obj; obj = obj->next_content )
 	{
@@ -2567,7 +2640,7 @@ void do_sell( CHAR_DATA *ch, char *argument )
 	ch->reply = keeper;
 	return;
     }
-	
+
     if ( ( cost = get_cost( keeper, obj, FALSE ) ) <= 0
 	|| obj->level > LEVEL_HERO )
     {
@@ -2681,16 +2754,16 @@ void do_poison_weapon( CHAR_DATA *ch, char *argument )
 	|| (  !IS_NPC( ch )
 	    && ch->level
 	    < skill_table[gsn_poison_weapon].skill_level[ch->class] ) )
-    {                                          
+    {
 	send_to_char( "What do you think you are, a thief?\n\r", ch );
 	return;
     }
 
     one_argument( argument, arg );
 
-    if ( arg[0] == '\0' )                                              
+    if ( arg[0] == '\0' )
     { send_to_char( "What are you trying to poison?\n\r",    ch ); return; }
-    if ( ch->fighting )                                       
+    if ( ch->fighting )
     { send_to_char( "While you're fighting?  Nice try.\n\r", ch ); return; }
     if ( !( obj = get_obj_carry( ch, arg ) ) )
     { send_to_char( "You do not have that weapon.\n\r",      ch ); return; }
@@ -2824,8 +2897,8 @@ void do_donate( CHAR_DATA *ch, char *arg )
 	    send_to_char( "You can't let go of it.\n\r", ch );
 	    return;
 	}
-	
-	if ( get_obj_weight( obj ) + get_obj_weight( container ) 
+
+	if ( get_obj_weight( obj ) + get_obj_weight( container )
 	  > container->value[0] )
 	{
 	    send_to_char( "It won't fit.\n\r", ch );
@@ -2943,4 +3016,219 @@ void do_register( CHAR_DATA *ch, char *arg )
 
     return;
 
+}
+
+
+/* Original Code by Todd Lair.                                          */
+/* Improvements and Modification by Jason Huang (huangjac@netcom.com).  */
+/* Permission to use this code is granted provided this header is       */
+/* retained and unaltered.                                              */
+/* Made a couple of changes here and there - Zen :-)                    */
+
+void imprint_spell( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    OBJ_DATA         *obj = (OBJ_DATA *) vo;
+    int              free_slots, i, mana;
+    char             buf[ MAX_STRING_LENGTH ];
+    static const int sucess_rate[ ] = { 80, 25, 10 };
+
+    if ( skill_table[sn].spell_fun == spell_null )
+    {
+	send_to_char( "That is not a spell.\n\r", ch );
+	return;
+    }
+
+    /* counting the number of spells contained within */
+    for ( free_slots = i = 1; i < 4; i++ )
+	if (obj->value[i] != -1)
+	    free_slots++;
+
+    if ( free_slots > 3 )
+    {
+	act ("$p cannot contain any more spells.", ch, obj, NULL, TO_CHAR);
+	return;
+    }
+
+   /* scribe/brew costs 4 times the normal mana required to cast the spell */
+    mana = 4 * MANA_COST( ch, sn );
+
+    if ( !IS_NPC(ch) && ch->mana < mana )
+    {
+	send_to_char( "You don't have enough mana.\n\r", ch );
+	return;
+    }
+
+    if ( number_percent() > ch->pcdata->learned[sn] )
+    {
+	send_to_char( "You lost your concentration.\n\r", ch );
+	ch->mana -= mana / 2;
+	return;
+    }
+
+    /* executing the imprinting process */
+    ch->mana -= mana;
+    obj->value[free_slots] = sn;
+
+    /* Making it successively harder to pack more spells into potions or
+     * scrolls - JH.
+     * Changed a bit - Zen :)
+     */
+
+    if ( number_percent( ) > sucess_rate [ free_slots-1 ] )
+    {
+	sprintf(buf, "The magic enchantment has failed --- the %svanishes.\n\r", item_type_name( obj ) );
+	send_to_char( buf, ch );
+	extract_obj( obj );
+	return;
+    }
+
+
+    /* labeling the item */
+    free_string ( obj->short_descr );
+    sprintf ( buf, "a %s of ", item_type_name( obj ) );
+    for ( i = 1; i <= free_slots; i++ )
+      if ( obj->value[i] != -1 )
+      {
+	strcat ( buf, skill_table[ obj->value[i] ].name );
+        (i != free_slots ) ? strcat ( buf, ", " ) : strcat ( buf, "" ) ;
+      }
+    obj->short_descr = str_dup( buf );
+
+    sprintf( buf, "%s %s", obj->name, item_type_name( obj ) );
+    free_string( obj->name );
+    obj->name = str_dup( buf );
+
+    sprintf(buf, "You have imbued a new spell to the %s.\n\r",
+    item_type_name( obj ) );
+    send_to_char( buf, ch );
+
+    return;
+}
+
+void do_brew ( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    OBJ_DATA *potion;
+    int sn;
+
+    argument = one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Brew what spell?\n\r", ch );
+	return;
+    }
+
+    if ( !( potion = get_eq_char( ch, WEAR_HOLD ) ) )
+    {
+        send_to_char( "You hold nothing in your hand.\n\r", ch );
+        return;
+    }
+
+    if ( potion->item_type != ITEM_POTION )
+    {
+        send_to_char( "You are not holding a vial.\n\r", ch );
+        return;
+    }
+
+    if ( ( sn = skill_lookup( arg ) )  < 0)
+    {
+	send_to_char( "You don't know any spells by that name.\n\r", ch );
+	return;
+    }
+
+    /* preventing potions of gas breath, acid blast, etc.; doesn't make sense
+       when you quaff a gas breath potion, and then the mobs in the room are
+       hurt. Those TAR_IGNORE spells are a mixed blessing. - JH */
+
+    if ( (skill_table[sn].target != TAR_CHAR_DEFENSIVE) &&
+         (skill_table[sn].target != TAR_CHAR_SELF)              )
+    {
+	send_to_char( "You cannot brew that spell.\n\r", ch );
+	return;
+    }
+
+    act( "$n begins preparing a potion.", ch, potion, NULL, TO_ROOM );
+    WAIT_STATE( ch, skill_table[gsn_brew].beats );
+
+    /* Check the skill percentage, fcn(wis,int,skill) */
+    if ( !IS_NPC(ch)
+         && ( number_percent( ) > ch->pcdata->learned[gsn_brew] ||
+              number_percent( ) > ((get_curr_int(ch)-13)*5 +
+                                   (get_curr_wis(ch)-13)*3) ))
+    {
+	act( "$p explodes violently!", ch, potion, NULL, TO_CHAR );
+	act( "$p explodes violently!", ch, potion, NULL, TO_ROOM );
+	extract_obj( potion );
+	damage( ch, ch, ch->max_hit / 16, gsn_brew, WEAR_NONE );
+	return;
+    }
+
+    /* took this outside of imprint codes, so I can make do_brew differs from
+       do_scribe; basically, setting potion level and spell level --- JH */
+
+    potion->level = ch->level / 2;
+    potion->value[0] = ch->level / 4;
+    imprint_spell(sn, ch->level, ch, potion);
+
+    return;
+}
+
+void do_scribe ( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    OBJ_DATA *scroll;
+    int sn;
+
+    argument = one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Scribe what spell?\n\r", ch );
+	return;
+    }
+
+    if ( !( scroll = get_eq_char( ch, WEAR_HOLD ) ) )
+    {
+        send_to_char( "You hold nothing in your hand.\n\r", ch );
+        return;
+    }
+
+    if ( scroll->item_type != ITEM_SCROLL )
+    {
+        send_to_char( "You are not holding a parchment.\n\r", ch );
+        return;
+    }
+
+    if ( ( sn = skill_lookup( arg ) )  < 0)
+    {
+	send_to_char( "You don't know any spells by that name.\n\r", ch );
+	return;
+    }
+
+    act( "$n begins writing a scroll.", ch, scroll, NULL, TO_ROOM );
+    WAIT_STATE( ch, skill_table[gsn_scribe].beats );
+
+    /* Check the skill percentage, fcn(int,wis,skill) */
+    if ( !IS_NPC(ch)
+         && ( number_percent( ) > ch->pcdata->learned[gsn_brew] ||
+              number_percent( ) > ((get_curr_int(ch)-13)*5 +
+                                   (get_curr_wis(ch)-13)*3) ))
+    {
+	act( "$p bursts in flames!", ch, scroll, NULL, TO_CHAR );
+	act( "$p bursts in flames!", ch, scroll, NULL, TO_ROOM );
+	extract_obj( scroll );
+	damage( ch, ch, ch->max_hit / 16, gsn_scribe, WEAR_NONE );
+	return;
+    }
+
+    /* basically, making scrolls more potent than potions; also, scrolls
+       are not limited in the choice of spells, i.e. scroll of enchant weapon
+       has no analogs in potion forms --- JH */
+
+    scroll->level = ch->level * 2 / 3;
+    scroll->value[0] = ch->level / 3;
+    imprint_spell(sn, ch->level, ch, scroll);
+
+    return;
 }

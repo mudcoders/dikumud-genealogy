@@ -1,0 +1,120 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.82! (HomeCooked Envy2.2)
+Monday, 23th June 1997
+
+Zen		vasc@camoes.rnl.ist.utl.pt
+
+
+=== What's new in this patch
+
+Zen:		Converted skills from src/Contributions so they now work (easy)
+		Ported ColoUr_V1.2 from Envy2.0 to Envy2.2 (easy)
+		Scry spell for all caster classes
+		Mass Vortex Lift spell for Clerics
+		Vortex Lift spell for Mages and Psionicists
+		Meteor Swarm (Drool Co design) spell for Mages
+		Meditate skill for all caster classes
+		Added Arena Code (suggested in sky.txt) using ROOM_ARENA flag
+		Fish now can breathe in SECT_WATER/SECT_WATER_NOSWIM
+		Wand of water breathing has use for non Bears! New Swim skill!
+		Swim skill for all classes
+		Steal bug is fixed! Still existed in Envy2.2! (act_obj.c)
+		Retire command (suggested in sky.txt)
+		new Director command "Delete" NUKES player on the fly!
+		Increased the mana cost of remove alignment to 100 as in Envy2.0
+		My new and improved CLANS code support! It works too :-)
+		do_remove now allows things as: "remove #.ring"
+		do_sacrifice now allows things as: "sacrifice #.something"
+		  where # is the word "all" or a number.
+		Added MOBPrograms from MOM_Envy.tar.gz, i had to change it a
+		  bit (Envy1.0 source with bugs). But it works! Yeeepeee!
+		Brew skill (creates potions). A bit altered by me.
+		Scribe skill (creates scrolls). A bit altered by me.
+		All ch's >= LEVEL_IMMORTAL may enter in any guild room.
+		Added "show" bit to cmd_type so MOBProgram commands aren't
+		  visible to regular players using the "commands" command.
+		  It's his only use, to hide commands from "commands".
+		Killing charmed mob without master bug fixed.
+		Chain Lightning (Drool Co design) spell for Mages
+		Detect Good spell for Clerics
+		Dispel Good spell for Clerics
+		Dirt Kicking skill for Warriors and Thieves
+		Added several new liquid types
+		Added ITEM_PORTAL, ITEM_WARP_STONE
+		Added do_enter, so you can enter a portal and teleport.
+		Added several new liquid types.
+		Added Online Editing using ILAB OLC Beta 1.1! To port i used a
+		  version of OLC for Envy2.0 by Christopher Smith
+		  ( stoked@iastate.edu ) and another from MOM_Envy.tar.gz.
+		Changed object format slightly... Will still load old Envy areas
+		  but saves in the new format. The only diference this format
+		  has is a new value[4] field necessary for ITEM_PORTAL, now
+		  we have OLC we could completely change the format for area
+		  files and still be able to convert old Envy areas!
+		Added alias, and unalias commands! No more need to type such
+		 lines as: cast 'lightning breath' executioner several times!
+		Added CHANNEL_GRATS and "grats" command.
+		Added CHANNEL_CLANTALK and "clantalk" command.
+		Protection Good spell for Clerics.
+		Fixed colorconv() bug when player was switched.
+		Solved do_switch bug while in OLC. OLC prompt info does not
+		appear while switched.
+
+
+Sandman:	Shield Block skill for all classes
+		Fast Healing skill for all classes
+		Fourth Attack skill for Warriors
+	
+
+Erwin S. A:	Scan(.v1) skill for Thieves (4u2@aabc.dk)
+
+
+Lope:		ANSI Colour support using ColoUr_V1.2 (ant@solace.mh.se)
+
+
+Jason Huang:	Brew & Scribe skills for caster classes (huangjac@netcom.com)
+
+
+MOBProgs 2.1:	Written by J Murphy, N'Atas-Ha of ThePrincedom and
+		  based on a concept created on Worlds of Carnage by
+		  Aaron Buhr.
+
+ILAB OLC B1.1:	By Jason Dinkel ( jdinkel@mines.colorado.edu )
+		  Original by Surreality ( cxw197@psu.edu ) and
+		  Locke ( locke@lm.com )
+
+=== What's next?
+
+I might finish and include these features in my next patch to EnvyMud.
+These features are by NO MEANS guaranteed to be coded.
+
+		Built in Client (If you use telnet like me it's great)
+		A new class different from the others (no Paladins please)!
+		Even more spells, even more skills.
+
+=== What can i do to help?
+
+  Please make suggestions, contribute with code or whatever. Whatever i do i
+will try to make it available to everyone. And pass it to the EnvyMud staff.
+All my code here is *freeware* but the snippets have their own author rights.
+  PLEASE do not make code which requests who uses it to put your name on the
+title screen as i have seen some code (like quest.c in ftp.solace.mh.se) i hate 
+this! If everyone where like this soon we would have pages and pages of names in
+the title screen... If you want put your name in the help of the skill or
+whatever. To fight this i will include NO code which requests the author's name
+in the title screen unless it's a MAJOR code change.
+
+=== DISCLAIMER! ATTENTION!
+
+  I have worked hard on this code and i ask you nothing for it. All i can 
+say is that it works fine on my 16MB Pentium Linux system and without any 
+warnings or errors, i have tested the code very throughly and found no 
+bugs (yet). I tested it on an DEC-OSF and the only compile warnings are the 
+same of Envy2.2. It runs fine afterwards. So i say to you this:
+1. If this code blows up your machine it's not my fault.
+2. If your girlfriend/boyfriend leaves you it's not my fault.
+3. If while crossing the street you are hit by a car it's not my fault.
+4. In short: USE THIS AT YOUR OWN RISK!
+With that said if you report bugs i will *try* to solve them.
+
+
+- Zen

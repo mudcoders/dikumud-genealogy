@@ -586,9 +586,56 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	send_to_char( buf, ch );
 	sprintf( buf, "$n %ss '$t'",     verb );
 	break;
+ 
+     case CHANNEL_AUCTION:
+ 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_MUSIC:
+ 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_QUESTION:
+ 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_SHOUT:
+ 	sprintf( buf, "{rYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{r$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_YELL:
+ 	sprintf( buf, "{bYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{b$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_CHAT:
+ 	sprintf( buf, "{mYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{m$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_GRATS:
+ 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	send_to_char( buf, ch );
+ 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	break;
+ 
+     case CHANNEL_CLANTALK:
+ 	sprintf( buf, "{y[{R$n{y]: $t{x" );
+	act( buf, ch, argument, NULL, TO_CHAR );
+ 	break;
 
     case CHANNEL_IMMTALK:
-	sprintf( buf, "$n: $t" );
+ 	sprintf( buf, "{c[{y$n{c]: $t{x" );
 	position	= ch->position;
 	ch->position	= POS_STANDING;
 	act( buf, ch, argument, NULL, TO_CHAR );
@@ -615,6 +662,10 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	    && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	{
 	    if ( channel == CHANNEL_IMMTALK && !IS_HERO( och ) )
+		continue;
+	    if ( channel == CHANNEL_CLANTALK
+	        && ( !IS_CLAN( och )
+	        || !is_same_clan( ch, och ) ) )
 		continue;
 	    if ( channel == CHANNEL_YELL
 		&& vch->in_room->area != ch->in_room->area )
@@ -685,6 +736,13 @@ void do_shout( CHAR_DATA *ch, char *argument )
 
 
 
+void do_grats( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_GRATS, "grats" );
+    return;
+}
+
+
 void do_yell( CHAR_DATA *ch, char *argument )
 {
     talk_channel( ch, argument, CHANNEL_YELL, "yell" );
@@ -708,11 +766,29 @@ void do_immtalk( CHAR_DATA *ch, char *argument )
 
 
 
+void do_clantalk( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+  
+    rch = get_char( ch );
+
+    if ( IS_NPC( rch ) || !IS_CLAN( rch ) )
+    {
+	send_to_char( "You aren't a clansman!\n\r", ch );
+        return;
+    }
+
+    talk_channel( ch, argument, CHANNEL_CLANTALK, "clantalk" );
+    return;
+}
+
+
+
 void do_say( CHAR_DATA *ch, char *argument )
 {
     if ( argument[0] == '\0' )
     {
-	send_to_char( "Say what?\n\r", ch );
+ 	send_to_char_bw( "Say what?\n\r", ch );
 	return;
     }
 
@@ -720,14 +796,15 @@ void do_say( CHAR_DATA *ch, char *argument )
 	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
+        send_to_char_bw( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
     argument = makedrunk( argument, ch );
 
-    act( "$n says '$T'", ch, NULL, argument, TO_ROOM );
-    act( "You say '$T'", ch, NULL, argument, TO_CHAR );
+    act( "{g$n says '$T'{x", ch, NULL, argument, TO_ROOM );
+    act( "{gYou say '$T'{x", ch, NULL, argument, TO_CHAR );
+    mprog_speech_trigger( argument, ch );
     return;
 }
 
@@ -1508,7 +1585,6 @@ void do_order( CHAR_DATA *ch, char *argument )
 }
 
 
-
 void do_group( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
@@ -1729,6 +1805,7 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     return;
 }
 
+
 /* Sent in by Judson Knott <jek@conga.oit.unc.edu> */
 void do_beep( CHAR_DATA *ch, char *argument )
 {
@@ -1766,7 +1843,6 @@ void do_beep( CHAR_DATA *ch, char *argument )
     send_to_char( buf, victim );
 
     return;
-
 }
 
 
@@ -1786,3 +1862,239 @@ bool is_same_group( CHAR_DATA *ach, CHAR_DATA *bch )
     return ach == bch;
 }
 
+
+/*
+ * It is very important that this be an equivalence relation:
+ * (1) A ~ A
+ * (2) if A ~ B then B ~ A
+ * (3) if A ~ B  and B ~ C, then A ~ C
+ */
+bool is_same_clan( CHAR_DATA *ach, CHAR_DATA *bch )
+{
+    CHAR_DATA   *xch;
+    CHAR_DATA   *ych;
+
+    if ( ach->deleted || bch->deleted )
+        return FALSE;
+
+    if ( !ach->desc )
+    {
+	if ( IS_NPC( ach ) ) return FALSE;
+        xch = ach;
+    }
+    else
+	xch = ( ach->desc->original ? ach->desc->original : ach );
+
+    if ( !bch->desc )
+    {
+	if ( IS_NPC( bch ) ) return FALSE;
+        ych = bch;
+    }
+    else
+	ych = ( bch->desc->original ? bch->desc->original : bch );
+
+    if ( IS_CLAN( xch )
+	&& IS_CLAN( ych ) )
+	return xch->pcdata->clan == ych->pcdata->clan;
+    else
+	return FALSE;
+}
+
+/*
+ * Colour setting and unsetting, way cool, Lope Oct '94
+ */
+void do_colour( CHAR_DATA *ch, char *argument )
+{
+    char 	arg[ MAX_STRING_LENGTH ];
+
+    argument = one_argument( argument, arg );
+
+    if( !*arg )
+    {
+	if( !IS_SET( ch->act, PLR_COLOUR ) )
+	{
+	    SET_BIT( ch->act, PLR_COLOUR );
+	    send_to_char( "{bC{ro{yl{co{mu{gr{x is now {rON{x, Way Cool!\n\r", ch );
+	}
+	else
+	{
+	    send_to_char_bw( "Colour is now OFF, <sigh>\n\r", ch );
+	    REMOVE_BIT( ch->act, PLR_COLOUR );
+	}
+	return;
+    }
+    else
+    {
+	send_to_char_bw( "Colour Configuration is unavailable in this\n\r", ch );
+	send_to_char_bw( "version of colour, sorry\n\r", ch );
+    }
+
+    return;
+}
+
+
+/*
+ * "retir" command is a trap to the "retire" command. (Zen)
+ */
+void do_retir( CHAR_DATA *ch, char *argument )
+{
+    send_to_char( "If you want to RETIRE, you have to spell it out.\n\r", ch );
+ 
+    return;
+}
+ 
+ 
+/* 
+ * Made by Zen :)
+ * some inspiration from bits here and there in the Envy code...
+ */
+void do_retire( CHAR_DATA *ch, char *argument )
+{
+    char *pArg;
+    char  arg1 [ MAX_INPUT_LENGTH ];
+    char  cEnd;
+    DESCRIPTOR_DATA *d;
+
+    if ( IS_NPC( ch ) )
+      return;
+
+    if ( ch->position == POS_FIGHTING )
+    {
+      send_to_char( "No way! You are fighting.\n\r", ch );
+      return;
+    }
+
+    if ( ch->position  < POS_STUNNED  )
+    {
+      send_to_char( "You're not DEAD yet.\n\r", ch );
+      return;
+    }
+
+    /* If playes does not have level 2 he should not have a file... */
+    if ( ch->level < 2 )
+    {
+      send_to_char( "You can't even save and you want to retire?\n\r", ch );
+      return;
+    }
+
+    /*
+     * Can't use one_argument here because it smashes case.
+     * So we just steal all its code.  Bleagh.
+     */
+    pArg = arg1;
+    while ( isspace( *argument ) )
+      argument++;
+
+    cEnd = ' ';
+    if ( *argument == '\'' || *argument == '"' )
+      cEnd = *argument++;
+
+    while ( *argument != '\0' )
+    {
+      if ( *argument == cEnd )
+      {
+          argument++;
+          break;
+      }
+      *pArg++ = *argument++;
+    }
+    *pArg = '\0';
+
+    *argument = '\0';
+
+    if ( arg1[0] == '\0' )
+    {
+      send_to_char( "Syntax: retire <password>.\n\r", ch );
+      return;
+    }
+
+    if ( strcmp( crypt( arg1, ch->pcdata->pwd ), ch->pcdata->pwd ) )
+    {
+      WAIT_STATE( ch, 40 );
+      send_to_char( "Wrong password.  Wait 10 seconds.\n\r", ch );
+      return;
+    }
+
+    send_to_char( "Hope you return soon brave adventurer!\n\r", ch );
+    send_to_char( "[Add little to little ",                     ch );
+    send_to_char( "and there will be a big pile]\n\r\n\r",      ch );
+
+    act( "$n has retired the game.", ch, NULL, NULL, TO_ROOM );
+    sprintf( log_buf, "%s has retired the game.", ch->name );
+    log_string( log_buf );
+
+    /*
+     * After extract_char the ch is no longer valid!
+     *
+     * By saving first i assure i am not removing a non existing file
+     * i know it's stupid and probably useless but... (Zen).
+     */
+    save_char_obj( ch );
+    delete_char_obj( ch ); /* handy function huh? :) */
+
+    d = ch->desc;
+    extract_char( ch, TRUE );
+    if ( d )
+      close_socket( d );
+    return;
+}
+
+
+void do_join( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *victim;
+    char       arg [ MAX_INPUT_LENGTH ];
+    char       buf[ MAX_STRING_LENGTH ];
+    OBJ_DATA  *card;	
+    OBJ_DATA  *armor;
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Join whom to your clan?\n\r", ch );
+	return;
+    }
+    if ( IS_NPC( ch )
+	|| IS_SWITCHED( ch )
+    	|| !IS_CLAN( ch )
+    	|| !IS_SET( ch->pcdata->rank, CLAN_LEADER ) )
+    {
+	send_to_char( "You are not a clan leader.\n\r", ch );
+	return;
+    }
+    if ( !( victim = get_char_room( ch, arg ) ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+    if ( victim == ch || IS_NPC(victim) || IS_SWITCHED(victim) )
+	return;
+
+    card = get_eq_char(victim, WEAR_HOLD);
+    if ( IS_CLAN( victim )
+         || !card
+         || card->pIndexData->vnum != OBJ_VNUM_CLAN_CARD
+         || victim->level < 20
+         || victim->level >= 40 )
+    {
+	act("$N hasn't what's required to join.",ch,NULL, victim, TO_CHAR);
+	act("You can't join $n's clan.", ch, NULL, victim, TO_VICT);
+	return;
+    }
+
+    victim->pcdata->clan = ch->pcdata->clan;
+    SET_BIT(victim->pcdata->rank, CLAN_MEMBER);
+    armor = create_object( get_obj_index( clan_table[ ch->pcdata->clan ].armor )
+    							, victim->level );
+    obj_to_char( armor, victim );
+    sprintf( buf, "Log %s: joined %s to %s #%d",
+    		ch->name,
+    		victim->name, clan_table[ ch->pcdata->clan ].name,
+    		ch->pcdata->clan );
+    log_clan( buf );
+    act("$N joins $n's clan.", ch, NULL, victim, TO_ROOM);
+    act("$N joins your clan.", ch, NULL, victim, TO_CHAR);
+    
+    return;
+}

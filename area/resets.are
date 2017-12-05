@@ -1,0 +1,27 @@
+    #AREA {1 1} All Resets~
+
+    #MOBILES
+    #0
+    #OBJECTS
+    #0
+    #ROOMS
+    #0
+    #RESETS
+M 0 3012 1 7591 Healers Nos Castelos dos Clans
+O 0 3010 1 7591 Pits nos castelos
+M 0 3012 1 7592
+O 0 3010 1 7592
+M 0 3012 1 7593
+O 0 3010 1 7593
+M 0 3012 1 7594
+O 0 3010 1 7594
+M 0 3012 1 7595
+O 0 3010 1 7595
+
+S
+
+    #SHOPS
+0
+    #SPECIALS
+S
+    #$
