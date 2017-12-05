@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2001
 bat~
@@ -208,7 +207,6 @@ You see nothing more than the sense of darkness and evil.
 #0
 
 
-
 #NEWOBJECTS
 #2001
 glowing key~
@@ -369,7 +367,6 @@ A sword made of wood has been left here.~
 A
 18 1 0
 #0
-
 
 
 #ROOMDATA
@@ -1608,7 +1605,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 2007 spec_cast_undead
 M 2009 spec_cast_undead
@@ -1618,7 +1614,6 @@ M 2014 spec_cast_undead
 M 2016 spec_breath_any
 M 2017 spec_poison
 S
-
 
 
 #RESETS
@@ -1742,10 +1737,8 @@ M 0 2003 2 2064
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

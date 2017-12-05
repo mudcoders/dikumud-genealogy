@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 -1 DWARF DWARVES~
@@ -219,7 +218,6 @@ There is a giant snake here.
 #0
 
 
-
 #NEWOBJECTS
 #6502
 key green~
@@ -373,7 +371,6 @@ to the day that they are to be taken.  You can tell they haven't been
 used for a while.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1188,10 +1185,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -1293,12 +1288,10 @@ G 0 6519 0
 S
 
 
-
 #SHOPS
 6503 5 9 0 0 0 150 50 0 23
 6504 0 0 0 0 0 150 50 0 23
 0
-
 
 
 #$

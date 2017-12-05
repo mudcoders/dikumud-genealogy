@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2800
 guardian beast~
@@ -129,7 +128,6 @@ He advances toward you.
 #0
 
 
-
 #NEWOBJECTS
 #2800
 corpse cadaver~
@@ -206,7 +204,6 @@ This piece of bone looks sturdy enough to be used as a weapon, but you
 wouldn't want to entrust your life to it.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -319,10 +316,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -353,10 +348,8 @@ P 0 2803 0 2801
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

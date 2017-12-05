@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2901
 black mountain goat~
@@ -166,7 +165,6 @@ The fire lizard flicks its tongue at you.
 #0
 
 
-
 #NEWOBJECTS
 #2901
 horns~
@@ -275,7 +273,6 @@ A newt egg lies here.~
 10~ 0~ 0~ 0~ 0~
 1 1 0
 #0
-
 
 
 #ROOMDATA
@@ -866,12 +863,10 @@ S
 #0
 
 
-
 #SPECIALS
 M 2913 spec_cast_cleric
 M 2914 spec_breath_fire
 S
-
 
 
 #RESETS
@@ -980,10 +975,8 @@ O 0 2915 0 2931
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

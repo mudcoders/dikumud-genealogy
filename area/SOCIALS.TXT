@@ -743,6 +743,17 @@ OthersAuto  $n flirts with $mself.  Hoo boy.~
 End
 
 #SOCIAL
+Name        flower~
+CharNoArg   You admire a beautifull {g---,--'--{{{r@{x on a nearby bush.~
+OthersNoArg $n admires a beautifull {g---,--'--{{{r@{x on a nearby bush.~
+CharFound   You give $M a beautifull {g---,--'--{{{r@{x~
+OthersFound $n gives $N a beautifull {g---,--'--{{{r@{x~
+VictFound   $n gives you a beautifull {g---,--'--{{{r@{x~
+CharAuto    You put a beautifull {g---,--'--{{{r@{x in your hair.~
+OthersAuto  $n puts a beautifull {g---,--'--{{{r@{x in his hair.~
+End
+
+#SOCIAL
 Name        flutter~
 CharNoArg   You flutter your eyelashes.~
 OthersNoArg $n flutters $s eyelashes.~

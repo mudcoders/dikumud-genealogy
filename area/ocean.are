@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #201
 witch hag woman~
@@ -33,7 +32,6 @@ It appears that this sailor's captain has left him here on the dock.
 12000 0
 0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -70,7 +68,6 @@ canoe~
 The canoe is fairly light.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1138,10 +1135,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -1153,11 +1148,9 @@ O 0 201 0 244
 S
 
 
-
 #SHOPS
 202 22 0 0 0 0 120 90 6 22
 0
-
 
 
 #$

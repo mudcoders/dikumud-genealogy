@@ -1,7 +1,8 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
-Monday, 14th July 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
+
 
 
 === Greetings!
@@ -13,16 +14,46 @@ on? Envy is soo much user friendly... This is the first time ever i took a real
 stab at Envy coding so here's what i came up with.
 
 
-=== BUGS/UNDOCUMENTED FEATURES in this release of HomeCooked:
+=== BUGS/UNDOCUMENTED FEATURES in this release of UltraEnvy:
 
-None i know of. I usually squash them when i see them. But see new.txt also,
-just in case i forgot to add something here.
+		Missile weapons support isn't very good yet.
+		Clans code needs more testing/refinement.
+		Don't mess with crazy non existent value[3] in weapons;
+		    thanx go to Satan for crashing the mud with this...
+
+Otherwise, none i know of. I usually squash them when i see them. But see
+new.txt also, just in case i forgot to add something here.
+
+Thanx are in order for Joguel, Satan, Spear & Thanatos for helping me playtest
+the mud in the early days.  Also thanx to all the players of DragonMud which
+flooded me with bugs reports ;-)  I couldn't have made this release stable
+without your precious help.
 
 
 === BUGS/UNDOCUMENTED FEATURES in Envy 2.2:
 
 
-Zen			don't do "ofind all"... If you do... shutdown!
+Zen			don't do "ofind all"... If you do... segmentation fault!
+			Fixed. In comm.c , write_to_buffer():
+
+    while ( d->outtop + length >= d->outsize )
+    {
+	char *outbuf;
+
+->      if ( d->outsize >= 32000 )
+->      {
+->          /* empty buffer */
+->          d->outtop = 0;
+->          close_socket( d );
+->          bugf( "Buffer overflow. Closing (%s).",
+->               ( d->character ? d->character->name : "???" ) );
+->          return;
+->      }
+
+	outbuf      = alloc_mem( 2 * d->outsize );
+
+Since "ofind all" overflowed the output buffer it would crash the mud. So this
+way, the offending char will simply be disconnected for safety.
 
 
 Zen			mobile_update() in update.c: mobs flee in terror if hurt
@@ -107,5 +138,8 @@ Zen & Joguel 		Wand of water breathing in Midgaard magic shop is
 			wand? Zen's suggestion: new swim skill.
 			Swim skill implemented!
 
+Zen			'Cast from pointer to integer of different size' 
+			warnings in save.c caused segmentation faults on DEC
+			Alpha.
 
 - Zen

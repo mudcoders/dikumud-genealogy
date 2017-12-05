@@ -1,13 +1,16 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
 === Player File Format
 
 Player files are ASCII files.
+
+The UltraEnvy server fully understands and converts standard Envy2.2 player
+files.  In fact, they aren't that much different.
 
 A player file contains a player section followed by one or more object
 sections.  Each section contains several lines.  Each line contains a
@@ -102,7 +105,7 @@ continue loading.
 
 === Immortal commands
 
-Immortal commands in Envy 2.2 are considered Skills.  Each command is
+Immortal commands in Envy are considered Skills.  Each command is
 stored as a string in the field Immskll.  Each immortal must have the
 level and the string in the field Immskll in order to use that
 particular imm command. This allows for customized immortals with

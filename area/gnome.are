@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 -1 GNOME~
@@ -319,7 +318,6 @@ in a pot.
 #0
 
 
-
 #NEWOBJECTS
 #1500
 key bloody~
@@ -522,7 +520,6 @@ A potion of life healing has left here.~
 32~ cure poison~ bless~  ~  ~
 1 1 0
 #0
-
 
 
 #ROOMDATA
@@ -2062,7 +2059,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 1503 spec_cast_mage
 M 1505 spec_cast_cleric
@@ -2074,7 +2070,6 @@ M 1514 spec_cast_undead
 M 1515 spec_breath_fire
 M 1519 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -2200,10 +2195,8 @@ M 0 1520 2 1590
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

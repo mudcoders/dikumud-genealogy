@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 -1 DROW~
@@ -158,7 +157,6 @@ The drow scout blends so well with her environment, you barely see her form.
 1000 0
 0 Drow~ 2
 #0
-
 
 
 #NEWOBJECTS
@@ -329,7 +327,6 @@ A
 A
 17 -2 0
 #0
-
 
 
 #ROOMDATA
@@ -1161,14 +1158,12 @@ S
 #0
 
 
-
 #SPECIALS
 M 5103 spec_cast_mage
 M 5104 spec_cast_cleric
 M 5108 spec_cast_cleric
 M 5109 spec_breath_any
 S
-
 
 
 #RESETS
@@ -1232,10 +1227,8 @@ E 0 5109 0 9
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

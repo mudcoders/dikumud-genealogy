@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #9201
 mountain climber mountainclimber~
@@ -427,7 +426,6 @@ I WOULD NOT suggest you attack me ...!
 #0
 
 
-
 #NEWOBJECTS
 #9201
 ring earth~
@@ -744,7 +742,6 @@ A bolt of lightning whizzes about the room!~
 A
 18 5 0
 #0
-
 
 
 #ROOMDATA
@@ -1792,7 +1789,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 9202 spec_cast_cleric
 M 9204 spec_breath_any
@@ -1818,7 +1814,6 @@ M 9235 spec_breath_any
 M 9237 spec_breath_any
 M 9238 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -1994,11 +1989,9 @@ M 0 9225 8 9260
 S
 
 
-
 #SHOPS
 9238 0 0 0 0 0 105 15 0 23
 0
-
 
 
 #$

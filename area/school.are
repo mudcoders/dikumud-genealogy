@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #3700
 acolyte cleric~
@@ -238,7 +237,6 @@ diploma is yours.
 300 0
 0 Bear~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -481,7 +479,6 @@ banner~
 This is the official Merc war banner to see you through the darkest realm!
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1965,12 +1962,10 @@ S
 #0
 
 
-
 #SPECIALS
 M 3707 spec_cast_adept
 M 3714 spec_fido
 S
-
 
 
 #RESETS
@@ -2012,11 +2007,9 @@ M 0 3719 1 3759
 S
 
 
-
 #SHOPS
 3717 1 15 17 19 0 100 100 0 23
 0
-
 
 
 #$

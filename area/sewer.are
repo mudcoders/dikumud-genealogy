@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #7000
 mud monster mudmonster~
@@ -316,7 +315,6 @@ the size of your head looking very nasty.
 2513 0
 0 Rat~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -743,7 +741,6 @@ A
 A
 2 -1 0
 #0
-
 
 
 #ROOMDATA
@@ -4616,7 +4613,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 7006 spec_poison
 M 7040 spec_breath_fire
@@ -4629,7 +4625,6 @@ M 7202 spec_cast_mage
 M 7203 spec_poison
 M 7204 spec_poison
 S
-
 
 
 #RESETS
@@ -4728,10 +4723,8 @@ M 0 7041 2 7444
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

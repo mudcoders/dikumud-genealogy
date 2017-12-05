@@ -1,4 +1,4 @@
-% - indicates these ideas have been incorporated in EnvyMud
+% - indicates these ideas have been incorporated in UltraEnvyMud
 
 [Note from Furey: the following ideas were e-mailed to us by the Drool
 Company.  We don't have time to do anything with them ... but if you do,
@@ -22,7 +22,7 @@ Warrior ides:
 
 %	-* warcry: self-bless effect...
 
-	-* specialize in certain weapons...(this might be hard to code)
+%	-* specialize in certain weapons...(this might be hard to code)
 
 Cleric ideas:
 
@@ -42,7 +42,7 @@ Magic-User:
 		power word kill- VERY high level- insta-kill monsters
 			of levels below the caster-possibly 5 or more levels 
 			below
-		chain lightning- lightning hits more than one opponent (or
+%		chain lightning- lightning hits more than one opponent (or
 			friend)...
 		wish- ... NOT!
 		conjure elemental- make this this WORK!
@@ -50,7 +50,7 @@ Magic-User:
 			from breath, etc..
 %		polymorph- change shape into a lower level monster's...keep 
 			hp's and AC...could cause problems with other players
-		meteor swarm- area affect- high-level...
+%		meteor swarm- area affect- high-level...
 	
 
 General ideas:

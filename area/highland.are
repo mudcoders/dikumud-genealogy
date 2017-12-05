@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #11500
 Frog~
@@ -218,7 +217,6 @@ They are not very tall but look quite though.
 0 0
 0 Giant~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -489,7 +487,6 @@ A
 A
 5 1 0
 #0
-
 
 
 #ROOMDATA
@@ -3823,14 +3820,12 @@ S
 #0
 
 
-
 #SPECIALS
 M 11510 spec_cast_mage
 M 11511 spec_cast_cleric
 M 11513 spec_breath_any
 M 11514 spec_breath_any
 S
-
 
 
 #RESETS
@@ -3974,10 +3969,8 @@ E 0 11522 0 11
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

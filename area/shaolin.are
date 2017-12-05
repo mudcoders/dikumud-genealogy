@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #20101
 monk child~
@@ -222,7 +221,6 @@ He must be crazy.'
 0 0
 0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -554,7 +552,6 @@ This is the human body of Boom left behind after his essence departed
 from this world to a realm beyond mere mortals.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1219,7 +1216,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 20102 spec_cast_cleric
 M 20105 spec_cast_mage
@@ -1235,7 +1231,6 @@ M 20115 spec_breath_fire
 M 20116 spec_breath_any
 M 20117 spec_thief
 S
-
 
 
 #RESETS
@@ -1311,10 +1306,8 @@ O 0 20137 0 20137
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

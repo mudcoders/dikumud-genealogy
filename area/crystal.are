@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #10001
 Goldmoon girl~
@@ -186,7 +185,6 @@ The Mouse is a cute little creature.
 1 0
 0 Rat~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -404,7 +402,6 @@ This is a crudly constructed leather helmet, held together with large
 iron bands.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -2340,13 +2337,11 @@ S
 #0
 
 
-
 #SPECIALS
 M 10001 spec_cast_adept
 M 10008 spec_breath_gas
 M 10013 spec_thief
 S
-
 
 
 #RESETS
@@ -2423,10 +2418,8 @@ M 0 10007 1 10081
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

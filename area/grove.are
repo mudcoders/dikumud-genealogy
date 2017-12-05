@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #8900
 hierophant~
@@ -138,7 +137,6 @@ She wonders why you are staring at her, and how you got in here.
 50 0
 0 Elf~ 2
 #0
-
 
 
 #NEWOBJECTS
@@ -312,7 +310,6 @@ Some pinkish herbs are scattered here.~
 5~ cure poison~ poison~  ~  ~
 1 1 0
 #0
-
 
 
 #ROOMDATA
@@ -809,7 +806,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 8900 spec_cast_cleric
 M 8901 spec_cast_cleric
@@ -819,7 +815,6 @@ M 8908 spec_poison
 M 8909 spec_cast_cleric
 M 8910 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -865,10 +860,8 @@ G 0 8916 0
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

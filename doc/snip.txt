@@ -10,8 +10,8 @@ Kahn            envy@envy.com
 ftp://pendor.mit.edu pub/endless	
 	Maintained by "Jan Wiberg" <jwiberg@inet.uni-c.dk>
 
-http://pip.dknet.dk/~pip1773 (home page)
-http://pip.dknet.dk/~pip1773/snip.html (direct snippet access)
+http://pip.dknet.dk/~erwin (home page)
+http://pip.dknet.dk/~erwin/snip.html (direct snippet access)
 	Maintained by Erwin Andreasen erwin@pip.dknet.dk
 
 http://www.delftnet.nl/~mark/snippets/snippets.html

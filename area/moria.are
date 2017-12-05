@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 -1 GIANT~
@@ -425,7 +424,6 @@ He is just looking for a fight isn't he?
 #0
 
 
-
 #NEWOBJECTS
 #4000
 ring yellow green~
@@ -614,7 +612,6 @@ dagger light silver~
 It looks like an excellent weapon for thieves.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -2600,7 +2597,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 4000 spec_poison
 M 4001 spec_poison
@@ -2616,7 +2612,6 @@ M 4155 spec_thief
 M 4157 spec_cast_mage
 M 4158 spec_poison
 S
-
 
 
 #RESETS
@@ -2708,10 +2703,8 @@ M 0 4153 2 4170
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

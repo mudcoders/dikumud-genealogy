@@ -1,201 +1,92 @@
-Class       2
-Name        Thi~
+Nm          Thief~
+WhoNm       Thi~
+Cla         2
 AtrPrm      2
-Weapon      3701
+Wpn         3701
 Guild       3028
-Skilladept  85
+Sklladpt    85
 Thac0       18
 Thac47      3
 Hpmin       8
 Hpmax       13
 Mana        0
-Skll        'backstab' 1
-Skll        'circle' 18
-Skll        'disarm' 10
-Skll        'dodge' 1
-Skll        'hide' 1
-Skll        'peek' 1
-Skll        'pick lock' 1
-Skll        'poison weapon' 13
-Skll        'scrolls' 7
-Skll        'second attack' 1
-Skll        'snare' 8
-Skll        'sneak' 1
-Skll        'staves' 13
-Skll        'steal' 1
-Skll        'third attack' 20
-Skll        'track' 6
-Skll        'untangle' 11
-Skll        'wands' 7
-Skll        'stake' 1
-Skll        'scan' 30
-Skll        'shield block' 17
-Skll        'fast healing' 27
-Skll        'dirt kicking' 20
-Skll        'swim' 15
-Title
-Man~
-Woman~
-Title
-Pilferer~
-Pilferess~
-Title
-Footpad~
-Footpad~
-Title
-Filcher~
-Filcheress~
-Title
-Pick-Pocket~
-Pick-Pocket~
-Title
-Sneak~
-Sneak~
-Title
-Pincher~
-Pincheress~
-Title
-Cut-Purse~
-Cut-Purse~
-Title
-Snatcher~
-Snatcheress~
-Title
-Sharper~
-Sharpress~
-Title
-Rogue~
-Rogue~
-Title
-Robber~
-Robber~
-Title
-Magsman~
-Magswoman~
-Title
-Highwayman~
-Highwaywoman~
-Title
-Burglar~
-Burglaress~
-Title
-Thief~
-Thief~
-Title
-Knifer~
-Knifer~
-Title
-Quick-Blade~
-Quick-Blade~
-Title
-Killer~
-Murderess~
-Title
-Brigand~
-Brigand~
-Title
-Cut-Throat~
-Cut-Throat~
-Title
-Spy~
-Spy~
-Title
-Grand Spy~
-Grand Spy~
-Title
-Master Spy~
-Master Spy~
-Title
-Assassin~
-Assassin~
-Title
-Greater Assassin~
-Greater Assassin~
-Title
-Master of Vision~
-Mistress of Vision~
-Title
-Master of Hearing~
-Mistress of Hearing~
-Title
-Master of Smell~
-Mistress of Smell~
-Title
-Master of Taste~
-Mistress of Taste~
-Title
-Master of Touch~
-Mistress of Touch~
-Title
-Crime Lord~
-Crime Mistress~
-Title
-Infamous Crime Lord~
-Infamous Crime Mistress~
-Title
-Greater Crime Lord~
-Greater Crime Mistress~
-Title
-Master Crime Lord~
-Master Crime Mistress~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Godfather~
-Godmother~
-Title
-Assassin Hero~
-Assassin Heroine~
-Title
-Angel of Death~
-Angel of Death~
-Title
-Deity of Assassins~
-Deity of Assassins~
-Title
-Supreme Master~
-Supreme Mistress~
-Title
-Implementor~
-Implementress~
+Skll         1 'backstab'
+Skll        18 'circle'
+Skll        10 'disarm'
+Skll         1 'dodge'
+Skll         1 'hide'
+Skll         1 'peek'
+Skll         1 'pick lock'
+Skll        13 'poison weapon'
+Skll         7 'scrolls'
+Skll         1 'second attack'
+Skll         8 'snare'
+Skll         1 'sneak'
+Skll        13 'staves'
+Skll         1 'steal'
+Skll        20 'third attack'
+Skll        11 'untangle'
+Skll         7 'wands'
+Skll         1 'stake'
+Skll        30 'scan'
+Skll        17 'shield block'
+Skll        27 'fast healing'
+Skll         6 'track'
+Skll        20 'dirt kicking'
+Skll        15 'swim'
+Ttle        Man~ Woman~
+Ttle        Pilferer~ Pilferess~
+Ttle        Footpad~ Footpad~
+Ttle        Filcher~ Filcheress~
+Ttle        Pick-Pocket~ Pick-Pocket~
+Ttle        Sneak~ Sneak~
+Ttle        Pincher~ Pincheress~
+Ttle        Cut-Purse~ Cut-Purse~
+Ttle        Snatcher~ Snatcheress~
+Ttle        Sharper~ Sharpress~
+Ttle        Rogue~ Rogue~
+Ttle        Robber~ Robber~
+Ttle        Magsman~ Magswoman~
+Ttle        Highwayman~ Highwaywoman~
+Ttle        Burglar~ Burglaress~
+Ttle        Thief~ Thief~
+Ttle        Knifer~ Knifer~
+Ttle        Quick-Blade~ Quick-Blade~
+Ttle        Killer~ Murderess~
+Ttle        Brigand~ Brigand~
+Ttle        Cut-Throat~ Cut-Throat~
+Ttle        Spy~ Spy~
+Ttle        Grand Spy~ Grand Spy~
+Ttle        Master Spy~ Master Spy~
+Ttle        Assassin~ Assassin~
+Ttle        Greater Assassin~ Greater Assassin~
+Ttle        Master of Vision~ Mistress of Vision~
+Ttle        Master of Hearing~ Mistress of Hearing~
+Ttle        Master of Smell~ Mistress of Smell~
+Ttle        Master of Taste~ Mistress of Taste~
+Ttle        Master of Touch~ Mistress of Touch~
+Ttle        Crime Lord~ Crime Mistress~
+Ttle        Infamous Crime Lord~ Infamous Crime Mistress~
+Ttle        Greater Crime Lord~ Greater Crime Mistress~
+Ttle        Master Crime Lord~ Master Crime Mistress~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Godfather~ Godmother~
+Ttle        Assassin Hero~ Assassin Heroine~
+Ttle        Angel of Death~ Angel of Death~
+Ttle        Deity of Assassins~ Deity of Assassins~
+Ttle        Supreme Master~ Supreme Mistress~
+Ttle        Implementor~ Implementress~
 End

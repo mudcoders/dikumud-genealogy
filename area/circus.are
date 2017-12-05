@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #4400
 ticket clerk~
@@ -410,7 +409,6 @@ pockets of the unwary.
 8 0
 0 Dwarf~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -893,7 +891,6 @@ A
 A
 19 3 0
 #0
-
 
 
 #ROOMDATA
@@ -1835,11 +1832,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 4451 spec_thief
 S
-
 
 
 #RESETS
@@ -1966,12 +1961,10 @@ E 0 4450 0 16
 S
 
 
-
 #SHOPS
 4400 0 0 0 0 0 100 50 0 23
 4427 0 0 0 0 0 100 50 0 23
 0
-
 
 
 #$

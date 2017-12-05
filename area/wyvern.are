@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1601
 killer frog~
@@ -320,7 +319,6 @@ As you watch this strange creature, its position seems to flicker and shift.
 #0
 
 
-
 #NEWOBJECTS
 #1601
 rusty cleaver~
@@ -541,7 +539,6 @@ A ring of etched bronze gleams dimly on the ground.~
 A
 12 5 0
 #0
-
 
 
 #ROOMDATA
@@ -1574,7 +1571,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 1605 spec_cast_cleric
 M 1609 spec_cast_undead
@@ -1583,7 +1579,6 @@ M 1616 spec_breath_any
 M 1617 spec_cast_undead
 M 1716 spec_cast_undead
 S
-
 
 
 #RESETS
@@ -1667,10 +1662,8 @@ E 0 1713 0 2
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

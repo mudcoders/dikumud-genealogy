@@ -61,17 +61,11 @@ DECLARE_SPEC_FUN(	spec_thief		);
 
 
 
-/*
- * Given a name, return the appropriate spec fun.
- * Name:          spec_lookup
- * Purpose:       Given a name, return the appropriate spec fun.
- * Called by:     do_mset(act_wiz.c) load_specials,reset_area(db.c)
- */
-SPEC_FUN *spec_lookup( const char *name )       /* OLC */
+SPEC_FUN *spec_lookup( const char *name )
 {
     int cmd;
 
-    for ( cmd = 0; *spec_table[cmd].spec_name; cmd++ )  /* OLC 1.1b */
+    for ( cmd = 0; *spec_table[cmd].spec_name; cmd++ )
         if ( !str_cmp( name, spec_table[cmd].spec_name ) )
             return spec_table[cmd].spec_fun;
 
@@ -79,16 +73,11 @@ SPEC_FUN *spec_lookup( const char *name )       /* OLC */
 }
 
 
-/*****************************************************************************
- Name:          spec_string
- Purpose:       Given a function, return the appropriate name.
- Called by:     <???>
- ****************************************************************************/
-char *spec_string( SPEC_FUN *fun )      /* OLC */
+char *spec_string( SPEC_FUN *fun )
 {
     int cmd;
 
-    for ( cmd = 0; *spec_table[cmd].spec_fun; cmd++ )   /* OLC 1.1b */
+    for ( cmd = 0; *spec_table[cmd].spec_fun; cmd++ )
         if ( fun == spec_table[cmd].spec_fun )
             return spec_table[cmd].spec_name;
 
@@ -96,14 +85,10 @@ char *spec_string( SPEC_FUN *fun )      /* OLC */
 }
 
 /*
- * Special Functions Table.     OLC
- * Add any new spec_funs here
+ * Special function commands.
  */
-const   struct  spec_type       spec_table      [ ] =
+const	struct	spec_type	spec_table	[ ]	=
 {
-    /*
-     * Special function commands.
-     */
     { "spec_breath_any",        spec_breath_any         },
     { "spec_breath_acid",       spec_breath_acid        },
     { "spec_breath_fire",       spec_breath_fire        },
@@ -125,11 +110,7 @@ const   struct  spec_type       spec_table      [ ] =
     { "spec_poison",            spec_poison             },
     { "spec_repairman",         spec_repairman          },
     { "spec_thief",             spec_thief              },
-    
-    /*
-     * End of list.
-     */
-    { "",                       0       }
+    { "",                       0			}
 };  
 
 
@@ -491,7 +472,7 @@ bool spec_cast_undead( CHAR_DATA *ch )
 	case  7: min_level = 21; spell = "teleport";       break;
 	case  8:
 	case  9:
-	case 10: if ( ch->race == race_lookup( "Vampire" ) )
+	case 10: if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) )
 	         {
 		     min_level = 24;
 		     spell = "vampiric bite";  break;

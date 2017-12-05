@@ -34,270 +34,618 @@
 
 
 
-/*
- * Clan table (by Zen).
- */
-const	struct	clan_type	clan_table	[MAX_CLAN]	=
-{
-    /*	name,			clan_vest,		castle	*/
-    {	"none",			OBJ_VNUM_SCHOOL_VEST,	3001	},
-    {	"Shining Clan",		3383,			3001	},
-    {	"Klowns Clan",		3383,			3001	},
-    {	"Berserkers Clan",	3383,			3001	},
-    {	"Krushers Clan",	3383,			3001	},
-    {	"White Dragon Clan",	3383,			3001	}
-};
-
-
-#define CLASS_MAGE       0
-#define CLASS_CLERIC     1
-#define CLASS_THIEF      2
-#define CLASS_WARRIOR    3
-#define CLASS_PSIONICIST 4
-
-/*
- * Immort Levels
- */
-#define L_HER            LEVEL_HERO
-
-
 /* 
  * Race types
  */
-const   struct    race_type       race_table      [ MAX_RACE ]    =
+const   struct    race_type       race_table      [MAX_RACE]	=
 {
-    { "Human",     RACE_PC_AVAIL | RACE_WEAPON_WIELD,      3, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, "punch", "Githyanki Vampire Werewolf Mindflayer",
+    {
+	"Human",
+	RACE_PC_AVAIL | RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		0, 0, 0, 0, 0,		0, 0, 0,	0, 0,
+	"punch",
+	"Githyanki Vampire Werewolf Mindflayer",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Elf",       RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
-	           RACE_WEAPON_WIELD,                      2, 0, 1, 0, 1, -1,
-	0, 4, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_COMMON
+    },
+
+    {
+	"Elf",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
+		RACE_WEAPON_WIELD,
+	SIZE_AVERAGE,		0, 1, 0, 1, -1,		0, 4, 0,	0, 0,
+	"punch",
 	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Halfelf",   RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
-	                                                   3, 0, 0, 0, 1, 0,
-	0, 2, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_CHARM,
+	RIS_NONE,
+	RIS_IRON,
+	LANG_ELVEN
+    },
+
+    {
+	"Halfelf",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		0, 0, 0, 1, 0,		0, 2, 0,	0, 0,
+	"punch",
 	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Drow",      RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
-	           RACE_WEAPON_WIELD,                      2, 0, 0, 1, 1, 0,
-	0, 4, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_CHARM | RIS_POISON,
+	RIS_NONE,
+	RIS_IRON,
+	LANG_ELVEN
+    },
+
+    {
+	"Drow",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
+		RACE_WEAPON_WIELD,
+	SIZE_PETITE,		0, 0, 1, 1, 0,		0, 4, 0,	0, 0,
+	"punch",
 	"Elf Halfelf Hobbit Githyanki Vampire Werewolf",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Dwarf",     RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
-	           RACE_WEAPON_WIELD,                      2, 0, 0, 0, -1, 1,
-	0, 0, 0, 0, 1, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_MAGIC,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_DROW
+    },
+
+    {
+	"Dwarf",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	SIZE_PETITE,		0, 0, 0, -1, 1,		0, 0, 0,	0, 1,
+	"punch",
 	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Halfdwarf", RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
-	                                                   2, 0, 0, 0, 0, 1,
-	0, 0, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_POISON | RIS_DISEASE,
+	RIS_NONE,
+	RIS_DROWNING,
+	LANG_DWARVEN
+    },
+
+    {
+	"Halfdwarf",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_PETITE,		0, 0, 0, 0, 1,		0, 0, 0,	0, 0,
+	"punch",
 	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Hobbit",    RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
-	           RACE_WEAPON_WIELD,                      2, 0, 0, 0, 1, -1,
-	0, 0, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_POISON | RIS_DISEASE,
+	RIS_NONE,
+	RIS_DROWNING,
+	LANG_DWARVEN
+    },
+
+    {
+	"Hobbit",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
+		RACE_WEAPON_WIELD,
+	SIZE_PETITE,		0, 0, 0, 1, -1,		0, 0, 0,	0, 0,
+	"punch",
 	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Gnome",     RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
-	                                                   2, -1, 0, 1, 1, -1,
-	0, 4, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_POISON | RIS_DISEASE | RIS_MAGIC,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_HALFLING
+    },
+
+    {
+	"Gnome",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_PETITE,		-1, 0, 1, 1, -1,	0, 4, 0,	0, 0,
+	"punch",
 	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Halfkobold", RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
-	                                                  2, -2, -1, -2, 3, -2,
-	0, 0, 0, 0, 0, "punch", "Ogre Orc Giant Troll Hobgoblin",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_POISON | RIS_DISEASE | RIS_MAGIC,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_GNOMISH
+    },
+
+    {
+	"Halfkobold",
+	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_PETITE,		-2, -1, -2, 3, -2,	0, 0, 0,	0, 0,
+	"punch",
+	"Ogre Orc Giant Troll Hobgoblin",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_TAIL },
-    { "Giant",     RACE_WEAPON_WIELD,                      6, 2, -1, 0, -1, 1,
-	3, -5, -2, 2, 4, "fist",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_TAIL,
+	RIS_POISON,
+	RIS_NONE,
+	RIS_MAGIC,
+	LANG_KOBOLD
+    },
+
+    {
+	"Giant",
+	RACE_WEAPON_WIELD,
+	SIZE_HUGE,		2, -1, 0, -1, 1,	3, -5, -2,	2, 4,
+	"fist",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Ogre",      RACE_WEAPON_WIELD,                      6, 1, -1, 0, -1, 1,
-	2, -3, -1, 0, 2, "fist",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_FIRE | RIS_COLD,
+	RIS_NONE,
+	RIS_MENTAL,
+	LANG_COMMON
+    },
+
+    {
+	"Ogre",
+	RACE_WEAPON_WIELD,
+	SIZE_HUGE,		1, -1, 0, -1, 1,	2, -3, -1,	0, 2,
+	"fist",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Orc",       RACE_INFRAVISION | RACE_WEAPON_WIELD,   4, 1, -1, 0, 0, 0,
-	2, -1, -1, 0, 1, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_MENTAL,
+	LANG_OGRE
+    },
+
+    {
+	"Orc",
+	RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_LARGE,		1, -1, 0, 0, 0,		2, -1, -1,	0, 1,
+	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Kobold",    RACE_INFRAVISION | RACE_WEAPON_WIELD,   2, -1, -1, 0, 1, 0,
-	0, 0, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_DISEASE,
+	RIS_NONE,
+	RIS_LIGHT,
+	LANG_ORCISH
+    },
+
+    {
+	"Kobold",
+	RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_PETITE,		-1, -1, 0, 1, 0,	0, 0, 0,	0, 0,
+	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome Halfkobold",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_TAIL },
-    { "Minotaur",  RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 5, 2, 0, 0, -1, 1,
-	3, 0, -1, 0, 3, "fist",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_TAIL,
+	RIS_POISON,
+	RIS_NONE,
+	RIS_MAGIC,
+	LANG_KOBOLD
+    },
+
+    {
+	"Minotaur",
+	RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	SIZE_LARGE,		2, 0, 0, -1, 1,		3, 0, -1,	0, 3,
+	"fist",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_TAIL },
-    { "Troll",     RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
-	                                                   7, 2, -1, 0, 0, 1,
-	10, 0, 0, 0, 8, "fist",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_TAIL,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_COMMON
+    },
+
+    {
+	"Troll",
+	RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	SIZE_TITANIC,		2, -1, 0, 0, 1,		10, 0, 0,	0, 8,
+	"fist",
 	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_CLAWS | PART_FANGS },
-    { "Hobgoblin", RACE_INFRAVISION | RACE_WEAPON_WIELD,   3, 1, 0, -1, 0, 1,
-	0, 0, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_CLAWS | PART_FANGS,
+	RIS_CHARM | RIS_BASH,
+	RIS_NONE,
+	RIS_FIRE | RIS_ACID,
+	LANG_TROLLISH
+    },
+
+    {
+	"Hobgoblin",
+	RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		1, 0, -1, 0, 1,		0, 0, 0,	0, 0,
+	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Insect",    RACE_MUTE,                              0, 0, 0, 0, 0, -1,
-	0, 0, 5, 0, 0, "bite", "",
-	PART_HEAD | PART_LEGS | PART_EYE },
-    { "Dragon",    RACE_FLY | RACE_INFRAVISION | RACE_DETECT_ALIGN |
-	           RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
-	                                                   9, 2, 2, 1, -3, 2,
-	15, 0, -10, 0, 10, "claw", "",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_DISEASE | RIS_POISON,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_COMMON
+    },
+
+    {
+	"Insect",
+	RACE_MUTE,
+	SIZE_MINUTE,		0, 0, 0, 0, -1,		0, 0, 5,	0, 0,
+	"bite",
+	"",
+	PART_HEAD | PART_LEGS | PART_EYE,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_INSECTOID
+    },
+
+    {
+	"Dragon",
+	RACE_FLY | RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS |
+		RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	SIZE_GARGANTUAN,	2, 2, 1, -3, 2,		15, 0, -10,	0, 10,
+	"claw",
+	"",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_WINGS | PART_TAIL | PART_CLAWS | PART_FANGS |
-	PART_SCALES },
-    { "Animal",    RACE_DETECT_HIDDEN | RACE_MUTE,         2, 0, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "bite", "Kobold Halfkobold",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_WINGS | PART_TAIL | PART_CLAWS | PART_FANGS |
+		PART_SCALES,
+	RIS_FIRE | RIS_BASH | RIS_CHARM,
+	RIS_NONE,
+	RIS_PIERCE | RIS_COLD,
+	LANG_DRAGON
+    },
+
+    {
+	"Animal",
+	RACE_DETECT_HIDDEN | RACE_MUTE,
+	SIZE_PETITE,		0, 0, 0, 1, 0,		0, 0, 0,	0, 0,
+	"bite",
+	"Kobold Halfkobold",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_GUTS | PART_FEET |
-	PART_EAR | PART_EYE },
-    { "God",       RACE_WATERBREATH | RACE_FLY | RACE_SWIM | RACE_WATERWALK   |
-	           RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN       |
-		   RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_PROTECTION   |
-		   RACE_SANCT | RACE_WEAPON_WIELD,         8, 3, 3, 3, 3, 3,
-	20, 0, 10, 0, 0, "smite", "",
+		PART_EAR | PART_EYE,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_MAGIC,
+	LANG_ANIMAL
+    },
+
+    {
+	"God",
+	RACE_WATERBREATH | RACE_FLY | RACE_SWIM | RACE_WATERWALK |
+		RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
+		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_PROTECTION |
+		RACE_SANCT | RACE_WEAPON_WIELD,
+	SIZE_GARGANTUAN,	3, 3, 3, 3, 3,		20, 0, 10,	0, 0,
+	"smite",
+	"",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Undead",    RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN       |
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_MAGIC | RIS_POISON | RIS_MENTAL | RIS_CHARM,
+	RIS_DROWNING | RIS_DISEASE,
+	RIS_NONE,
+	LANG_GOD
+    },
+
+    {
+	"Undead",
+	RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 	           RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
-	                                                   3, 1, 0, 0, -2, 1,
-	0, 0, 0, -1, -1, "touch",
+	SIZE_MEDIUM,		1, 0, 0, -2, 1,		0, 0, 0,	-1, -1,
+	"touch",
 	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Goblin Faerie Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Harpy",     RACE_FLY | RACE_DETECT_INVIS | RACE_MUTE,
-	                                                   3, 0, 0, 0, 2, 0,
-	0, 0, 6, 0, 0, "claw",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_WEAPON,
+	RIS_DISEASE | RIS_POISON,
+	RIS_LIGHT | RIS_WHITE_MANA,
+	LANG_SPIRITUAL
+    },
+
+    {
+	"Harpy",
+	RACE_FLY | RACE_DETECT_INVIS | RACE_MUTE,
+	SIZE_MEDIUM,		0, 0, 0, 2, 0,		0, 0, 6,	0, 0,
+	"claw",
 	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Gnome",
 	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
-	PART_FEET | PART_FINGERS | PART_EAR | PART_EYE | PART_WINGS |
-	PART_TAIL | PART_CLAWS | PART_FANGS | PART_SCALES },
-    { "Bear",      RACE_SWIM | RACE_DETECT_HIDDEN | RACE_MUTE,
-	                                                   3, 1, 0, 0, -1, 1,
-	0, 0, 0, 0, 3, "swipe", "",
-	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_EAR | PART_EYE | PART_CLAWS |
-	PART_FANGS },
-    { "Githyanki", RACE_WEAPON_WIELD,                      3, 0, 1, 0, 0, 0,
-	0, 4, 0, 0, 0, "punch", "Mindflayer",
-	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Elemental", RACE_MUTE,                              4, 1, 0, 0, 0, 1,
-	0, 0, 0, -1, -1, "punch", "",
-	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE },
-    { "Bat",       RACE_FLY | RACE_INFRAVISION | RACE_MUTE,
-	                                                   1, -1, 0, 0, 2, -1,
-	0, 0, 4, 0, 0, "bite", "",
-	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
-	PART_FEET | PART_EAR | PART_EYE | PART_WINGS | PART_CLAWS |
-	PART_FANGS },
-    { "Plant",     RACE_MUTE,                              1, 0, 0, 0, -1, 1,
-	0, 0, 0, -1, 0, "swipe", "",
-	PART_HEAD | PART_FANGS },
+		PART_FEET | PART_FINGERS | PART_EAR | PART_EYE | PART_WINGS |
+		PART_TAIL | PART_CLAWS | PART_FANGS | PART_SCALES,
+	RIS_SOUND,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_SPIRITUAL
+    },
 
-    { "Rat",       RACE_PASSDOOR | RACE_MUTE,              0, -1, 0, 0, 2, -1,
-	0, 0, 0, 0, 0, "bite", "",
+    {
+	"Bear",
+	RACE_SWIM | RACE_DETECT_HIDDEN | RACE_MUTE,
+	SIZE_LARGE,		1, 0, 0, -1, 1,		0, 0, 0,	0, 3,
+	"swipe",
+	"",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+		PART_GUTS | PART_HANDS | PART_FEET | PART_EAR | PART_EYE |
+		PART_CLAWS | PART_FANGS,
+	RIS_BASH | RIS_COLD,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_MAMMAL
+    },
+
+    {
+	"Githyanki",
+	RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		0, 1, 0, 0, 0,		0, 4, 0,	0, 0,
+	"punch",
+	"Mindflayer",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_GITH
+    },
+
+    {
+	"Elemental",
+	RACE_MUTE,
+	SIZE_LARGE,		1, 0, 0, 0, 1,		0, 0, 0,	-1, -1,
+	"punch",
+	"",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_MAGICAL
+    },
+
+    {
+	"Bat",
+	RACE_FLY | RACE_INFRAVISION | RACE_MUTE,
+	SIZE_MINUTE,		-1, 0, 0, 2, -1,	0, 0, 4,	0, 0,
+	"bite",
+	"",
 	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
-	PART_FEET | PART_EAR | PART_EYE | PART_FANGS },
-    { "Vampire",   RACE_FLY | RACE_PASSDOOR | RACE_INFRAVISION                |
-	           RACE_DETECT_ALIGN | RACE_DETECT_INVIS | RACE_DETECT_HIDDEN |
-		   RACE_WEAPON_WIELD,                      3, 1, 1, 0, 1, 2,
-	10, 3, 3, -1, 10, "claw",
+		PART_FEET | PART_EAR | PART_EYE | PART_WINGS | PART_CLAWS |
+		PART_FANGS,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_LIGHT,
+	LANG_RODENT
+    },
+
+    {
+	"Plant",
+	RACE_MUTE,
+	SIZE_MINUTE,		0, 0, 0, -1, 1,		0, 0, 0,	-1, 0,
+	"swipe",
+	"",
+	PART_HEAD | PART_FANGS,
+	RIS_DROWNING,
+	RIS_NONE,
+	RIS_FIRE | RIS_COLD,
+	LANG_PLANT
+    },
+
+    {
+	"Rat",
+	RACE_PASSDOOR | RACE_MUTE,
+	SIZE_MINUTE,		-1, 0, 0, 2, -1,	0, 0, 0,	0, 0,
+	"bite",
+	"",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
+		PART_FEET | PART_EAR | PART_EYE | PART_FANGS,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_RODENT
+    },
+
+    {
+	"Vampire",
+	RACE_FLY | RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
+		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		1, 1, 0, 1, 2,		10, 3, 3,	-1, 10,
+	"claw",
 	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Werewolf Goblin Faerie Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_FANGS },
-    { "Werewolf",  RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS   |
-	           RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 3, 2, 0, 1, 2, 3,
-	10, 0, 5, 0, 5, "claw",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_FANGS,
+	RIS_DISEASE | RIS_BLACK_MANA,
+	RIS_POISON,
+	RIS_DROWNING | RIS_WOOD | RIS_LIGHT | RIS_WHITE_MANA,
+	LANG_COMMON
+    },
+
+    {
+	"Werewolf",
+	RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS |
+	    RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		2, 0, 1, 2, 3,		10, 0, 5,	0, 5,
+	"claw",
 	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Vampire Goblin Faerie Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_TAIL | PART_CLAWS | PART_FANGS },
-    { "Goblin",    RACE_INFRAVISION | RACE_WEAPON_WIELD,   2, -1, -1, -1, 1, 0,
-	0, 0, 0, 0, 0, "punch",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_TAIL | PART_CLAWS | PART_FANGS,
+	RIS_BASH,
+	RIS_NONE,
+	RIS_SILVER,
+	LANG_SPIRITUAL
+    },
+
+    {
+	"Goblin",
+	RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_PETITE,		-1, -1, -1, 1, 0,	0, 0, 0,	0, 0,
+	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_TUSKS },
-    { "Faerie",    RACE_FLY | RACE_INFRAVISION | RACE_DETECT_INVIS            |
-	           RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 1, -2, 1, 1, 1, -1,
-	0, 0, 7, 0, 0, "punch", "",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_TUSKS,
+	RIS_DISEASE,
+	RIS_NONE,
+	RIS_MAGIC,
+	LANG_GOBLIN
+    },
+
+    {
+	"Faerie",
+	RACE_FLY | RACE_INFRAVISION | RACE_DETECT_INVIS | RACE_DETECT_HIDDEN |
+		RACE_WEAPON_WIELD,
+	SIZE_MINUTE,		-2, 1, 1, 1, -1,	0, 0, 7,	0, 0,
+	"punch",
+	"",
 	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
-	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
-	PART_EYE | PART_WINGS },
-    { "Arachnid",  RACE_NO_ABILITIES | RACE_WEAPON_WIELD | RACE_MUTE,
-	                                                   2, 0, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "bite", "",
+		PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+		PART_EYE | PART_WINGS,
+	RIS_MAGIC,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_PIXIE
+    },
+
+    {
+	"Arachnid",
+	RACE_NO_ABILITIES | RACE_WEAPON_WIELD | RACE_MUTE,
+	SIZE_SMALL,		0, 0, 0, 1, 0,		0, 0, 0,	0, 0,
+	"bite",
+	"",
 	PART_HEAD | PART_LEGS | PART_HEART | PART_FEET | PART_EYE |
-	PART_FANGS },
-    { "Mindflayer",RACE_INFRAVISION | RACE_WEAPON_WIELD,   3, 1, 2, 1, -1, 0,
-	0, 6, 0, 0, 0, "punch", "Githyanki",
-	PART_LEGS | PART_HEART | PART_GUTS | PART_FEET | PART_TENTACLES },
-    { "Object",    RACE_WATERBREATH | RACE_MUTE,           3, 3, 0, 0, 0, 3,
-	0, 0, 0, -1, -1, "swing", "",
-	PART_NONE },
-    { "Mist",      RACE_FLY | RACE_PASSDOOR | RACE_MUTE,   2, -1, 0, 0, 3, 0,
-	0, 0, 20, -1, -1, "gas", "",
-	PART_NONE },
-    { "Snake",     RACE_MUTE,                              1, 0, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "bite", "",
+		PART_FANGS,
+	RIS_POISON,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_INSECTOID
+    },
+
+    {
+	"Mindflayer",
+	RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	SIZE_MEDIUM,		1, 2, 1, -1, 0,		0, 6, 0,	0, 0,
+	"punch",
+	"Githyanki",
+	PART_LEGS | PART_HEART | PART_GUTS | PART_FEET | PART_TENTACLES,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_NONE,
+	LANG_COMMON
+    },
+
+    {
+	"Object",
+	RACE_WATERBREATH | RACE_MUTE,
+	SIZE_AVERAGE,		3, 0, 0, 0, 3,		0, 0, 0,	-1, -1,
+	"swing",
+	"",
+	PART_NONE,
+	RIS_LIGHT,
+	RIS_POISON | RIS_DISEASE | RIS_DROWNING,
+	RIS_ENERGY,
+	LANG_MAGICAL
+    },
+
+    {
+	"Mist",
+	RACE_FLY | RACE_PASSDOOR | RACE_MUTE,
+	SIZE_PETITE,		-1, 0, 0, 3, 0,		0, 0, 20,	-1, -1,
+	"gas",
+	"",
+	PART_NONE,
+	RIS_NONE,
+	RIS_DISEASE | RIS_POISON,
+	RIS_MAGIC,
+	LANG_SPIRITUAL
+    },
+
+    {
+	"Snake",
+	RACE_MUTE,
+	SIZE_MINUTE,		0, 0, 0, 1, 0,		0, 0, 0,	0, 0,
+	"bite",
+	"",
 	PART_HEAD | PART_HEART | PART_BRAINS | PART_GUTS | PART_EYE |
-	PART_TAIL | PART_FANGS | PART_SCALES },
-    { "Worm",      RACE_PASSDOOR | RACE_MUTE,              0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, "slime", "",
-	PART_HEAD | PART_TAIL },
-    { "Fish",      RACE_WATERBREATH | RACE_SWIM | RACE_MUTE,
-	                                                   1, 0, 0, 0, 2, 0,
-	0, 0, 0, -1, 0, "slap", "",
+		PART_TAIL | PART_FANGS | PART_SCALES,
+	RIS_POISON,
+	RIS_NONE,
+	RIS_COLD,
+	LANG_REPTILE
+    },
+
+    {
+	"Worm",
+	RACE_PASSDOOR | RACE_MUTE,
+	SIZE_MINUTE,		0, 0, 0, 0, 0,		0, 0, 0,	0, 0,
+	"slime",
+	"",
+	PART_HEAD | PART_TAIL,
+	RIS_NONE,
+	RIS_NONE,
+	RIS_BASH,
+	LANG_INSECTOID
+    },
+
+    {
+	"Fish",
+	RACE_WATERBREATH | RACE_SWIM | RACE_MUTE,
+	SIZE_MINUTE,		0, 0, 0, 2, 0,		0, 0, 0,	-1, 0,
+	"slap",
+	"",
 	PART_HEAD | PART_HEART | PART_BRAINS | PART_GUTS | PART_EYE |
-	PART_TAIL | PART_SCALES | PART_FINS },
-    { "Hydra",     RACE_DETECT_HIDDEN | RACE_MUTE,         8, 2, 0, 0, -1, 2,
-	0, 0, 0, 0, 0, "bite", "",
+		PART_TAIL | PART_SCALES | PART_FINS,
+	RIS_NONE,
+	RIS_DROWNING,
+	RIS_NONE,
+	LANG_FISH
+    },
+
+    {
+	"Hydra",
+	RACE_DETECT_HIDDEN | RACE_MUTE,
+	SIZE_TITANIC,		2, 0, 0, -1, 2,		0, 0, 0,	0, 0,
+	"bite",
+	"",
 	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
-	PART_FEET | PART_EYE | PART_TAIL | PART_FANGS | PART_SCALES },
-    { "Lizard",    RACE_MUTE,                              1, -1, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "lash", "",
+		PART_FEET | PART_EYE | PART_TAIL | PART_FANGS | PART_SCALES,
+	RIS_BASH,
+	RIS_NONE,
+	RIS_PIERCE,
+	LANG_DRAGON
+    },
+
+    {
+	"Lizard",
+	RACE_MUTE,
+	SIZE_MINUTE,		-1, 0, 0, 1, 0,		0, 0, 0,	0, 0,
+	"lash",
+	"",
 	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
-	PART_FEET | PART_EYE | PART_TAIL | PART_FANGS }
+		PART_FEET | PART_EYE | PART_TAIL | PART_FANGS,
+	RIS_POISON,
+	RIS_NONE,
+	RIS_COLD,
+	LANG_REPTILE
+    }
 };
 
 
@@ -360,6 +708,30 @@ const   struct  struckdrunk     drunk           [  ]            =
 	{ "z", "z", "ZzzZz", "Zzz", "Zsszzsz", "szz", "sZZz", "ZSz", "zZ"}   }
 };
       
+/*
+ * Attack damage type and string.
+ */
+const	struct	attack_type	attack_table	[MAX_ATTACK]	=
+{
+    {  "hit",       &gsn_hit,      DAM_BASH,	NULL             },  /*  0   */
+    {  "slice",     &gsn_slash,    DAM_SLASH,	NULL             },  /*  1   */
+    {  "stab",      &gsn_pierce,   DAM_PIERCE,	NULL             },
+    {  "slash",     &gsn_slash,    DAM_SLASH,	NULL             },
+    {  "whip",      &gsn_whip,     DAM_SLASH,	NULL             },
+    {  "claw",      &gsn_slash,	   DAM_SLASH,	NULL             },  /*  5   */
+    {  "blast",     &gsn_explode,  DAM_BASH,	NULL             },
+    {  "pound",     &gsn_pound,    DAM_BASH,	NULL             },
+    {  "crush",     &gsn_pound,    DAM_BASH,	NULL             },
+    {  "grep",      &gsn_pierce,   DAM_PIERCE,	NULL             },
+    {  "bite",      &gsn_pierce,   DAM_PIERCE,	NULL             },  /*  10  */
+    {  "pierce",    &gsn_pierce,   DAM_PIERCE,	NULL             },
+    {  "suction",   &gsn_suction,  DAM_BASH,	hit_suck_disarm  },
+    {  "chop",      &gsn_slash,    DAM_SLASH,	NULL             },
+    {  "vorpal",    &gsn_slash,    DAM_SLASH,	hit_vorpal       },
+    {  "cleave",    &gsn_slash,    DAM_SLASH,	NULL             },  /*  15  */
+    {  "wail",      &gsn_hit,      DAM_BASH,	NULL             }
+};
+
 /*
  * Attribute bonus tables.
  */
@@ -575,789 +947,1017 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
  */
 
     {
-	"reserved",		{},
+	"reserved",		{ L_APP },
 	0,			TAR_IGNORE,		POS_STANDING,
 	NULL,			0,	 0,
-	"",			""
+	"",			"",
+	SCHOOL_NONE,
+	MANA_NONE,
     },
 
     {
-	"acid blast",		{},
+	"acid blast",		{ L_APP },
 	spell_acid_blast,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"acid blast",		"!Acid Blast!"
+	"acid blast",		"!Acid Blast!",
+	SCHOOL_EVOCATION,
+	MANA_WATER
     },
 
     {
-	"armor",		{},
+	"armor",		{ L_APP },
 	spell_armor,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			5,	12,
-	"",			"You feel less protected."
+	"",			"You feel less protected.",
+	SCHOOL_CONJURATION,
+	MANA_EARTH
     },
 
     {
-	"bless",		{},
+	"bless",		{ L_APP },
 	spell_bless,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			5,	12,
-	"",			"You feel less righteous."
+	"",			"You feel less righteous.",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
 
     {
-	"blindness",		{},
+	"blindness",		{ L_APP },
 	spell_blindness,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	&gsn_blindness,		5,	12,
-	"",			"You can see again."
+	"",			"You can see again.",
+	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
+	MANA_FIRE
     },
 
     {
-	"breathe water",	{},
+	"breathe water",	{ L_APP },
 	spell_breathe_water,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	&gsn_breathe_water, 	 5,	12,
-	"pained lungs",		"You can no longer breathe underwater."
+	"pained lungs",		"You can no longer breathe underwater.",
+	SCHOOL_SURVIVAL,
+	MANA_WATER
     },
 
     {
-	"burning hands",	{},
+	"burning hands",	{ L_APP },
 	spell_burning_hands,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	&gsn_burning_hands,     15,	12,
-	"burning hands",	"!Burning Hands!"
+	"burning hands",	"!Burning Hands!",
+	SCHOOL_ALTERATION,
+	MANA_FIRE
     },
 
     {
-	"call lightning",	{},
+	"call lightning",	{ L_APP },
 	spell_call_lightning,	TAR_IGNORE,		POS_FIGHTING,
 	NULL,			15,	12,
-	"lightning bolt",	"!Call Lightning!"
+	"lightning bolt",	"!Call Lightning!",
+	SCHOOL_ALTERATION,
+	MANA_AIR
     },
 
     {
-	"cause critical",	{},
+	"cause critical",	{ L_APP },
 	spell_cause_critical,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"invocation",		"!Cause Critical!"
+	"invocation",		"!Cause Critical!",
+	SCHOOL_NECROMANCY,
+	MANA_AIR
     },
 
     {
-	"cause light",		{},
+	"cause light",		{ L_APP },
 	spell_cause_light,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"invocation",		"!Cause Light!"
+	"invocation",		"!Cause Light!",
+	SCHOOL_NECROMANCY,
+	MANA_AIR
     },
 
     {
-	"cause serious",	{},
+	"cause serious",	{ L_APP },
 	spell_cause_serious,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			17,	12,
-	"invocation",		"!Cause Serious!"
+	"invocation",		"!Cause Serious!",
+	SCHOOL_NECROMANCY,
+	MANA_AIR
     },
 
     {
-	"change sex",		{},
+	"change sex",		{ L_APP },
 	spell_change_sex,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			15,	0,
-	"",			"Your body feels familiar again."
+	"",			"Your body feels familiar again.",
+	SCHOOL_ENCHANTMENT | SCHOOL_ALTERATION,
+	MANA_ANY
     },
 
     {
-	"charm person",		{},
+	"charm person",		{ L_APP },
 	spell_charm_person,	TAR_CHAR_OFFENSIVE,	POS_STANDING,
 	&gsn_charm_person,	5,	12,
-	"",			"You feel more self-confident."
+	"",			"You feel more self-confident.",
+	SCHOOL_ENCHANTMENT | SCHOOL_CHARM,
+	MANA_ANY
     },
 
     {
-	"chill touch",		{},
+	"chill touch",		{ L_APP },
 	spell_chill_touch,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"chilling touch",	"You feel less cold."
+	"chilling touch",	"You feel less cold.",
+	SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"colour spray",		{},
+	"colour spray",		{ L_APP },
 	spell_colour_spray,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"colour spray",		"!Colour Spray!"
+	"colour spray",		"!Colour Spray!",
+	SCHOOL_ALTERATION,
+	MANA_AIR
     },
 
     {
-        "cone of silence",	{},
+        "cone of silence",	{ L_APP },
         spell_cone_of_silence,	TAR_IGNORE,		POS_FIGHTING,
         NULL,			35,     12,
-        "",                     "!Cone of Silence!"
+        "",                     "!Cone of Silence!",
+        SCHOOL_INVOCATION,
+        MANA_EARTH
     },
 
     {
-	"continual light",	{},
+	"continual light",	{ L_APP },
 	spell_continual_light,	TAR_IGNORE,		POS_STANDING,
 	NULL,			7,	12,
-	"",			"!Continual Light!"
+	"",			"!Continual Light!",
+	SCHOOL_ALTERATION,
+	MANA_FIRE
     },
 
     {
-	"control weather",	{},
+	"control weather",	{ L_APP },
 	spell_control_weather,	TAR_IGNORE,		POS_STANDING,
 	NULL,			25,	12,
-	"",			"!Control Weather!"
+	"",			"!Control Weather!",
+	SCHOOL_ALTERATION,
+	MANA_AIR
     },
 
     {
-	"create food",		{},
+	"create food",		{ L_APP },
 	spell_create_food,	TAR_IGNORE,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"!Create Food!"
+	"",			"!Create Food!",
+	SCHOOL_CONJURATION,
+	MANA_EARTH
     },
 
     {
-	"create spring",	{},
+	"create spring",	{ L_APP },
 	spell_create_spring,	TAR_IGNORE,		POS_STANDING,
 	NULL,			20,	12,
-	"",			"!Create Spring!"
+	"",			"!Create Spring!",
+	SCHOOL_ALTERATION,
+	MANA_WATER
     },
 
     {
-	"create water",		{},
+	"create water",		{ L_APP },
 	spell_create_water,	TAR_OBJ_INV,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"!Create Water!"
+	"",			"!Create Water!",
+	SCHOOL_ALTERATION,
+	MANA_WATER
     },
 
     {
-	"cure blindness",	{},
+	"cure blindness",	{ L_APP },
 	spell_cure_blindness,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			5,	12,
-	"",			"!Cure Blindness!"
+	"",			"!Cure Blindness!",
+	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"cure critical",	{},
+	"cure critical",	{ L_APP },
 	spell_cure_critical,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"",			"!Cure Critical!"
+	"",			"!Cure Critical!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"cure light",		{},
+	"cure disease",		{ L_APP },
+	spell_cure_disease,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			20,	12,
+	"",			"!Cure Disease!",
+	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
+	MANA_WATER
+    },
+
+    {
+	"cure light",		{ L_APP },
 	spell_cure_light,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			10,	12,
-	"",			"!Cure Light!"
+	"",			"!Cure Light!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"cure poison",		{},
+	"cure poison",		{ L_APP },
 	spell_cure_poison,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			5,	12,
-	"",			"!Cure Poison!"
+	"",			"!Cure Poison!",
+	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"cure serious",		{},
+	"cure serious",		{ L_APP },
 	spell_cure_serious,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"",			"!Cure Serious!"
+	"",			"!Cure Serious!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"curse",		{},
+	"curse",		{ L_APP },
 	spell_curse,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	&gsn_curse,		20,	12,
-	"curse",		"The curse wears off."
+	"curse",		"The curse wears off.",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
 
     {
-	"destroy cursed",	{},
+	"destroy cursed",	{ L_APP },
 	spell_destroy_cursed,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			20,	12,
-	"",			"!destroy cursed!"
+	"",			"!destroy cursed!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"detect evil",		{},
+	"detect evil",		{ L_APP },
 	spell_detect_evil,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"The red in your vision disappears."
+	"",			"The red in your vision disappears.",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"detect hidden",	{},
+	"detect hidden",	{ L_APP },
 	spell_detect_hidden,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"You feel less aware of your surroundings."
+	"",			"You feel less aware of your surroundings.",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"detect invis",		{},
+	"detect invis",		{ L_APP },
 	spell_detect_invis,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"You no longer see invisible objects."
+	"",			"You no longer see invisible objects.",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"detect magic",		{},
+	"detect magic",		{ L_APP },
 	spell_detect_magic,	TAR_CHAR_SELF,		POS_STANDING, 
 	NULL,			5,	12,
-	"",			"The detect magic wears off."
+	"",			"The detect magic wears off.",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"detect poison",	{},
+	"detect poison",	{ L_APP },
 	spell_detect_poison,	TAR_OBJ_INV,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"!Detect Poison!"
+	"",			"!Detect Poison!",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"dispel evil",		{},
+	"dispel evil",		{ L_APP },
 	spell_dispel_evil,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"holy fire",		"!Dispel Evil!"
+	"holy fire",		"!Dispel Evil!",
+	SCHOOL_ABJURATION,
+	MANA_WATER
     },
 
     {
-	"dispel magic",		{},
+	"dispel magic",		{ L_APP },
 	spell_dispel_magic,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			15,	16,
-	"",			"!Dispel Magic!"
+	"",			"!Dispel Magic!",
+	SCHOOL_ABJURATION,
+	MANA_EARTH
     },
 
     {
-	"earthquake",		{},
+	"earthquake",		{ L_APP },
 	spell_earthquake,	TAR_IGNORE,		POS_FIGHTING,
 	NULL,			15,	12,
-	"earthquake",		"!Earthquake!"
+	"earthquake",		"!Earthquake!",
+	SCHOOL_ALTERATION,
+	MANA_EARTH
     },
 
     {
-	"enchant weapon",	{},
+	"enchant weapon",	{ L_APP },
 	spell_enchant_weapon,	TAR_OBJ_INV,		POS_STANDING,
 	NULL,			100,	24,
-	"",			"!Enchant Weapon!"
+	"",			"!Enchant Weapon!",
+	SCHOOL_ENCHANTMENT,
+	MANA_FIRE
     },
 
     {
-	"energy drain",		{},
+	"energy drain",		{ L_APP },
 	spell_energy_drain,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			35,	12,
-	"energy drain",		"!Energy Drain!"
+	"energy drain",		"!Energy Drain!",
+	SCHOOL_NECROMANCY,
+	MANA_FIRE
     },
 
     {
-	"exorcise",		{},
+	"exorcise",		{ L_APP },
 	spell_exorcise, 	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			35,	12,
-	"",		        "!Exorcise!"
+	"",		        "!Exorcise!",
+	SCHOOL_ALTERATION | SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"faerie fire",		{},
+	"faerie fire",		{ L_APP },
 	spell_faerie_fire,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			5,	12,
-	"faerie fire",		"The pink aura around you fades away."
+	"faerie fire",		"The pink aura around you fades away.",
+	SCHOOL_ALTERATION,
+	MANA_FIRE
     },
 
     {
-	"faerie fog",		{},
+	"faerie fog",		{ L_APP },
 	spell_faerie_fog,	TAR_IGNORE,		POS_STANDING,
 	NULL,			12,	12,
-	"faerie fog",		"!Faerie Fog!"
+	"faerie fog",		"!Faerie Fog!",
+	SCHOOL_CONJURATION,
+	MANA_AIR
     },
 
     {
-	"fireball",		{},
+	"fireball",		{ L_APP },
 	spell_fireball,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"fireball",		"!Fireball!"
+	"fireball",		"!Fireball!",
+	SCHOOL_EVOCATION,
+	MANA_FIRE
     },
 
     {
-	"flamestrike",		{},
+	"flamestrike",		{ L_APP },
 	spell_flamestrike,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"flamestrike",		"!Flamestrike!"
+	"flamestrike",		"!Flamestrike!",
+	SCHOOL_CONJURATION,
+	MANA_FIRE
     },
 
     {
-	"flaming shield",	{},
-	spell_flaming,  	TAR_CHAR_SELF,  	POS_STANDING,
-	NULL,			100,	60,
-	"flaming shield",	"The flaming shield around you dies out."
-    },
-
-    {
-	"fly",			{},
+	"fly",			{ L_APP },
 	spell_fly,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			10,	18,
-	"",			"You slowly float to the ground."
+	"",			"You slowly float to the ground.",
+	SCHOOL_ALTERATION,
+	MANA_AIR
     },
 
     {
-	"gate",			{},
+	"gate",			{ L_APP },
 	spell_gate,		TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"",			"!Gate!"
+	"",			"!Gate!",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_EARTH
     },
 
     {
-	"giant strength",	{},
+	"giant strength",	{ L_APP },
 	spell_giant_strength,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			20,	12,
-	"",			"You feel weaker."
+	"",			"You feel weaker.",
+	SCHOOL_ALTERATION,
+	MANA_EARTH
     },
 
     {
-	"harm",			{},
+	"harm",			{ L_APP },
 	spell_harm,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			35,	12,
-	"divine power",		"!Harm!"
+	"divine power",		"!Harm!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"heal",			{},
+	"heal",			{ L_APP },
 	spell_heal,		TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"",			"!Heal!"
+	"",			"!Heal!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"identify",		{},
+	"identify",		{ L_APP },
 	spell_identify,		TAR_OBJ_INV,		POS_STANDING,
 	NULL,			12,	24,
-	"",			"!Identify!"
+	"",			"!Identify!",
+	SCHOOL_DIVINATION,
+	MANA_ANY
     },
 
     {
-	"infravision",		{},
+	"infravision",		{ L_APP },
 	spell_infravision,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			5,	18,
-	"",			"You no longer see in the dark."
+	"",			"You no longer see in the dark.",
+	SCHOOL_ILLUSION,
+	MANA_FIRE
     },
 
     {
-	"invis",		{},
+	"invis",		{ L_APP },
 	spell_invis,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	&gsn_invis,		5,	12,
-	"",			"You are no longer invisible."
+	"",			"You are no longer invisible.",
+	MANA_AIR
     },
 
     {
-	"know alignment",	{},
+	"know alignment",	{ L_APP },
 	spell_know_alignment,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			9,	12,
-	"",			"!Know Alignment!"
+	"",			"!Know Alignment!",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"lightning bolt",	{},
+	"lightning bolt",	{ L_APP },
 	spell_lightning_bolt,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"lightning bolt",	"!Lightning Bolt!"
+	"lightning bolt",	"!Lightning Bolt!",
+	SCHOOL_EVOCATION,
+	MANA_FIRE
     },
 
     {
-	"locate object",	{},
+	"locate object",	{ L_APP },
 	spell_locate_object,	TAR_IGNORE,		POS_STANDING,
 	NULL,			20,	18,
-	"",			"!Locate Object!"
+	"",			"!Locate Object!",
+	SCHOOL_DIVINATION,
+	MANA_ANY
     },
 
     {
-	"magic missile",	{},
+	"magic missile",	{ L_APP },
 	spell_magic_missile,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"magic missile",	"!Magic Missile!"
+	"magic missile",	"!Magic Missile!",
+	SCHOOL_EVOCATION,
+	MANA_FIRE
     },
 
     {
-	"mass heal",		{},
+	"mass heal",		{ L_APP },
 	spell_mass_heal,	TAR_IGNORE,		POS_STANDING,
 	NULL,           	50,	24,
-	"",			"!Mass Heal!"
+	"",			"!Mass Heal!",
+	SCHOOL_NECROMANCY,
+	MANA_EARTH
     },
 
     {
-	"mass invis",		{},
+	"mass invis",		{ L_APP },
 	spell_mass_invis,	TAR_IGNORE,		POS_STANDING,
 	&gsn_mass_invis,	20,	24,
-	"",			"You are no longer invisible."
+	"",			"You are no longer invisible.",
+	MANA_AIR
     },
 
     {
-        "mute",			{},
+        "mute",			{ L_APP },
         spell_mute,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
         &gsn_mute,		20,     12,
-        "",                     "You are no longer muted."
+        "",                     "You are no longer muted.",
+	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
+        MANA_WATER
     },
 
     {
-	"pass door",		{},
+	"pass door",		{ L_APP },
 	spell_pass_door,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			20,	12,
-	"",			"You feel solid again."
+	"",			"You feel solid again.",
+	SCHOOL_ALTERATION,
+	MANA_AIR
     },
 
     {
-	"poison",		{},
+	"plague",		{ L_APP },
+	spell_plague,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_plague,		20,	12,
+	"sickness",		"Your sores vanish.",
+	SCHOOL_NECROMANCY,
+	MANA_WATER
+    },
+
+    {
+	"poison",		{ L_APP },
 	spell_poison,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
 	&gsn_poison,		10,	12,
-	"burning blood",	"You feel less sick."
+	"burning blood",	"You feel less sick.",
+	SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"polymorph other",	{},
+	"polymorph other",	{ L_APP },
 	spell_polymorph_other,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			20,	0,
-	"",			"Your body feels familiar again." 
+	"",			"Your body feels familiar again.",
+	MANA_ANY
     },
 
     {
-	"protection evil",	{},
+	"protection evil",	{ L_APP },
 	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"You feel less protected."
+	"",			"You feel less protected.",
+	SCHOOL_ABJURATION,
+	MANA_FIRE
     },
 
     {
-	"protection good",	{},
+	"protection good",	{ L_APP },
 	spell_protection_good,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"You feel less protected."
+	"",			"You feel less protected.",
+	SCHOOL_ABJURATION,
+	MANA_FIRE
     },
 
     {                                  
-        "recharge item",        {},
+        "recharge item",        { L_APP },
         spell_recharge_item,    TAR_OBJ_INV,            POS_STANDING,
         NULL,                   25,     12,
-        "blunder",              "!Recharge Item!"
+        "blunder",              "!Recharge Item!",
+        SCHOOL_INVOCATION | SCHOOL_ENCHANTMENT,
+        MANA_ANY
     }, 
 
     {
-	"refresh",		{},
+	"refresh",		{ L_APP },
 	spell_refresh,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			12,	18,
-	"refresh",		"!Refresh!"
+	"refresh",		"!Refresh!",
+	SCHOOL_ALTERATION,
+	MANA_EARTH
     },
 
     {
-        "remove alignment",	{},
+        "remove alignment",	{ L_APP },
         spell_remove_alignment,	TAR_OBJ_INV,		POS_STANDING,
-        NULL,			100,	12,
-        "",                     "!Remove Alignment!"
+        NULL,			10,	12,
+        "",                     "!Remove Alignment!",
+	SCHOOL_ABJURATION,
+        MANA_WATER
     },
 
     {
-	"remove curse",		{},
+	"remove curse",		{ L_APP },
 	spell_remove_curse,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			5,	12,
-	"",			"!Remove Curse!"
+	"",			"!Remove Curse!",
+	SCHOOL_ABJURATION,
+	MANA_WATER
     },
 
     {
-        "remove silence",	{},
+        "remove silence",	{ L_APP },
         spell_remove_silence,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
         NULL,			15,     12,
-        "",                     "!Remove Silence!"
+        "",                     "!Remove Silence!",
+	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
+        MANA_WATER
     },
 
     {
-	"sanctuary",		{},
+	"sanctuary",		{ L_APP },
 	spell_sanctuary,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			75,	12,
-	"",			"The white aura around your body fades."
+	"",			"The white aura around your body fades.",
+	SCHOOL_ABJURATION,
+	MANA_WATER
     },
 
     {
-	"shield",		{},
+	"shield",		{ L_APP },
 	spell_shield,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			12,	18,
-	"",			"Your force shield shimmers then fades away."
+	"",			"Your force shield shimmers then fades away.",
+	SCHOOL_CONJURATION,
+	MANA_ANY
     },
 
     {
-	"shocking grasp",	{},
+	"shocking grasp",	{ L_APP },
 	spell_shocking_grasp,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"shocking grasp",	"!Shocking Grasp!"
+	"shocking grasp",	"!Shocking Grasp!",
+	SCHOOL_EVOCATION,
+	MANA_FIRE
     },
 
     {
-	"sleep",		{},
+	"sleep",		{ L_APP },
 	spell_sleep,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
 	&gsn_sleep,		15,	12,
-	"",			"You feel less tired."
+	"",			"You feel less tired.",
+	SCHOOL_ENCHANTMENT | SCHOOL_CHARM,
+	MANA_EARTH
     },
 
     {
-	"stone skin",		{},
+	"stone skin",		{ L_APP },
 	spell_stone_skin,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			12,	18,
-	"",			"Your skin feels soft again."
+	"",			"Your skin feels soft again.",
+	SCHOOL_ALTERATION,
+	MANA_EARTH
     },
 
     {
-	"summon",		{},
+	"summon",		{ L_APP },
 	spell_summon,		TAR_IGNORE,		POS_STANDING,
 	NULL,			50,	12,
-	"",			"!Summon!"
+	"",			"!Summon!",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
 
     {
-	"teleport",		{},
+	"teleport",		{ L_APP },
 	spell_teleport,		TAR_CHAR_SELF,		POS_FIGHTING,
 	NULL,	 		35,	12,
-	"",			"!Teleport!"
+	"",			"!Teleport!",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
 
     {
-	"turn undead",		{},
+	"turn undead",		{ L_APP },
 	spell_turn_undead,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	&gsn_turn_undead,	10,	12,
-	"divine exorcism",	"!Turn undead!"
+	"divine exorcism",	"!Turn undead!",
+	SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"ventriloquate",	{},
+	"ventriloquate",	{ L_APP },
 	spell_ventriloquate,	TAR_IGNORE,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"!Ventriloquate!"
+	"",			"!Ventriloquate!",
+	SCHOOL_PHANTASM,
+	MANA_AIR
     },
 
     {
-	"weaken",		{},
+	"weaken",		{ L_APP },
 	spell_weaken,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"weakening spell",	"You feel stronger."
+	"weakening spell",	"You feel stronger.",
+	SCHOOL_NECROMANCY,
+	MANA_WATER
     },
 
     {
-	"word of recall",	{},
+	"word of recall",	{ L_APP },
 	spell_word_of_recall,	TAR_CHAR_SELF,		POS_RESTING,
 	NULL,			5,	12,
-	"",			"!Word of Recall!"
+	"",			"!Word of Recall!",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
 
 /*
- * Dragon breath
+ * Dragon breath.
  */
     {
-	"acid breath",		{},
+	"acid breath",		{ L_APP },
 	spell_acid_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"breath of acid",	"!Acid Breath!"
+	"breath of acid",	"!Acid Breath!",
+	SCHOOL_EVOCATION,
+	MANA_WATER
     },
 
     {
-	"fire breath",		{},
+	"fire breath",		{ L_APP },
 	spell_fire_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"breath of flame",	"!Fire Breath!"
+	"breath of flame",	"!Fire Breath!",
+	SCHOOL_EVOCATION,
+	MANA_FIRE
     },
 
     {
-	"frost breath",		{},
+	"frost breath",		{ L_APP },
 	spell_frost_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"breath of frost",	"!Frost Breath!"
+	"breath of frost",	"!Frost Breath!",
+	SCHOOL_EVOCATION,
+	MANA_WATER
     },
 
     {
-	"gas breath",		{},
+	"gas breath",		{ L_APP },
 	spell_gas_breath,	TAR_IGNORE,		POS_FIGHTING,
 	NULL,			50,	12,
-	"breath of gas",		"!Gas Breath!"
+	"breath of gas",		"!Gas Breath!",
+	SCHOOL_EVOCATION,
+	MANA_AIR
     },
 
     {
-	"lightning breath",	{},
+	"lightning breath",	{ L_APP },
 	spell_lightning_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"breath of lightning",	"!Lightning Breath!"
+	"breath of lightning",	"!Lightning Breath!",
+	SCHOOL_EVOCATION,
+	MANA_ANY
     },
 
 /*
  * Fighter and thief skills, as well as magic item skills.
  */
     {
-	"backstab",		{},
+	"backstab",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_backstab,		 0,	24,
-	"vicious backstab",	"!Backstab!"
+	"vicious backstab",	"!Backstab!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"bash door", 	 	{},
+	"bash door", 	 	{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_bash,		 0,	24,
-	"powerful bash",	"!Bash Door!"
+	"powerful bash",	"!Bash Door!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
     {
-        "berserk",              {},
+        "berserk",              { L_APP },
         spell_null,             TAR_IGNORE,             POS_FIGHTING,
         &gsn_berserk,            0,      12,
-        "",                     "The bloody haze lifts."
+        "",                     "The bloody haze lifts.",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-        "circle",		{},
+        "circle",		{ L_APP },
         spell_null,		TAR_IGNORE,		POS_FIGHTING,
         &gsn_circle,		 0,	24,
-        "sneak attack",		"!Circle!"
+        "sneak attack",		"!Circle!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"disarm",		{},
+	"disarm",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_disarm,		 0,	24,
-	"",			"!Disarm!"
+	"",			"!Disarm!",
+	SCHOOL_DEFENSIVE,
+	MANA_NONE
     },
 
     {
-	"dodge",		{},
+	"dodge",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_dodge,		 0,	 0,
-	"",			"!Dodge!"
+	"",			"!Dodge!",
+	SCHOOL_DEFENSIVE,
+	MANA_NONE
     },
 
     {
-        "dual",         	{},
+        "dual",         	{ L_APP },
         spell_null,		TAR_IGNORE,		POS_FIGHTING,
         &gsn_dual,      	 0,	 0,
-        "",                     "!Dual!"
+        "",                     "!Dual!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"enhanced damage",	{},
+	"enhanced damage",	{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_enhanced_damage,	0,	 0,
-	"",			"!Enhanced Damage!"
+	"",			"!Enhanced Damage!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"hide",			{},
+	"hide",			{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_RESTING,
 	&gsn_hide,		 0,	12,
-	"",			"!Hide!"
+	"",			"!Hide!",
+	SCHOOL_STEALTH,
+	MANA_NONE
     },
 
     {
-	"kick",			{},
+	"kick",			{ L_APP },
 	spell_null,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	&gsn_kick,		 0,	 8,
-	"mighty kick",		"!Kick!"
+	"mighty kick",		"!Kick!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"parry",		{},
+	"parry",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_parry,		 0,	 0,
-	"",			"!Parry!"
+	"",			"!Parry!",
+	SCHOOL_DEFENSIVE,
+	MANA_NONE
     },
 
     {
-	"peek",			{},
+	"peek",			{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_peek,		 0,	 0,
-	"",			"!Peek!"
+	"",			"!Peek!",
+	SCHOOL_STEALTH,
+	MANA_NONE
     },
 
     {
-	"pick lock",		{},
+	"pick lock",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_pick_lock,		 0,	12,
-	"",			"!Pick!"
+	"",			"!Pick!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
     {
-	"poison weapon",	{},
+	"poison weapon",	{ L_APP },
 	spell_null,		TAR_OBJ_INV,		POS_STANDING,
 	&gsn_poison_weapon,	 0,	12,
-	"poisonous concoction",	"!Poison Weapon!"
+	"poisonous concoction",	"!Poison Weapon!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
     {
-	"rescue",		{},
+	"rescue",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_rescue,		 0,	12,
-	"",			"!Rescue!"
+	"",			"!Rescue!",
+	SCHOOL_DEFENSIVE,
+	MANA_NONE
     },
 
     {
-	"scrolls",      	{},
+	"scrolls",      	{ L_APP },
 	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
 	&gsn_scrolls,	 	 0,	0,
-	"blazing scroll",	"!Scrolls!"
+	"blazing scroll",	"!Scrolls!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
     {
-	"second attack",	{},
+	"second attack",	{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_second_attack,	 0,	 0,
-	"",			"!Second Attack!"
+	"",			"!Second Attack!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"snare",		{},
+	"snare",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_snare,		 0,	12,
-	"",			"You are no longer ensnared."
+	"",			"You are no longer ensnared.",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-	"sneak",		{},
+	"sneak",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_sneak,		 0,	12,
-	"",			NULL
+	"",			NULL,
+	SCHOOL_STEALTH,
+	MANA_NONE
     },
 
     {
-	"staves",       	{},
+	"staves",       	{ L_APP },
 	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
 	&gsn_staves,	 	 0,	0,
-	"shattered staff",	"!Staves!"
+	"shattered staff",	"!Staves!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
     {
-	"steal",		{},
+	"steal",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_steal,		 0,	24,
-	"",			"!Steal!"
+	"",			"!Steal!",
+	SCHOOL_STEALTH,
+	MANA_NONE
     },
 
     {
-	"third attack",		{},
+	"third attack",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_third_attack,	 0,	 0,
-	"",			"!Third Attack!"
+	"",			"!Third Attack!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
     {
-        "untangle",		{},
+        "untangle",		{ L_APP },
         spell_null,		TAR_IGNORE,		POS_STANDING,
         &gsn_untangle,		 0,	24,
-        "",                     "!Untangle!"
+        "",                     "!Untangle!",
+	SCHOOL_DEFENSIVE,
+	MANA_NONE
     },
 
     {
-	"wands",        	{},
+	"wands",        	{ L_APP },
 	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
 	&gsn_wands,	 	 0,	0,
-	"exploding wand",	"!Wands!"
+	"exploding wand",	"!Wands!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
 /*
  *  Spells for mega1.are from Glop/Erkenbrand.
  */
     {
-        "general purpose",      {},
+        "general purpose",      { L_APP },
 	spell_general_purpose,  TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
 	NULL,                   0,      12,
-	"general purpose ammo", "!General Purpose Ammo!"
+	"general purpose ammo", "!General Purpose Ammo!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
     {
-        "high explosive",       {},
+        "high explosive",       { L_APP },
 	spell_high_explosive,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
 	NULL,                   0,      12,
-	"high explosive ammo",  "!High Explosive Ammo!"
+	"high explosive ammo",  "!High Explosive Ammo!",
+	SCHOOL_NONE,
+	MANA_NONE
     },
 
 
@@ -1367,456 +1967,698 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
      */
 
     {
-        "adrenaline control",   {},
+        "adrenaline control",   { L_APP },
         spell_adrenaline_control,       TAR_CHAR_SELF,  POS_STANDING,
         NULL,                           6,      12,
-        "",                             "The adrenaline rush wears off."
+        "",                             "The adrenaline rush wears off.",
+	SCHOOL_ALTERATION,
+        MANA_WATER
     },
 
     {
-        "agitation",            {},
+        "agitation",            { L_APP },
         spell_agitation,        TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   10,     12,
-        "molecular agitation",  "!Agitation!"
+        "molecular agitation",  "!Agitation!",
+        SCHOOL_EVOCATION,
+        MANA_AIR
     },
 
     {
-        "aura sight",           {},
+        "aura sight",           { L_APP },
         spell_aura_sight,       TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   9,     12,
-        "",                     "!Aura Sight!"
+        "",                     "!Aura Sight!",
+        SCHOOL_DIVINATION,
+        MANA_FIRE
     },
 
     {
-        "awe",                  {},
+        "awe",                  { L_APP },
         spell_awe,              TAR_CHAR_DEFENSIVE,     POS_FIGHTING,
         NULL,                   35,     12,
-        "",                     "!Awe!"
+        "",                     "!Awe!",
+        SCHOOL_PHANTASM,
+        MANA_WATER
     },
 
     {
-        "ballistic attack",     {},
+        "ballistic attack",     { L_APP },
         spell_ballistic_attack, TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   5,     12,
-        "ballistic attack",     "!Ballistic Attack!"
+        "ballistic attack",     "!Ballistic Attack!",
+        SCHOOL_EVOCATION,
+        MANA_AIR
     },
 
     {
-        "biofeedback",          {},
+        "biofeedback",          { L_APP },
         spell_biofeedback,      TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   75,     12,
-        "",                     "Your biofeedback is no longer effective."
+        "",                     "Your biofeedback is no longer effective.",
+        SCHOOL_ALTERATION,
+        MANA_WATER
     },
 
     {
-        "cell adjustment",      {},
+        "cell adjustment",      { L_APP },
         spell_cell_adjustment,  TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   8,     12,
-        "",                     "!Cell Adjustment!"
+        "",                     "!Cell Adjustment!",
+        SCHOOL_ALTERATION,
+        MANA_EARTH
     },
 
     {
-        "chameleon power",      {},
+        "chameleon power",      { L_APP },
         spell_null,             TAR_IGNORE,             POS_STANDING,
         &gsn_chameleon,         0,     12,
-        "",                     "!Chameleon Power!"
+        "",                     "!Chameleon Power!",
+	SCHOOL_STEALTH,
+        MANA_NONE
     },
 
     {
-        "combat mind",          {},
+        "combat mind",          { L_APP },
         spell_combat_mind,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   15,     12,
-        "",                     "Your battle sense has faded."
+        "",                     "Your battle sense has faded.",
+	SCHOOL_EVOCATION | SCHOOL_SUMMONING,
+        MANA_EARTH
     },
 
     {
-        "complete healing",     {},
+        "complete healing",     { L_APP },
         spell_complete_healing, TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   100,    12,
-        "",                     "!Complete Healing!"
+        "",                     "!Complete Healing!",
+	SCHOOL_NECROMANCY,
+        MANA_EARTH
     },
 
     {
-        "control flames",       {},
+        "control flames",       { L_APP },
         spell_control_flames,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   15,     12,
-        "tongue of flame",      "!Control Flames!"
+        "tongue of flame",      "!Control Flames!",
+        SCHOOL_EVOCATION,
+        MANA_FIRE
     },
 
     {
-        "create sound",         {},
+        "create sound",         { L_APP },
         spell_create_sound,     TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   5,     12,
-        "",                     "!Create Sound!"
+        "",                     "!Create Sound!",
+        SCHOOL_PHANTASM,
+        MANA_AIR
     },
 
     {
-        "death field",          {},
+        "death field",          { L_APP },
         spell_death_field,      TAR_IGNORE,             POS_FIGHTING,
         NULL,                   200,    18,
-        "field of death",       "!Death Field!"
+        "field of death",       "!Death Field!",
+        SCHOOL_EVOCATION | SCHOOL_NECROMANCY,
+        MANA_FIRE
     },
 
     {
-        "detonate",             {},
+        "detonate",             { L_APP },
         spell_detonate,         TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   35,     24,
-        "detonation",           "!Detonate!"
+        "detonation",           "!Detonate!",
+        SCHOOL_EVOCATION,
+        MANA_FIRE
     },
 
     {
-        "disintegrate",         {},
+        "disintegrate",         { L_APP },
         spell_disintegrate,     TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   150,    18,
-        "disintegration",       "!Disintegrate!"
+        "disintegration",       "!Disintegrate!",
+        SCHOOL_EVOCATION | SCHOOL_NECROMANCY,
+        MANA_FIRE
     },
 
     {
-        "displacement",         {},
+        "displacement",         { L_APP },
         spell_displacement,     TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   10,     12,
-        "",                     "You are no longer displaced."
+        "",                     "You are no longer displaced.",
+        SCHOOL_ALTERATION,
+        MANA_AIR
     },
 
     {
-        "domination",           {},
+        "domination",           { L_APP },
         spell_domination,       TAR_CHAR_OFFENSIVE,     POS_STANDING,
         &gsn_domination,        5,     12,
-        "",                     "You regain control of your body."
+        "",                     "You regain control of your body.",
+	SCHOOL_ENCHANTMENT | SCHOOL_CHARM,
+        MANA_ANY
     },
 
     {
-        "ectoplasmic form",     {},
+        "ectoplasmic form",     { L_APP },
         spell_ectoplasmic_form, TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   20,     12,
-        "",                     "You feel solid again."
+        "",                     "You feel solid again.",
+	SCHOOL_ALTERATION,
+        MANA_AIR
     },
 
     {
-        "ego whip",             {},
+        "ego whip",             { L_APP },
         spell_ego_whip,         TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   20,     12,
-        "",                     "You feel more confident."
+        "",                     "You feel more confident.",
+        SCHOOL_PHANTASM,
+        MANA_WATER
     },
 
     {
-        "energy containment",   {},
+        "energy containment",   { L_APP },
         spell_energy_containment,       TAR_CHAR_SELF,  POS_STANDING,
         NULL,                           10,     12,
-        "",                             "You no longer absorb energy."
+        "",                             "You no longer absorb energy.",
+        SCHOOL_ALTERATION,
+        MANA_EARTH
     },
 
     {
-        "enhance armor",        {},
+        "enhance armor",        { L_APP },
         spell_enhance_armor,    TAR_OBJ_INV,    POS_STANDING,
         NULL,                   100,    24,
-        "",                     "!Enhance Armor!"
+        "",                     "!Enhance Armor!",
+	SCHOOL_ENCHANTMENT,
+        MANA_FIRE
     },
 
     {
-        "enhanced strength",    {},
+        "enhanced strength",    { L_APP },
         spell_enhanced_strength,        TAR_CHAR_SELF,  POS_STANDING,
         NULL,                           20,     12,
-        "",                             "You no longer feel so HUGE."
+        "",                             "You no longer feel so HUGE.",
+	SCHOOL_ALTERATION,
+        MANA_EARTH
     },
 
     {
-        "flesh armor",          {},
+        "flesh armor",          { L_APP },
         spell_flesh_armor,      TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   15,     12,
-        "",                     "Your skin returns to normal."
+        "",                     "Your skin returns to normal.",
+	SCHOOL_ALTERATION,
+        MANA_EARTH
     },
 
     {
-        "heighten senses",      {},
+        "heighten senses",      { L_APP },
         spell_null,             TAR_CHAR_SELF,          POS_STANDING,
         &gsn_heighten,          0,      0,
-        "",                     "Your senses return to normal."
+        "",                     "Your senses return to normal.",
+        SCHOOL_DIVINATION,
+        MANA_FIRE
     },
 
     {
-        "inertial barrier",     {},
+        "inertial barrier",     { L_APP },
         spell_inertial_barrier, TAR_IGNORE,             POS_STANDING,
         NULL,                   40,     24,
-        "",                     "Your inertial barrier dissipates."
+        "",                     "Your inertial barrier dissipates.",
+        SCHOOL_CONJURATION,
+        MANA_AIR
     },
 
     {
-        "inflict pain",         {},
+        "inflict pain",         { L_APP },
         spell_inflict_pain,     TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   10,     12,
-        "mindpower",            "!Inflict Pain!"
+        "mindpower",            "!Inflict Pain!",
+	SCHOOL_EVOCATION,
+        MANA_FIRE
     },
 
     {
-        "intellect fortress",   {},
+        "intellect fortress",   { L_APP },
         spell_intellect_fortress,       TAR_IGNORE,     POS_STANDING,
         NULL,                           25,     24,
-        "",                     "Your intellectual fortress crumbles."
+        "",                     "Your intellectual fortress crumbles.",
+        SCHOOL_EVOCATION,
+        MANA_ANY
     },
 
     {
-        "lend health",          {},
+        "lend health",          { L_APP },
         spell_lend_health,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   10,     12,
-        "",                     "!Lend Health!"
+        "",                     "!Lend Health!",
+        SCHOOL_NECROMANCY,
+        MANA_EARTH
     },
 
     {
-        "levitation",           {},
+        "levitation",           { L_APP },
         spell_levitation,       TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   10,     18,
-        "",                     "You slowly float to the ground."
+        "",                     "You slowly float to the ground.",
+        SCHOOL_ALTERATION,
+        MANA_AIR
     },
 
     {
-        "mental barrier",       {},
+        "mental barrier",       { L_APP },
         spell_mental_barrier,   TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   8,     12,
-        "",                     "Your mental barrier breaks down."
+        "",                     "Your mental barrier breaks down.",
+	SCHOOL_CONJURATION,
+        MANA_EARTH
     },
 
     {
-        "mind thrust",          {},
+        "mind thrust",          { L_APP },
         spell_mind_thrust,      TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   8,     12,
-        "mind thrust",          "!Mind Thrust!"
+        "mind thrust",          "!Mind Thrust!",
+        SCHOOL_PHANTASM,
+        MANA_WATER
     },
 
     {
-        "project force",        {},
+        "project force",        { L_APP },
         spell_project_force,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   18,     12,
-        "projected force",      "!Project Force!"
+        "projected force",      "!Project Force!",
+        SCHOOL_EVOCATION,
+        MANA_EARTH
     },
 
     {
-        "psionic blast",        {},
+        "psionic blast",        { L_APP },
         spell_psionic_blast,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   25,     12,
-        "psionic blast",        "!Psionic Blast!"
+        "psionic blast",        "!Psionic Blast!",
+        SCHOOL_EVOCATION,
+        MANA_FIRE
     },
 
     {
-        "psychic crush",        {},
+        "psychic crush",        { L_APP },
         spell_psychic_crush,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   15,     18,
-        "psychic crush",        "!Psychic Crush!"
+        "psychic crush",        "!Psychic Crush!",
+        SCHOOL_EVOCATION,
+        MANA_EARTH
     },
 
     {
-        "psychic drain",        {},
+        "psychic drain",        { L_APP },
         spell_psychic_drain,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   20,     12,
-        "",                     "You no longer feel drained."
+        "",                     "You no longer feel drained.",
+	SCHOOL_NECROMANCY,
+        MANA_FIRE
     },
 
     {
-        "psychic healing",      {},
+        "psychic healing",      { L_APP },
         spell_psychic_healing,  TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   20,      12,
-        "",                     "!Psychic Healing!"
+        "",                     "!Psychic Healing!",
+	SCHOOL_NECROMANCY,
+        MANA_EARTH
     },
 
     {
-        "shadow form",          {},
+        "shadow form",          { L_APP },
         spell_null,             TAR_IGNORE,             POS_STANDING,
         &gsn_shadow,            0,     12,
-        "",                     "You no longer move in the shadows."
+        "",                     "You no longer move in the shadows.",
+	SCHOOL_STEALTH,
+        MANA_NONE
     },
 
     {
-        "share strength",       {},
+        "share strength",       { L_APP },
         spell_share_strength,   TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   8,     12,
-        "",                     "You no longer share strength with another."
+        "",                     "You no longer share strength with another.",
+	SCHOOL_CONJURATION,
+        MANA_EARTH
     },
 
     {
-        "thought shield",       {},
+        "thought shield",       { L_APP },
         spell_thought_shield,   TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   5,     12,
-        "",                     "You no longer feel so protected."
+        "",                     "You no longer feel so protected.",
+	SCHOOL_CONJURATION,
+        MANA_ANY
     },
 
     {
-        "ultrablast",           {},
+        "ultrablast",           { L_APP },
         spell_ultrablast,       TAR_IGNORE,             POS_FIGHTING,
         NULL,                   75,     24,
-        "ultrablast",           "!Ultrablast!"
+        "ultrablast",           "!Ultrablast!",
+        SCHOOL_EVOCATION,
+        MANA_FIRE
     },
 
     {
-        "stake",                {},
+        "stake",                { L_APP },
         spell_null,             TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         &gsn_stake,             0,       8,
-        "carefully aimed stake","!Stake!"
+        "carefully aimed stake","!Stake!",
+	SCHOOL_OFFENSIVE,
+        MANA_NONE
     },
 
-	/* New abilities added by Zen made by other ppl */
+/*
+ * New abilities added by Zen, made by several other ppl.
+ */
     {
-        "scan",			{},
+        "scan",			{ L_APP },
         spell_null,		TAR_IGNORE,		POS_STANDING,
         &gsn_scan,		0,       24,
-        "",			"!Scan!"
+        "",			"!Scan!",
+	SCHOOL_STEALTH,
+        MANA_NONE
     },
 
     {
-        "shield block",         {},
+        "shield block",         { L_APP },
         spell_null,             TAR_IGNORE,             POS_FIGHTING,
         &gsn_shield_block,      0,      0,
-        "",                     "!Shield Block!"
+        "",                     "!Shield Block!",
+	SCHOOL_DEFENSIVE,
+        MANA_NONE
     },
 
     {
-        "fast healing",         {},
+        "fast healing",         { L_APP },
         spell_null,             TAR_IGNORE,             POS_DEAD,
         &gsn_fast_healing,      0,      0,
-        "",                     "!Fast Healing!"
+        "",                     "!Fast Healing!",
+        SCHOOL_NONE,
+        MANA_NONE
     },
 
    {
-        "fourth attack",        {},
+        "fourth attack",        { L_APP },
         spell_null,             TAR_IGNORE,             POS_FIGHTING,
         &gsn_fourth_attack,     0,      0,
-        "",                     "!Fourth Attack!"
+        "",                     "!Fourth Attack!",
+	SCHOOL_OFFENSIVE,
+        MANA_NONE
     },
 
     {
-	"brew",			{},
+	"brew",			{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_brew,		0,	 24,
-	"blunder",		"!Brew!"
+	"blunder",		"!Brew!",
+        SCHOOL_ENCHANTMENT,
+        MANA_NONE
     },
 
     {
-	"scribe",		{},
+	"scribe",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_scribe,		0,	 24,
-	"blunder",		"!Scribe!"
+	"blunder",		"!Scribe!",
+        SCHOOL_ENCHANTMENT,
+        MANA_NONE
     },
 
     {
-        "track",		{},
+        "track",		{ L_APP },
         spell_null,		TAR_IGNORE,		POS_STANDING,
-        &gsn_track,		0,       24,
-        "",			"!Track!"
+        &gsn_track,		0,       2,
+        "",			"!Track!",
+	SCHOOL_SURVIVAL,
+        MANA_NONE
     },
 
     {
-	"whirlwind",		{},
+	"whirlwind",		{ L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_whirlwind,		0,	 12,
-	"WhirlWind",		"!Whirlwind!"
+	"WhirlWind",		"!Whirlwind!",
+	SCHOOL_OFFENSIVE,
+        MANA_NONE
     },
 
-	/*
-	 * spells & skills here by Zen :)
-	 */
     {
-        "dirt kicking",		{},
+        "mount",		{ L_APP },
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_mount,		0,       5,
+        "",			"!Mount!",
+        SCHOOL_NONE,
+        MANA_NONE
+    },
+
+/*
+ * Spells & skills here by Zen.
+ */
+    {
+        "dirt kicking",		{ L_APP },
         spell_null,             TAR_IGNORE,             POS_FIGHTING,
         &gsn_dirt,              0,      24,
-        "kicked dirt",          "You rub the dirt out of your eyes."
+        "kicked dirt",          "You rub the dirt out of your eyes.",
+	SCHOOL_OFFENSIVE,
+        MANA_NONE
     },
 
     {
-        "swim",                 {},
+        "swim",                 { L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_swim,		 0,	 0,
-	"",			"!Swim!"
+	"",			"!Swim!",
+	SCHOOL_SURVIVAL,
+	MANA_NONE
     },
 
     {
-        "meditate",         	{},
+        "meditate",         	{ L_APP },
         spell_null,             TAR_IGNORE,             POS_DEAD,
         &gsn_meditate,      	0,      0,
-        "",			"!Meditate!"
+        "",			"!Meditate!",
+        SCHOOL_NONE,
+        MANA_NONE
     },
 
     {
-        "meteor swarm",		{},
+        "meteor swarm",		{ L_APP },
         spell_meteor_swarm,	TAR_IGNORE,     POS_FIGHTING,
         NULL,			20,       12,
-        "meteor swarm",		"!Meteor Swarm!"
+        "meteor swarm",		"!Meteor Swarm!",
+        SCHOOL_EVOCATION,
+        MANA_AIR
     },
 
     {   
-	"chain lightning",	{},
+	"chain lightning",	{ L_APP },
 	spell_chain_lightning,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			25,	12,
-	"lightning",		"!Chain Lightning!"
+	"lightning",		"!Chain Lightning!",
+	SCHOOL_EVOCATION,
+	MANA_FIRE
     }, 
 
     {
-	"wizard eye",		{},
+	"wizard eye",		{ L_APP },
 	spell_wizard_eye, 	TAR_IGNORE,		POS_STANDING,
-	NULL,			15,	12,
-	"",			"!Wizard Eye!"
+	NULL,			40,	12,
+	"",			"!Wizard Eye!",
+	SCHOOL_DIVINATION,
+	MANA_AIR
     },
     
     {
-	"vortex lift",		{},
+	"vortex lift",		{ L_APP },
 	spell_vortex_lift,	TAR_IGNORE,		POS_STANDING,
-	NULL,			50,	12,
-	"",			"!Vortex Lift!"
+	NULL,			60,	12,
+	"",			"!Vortex Lift!",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
     
     {
-	"mass vortex lift",	{},
+	"mass vortex lift",	{ L_APP },
 	spell_mass_vortex_lift,	TAR_IGNORE,		POS_STANDING,
 	&gsn_mass_vortex_lift,	150,	12,
-	"",			"!Mass Vortex Lift!"
+	"",			"!Mass Vortex Lift!",
+	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
+	MANA_AIR
     },
 
     {
-	"home sick",		{},
-	spell_home_sick,	TAR_CHAR_SELF,		POS_FIGHTING,
-	NULL,			0,	2,
-	"",			"!Home Sick!"
-    },
-
-    {
-	"detect good",		{},
+	"detect good",		{ L_APP },
 	spell_detect_good,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
-	"",			"The gold in your vision disappears."
+	"",			"The gold in your vision disappears.",
+	SCHOOL_DIVINATION,
+	MANA_FIRE
     },
 
     {
-	"dispel good",		{},
+	"dispel good",		{ L_APP },
 	spell_dispel_good,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"unholy fire",		"!Dispel Good!"
+	"unholy fire",		"!Dispel Good!",
+	SCHOOL_ABJURATION,
+	MANA_FIRE
     },
 
     {
-        "portal",               {},
+        "portal",               { L_APP },
         spell_portal,           TAR_IGNORE,             POS_STANDING,
         NULL,                   100,     24,
         "",                     "!Portal!",
+        SCHOOL_CONJURATION | SCHOOL_ENCHANTMENT,
+        MANA_AIR
     },
 
     {
-        "nexus",                {},
+        "nexus",                { L_APP },
         spell_nexus,            TAR_IGNORE,             POS_STANDING,
         NULL,                   150,   36,
-        "",                     "!Nexus!"
+        "",                     "!Nexus!",
+        SCHOOL_CONJURATION | SCHOOL_ENCHANTMENT,
+        MANA_AIR
     },
 
     {
-	"create buffet",	{},
+	"create buffet",	{ L_APP },
 	spell_create_buffet,	TAR_IGNORE,		POS_STANDING,
 	NULL,			33,	12,
-	"",			"!Create Buffet!"
+	"",			"!Create Buffet!",
+	SCHOOL_CONJURATION,
+	MANA_EARTH
+    },
+
+    {
+	"flaming shield",	{ L_APP },
+	spell_flame_shield,  	TAR_CHAR_SELF,  	POS_STANDING,
+	&gsn_flame_shield,	100,	60,
+	"flaming shield",	"The flaming shield around you dies out.",
+	SCHOOL_EVOCATION | SCHOOL_ALTERATION,
+	MANA_FIRE
+    },
+
+    {
+	"frost shield",		{ L_APP },
+	spell_frost_shield,  	TAR_CHAR_SELF,  	POS_STANDING,
+	&gsn_frost_shield,	100,	60,
+	"frost shield",		"The frost shield around you melts and evaporates into nothingness.",
+	SCHOOL_EVOCATION | SCHOOL_ALTERATION,
+	MANA_WATER
+    },
+
+    {
+	"shock shield",		{ L_APP },
+	spell_shock_shield,  	TAR_CHAR_SELF,  	POS_STANDING,
+	&gsn_shock_shield,	100,	60,
+	"shock shield",		"The torrents of cascading energy suddenly fade away.",
+	SCHOOL_EVOCATION | SCHOOL_ALTERATION,
+	MANA_AIR
+    },
+
+    {
+	"ethereal shield",	{ L_APP },
+	spell_ethereal_shield, 	TAR_CHAR_SELF,  	POS_STANDING,
+	NULL,			50,	60,
+	"",			"You are returned to the mundane energy continuum.",
+	SCHOOL_ALTERATION,
+	MANA_FIRE
+    },
+
+/*
+ * Weapon proficiencies.
+ * These must all be together and after "pugilism".
+ */
+    {
+	"pugilism",		{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_hit,		0,	0,
+	"",			"!Pugilism!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"long blades",		{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_slash,		0,	0,
+	"",			"!Long Blades!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"short blades",		{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_pierce,		0,	0,
+	"",			"!Short blades!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"flexible arms",	{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_whip,		0,	0,
+	"",			"!Flexible arms!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"blast weapons",	{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_explode,		0,	0,
+	"",			"!Blast Weapons!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"bludgeons",		{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_pound,		0,	0,
+	"",			"!Bludgeons!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"tornado suction",	{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_suction,		0,	0,
+	"",			"!Tornado Suction!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
+    },
+
+    {
+	"marksmanship",		{ L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_shot,		0,	0,
+	"",			"!Marksmanship!",
+	SCHOOL_OFFENSIVE,
+	MANA_NONE
     },
 
 	  /* Race ability spells */
     {
-        "vampiric bite",        {},
+        "vampiric bite",        { L_APP },
         spell_vampiric_bite,    TAR_CHAR_DEFENSIVE,     POS_FIGHTING,
         &gsn_vampiric_bite,     0,     0,
-        "vampiric bite",        "You feel well fed."
+        "vampiric bite",        "You feel well fed.",
+	SCHOOL_NONE,
+	MANA_NONE
     }
 
 };

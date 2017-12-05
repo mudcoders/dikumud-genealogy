@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #3500
 wyvern~
@@ -131,10 +130,8 @@ for his shortsword and lunges for your neck.
 #0
 
 
-
 #NEWOBJECTS
 #0
-
 
 
 #ROOMDATA
@@ -1100,11 +1097,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 3500 spec_poison
 S
-
 
 
 #RESETS
@@ -1127,10 +1122,8 @@ M 0 3505 4 3584
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

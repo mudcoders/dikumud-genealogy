@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #6301
 spider young~
@@ -233,7 +232,6 @@ if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.
 #0
 
 
-
 #NEWOBJECTS
 #6303
 headress pontiff's~
@@ -280,7 +278,6 @@ potion blue~
 It has a nice sky blue colour and a smell like peppermint.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1191,7 +1188,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 6302 spec_breath_gas
 M 6314 spec_breath_gas
@@ -1200,7 +1196,6 @@ M 6317 spec_breath_gas
 M 6318 spec_poison
 M 6319 spec_poison
 S
-
 
 
 #RESETS
@@ -1240,10 +1235,8 @@ G 0 6304 0
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

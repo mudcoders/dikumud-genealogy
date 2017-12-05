@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #9301
 poor adventurer~
@@ -400,7 +399,6 @@ here at all?
 #0
 
 
-
 #NEWOBJECTS
 #9301
 comet's tail~
@@ -768,7 +766,6 @@ chains~
 They certainly look important!
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1793,7 +1790,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 9301 spec_thief
 M 9313 spec_breath_fire
@@ -1817,7 +1813,6 @@ M 9330 spec_cast_mage
 M 9331 spec_cast_mage
 M 9332 spec_breath_acid
 S
-
 
 
 #RESETS
@@ -1915,10 +1910,8 @@ E 0 9323 0 16
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

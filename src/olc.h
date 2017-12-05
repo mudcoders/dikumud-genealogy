@@ -1,5 +1,22 @@
 /***************************************************************************
- *  File: olc.h                                                            *
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
+ *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
+ *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
+ *  In order to use any part of this Envy Diku Mud, you must comply with   *
+ *  the original Diku license in 'license.doc', the Merc license in        *
+ *  'license.txt', as well as the Envy license in 'license.nvy'.           *
+ *  In particular, you may not remove either of these copyright notices.   *
  *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
@@ -11,244 +28,119 @@
  ***************************************************************************/
 
 /*
- * This is a header file for all the OLC files.  Feel free to copy it into
- * merc.h if you wish.  Many of these routines may be handy elsewhere in
- * the code.  - Jason Dinkel
+ * This is a header file for all the OLC files.
+ * Feel free to copy it into merc.h if you wish.
+ * Many of these routines may be handy elsewhere in the code.
+ * -- Jason Dinkel --
  */
 
 
-
 /*
- * The version info.  Please use this info when reporting bugs.
- * It is displayed in the game by typing 'version' while editing.
+ * This is displayed in the game by typing 'version' while editing.
  * Do not remove these from the code - by request of Jason Dinkel
  */
-#define VERSION	"ILAB Online Creation [Beta 1.1]"
-#define AUTHOR	"     By Jason(jdinkel@mines.colorado.edu)"
-#define DATE	"     (May. 15, 1995)"
-#define CREDITS "     Original by Surreality(cxw197@psu.edu) and Locke(locke@lm.com)"
+#define	VERSION	"ILAB Online Creation [Beta 1.1]"
+#define	AUTHOR	"     By Jason (jdinkel@mines.colorado.edu)"
+#define	DATE	"     (May. 15, 1995)"
+#define	CREDITS	"     Original by Surreality (cxw197@psu.edu) and Locke (locke@lm.com)"
 
 
-/*
- * New typedefs.
- */
-typedef bool OLC_FUN 	args( ( CHAR_DATA * ch, char *argument ) );
-#define DECLARE_OLC_FUN( fun )	OLC_FUN    fun
-
-
-/*
- * Connected states for editor.
- */
-#define ED_AREA 1
-#define ED_ROOM 2
-#define ED_OBJECT 3
-#define ED_MOBILE 4
-#define ED_MPROG  5
-
-
-/*
- * Interpreter Prototypes
- */
-void aedit 	args( ( CHAR_DATA * ch, char *argument ) );
-void redit 	args( ( CHAR_DATA * ch, char *argument ) );
-void medit 	args( ( CHAR_DATA * ch, char *argument ) );
-void oedit 	args( ( CHAR_DATA * ch, char *argument ) );
-void mpedit 	args( ( CHAR_DATA * ch, char *argument ) );
-
-
-/*
- * OLC Constants
- */
-#define MAX_MOB	1		/*
-				 * Default maximum number for resetting mobs 
-				 */
-
-
-/*
- * Structure for an OLC editor command.
- */
-struct olc_cmd_type
+struct olc_help_type
 {
-    char *const name;
-    OLC_FUN *olc_fun;
+    char *		command;
+    const void *	structure;
+    char *		desc;
 };
 
 
 /*
- * Structure for an OLC editor startup command.
+ * Command functions.
+ * Defined in olc_act.c (mostly).
  */
-struct editor_cmd_type
-{
-    char *const name;
-    DO_FUN *do_fun;
-};
+DECLARE_DO_FUN( do_oindex		);
+DECLARE_DO_FUN( do_mindex		);
+DECLARE_DO_FUN( mpedit_show		);
 
 
 /*
- * Utils.
+ * Interpreter prototypes.
  */
-AREA_DATA *get_vnum_area 	args( ( int vnum ) );
-AREA_DATA *get_area_data 	args( ( int vnum ) );
-int flag_value 			args( ( const struct flag_type * flag_table,
-		     			char *argument ) );
-char *flag_string 		args( ( const struct flag_type * flag_table,
-					int bits ) );
-void add_reset 			args( ( ROOM_INDEX_DATA * room,
-		     			RESET_DATA * pReset, int index ) );
+void	aedit	args( ( CHAR_DATA * ch, char *argument ) );
+void	redit	args( ( CHAR_DATA * ch, char *argument ) );
+void	medit	args( ( CHAR_DATA * ch, char *argument ) );
+void	oedit	args( ( CHAR_DATA * ch, char *argument ) );
+void	mpedit	args( ( CHAR_DATA * ch, char *argument ) );
 
 
 /*
- * Interpreter Table Prototypes
+ * Prototypes.
  */
-extern const struct olc_cmd_type aedit_table[];
-extern const struct olc_cmd_type redit_table[];
-extern const struct olc_cmd_type oedit_table[];
-extern const struct olc_cmd_type medit_table[];
-extern const struct olc_cmd_type mpedit_table[];
+#define ARD	AREA_DATA
+#define RD	RESET_DATA
+#define EXD	EXIT_DATA
+#define SD	SHOP_DATA
+#define GD	GAME_DATA
+#define AFD	AFFECT_DATA
+#define MPD	MPROG_DATA
+#define RID	ROOM_INDEX_DATA
+#define OID	OBJ_INDEX_DATA
+#define MID	MOB_INDEX_DATA
+#define ED	EXTRA_DESCR_DATA
 
+/* mem.c */
+RD *	new_reset_data 	args( ( void ) );
+ARD *	new_area 	args( ( void ) );
+EXD *	new_exit 	args( ( void ) );
+AFD *	new_affect 	args( ( void ) );
+SD *	new_shop 	args( ( void ) );
+GD *	new_game 	args( ( void ) );
+void 	free_reset_data args( ( RESET_DATA * pReset ) );
+void 	free_area 	args( ( AREA_DATA * pArea ) );
+void 	free_exit 	args( ( EXIT_DATA * pExit ) );
+void 	free_extra_descr 	args( ( ED * pExtra ) );
+void 	free_affect 	args( ( AFFECT_DATA * pAf ) );
+void 	free_shop 	args( ( SHOP_DATA * pGame ) );
+void 	free_game 	args( ( GAME_DATA * pGame ) );
+RID *	new_room_index 	args( ( void ) );
+OID *	new_obj_index 	args( ( void ) );
+MID *	new_mob_index 	args( ( void ) );
+void 	free_room_index args( ( ROOM_INDEX_DATA * pRoom ) );
+void 	free_obj_index 	args( ( OBJ_INDEX_DATA * pObj ) );
+void 	free_mob_index 	args( ( MOB_INDEX_DATA * pMob ) );
 
-/*
- * General Functions
- */
-bool show_commands 	args( ( CHAR_DATA * ch, char *argument ) );
-bool show_help 		args( ( CHAR_DATA * ch, char *argument ) );
-bool edit_done 		args( ( CHAR_DATA * ch, char *argument ) );
-bool show_version 	args( ( CHAR_DATA * ch, char *argument ) );
+/* bit.c */
+int	flag_value	args( ( const struct flag_type * flag_table,
+			       char *argument ) );
+char *	flag_string	args( ( const struct flag_type * flag_table,
+			       int bits ) );
+int	wear_loc	args( ( int bits, int count ) );
+int	wear_bit	args( ( int loc ) );
 
+/* olc_act.c */
+int	mprog_count	args( ( MOB_INDEX_DATA * pMob ) );
+MPD *	edit_mprog	args( ( CHAR_DATA * ch, MOB_INDEX_DATA * pMob ) );
+void	show_mprog	args( ( CHAR_DATA * ch, MPROG_DATA * pMobProg ) );
+void	delete_mprog	args( ( CHAR_DATA * ch, int pnum ) );
+ARD *	get_area_data 	args( ( int vnum ) );
+void	add_reset	args( ( ROOM_INDEX_DATA * room, RESET_DATA * pReset,
+			       int index ) );
+bool	is_builder	args( ( CHAR_DATA * ch, AREA_DATA * area ) );
+ARD *	get_vnum_area 	args( ( int vnum ) );
 
-/*
- * Area Editor Prototypes
- */
-DECLARE_OLC_FUN( aedit_show	);
-DECLARE_OLC_FUN( aedit_create	);
-DECLARE_OLC_FUN( aedit_name	);
-DECLARE_OLC_FUN( aedit_file	);
-DECLARE_OLC_FUN( aedit_age	);
-DECLARE_OLC_FUN( aedit_recall	);
-DECLARE_OLC_FUN( aedit_reset	);
-DECLARE_OLC_FUN( aedit_security	);
-DECLARE_OLC_FUN( aedit_builder	);
-DECLARE_OLC_FUN( aedit_vnum	);
-DECLARE_OLC_FUN( aedit_lvnum	);
-DECLARE_OLC_FUN( aedit_uvnum	);
+bool	aedit_create	args( ( CHAR_DATA * ch, char * argument ) );
+bool	redit_create	args( ( CHAR_DATA * ch, char * argument ) );
+bool	oedit_create	args( ( CHAR_DATA * ch, char * argument ) );
+bool	medit_create	args( ( CHAR_DATA * ch, char * argument ) );
+bool	mpedit_create	args( ( CHAR_DATA * ch, char * argument ) );
 
-
-/*
- * Room Editor Prototypes
- */
-DECLARE_OLC_FUN( redit_show	);
-DECLARE_OLC_FUN( redit_create	);
-DECLARE_OLC_FUN( redit_name	);
-DECLARE_OLC_FUN( redit_desc	);
-DECLARE_OLC_FUN( redit_ed	);
-DECLARE_OLC_FUN( redit_format	);
-DECLARE_OLC_FUN( redit_north	);
-DECLARE_OLC_FUN( redit_south	);
-DECLARE_OLC_FUN( redit_east	);
-DECLARE_OLC_FUN( redit_west	);
-DECLARE_OLC_FUN( redit_up	);
-DECLARE_OLC_FUN( redit_down	);
-DECLARE_OLC_FUN( redit_move	);
-DECLARE_OLC_FUN( redit_mreset	);
-DECLARE_OLC_FUN( redit_oreset	);
-DECLARE_OLC_FUN( redit_mlist	);
-DECLARE_OLC_FUN( redit_olist	);
-DECLARE_OLC_FUN( redit_mshow	);
-DECLARE_OLC_FUN( redit_oshow	);
-
-
-/*
- * Object Editor Prototypes
- */
-DECLARE_OLC_FUN( oedit_show		);
-DECLARE_OLC_FUN( oedit_create		);
-DECLARE_OLC_FUN( oedit_copy		);
-DECLARE_OLC_FUN( oedit_name		);
-DECLARE_OLC_FUN( oedit_short		);
-DECLARE_OLC_FUN( oedit_long		);
-DECLARE_OLC_FUN( oedit_addaffect	);
-DECLARE_OLC_FUN( oedit_delaffect	);
-DECLARE_OLC_FUN( oedit_value0		);
-DECLARE_OLC_FUN( oedit_value1		);
-DECLARE_OLC_FUN( oedit_value2		);
-DECLARE_OLC_FUN( oedit_value3		);
-DECLARE_OLC_FUN( oedit_value4		);
-DECLARE_OLC_FUN( oedit_weight		);
-DECLARE_OLC_FUN( oedit_cost		);
-DECLARE_OLC_FUN( oedit_ed		);
-
-
-/*
- * Mobile Editor Prototypes
- */
-DECLARE_OLC_FUN( medit_show	);
-DECLARE_OLC_FUN( medit_create	);
-DECLARE_OLC_FUN( medit_copy	);
-DECLARE_OLC_FUN( medit_name	);
-DECLARE_OLC_FUN( medit_short	);
-DECLARE_OLC_FUN( medit_long	);
-DECLARE_OLC_FUN( medit_shop	);
-DECLARE_OLC_FUN( medit_desc	);
-DECLARE_OLC_FUN( medit_level	);
-DECLARE_OLC_FUN( medit_align	);
-DECLARE_OLC_FUN( medit_spec	);
-
-
-/*
- * MobProg Editor Prototypes
- */
-DECLARE_OLC_FUN( mpedit_show	);
-DECLARE_OLC_FUN( mpedit_add	);
-DECLARE_OLC_FUN( mpedit_delete	);
-DECLARE_OLC_FUN( mpedit_create	);
-DECLARE_OLC_FUN( mpedit_copy	);
-DECLARE_OLC_FUN( mpedit_trigger	);
-DECLARE_OLC_FUN( mpedit_program	);
-
-
-/*
- * Macros
- */
-
-#define TOGGLE_BIT(var, bit)    ((var) ^= (bit))
-
-
-
-/*
- * Prototypes
- */
-
-/* mem.c - memory prototypes */
-#define ED		EXTRA_DESCR_DATA
-RESET_DATA *		new_reset_data 	args( ( void ) );
-void 			free_reset_data args( ( RESET_DATA * pReset ) );
-AREA_DATA *		new_area 	args( ( void ) );
-void 			free_area 	args( ( AREA_DATA * pArea ) );
-EXIT_DATA *		new_exit 	args( ( void ) );
-void 			free_exit 	args( ( EXIT_DATA * pExit ) );
-ED *			new_extra_descr args( ( void ) );
-void 			free_extra_descr 	args( ( ED * pExtra ) );
-ROOM_INDEX_DATA *	new_room_index 	args( ( void ) );
-void 			free_room_index args( ( ROOM_INDEX_DATA * pRoom ) );
-AFFECT_DATA *		new_affect 	args( ( void ) );
-void 			free_affect 	args( ( AFFECT_DATA * pAf ) );
-SHOP_DATA *		new_shop 	args( ( void ) );
-void 			free_shop 	args( ( SHOP_DATA * pShop ) );
-OBJ_INDEX_DATA *	new_obj_index 	args( ( void ) );
-void 			free_obj_index 	args( ( OBJ_INDEX_DATA * pObj ) );
-MOB_INDEX_DATA *	new_mob_index 	args( ( void ) );
-void 			free_mob_index 	args( ( MOB_INDEX_DATA * pMob ) );
+#undef	ARD
+#undef	RD
+#undef	EXD
+#undef	SD
+#undef	GD
+#undef	AFD
+#undef	MPD
+#undef	RID
+#undef	OID
+#undef	MID
 #undef	ED
-
-/* olc.c - miscellaneous prototypes */
-int 		mprog_count args( ( MOB_INDEX_DATA * pMob ) );
-MPROG_DATA *	edit_mprog args( ( CHAR_DATA * ch, MOB_INDEX_DATA * pMob ) );
-void 		show_mprog args( ( CHAR_DATA * ch, MPROG_DATA * pMobProg ) );
-void 		delete_mprog args( ( CHAR_DATA * ch, int pnum ) );
-
-/* olc_act.c - miscellaneous prototypes */
-MOB_INDEX_DATA *	edit_mob args( ( CHAR_DATA * ch ) );
-OBJ_INDEX_DATA *	edit_obj args( ( CHAR_DATA * ch ) );
-ROOM_INDEX_DATA *	edit_room args( ( CHAR_DATA * ch ) );
-AREA_DATA *		edit_area args( ( CHAR_DATA * ch ) );
-bool			is_builder args( ( CHAR_DATA * ch, AREA_DATA * area ) );

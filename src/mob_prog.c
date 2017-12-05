@@ -34,6 +34,11 @@
 
 
 /*
+ *  Mudprogram additions
+ */
+ACT_PROG_DATA *	mob_act_list;
+
+/*
  * Local function prototypes
  */
 char *	mprog_next_command	args( ( char *clist ) );
@@ -59,24 +64,6 @@ void 	mprog_driver		args( ( char *com_list, CHAR_DATA *mob,
 /*
  * Local function code and brief comments.
  */
-
-/*
- * if you don't have these functions, you damn well should... 
- */
-#ifdef DUNNO_STRSTR
-char *strstr( s1, s2 )
-    const char *s1;
-    const char *s2;
-{
-    char *cp;
-    int i, j = strlen( s1 ) - strlen( s2 ), k = strlen( s2 );
-    if ( j < 0 )
-	return NULL;
-    for ( i = 0; i <= j && strncmp( s1++, s2, k ) != 0; i++ );
-    return ( i > j ) ? NULL : ( s1 - 1 );
-}
-#endif
-
 
 /*
  * Used to get sequential lines of a multi line string (separated by "\n\r")
@@ -108,6 +95,9 @@ char *mprog_next_command( char *clist )
  */
 bool mprog_seval( char *lhs, char *opr, char *rhs )
 {
+    if ( !lhs || !rhs )
+	return 0;
+
     if ( !str_cmp( opr, "==" ) )
 	return (bool) ( !str_cmp( lhs, rhs ) );
     if ( !str_cmp( opr, "!=" ) )
@@ -124,6 +114,9 @@ bool mprog_seval( char *lhs, char *opr, char *rhs )
 
 bool mprog_veval( int lhs, char *opr, int rhs )
 {
+    if ( !lhs || !rhs )
+	return 0;
+
     if ( !str_cmp( opr, "==" ) )
 	return ( lhs == rhs );
     if ( !str_cmp( opr, "!=" ) )
@@ -155,7 +148,7 @@ bool mprog_veval( int lhs, char *opr, int rhs )
  * optional but if one is there then both must be. The spaces are all
  * optional. The evaluation of the opr expressions is farmed out
  * to reduce the redundancy of the mammoth if statement list.
- * If there are errors, then return -1 otherwise return boolean 1,0
+ * If there are errors, then return FALSE otherwise return boolean 1, 0
  *
  * Killed all that big copy-code that performs the same action on each
  * variable - Zen
@@ -182,7 +175,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
     if ( *point == '\0' )
     {
 	bug( "Mob: %d null ifchck", mob->pIndexData->vnum );
-	return -1;
+	return FALSE;
     }
 
     /*
@@ -198,7 +191,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 	if ( *point == '\0' )
 	{
 	    bug( "Mob: %d ifchck syntax error", mob->pIndexData->vnum );
-	    return -1;
+	    return FALSE;
 	}
 	else if ( *point == ' ' )
 	    point++;
@@ -215,7 +208,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 	if ( *point == '\0' )
 	{
 	    bug( "Mob: %d ifchck syntax error", mob->pIndexData->vnum );
-	    return -1;
+	    return FALSE;
 	}
 	else if ( *point == ' ' )
 	    point++;
@@ -245,7 +238,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 	    {
 		bug( "Mob: %d ifchck operator without value",
 		    mob->pIndexData->vnum );
-		return -1;
+		return FALSE;
 	    }
 	    else
 		*oprpt++ = *point++;
@@ -300,10 +293,10 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 
 	    sprintf( buf1, "Mob: %%d bad argument '%s' to '%s'", arg, buf );
 	    bug( buf1, mob->pIndexData->vnum );
-	    return -1;
+	    return FALSE;
 	}
 	if ( !chkchar && !chkobj )
-	    return -1;
+	    return FALSE;
     }
 
     if ( !str_cmp( buf, "rand" ) )
@@ -319,6 +312,9 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 
 	if ( !str_cmp( buf, "isnpc" ) )
 	    return ( IS_NPC( chkchar ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "ismounted" ) )
+	    return ( chkchar->riding   ? TRUE : FALSE );
 
 	if ( !str_cmp( buf, "isgood" ) )
 	    return ( IS_GOOD( chkchar ) ? TRUE : FALSE );
@@ -466,7 +462,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
      * odd happened.  So report the bug and abort the MOBprogram (return error)
      */
     bug( "Mob: %d unknown ifchck", mob->pIndexData->vnum );
-    return -1;
+    return FALSE;
 }
 
 
@@ -507,7 +503,7 @@ char *mprog_process_if( char *ifchck, char *com_list, CHAR_DATA * mob,
 	else
 	    return null;
 
-    while ( loopdone == FALSE )	/*
+    while ( !loopdone )		/*
 				 * scan over any existing or statements 
 				 */
     {
@@ -711,7 +707,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    if ( actor && !actor->deleted )
 		if ( can_see( mob, actor ) )
 		    one_argument( actor->name, t );
-	    if ( !IS_NPC(actor ) )
+	    if ( !IS_NPC( actor ) )
 		*t = UPPER(*t);
 	    break;
 
@@ -1020,15 +1016,15 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor,
 void mprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
 			  OBJ_DATA * obj, void *vo, int type )
 {
-    char temp1 [ MAX_STRING_LENGTH ];
-    char temp2 [ MAX_INPUT_LENGTH ];
-    char word [ MAX_INPUT_LENGTH ];
-    MPROG_DATA *mprg;
-    char *list;
-    char *start;
-    char *dupl;
-    char *end;
-    int i;
+    MPROG_DATA   *mprg;
+    char         *list;
+    char         *start;
+    char         *dupl;
+    char         *end;
+    char          temp1 [ MAX_STRING_LENGTH ];
+    char          temp2 [ MAX_INPUT_LENGTH ];
+    char          word  [ MAX_INPUT_LENGTH ];
+    unsigned int  i;
 
     for ( mprg = mob->pIndexData->mobprogs; mprg; mprg = mprg->next )
 	if ( mprg->type & type )
@@ -1106,6 +1102,22 @@ void mprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj,
     return;
 }
 
+
+void mob_act_add( CHAR_DATA *mob )
+{
+    ACT_PROG_DATA * runner;
+  
+    for ( runner = mob_act_list; runner; runner = runner->next )
+	if ( runner->vo == mob )
+	    return;
+
+    runner		= alloc_mem( sizeof( ACT_PROG_DATA ) );
+    runner->vo		= mob;
+    runner->next	= mob_act_list;
+    mob_act_list	= runner;
+}
+
+
 /*
  * The triggers.. These are really basic, and since most appear only
  * once in the code (hmm. i think they all do) it would be more efficient
@@ -1123,6 +1135,12 @@ void mprog_act_trigger( char *buf, CHAR_DATA * mob, CHAR_DATA * ch,
     if ( IS_NPC( mob )
 	&& IS_SET( mob->pIndexData->progtypes, ACT_PROG ) )
     {
+        /* 
+         * Don't let a mob trigger itself, nor one instance of a mob
+         * trigger another instance.
+         */
+	if ( IS_NPC( ch ) && ch->pIndexData == mob->pIndexData )
+	    return;
 	tmp_act = alloc_mem( sizeof( MPROG_ACT_LIST ) );
 	if ( mob->mpactnum > 0 )
 	    tmp_act->next = mob->mpact->next;
@@ -1135,6 +1153,7 @@ void mprog_act_trigger( char *buf, CHAR_DATA * mob, CHAR_DATA * ch,
 	mob->mpact->obj = obj;
 	mob->mpact->vo = vo;
 	mob->mpactnum++;
+	mob_act_add( mob );
     }
 
     return;

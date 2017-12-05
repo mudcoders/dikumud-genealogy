@@ -1,7 +1,7 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
@@ -71,12 +71,29 @@ checking if the victim's race name appears in the hate string of the
 aggressor.  If you wish to modify this field, just add a race name to
 this field as it appears in the name field of the race.
 
+    int                 parts;
+	This is a bitvector representing the bodyparts of this race group.
+
+    int                 resistant;
+	This is a bitvector representing the resistances of this race group.
+
+    int                 immune;
+	This is a bitvector representing the immunities of this race group.
+
+    int                 susceptible;
+	This is a bitvector representing the susceptibilities of this race
+group.
+
+    int                 language;
+	This field represents the language of this race group.
+(TO BE IMPLEMENTED)
+
 
 
 === Adding a new race
 
 This section enumerates the changes that need to be made to the base
-level Envy 2.2 code necessary for the addition of a new race.
+level UltraEnvy code necessary for the addition of a new race.
 
 MERC.H		- Increase MAX_RACE by as many races you add
 ------
@@ -84,6 +101,6 @@ MERC.H		- Increase MAX_RACE by as many races you add
 CONST.C		- Add race definition (structure) to race_table.
 -------		  Order does not matter
 
-Obviously adding a new race to Envy 2.2 is an easy task.  All is
+Obviously adding a new race to UltraEnvy is an easy task.  All is
 required is good planning of what you wish this race to be and
 entering the appropriate data.

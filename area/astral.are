@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1900
 astral guardian~
@@ -280,7 +279,6 @@ The fire feeds on your skin like a living being, licking out at your hair.
 5000 0
 0 Object~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -708,7 +706,6 @@ rusted sword~
 This sword looks quite rusted, but that makes it nice and dangerous!
 ~
 #0
-
 
 
 #ROOMDATA
@@ -3144,7 +3141,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 1902 spec_cast_mage
 M 1905 spec_thief
@@ -3158,7 +3154,6 @@ M 1917 spec_cast_mage
 M 1918 spec_cast_mage
 M 1919 spec_breath_fire
 S
-
 
 
 #RESETS
@@ -3352,10 +3347,8 @@ G 0 1925 0
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

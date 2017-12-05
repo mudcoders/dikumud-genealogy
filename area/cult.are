@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #9800
 receptionist~
@@ -227,7 +226,6 @@ He has rotten teeth.
 100 0
 0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -490,7 +488,6 @@ the brochure reads:
       |__________________________________|
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1435,14 +1432,12 @@ S
 #0
 
 
-
 #SPECIALS
 M 9804 spec_cast_mage
 M 9806 spec_breath_acid
 M 9814 spec_cast_undead
 M 9816 spec_fido
 S
-
 
 
 #RESETS
@@ -1504,11 +1499,9 @@ G 0 9848 0
 S
 
 
-
 #SHOPS
 9817 0 0 0 0 0 400 400 0 23
 0
-
 
 
 #$

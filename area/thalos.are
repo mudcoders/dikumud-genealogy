@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #5200
 beholder~
@@ -110,7 +109,6 @@ stone creature. He stands here still guarding the city.
 4250 0
 0 God~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -491,7 +489,6 @@ A
 A
 19 1 0
 #0
-
 
 
 #ROOMDATA
@@ -2069,11 +2066,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 5200 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -2185,10 +2180,8 @@ E 0 5100 0 16
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

@@ -1,7 +1,7 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
@@ -11,16 +11,20 @@ The mud has certain characteristics you may wish to change.  Provided
 is a excerpt from 'merc.h'.
 
 	EXP_PER_LEVEL           1000
-	MAX_SKILL               156
+	MAX_SKILL               188
+	MAX_ATTACK              17
 	MAX_CLASS               5
 	MAX_RACE                41
 	MAX_LEVEL               54
+	MAX_ALIAS               10
+	MAX_HISTORY		10
 
 	PULSE_PER_SECOND	4
 	PULSE_VIOLENCE		2 * PULSE_PER_SECOND
 	PULSE_MOBILE		5	"
 	PULSE_TICK		30	"
 	PULSE_AREA		60	"
+	PULSE_DB_DUMP		1800	"
 
 These variables are the most frequently changed items from within
 EnvyMud.
@@ -36,8 +40,12 @@ are defined in a static table in 'const.c'.  If you were to add any
 new skills, you should modify this number.  See 'skill.txt' for more
 information.
 
-MAX_CLASS defines the number of classes present in the game.  Classes
+MAX_ATTACK defines the number of weapon types present in the game.  Attacks
 are defined in a static table in 'const.c'.  If you were to add any
+new skills, you should modify this number.
+
+MAX_CLASS defines the number of classes present in the game.  Classes
+are defined in a file in area/classes.  If you were to add any
 new classes, you must modify this number.  See 'class.txt' for more
 information.
 
@@ -49,6 +57,14 @@ information.
 MAX_LEVEL defines the number of classes present in the game.  Levels
 are used as indices in most cases like in the title table in
 'const.c'.  See 'class.txt' for more information.
+
+MAX_ALIAS defines the maximum number of aliases a played may have.
+you might think increasing them is a good idea but they do take YOUR memory
+and they increase player file size since it's there they are saved.
+
+MAX_HISTORY defines the maximum size of the command history a played may have.
+you might think increasing them is a good idea but they do take YOUR memory
+though they aren't saved on the player files.
 
 PULSE_PER_SECOND is the number of game_loop_* cycles required to
 denote 1 real second.  This is an approximation.  There is no need to
@@ -78,5 +94,12 @@ mudclients which rely on tick intervals.  See 'area_update()' in
 'db.c'.  You might want to change the modifier to make areas repop
 faster or slower.
 
+PULSE_DB_DUMP is the approximate number of game pulses required for each
+database dump (OLC feature). When this happens the entire world database is
+saved. It's also saved when you shutdown the mud (i think).
+
 If you were to change these numbers, be sure to 'make clean' and
 recompile the entire mud.
+
+
+- Zen

@@ -81,6 +81,8 @@ struct  class_type *    class_table     [ MAX_CLASS ];
 /* Titles (see class files in area/classes) */ 
 char *title_table 			[ MAX_CLASS ][ MAX_LEVEL+1 ][ 2 ];
 
+CLAN_DATA *             clan_first = NULL;
+CLAN_DATA *             clan_last  = NULL;
 
 
 
@@ -89,14 +91,14 @@ char *title_table 			[ MAX_CLASS ][ MAX_LEVEL+1 ][ 2 ];
  */
 bool fread_class( char *filename )
 {
-    FILE   *fp;
-    char   *word;
-    char    buf  [ MAX_STRING_LENGTH ];
-    bool    fMatch;
-    int     stat;
+    FILE               *fp;
+    char               *word;
     struct  class_type *class;
-    int     number;
-    int     tlev = 0;
+    char                buf  [ MAX_STRING_LENGTH ];
+    bool                fMatch;
+    int                 stat;
+    int                 number = -1;
+    int                 tlev   = 0;
 
     sprintf( buf, "%s%s", CLASS_DIR, filename );
     if ( !( fp = fopen( buf, "r" ) ) )
@@ -105,26 +107,7 @@ bool fread_class( char *filename )
         return FALSE;
     }
 
-    word = feof( fp ) ? "End" : fread_word( fp, &stat );
-    if ( !str_cmp( word, "Class" ) )
-	number = fread_number( fp, &stat );
-    else
-	number = -1;	/* reports any error in case "Class N" doesn't exist */
-
-    if ( number < 0 || number >= MAX_CLASS )
-    {
-	sprintf( buf, "Fread_class: bad class  '%s'.", filename );
-	bug ( buf, 0 );
-	return FALSE;
-    }
-
     class = alloc_mem ( sizeof( CLASS_TYPE ) );
-
-    class->filename = str_dup( filename );
-
-    word = feof( fp ) ? "End" : fread_word( fp, &stat );
-    if ( !str_cmp( word, "Name" ) )
-	class->who_name = fread_string( fp, &stat );
 
     for ( ; ; )
     {
@@ -139,8 +122,18 @@ bool fread_class( char *filename )
 	    break;
 
 	case 'A':
-            KEY( "AtrPrm", class->attr_prime,
-            	fread_number( fp, &stat ) );
+            KEY( "AtrPrm", class->attr_prime, fread_number( fp, &stat ) );
+	    break;
+
+	case 'C':
+            KEY( "Cla", number, fread_number( fp, &stat ) );
+
+	    if ( number < 0 || number >= MAX_CLASS )
+	    {
+		sprintf( buf, "Fread_class: bad class  '%s'.", filename );
+		bug ( buf, 0 );
+		return FALSE;
+	    }
 	    break;
 
 	case 'E':
@@ -153,32 +146,32 @@ bool fread_class( char *filename )
 	    break;
 
 	case 'G':
-            KEY( "Guild", class->guild,
-		fread_number( fp, &stat ) );
+            KEY( "Guild", class->guild, fread_number( fp, &stat ) );
 	    break;
 
 	case 'H':
-            KEY( "Hpmin", class->hp_min,
-		fread_number( fp, &stat ) );
-            KEY( "Hpmax", class->hp_max,
-		fread_number( fp, &stat ) );
+            KEY( "Hpmin", class->hp_min, fread_number( fp, &stat ) );
+            KEY( "Hpmax", class->hp_max, fread_number( fp, &stat ) );
 	    break;
 
 	case 'M':
             KEY( "Mana", class->fMana, fread_number( fp, &stat ) );
 	    break;
 
+	case 'N':
+            SKEY( "Nm", class->name );
+	    break;
+
 	case 'S':
-            KEY( "SkillAdept", class->skill_adept,
-		fread_number( fp, &stat ) );
+            KEY( "SkllAdpt", class->skill_adept, fread_number( fp, &stat ) );
 
 	    if ( !str_cmp( word, "Skll" ) )
 	    {
 		int sn;
 		int value;
 
-		sn    = skill_lookup( fread_word( fp, &stat ) );
 		value = fread_number( fp, &stat );
+		sn    = skill_lookup( fread_word( fp, &stat ) );
 		if ( sn < 0 )
 		    bug( "Fread_class: unknown skill.", 0 );
 		else
@@ -189,12 +182,10 @@ bool fread_class( char *filename )
 	    break;
 
 	case 'T':
-	    KEY( "Thac0", class->thac0_00,
-		fread_number( fp, &stat ) );
-	    KEY( "Thac47", class->thac0_47,
-		fread_number( fp, &stat ) );
+	    KEY( "Thac0", class->thac0_00, fread_number( fp, &stat ) );
+	    KEY( "Thac47", class->thac0_47, fread_number( fp, &stat ) );
 
-	    if ( !str_cmp( word, "Title" ) )
+	    if ( !str_cmp( word, "Ttle" ) )
 	    {
 		if ( tlev <= MAX_LEVEL )
 		{
@@ -210,45 +201,31 @@ bool fread_class( char *filename )
 	    break;
 
 	case 'W':
-	    KEY( "Weapon", class->weapon,
-		fread_number( fp, &stat ) );
+	    SKEY( "WhoNm", class->who_name );
+	    KEY( "Wpn", class->weapon, fread_number( fp, &stat ) );
 	    break;
 	}
 
 	if ( !fMatch )
 	{
-            sprintf( buf, "load_class_file: no match: %s", word );
-            bug( buf, 0 );
+            bugf( "load_class_file: no match: %s", word );
 	}
     }
 
     return FALSE;
 }
 
-
 /*
  * Load in all the class files.
  */ 
-void load_classes()
+void load_classes( void )
 {
     FILE *fpList;
     char *filename;
     char  fname		[ MAX_STRING_LENGTH ];
     char  classlist	[ MAX_STRING_LENGTH ];
-    char  buf		[ MAX_STRING_LENGTH ];
     int   stat;
-    int   sn;
-    int   class;
     
-    for ( sn = 0; sn < MAX_SKILL; sn++ )
-    {
-	if ( !skill_table[sn].name )
-	    break;
-
-	for ( class = 0; class < MAX_CLASS; class++ )
-	    skill_table[sn].skill_level[class] = L_APP;	
-    }
-
     sprintf( classlist, "%s%s", CLASS_DIR, CLASS_LIST );
     if ( !( fpList = fopen( classlist, "r" ) ) )
     {
@@ -265,8 +242,7 @@ void load_classes()
 
         if ( !fread_class( fname ) )
         {
-          sprintf( buf, "Cannot load class file: %s", fname );
-          bug( buf, 0 );
+          bugf( "Cannot load class file: %s", fname );
         }
     }
     fclose( fpList );
@@ -274,31 +250,31 @@ void load_classes()
     return;
 }
 
-
-void fwrite_class( int num )
+void save_class( int num )
 {
     FILE                    *fp;
     const struct class_type *class = class_table[num];
-    char                     buf	[ MAX_STRING_LENGTH ];
     char                     filename	[ MAX_INPUT_LENGTH ];
+    char                     buf  	[ MAX_STRING_LENGTH ];
     int                      level;
     int                      sn;
 
-    strcpy ( filename, class->filename );
+    sprintf ( filename, "%s.class", class->name );
 
-    if ( !( fp = fopen( filename, "w" ) ) )
+    sprintf( buf, "%s%s", CLASS_DIR, filename );
+    if ( !( fp = fopen( buf, "w" ) ) )
     {
-        sprintf( buf, "Cannot open: %s for writing", filename );
-        bug( buf, 0 );
+        bugf( "Cannot open: %s for writing", filename );
         return;
     }
 
-    fprintf( fp, "Name        %s~\n",        class->who_name	);
-    fprintf( fp, "Class       %d\n",         num		);
-    fprintf( fp, "Attrprime   %d\n",         class->attr_prime	);
-    fprintf( fp, "Weapon      %d\n",         class->weapon	);
+    fprintf( fp, "Nm          %s~\n",        class->name	);
+    fprintf( fp, "WhoNm       %s~\n",        class->who_name	);
+    fprintf( fp, "Cla         %d\n",         num		);
+    fprintf( fp, "AtrPrm      %d\n",         class->attr_prime	);
+    fprintf( fp, "Wpn         %d\n",         class->weapon	);
     fprintf( fp, "Guild       %d\n",         class->guild	);
-    fprintf( fp, "Skilladept  %d\n",         class->skill_adept	);
+    fprintf( fp, "Sklladpt    %d\n",         class->skill_adept	);
     fprintf( fp, "Thac0       %d\n",         class->thac0_00	);
     fprintf( fp, "Thac47      %d\n",         class->thac0_47	);
     fprintf( fp, "Hpmin       %d\n",         class->hp_min	);
@@ -311,11 +287,11 @@ void fwrite_class( int num )
 	    break;
 
         if ( ( level = skill_table[sn].skill_level[num] ) < LEVEL_IMMORTAL )
-          fprintf( fp, "Skll        '%s' %d\n", skill_table[sn].name, level );
+          fprintf( fp, "Skll        %2d '%s'\n", level, skill_table[sn].name );
     }
 
     for ( level = 0; level <= MAX_LEVEL; level++ )
-        fprintf( fp, "Title\n%s~\n%s~\n",
+        fprintf( fp, "Ttle        %s~ %s~\n",
                 title_table[num][level][0], title_table[num][level][1] );
     fprintf( fp, "End\n" );
     fclose( fp );
@@ -323,13 +299,12 @@ void fwrite_class( int num )
     return;
 }
 
-
-void save_classes()
+void save_classes( void )
 {
     int class;
 
     for ( class = 0; class < MAX_CLASS; class++ )
-      fwrite_class( class );
+      save_class( class );
 
     return;
 }
@@ -411,11 +386,10 @@ void add_social( SOC_INDEX_DATA *social )
     return;
 }
 
-
 /*
  * Save the social_table_tables to disk (cut & pasted from SMAUG - Zen)
  */
-void save_socials()
+void save_socials( void )
 {
     FILE           *fpout;
     SOC_INDEX_DATA *social;
@@ -464,7 +438,6 @@ void save_socials()
     return;
 }
 
-
 /*
  * Clear a new social.
  */
@@ -484,11 +457,10 @@ void clear_social( SOC_INDEX_DATA *soc )
     return;
 }
 
-
 /*
  * Take a social data from the free list and clean it out.
  */
-SOC_INDEX_DATA *new_social()
+SOC_INDEX_DATA *new_social( void )
 {
     SOC_INDEX_DATA *soc;
 
@@ -498,7 +470,6 @@ SOC_INDEX_DATA *new_social()
 
     return soc;
 }
-
 
 /*
  * Remove a social from it's hash index                         - Thoric
@@ -516,7 +487,7 @@ void unlink_social( SOC_INDEX_DATA *social )
         return;
     }
 
-    if ( social->name[0] < 'a' || social->name[0] > 'z' )
+    if ( !islower( social->name[0] ) )
         hash = 0;
     else
         hash = (social->name[0] - 'a') + 1;
@@ -545,19 +516,18 @@ void unlink_social( SOC_INDEX_DATA *social )
  */
 void free_social( SOC_INDEX_DATA *social )
 {
-    free_string( social->name );
-    free_string( social->char_no_arg );
+    free_string( social->name          );
+    free_string( social->char_no_arg   );
     free_string( social->others_no_arg );
-    free_string( social->char_found );
-    free_string( social->others_found );
-    free_string( social->vict_found );
-    free_string( social->char_auto );
-    free_string( social->others_auto );
+    free_string( social->char_found    );
+    free_string( social->others_found  );
+    free_string( social->vict_found    );
+    free_string( social->char_auto     );
+    free_string( social->others_auto   );
 
     free_mem( social, sizeof( SOC_INDEX_DATA ) );
     return;
 }
-
 
 void fread_social( FILE *fp )
 {
@@ -567,7 +537,7 @@ void fread_social( FILE *fp )
     bool            fMatch;
     int             stat;
 
-    social = new_social();
+    social = new_social( );
 
     for ( ; ; )
     {
@@ -583,8 +553,8 @@ void fread_social( FILE *fp )
 
 	case 'C':
 	    SKEY( "CharNoArg", social->char_no_arg );
-	    SKEY( "CharFound", social->char_found );
-	    SKEY( "CharAuto", social->char_auto );
+	    SKEY( "CharFound", social->char_found  );
+	    SKEY( "CharAuto",  social->char_auto   );
 	    break;
 
 	case 'E':
@@ -613,8 +583,8 @@ void fread_social( FILE *fp )
 
 	case 'O':
 	    SKEY( "OthersNoArg", social->others_no_arg );
-	    SKEY( "OthersFound", social->others_found );
-	    SKEY( "OthersAuto",	social->others_auto );
+	    SKEY( "OthersFound", social->others_found  );
+	    SKEY( "OthersAuto",	 social->others_auto   );
 	    break;
 
 	case 'V':
@@ -632,8 +602,7 @@ void fread_social( FILE *fp )
     return;
 }
 
-
-void load_socials()
+void load_socials( void )
 {
     FILE *fp;
     int   stat;
@@ -680,5 +649,345 @@ void load_socials()
     }
     
     fclose( fp );
+    return;
+}
+
+
+
+/*
+ * Get pointer to clan structure from clan name. (SMAUG)
+ */
+CLAN_DATA *get_clan( char *name )
+{
+    CLAN_DATA *clan;
+    
+    for ( clan = clan_first; clan; clan = clan->next )
+       if ( !str_cmp( name, clan->name ) )
+         return clan;
+    return NULL;
+}
+
+/*
+ * New code for loading clans from file.
+ */
+bool fread_clan( CLAN_DATA *clan, FILE *fp )
+{
+    char      *word;
+    bool       fMatch;
+    int        stat;
+
+    for ( ; ; )
+    {
+	word   = feof( fp ) ? "End" : fread_word( fp, &stat );
+	fMatch = FALSE;
+
+	switch ( UPPER( word[0] ) )
+	{
+	case '*':
+	    fMatch = TRUE;
+	    fread_to_eol( fp );
+	    break;
+
+	case 'C':
+            SKEY( "Chieftain",   clan->chieftain );
+            KEY( "Class",        clan->class,     fread_number( fp, &stat ) );
+            KEY( "ClanHeros",    clan->clanheros, fread_number( fp, &stat ) );
+            KEY( "ClanType",     clan->clan_type, fread_number( fp, &stat ) );
+            KEY( "ClanObjOne",   clan->clanobj1,  fread_number( fp, &stat ) );
+            KEY( "ClanObjTwo",   clan->clanobj2,  fread_number( fp, &stat ) );
+            KEY( "ClanObjThree", clan->clanobj3,  fread_number( fp, &stat ) );
+	    break;
+
+	case 'D':
+            SKEY( "Desc",    clan->description );
+            KEY( "Donation", clan->donation,  fread_number( fp, &stat ) );
+	    break;
+
+	case 'E':
+	    if ( !str_cmp( word, "End" ) )
+		return TRUE;
+	    break;
+
+	case 'I':
+            KEY( "IllegalPK",   clan->illegal_pk,  fread_number( fp, &stat ) );
+	    break;
+
+	case 'M':
+            KEY( "Members",     clan->members, fread_number( fp, &stat ) );
+            KEY( "MKills",      clan->mkills,  fread_number( fp, &stat ) );
+            KEY( "MDeaths",     clan->mdeaths, fread_number( fp, &stat ) );
+            SKEY( "Motto",      clan->motto );
+	    break;
+
+	case 'N':
+            SKEY( "Name",      clan->name    );
+	    break;
+
+	case 'O':
+            SKEY( "Overlord", clan->overlord );
+	    break;
+
+	case 'P':
+            KEY( "PKills",  clan->pkills,  fread_number( fp, &stat ) );
+            KEY( "PDeaths", clan->pdeaths, fread_number( fp, &stat ) );
+	    break;
+
+	case 'R':
+            KEY( "Recall",  clan->recall,  fread_number( fp, &stat ) );
+	    break;
+
+	case 'S':
+            KEY( "Score",     clan->score,     fread_number( fp, &stat ) );
+            KEY( "Subchiefs", clan->subchiefs, fread_number( fp, &stat ) );
+	    break;
+
+	case 'W':
+            SKEY( "WhoName",   clan->who_name    );
+	    break;
+
+	}
+
+	if ( !fMatch )
+	{
+            bugf( "Load_clan_file: no match: %s", word );
+	}
+    }
+
+    return FALSE;
+}
+
+bool load_clan_file( char *filename )
+{
+    CLAN_DATA *clan;
+    FILE      *fp;
+    int        stat;
+    char       buf [ MAX_STRING_LENGTH ];
+
+    sprintf( buf, "%s%s", CLAN_DIR, filename );
+    if ( !( fp = fopen( buf, "r" ) ) )
+    {
+        perror( buf );
+        return FALSE;
+    }
+
+    clan = alloc_mem ( sizeof( CLAN_DATA ) );
+    clan->filename = str_dup( filename );
+
+    for ( ; ; )
+    {
+	char *word;
+	char letter;
+
+	letter = fread_letter( fp );
+	if ( letter == '*' )
+	{
+	    fread_to_eol( fp );
+	    continue;
+	}
+
+	if ( letter != '#' )
+	{
+	    bug( "Load_clan_file: # not found.", 0 );
+	    free_mem( clan, sizeof( CLAN_DATA ) );
+	    break;
+	}
+
+	word = fread_word( fp, &stat );
+
+	if ( !str_cmp( word, "CLAN" ) )
+	{
+	    fread_clan( clan, fp );
+
+	    if ( !clan_first )
+		clan_first	= clan;
+	    else
+		clan_last->next	= clan;
+	    clan->next		= NULL;
+	    clan_last		= clan;
+
+	    break;
+	}
+	else if ( !str_cmp( word, "END"  ) )				break;
+	else
+	{
+	    bugf( "Load_clan_file: bad section: %s.", word );
+	    free_mem( clan, sizeof( CLAN_DATA ) );
+	    break;
+	}
+    }
+    fclose( fp );
+
+    return TRUE;
+}
+
+/*
+ * Load in all the clan files.
+ */ 
+void load_clans( void )
+{
+    FILE *fpList;
+    char *filename;
+    char  fname		[ MAX_STRING_LENGTH ];
+    char  clanslist	[ MAX_STRING_LENGTH ];
+    int   stat;
+    
+    clan_first  = NULL;
+    clan_last   = NULL;
+
+    log_string( "Loading clans..." );
+
+    sprintf( clanslist, "%s%s", CLAN_DIR, CLANS_LIST );
+    if ( !( fpList = fopen( clanslist, "r" ) ) )
+    {
+        perror( clanslist );
+        exit( 1 );
+    }
+
+    for ( ; ; )
+    {
+        filename = feof( fpList ) ? "$" : fread_word( fpList, &stat );
+	strcpy( fname, filename );
+        if ( fname[0] == '$' )
+          break;
+
+        if ( !load_clan_file( fname ) )
+        {
+          bugf( "Cannot load clan file: %s", fname );
+        }
+    }
+    fclose( fpList );
+
+    return;
+}
+
+void save_clan_list( void )
+{
+    FILE      *fp;
+    CLAN_DATA *clan;
+    char       clanslist	[ MAX_STRING_LENGTH ];
+
+    sprintf( clanslist, "%s%s", CLAN_DIR, CLANS_LIST );
+    if ( !( fp = fopen( clanslist, "w" ) ) )
+    {
+        bug( "Save_clan_list: fopen", 0 );
+        perror( clanslist );
+	return;
+    }
+
+    for ( clan = clan_first; clan; clan = clan->next )
+	fprintf( fp, "%s\n", clan->filename );
+
+    fprintf( fp, "$\n" );
+    fclose( fp );
+
+    return;
+}
+
+/*
+ * New code for writing a clan to a file.
+ */
+void save_clan( CLAN_DATA *clan )
+{
+    FILE                    *fp;
+    char                     filename	[ MAX_INPUT_LENGTH ];
+    char                     buf	[ MAX_STRING_LENGTH ];
+
+    if ( !clan->filename )
+	return;
+    
+    strcpy( filename, clan->filename );
+
+    sprintf( buf, "%s%s", CLAN_DIR, filename );
+    if ( !( fp = fopen( buf, "w" ) ) )
+    {
+        bugf( "Cannot open: %s for writing", filename );
+        return;
+    }
+
+    fprintf( fp, "#CLAN\n" );
+    fprintf( fp, "WhoName       %s~\n",        clan->who_name		);
+    fprintf( fp, "Name          %s~\n",        clan->name		);
+    fprintf( fp, "Motto         %s~\n",        clan->motto		);
+    fprintf( fp, "Desc          %s~\n", fix_string( clan->description ) );
+    fprintf( fp, "Overlord      %s~\n",        clan->overlord		);
+    fprintf( fp, "Chieftain     %s~\n",        clan->chieftain		);
+    fprintf( fp, "PKills        %d\n",         clan->pkills		);
+    fprintf( fp, "PDeaths       %d\n",         clan->pdeaths		);
+    fprintf( fp, "MKills        %d\n",         clan->mkills		);
+    fprintf( fp, "MDeaths       %d\n",         clan->mdeaths		);
+    fprintf( fp, "IllegalPK     %d\n",         clan->illegal_pk		);
+    fprintf( fp, "Score         %d\n",         clan->score		);
+    fprintf( fp, "ClanType      %d\n",         clan->clan_type		);
+    fprintf( fp, "Clanheros     %d\n",         clan->clanheros		);
+    fprintf( fp, "Subchiefs     %d\n",         clan->subchiefs		);
+    fprintf( fp, "Members       %d\n",         clan->members		);
+    fprintf( fp, "ClanObjOne    %d\n",         clan->clanobj1		);
+    fprintf( fp, "ClanObjTwo    %d\n",         clan->clanobj2		);
+    fprintf( fp, "ClanObjThree  %d\n",         clan->clanobj3		);
+    fprintf( fp, "Recall        %d\n",         clan->recall 		);
+    fprintf( fp, "Donation      %d\n",         clan->donation		);
+    fprintf( fp, "Class         %d\n",         clan->class  		);
+
+    fprintf( fp, "End\n" );
+    fprintf( fp, "#END\n" );
+    fclose( fp );
+
+    return;
+}
+
+
+
+void do_makeclan( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    CLAN_DATA *clan;
+    char       filename [ MAX_STRING_LENGTH ];
+    char       who_name [ MAX_STRING_LENGTH ];
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "makeclan" ) )
+        return;
+
+    if ( argument[0] == '\0' )
+    {
+        send_to_char( "Syntax: makeclan <clan name>\n\r", ch );
+        return;
+    }
+
+    one_argument( argument, who_name );
+    who_name[14] = '\0';
+
+    sprintf( filename, "%s.clan", who_name );
+
+    clan = alloc_mem ( sizeof( CLAN_DATA ) );
+    if ( !clan_first )
+	clan_first		= clan;
+    else
+	clan_last->next		= clan;
+	clan->next		= NULL;
+	clan_last		= clan;
+
+    clan->filename		= str_dup( filename );
+    clan->who_name		= str_dup( who_name );
+    clan->name			= str_dup( argument );
+    clan->motto			= str_dup( "" );
+    clan->description		= str_dup( "" );
+    clan->overlord		= str_dup( "" );
+    clan->chieftain		= str_dup( "" );
+    clan->clanheros		= 0;
+    clan->subchiefs		= 0;
+    clan->members		= 0;
+    clan->recall		= 3001;
+    clan->donation		= 0;
+    clan->class			= 0;
+    clan->mkills		= 0;
+    clan->mdeaths		= 0;
+    clan->pkills		= 0;
+    clan->pdeaths		= 0;
+    clan->illegal_pk		= 0;
+    clan->score			= 0;
+    clan->clan_type		= 0;
+
     return;
 }

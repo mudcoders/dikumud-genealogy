@@ -1,12 +1,12 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
-This is completely from MERC 2.2 documentation written by Furey with names
-changed to match the release
+This is almost completely from MERC 2.2 documentation written by Furey with
+names changed to match the release
 
 -----------------------------------------------------------------------------
 
@@ -64,25 +64,30 @@ Computer: the big or little box that you're using to run Envy.  Computers come
 	Sun		Sun-4
 	DEC		Vax 5000
 	DEC		Vax 5900
+	DEC		Alpha
 	IBM		RS/6000
 	NeXT		NextCube
 	Sequent		Symmetry
 	Sequent		Balance
+	???		x86 based PC running Linux
 
     As far as hardware goes, Envy will run on any 32-bit hardware.
 
 Operating system: the lowest level program running on your computer.  Most
     common computers run Unix or some variant of it, such as SunOS, Ultrix,
-    AIX, Mach, or Dynix.  Notice that many of these variants end in 'IX'.
+    AIX, Mach, Dynix, BSD or Linux.  Notice that many of these variants end
+    in 'IX'.
 
     The two major 'families' of Unix are Berkeley Unix (developed at the
-    illustrious University of California, Berkeley) and System 5 Unix
+    illustrious University of California, Berkeley) and System V Unix
     (developed by Bell Laboratories, the progenitors of Unix).
+    Most modern unix'es are a mix of both.  They usually aim for POSIX and/or
+    X/OPEN standards compliance.
 
     The most common non-Unix operating system is VMS (a proprietary operating
     system from DEC for their VAX computers).  In the personal computer world,
-    you'll find MS-DOS, OS/2 for IBM PC's and compatibles, and MacOS for Apple
-    Macintosh'es.
+    you'll find MS-DOS, OS/2, WIN32 based Microsoft OS'es like WinNT or Win95
+    for IBM PC's and compatibles, and MacOS for Apple Macintosh'es.
 
     GET THIS STRAIGHT: 'VAX' IS NOT AN OPERATING SYSTEM.  It's the name of a
     family of computers from DEC.  There are plenty of Vax'es running VMS, and
@@ -92,7 +97,7 @@ Operating system: the lowest level program running on your computer.  Most
 
     As far as operating systems go, Envy will run on Unix or Unix variants with
     TCP/IP networking compatible with Berkeley Unix.  It will also run, in
-    single-user mode only, on MS-DOS.  With a reasonable amount of work, Envy
+    single-user mode only, on MacOS.  With a reasonable amount of work, Envy
     can be ported to any operating system that provides TCP service for telnet
     connections.
 
@@ -125,9 +130,14 @@ you need to find out.
 
 'grep'	-- stands for 'global regular expression print'
 
+'more'
+'less'	-- these are filters for paging through text one screenful at a time.
+
 'vi'
 'emacs'
-'jove'	-- use whatever editor floats your boat
+'jove'
+'joe'
+'pico'	-- use whatever editor floats your boat
 	   but learn the hell out of it
 	   you should know EVERY command in your editor
 
@@ -147,6 +157,18 @@ These are the basic day-in day-out development tools.  Developing without
 knowing how to use ALL of these well is like driving a car without knowing how
 to change gears.
 
+
+=== Unix X Tools
+
+'nedit'	-- The greatest of X editors in my view, easy to use, small & fast.
+
+'ddd'	-- A X interface for gdb, useful if you don't know the zillion options
+	   in gdb and want a more user friendly interface.
+
+These are some X development tools.  XEmacs is also nice, but slow and bloated
+and not nearly as user-friendly.  You do not need these but they are much easier
+to use than most command line tools.  However, you don't always have X
+available...
 
 
 === Debugging: Theory
@@ -238,6 +260,27 @@ knowledge about assembly language programming.
 
 If you have access to a program named 'Purify' ... learn how to use it.
 
+If you don't have 'Purify' you more than likely can get the Electric Fence
+malloc() debugger for your Unix flavour.  From the README:
+
+"This version (2.0.5) will run on:
+        Linux kernel version 1.1.83 and above. Earlier kernels have problems
+        with the memory protection implementation.
+
+        All System V Revision 4 platforms (and possibly earlier revisions)
+        including:
+                Every 386 System V I've heard of.
+                Solaris 2.x
+                SGI IRIX 5.0 (but not 4.x)
+
+        IBM AIX on the RS/6000.
+
+        SunOS 4.X (using an ANSI C compiler and probably static linking).
+
+        HP/UX 9.01, and possibly earlier versions.
+
+        OSF 1.3 (and possibly earlier versions) on a DECalpha."
+
 
 
 === Profiling
@@ -285,4 +328,3 @@ Kernighan and Plaugher, _The Elements of Programming Style_.
 Kernighan and Ritchie, _The C Programming Language_.
 
 Brooks, _The Mythical Man Month_
-

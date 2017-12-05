@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 0 'VALLEY ELF'~
@@ -215,7 +214,6 @@ image of ... an antelope.
 0 0
 0 Animal~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -432,7 +430,6 @@ A dull iron shaft is on the floor.~
 A
 19 5 0
 #0
-
 
 
 #ROOMDATA
@@ -2109,14 +2106,12 @@ S
 #0
 
 
-
 #SPECIALS
 M 7807 spec_cast_cleric
 M 7808 spec_cast_mage
 M 7809 spec_breath_fire
 M 7811 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -2258,10 +2253,8 @@ M 0 7812 1 7882
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

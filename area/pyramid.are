@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2600
 asp snake~
@@ -246,7 +245,6 @@ his chest not even moving to breathe.
 88000 0
 0 Undead~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -688,7 +686,6 @@ of the mightiest of the ancient sphinxes.  You feel ancient power
 emanating from them; they seem to be almost alive.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -2138,7 +2135,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 2600 spec_poison
 M 2601 spec_poison
@@ -2152,7 +2148,6 @@ M 2615 spec_cast_cleric
 M 2616 spec_breath_any
 M 2617 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -2251,10 +2246,8 @@ O 0 2627 0 2659
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

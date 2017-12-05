@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #10201
 captain guard~
@@ -625,7 +624,6 @@ been trained especially for combat.
 0 0
 0 Animal~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -1748,7 +1746,6 @@ A giant skullthrone with a snake crawling through the eyes and nose is here.~
 0~ 0~ 0~ 0~ 0~
 100 300 0
 #0
-
 
 
 #ROOMDATA
@@ -4169,7 +4166,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 10201 spec_cast_mage
 M 10202 spec_cast_cleric
@@ -4195,7 +4191,6 @@ M 10236 spec_cast_cleric
 M 10242 spec_cast_undead
 M 10243 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -4652,7 +4647,6 @@ M 0 10247 1 10312
 S
 
 
-
 #SHOPS
 10208 0 0 0 0 0 105 15 0 23
 10209 0 0 0 0 0 110 100 6 17
@@ -4669,7 +4663,6 @@ S
 10226 15 0 0 0 0 125 75 4 20
 10227 0 0 0 0 0 105 15 0 23
 0
-
 
 
 #$

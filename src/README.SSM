@@ -1,6 +1,16 @@
 Envy 2.2 Running Shared String Memory Manager 2.2
 Patch by Fusion
 
+SSM 2.2 (UltraEnvy 0.87)
+
+o	Included a more accurate hash function function made by Erwin S.A.
+	<erwin@pip.dknet.dk>.  This decreased CPU time usage on server bootup
+	quite a lot, and also seems to reduce memory usage a bit.
+
+Zen ( October 16th, 1997 )
+
+--
+
 SSM 2.2 (EnvyMud 2.2)
 
 o	Rewrote the defrag and memory allocation scheme in SSM.

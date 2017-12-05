@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1
 Puff~
@@ -33,7 +32,6 @@ to disintegrate you.  Beholders are not known for their personality.
 22560 0
 0 God~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -176,7 +174,6 @@ A shimmering black gate rises from the ground, leading to parts unknown.~
 #0
 
 
-
 #ROOMDATA
 #1
 The Void~
@@ -209,10 +206,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -220,10 +215,8 @@ M 0 1 1 2
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2300
 knight ethereal dark~
@@ -424,7 +423,6 @@ Mahn-Tor is the leader of the minotaurs. He is awe-inspiring.
 #0
 
 
-
 #NEWOBJECTS
 #2300
 gloves combat~
@@ -834,8 +832,8 @@ stone blood red~
 a blood red stone~
 A blood red stone lies here collecting dust.~
 ~
-9 66 16385
-3~ 0~ 0~ 0~ 0~
+29 66 16385
+0~ 0~ 0~ 0~ 0~
 2 45000 0
 A
 13 20 0
@@ -1433,7 +1431,6 @@ A fur lined tunic rests here.~
 6~ 0~ 0~ 0~ 0~
 6 1500 0
 #0
-
 
 
 #ROOMDATA
@@ -3506,7 +3503,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 2300 spec_cast_undead
 M 2302 spec_breath_acid
@@ -3521,7 +3517,6 @@ M 2329 spec_cast_cleric
 M 2330 spec_cast_cleric
 M 2333 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -3756,10 +3751,8 @@ E 0 2334 0 16
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

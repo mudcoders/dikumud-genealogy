@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #20000
 sentry~
@@ -215,7 +214,6 @@ leads to the king.  This door is .....'.  The poor creature faints.
 #0
 
 
-
 #NEWOBJECTS
 #20000
 key granite~
@@ -278,7 +276,6 @@ A deadly looking Goblin Sentry's sword~
 A
 19 3 0
 #0
-
 
 
 #ROOMDATA
@@ -834,10 +831,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -886,10 +881,8 @@ E 0 20005 0 5
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

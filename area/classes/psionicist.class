@@ -1,234 +1,125 @@
-Class       4
-Name        Psi~
+Nm          Psionicist~
+WhoNm       Psi~
+Cla         4
 AtrPrm      4
-Weapon      3701
+Wpn         3701
 Guild       3151
-Skilladept  95
+Sklladpt    95
 Thac0       18
 Thac47      9
 Hpmin       6
 Hpmax       9
 Mana        1
-Skll        'energy drain' 14
-Skll        'identify' 13
-Skll        'invis' 14
-Skll        'summon' 12
-Skll        'teleport' 7
-Skll        'scrolls' 5
-Skll        'staves' 9
-Skll        'wands' 5
-Skll        'adrenaline control' 10
-Skll        'agitation' 6
-Skll        'aura sight' 14
-Skll        'awe' 21
-Skll        'ballistic attack' 1
-Skll        'biofeedback' 18
-Skll        'cell adjustment' 11
-Skll        'chameleon power' 6
-Skll        'combat mind' 15
-Skll        'complete healing' 28
-Skll        'control flames' 8
-Skll        'create sound' 2
-Skll        'death field' 30
-Skll        'detonate' 20
-Skll        'disintegrate' 27
-Skll        'displacement' 9
-Skll        'domination' 16
-Skll        'ectoplasmic form' 19
-Skll        'ego whip' 13
-Skll        'energy containment' 10
-Skll        'enhance armor' 15
-Skll        'enhanced strength' 7
-Skll        'flesh armor' 11
-Skll        'heighten senses' 3
-Skll        'inertial barrier' 19
-Skll        'inflict pain' 5
-Skll        'intellect fortress' 12
-Skll        'lend health' 10
-Skll        'levitation' 3
-Skll        'mental barrier' 6
-Skll        'mind thrust' 2
-Skll        'project force' 9
-Skll        'psionic blast' 17
-Skll        'psychic crush' 8
-Skll        'psychic drain' 4
-Skll        'psychic healing' 5
-Skll        'shadow form' 2
-Skll        'share strength' 11
-Skll        'thought shield' 1
-Skll        'ultrablast' 25
-Skll        'stake' 1
-Skll        'shield block' 37
-Skll        'fast healing' 37
-Skll        'swim' 15
-Skll        'meditate' 20
-Skll        'wizard eye' 35
-Skll        'vortex lift' 27
-Skll        'portal' 40
-Skll        'nexus' 45
-Title
-Man~
-Woman~
-Title
-Psychic~
-Psychic~
-Title
-Medium~
-Medium~
-Title
-Gypsy~
-Gypsy~
-Title
-Meditator~
-Meditator~
-Title
-Mind Prober~
-Mind Prober~
-Title
-Soul Searcher~
-Soul Searcher~
-Title
-Astral Voyager~
-Astral Voyager~
-Title
-Seeker~
-Seeker~
-Title
-Empath~
-Empath~
-Title
-Mind Reader~
-Mind Reader~
-Title
-Telepath~
-Telepath~
-Title
-Mental Adept~
-Mental Adept~
-Title
-Spoonbender~
-Spoonbender~
-Title
-Perceptive~
-Perceptive~
-Title
-Clever~
-Clever~
-Title
-Wise~
-Wise~
-Title
-Genius~
-Genius~
-Title
-Oracle~
-Oracle~
-Title
-Soothsayer~
-Soothsayer~
-Title
-Truthteller~
-Truthteller~
-Title
-Sage~
-Sage~
-Title
-Master Psychic~
-Mistress Psychic~
-Title
-Master Meditator~
-Mistress Meditator~
-Title
-Master Empath~
-Mistress Empath~
-Title
-Master Clairvoyant~
-Mistress Clairvoyant~
-Title
-Master Mind Reader~
-Mistress Mind Reader~
-Title
-Master Telepath~
-Mistress Telepath~
-Title
-Master Spoonbender~
-Mistress Spoonbender~
-Title
-Grand Master Psychic~
-Grand Mistress Psychic~
-Title
-Grand Master Meditator~
-Grand Mistress Meditator~
-Title
-Grand Master Empath~
-Grand Mistress Empath~
-Title
-Grand Master Clairvoyant~
-Grand Mistress Clairvoyant~
-Title
-Grand Master Mind Reader~
-Grand Mistress Mind Reader~
-Title
-Grand Master Telepath~
-Grand Mistress Telepath~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Grand Master Spoonbender~
-Grand Mistress Spoonbender~
-Title
-Psionicist Hero~
-Psionicist Herione~
-Title
-Psionicist Angel~
-Psionicist Angel~
-Title
-Deity of Psionics~
-Deity of Psionics~
-Title
-Supreme Psionicst~
-Supreme Psionicist~
-Title
-Implementor~
-Implementress~
+Skll        14 'energy drain'
+Skll        13 'identify'
+Skll        14 'invis'
+Skll        12 'summon'
+Skll         7 'teleport'
+Skll         5 'scrolls'
+Skll         9 'staves'
+Skll         5 'wands'
+Skll        10 'adrenaline control'
+Skll         6 'agitation'
+Skll        14 'aura sight'
+Skll        21 'awe'
+Skll         1 'ballistic attack'
+Skll        18 'biofeedback'
+Skll        11 'cell adjustment'
+Skll         6 'chameleon power'
+Skll        15 'combat mind'
+Skll        28 'complete healing'
+Skll         8 'control flames'
+Skll         2 'create sound'
+Skll        30 'death field'
+Skll        20 'detonate'
+Skll        27 'disintegrate'
+Skll         9 'displacement'
+Skll        16 'domination'
+Skll        19 'ectoplasmic form'
+Skll        13 'ego whip'
+Skll        10 'energy containment'
+Skll        15 'enhance armor'
+Skll         7 'enhanced strength'
+Skll        11 'flesh armor'
+Skll         3 'heighten senses'
+Skll        19 'inertial barrier'
+Skll         5 'inflict pain'
+Skll        12 'intellect fortress'
+Skll        10 'lend health'
+Skll         3 'levitation'
+Skll         6 'mental barrier'
+Skll         2 'mind thrust'
+Skll         9 'project force'
+Skll        17 'psionic blast'
+Skll         8 'psychic crush'
+Skll         4 'psychic drain'
+Skll         5 'psychic healing'
+Skll         2 'shadow form'
+Skll        11 'share strength'
+Skll         1 'thought shield'
+Skll        25 'ultrablast'
+Skll         1 'stake'
+Skll        37 'shield block'
+Skll        37 'fast healing'
+Skll        15 'swim'
+Skll        20 'meditate'
+Skll        35 'wizard eye'
+Skll        27 'vortex lift'
+Skll        40 'portal'
+Skll        45 'nexus'
+Ttle        Man~ Woman~
+Ttle        Psychic~ Psychic~
+Ttle        Medium~ Medium~
+Ttle        Gypsy~ Gypsy~
+Ttle        Meditator~ Meditator~
+Ttle        Mind Prober~ Mind Prober~
+Ttle        Soul Searcher~ Soul Searcher~
+Ttle        Astral Voyager~ Astral Voyager~
+Ttle        Seeker~ Seeker~
+Ttle        Empath~ Empath~
+Ttle        Mind Reader~ Mind Reader~
+Ttle        Telepath~ Telepath~
+Ttle        Mental Adept~ Mental Adept~
+Ttle        Spoonbender~ Spoonbender~
+Ttle        Perceptive~ Perceptive~
+Ttle        Clever~ Clever~
+Ttle        Wise~ Wise~
+Ttle        Genius~ Genius~
+Ttle        Oracle~ Oracle~
+Ttle        Soothsayer~ Soothsayer~
+Ttle        Truthteller~ Truthteller~
+Ttle        Sage~ Sage~
+Ttle        Master Psychic~ Mistress Psychic~
+Ttle        Master Meditator~ Mistress Meditator~
+Ttle        Master Empath~ Mistress Empath~
+Ttle        Master Clairvoyant~ Mistress Clairvoyant~
+Ttle        Master Mind Reader~ Mistress Mind Reader~
+Ttle        Master Telepath~ Mistress Telepath~
+Ttle        Master Spoonbender~ Mistress Spoonbender~
+Ttle        Grand Master Psychic~ Grand Mistress Psychic~
+Ttle        Grand Master Meditator~ Grand Mistress Meditator~
+Ttle        Grand Master Empath~ Grand Mistress Empath~
+Ttle        Grand Master Clairvoyant~ Grand Mistress Clairvoyant~
+Ttle        Grand Master Mind Reader~ Grand Mistress Mind Reader~
+Ttle        Grand Master Telepath~ Grand Mistress Telepath~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Grand Master Spoonbender~ Grand Mistress Spoonbender~
+Ttle        Psionicist Hero~ Psionicist Herione~
+Ttle        Psionicist Angel~ Psionicist Angel~
+Ttle        Deity of Psionics~ Deity of Psionics~
+Ttle        Supreme Psionicst~ Supreme Psionicist~
+Ttle        Implementor~ Implementress~
 End

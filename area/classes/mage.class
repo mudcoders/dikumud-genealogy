@@ -1,239 +1,131 @@
-Class       0
-Name        Mag~
+Nm          Mage~
+WhoNm       Mag~
+Cla         0
 AtrPrm      3
-Weapon      3701
+Wpn         3701
 Guild       3018
-Skilladept  95
+Sklladpt    95
 Thac0       18
 Thac47      6
 Hpmin       6
 Hpmax       8
 Mana        1
-Skll        'acid blast' 20
-Skll        'armor' 5
-Skll        'blindness' 8
-Skll        'burning hands' 5
-Skll        'charm person' 14
-Skll        'chill touch' 3
-Skll        'colour spray' 11
-Skll        'cone of silence' 22
-Skll        'continual light' 4
-Skll        'control weather' 10
-Skll        'create spring' 10
-Skll        'curse' 12
-Skll        'detect invis' 2
-Skll        'detect magic' 2
-Skll        'dispel magic' 26
-Skll        'enchant weapon' 12
-Skll        'energy drain' 13
-Skll        'faerie fire' 4
-Skll        'faerie fog' 10
-Skll        'fireball' 15
-Skll        'fly' 7
-Skll        'giant strength' 7
-Skll        'identify' 10
-Skll        'infravision' 6
-Skll        'invis' 4
-Skll        'know alignment' 8
-Skll        'lightning bolt' 9
-Skll        'locate object' 6
-Skll        'magic missile' 1
-Skll        'mass invis' 15
-Skll        'pass door' 18
-Skll        'recharge item' 11
-Skll        'refresh' 5
-Skll        'remove alignment' 16
-Skll        'shield' 13
-Skll        'shocking grasp' 7
-Skll        'sleep' 14
-Skll        'stone skin' 17
-Skll        'teleport' 8
-Skll        'ventriloquate' 1
-Skll        'weaken' 7
-Skll        'acid breath' 33
-Skll        'fire breath' 34
-Skll        'frost breath' 31
-Skll        'gas breath' 35
-Skll        'lightning breath' 32
-Skll        'scrolls' 3
-Skll        'staves' 3
-Skll        'wands' 3
-Skll        'stake' 1
-Skll        'shield block' 37
-Skll        'fast healing' 37
-Skll        'brew' 27
-Skll        'scribe' 28
-Skll        'swim' 15
-Skll        'meditate' 20
-Skll        'meteor swarm' 25
-Skll        'chain lightning' 16
-Skll        'wizard eye' 35
-Skll        'vortex lift' 27
-Skll        'portal' 35
-Skll        'nexus' 40
-Title
-Man~
-Woman~
-Title
-Apprentice of Magic~
-Apprentice of Magic~
-Title
-Spell Student~
-Spell Student~
-Title
-Scholar of Magic~
-Scholar of Magic~
-Title
-Delver in Spells~
-Delveress in Spells~
-Title
-Medium of Magic~
-Medium of Magic~
-Title
-Scribe of Magic~
-Scribess of Magic~
-Title
-Seer~
-Seeress~
-Title
-Sage~
-Sage~
-Title
-Illusionist~
-Illusionist~
-Title
-Abjurer~
-Abjuress~
-Title
-Invoker~
-Invoker~
-Title
-Enchanter~
-Enchantress~
-Title
-Conjurer~
-Conjuress~
-Title
-Magician~
-Witch~
-Title
-Creator~
-Creator~
-Title
-Savant~
-Savant~
-Title
-Magus~
-Craftess~
-Title
-Wizard~
-Wizard~
-Title
-Warlock~
-War Witch~
-Title
-Sorcerer~
-Sorceress~
-Title
-Elder Sorcerer~
-Elder Sorceress~
-Title
-Grand Sorcerer~
-Grand Sorceress~
-Title
-Great Sorcerer~
-Great Sorceress~
-Title
-Golem Maker~
-Golem Maker~
-Title
-Greater Golem Maker~
-Greater Golem Maker~
-Title
-Maker of Stones~
-Maker of Stones~
-Title
-Maker of Potions~
-Maker of Potions~
-Title
-Maker of Scrolls~
-Maker of Scrolls~
-Title
-Maker of Wands~
-Maker of Wands~
-Title
-Maker of Staves~
-Maker of Staves~
-Title
-Demon Summoner~
-Demon Summoner~
-Title
-Greater Demon Summoner~
-Greater Demon Summoner~
-Title
-Dragon Charmer~
-Dragon Charmer~
-Title
-Greater Dragon Charmer~
-Greater Dragon Charmer~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Master of all Magic~
-Master of all Magic~
-Title
-Mage Hero~
-Mage Heroine~
-Title
-Angel of Magic~
-Angel of Magic~
-Title
-Deity of Magic~
-Deity of Magic~
-Title
-Supremity of Magic~
-Supremity of Magic~
-Title
-Implementor~
-Implementress~
+Skll        20 'acid blast'
+Skll         5 'armor'
+Skll         8 'blindness'
+Skll         5 'burning hands'
+Skll        14 'charm person'
+Skll         3 'chill touch'
+Skll        11 'colour spray'
+Skll        22 'cone of silence'
+Skll         4 'continual light'
+Skll        10 'control weather'
+Skll        10 'create spring'
+Skll        12 'curse'
+Skll         2 'detect invis'
+Skll         2 'detect magic'
+Skll        26 'dispel magic'
+Skll        12 'enchant weapon'
+Skll        13 'energy drain'
+Skll         4 'faerie fire'
+Skll        10 'faerie fog'
+Skll        15 'fireball'
+Skll         7 'fly'
+Skll         7 'giant strength'
+Skll        10 'identify'
+Skll         6 'infravision'
+Skll         4 'invis'
+Skll         8 'know alignment'
+Skll         9 'lightning bolt'
+Skll         6 'locate object'
+Skll         1 'magic missile'
+Skll        15 'mass invis'
+Skll        18 'pass door'
+Skll        23 'plague'
+Skll        11 'recharge item'
+Skll         5 'refresh'
+Skll        16 'remove alignment'
+Skll        13 'shield'
+Skll         7 'shocking grasp'
+Skll        14 'sleep'
+Skll        17 'stone skin'
+Skll         8 'teleport'
+Skll         1 'ventriloquate'
+Skll         7 'weaken'
+Skll        33 'acid breath'
+Skll        34 'fire breath'
+Skll        31 'frost breath'
+Skll        35 'gas breath'
+Skll        32 'lightning breath'
+Skll         3 'scrolls'
+Skll         3 'staves'
+Skll         3 'wands'
+Skll         1 'stake'
+Skll        37 'shield block'
+Skll        37 'fast healing'
+Skll        27 'brew'
+Skll        28 'scribe'
+Skll        15 'swim'
+Skll        20 'meditate'
+Skll        25 'meteor swarm'
+Skll        16 'chain lightning'
+Skll        35 'wizard eye'
+Skll        27 'vortex lift'
+Skll        35 'portal'
+Skll        40 'nexus'
+Ttle        Man~ Woman~
+Ttle        Apprentice of Magic~ Apprentice of Magic~
+Ttle        Spell Student~ Spell Student~
+Ttle        Scholar of Magic~ Scholar of Magic~
+Ttle        Delver in Spells~ Delveress in Spells~
+Ttle        Medium of Magic~ Medium of Magic~
+Ttle        Scribe of Magic~ Scribess of Magic~
+Ttle        Seer~ Seeress~
+Ttle        Sage~ Sage~
+Ttle        Illusionist~ Illusionist~
+Ttle        Abjurer~ Abjuress~
+Ttle        Invoker~ Invoker~
+Ttle        Enchanter~ Enchantress~
+Ttle        Conjurer~ Conjuress~
+Ttle        Magician~ Witch~
+Ttle        Creator~ Creator~
+Ttle        Savant~ Savant~
+Ttle        Magus~ Craftess~
+Ttle        Wizard~ Wizard~
+Ttle        Warlock~ War Witch~
+Ttle        Sorcerer~ Sorceress~
+Ttle        Elder Sorcerer~ Elder Sorceress~
+Ttle        Grand Sorcerer~ Grand Sorceress~
+Ttle        Great Sorcerer~ Great Sorceress~
+Ttle        Golem Maker~ Golem Maker~
+Ttle        Greater Golem Maker~ Greater Golem Maker~
+Ttle        Maker of Stones~ Maker of Stones~
+Ttle        Maker of Potions~ Maker of Potions~
+Ttle        Maker of Scrolls~ Maker of Scrolls~
+Ttle        Maker of Wands~ Maker of Wands~
+Ttle        Maker of Staves~ Maker of Staves~
+Ttle        Demon Summoner~ Demon Summoner~
+Ttle        Greater Demon Summoner~ Greater Demon Summoner~
+Ttle        Dragon Charmer~ Dragon Charmer~
+Ttle        Greater Dragon Charmer~ Greater Dragon Charmer~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Master of all Magic~ Master of all Magic~
+Ttle        Mage Hero~ Mage Heroine~
+Ttle        Angel of Magic~ Angel of Magic~
+Ttle        Deity of Magic~ Deity of Magic~
+Ttle        Supremity of Magic~ Supremity of Magic~
+Ttle        Implementor~ Implementress~
 End

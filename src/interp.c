@@ -47,11 +47,6 @@ bool	check_social	args( ( CHAR_DATA *ch, char *command,
 #define LOG_ALWAYS              1
 #define LOG_NEVER               2
 
-/*
- * God Levels - Check them out in merc.h
-*/
-
-#define L_HER                   LEVEL_HERO
 
 /*
  * Log-all switch.
@@ -91,6 +86,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "quaff",		do_quaff,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "rest",		do_rest,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "shoot",		do_shoot,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
     { "stand",		do_stand,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "tell",		do_tell,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
@@ -110,7 +106,6 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "examine",	do_examine,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "help",		do_help,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
     { "idea",		do_idea,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
-    { "members",	do_members,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
     { "report",		do_report,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
     { "pagelength",     do_pagelen,     POS_DEAD,        0,  LOG_NORMAL, 1 },
     { "read",		do_look,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
@@ -166,6 +161,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "unalia",		do_unalia,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
     { "unalias",	do_unalias,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
     { "wimpy",		do_wimpy,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "history",	do_history,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Communication commands.
@@ -189,7 +185,6 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "shout",		do_shout,	POS_RESTING,	 3,  LOG_NORMAL, 1 },
     { "yell",		do_yell,	POS_RESTING,	 3,  LOG_NORMAL, 1 },
     { "grats",		do_grats,	POS_SLEEPING,	 3,  LOG_NORMAL, 1 },
-    { "clantalk",	do_clantalk,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Object manipulation commands.
@@ -211,6 +206,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "quaff",		do_quaff,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "recite",		do_recite,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "remove",		do_remove,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "reload",		do_reload,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "sell",		do_sell,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
     { "take",		do_get,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "sacrifice",	do_sacrifice,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
@@ -233,7 +229,6 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "group",		do_group,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "heighten senses",do_heighten,    POS_STANDING,    0,  LOG_NORMAL, 1 },
     { "hide",		do_hide,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
-    { "join",		do_join,	POS_RESTING,	20,  LOG_NORMAL, 1 },
     { "poison weapon",	do_poison_weapon,POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "practice",	do_practice,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "qui",		do_qui,		POS_DEAD,	 0,  LOG_NORMAL, 1 },
@@ -259,10 +254,13 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "track",		do_track,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "mount",		do_mount,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "dismount",	do_dismount,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Immortal commands.
      */
+    { "mudconfig",	do_mudconfig,	POS_DEAD,    L_DIR,  LOG_ALWAYS, 1 },
     { "advance",	do_advance,	POS_DEAD,    L_DIR,  LOG_ALWAYS, 1 },
     { "trust",		do_trust,	POS_DEAD,    L_DIR,  LOG_ALWAYS, 1 },
     { "delet",		do_delet,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
@@ -297,7 +295,10 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "users",		do_users,	POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
     { "wizify", 	do_wizify,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "wizlock",	do_wizlock,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
+    { "setclan",	do_setclan,	POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "makeclan",	do_makeclan,	POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
 
+    { "astat",		do_astat,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "echo",		do_echo,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "memory",		do_memory,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "mload",		do_mload,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
@@ -314,7 +315,6 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "rset",		do_rset,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "rstat",		do_rstat,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "clookup",	do_clookup,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "clist",		do_clist,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "slookup",	do_slookup,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "sober",		do_sober,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "snoop",		do_snoop,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
@@ -326,10 +326,28 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "bamfout",	do_bamfout,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "goto",		do_goto,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "holylight",	do_holylight,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "editinfo",	do_editinfo,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "showclan",	do_showclan,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
 
     { ":",		do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL, 1 },
+    { "wiznet",		do_wiznet,	POS_DEAD,    L_HER,  LOG_NORMAL, 1 },
 
+    /*
+     * Clansman commands.
+     */
+    { "initiate",	do_initiate,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "exil",		do_exil,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "exile",		do_exile,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "promote",	do_promote,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "demote",		do_demote,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "crecall",	do_crecall,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "cdonate",	do_cdonate,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "leav",		do_leav,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "leave",		do_leave,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "claninfo",	do_claninfo,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "guilds",		do_guilds,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "orders",		do_orders,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "clans",		do_clans,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "wartalk",	do_wartalk,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
   
     /*
      * MOBprogram commands.
@@ -349,18 +367,14 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "mptransfer",     do_mptransfer  ,POS_DEAD,        0,  LOG_NORMAL, 0 },
     { "mpforce",        do_mpforce     ,POS_DEAD,        0,  LOG_NORMAL, 0 },
 
-    /*
-     * OLC 1.1b
-     * Change L_HER to your minimum builder level
-     */
-    { "aedit",          do_aedit,       POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "redit",          do_redit,       POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "oedit",          do_oedit,       POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "medit",          do_medit,       POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "asave",          do_asave,       POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "alist",          do_alist,       POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "resets",         do_resets,      POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
-    { "mpedit",         do_mpedit,      POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "aedit",          do_aedit,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "redit",          do_redit,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "oedit",          do_oedit,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "medit",          do_medit,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "asave",          do_asave,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "alist",          do_alist,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "resets",         do_resets,      POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "mpedit",         do_mpedit,      POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
 
     /*
      * End of list.
@@ -454,6 +468,7 @@ void interpret( CHAR_DATA *ch, char *argument )
     {
 	sprintf( log_buf, "Log %s: %s", ch->name, logline );
 	log_string( log_buf );
+	wiznet( ch, WIZ_SECURE, get_trust( ch ), log_buf );
     }
 
     if ( ch->desc && ch->desc->snoop_by )
@@ -755,6 +770,29 @@ char *one_argument( char *argument, char *arg_first )
 
 
 /*
+ * Zen's history code; see also read_from_buffer( ) in comm.c
+ */
+void do_history( CHAR_DATA *ch, char *argument )
+{
+    HISTORY_DATA *history;
+    int           num;
+    char          buf [ MAX_STRING_LENGTH ];
+
+    if ( !ch->desc )
+	return;
+
+    for ( history = ch->desc->infirst, num = 0; history;
+	 history = history->next, num++ )
+    {
+	sprintf( buf, " {o{y%4d:{x %s\n\r", num, history->comm );
+	send_to_char( buf, ch );
+    }
+
+    return;
+}
+
+
+/*
  * "alia" command is a trap to the "alias" command.
  */
 void do_alia( CHAR_DATA *ch, char *argument )
@@ -786,14 +824,22 @@ void do_unalia( CHAR_DATA *ch, char *argument )
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
 
-/* does aliasing and other fun stuff */
+/*
+ * does aliasing and other fun stuff.
+ * enhanced by Zen so aliases are able to call other aliases.
+ */
 void substitute_alias( DESCRIPTOR_DATA *d, char *argument )
 {
     CHAR_DATA *ch;
     char      *point;
+    char      *rest;
     char       buf  [ MAX_STRING_LENGTH ];
     char       name [ MAX_STRING_LENGTH ];
+    char       part [ MAX_STRING_LENGTH ];
+    char       arg  [ MAX_STRING_LENGTH ];
     int        alias;
+    int        num;
+    bool       found;
 
     ch = ( d->original ? d->original : d->character );
 
@@ -818,9 +864,41 @@ void substitute_alias( DESCRIPTOR_DATA *d, char *argument )
 	    point = one_argument( argument, name );
 	    if ( !strcmp( ch->pcdata->alias[alias], name ) )
 	    {
+
+		strcpy( arg, ch->pcdata->alias_sub[alias] );
 		buf[0] = '\0';
-		strcat( buf, ch->pcdata->alias_sub[alias] );
-		strcat( buf, " " );
+
+		/* What the hell is this??? :) - Zen */
+		for ( rest = arg, rest = one_argument( rest, part );
+			part[0] != '\0';
+			rest = one_argument( rest, part ) )
+		{
+		    found = FALSE;
+		    for ( num = 0; num < MAX_ALIAS; num++ )
+		    {
+			if ( !ch->pcdata->alias[num] )
+			    break;
+
+			if ( !str_prefix( ch->pcdata->alias[num], part )
+			     && str_prefix( ch->pcdata->alias[num], name )
+			     && !strchr( part, ' ' ) )
+			{
+			    strcat( buf, ch->pcdata->alias_sub[num] );
+			    found = TRUE;
+			    break;
+			}
+		    }
+
+		    if ( strchr ( part, ' ' ) )
+			strcat( buf, "'" );
+		    if ( !found )
+			strcat( buf, part );
+		    if ( strchr ( part, ' ' ) )
+			strcat( buf, "'" );
+
+		    strcat( buf, " " );
+		}		
+
 		strcat( buf, point );
 		break;
 	    }
@@ -870,7 +948,7 @@ void do_alias( CHAR_DATA *ch, char *argument )
 		|| !rch->pcdata->alias_sub[pos] )
 		break;
 
-	    sprintf( buf, "alias '{C%s{x' to {Y%s{x\n\r",
+	    sprintf( buf, "alias '{o{c%s{x' to {o{y%s{x\n\r",
 		    rch->pcdata->alias[pos], rch->pcdata->alias_sub[pos] );
 	    send_to_char( buf, ch );
 	}
@@ -894,7 +972,7 @@ void do_alias( CHAR_DATA *ch, char *argument )
 
 	    if ( !str_cmp( arg, rch->pcdata->alias[pos] ) )
 	    {
-		sprintf( buf, "{C%s{x aliases to {Y%s{x.\n\r",
+		sprintf( buf, "{o{c%s{x aliases to {o{y%s{x.\n\r",
 			rch->pcdata->alias[pos], rch->pcdata->alias_sub[pos] );
 		send_to_char( buf, ch );
 		return;
@@ -921,14 +999,14 @@ void do_alias( CHAR_DATA *ch, char *argument )
 	{
 	    free_string( rch->pcdata->alias_sub[pos] );
 	    rch->pcdata->alias_sub[pos] = str_dup( argument );
-	    sprintf( buf, "{C%s{x is now realiased to {Y%s{x.\n\r", arg,
+	    sprintf( buf, "{o{c%s{x is now realiased to {o{y%s{x.\n\r", arg,
 		    argument );
 	    send_to_char( buf, ch );
 	    return;
 	}
     }
 
-    if (pos >= MAX_ALIAS )
+    if ( pos >= MAX_ALIAS )
     {
 	send_to_char( "Sorry, you have reached the alias limit.\n\r", ch );
 	return;
@@ -937,7 +1015,7 @@ void do_alias( CHAR_DATA *ch, char *argument )
     /* make a new alias */
     rch->pcdata->alias[pos]		= str_dup( arg );
     rch->pcdata->alias_sub[pos]		= str_dup( argument );
-    sprintf( buf, "{C%s{x is now aliased to {Y%s{x.\n\r", arg, argument );
+    sprintf( buf, "{o{c%s{x is now aliased to {o{y%s{x.\n\r", arg, argument );
     send_to_char( buf, ch );
     return;
 }

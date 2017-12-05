@@ -224,6 +224,7 @@ void do_pardon( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     char       arg1 [ MAX_INPUT_LENGTH ];
     char       arg2 [ MAX_INPUT_LENGTH ];
+    char       buf  [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -235,7 +236,7 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' )
     {
-	send_to_char( "Syntax: pardon <character> <killer|thief>.\n\r", ch );
+	send_to_char( "Syntax: pardon <character> <killer|thief|pk>.\n\r", ch );
 	return;
     }
 
@@ -258,6 +259,9 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	    REMOVE_BIT( victim->act, PLR_KILLER );
 	    send_to_char( "Killer flag removed.\n\r",        ch     );
 	    send_to_char( "You are no longer a KILLER.\n\r", victim );
+            sprintf( buf, "%s was pardonned for KILLER by %s",
+		    victim->name, ch->name );
+            wiznet( ch, WIZ_FLAGS, get_trust( rch ), buf );
 	}
 	return;
     }
@@ -269,11 +273,29 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	    REMOVE_BIT( victim->act, PLR_THIEF  );
 	    send_to_char( "Thief flag removed.\n\r",        ch     );
 	    send_to_char( "You are no longer a THIEF.\n\r", victim );
+	    send_to_char( "You are no longer a KILLER.\n\r", victim );
+            sprintf( buf, "%s was pardonned for THIEF by %s",
+		    victim->name, ch->name );
+            wiznet( ch, WIZ_FLAGS, get_trust( rch ), buf );
 	}
 	return;
     }
 
-    send_to_char( "Syntax: pardon <character> <killer|thief>.\n\r", ch );
+    if ( !str_cmp( arg2, "pk" ) )
+    {
+	if ( IS_SET( victim->act, PLR_REGISTER  ) )
+	{
+	    REMOVE_BIT( victim->act, PLR_REGISTER );
+	    send_to_char( "PK flag removed.\n\r", ch );
+	    send_to_char( "You can no longer PK.\n\r", victim );
+	    sprintf( buf, "%s was pardonned for PK by %s", victim->name,
+		    ch->name );
+	    wiznet( ch, WIZ_FLAGS, get_trust( rch ), buf );
+	}
+	return;
+    }
+
+    send_to_char( "Syntax: pardon <character> <killer|thief|pk>.\n\r", ch );
     return;
 }
 
@@ -294,7 +316,7 @@ void do_echo( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    strcat( argument, "\n\r" );
+    strcat( argument, "{x\n\r" );
     send_to_all_char( argument );
 
     return;
@@ -320,11 +342,11 @@ void do_recho( CHAR_DATA *ch, char *argument )
 
     for ( d = descriptor_list; d; d = d->next )
     {
-	if ( d->connected == CON_PLAYING
+	if ( CONNECTED( d )
 	    && d->character->in_room == ch->in_room )
 	{
 	    send_to_char( argument, d->character );
-	    send_to_char( "\n\r",   d->character );
+	    send_to_char( "{x\n\r",   d->character );
 	}
     }
 
@@ -379,7 +401,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
     {
 	for ( d = descriptor_list; d; d = d->next )
 	{
-	    if ( d->connected == CON_PLAYING
+	    if ( CONNECTED( d )
 		&& d->character != ch
 		&& d->character->in_room
 		&& can_see( ch, d->character ) )
@@ -548,6 +570,59 @@ void do_goto( CHAR_DATA *ch, char *argument )
     }
 
     do_look( ch, "auto" );
+    return;
+}
+
+
+
+void do_astat( CHAR_DATA * ch, char *argument )
+{
+    AREA_DATA       *pArea;
+    CHAR_DATA       *rch;
+    char             buf [ MAX_STRING_LENGTH ];
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "astat" ) )
+        return;
+
+    smash_tilde( argument );
+
+    if ( is_number( argument ) )
+        pArea = get_area_data( atoi( argument ) );
+    else
+        pArea = ch->in_room->area;
+        
+    sprintf( buf, "{cFile:   {x%s{c  Name: [%5d] '{x%s{c'.{x\n\r",
+	    pArea->filename, pArea->vnum, pArea->name );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cRecall:   [{x%5d{c] '{x%s{c'.{x\n\r", pArea->recall,
+	    get_room_index( pArea->recall )
+	    ? get_room_index( pArea->recall )->name
+	    : "none" );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cAge:      [{x%5d{c]  Players: [{x%5d{c]  Security: [{x%5d{c]{x\n\r",
+	    pArea->age, pArea->nplayer, pArea->security );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cVnums:   {x%5d{c - {x%-5d\n\r",
+	    pArea->lvnum, pArea->uvnum );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cRooms:   {x%5d{c - {x%-5d{c Objs: {x%5d{c - {x%-5d{c Mobs: {x%5d{c - {x%-5d\n\r",
+	    pArea->low_r_vnum, pArea->hi_r_vnum, pArea->low_o_vnum,
+	    pArea->hi_o_vnum, pArea->low_m_vnum, pArea->hi_m_vnum );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cBuilders:{x %s\n\r", pArea->builders );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cFlags:{x    %s\n\r",
+	    flag_string( area_flags, pArea->area_flags ) );
+    send_to_char( buf, ch );
+
     return;
 }
 
@@ -822,7 +897,8 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     sprintf( buf, "{cRace: {x%s{c.{x\n\r", race_table[victim->race].name );
     strcat( buf1, buf );
 
-    sprintf( buf, "{cParts: {x%s{c.{x\n\r", parts_bit_name( victim->parts ) );
+    sprintf( buf, "{cParts: {x%s{c.{x\n\r",
+	    parts_bit_name( race_table[victim->race].parts ) );
     strcat( buf1, buf );
 
     sprintf( buf, "{cVnum: {x%d{c.  Sex: {x%s{c.  Room: {x%d{c.{x\n\r",
@@ -848,7 +924,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     strcat( buf1, buf );
 	
     sprintf( buf,
-	"Lv: %d.  Class: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\n\r",
+	"{cLv: {x%d{c.  Class: {x%d{c.  Align: {x%d{c.  AC: {x%d{c.  Gold: {x%d{c.  Exp: {x%d{c.{x\n\r",
 	    victim->level,       victim->class,        victim->alignment,
 	    GET_AC( victim ),    victim->gold,         victim->exp );
     strcat( buf1, buf );
@@ -892,11 +968,13 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 		victim->pcdata->condition[COND_DRUNK ],
 		victim->saving_throw );
 	strcat( buf1, buf );
-	sprintf( buf,
-		"{cClan: [%2d] ({x%s{c).  Rank: {x%d{c.{x\n\r",
-		 victim->pcdata->clan, clan_table[ victim->pcdata->clan ].name,
-		victim->pcdata->rank );
-	strcat( buf1, buf );
+	if ( is_clan( victim ) )
+	{
+	    sprintf( buf,
+		    "{cClan: ({x%s{c).  Rank: {x%d{c.{x\n\r",
+		    victim->pcdata->clan->name, victim->pcdata->rank );
+	    strcat( buf1, buf );
+	}
     }
 
     sprintf( buf, "{cCarry number: {x%d{c.  Carry weight: {x%d{c.{x\n\r",
@@ -910,10 +988,14 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->act );
     strcat( buf1, buf );
 
-    sprintf( buf, "{cMaster: {x%s{c.  Leader: {x%s{c.  Affected by: {x%s{c.{x\n\r",
+    sprintf( buf, "{cRiding: {x%s{c.  {cRider: {x%s{c.{x\n\r",
+	    victim->riding      ? victim->riding->name   : "(none)",
+	    victim->rider       ? victim->rider->name    : "(none)" );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cMaster: {x%s{c.  Leader: {x%s{c.{x\n\r",
 	    victim->master      ? victim->master->name   : "(none)",
-	    victim->leader      ? victim->leader->name   : "(none)",
-	    affect_bit_name( victim->affected_by ) );
+	    victim->leader      ? victim->leader->name   : "(none)" );
     strcat( buf1, buf );
 
     sprintf( buf, "{cHunting: {x%s{c.  Hating: {x%s{c.  Fearing: {x%s{c.{x\n\r",
@@ -922,9 +1004,26 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->fearing     ? victim->fearing->name  : "(none)" );
     strcat( buf1, buf );
 
-    if ( !IS_NPC( victim ) )    /* OLC */
+    sprintf( buf, "{cResistant: {x%s{c.{x\n\r",
+	    ris_bit_name( victim->resistant ) );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cImmune: {x%s{c.{x\n\r",
+	    ris_bit_name( victim->immune ) );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cSusceptible: {x%s{c.{x\n\r",
+	    ris_bit_name( victim->susceptible ) );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cAffected by: {x%s{c.{x\n\r",
+	    affect_bit_name( victim->affected_by ) );
+    strcat( buf1, buf );
+
+
+    if ( !IS_NPC( victim ) )
     {
-        sprintf( buf, "{cSecurity: {x%d{c.{x\n\r", ch->pcdata->security );
+        sprintf( buf, "{cSecurity: {x%d{c.{x\n\r", victim->pcdata->security );
         strcat( buf1, buf );
     }
 
@@ -936,6 +1035,12 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     if ( IS_NPC( victim ) && victim->spec_fun != 0 )
 	strcat( buf1, "{xMobile has spec fun{x.\n\r" );
+
+    if ( IS_NPC( victim )
+	&& victim->pIndexData
+	&& victim->pIndexData->pGame
+	&& victim->pIndexData->pGame->game_fun != 0 )
+	strcat( buf1, "{xMobile has game fun{x.\n\r" );
 
     for ( paf = victim->affected; paf; paf = paf->next )
     {
@@ -961,13 +1066,16 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 {
            CHAR_DATA      *rch;
            MOB_INDEX_DATA *pMobIndex;
+           AREA_DATA      *pArea;
            char            buf  [ MAX_STRING_LENGTH   ];
-           char            buf1 [ MAX_STRING_LENGTH*2 ];
            char            arg  [ MAX_INPUT_LENGTH    ];
-    extern int             top_mob_index;
+           char            arg1 [ MAX_INPUT_LENGTH    ];
+    extern int             top_vnum_mob;
            int             vnum;
-	   int             nMatch;
+	   int             bottom;
+	   int             top;
 	   bool            fAll;
+	   bool            fWorld;
 	   bool            found;
 
     rch = get_char( ch );
@@ -975,17 +1083,38 @@ void do_mfind( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "mfind" ) )
         return;
 
-    one_argument( argument, arg );
-    if ( arg[0] == '\0' )
+    argument = one_argument( argument, arg );
+    argument = one_argument( argument, arg1 );
+
+    if ( arg[0] == '\0' ||
+	( str_cmp( arg, "world" ) && str_cmp( arg, "area" ) ) )
+    {
+	send_to_char( "Syntax: mfind world <mobile>|all\n\r", ch );
+	send_to_char( "or:     mfind area  <mobile>|all\n\r", ch );
+	return;
+    }
+
+    if ( arg1[0] == '\0' )
     {
 	send_to_char( "Mfind whom?\n\r", ch );
 	return;
     }
 
-    buf1[0] = '\0';
-    fAll    = !str_cmp( arg, "all" );
+    fAll    = !str_cmp( arg1, "all" );
     found   = FALSE;
-    nMatch  = 0;
+    pArea   = ch->in_room->area;
+    fWorld  = !str_cmp( arg, "world" );
+
+    if ( fWorld )
+    {
+	bottom	= 0;
+	top	= top_vnum_mob;
+    }
+    else
+    {
+	bottom	= pArea->low_m_vnum;
+	top	= pArea->hi_m_vnum + 1;
+    } 
 
     /*
      * Yeah, so iterating over all vnum's takes 10,000 loops.
@@ -993,21 +1122,20 @@ void do_mfind( CHAR_DATA *ch, char *argument )
      * Do you?
      * -- Furey
      */
-    for ( vnum = 0; nMatch < top_mob_index; vnum++ )
+    for ( vnum = bottom; vnum < top; vnum++ )
     {
-	if ( ( pMobIndex = get_mob_index( vnum ) ) )
+	if ( !( pMobIndex = get_mob_index( vnum ) ) )
+	    continue;
+
+	if ( !fWorld && pArea != pMobIndex->area )
+	    continue;
+
+	if ( fAll || is_name( arg1, pMobIndex->player_name ) )
 	{
-	    nMatch++;
-	    if ( fAll || is_name( arg, pMobIndex->player_name ) )
-	    {
-		found = TRUE;
-		sprintf( buf, "[%5d] %s\n\r",
-		    pMobIndex->vnum, capitalize( pMobIndex->short_descr ) );
-		if ( !fAll )
-		    strcat( buf1, buf );
-		else
-		    send_to_char( buf, ch );
-	    }
+	    found = TRUE;
+	    sprintf( buf, "[%5d] %s\n\r",
+		pMobIndex->vnum, capitalize( pMobIndex->short_descr ) );
+	    send_to_char( buf, ch );
 	}
     }
 
@@ -1017,8 +1145,6 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !fAll )
-        send_to_char( buf1, ch );
     return;
 }
 
@@ -1028,13 +1154,16 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 {
            CHAR_DATA      *rch;
 	   OBJ_INDEX_DATA *pObjIndex;
+           AREA_DATA      *pArea;
 	   char            buf  [ MAX_STRING_LENGTH   ];
-	   char            buf1 [ MAX_STRING_LENGTH*2 ];
 	   char            arg  [ MAX_INPUT_LENGTH    ];
-    extern int             top_obj_index;
-	   int             vnum;
-	   int             nMatch;
+           char            arg1 [ MAX_INPUT_LENGTH    ];
+    extern int             top_vnum_obj;
+           int             vnum;
+	   int             bottom;
+	   int             top;
 	   bool            fAll;
+	   bool            fWorld;
 	   bool            found;
 
     rch = get_char( ch );
@@ -1042,33 +1171,53 @@ void do_ofind( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "ofind" ) )
         return;
 
-    one_argument( argument, arg );
-    if ( arg[0] == '\0' )
+    argument = one_argument( argument, arg );
+    argument = one_argument( argument, arg1 );
+
+    if ( arg[0] == '\0' ||
+	( str_cmp( arg, "world" ) && str_cmp( arg, "area" ) ) )
+    {
+	send_to_char( "Syntax: ofind world <object>|all\n\r", ch );
+	send_to_char( "or:     ofind area  <object>|all\n\r", ch );
+	return;
+    }
+
+    if ( arg1[0] == '\0' )
     {
 	send_to_char( "Ofind what?\n\r", ch );
 	return;
     }
 
-    buf1[0] = '\0';
-    fAll    = !str_cmp( arg, "all" );
+    fAll    = !str_cmp( arg1, "all" );
     found   = FALSE;
-    nMatch  = 0;
+    pArea   = ch->in_room->area;
+    fWorld  = !str_cmp( arg, "world" );
 
-    for ( vnum = 0; nMatch < top_obj_index; vnum++ )
+    if ( fWorld )
     {
-	if ( ( pObjIndex = get_obj_index( vnum ) ) )
+	bottom	= 0;
+	top	= top_vnum_obj;
+    }
+    else
+    {
+	bottom	= pArea->low_o_vnum;
+	top	= pArea->hi_o_vnum + 1;
+    } 
+
+    for ( vnum = bottom; vnum < top; vnum++ )
+    {
+	if ( !( pObjIndex = get_obj_index( vnum ) ) )
+	    continue;
+
+	if ( !fWorld && pArea != pObjIndex->area )
+	    continue;
+
+	if ( fAll || is_name( arg1, pObjIndex->name ) )
 	{
-	    nMatch++;
-	    if ( fAll || is_name( arg, pObjIndex->name ) )
-	    {
-		found = TRUE;
-		sprintf( buf, "[%5d] %s\n\r",
-		    pObjIndex->vnum, capitalize( pObjIndex->short_descr ) );
-		if ( !fAll )
-		    strcat( buf1, buf );
-		else
-		    send_to_char( buf, ch );
-	    }
+	    found = TRUE;
+	    sprintf( buf, "[%5d] %s\n\r",
+		pObjIndex->vnum, capitalize( pObjIndex->short_descr ) );
+	    send_to_char( buf, ch );
 	}
     }
 
@@ -1078,8 +1227,6 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !fAll )
-        send_to_char( buf1, ch );
     return;
 }
 
@@ -1217,6 +1364,7 @@ void do_snoop( CHAR_DATA *ch, char *argument )
     CHAR_DATA       *victim;
     DESCRIPTOR_DATA *d;
     char             arg [ MAX_INPUT_LENGTH ];
+    char             buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1280,6 +1428,8 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 
     victim->desc->snoop_by = ch->desc;
     send_to_char( "Ok.\n\r", ch );
+    sprintf( buf, "%s is snooping %s", ch->name, victim->name );
+    wiznet( ch, WIZ_SNOOPS, get_trust( rch ), buf );
     return;
 }
 
@@ -1290,6 +1440,7 @@ void do_switch( CHAR_DATA *ch, char *argument )
     CHAR_DATA *rch;
     CHAR_DATA *victim;
     char       arg [ MAX_INPUT_LENGTH ];
+    char       buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1346,6 +1497,8 @@ void do_switch( CHAR_DATA *ch, char *argument )
     victim->desc          = ch->desc;
     ch->desc              = NULL;
     send_to_char( "Ok.\n\r", victim );
+    sprintf( buf, "%s switched into %s", rch->name, victim->short_descr );
+    wiznet( ch, WIZ_SWITCHES, get_trust( rch ), buf );
     return;
 }
 
@@ -1353,6 +1506,11 @@ void do_switch( CHAR_DATA *ch, char *argument )
 
 void do_return( CHAR_DATA *ch, char *argument )
 {
+    CHAR_DATA *rch;
+    char       buf [ MAX_STRING_LENGTH ];
+
+    rch = get_char( ch );
+
     if ( !ch->desc )
 	return;
 
@@ -1373,6 +1531,9 @@ void do_return( CHAR_DATA *ch, char *argument )
     ch->desc->original                   = NULL;
     ch->desc->character->desc            = ch->desc; 
     ch->desc                             = NULL;
+
+    sprintf( buf, "%s returns to his original body", rch->name );
+    wiznet( rch, WIZ_SWITCHES, get_trust( rch ), buf );
     return;
 }
 
@@ -1384,6 +1545,7 @@ void do_mload( CHAR_DATA *ch, char *argument )
     CHAR_DATA      *victim;
     MOB_INDEX_DATA *pMobIndex;
     char            arg [ MAX_INPUT_LENGTH ];
+    char            buf [ MAX_STRING_LENGTH ];
     
     rch = get_char( ch );
 
@@ -1408,6 +1570,9 @@ void do_mload( CHAR_DATA *ch, char *argument )
     char_to_room( victim, ch->in_room );
     send_to_char( "Ok.\n\r", ch );
     act( "$n has created $N!", ch, NULL, victim, TO_ROOM );
+    sprintf( buf, "%s has mloaded %s at %s [%d]", ch->name, victim->short_descr,
+	    ch->in_room->name, ch->in_room->vnum );
+    wiznet( ch, WIZ_LOAD, get_trust( rch ), buf );
     return;
 }
 
@@ -1421,6 +1586,7 @@ void do_oload( CHAR_DATA *ch, char *argument )
     char            arg1 [ MAX_INPUT_LENGTH ];
     char            arg2 [ MAX_INPUT_LENGTH ];
     int             level;
+    char            buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1475,6 +1641,9 @@ void do_oload( CHAR_DATA *ch, char *argument )
 	act( "$n has created $p!", ch, obj, NULL, TO_ROOM );
     }
     send_to_char( "Ok.\n\r", ch );
+    sprintf( buf, "%s has loaded %s at %s [%d]", ch->name, obj->short_descr,
+	    ch->in_room->name, ch->in_room->vnum );
+    wiznet( ch, WIZ_LOAD, get_trust( rch ), buf );
     return;
 }
 
@@ -1548,6 +1717,7 @@ void do_advance( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     char       arg1 [ MAX_INPUT_LENGTH ];
     char       arg2 [ MAX_INPUT_LENGTH ];
+    char       buf  [ MAX_STRING_LENGTH ];
     int        level;
     int        iLevel;
 
@@ -1619,11 +1789,17 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	victim->mana     = victim->max_mana;
 	victim->move     = victim->max_move;
 	advance_level( victim );
+	sprintf( buf, "%s has been demoted to level %d by %s", victim->name,
+		level, ch->name );
+	wiznet( victim, WIZ_LEVELS, get_trust( rch ), buf );
     }
     else
     {
 	send_to_char( "Raising a player's level!\n\r", ch );
 	send_to_char( "**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim );
+	sprintf( buf, "%s has been advanced to level %d by %s", victim->name,
+		level, ch->name );
+	wiznet( victim, WIZ_LEVELS, get_trust( rch ), buf );
     }
 
     for ( iLevel = victim->level ; iLevel < level; iLevel++ )
@@ -1643,8 +1819,9 @@ void do_trust( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
     CHAR_DATA *victim;
-    char       arg1 [ MAX_INPUT_LENGTH ];
-    char       arg2 [ MAX_INPUT_LENGTH ];
+    char       arg1 [ MAX_INPUT_LENGTH  ];
+    char       arg2 [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
     int        level;
 
     rch = get_char( ch );
@@ -1684,6 +1861,10 @@ void do_trust( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    sprintf( buf, "%s has been trusted at level %d by %s", victim->name,
+	    level, ch->name );
+    wiznet( ch, WIZ_LEVELS, get_trust( rch ), buf );
+
     victim->trust = level;
     return;
 }
@@ -1693,8 +1874,10 @@ void do_trust( CHAR_DATA *ch, char *argument )
 void do_restore( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
+    CHAR_DATA *vch;
     CHAR_DATA *victim;
     char       arg [ MAX_INPUT_LENGTH ];
+    char       buf [ MAX_STRING_LENGTH ];
 
     rch = get_char( ch );
 
@@ -1702,9 +1885,23 @@ void do_restore( CHAR_DATA *ch, char *argument )
         return;
 
     one_argument( argument, arg );
-    if ( arg[0] == '\0' )
+
+    if ( arg[0] == '\0' || !str_cmp( arg, "room" ) )
     {
-	send_to_char( "Restore whom?\n\r", ch );
+        for ( vch = ch->in_room->people; vch; vch = vch->next_in_room )
+	{
+	    if ( vch->deleted )
+	        continue;
+	    vch->hit = vch->max_hit;
+	    vch->mana = vch->max_mana;
+	    vch->move = vch->max_move;
+	    update_pos( vch );
+	    act( "$n has restored you.", ch, NULL, vch, TO_VICT );
+	}
+        sprintf( buf, "%s has restored room %d.",
+		rch->name, ch->in_room->vnum );
+        wiznet( ch, WIZ_RESTORE, get_trust( rch ), buf );
+	send_to_char( "Room restored.\n\r", ch );
 	return;
     }
 
@@ -1721,6 +1918,8 @@ void do_restore( CHAR_DATA *ch, char *argument )
 	    update_pos( victim );
 	    act( "$n has restored you.", ch, NULL, victim, TO_VICT );
 	}
+        sprintf( buf, "%s has restored the whole mud.", ch->name );
+        wiznet( ch, WIZ_RESTORE, get_trust( rch ), buf );
 	send_to_char( "Aww...how sweet :)...Done.\n\r", ch );
     }
     else
@@ -1736,6 +1935,8 @@ void do_restore( CHAR_DATA *ch, char *argument )
 	victim->move = victim->max_move;
 	update_pos( victim );
 	act( "$n has restored you.", ch, NULL, victim, TO_VICT );
+        sprintf( buf, "%s has restored %s.", ch->name, victim->name );
+        wiznet( ch, WIZ_RESTORE, get_trust( rch ), buf );
 	send_to_char( "Ok.\n\r", ch );
     }
 
@@ -2382,10 +2583,10 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char( "Field being one of:\n\r",			ch );
 	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
 	send_to_char( "  gold hp mana move practice align\n\r",		ch );
-	send_to_char( "  thirst drunk full security clan rank",		ch );
+	send_to_char( "  thirst drunk full security rank",		ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "String being one of:\n\r",			ch );
-	send_to_char( "  name short long title spec\n\r",               ch );
+	send_to_char( "  name short long title spec clan\n\r",          ch );
 	return;
     }
 
@@ -2801,6 +3002,27 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( !str_cmp( arg2, "clan" ) )
+    {
+	CLAN_DATA *clan;
+
+	if ( IS_NPC( victim ) )
+	{
+	    send_to_char( "Not on NPC's.\n\r", ch );
+	    return;
+	}
+
+	if ( !( clan = clan_lookup( arg3 ) ) )
+	{
+	    send_to_char( "That clan doesn't exist.\n\r", ch );
+	    return;
+	}
+
+	victim->pcdata->clan = clan;
+	victim->pcdata->clan->name = str_dup( clan->name );
+	return;
+    }
+
     if ( !str_cmp( arg2, "title" ) )
     {
 	if ( IS_NPC( victim ) )
@@ -2827,24 +3049,6 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	return;
-    }
-
-    if ( !str_cmp( arg2, "clan" ) )
-    {
-	if ( IS_NPC( victim ) )
-	{
-	    send_to_char( "Not on NPC's.\n\r", ch );
-	    return;
-	}
-
-	if ( value < 0 || value > MAX_CLAN-1 )
-	{
-	    send_to_char( "That clan doesn't exist.\n\r", ch );
-	    return;
-	}
-
-	victim->pcdata->clan = value;
 	return;
     }
 
@@ -3337,28 +3541,6 @@ void do_holylight( CHAR_DATA *ch, char *argument )
     return;
 }
 
-void do_editinfo( CHAR_DATA *ch, char *argument )
-{
-    if ( IS_NPC( ch ) )
-	return;
-
-    if ( !authorized( ch, "editinfo" ) )
-        return;
-
-    if ( IS_SET( ch->act, PLR_EDIT_INFO ) )
-    {
-	REMOVE_BIT( ch->act, PLR_EDIT_INFO );
-	send_to_char( "Edit info mode off.\n\r", ch );
-    }
-    else
-    {
-	SET_BIT(    ch->act, PLR_EDIT_INFO );
-	send_to_char( "Edit info mode on.\n\r", ch );
-    }
-
-    return;
-}
-
 /* Wizify and Wizbit sent in by M. B. King */
 
 void do_wizify( CHAR_DATA *ch, char *argument )
@@ -3723,16 +3905,14 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 	argument = one_argument( argument, arg1 );
 
 	if ( !str_cmp( argument, "all" ) )
-	{
 	    fAll = TRUE;
-	}
 
 	if ( arg1[0] == '+' )
 	{
 	    if ( !fAll )
 	    {
 		if ( victim->pcdata->immskll )
-		    sprintf( buf, "%s", victim->pcdata->immskll );
+		    strcpy( buf, victim->pcdata->immskll );
 
 		if ( is_name( argument, victim->pcdata->immskll ) )
 		{
@@ -3747,8 +3927,8 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 		if ( cmd_table[cmd].level > get_trust( rch ) )
 		    continue;
 		if ( fAll )
-		 {
-		    if (   cmd_table[cmd].level <= victim->level
+		{
+		    if (   cmd_table[cmd].level <= get_trust( victim )
 			&& cmd_table[cmd].level >= LEVEL_HERO
 			&& str_infix( cmd_table[cmd].name,
 				     "delet reboo sla shutdow :" ) )
@@ -3795,23 +3975,25 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 
 		argument = one_argument( argument, arg2 );
 
-		sprintf( buf2, "%s", victim->pcdata->immskll );
+		strcpy( buf2, victim->pcdata->immskll );
 
 		if ( !is_name( arg2, victim->pcdata->immskll ) )
-		  {
+		{
 		    send_to_char( "That Immskill is not set.\n\r", ch );
 		    return;
-		  }
+		}
 
-		while ( buf2[0] != '\0' )
-		  {
-		    strcpy ( buf2, one_argument( buf2, arg3 ) );
+		for ( ; ; )
+		{
+		    strcpy( buf2, one_argument( buf2, arg3 ) );
+		    if ( arg3[0] == '\0' )
+			break;
 		    if ( str_cmp( arg3, arg2 ) )
-		      {
+		    {
 			strcat( buf, arg3 );
 			strcat( buf, " " );
-		      }
-		  }
+		    }
+		}
 	    }
 	}
 
@@ -3923,72 +4105,6 @@ void do_delete( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-
-void do_clist( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *rch;
-    char       buf  [ MAX_STRING_LENGTH ];
-    char       buf1 [ MAX_STRING_LENGTH*3];
-    char       arg  [ MAX_INPUT_LENGTH ];
-    int        cn;
-
-    rch = get_char( ch );
-
-    if ( !authorized( rch, "clist" ) )
-        return;
-
-    one_argument( argument, arg );
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Syntax: clist all\n\r",				ch );
-	send_to_char( "or:     clist <clan number>\n\r",		ch );
-	send_to_char( "or:     clist <clan name>\n\r",			ch );
-	return;
-    }
-
-    if ( !str_cmp( arg, "all" ) )
-    {
-        buf1[0] = '\0';
-	for ( cn = 0; cn < MAX_CLAN; cn++ )
-	{
-	    if ( !clan_table[cn].name )
-		break;
-	    sprintf( buf, "Clan: %2d Title: '%s'\n\r",
-		    cn, clan_table[cn].name );
-	    strcat( buf1, buf );
-	}
-	send_to_char( buf1, ch );
-    }
-    else
-    {
-	if ( is_number( arg ) )
-        {
-	    cn = atoi( arg );
-	    if (   cn >= 0
-		&& cn  < MAX_CLAN
-		&& clan_table[cn].name )
-	    {
-		sprintf( buf, "Clan: %2d Title: '%s'\n\r",
-			cn, clan_table[cn].name );
-		send_to_char( buf, ch );
-		return;
-	    }
-	}
-
-        if ( ( cn = clan_lookup( arg ) ) < 0 )
-	{
-	    send_to_char( "No such clan.\n\r", ch );
-	    return;
-	}
-
-		sprintf( buf, "Clan: %2d Title: '%s'\n\r",
-			cn, clan_table[cn].name );
-	send_to_char( buf, ch );
-    }
-
-    return;
-}
 
 
 /* 
@@ -4114,8 +4230,8 @@ void do_clookup( CHAR_DATA *ch, char *argument )
     if ( iLevelLower < 0 || iLevelUpper < 0 )
 	return;
 
-    sprintf( buf, "{R>> Class: %s  File: %s <<{x\n\r",
-	    class->who_name, class->filename );
+    sprintf( buf, "{rClass: %s (%s){x\n\r",
+	    class->name, class->who_name );
     strcat( buf1, buf );
 
     sprintf( buf, "Prime Attribute: %-14s  Weapon: %-5d\n\r",
@@ -4134,13 +4250,13 @@ void do_clookup( CHAR_DATA *ch, char *argument )
 
     for ( level = iLevelLower; level <= iLevelUpper; level++ )
     {
-	sprintf( buf, "{R%2d: {MMale:{B %-30s {MFemale:{B %-30s{x\n\r",
+	sprintf( buf, "{r%2d: {mMale:{b %-30s {mFemale:{b %-30s{x\n\r",
 		level, title_table[num][level][0], title_table[num][level][1] );
 	strcat( buf1, buf );
     }
 
     strcat ( buf1, "\n\r{mALL Abilities available for this class.{x\n\r\n\r" );
-    strcat ( buf1, "{RLv          Abilities{x\n\r\n\r" );
+    strcat ( buf1, "{rLv          Abilities{x\n\r\n\r" );
 
     if ( iLevelUpper >= LEVEL_IMMORTAL )
 	iLevelUpper = LEVEL_HERO;
@@ -4159,7 +4275,7 @@ void do_clookup( CHAR_DATA *ch, char *argument )
 
         if ( pSpell )
         {
-          sprintf ( buf, "{R%2d:{x", level );
+          sprintf ( buf, "{r%2d:{x", level );
           strcat ( buf1, buf );
           pSpell = FALSE;
         }
@@ -4168,7 +4284,7 @@ void do_clookup( CHAR_DATA *ch, char *argument )
         if ( ++col % 4 == 0 )
           strcat ( buf1, "   " );
 
-        sprintf ( buf, "{B%18s{x", skill_table[sn].name );
+        sprintf ( buf, "{b%18s{x", skill_table[sn].name );
         strcat ( buf1, buf );
 
         if ( col % 4 == 0 )
@@ -4182,5 +4298,384 @@ void do_clookup( CHAR_DATA *ch, char *argument )
     }
 
     send_to_char( buf1, rch );
+    return;
+}
+
+
+
+void do_setclan( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    CLAN_DATA *clan;
+    char       arg1 [ MAX_INPUT_LENGTH ];
+    char       arg2 [ MAX_INPUT_LENGTH ];
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "setclan" ) )
+        return;
+
+    argument = one_argument( argument, arg1 );
+    argument = one_argument( argument, arg2 );
+
+    if ( arg1[0] == '\0' )
+    {
+        send_to_char( "Syntax: setclan <clan> <sedit>                     \n\r", ch );
+        send_to_char( "or:     setclan <clan> <field>            <value>  \n\r", ch );
+        send_to_char( "or:     setclan <clan> <string>           <value>  \n\r", ch );
+        send_to_char( "or:     setclan <clan> overlord|chieftain <player> \n\r", ch );
+        send_to_char( "\n\rField being one of:                            \n\r", ch );
+        send_to_char( " mkills mdeaths pkills pdeaths illegalpk type      \n\r", ch );
+        send_to_char( " members clanheros subchiefs                       \n\r", ch );
+        send_to_char( " recall donation class score                       \n\r", ch );
+        send_to_char( " obj1 obj2 obj3                                    \n\r", ch );
+        send_to_char( "String being one of:                               \n\r", ch );
+        send_to_char( " name whoname filename motto                       \n\r", ch );
+        send_to_char( "Sedit being one of:                                \n\r", ch );
+        send_to_char( " desc                                              \n\r", ch );
+        return;
+    }
+
+    if ( !( clan = clan_lookup( arg1 ) ) )
+    {
+        send_to_char( "No such clan.\n\r", ch );
+        return;
+    }
+
+    if ( !str_cmp( arg2, "overlord" ) )
+    {
+        free_string( clan->overlord );
+        clan->overlord = str_dup( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "chieftain" ) )
+    {
+        free_string( clan->chieftain );
+        clan->chieftain = str_dup( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "members" ) )
+    {
+        clan->members = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "clanheros" ) )
+    {
+        clan->clanheros = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "subchiefs" ) )
+    {
+        clan->subchiefs = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "mkills" ) )
+    {
+        clan->mkills = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "mdeaths" ) )
+    {
+        clan->mdeaths = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "pkills" ) )
+    {
+        clan->pkills = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "pdeaths" ) )
+    {
+        clan->pdeaths = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "illegalpk" ) )
+    {
+        clan->illegal_pk = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "recall" ) )
+    {
+        clan->recall = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "donation" ) )
+    {
+        clan->donation = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "obj1" ) )
+    {
+        clan->clanobj1 = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "obj2" ) )
+    {
+        clan->clanobj2 = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "obj3" ) )
+    {
+        clan->clanobj3 = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "type" ) )
+    {
+	int value;
+
+	if ( ( value = flag_value( clan_flags, argument ) ) != NO_FLAG )
+	{
+	    clan->clan_type = value;
+	    send_to_char( "Done.\n\r", ch );
+	    save_clan( clan );
+	    return;
+	}
+	else
+	    send_to_char( "Unknown clan type.\n\r", ch );
+        return;
+    }
+    if ( !str_cmp( arg2, "class" ) )
+    {
+        clan->class = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "score" ) )
+    {
+        clan->score = atoi( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "name" ) )
+    {
+        free_string( clan->name );
+        clan->name = str_dup( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "whoname" ) )
+    {
+        free_string( clan->who_name );
+        clan->who_name = str_dup( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "filename" ) )
+    {
+        free_string( clan->filename );
+        clan->filename = str_dup( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        save_clan_list( );
+        return;
+    }
+    if ( !str_cmp( arg2, "motto" ) )
+    {
+        free_string( clan->motto );
+        clan->motto = str_dup( argument );
+        send_to_char( "Done.\n\r", ch );
+        save_clan( clan );
+        return;
+    }
+    if ( !str_cmp( arg2, "desc" ) )
+    {
+	string_append( ch, &clan->description );
+        save_clan( clan );
+        return;
+    }
+
+    return;
+}
+
+
+
+void do_showclan( CHAR_DATA *ch, char *argument )
+{   
+    CHAR_DATA *rch;
+    CLAN_DATA *clan;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "showclan" ) )
+        return;
+
+    if ( argument[0] == '\0' )
+    {
+        send_to_char( "Syntax: showclan <clan>\n\r", ch );
+        return;
+    }
+
+    clan = clan_lookup( argument );
+    if ( !clan )
+    {
+        send_to_char( "No such clan.\n\r", ch );
+        return;
+    }
+
+    printf_to_char( ch, "{o{cWhoName : {x%s{o{c.{x\n\r",
+                        clan->who_name );
+    printf_to_char( ch, "{o{cName    : {x%s{o{c.{x\n\r",
+                        clan->name );
+    printf_to_char( ch, "{o{cType    : [{x%5.5d{o{c]  {x%s{o{c.{x\n\r",
+                        clan->clan_type,
+                        flag_string( clan_flags, clan->clan_type ) );
+    printf_to_char( ch, "{o{cFilename: {x%s{x\n\r{o{cMotto   : \"{x%s{o{c\".{x\n\r",
+                        clan->filename,
+                        clan->motto );
+    printf_to_char( ch, "{o{cDescription: {x\n\r%s{x\n\r{o{cOVERLORD : {x%s{o{c.{x\n\r",
+                        clan->description,
+                        clan->overlord );
+    printf_to_char( ch, "{o{cCHIEFTAIN: {x%s{o{c.\n\r",
+			clan->chieftain );
+    printf_to_char( ch, "{o{cSubchiefs: {x%5.5d{x\n\r{o{cClanheros: {x%5.5d{x\n\r",
+			clan->subchiefs,
+                        clan->clanheros );
+    printf_to_char( ch, "{o{cMembers  : {x%5.5d{o{c  Class   : {x%5.5d{x\n\r",
+                        clan->members,
+                        clan->class );
+    printf_to_char( ch, "{o{cMKills   : {x%5.5d{o{c  MDeaths : {x%5.5d{x\n\r",
+                        clan->mkills,
+                        clan->mdeaths );
+    printf_to_char( ch, "{o{cPKills   : {x%5.5d{o{c  PDeaths : {x%5.5d{x\n\r",
+                        clan->pkills,
+                        clan->pdeaths );
+    printf_to_char( ch, "{o{cIllegalPK: {x%5.5d{o{c  SCORE   : {x%5.5d{x\n\r",
+                        clan->illegal_pk,
+                        clan->score );
+    printf_to_char( ch, "{o{cObj1     : {x%5.5d{o{c  Obj2    : {x%5.5d{o{c  Obj3: {x%5.5d{x\n\r",
+                        clan->clanobj1,
+                        clan->clanobj2,
+                        clan->clanobj3 );
+    printf_to_char( ch, "{o{cRecall   : {x%5.5d{o{c  Donation: {x%5.5d{x\n\r",
+                        clan->recall, clan->donation );
+    return;
+}
+
+/*
+ * New mudconfig immskill by Zen.
+ */
+void do_mudconfig( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    char       arg [ MAX_INPUT_LENGTH ];
+
+    rch = get_char( ch );
+    
+    if ( !authorized( rch, "mudconfig" ) )
+        return;
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+        send_to_char( "[  Keyword   ] Option\n\r", ch );
+
+	send_to_char(  IS_SET( sysdata.act, MUD_AUTOSAVE_DB  )
+            ? "[+AUTOSAVEDB ] The mud autosaves the world.\n\r"
+	    : "[-autosavedb ] The mud doesn't autosave the world.\n\r"
+	    , ch );
+
+    }
+    else
+    {
+	char buf [ MAX_STRING_LENGTH ];
+	int  bit;
+	bool fSet;
+
+	     if ( arg[0] == '+' ) fSet = TRUE;
+	else if ( arg[0] == '-' ) fSet = FALSE;
+	else
+	{
+	    if ( !str_cmp( arg, "save" ) )
+	    {
+		save_system_data( &sysdata );
+		return;
+	    }
+
+	    if ( !str_cmp( arg, "stat" ) )
+	    {
+		int        minutes;
+		int        seconds;
+
+		minutes = PULSE_DB_DUMP / 60 / PULSE_PER_SECOND;
+		seconds = PULSE_DB_DUMP - minutes * 60 * PULSE_PER_SECOND;
+
+		printf_to_char( ch, "{o{cPlayers: {r%5d{c  MaxPlayers : {r%5d{x\n\r",
+				num_descriptors, sysdata.max_players );
+		printf_to_char( ch, "{o{cMaxEver: {r%5d{c  Recorded at: {r%s{x\n\r",
+				sysdata.all_time_max, sysdata.time_of_max );
+
+		if ( IS_SET( sysdata.act, MUD_AUTOSAVE_DB ) )
+		    printf_to_char( ch, "{o{cThe server autosaves the db every %d minutes, %d seconds.{x\n\r",
+				    minutes, seconds );
+		else
+		    send_to_char( "{o{cThe mud database isn't being autosaved.{x\n\r", ch );
+		return;
+	    }
+
+	    send_to_char( "Mudconfig -option or +option?\n\r", ch );
+	    send_to_char( "or:        save              \n\r", ch );
+	    send_to_char( "or:        stat              \n\r", ch );
+	    return;
+	}
+
+	     if ( !str_cmp( arg+1, "autosavedb"	) ) bit = MUD_AUTOSAVE_DB;
+	else
+	{
+	    send_to_char( "Mudconfig which option?\n\r", ch );
+	    return;
+	}
+
+	if ( fSet )
+	{
+	    SET_BIT    ( sysdata.act, bit );
+	    sprintf( buf, "%s is now ON.\n\r", arg+1 );
+	    buf[0] = UPPER( buf[0] );
+	    send_to_char( buf, ch );
+	}
+	else
+	{
+	    REMOVE_BIT ( sysdata.act, bit );
+	    sprintf( buf, "%s is now OFF.\n\r", arg+1 );
+	    buf[0] = UPPER( buf[0] );
+	    send_to_char( buf, ch );
+	}
+
+    }
+
     return;
 }

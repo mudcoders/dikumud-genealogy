@@ -1,5 +1,22 @@
 /***************************************************************************
- *  File: olc_save.c                                                       *
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
+ *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
+ *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
+ *  In order to use any part of this Envy Diku Mud, you must comply with   *
+ *  the original Diku license in 'license.doc', the Merc license in        *
+ *  'license.txt', as well as the Envy license in 'license.nvy'.           *
+ *  In particular, you may not remove either of these copyright notices.   *
  *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
@@ -10,17 +27,7 @@
  *  all the previous coders who released their source code.                *
  ***************************************************************************/
 
-/*
- * olc_save.c
- * This takes care of saving all the .are information.
- * Notes:
- *  If a good syntax checker is used for setting vnum ranges of areas
- *  then it would become possible to just cycle through vnums instead
- *  of using the iHash stuff and checking that the room or reset or
- *  mob etc is part of that area.
- */
-
-#if defined(macintosh)
+#if defined( macintosh )
 #include <types.h>
 #else
 #include <sys/types.h>
@@ -36,21 +43,21 @@
 
 
 /*
- * Name:	fix_string
- * Purpose:	Returns a string without \r and ~.
+ * Removes the tildes and carriage returns from a string.
+ * Used for player-entered strings that go into disk files.
  */
-char *fix_string(const char *str)
+char *fix_string( const char *str )
 {
-    static char strfix[4 * MAX_STRING_LENGTH];
-    int i;
-    int o;
+    static char strfix [4 * MAX_STRING_LENGTH];
+    int         i;
+    int         o;
 
-    if (str == NULL)
+    if ( !str )
 	return '\0';
 
-    for (o = i = 0; str[i + o] != '\0'; i++)
+    for ( o = i = 0; str[i + o] != '\0'; i++ )
     {
-	if (str[i + o] == '\r' || str[i + o] == '~')
+	if ( str[i + o] == '\r' || str[i + o] == '~' )
 	    o++;
 	strfix[i] = str[i + o];
     }
@@ -59,479 +66,406 @@ char *fix_string(const char *str)
 }
 
 
-/*
- * Name:	save_area_list
- * Purpose:	Saves the listing of files to be loaded at startup.
- * Called by:	do_asave(olc_save.c).
- */
-void save_area_list()
+void save_area_list( )
 {
-    FILE *fp;
+    FILE      *fp;
     AREA_DATA *pArea;
 
-    if ((fp = fopen("AREA.LST", "w")) == NULL)
+    if ( !( fp = fopen( "AREA.LST", "w" ) ) )
     {
-	bug("Save_area_list: fopen", 0);
-	perror("AREA.LST");
+	bug( "Save_area_list: fopen", 0 );
+	perror( "AREA.LST" );
     }
     else
     {
-	/*
-	 * Add any help files that need to be loaded at
-	 * startup to this section.
-	 */
-	fprintf(fp, "help.are\n");
-	fprintf(fp, "olc.hlp\n");
+	/* add any help files to be loaded at startup to this section */
+	fprintf( fp, "help.are\n" );
+	fprintf( fp, "olc.hlp\n"  );
 
-	for (pArea = area_first; pArea; pArea = pArea->next)
-	{
-	    fprintf(fp, "%s\n", pArea->filename);
-	}
+	for ( pArea = area_first; pArea; pArea = pArea->next )
+	    fprintf( fp, "%s\n", pArea->filename );
 
-	fprintf(fp, "$\n");
-	fclose(fp);
+	fprintf( fp, "$\n" );
+	fclose( fp );
     }
 
     return;
 }
 
 
-/*
- * Name:	save_mobiles
- * Purpose:	Save #MOBILES secion of an area file.
- * Called by:	save_area(olc_save.c).
- */
-void save_mobiles(FILE * fp, AREA_DATA * pArea)
+void save_mobiles( FILE * fp, AREA_DATA * pArea )
 {
-    int vnum;
     MOB_INDEX_DATA *pMobIndex;
+    int             vnum;
 
-    fprintf(fp, "#MOBILES\n");
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    fprintf( fp, "#MOBILES\n" );
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
-	if ((pMobIndex = get_mob_index(vnum)))
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
 	{
-	    if (pMobIndex->area == pArea)
+	    if ( pMobIndex->area == pArea )
 	    {
-		fprintf(fp, "#%d\n", pMobIndex->vnum);
-		fprintf(fp, "%s~\n", pMobIndex->player_name);
-		fprintf(fp, "%s~\n", pMobIndex->short_descr);
-		fprintf(fp, "%s~\n", fix_string(pMobIndex->long_descr));
-		fprintf(fp, "%s~\n", fix_string(pMobIndex->description));
-		fprintf(fp, "%d ", pMobIndex->act);
-		fprintf(fp, "%d ", pMobIndex->affected_by);
-		fprintf(fp, "%d S\n", pMobIndex->alignment);
-		fprintf(fp, "%d ", pMobIndex->level);
-		fprintf(fp, "%d ", pMobIndex->hitroll);
-		fprintf(fp, "%d ", pMobIndex->ac);
-		fprintf(fp, "%dd%d+%d ", pMobIndex->hitnodice,
+		fprintf( fp, "#%d\n",	pMobIndex->vnum );
+		fprintf( fp, "%s~\n",	pMobIndex->player_name );
+		fprintf( fp, "%s~\n",	pMobIndex->short_descr );
+		fprintf( fp, "%s~\n",	fix_string( pMobIndex->long_descr ) );
+		fprintf( fp, "%s~\n",	fix_string( pMobIndex->description ) );
+		fprintf( fp, "%d ",	pMobIndex->act );
+		fprintf( fp, "%d ",	pMobIndex->affected_by );
+		fprintf( fp, "%d S\n",	pMobIndex->alignment );
+		fprintf( fp, "%d ",	pMobIndex->level );
+		fprintf( fp, "%d ",	pMobIndex->hitroll );
+		fprintf( fp, "%d ",	pMobIndex->ac );
+		fprintf( fp, "%dd%d+%d ", pMobIndex->hitnodice,
 			pMobIndex->hitsizedice,
-			pMobIndex->hitplus);
-		fprintf(fp, "%dd%d+%d\n", pMobIndex->damnodice,
+			pMobIndex->hitplus );
+		fprintf( fp, "%dd%d+%d\n", pMobIndex->damnodice,
 			pMobIndex->damsizedice,
-			pMobIndex->damplus);
-		fprintf(fp, "%d ", pMobIndex->gold);
-		fprintf(fp, "0\n0 ");
-		fprintf(fp, "%s~ ", race_table[pMobIndex->race].name);
-		fprintf(fp, "%d\n", pMobIndex->sex);
+			pMobIndex->damplus );
+		fprintf( fp, "%d ", pMobIndex->gold );
+		fprintf( fp, "0\n0 " );
+		fprintf( fp, "%s~ ", race_table[pMobIndex->race].name );
+		fprintf( fp, "%d\n", pMobIndex->sex );
 
 		/*
 		 * This is responsible for writing MOBprograms in_file.
 		 * By Farix of Oz.
 		 */
-		if (pMobIndex->mobprogs)
+		if ( pMobIndex->mobprogs )
 		{
 		    MPROG_DATA *mPtr;
 
-		    for (mPtr = pMobIndex->mobprogs; mPtr; mPtr = mPtr->next)
+		    for ( mPtr = pMobIndex->mobprogs; mPtr; mPtr = mPtr->next )
 		    {
-			fprintf(fp, ">%s ", mprog_type_to_name(
-							    mPtr->type));
-			fprintf(fp, "%s~\n", mPtr->arglist);
-			fprintf(fp, "%s~\n", fix_string(mPtr->comlist));
+			fprintf( fp, ">%s ", mprog_type_to_name( mPtr->type ) );
+			fprintf( fp, "%s~\n", mPtr->arglist );
+			fprintf( fp, "%s~\n", fix_string( mPtr->comlist ) );
 		    }
-		    fprintf(fp, "|\n");
+		    fprintf( fp, "|\n" );
 		}
 	    }
 	}
     }
-    fprintf(fp, "#0\n\n\n\n");
+    fprintf( fp, "#0\n\n\n" );
     return;
 }
 
 
-/*
- * Name:	save_objects
- * Purpose:	Save #OBJECTS section of an area file.
- * Called by:	save_area(olc_save.c). (Disabled by Zen)
- */
-void save_objects(FILE * fp, AREA_DATA * pArea)
+void new_save_objects( FILE * fp, AREA_DATA * pArea )
 {
-    int vnum;
-    OBJ_INDEX_DATA *pObjIndex;
-    AFFECT_DATA *pAf;
     EXTRA_DESCR_DATA *pEd;
+    OBJ_INDEX_DATA   *pObjIndex;
+    AFFECT_DATA      *pAf;
+    int               vnum;
 
-    fprintf(fp, "#OBJECTS\n");
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    fprintf( fp, "#NEWOBJECTS\n" );
+    for ( vnum = pArea->low_o_vnum; vnum <= pArea->hi_o_vnum; vnum++ )
     {
-	if ((pObjIndex = get_obj_index(vnum)))
+	if ( ( pObjIndex = get_obj_index( vnum ) ) )
 	{
-	    if (pObjIndex->area == pArea)
+	    if ( pObjIndex->area == pArea )
 	    {
-		fprintf(fp, "#%d\n", pObjIndex->vnum);
-		fprintf(fp, "%s~\n", pObjIndex->name);
-		fprintf(fp, "%s~\n", pObjIndex->short_descr);
-		fprintf(fp, "%s~\n", fix_string(pObjIndex->description));
-		fprintf(fp, "~\n");
-		fprintf(fp, "%d ", pObjIndex->item_type);
-		fprintf(fp, "%d ", pObjIndex->extra_flags);
-		fprintf(fp, "%d\n", pObjIndex->wear_flags);
+		fprintf( fp, "#%d\n",	pObjIndex->vnum );
+		fprintf( fp, "%s~\n",	pObjIndex->name );
+		fprintf( fp, "%s~\n",	pObjIndex->short_descr );
+		fprintf( fp, "%s~\n",	fix_string( pObjIndex->description ) );
+		fprintf( fp, "~\n" );
+		fprintf( fp, "%d ",	pObjIndex->item_type );
+		fprintf( fp, "%d ",	pObjIndex->extra_flags );
+		fprintf( fp, "%d\n",	pObjIndex->wear_flags );
 
-		switch (pObjIndex->item_type)
+		switch ( pObjIndex->item_type )
 		{
 		    default:
-			fprintf(fp, "%d~ %d~ %d~ %d~\n",
-				pObjIndex->value[0],
-				pObjIndex->value[1],
-				pObjIndex->value[2],
-				pObjIndex->value[3]);
-			break;
-
-		    case ITEM_PILL:
-		    case ITEM_POTION:
-		    case ITEM_SCROLL:
-			fprintf(fp, "%d~ %s~ %s~ %s~\n",
-				pObjIndex->value[0],
-				pObjIndex->value[1] != -1 ?
-				skill_table[pObjIndex->value[1]].name
-				: " ",
-				pObjIndex->value[2] != -1 ?
-				skill_table[pObjIndex->value[2]].name
-				: " ",
-				pObjIndex->value[3] != -1 ?
-				skill_table[pObjIndex->value[3]].name
-				: " ");
-			break;
-
-		    case ITEM_STAFF:
-		    case ITEM_WAND:
-			fprintf(fp, "%d~ %d~ %d~ %s~\n",
-				pObjIndex->value[0],
-				pObjIndex->value[1],
-				pObjIndex->value[2],
-				pObjIndex->value[3] != -1 ?
-				skill_table[pObjIndex->value[3]].name
-				: " ");
-			break;
-		}
-		fprintf(fp, "%d ", pObjIndex->weight);
-		fprintf(fp, "%d 0\n", pObjIndex->cost);
-
-		for (pAf = pObjIndex->affected; pAf; pAf = pAf->next)
-		{
-		    fprintf(fp, "A\n%d %d\n", pAf->location, pAf->modifier);
-		}
-
-		for (pEd = pObjIndex->extra_descr; pEd; pEd = pEd->next)
-		{
-		    fprintf(fp, "E\n%s~\n%s~\n", pEd->keyword,
-			    fix_string(pEd->description));
-		}
-	    }
-	}
-    }
-    fprintf(fp, "#0\n\n\n\n");
-    return;
-}
-
-
-/*
- * Name:	new_save_objects
- * Purpose:	Save #OBJECTS section of an area file.
- * Called by:	save_area(olc_save.c).
- */
-void new_save_objects(FILE * fp, AREA_DATA * pArea)
-{
-    int vnum;
-    OBJ_INDEX_DATA *pObjIndex;
-    AFFECT_DATA *pAf;
-    EXTRA_DESCR_DATA *pEd;
-
-    fprintf(fp, "#NEWOBJECTS\n");
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
-    {
-	if ((pObjIndex = get_obj_index(vnum)))
-	{
-	    if (pObjIndex->area == pArea)
-	    {
-		fprintf(fp, "#%d\n", pObjIndex->vnum);
-		fprintf(fp, "%s~\n", pObjIndex->name);
-		fprintf(fp, "%s~\n", pObjIndex->short_descr);
-		fprintf(fp, "%s~\n", fix_string(pObjIndex->description));
-		fprintf(fp, "~\n");
-		fprintf(fp, "%d ", pObjIndex->item_type);
-		fprintf(fp, "%d ", pObjIndex->extra_flags);
-		fprintf(fp, "%d\n", pObjIndex->wear_flags);
-
-		switch (pObjIndex->item_type)
-		{
-		    default:
-			fprintf(fp, "%d~ %d~ %d~ %d~ %d~\n",
+			fprintf( fp, "%d~ %d~ %d~ %d~ %d~\n",
 				pObjIndex->value[0],
 				pObjIndex->value[1],
 				pObjIndex->value[2],
 				pObjIndex->value[3],
-				pObjIndex->value[4]);
+				pObjIndex->value[4] );
 			break;
 
 		    case ITEM_PILL:
 		    case ITEM_POTION:
 		    case ITEM_SCROLL:
-			fprintf(fp, "%d~ %s~ %s~ %s~ %s~\n",
+			fprintf( fp, "%d~ %s~ %s~ %s~ %s~\n",
 				pObjIndex->value[0],
 				pObjIndex->value[1] != -1 ?
-				skill_table[pObjIndex->value[1]].name
-				: " ",
+				skill_table[pObjIndex->value[1]].name : " ",
 				pObjIndex->value[2] != -1 ?
-				skill_table[pObjIndex->value[2]].name
-				: " ",
+				skill_table[pObjIndex->value[2]].name : " ",
 				pObjIndex->value[3] != -1 ?
-				skill_table[pObjIndex->value[3]].name
-				: " ",
+				skill_table[pObjIndex->value[3]].name : " ",
 				pObjIndex->value[4] != -1 ?
-				skill_table[pObjIndex->value[4]].name
-				: " ");
+				skill_table[pObjIndex->value[4]].name : " " );
 			break;
 
 		    case ITEM_STAFF:
 		    case ITEM_WAND:
-			fprintf(fp, "%d~ %d~ %d~ %s~ %d~\n",
+			fprintf( fp, "%d~ %d~ %d~ %s~ %d~\n",
 				pObjIndex->value[0],
 				pObjIndex->value[1],
 				pObjIndex->value[2],
 				pObjIndex->value[3] != -1 ?
-				skill_table[pObjIndex->value[3]].name
-				: " ",
-				pObjIndex->value[4]);
+				skill_table[pObjIndex->value[3]].name : " ",
+				pObjIndex->value[4] );
 			break;
 		}
-		fprintf(fp, "%d ", pObjIndex->weight);
-		fprintf(fp, "%d 0\n", pObjIndex->cost);
+		fprintf( fp, "%d ",	pObjIndex->weight );
+		fprintf( fp, "%d 0\n",	pObjIndex->cost );
 
-		for (pAf = pObjIndex->affected; pAf; pAf = pAf->next)
-		{
-		    fprintf(fp, "A\n%d %d %d\n", pAf->location, pAf->modifier,
-			    pAf->bitvector);
-		}
+		for ( pAf = pObjIndex->affected; pAf; pAf = pAf->next )
+		    fprintf( fp, "A\n%d %d %d\n",
+			    pAf->location,
+			    pAf->modifier,
+			    pAf->bitvector );
 
-		for (pEd = pObjIndex->extra_descr; pEd; pEd = pEd->next)
-		{
-		    fprintf(fp, "E\n%s~\n%s~\n", pEd->keyword,
-			    fix_string(pEd->description));
-		}
+		for ( pEd = pObjIndex->extra_descr; pEd; pEd = pEd->next )
+		    fprintf( fp, "E\n%s~\n%s~\n",
+			    pEd->keyword,
+			    fix_string( pEd->description ) );
 	    }
 	}
     }
-    fprintf(fp, "#0\n\n\n\n");
+    fprintf( fp, "#0\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	save_rooms
- * Purpose:	Save #ROOMDATA section of an area file.
- * Called by:	save_area(olc_save.c).
- */
-void save_rooms(FILE * fp, AREA_DATA * pArea)
+void save_rooms( FILE * fp, AREA_DATA * pArea )
 {
-    ROOM_INDEX_DATA *pRoomIndex;
+    ROOM_INDEX_DATA  *pRoomIndex;
     EXTRA_DESCR_DATA *pEd;
-    EXIT_DATA *pExit;
-    int vnum;
-    int door;
+    EXIT_DATA        *pExit;
+    int               vnum;
+    int               door;
 
-    fprintf(fp, "#ROOMDATA\n");
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    fprintf( fp, "#ROOMDATA\n" );
+    for ( vnum = pArea->low_r_vnum; vnum <= pArea->hi_r_vnum; vnum++ )
     {
-	if ((pRoomIndex = get_room_index(vnum)))
+	if ( ( pRoomIndex = get_room_index( vnum ) ) )
 	{
-	    if (pRoomIndex->area == pArea)
+	    if ( pRoomIndex->area == pArea )
 	    {
-		fprintf(fp, "#%d\n", pRoomIndex->vnum);
-		fprintf(fp, "%s~\n", pRoomIndex->name);
-		fprintf(fp, "%s~\n", fix_string(pRoomIndex->description));
-		fprintf(fp, "0 ");
-		fprintf(fp, "%d ", pRoomIndex->orig_room_flags);
-		fprintf(fp, "%d\n", pRoomIndex->sector_type);
+		fprintf( fp, "#%d\n",	pRoomIndex->vnum );
+		fprintf( fp, "%s~\n",	pRoomIndex->name );
+		fprintf( fp, "%s~\n",	fix_string( pRoomIndex->description ) );
+		fprintf( fp, "0 " );
+		fprintf( fp, "%d ",	pRoomIndex->orig_room_flags );
+		fprintf( fp, "%d\n",	pRoomIndex->sector_type );
 
-		for (pEd = pRoomIndex->extra_descr; pEd; pEd = pEd->next)
-		{
-		    fprintf(fp, "E\n%s~\n%s~\n", pEd->keyword,
-			    fix_string(pEd->description));
-		}
+		for ( pEd = pRoomIndex->extra_descr; pEd; pEd = pEd->next )
+		    fprintf( fp, "E\n%s~\n%s~\n",
+			    pEd->keyword,
+			    fix_string( pEd->description ) );
 
-		for (door = 0; door < MAX_DIR; door++)
+		for ( door = 0; door < MAX_DIR; door++ )
 		{
-		    if ((pExit = pRoomIndex->exit[door]))
+		    if ( ( pExit = pRoomIndex->exit[door] ) )
 		    {
-			fprintf(fp, "D%d\n", door);
-			fprintf(fp, "%s~\n",
-				fix_string(pExit->description));
-			fprintf(fp, "%s~\n", pExit->keyword);
-			fprintf(fp, "%d %d %d\n", pExit->rs_flags,
+			fprintf( fp, "D%d\n", door );
+			fprintf( fp, "%s~\n",
+				fix_string( pExit->description ) );
+			fprintf( fp, "%s~\n", pExit->keyword );
+			fprintf( fp, "%d %d %d\n",
+				pExit->rs_flags,
 				pExit->key,
-			      pExit->to_room ? pExit->to_room->vnum : 0);
+				pExit->to_room ? pExit->to_room->vnum : 0 );
 		    }
 		}
-		fprintf(fp, "S\n");
+		fprintf( fp, "S\n" );
 	    }
 	}
     }
-    fprintf(fp, "#0\n\n\n\n");
+    fprintf( fp, "#0\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	save_specials
- * Purpose:	Save #SPECIALS section of area file.
- * Called by:	save_area(olc_save.c).
- */
-void save_specials(FILE * fp, AREA_DATA * pArea)
+void save_specials( FILE * fp, AREA_DATA * pArea )
 {
-    int vnum;
     MOB_INDEX_DATA *pMobIndex;
+    int             vnum;
 
-    fprintf(fp, "#SPECIALS\n");
+    fprintf( fp, "#SPECIALS\n" );
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
-	if ((pMobIndex = get_mob_index(vnum)))
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
 	{
-	    if (pMobIndex->area == pArea && pMobIndex->spec_fun)
+	    if ( pMobIndex->area == pArea && pMobIndex->spec_fun )
 	    {
-		fprintf(fp, "M %d %s\n", pMobIndex->vnum,
-			spec_string(pMobIndex->spec_fun));
+		fprintf( fp, "M %d %s\n",
+			pMobIndex->vnum,
+			spec_string( pMobIndex->spec_fun ) );
 	    }
 	}
     }
 
-    fprintf(fp, "S\n\n\n\n");
+    fprintf( fp, "S\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	vsave_specials
- * Purpose:	Save #SPECIALS section of area file.
- * 		New formating thanks to Rac.
- * Called by:	save_area(olc_save.c).
- */
-void vsave_specials(FILE * fp, AREA_DATA * pArea)
+/* New formating thanks to Rac */
+void vsave_specials( FILE * fp, AREA_DATA * pArea )
 {
-    int vnum;
     MOB_INDEX_DATA *pMobIndex;
+    int             vnum;
 
-    fprintf(fp, "#SPECIALS\n");
+    fprintf( fp, "#SPECIALS\n" );
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
-	if ((pMobIndex = get_mob_index(vnum)))
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
 	{
-	    if (pMobIndex->area == pArea && pMobIndex->spec_fun)
+	    if ( pMobIndex->area == pArea && pMobIndex->spec_fun )
 	    {
-		fprintf(fp, "M %d %s \t; %s\n", pMobIndex->vnum,
-			spec_string(pMobIndex->spec_fun),
-			pMobIndex->short_descr);
+		fprintf( fp, "M %5d %-30s \t* %s\n",
+			pMobIndex->vnum,
+			spec_string( pMobIndex->spec_fun ),
+			pMobIndex->short_descr );
 	    }
 	}
     }
 
-    fprintf(fp, "S\n\n\n\n");
+    fprintf( fp, "S\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- * Name:	save_resets
- * Purpose:	Saves the #RESETS section of an area file.
- *                New format thanks to Rac.
- * Called by:	save_area(olc_save.c)
- */
-void save_resets(FILE * fp, AREA_DATA * pArea)
+/* Written by: Maniac */
+void save_games( FILE *fp, AREA_DATA *pArea )
 {
-    RESET_DATA *pReset;
-    MOB_INDEX_DATA *pLastMob = NULL;
-    OBJ_INDEX_DATA *pLastObj;
+    MOB_INDEX_DATA *pMobIndex;
+    GAME_DATA      *pGameIndex;
+    int             vnum;
+
+    fprintf( fp, "#GAMES\n" );
+
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
+    {
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
+	{
+	    if ( pMobIndex->area == pArea && pMobIndex->pGame )
+	    {
+		pGameIndex = pMobIndex->pGame;
+
+		fprintf( fp, "M %d %s %d %d %d\n",
+			pGameIndex->croupier,
+			game_string( pGameIndex->game_fun ),
+			pGameIndex->bankroll,
+			pGameIndex->max_wait,
+			pGameIndex->cheat );
+	    }
+	}
+    }
+
+    fprintf( fp, "S\n\n\n" );
+    return;
+}
+
+
+/* Written by: Maniac */
+void vsave_games( FILE *fp, AREA_DATA *pArea )
+{
+    MOB_INDEX_DATA *pMobIndex;
+    GAME_DATA      *pGameIndex;
+    int             vnum;
+
+    fprintf( fp, "#GAMES\n" );
+
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
+    {
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
+	{
+	    if ( pMobIndex->area == pArea && pMobIndex->pGame )
+	    {
+		pGameIndex = pMobIndex->pGame;
+
+		fprintf( fp, "M %5d %-30s %10d %3d %1d\t* %s\n",
+			pGameIndex->croupier,
+			game_string( pGameIndex->game_fun ),
+			pGameIndex->bankroll,
+			pGameIndex->max_wait,
+			pGameIndex->cheat,
+			pMobIndex->short_descr );
+	    }
+	}
+    }
+
+    fprintf( fp, "S\n\n\n" );
+    return;
+}
+
+
+/* New format thanks to Rac */
+void save_resets( FILE * fp, AREA_DATA * pArea )
+{
     ROOM_INDEX_DATA *pRoomIndex;
-    char buf[MAX_STRING_LENGTH];
-    int vnum;
+    MOB_INDEX_DATA  *pLastMob = NULL;
+    OBJ_INDEX_DATA  *pLastObj;
+    RESET_DATA      *pReset;
+    char             buf	[ MAX_STRING_LENGTH ];
+    int              vnum;
 
-    fprintf(fp, "#RESETS\n");
+    fprintf( fp, "#RESETS\n" );
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->low_r_vnum; vnum <= pArea->hi_r_vnum; vnum++ )
     {
-	if ((pRoomIndex = get_room_index(vnum)))
+	if ( ( pRoomIndex = get_room_index( vnum ) ) )
 	{
-	    if (pRoomIndex->area == pArea)
+	    if ( pRoomIndex->area == pArea )
 	    {
-		for (pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next)
+		for ( pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next )
 		{
-		    switch (pReset->command)
+		    switch ( pReset->command )
 		    {
 			default:
-			    bug("Save_resets: bad command %c.", pReset->command);
+			    bug( "Save_resets: bad command %c.", pReset->command );
 			    break;
 
 			case 'M':
-			    pLastMob = get_mob_index(pReset->arg1);
-			    fprintf(fp, "M 0 %d %d %d\n",
+			    pLastMob = get_mob_index( pReset->arg1 );
+			    fprintf( fp, "M 0 %d %d %d\n",
 				    pReset->arg1,
 				    pReset->arg2,
-				    pReset->arg3);
+				    pReset->arg3 );
 			    break;
 
 			case 'O':
-			    pLastObj = get_obj_index(pReset->arg1);
-			    fprintf(fp, "O 0 %d 0 %d\n",
+			    pLastObj = get_obj_index( pReset->arg1 );
+			    fprintf( fp, "O 0 %d 0 %d\n",
 				    pReset->arg1,
-				    pReset->arg3);
+				    pReset->arg3 );
 			    break;
 
 			case 'P':
-			    pLastObj = get_obj_index(pReset->arg1);
-			    fprintf(fp, "P 0 %d 0 %d\n",
+			    pLastObj = get_obj_index( pReset->arg1 );
+			    fprintf( fp, "P 0 %d 0 %d\n",
 				    pReset->arg1,
-				    pReset->arg3);
+				    pReset->arg3 );
 			    break;
 
 			case 'G':
-			    fprintf(fp, "G 0 %d 0\n", pReset->arg1);
-			    if (!pLastMob)
+			    fprintf( fp, "G 0 %d 0\n", pReset->arg1 );
+			    if ( !pLastMob )
 			    {
-				sprintf(buf,
-					"Save_resets: !NO_MOB! in [%s]", pArea->filename);
-				bug(buf, 0);
+				sprintf( buf,
+					"Save_resets: !NO_MOB! in [%s]", pArea->filename );
+				bug( buf, 0 );
 			    }
 			    break;
 
 			case 'E':
-			    fprintf(fp, "E 0 %d 0 %d\n",
+			    fprintf( fp, "E 0 %d 0 %d\n",
 				    pReset->arg1,
-				    pReset->arg3);
-			    if (!pLastMob)
+				    pReset->arg3 );
+			    if ( !pLastMob )
 			    {
-				sprintf(buf,
-					"Save_resets: !NO_MOB! in [%s]", pArea->filename);
-				bug(buf, 0);
+				sprintf( buf,
+					"Save_resets: !NO_MOB! in [%s]", pArea->filename );
+				bug( buf, 0 );
 			    }
 			    break;
 
@@ -539,123 +473,106 @@ void save_resets(FILE * fp, AREA_DATA * pArea)
 			    break;
 
 			case 'R':
-			    fprintf(fp, "R 0 %d %d\n",
+			    fprintf( fp, "R 0 %d %d\n",
 				    pReset->arg1,
-				    pReset->arg2);
+				    pReset->arg2 );
 			    break;
-		    }		/*
-				 * End switch 
-				 */
-		}		/*
-				 * End for pReset 
-				 */
-	    }			/*
-				 * End if correct area 
-				 */
-	}			/*
-				 * End if pRoomIndex 
-				 */
-    }				/*
-				 * End for vnum 
-				 */
-    fprintf(fp, "S\n\n\n\n");
+		    }
+		}
+	    }
+	}
+    }
+    fprintf( fp, "S\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	save_resets
- * Purpose:	Saves the #RESETS section of an area file.
- *                New format thanks to Rac.
- * Called by:	save_area(olc_save.c)
- */
-void vsave_resets(FILE * fp, AREA_DATA * pArea)
+/* New format thanks to Rac */
+void vsave_resets( FILE * fp, AREA_DATA * pArea )
 {
-    RESET_DATA *pReset;
-    MOB_INDEX_DATA *pLastMob = NULL;
-    OBJ_INDEX_DATA *pLastObj;
     ROOM_INDEX_DATA *pRoomIndex;
-    char buf[MAX_STRING_LENGTH];
-    int vnum;
+    MOB_INDEX_DATA  *pLastMob = NULL;
+    OBJ_INDEX_DATA  *pLastObj;
+    RESET_DATA      *pReset;
+    char             buf	[ MAX_STRING_LENGTH ];
+    int              vnum;
 
-    fprintf(fp, "#RESETS\n");
+    fprintf( fp, "#RESETS\n" );
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->low_r_vnum; vnum <= pArea->hi_r_vnum; vnum++ )
     {
-	if ((pRoomIndex = get_room_index(vnum)))
+	if ( ( pRoomIndex = get_room_index( vnum ) ) )
 	{
-	    if (pRoomIndex->area == pArea)
+	    if ( pRoomIndex->area == pArea )
 	    {
-		for (pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next)
+		for ( pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next )
 		{
-		    switch (pReset->command)
+		    switch ( pReset->command )
 		    {
 			default:
-			    bug("Save_resets: bad command %c.", pReset->command);
+			    bug( "Save_resets: bad command %c.", pReset->command );
 			    break;
 
 			case 'M':
-			    pLastMob = get_mob_index(pReset->arg1);
-			    fprintf(fp, "M 0 %d %2d %-5d \t; %s to %s\n",
+			    pLastMob = get_mob_index( pReset->arg1 );
+			    fprintf( fp, "M 0 %5d %2d %5d \t* %s -> %s\n",
 				    pReset->arg1,
 				    pReset->arg2,
 				    pReset->arg3,
 				    pLastMob->short_descr,
-				    pRoomIndex->name);
+				    pRoomIndex->name );
 			    break;
 
 			case 'O':
-			    pLastObj = get_obj_index(pReset->arg1);
-			    fprintf(fp, "O 0 %d  0 %-5d \t; %s to %s\n",
+			    pLastObj = get_obj_index( pReset->arg1 );
+			    fprintf( fp, "O 0 %5d  0 %5d \t* %s -> %s\n",
 				    pReset->arg1,
 				    pReset->arg3,
-				    capitalize(pLastObj->short_descr),
-				    pRoomIndex->name);
+				    capitalize( pLastObj->short_descr ),
+				    pRoomIndex->name );
 			    break;
 
 			case 'P':
-			    pLastObj = get_obj_index(pReset->arg1);
-			    fprintf(fp, "P 0 %d  0 %-5d \t; %s inside %s\n",
+			    pLastObj = get_obj_index( pReset->arg1 );
+			    fprintf( fp, "P 0 %5d  0 %5d \t* %s inside %s\n",
 				    pReset->arg1,
 				    pReset->arg3,
-				    capitalize(get_obj_index(pReset->arg1)->short_descr),
-				    pLastObj ? pLastObj->short_descr : "!NO_OBJ!");
+				    capitalize( get_obj_index( pReset->arg1 )->short_descr ),
+				    pLastObj ? pLastObj->short_descr : "!NO_OBJ!" );
 
-			    if (!pLastObj)	/*
+			    if ( !pLastObj )	/*
 						 * Thanks Rac! 
 						 */
 			    {
-				sprintf(buf, "Save_resets: P with !NO_OBJ! in [%s]", pArea->filename);
-				bug(buf, 0);
+				sprintf( buf, "Save_resets: P with !NO_OBJ! in [%s]", pArea->filename );
+				bug( buf, 0 );
 			    }
 
 			    break;
 
 			case 'G':
-			    pLastObj = get_obj_index(pReset->arg1);
-			    fprintf(fp, "G 0 %d  0      \t;   %s\n",
+			    pLastObj = get_obj_index( pReset->arg1 );
+			    fprintf( fp, "G 0 %5d  0      \t*   %s\n",
 				    pReset->arg1,
-				    capitalize(pLastObj->short_descr));
+				    capitalize( pLastObj->short_descr ) );
 
-			    if (!pLastMob)
+			    if ( !pLastMob )
 			    {
-				sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
-				bug(buf, 0);
+				sprintf( buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename );
+				bug( buf, 0 );
 			    }
 			    break;
 
 			case 'E':
-			    fprintf(fp, "E 0 %d  0 %-5d \t;   %s %s\n",
+			    fprintf( fp, "E 0 %5d  0 %5d \t*   %s %s\n",
 				    pReset->arg1,
 				    pReset->arg3,
-				    capitalize(get_obj_index(pReset->arg1)->short_descr),
-			    flag_string(wear_loc_strings, pReset->arg3));
-			    if (!pLastMob)
+				    capitalize( get_obj_index( pReset->arg1 )->short_descr ),
+				    flag_string( wear_loc_strings, pReset->arg3 ) );
+			    if ( !pLastMob )
 			    {
-				sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
-				bug(buf, 0);
+				sprintf( buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename );
+				bug( buf, 0 );
 			    }
 			    break;
 
@@ -663,425 +580,319 @@ void vsave_resets(FILE * fp, AREA_DATA * pArea)
 			    break;
 
 			case 'R':
-			    fprintf(fp, "R 0 %d %2d      \t; Randomize %s\n",
+			    fprintf( fp, "R 0 %5d %2d      \t* Randomize %s\n",
 				    pReset->arg1,
 				    pReset->arg2,
-				    pRoomIndex->name);
+				    pRoomIndex->name );
 			    break;
-		    }		/*
-				 * End switch 
-				 */
-		}		/*
-				 * End for pReset 
-				 */
-	    }			/*
-				 * End if correct area 
-				 */
-	}			/*
-				 * End if pRoomIndex 
-				 */
-    }				/*
-				 * End for vnum 
-				 */
-    fprintf(fp, "S\n\n\n\n");
+		    }
+		}
+	    }
+	}
+    }
+    fprintf( fp, "S\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	save_shops
- * Purpose:	Saves the #SHOPS section of an area file.
- * Called by:	save_area(olc_save.c)
- */
-void save_shops(FILE * fp, AREA_DATA * pArea)
+void save_shops( FILE * fp, AREA_DATA * pArea )
 {
-    SHOP_DATA *pShopIndex;
     MOB_INDEX_DATA *pMobIndex;
-    int iTrade;
-    int vnum;
+    SHOP_DATA      *pShopIndex;
+    int             iTrade;
+    int             vnum;
 
-    fprintf(fp, "#SHOPS\n");
+    fprintf( fp, "#SHOPS\n" );
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
-	if ((pMobIndex = get_mob_index(vnum)))
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
 	{
-	    if (pMobIndex->area == pArea && pMobIndex->pShop)
+	    if ( pMobIndex->area == pArea && pMobIndex->pShop )
 	    {
 		pShopIndex = pMobIndex->pShop;
 
-		fprintf(fp, "%d ", pShopIndex->keeper);
-		for (iTrade = 0; iTrade < MAX_TRADE; iTrade++)
+		fprintf( fp, "%d ", pShopIndex->keeper );
+		for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
 		{
-		    if (pShopIndex->buy_type[iTrade] != 0)
-		    {
-			fprintf(fp, "%d ", pShopIndex->buy_type[iTrade]);
-		    }
+		    if ( pShopIndex->buy_type[iTrade] != 0 )
+			fprintf( fp, "%d ", pShopIndex->buy_type[iTrade] );
 		    else
-			fprintf(fp, "0 ");
+			fprintf( fp, "0 " );
 		}
-		fprintf(fp, "%d %d ", pShopIndex->profit_buy, pShopIndex->profit_sell);
-		fprintf(fp, "%d %d\n", pShopIndex->open_hour, pShopIndex->close_hour);
+		fprintf( fp, "%d %d ", pShopIndex->profit_buy, pShopIndex->profit_sell );
+		fprintf( fp, "%d %d\n", pShopIndex->open_hour, pShopIndex->close_hour );
 	    }
 	}
     }
 
-    fprintf(fp, "0\n\n\n\n");
+    fprintf( fp, "0\n\n\n" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	vsave_shops
- * Purpose:	Saves the #SHOPS section of an area file.
- *                New formating thanks to Rac.
- * Called by:	save_area(olc_save.c)
- */
-void vsave_shops(FILE * fp, AREA_DATA * pArea)
+/* New format thanks to Rac */
+void vsave_shops( FILE * fp, AREA_DATA * pArea )
 {
-    SHOP_DATA *pShopIndex;
     MOB_INDEX_DATA *pMobIndex;
-    int iTrade;
-    int vnum;
+    SHOP_DATA      *pShopIndex;
+    int             iTrade;
+    int             vnum;
 
-    fprintf(fp, "#SHOPS\n");
+    fprintf( fp, "#SHOPS\n" );
 
-    for (vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++)
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
-	if ((pMobIndex = get_mob_index(vnum)))
+	if ( ( pMobIndex = get_mob_index( vnum ) ) )
 	{
-	    if (pMobIndex->area == pArea && pMobIndex->pShop)
+	    if ( pMobIndex->area == pArea && pMobIndex->pShop )
 	    {
 		pShopIndex = pMobIndex->pShop;
 
-		fprintf(fp, "%d ", pShopIndex->keeper);
-		for (iTrade = 0; iTrade < MAX_TRADE; iTrade++)
+		fprintf( fp, "%d ", pShopIndex->keeper );
+		for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
 		{
-		    if (pShopIndex->buy_type[iTrade] != 0)
-		    {
-			fprintf(fp, "%2d ", pShopIndex->buy_type[iTrade]);
-		    }
+		    if ( pShopIndex->buy_type[iTrade] != 0 )
+			fprintf( fp, "%2d ", pShopIndex->buy_type[iTrade] );
 		    else
-			fprintf(fp, " 0 ");
+			fprintf( fp, " 0 " );
 		}
-		fprintf(fp, "%3d %3d ", pShopIndex->profit_buy, pShopIndex->profit_sell);
-		fprintf(fp, "%2d %2d ", pShopIndex->open_hour, pShopIndex->close_hour);
-		fprintf(fp, "\t; %s\n", get_mob_index(pShopIndex->keeper)->short_descr);
+		fprintf( fp, "%3d %3d ", pShopIndex->profit_buy, pShopIndex->profit_sell );
+		fprintf( fp, "%2d %2d ", pShopIndex->open_hour, pShopIndex->close_hour );
+		fprintf( fp, "\t* %s\n", get_mob_index( pShopIndex->keeper )->short_descr );
 	    }
 	}
     }
 
-    fprintf(fp, "0\n\n\n\n");
+    fprintf( fp, "0\n\n\n" );
     return;
 }
 
 
-/*
- * Name:	save_helps
- * Purpose:	Save #HELPS section of an area file.
- * Written by:	Walker <nkrendel@evans.Denver.Colorado.EDU>
- * Called by:	save_area(olc_save.c).
- */
-void save_helps(FILE * fp, AREA_DATA * pArea)
+/* Written by: Walker <nkrendel@evans.Denver.Colorado.EDU> */
+void save_helps( FILE * fp, AREA_DATA * pArea )
 {
     HELP_DATA *pHelp;
-    bool found = FALSE;
+    bool       found = FALSE;
 
-    for (pHelp = help_first; pHelp; pHelp = pHelp->next)
+    for ( pHelp = help_first; pHelp; pHelp = pHelp->next )
     {
-	if (pHelp->area && pHelp->area == pArea)
+	if ( pHelp->area && pHelp->area == pArea )
 	{
-	    if (!found)
+	    if ( !found )
 	    {
-		fprintf(fp, "#HELPS\n\n");
+		fprintf( fp, "#HELPS\n\n" );
 		found = TRUE;
 	    }
-	    fprintf(fp, "%d %s~\n%s~\n\n",
+	    fprintf( fp, "%d %s~\n%s~\n\n",
 		    pHelp->level,
-		    all_capitalize(pHelp->keyword),
-		    fix_string(pHelp->text));
+		    all_capitalize( pHelp->keyword ),
+		    fix_string( pHelp->text ) );
 	}
     }
 
-    if (found)
-	fprintf(fp, "0 $~\n\n");
+    if ( found )
+	fprintf( fp, "0 $~\n\n" );
 
     return;
 }
 
 
-/*
- * Name:	save_area
- * Purpose:	Save an area, note that this format is new.
- * Called by:	do_asave(olc_save.c).
- */
-void save_area(AREA_DATA * pArea)
+void save_area( AREA_DATA * pArea )
 {
     FILE *fp;
 
-    fclose(fpReserve);
-    if (!(fp = fopen(pArea->filename, "w")))
+    fclose( fpReserve );
+    if ( !( fp = fopen( pArea->filename, "w" ) ) )
     {
-	bug("Open_area: fopen", 0);
-	perror(pArea->filename);
+	bug( "Open_area: fopen", 0 );
+	perror( pArea->filename );
     }
 
-    fprintf(fp, "#AREADATA\n");
+    fprintf( fp, "#AREADATA\n" );
 
-    fprintf(fp, "Name        %s~\n", pArea->name);
-    fprintf(fp, "Builders    %s~\n", fix_string(pArea->builders));
-    fprintf(fp, "VNUMs       %d %d\n", pArea->lvnum, pArea->uvnum);
-    fprintf(fp, "Security    %d\n", pArea->security);
-    fprintf(fp, "Recall      %d\n", pArea->recall);
-    fprintf(fp, "End\n\n\n\n");
+    fprintf( fp, "Name        %s~\n",	pArea->name );
+    fprintf( fp, "Builders    %s~\n",	fix_string( pArea->builders ) );
+    fprintf( fp, "VNUMs       %d %d\n",	pArea->lvnum, pArea->uvnum );
+    fprintf( fp, "Security    %d\n",	pArea->security );
+    fprintf( fp, "Recall      %d\n",	pArea->recall );
+    fprintf( fp, "End\n\n\n" );
 
-    save_helps(fp, pArea);	/*
-				 * OLC 1.1b 
-				 */
-    save_mobiles(fp, pArea);
-    new_save_objects(fp, pArea);	/*
-					 * by Zen 
-					 */
-    save_rooms(fp, pArea);
+    save_helps( fp, pArea );
+    save_mobiles( fp, pArea );
+    new_save_objects( fp, pArea );
+    save_rooms( fp, pArea );
 
-    if (IS_SET(pArea->area_flags, AREA_VERBOSE))	/*
-							 * OLC 1.1b 
-							 */
+    if ( IS_SET( pArea->area_flags, AREA_VERBOSE ) )
     {
-	vsave_specials(fp, pArea);
-	vsave_resets(fp, pArea);
-	vsave_shops(fp, pArea);
+	vsave_specials( fp, pArea );
+	vsave_games( fp, pArea );
+	vsave_resets( fp, pArea );
+	vsave_shops( fp, pArea );
     }
     else
     {
-	save_specials(fp, pArea);
-	save_resets(fp, pArea);
-	save_shops(fp, pArea);
+	save_specials( fp, pArea );
+	save_games( fp, pArea );
+	save_resets( fp, pArea );
+	save_shops( fp, pArea );
     }
 
-    fprintf(fp, "#$\n");
+    fprintf( fp, "#$\n" );
 
-    fclose(fp);
-    fpReserve = fopen(NULL_FILE, "r");
+    fclose( fp );
+    fpReserve = fopen( NULL_FILE, "r" );
     return;
 }
 
 
-/*
- * OLC 1.1b 
- *
- * Name:	do_asave
- * Purpose:	Entry point for saving area data.
- * Called by:	interpreter(interp.c)
- */
-void do_asave(CHAR_DATA * ch, char *argument)
+void do_asave( CHAR_DATA * ch, char *argument )
 {
-    char arg1[MAX_INPUT_LENGTH];
     AREA_DATA *pArea;
-    int value;
+    char       arg1[ MAX_INPUT_LENGTH ];
+    int        value;
 
-    if (!ch)			/*
-				 * Do an autosave 
-				 */
+    if ( !ch )
     {
-	send_to_all_char("A gentle breeze comes from the east.\n\r");
-	save_area_list();
-	for (pArea = area_first; pArea; pArea = pArea->next)
+	send_to_all_char( "A gentle breeze comes from the east.\n\r" );
+	save_area_list( );
+	for ( pArea = area_first; pArea; pArea = pArea->next )
 	{
-	    save_area(pArea);
-	    REMOVE_BIT(pArea->area_flags, AREA_CHANGED | AREA_ADDED);
+	    save_area( pArea );
+	    REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED );
 	}
-	send_to_all_char("After the breeze all seems calm.\n\r");
+	send_to_all_char( "After the breeze all seems calm.\n\r" );
 	return;
     }
 
-    argument = one_argument(argument, arg1);
+    argument = one_argument( argument, arg1 );
 
-    if (arg1[0] == '\0')
+    if ( arg1[0] == '\0' )
     {
-	send_to_char("Syntax:\n\r", ch);
-	send_to_char("  asave <vnum>    - saves a particular area\n\r", ch);
-	send_to_char("  asave list      - saves the AREA.LST file\n\r", ch);
-	send_to_char("  asave area      - saves the area being edited\n\r", ch);
-	send_to_char("  asave changed   - saves all changed zones\n\r", ch);
-	send_to_char("  asave world     - saves the world! (db dump)\n\r", ch);
-	send_to_char("  asave ^ verbose - saves in verbose mode\n\r", ch);
-	send_to_char("\n\r", ch);
+	send_to_char( "Syntax:\n\r", ch );
+	send_to_char( "  asave <vnum>    - saves a particular area\n\r", ch );
+	send_to_char( "  asave list      - saves the AREA.LST file\n\r", ch );
+	send_to_char( "  asave area      - saves the area being edited\n\r", ch );
+	send_to_char( "  asave changed   - saves all changed zones\n\r", ch );
+	send_to_char( "  asave world     - saves the world! (db dump)\n\r", ch );
+	send_to_char( "  asave ^ verbose - saves in verbose mode\n\r", ch );
+	send_to_char( "\n\r", ch );
 	return;
     }
 
-    /*
-     * Snarf the value (which need not be numeric). 
-     */
-    value = atoi(arg1);
+    value = atoi( arg1 );
 
-    /*
-     * Save the area of given vnum. 
-     */
-    /*
-     * ---------------------------- 
-     */
-
-    if (!(pArea = get_area_data(value)) && is_number(arg1))
+    if ( !( pArea = get_area_data( value ) ) && is_number( arg1 ) )
     {
-	send_to_char("That area does not exist.\n\r", ch);
+	send_to_char( "That area does not exist.\n\r", ch );
 	return;
     }
 
-    if (is_number(arg1))
+    if ( is_number( arg1 ) )
     {
-	if (!is_builder(ch, pArea))
+	if ( !is_builder( ch, pArea ) )
 	{
-	    send_to_char("You are not a builder for this area.\n\r", ch);
+	    send_to_char( "You are not a builder for this area.\n\r", ch );
 	    return;
 	}
 
-	save_area_list();
-	if (!str_cmp("verbose", argument))
-	    SET_BIT(pArea->area_flags, AREA_VERBOSE);
-	save_area(pArea);
-	REMOVE_BIT(pArea->area_flags, AREA_VERBOSE);
+	if ( !str_cmp( "verbose", argument ) )
+	    SET_BIT( pArea->area_flags, AREA_VERBOSE );
+	save_area( pArea );
+	REMOVE_BIT( pArea->area_flags, AREA_VERBOSE );
 	return;
     }
 
-    /*
-     * Save the world, only authorized areas. 
-     */
-    /*
-     * -------------------------------------- 
-     */
-
-    if (!str_cmp("world", arg1))
+    if ( !str_cmp( "world", arg1 ) )
     {
-	save_area_list();
-	for (pArea = area_first; pArea; pArea = pArea->next)
+	save_area_list( );
+	for ( pArea = area_first; pArea; pArea = pArea->next )
 	{
 	    /*
 	     * Builder must be assigned this area. 
 	     */
-	    if (!is_builder(ch, pArea))
+	    if ( !is_builder( ch, pArea ) )
 		continue;
 
-	    if (!str_cmp("verbose", argument))
-		SET_BIT(pArea->area_flags, AREA_VERBOSE);
-	    save_area(pArea);
-	    REMOVE_BIT(pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE);
+	    if ( !str_cmp( "verbose", argument ) )
+		SET_BIT( pArea->area_flags, AREA_VERBOSE );
+	    save_area( pArea );
+	    REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
 	}
-	send_to_char("You saved the world.\n\r", ch);
-	send_to_all_char("Database saved.\n\r");
+	send_to_char( "You saved the world.\n\r", ch );
+	send_to_all_char( "Database saved.\n\r" );
 	return;
     }
 
-    /*
-     * Save changed areas, only authorized areas. 
-     */
-    /*
-     * ------------------------------------------ 
-     */
-
-    if (!str_cmp("changed", arg1))
+    if ( !str_cmp( "changed", arg1 ) )
     {
-	char buf[MAX_INPUT_LENGTH];
+	char buf[ MAX_INPUT_LENGTH ];
 
-	save_area_list();
+	send_to_char( "Saved zones:\n\r", ch );
+	sprintf( buf, "None.\n\r" );
 
-	send_to_char("Saved zones:\n\r", ch);
-	sprintf(buf, "None.\n\r");
-
-	for (pArea = area_first; pArea; pArea = pArea->next)
+	for ( pArea = area_first; pArea; pArea = pArea->next )
 	{
-	    /*
-	     * Builder must be assigned this area. 
-	     */
-	    if (!is_builder(ch, pArea))
+	    if ( !is_builder( ch, pArea ) )
 		continue;
 
-	    /*
-	     * Save changed areas. 
-	     */
-	    if (IS_SET(pArea->area_flags, AREA_CHANGED)
-		|| IS_SET(pArea->area_flags, AREA_ADDED))
+	    if ( IS_SET( pArea->area_flags, AREA_CHANGED )
+		|| IS_SET( pArea->area_flags, AREA_ADDED ) )
 	    {
-		if (!str_cmp("verbose", argument))
-		    SET_BIT(pArea->area_flags, AREA_VERBOSE);
-		save_area(pArea);
-		REMOVE_BIT(pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE);
-		sprintf(buf, "%24s - '%s'\n\r", pArea->name, pArea->filename);
-		send_to_char(buf, ch);
+		if ( !str_cmp( "verbose", argument ) )
+		    SET_BIT( pArea->area_flags, AREA_VERBOSE );
+		save_area( pArea );
+		REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
+		sprintf( buf, "%24s - '%s'\n\r", pArea->name, pArea->filename );
+		send_to_char( buf, ch );
 	    }
 	}
-	if (!str_cmp(buf, "None.\n\r"))
-	    send_to_char(buf, ch);
+	if ( !str_cmp( buf, "None.\n\r" ) )
+	    send_to_char( buf, ch );
 	return;
     }
 
-    /*
-     * Save the AREA.LST file. 
-     */
-    /*
-     * ----------------------- 
-     */
-    if (!str_cmp(arg1, "list"))
+    if ( !str_cmp( arg1, "list" ) )
     {
-	save_area_list();
+	save_area_list( );
 	return;
     }
 
-    /*
-     * Save area being edited, if authorized. 
-     */
-    /*
-     * -------------------------------------- 
-     */
-    if (!str_cmp(arg1, "area"))
+    if ( !str_cmp( arg1, "area" ) )
     {
-	/*
-	 * Find the area to save. 
-	 */
-	switch (ch->desc->editor)
+	switch ( ch->desc->connected )
 	{
-	    case ED_AREA:
-		pArea = (AREA_DATA *) ch->desc->pEdit;
+	    case CON_AEDITOR:
+		pArea = ( AREA_DATA * ) ch->desc->olc_editing;
 		break;
-	    case ED_ROOM:
+	    case CON_REDITOR:
 		pArea = ch->in_room->area;
 		break;
-	    case ED_OBJECT:
-		pArea = ((OBJ_INDEX_DATA *) ch->desc->pEdit)->area;
+	    case CON_OEDITOR:
+		pArea = ( ( OBJ_INDEX_DATA * ) ch->desc->olc_editing )->area;
 		break;
-	    case ED_MOBILE:
-		pArea = ((MOB_INDEX_DATA *) ch->desc->pEdit)->area;
+	    case CON_MEDITOR:
+		pArea = ( ( MOB_INDEX_DATA * ) ch->desc->olc_editing )->area;
 		break;
 	    default:
 		pArea = ch->in_room->area;
 		break;
 	}
 
-	if (!is_builder(ch, pArea))
+	if ( !is_builder( ch, pArea ) )
 	{
-	    send_to_char("You are not a builder for this area.\n\r", ch);
+	    send_to_char( "You are not a builder for this area.\n\r", ch );
 	    return;
 	}
 
-	save_area_list();
-	if (!str_cmp("verbose", argument))
-	    SET_BIT(pArea->area_flags, AREA_VERBOSE);
-	save_area(pArea);
-	REMOVE_BIT(pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE);
-	send_to_char("Area saved.\n\r", ch);
+	if ( !str_cmp( "verbose", argument ) )
+	    SET_BIT( pArea->area_flags, AREA_VERBOSE );
+	save_area( pArea );
+	REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
+	send_to_char( "Area saved.\n\r", ch );
 	return;
     }
 
-    /*
-     * Show correct syntax. 
-     */
-    /*
-     * -------------------- 
-     */
-    do_asave(ch, "");
+    do_asave( ch, "" );
     return;
 }

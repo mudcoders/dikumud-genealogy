@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1300
 shadow guardian~
@@ -757,7 +756,6 @@ A wandering wizard is here mumbling to himself.
 3210 0
 0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -1664,7 +1662,6 @@ A bottle of cranberry juice is here.~
 25~ 25~ 2~ 0~ 0~
 25 1 0
 #0
-
 
 
 #ROOMDATA
@@ -4936,7 +4933,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 1300 spec_cast_undead
 M 1301 spec_cast_cleric
@@ -4993,7 +4989,6 @@ M 1363 spec_cast_mage
 M 1364 spec_cast_mage
 M 1365 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -5216,12 +5211,10 @@ P 0 1404 0 1402
 S
 
 
-
 #SHOPS
 1305 17 19 0 0 0 210 50 0 23
 1306 2 3 4 10 21 250 30 0 23
 0
-
 
 
 #$

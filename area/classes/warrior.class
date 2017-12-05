@@ -1,196 +1,87 @@
-Class       3
-Name        War~
+Nm          Warrior~
+WhoNm       War~
+Cla         3
 AtrPrm      1
-Weapon      3702
+Wpn         3702
 Guild       3022
-Skilladept  85
+Sklladpt    85
 Thac0       18
 Thac47      0
 Hpmin       11
 Hpmax       15
 Mana        0
-Skll        'bash door' 8
-Skll        'berserk' 12
-Skll        'dual' 15
-Skll        'enhanced damage' 1
-Skll        'kick' 1
-Skll        'parry' 1
-Skll        'rescue' 1
-Skll        'scrolls' 10
-Skll        'second attack' 1
-Skll        'staves' 20
-Skll        'third attack' 1
-Skll        'wands' 10
-Skll        'stake' 1
-Skll        'shield block' 7
-Skll        'fast healing' 20
-Skll        'fourth attack' 30
-Skll        'dirt kicking' 25
-Skll        'swim' 15
-Skll        'whirlwind' 16
-Title
-Man~
-Woman~
-Title
-Swordpupil~
-Swordpupil~
-Title
-Recruit~
-Recruit~
-Title
-Sentry~
-Sentress~
-Title
-Fighter~
-Fighter~
-Title
-Soldier~
-Soldier~
-Title
-Warrior~
-Warrior~
-Title
-Veteran~
-Veteran~
-Title
-Swordsman~
-Swordswoman~
-Title
-Fencer~
-Fenceress~
-Title
-Combatant~
-Combatess~
-Title
-Hero~
-Heroine~
-Title
-Myrmidon~
-Myrmidon~
-Title
-Swashbuckler~
-Swashbuckleress~
-Title
-Mercenary~
-Mercenaress~
-Title
-Swordmaster~
-Swordmistress~
-Title
-Lieutenant~
-Lieutenant~
-Title
-Champion~
-Lady Champion~
-Title
-Dragoon~
-Lady Dragoon~
-Title
-Cavalier~
-Lady Cavalier~
-Title
-Knight~
-Lady Knight~
-Title
-Grand Knight~
-Grand Knight~
-Title
-Master Knight~
-Master Knight~
-Title
-Paladin~
-Paladin~
-Title
-Grand Paladin~
-Grand Paladin~
-Title
-Demon Slayer~
-Demon Slayer~
-Title
-Greater Demon Slayer~
-Greater Demon Slayer~
-Title
-Dragon Slayer~
-Dragon Slayer~
-Title
-Greater Dragon Slayer~
-Greater Dragon Slayer~
-Title
-Underlord~
-Underlord~
-Title
-Overlord~
-Overlord~
-Title
-Baron of Thunder~
-Baroness of Thunder~
-Title
-Baron of Storms~
-Baroness of Storms~
-Title
-Baron of Tornadoes~
-Baroness of Tornadoes~
-Title
-Baron of Hurricanes~
-Baroness of Hurricanes~
-Title
-Baron of Meteors~
-Baroness of Meteors~
-Title
-Baron of the Eastern Plains~
-Baroness of Meteors~
-Title
-Baron of the Western Mountains~
-Baroness of Meteors~
-Title
-Baron of the Northern Reaches~
-Baroness of Meteors~
-Title
-Baron of the Southern Seas~
-Baroness of Meteors~
-Title
-Knight of the Black Rose~
-Baroness of Meteors~
-Title
-Knight of the Red Rose~
-Baroness of Meteors~
-Title
-Knight of the White Rose~
-Baroness of Meteors~
-Title
-Knight of the Silver Moon~
-Baroness of Meteors~
-Title
-Knight of the Golden Sun~
-Baroness of Meteors~
-Title
-Squire of the Realm~
-Baroness of Meteors~
-Title
-Herald of the Realm~
-Baroness of Meteors~
-Title
-Knight of the Realm~
-Baroness of Meteors~
-Title
-Lord of the Realm~
-Baroness of Meteors~
-Title
-Highlord of the Realm~
-Baroness of Meteors~
-Title
-Knight Hero~
-Knight Heroine~
-Title
-Angel of War~
-Angel of War~
-Title
-Deity of War~
-Deity of War~
-Title
-Supreme Master of War~
-Supreme Mistress of War~
-Title
-Implementor~
-Implementress~
+Skll         8 'bash door'
+Skll        12 'berserk'
+Skll        15 'dual'
+Skll         1 'enhanced damage'
+Skll         1 'kick'
+Skll         1 'parry'
+Skll         1 'rescue'
+Skll        10 'scrolls'
+Skll         1 'second attack'
+Skll        20 'staves'
+Skll         1 'third attack'
+Skll        10 'wands'
+Skll         1 'stake'
+Skll         7 'shield block'
+Skll        20 'fast healing'
+Skll        30 'fourth attack'
+Skll        16 'whirlwind'
+Skll        25 'dirt kicking'
+Skll        15 'swim'
+Ttle        Man~ Woman~
+Ttle        Swordpupil~ Swordpupil~
+Ttle        Recruit~ Recruit~
+Ttle        Sentry~ Sentress~
+Ttle        Fighter~ Fighter~
+Ttle        Soldier~ Soldier~
+Ttle        Warrior~ Warrior~
+Ttle        Veteran~ Veteran~
+Ttle        Swordsman~ Swordswoman~
+Ttle        Fencer~ Fenceress~
+Ttle        Combatant~ Combatess~
+Ttle        Hero~ Heroine~
+Ttle        Myrmidon~ Myrmidon~
+Ttle        Swashbuckler~ Swashbuckleress~
+Ttle        Mercenary~ Mercenaress~
+Ttle        Swordmaster~ Swordmistress~
+Ttle        Lieutenant~ Lieutenant~
+Ttle        Champion~ Lady Champion~
+Ttle        Dragoon~ Lady Dragoon~
+Ttle        Cavalier~ Lady Cavalier~
+Ttle        Knight~ Lady Knight~
+Ttle        Grand Knight~ Grand Knight~
+Ttle        Master Knight~ Master Knight~
+Ttle        Paladin~ Paladin~
+Ttle        Grand Paladin~ Grand Paladin~
+Ttle        Demon Slayer~ Demon Slayer~
+Ttle        Greater Demon Slayer~ Greater Demon Slayer~
+Ttle        Dragon Slayer~ Dragon Slayer~
+Ttle        Greater Dragon Slayer~ Greater Dragon Slayer~
+Ttle        Underlord~ Underlord~
+Ttle        Overlord~ Overlord~
+Ttle        Baron of Thunder~ Baroness of Thunder~
+Ttle        Baron of Storms~ Baroness of Storms~
+Ttle        Baron of Tornadoes~ Baroness of Tornadoes~
+Ttle        Baron of Hurricanes~ Baroness of Hurricanes~
+Ttle        Baron of Meteors~ Baroness of Meteors~
+Ttle        Baron of the Eastern Plains~ Baroness of Meteors~
+Ttle        Baron of the Western Mountains~ Baroness of Meteors~
+Ttle        Baron of the Northern Reaches~ Baroness of Meteors~
+Ttle        Baron of the Southern Seas~ Baroness of Meteors~
+Ttle        Knight of the Black Rose~ Baroness of Meteors~
+Ttle        Knight of the Red Rose~ Baroness of Meteors~
+Ttle        Knight of the White Rose~ Baroness of Meteors~
+Ttle        Knight of the Silver Moon~ Baroness of Meteors~
+Ttle        Knight of the Golden Sun~ Baroness of Meteors~
+Ttle        Squire of the Realm~ Baroness of Meteors~
+Ttle        Herald of the Realm~ Baroness of Meteors~
+Ttle        Knight of the Realm~ Baroness of Meteors~
+Ttle        Lord of the Realm~ Baroness of Meteors~
+Ttle        Highlord of the Realm~ Baroness of Meteors~
+Ttle        Knight Hero~ Knight Heroine~
+Ttle        Angel of War~ Angel of War~
+Ttle        Deity of War~ Deity of War~
+Ttle        Supreme Master of War~ Supreme Mistress of War~
+Ttle        Implementor~ Implementress~
 End

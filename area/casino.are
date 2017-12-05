@@ -1,0 +1,300 @@
+#AREADATA
+Name        {{ All } Maniac  Mythran Mud Casino~
+Builders    None~
+VNUMs       500 599
+Security    1
+Recall      3001
+End
+
+
+#HELPS
+
+-1 GAMES~
+The current games available on EnvyMud are:
+	Upper-Lower-Triple
+        High-Dice
+        Seven
+~
+
+-1 DEALER CROUPIER~
+Each gambling game must have someone in charge, and this person is 
+traditionally known as a CROUPIER.  For card games, the term DEALER is
+more common.  The CROUPIER is in total control of the game, and can
+turn away unwelcome customers.  Keep your eyes out, though...some of 
+the croupiers have been known to take advantage of unwary players.
+~
+
+0 BET WAGER~
+Syntax: bet   <amount>
+Syntax: bet   <amount> <choice>
+Syntax: bet    limit
+Syntax: wager <amount>
+Syntax: wager <amount> <choice>
+Syntax: wager  limit
+
+During a gambling game, you will occasionally need to place a BET.  The
+syntax of the wager will depend on the particular game in which you are
+participating.  Wagering the 'limit' will automatically place the maximum
+bet, if you have enough gold.
+~
+
+0 $~
+
+#MOBILES
+#500
+croupier~
+the slick croupier~
+A slick croupier is here, ready to play a game of UPPER LOWER TRIPLE.
+~
+He's a seedy-looking character, who doesn't look like he's happy to be
+playing by the rules.
+~
+2115 0 0 S
+50 1 2 6d8+200 1d6+12
+1000 0
+0 Human~ 1
+#501
+croupier~
+the slick croupier~
+A slick croupier is here, ready to play a game of HIGH DICE.
+~
+He's a seedy-looking character, who doesn't look like he's happy to be
+playing by the rules.
+~
+2115 0 0 S
+50 1 2 6d8+200 1d6+12
+1000 0
+0 Human~ 1
+#502
+croupier~
+the slick croupier~
+A slick croupier is here, ready to play a game of SEVEN.
+~
+He's a seedy-looking character, who doesn't look like he's happy to be
+playing by the rules.
+~
+2115 0 0 S
+50 1 2 6d8+200 1d6+12
+1000 0
+0 Human~ 1
+#0
+
+
+#NEWOBJECTS
+#0
+
+
+#ROOMDATA
+#500
+Southern hall of the Mythran Mud Casino~
+This whole room seems to be under construction.  Masons labour to finish
+the casino.  You see a sign saying: dice games - NORTH.  
+~
+0 8 0
+D0
+~
+~
+0 0 503
+D2
+~
+~
+0 0 508
+S
+#501
+~
+~
+0 0 0
+S
+#502
+~
+~
+0 0 0
+S
+#503
+Central hall of the Mythran Mud Casino~
+Another room under contruction!  It seems this casino is not yet ready
+for work.  You see another sign saying: dice games - NORTH.  
+~
+0 8 0
+D0
+~
+~
+0 0 504
+D1
+~
+~
+0 0 505
+D2
+~
+~
+0 0 500
+D3
+~
+~
+0 0 506
+S
+#504
+Northern hall of the Mythran Mud Casino~
+You are in the Northern hall of the Mythran Mud Casino.
+If you prefer a nice game of seven, we recommend you go east here, where our
+croupiers play the fabulous game of seven.
+The game of upper-lower-triple, is played in the room to the north.
+You can play a game of high-dice in the room in the west.
+~
+0 8 0
+D0
+~
+~
+0 0 510
+D1
+~
+~
+0 0 509
+D2
+~
+~
+0 0 503
+D3
+~
+~
+0 0 511
+S
+#505
+Eastern hall of the Mythran Mud Casino~
+~
+0 8 0
+D3
+~
+~
+0 0 503
+S
+#506
+Western hall of the Mythran Mud Casino~
+~
+0 8 0
+D1
+~
+~
+0 0 503
+S
+#507
+Path to the Mythran Mud Casino~
+You stand at the path to the Mythran Mud casino.  To the north you see
+the casino istself.  It doesn't seem to be big, but thart's probably not to
+draw attentions.  Since the Mayor illegalized gambling things are more
+difficult.  
+~
+0 4 1
+D0
+~
+~
+0 0 508
+D2
+~
+~
+0 0 11030
+S
+#508
+Entrace to the Mythran Mud Casino~
+Here you stand at the entrance to the casino.  A pair of security men
+guard the casino entrance.  The casino is made of fine white marble and has
+beatiful craftsmanship.  What are you waiting for?  Go north and gamble! 
+You can only lose your money...  
+~
+0 0 0
+D0
+~
+~
+0 0 500
+D2
+~
+~
+0 0 507
+S
+#509
+The Game of Seven Room~
+In this room you can play the game of seven, well...  Only if the
+croupier is awake...  The rooms is filled with noise as people gamble their
+whole life savings.  Most of them are losing, but not you...  You have luck
+with you.  Or at least so you think.  A sign is here.  
+~
+0 8 0
+E
+sign~
+SEVEN is a simple dice game.  You place a BET with a choice of under,
+seven, or over.  The dealer then rolls two dice, and their values are added
+up.  If the result is 8 or greater, it is an "Over", and if the resut is 6
+or less, it is a "Under".  If, however, the result is seven, it is a "Seven"
+and those who bet on it win back 5 times their wager!  
+~
+D3
+~
+~
+0 0 504
+S
+#510
+The Upper Lower Triple Room~
+Here you are, ready to play a nice game of upper-lower-triple.  What are
+you waiting for?  The croupier seems to be willing enough to take you
+money...  Why don't you hand it over to him?  A sign is here.  
+~
+0 8 0
+E
+sign~
+UPPER-LOWER-TRIPLE is a simple dice game.  You place a BET with a choice
+of upper, lower, or triple.  The dealer then rolls three dice, and their
+values are added up.  If the result is 11 or greater, it is an "Upper", and
+if the resut is 10 or less, it is a "Lower".  If, however, all three dice
+show the same numbers, it is a "Triple" and those who bet on it win back 36
+times their wager!  
+~
+D2
+~
+~
+0 0 504
+S
+#511
+The High-Dice Room~
+The high-dice room...  High dice is the simplest game to play of them
+all.  You don't even have to say a thing.  Just place your bet and the
+croupier will know what do with your money... He looks kind of dodgy and you
+remember that sign on the closed down circus games booths.  A sign is here. 
+~
+0 8 0
+E
+sign~
+HIGH-DICE is the simplest dice game.  You place a BET.  The dealer then
+rolls two dice for the player and then two dice for himself.  If the
+player's total is higher the player wins, otherwise he loses.  
+~
+D1
+~
+~
+0 0 504
+S
+#0
+
+
+#SPECIALS
+S
+
+
+#GAMES
+M   500 game_u_l_t                         120000 100 1	* the slick croupier
+M   501 game_high_dice                     150000 100 1	* the slick croupier
+M   502 game_seven                         100000 100 1	* the slick croupier
+S
+
+
+#RESETS
+M 0   502  1   509 	* the slick croupier -> The Game of Seven Room
+M 0   500  1   510 	* the slick croupier -> The Upper Lower Triple Room
+M 0   501  1   511 	* the slick croupier -> The High-Dice Room
+S
+
+
+#SHOPS
+0
+
+
+#$

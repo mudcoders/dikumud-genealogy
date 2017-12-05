@@ -7,15 +7,12 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #0
 
 
-
 #NEWOBJECTS
 #0
-
 
 
 #ROOMDATA
@@ -181,10 +178,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -203,10 +198,8 @@ M 0 350 1 5577
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

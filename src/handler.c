@@ -30,6 +30,7 @@
 #endif
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
@@ -102,6 +103,31 @@ int get_curr_str( CHAR_DATA *ch )
 
 
 /*
+ * Retrieve character's maximum strength.
+ */
+int get_max_str( CHAR_DATA *ch )
+{
+    int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].str_mod;
+    value = 13 + mod;
+
+    if ( IS_NPC( ch ) )
+	return value;
+
+    if ( class_table[ch->class]->attr_prime == APPLY_STR )
+	max = UMIN( 25, 25 + mod );
+    else
+	max = UMIN( 22 + mod, 25 );
+
+    return max;
+}
+
+
+
+/*
  * Retrieve character's current intelligence.
  */
 int get_curr_int( CHAR_DATA *ch )
@@ -122,6 +148,31 @@ int get_curr_int( CHAR_DATA *ch )
 	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_int + ch->pcdata->mod_int, max );
+}
+
+
+
+/*
+ * Retrieve character's maximum intelligence.
+ */
+int get_max_int( CHAR_DATA *ch )
+{
+    int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].int_mod;
+    value = 13 + mod;
+
+    if ( IS_NPC( ch ) )
+	return value;
+
+    if ( class_table[ch->class]->attr_prime == APPLY_INT )
+	max = UMIN( 25, 25 + mod );
+    else
+	max = UMIN( 22 + mod, 25 );
+
+    return max;
 }
 
 
@@ -152,6 +203,31 @@ int get_curr_wis( CHAR_DATA *ch )
 
 
 /*
+ * Retrieve character's maximum wisdom.
+ */
+int get_max_wis( CHAR_DATA *ch )
+{
+    int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].wis_mod;
+    value = 13 + mod;
+
+    if ( IS_NPC( ch ) )
+	return value;
+
+    if ( class_table[ch->class]->attr_prime == APPLY_WIS )
+	max = UMIN( 25, 25 + mod );
+    else
+	max = UMIN( 22 + mod, 25 );
+
+    return max;
+}
+
+
+
+/*
  * Retrieve character's current dexterity.
  */
 int get_curr_dex( CHAR_DATA *ch )
@@ -177,6 +253,31 @@ int get_curr_dex( CHAR_DATA *ch )
 
 
 /*
+ * Retrieve character's maximum dexterity.
+ */
+int get_max_dex( CHAR_DATA *ch )
+{
+    int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].dex_mod;
+    value = 13 + mod;
+
+    if ( IS_NPC( ch ) )
+	return value;
+
+    if ( class_table[ch->class]->attr_prime == APPLY_DEX )
+	max = UMIN( 25, 25 + mod );
+    else
+	max = UMIN( 22 + mod, 25 );
+
+    return max;
+}
+
+
+
+/*
  * Retrieve character's current constitution.
  */
 int get_curr_con( CHAR_DATA *ch )
@@ -197,6 +298,31 @@ int get_curr_con( CHAR_DATA *ch )
 	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_con + ch->pcdata->mod_con, max );
+}
+
+
+
+/*
+ * Retrieve character's maximum constitution.
+ */
+int get_max_con( CHAR_DATA *ch )
+{
+    int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].con_mod;
+    value = 13 + mod;
+
+    if ( IS_NPC( ch ) )
+	return value;
+
+    if ( class_table[ch->class]->attr_prime == APPLY_CON )
+	max = UMIN( 25, 25 + mod );
+    else
+	max = UMIN( 22 + mod, 25 );
+
+    return max;
 }
 
 
@@ -315,7 +441,6 @@ int can_carry_w( CHAR_DATA *ch )
  * See if a string is one of the names of an object.
  * New is_name sent in by Alander.
  */
-
 bool is_name( const char *str, char *namelist )
 {
     char name [ MAX_INPUT_LENGTH ];
@@ -326,6 +451,24 @@ bool is_name( const char *str, char *namelist )
 	if ( name[0] == '\0' )
 	    return FALSE;
 	if ( !str_cmp( str, name ) )
+	    return TRUE;
+    }
+}
+
+
+/*
+ * See if a string is prefix of one of the names of an object.
+ */
+bool is_name_prefix( const char *str, char *namelist )
+{
+    char name [ MAX_INPUT_LENGTH ];
+
+    for ( ; ; )
+    {
+	namelist = one_argument( namelist, name );
+	if ( name[0] == '\0' )
+	    return FALSE;
+	if ( !str_prefix( str, name ) )
 	    return TRUE;
     }
 }
@@ -350,6 +493,12 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     else
     {
 	REMOVE_BIT( ch->affected_by, paf->bitvector );
+	switch ( paf->location )
+	{
+	case APPLY_RESISTANT:	REMOVE_BIT( ch->resistant, mod );	return;
+	case APPLY_IMMUNE:	REMOVE_BIT( ch->immune, mod );		return;
+	case APPLY_SUSCEPTIBLE:	REMOVE_BIT( ch->susceptible, mod );	return;
+	}
 	mod = 0 - mod;
     }
 
@@ -397,6 +546,9 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     case APPLY_SAVING_PETRI:  ch->saving_throw          += mod; break;
     case APPLY_SAVING_BREATH: ch->saving_throw          += mod; break;
     case APPLY_SAVING_SPELL:  ch->saving_throw          += mod; break;
+    case APPLY_RESISTANT:     SET_BIT( ch->resistant, mod );    break;
+    case APPLY_IMMUNE:        SET_BIT( ch->immune, mod );       break;
+    case APPLY_SUSCEPTIBLE:   SET_BIT( ch->susceptible, mod );  break;
     }
 
     /* Remove the excess general stats */
@@ -732,7 +884,7 @@ void obj_from_char( OBJ_DATA *obj )
  */
 int apply_ac( OBJ_DATA *obj, int iWear )
 {
-    if ( obj->item_type != ITEM_ARMOR )
+    if ( obj->item_type != ITEM_ARMOR && obj->item_type != ITEM_CLOTHING )
 	return 0;
 
     switch ( iWear )
@@ -1189,6 +1341,59 @@ CHAR_DATA *get_char_room( CHAR_DATA *ch, char *argument )
 	    return rch;
     }
 
+    count  = 0;
+    for ( rch = ch->in_room->people; rch; rch = rch->next_in_room )
+    {
+	if ( !can_see( ch, rch ) || !is_name_prefix( arg, rch->name ) )
+	    continue;
+	if ( ++count == number )
+	    return rch;
+    }
+
+    return NULL;
+}
+
+
+
+
+/*
+ * Find a char in an area.
+ */
+CHAR_DATA *get_char_area( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *ach;
+    char       arg [ MAX_INPUT_LENGTH ];
+    int        number;
+    int        count;
+
+    if ( ( ach = get_char_room( ch, argument ) ) )
+	return ach;
+
+    number = number_argument( argument, arg );
+    count  = 0;
+    for ( ach = char_list; ach ; ach = ach->next )
+    {
+	if ( !ach->in_room || !ch->in_room
+	    || ach->in_room->area != ch->in_room->area
+	    || !can_see( ch, ach )
+	    || !is_name( arg, ach->name ) )
+	    continue;
+	if ( ++count == number )
+	    return ach;
+    }
+
+    count  = 0;
+    for ( ach = char_list; ach ; ach = ach->next )
+    {
+	if ( !ach->in_room || !ch->in_room
+	    || ach->in_room->area != ch->in_room->area
+	    || !can_see( ch, ach )
+	    || !is_name_prefix( arg, ach->name ) )
+	    continue;
+	if ( ++count == number )
+	    return ach;
+    }
+
     return NULL;
 }
 
@@ -1213,6 +1418,15 @@ CHAR_DATA *get_char_world( CHAR_DATA *ch, char *argument )
     for ( wch = char_list; wch ; wch = wch->next )
     {
 	if ( !can_see( ch, wch ) || !is_name( arg, wch->name ) )
+	    continue;
+	if ( ++count == number )
+	    return wch;
+    }
+
+    count  = 0;
+    for ( wch = char_list; wch ; wch = wch->next )
+    {
+	if ( !can_see( ch, wch ) || !is_name_prefix( arg, wch->name ) )
 	    continue;
 	if ( ++count == number )
 	    return wch;
@@ -1265,6 +1479,16 @@ OBJ_DATA *get_obj_list( CHAR_DATA *ch, char *argument, OBJ_DATA *list )
 	}
     }
 
+    count  = 0;
+    for ( obj = list; obj; obj = obj->next_content )
+    {
+	if ( can_see_obj( ch, obj ) && is_name_prefix( arg, obj->name ) )
+	{
+	    if ( ++count == number )
+		return obj;
+	}
+    }
+
     return NULL;
 }
 
@@ -1293,6 +1517,18 @@ OBJ_DATA *get_obj_carry( CHAR_DATA *ch, char *argument )
 	}
     }
 
+    count  = 0;
+    for ( obj = ch->carrying; obj; obj = obj->next_content )
+    {
+	if ( obj->wear_loc == WEAR_NONE
+	    && can_see_obj( ch, obj )
+	    && is_name_prefix( arg, obj->name ) )
+	{
+	    if ( ++count == number )
+		return obj;
+	}
+    }
+
     return NULL;
 }
 
@@ -1315,6 +1551,18 @@ OBJ_DATA *get_obj_wear( CHAR_DATA *ch, char *argument )
 	if ( obj->wear_loc != WEAR_NONE
 	    && can_see_obj( ch, obj )
 	    && is_name( arg, obj->name ) )
+	{
+	    if ( ++count == number )
+		return obj;
+	}
+    }
+
+    count  = 0;
+    for ( obj = ch->carrying; obj; obj = obj->next_content )
+    {
+	if ( obj->wear_loc != WEAR_NONE
+	    && can_see_obj( ch, obj )
+	    && is_name_prefix( arg, obj->name ) )
 	{
 	    if ( ++count == number )
 		return obj;
@@ -1366,6 +1614,16 @@ OBJ_DATA *get_obj_world( CHAR_DATA *ch, char *argument )
     for ( obj = object_list; obj; obj = obj->next )
     {
 	if ( can_see_obj( ch, obj ) && is_name( arg, obj->name ) )
+	{
+	    if ( ++count == number )
+		return obj;
+	}
+    }
+
+    count  = 0;
+    for ( obj = object_list; obj; obj = obj->next )
+    {
+	if ( can_see_obj( ch, obj ) && is_name_prefix( arg, obj->name ) )
 	{
 	    if ( ++count == number )
 		return obj;
@@ -1645,6 +1903,10 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_PILL:		return "pill";
     case ITEM_PORTAL:		return "portal";
     case ITEM_WARP_STONE:	return "warp stone";
+    case ITEM_CLOTHING:		return "clothing";
+    case ITEM_RANGED_WEAPON:	return "ranged weapon";
+    case ITEM_AMMO:		return "ammo";
+    case ITEM_GEM:		return "gem";
     }
 
     for ( in_obj = obj; in_obj->in_obj; in_obj = in_obj->in_obj )
@@ -1696,7 +1958,10 @@ char *affect_loc_name( int location )
     case APPLY_SAVING_PETRI:	return "save vs petrification";
     case APPLY_SAVING_BREATH:	return "save vs breath";
     case APPLY_SAVING_SPELL:	return "save vs spell";
-    case APPLY_RACE:            return "race";
+    case APPLY_RACE:		return "race";
+    case APPLY_RESISTANT:	return "resistant";
+    case APPLY_IMMUNE:		return "immune";
+    case APPLY_SUSCEPTIBLE:	return "susceptible";
     }
 
     bug( "Affect_location_name: unknown location %d.", location );
@@ -1814,6 +2079,43 @@ char *parts_bit_name( int vector )
 
 
 
+/*
+ * Return ascii name of a ris vector.
+ */
+char *ris_bit_name( int vector )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( vector & RIS_FIRE          ) strcat( buf, " fire"           );
+    if ( vector & RIS_COLD          ) strcat( buf, " cold"           );
+    if ( vector & RIS_ELECTRICITY   ) strcat( buf, " electricity"    );
+    if ( vector & RIS_ENERGY        ) strcat( buf, " energy"         );
+    if ( vector & RIS_ACID          ) strcat( buf, " acid"           );
+    if ( vector & RIS_POISON        ) strcat( buf, " poison"         );
+    if ( vector & RIS_CHARM         ) strcat( buf, " charm"          );
+    if ( vector & RIS_MENTAL        ) strcat( buf, " mental"         );
+    if ( vector & RIS_WHITE_MANA    ) strcat( buf, " white_mana"     );
+    if ( vector & RIS_BLACK_MANA    ) strcat( buf, " black_mana"     );
+    if ( vector & RIS_DISEASE       ) strcat( buf, " disease"        );
+    if ( vector & RIS_DROWNING      ) strcat( buf, " drowning"       );
+    if ( vector & RIS_LIGHT         ) strcat( buf, " light"          );
+    if ( vector & RIS_SOUND         ) strcat( buf, " sound"          );
+    if ( vector & RIS_MAGIC         ) strcat( buf, " magic"          );
+    if ( vector & RIS_NONMAGIC      ) strcat( buf, " nonmagic"       );
+    if ( vector & RIS_SILVER        ) strcat( buf, " silver"         );
+    if ( vector & RIS_IRON          ) strcat( buf, " iron"           );
+    if ( vector & RIS_WOOD          ) strcat( buf, " wood"           );
+    if ( vector & RIS_WEAPON        ) strcat( buf, " weapon"         );
+    if ( vector & RIS_BASH          ) strcat( buf, " bash"           );
+    if ( vector & RIS_PIERCE        ) strcat( buf, " pierce"         );
+    if ( vector & RIS_SLASH         ) strcat( buf, " slash"          );
+
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+
+
 CHAR_DATA *get_char( CHAR_DATA *ch )
 {
     if ( !ch->pcdata )
@@ -1912,18 +2214,161 @@ int affect_lookup( const char *affectname )
 /*
  * Lookup a clan by name.
  */
-int clan_lookup( const char *name )
+CLAN_DATA *clan_lookup( const char *name )
 {
-    int cn;
+    CLAN_DATA *clan;
 
-    for ( cn = 0; cn < MAX_CLAN; cn++ )
+    for ( clan = clan_first ; clan; clan = clan->next )
     {
-	if ( !clan_table[cn].name )
+	if ( !clan->name )
 	    break;
-	if ( LOWER( name[0] ) == LOWER( clan_table[cn].name[0] )
-	    && !str_prefix( name, clan_table[cn].name ) )
-	    return cn;
+	if ( LOWER( name[0] ) == LOWER( clan->name[0] )
+	    && !str_prefix( name, clan->name ) )
+	    return clan;
     }
 
-    return -1;
+    return NULL;
+}
+
+/*
+  14k42 = 14 * 1000 + 14 * 100 + 2 * 10 = 14420
+
+  Of course, it only pays off to use that notation when you can skip many 0's.
+  There is not much point in writing 66k666 instead of 66666, except maybe
+  when you want to make sure that you get 66,666.
+
+  More than 3 (in case of 'k') or 6 ('m') digits after 'k'/'m' are automatically
+  disregarded. Example:
+
+  14k1234 = 14,123
+
+  If the number contains any other characters than digits, 'k' or 'm', the
+  function returns 0. It also returns 0 if 'k' or 'm' appear more than
+  once.
+
+  the pointer to buffer stuff is not really necessary, but originally I
+  modified the buffer, so I had to make a copy of it. What the hell, it
+  works :) (read: it seems to work :)
+*/
+int advatoi( const char *s )
+{
+    int number		= 0;
+    int multiplier	= 0;
+
+    /*
+     * as long as the current character is a digit add to current number.
+     */
+    while ( isdigit( s[0] ) )
+        number = ( number * 10 ) + ( *s++ - '0' );
+
+    switch (UPPER(s[0]))
+    {
+        case 'K'  : number *= ( multiplier = 1000 );      ++s; break;
+        case 'M'  : number *= ( multiplier = 1000000 );   ++s; break;
+        case '\0' : break;
+        default   : return 0; /* not k nor m nor NULL - return 0! */
+    }
+
+    /* if any digits follow k/m, add those too */
+    while ( isdigit( s[0] ) && ( multiplier > 1 ) )
+    {
+        /* the further we get to right, the less the digit 'worth' */
+        multiplier /= 10;
+        number = number + ( ( *s++ - '0' ) * multiplier );
+    }
+
+    /* return 0 if non-digit character was found, other than NULL */
+    if ( s[0] != '\0' && !isdigit( s[0] ) )
+        return 0;
+
+    /* anything left is likely extra digits (ie: 14k4443  -> 3 is extra) */
+
+    return number;
+}
+
+/*
+ * For resistant, immune, and susceptible.
+ * The 'globals' (magic and weapons) may be overriden.
+ * Three other cases -- wood, silver, and iron -- will be checked in fight.c
+ * RIS was mostly based from ROM2.4 code by Russ Taylor (rtaylor@efn.org)
+ */
+int check_ris( CHAR_DATA *ch, int dam_type )
+{
+    int ris;
+    int def;
+    int bit;
+    int resistant;
+    int immune;
+    int susceptible;
+
+
+    ris = -1;
+    def = IS_NORMAL;
+
+    if ( dam_type == DAM_NONE )
+        return ris;
+
+    resistant   = ch->resistant   | race_table[ ch->race ].resistant;
+    immune      = ch->immune      | race_table[ ch->race ].immune;
+    susceptible = ch->susceptible | race_table[ ch->race ].susceptible;
+
+    if ( dam_type < DAM_OTHER )
+    {
+	     if ( IS_SET( resistant, RIS_WEAPON ) )
+	    def = IS_RESISTANT;
+	else if ( IS_SET( immune, RIS_WEAPON ) )
+	    def = IS_IMMUNE;
+	else if ( IS_SET( susceptible, RIS_WEAPON ) )
+	    def = IS_SUSCEPTIBLE;
+    }
+    else
+    {
+	     if ( IS_SET( resistant, RIS_MAGIC ) )
+	    def = IS_RESISTANT;
+	else if ( IS_SET( immune, RIS_MAGIC ) )
+	    def = IS_IMMUNE;
+	else if ( IS_SET( susceptible, RIS_MAGIC ) )
+	    def = IS_SUSCEPTIBLE;
+    }
+
+    switch ( dam_type )
+    {
+    default:			return def;
+    case DAM_FIRE:		bit = RIS_FIRE;		break;
+    case DAM_COLD:		bit = RIS_COLD;		break;
+    case DAM_ELECTRICITY:	bit = RIS_ELECTRICITY;	break;
+    case DAM_ACID:		bit = RIS_ACID;		break;
+    case DAM_POISON:		bit = RIS_POISON;	break;
+    case DAM_CHARM:		bit = RIS_CHARM;	break;
+    case DAM_MENTAL:		bit = RIS_MENTAL;	break;
+    case DAM_ENERGY:		bit = RIS_ENERGY;	break;
+    case DAM_WHITE_MANA:	bit = RIS_WHITE_MANA;	break;
+    case DAM_BLACK_MANA:	bit = RIS_BLACK_MANA;	break;
+    case DAM_DISEASE:		bit = RIS_DISEASE;	break;
+    case DAM_DROWNING:		bit = RIS_DROWNING;	break;
+    case DAM_LIGHT:		bit = RIS_LIGHT;	break;
+    case DAM_SOUND:		bit = RIS_SOUND;	break;
+    case DAM_BASH:		bit = RIS_BASH;		break;
+    case DAM_PIERCE:		bit = RIS_PIERCE;	break;
+    case DAM_SLASH:		bit = RIS_SLASH;	break;
+    }
+
+         if ( IS_SET( immune, bit ) )
+	ris = IS_IMMUNE;
+    else if ( IS_SET( resistant, bit ) && ris != IS_IMMUNE )
+	ris = IS_RESISTANT;
+    else if ( IS_SET( susceptible, bit ) )
+    {
+	switch ( ris )
+	{
+	default:		ris = IS_SUSCEPTIBLE;	break;
+	case IS_IMMUNE:		ris = IS_RESISTANT;	break;
+	case IS_RESISTANT:	ris = IS_NORMAL;	break;
+	}
+    }
+
+    if ( ris == -1 )
+        return def;
+    else
+        return ris;
 }

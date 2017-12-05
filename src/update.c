@@ -97,7 +97,7 @@ void advance_level( CHAR_DATA *ch )
 	REMOVE_BIT( ch->act, PLR_BOUGHT_PET );
 
     sprintf( buf,
-	    "Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
+	    "{o{wYour gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.{x\n\r",
 	    add_hp,	ch->max_hit,
 	    add_mana,	ch->max_mana,
 	    add_move,	ch->max_move,
@@ -162,6 +162,8 @@ void demote_level( CHAR_DATA *ch )
 
 void gain_exp( CHAR_DATA *ch, int gain )
 {
+    char buf [ MAX_STRING_LENGTH ];
+
     if ( IS_NPC( ch ) || ch->level >= LEVEL_HERO )
 	return;
 
@@ -169,9 +171,12 @@ void gain_exp( CHAR_DATA *ch, int gain )
     while ( ch->level < LEVEL_HERO && ch->exp >= EXP_PER_LEVEL
 	   * ( ch->level + 1 ) )
     {
-	send_to_char( "You raise a level!!  ", ch );
+	send_to_char( "{o{wYou raise a level!!  {x", ch );
 	ch->level += 1;
 	advance_level( ch );
+	sprintf( buf, "%s has levelled and is now level %d.",
+		ch->name, ch->level );
+	wiznet( ch, WIZ_LEVELS, get_trust( ch ), buf );
     }
 
     return;
@@ -370,13 +375,10 @@ void mobile_update( void )
 
 	if ( !IS_SET( ch->act, ACT_SENTINEL )
 	    && !ch->fighting
-	    && ch->hunting )
+	    && ch->hunting
+	    && ch->position == POS_STANDING  )
 	{
 	    WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
-	    /* Comment this out temporarily to avoid spam - Scryn */
-	    sprintf( buf, "%s hunting %s from %s.", ch->name, ch->hunting->name,
-		    ch->in_room->name );
-	    log_string( buf );
 	    hunt_victim( ch );
 	    continue;
 	}  
@@ -391,6 +393,17 @@ void mobile_update( void )
 	/* That's all for sleeping / busy monster */
 	if ( ch->position < POS_STANDING )
 	    continue;
+
+        if ( ch->rider )
+        {
+            if ( IS_SET( ch->act, ACT_AGGRESSIVE ) )
+                do_emote( ch, "snarls and growls." );
+            continue;
+        }
+
+        if ( IS_SET( ch->in_room->room_flags, ROOM_SAFE )
+	    && IS_SET( ch->act, ACT_AGGRESSIVE ) )
+	    do_emote( ch, "glares around and snarls." );
 
         /* MOBprogram random trigger */
         if ( ch->in_room->area->nplayer > 0 )
@@ -503,7 +516,7 @@ void mobile_update( void )
 		    act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
 
 		    /* Find an exit giving each one an equal chance */
-		    for ( direction = 0; direction <= 5; direction++ )
+		    for ( direction = 0; direction < MAX_DIR; direction++ )
 		    {
 			if ( ch->in_room->exit[direction]
 			    && number_range( 0, direction ) == 0 )
@@ -538,27 +551,47 @@ void weather_update( void )
 
     switch ( ++time_info.hour )
     {
+    case  4:
+	weather_info.sunlight = MOON_SET;
+	strcat( buf, "{dThe moon sets.{x\n\r" );
+	break;
+
     case  6:
 	weather_info.sunlight = SUN_RISE;
-	strcat( buf, "The sun rises in the east.\n\r" );
+	strcat( buf, "{yThe sun rises in the east.{x\n\r" );
+	weather_info.temperature += number_fuzzy( 10 );
 	break;
 
     case  7:
 	weather_info.sunlight = SUN_LIGHT;
-	strcat( buf, "The day has begun.\n\r" );
+	strcat( buf, "{o{yThe day has begun.{x\n\r" );
+	if ( time_info.month <= 4 || time_info.month >= 15 )
+	    weather_info.temperature = number_fuzzy( 20 );
+	else
+	    weather_info.temperature = number_fuzzy( 50 );
+	break;
+
+    case  12:
+	strcat( buf, "{o{yIt is noon.{x\n\r" );
+	weather_info.temperature += number_fuzzy( 20 );
 	break;
 
     case 19:
 	weather_info.sunlight = SUN_SET;
-	strcat( buf, "The sun slowly disappears in the west.\n\r" );
+	strcat( buf, "{rThe sun slowly disappears in the west.{x\n\r" );
+	weather_info.temperature -= number_fuzzy( 20 );
 	break;
 
     case 20:
 	weather_info.sunlight = SUN_DARK;
-	strcat( buf, "The night has begun.\n\r" );
+	strcat( buf, "{dThe night has begun.{x\n\r" );
+	weather_info.temperature -= number_fuzzy( 10 );
 	break;
 
     case 24:
+	weather_info.sunlight = MOON_RISE;
+	strcat( buf, "{wThe moon rises, casting a silver glow over the night.{x\n\r" );
+	weather_info.temperature -= number_fuzzy( 10 );
 	time_info.hour = 0;
 	time_info.day++;
 	break;
@@ -579,6 +612,8 @@ void weather_update( void )
     /*
      * Weather change.
      */
+    weather_info.winddir += number_range( 0, 2 ) - 1;
+
     if ( time_info.month >= 9 && time_info.month <= 16 )
 	diff = weather_info.mmhg >  985 ? -2 : 2;
     else
@@ -603,8 +638,15 @@ void weather_update( void )
 	if (     weather_info.mmhg <  990
 	    || ( weather_info.mmhg < 1010 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The sky is getting cloudy.\n\r" );
+	    if ( time_info.month <= 4 || time_info.month >= 15 )
+	    {
+		strcat( buf, "{wA few flakes of snow are falling.{x\n\r" );
+		weather_info.temperature -= 10;
+	    }
+	    else
+		strcat( buf, "{dThe sky is getting cloudy.{x\n\r" );
 	    weather_info.sky = SKY_CLOUDY;
+	    weather_info.windspeed += 10;
 	}
 	break;
 
@@ -612,29 +654,58 @@ void weather_update( void )
 	if (     weather_info.mmhg <  970
 	    || ( weather_info.mmhg <  990 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "It starts to rain.\n\r" );
+
+	    if ( time_info.month <= 4 || time_info.month >= 15 )
+	    {
+		strcat( buf, "{o{wIt starts to snow.{x\n\r" );
+		weather_info.temperature -= 10;
+	    }
+	    else
+		strcat( buf, "{o{bIt starts to rain.{x\n\r" );
 	    weather_info.sky = SKY_RAINING;
+	    weather_info.windspeed += 10;
 	}
 
 	if ( weather_info.mmhg > 1030 && number_bits( 2 ) == 0 )
 	{
-	    strcat( buf, "The clouds disappear.\n\r" );
+	    if ( time_info.month <= 4 || time_info.month >= 15 )
+	    {
+		strcat( buf, "{o{wThe snow lets up.{x\n\r" );
+		weather_info.temperature += 10;
+	    }
+	    else
+		strcat( buf, "{o{wThe clouds disappear.{x\n\r" );
 	    weather_info.sky = SKY_CLOUDLESS;
+	    weather_info.windspeed -= 10;
 	}
 	break;
 
     case SKY_RAINING:
 	if ( weather_info.mmhg <  970 && number_bits( 2 ) == 0 )
 	{
-	    strcat( buf, "Lightning flashes in the sky.\n\r" );
+	    if ( time_info.month <= 4 || time_info.month >= 15 )
+	    {
+		strcat( buf, "{dYou are caught in a blizzard.{x\n\r" );
+		weather_info.temperature -= 30;
+	    }
+	    else
+		strcat( buf, "{o{yLightning flashes in the sky.{x\n\r" );
 	    weather_info.sky = SKY_LIGHTNING;
+	    weather_info.windspeed += 10;
 	}
 
 	if (     weather_info.mmhg > 1030
 	    || ( weather_info.mmhg > 1010 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The rain stopped.\n\r" );
+	    if ( time_info.month <= 4 || time_info.month >= 15 )
+	    {
+		strcat( buf, "{o{wThe snow is letting up.{x\n\r" );
+		weather_info.temperature += 30;
+	    }
+	    else
+		strcat( buf, "{o{wThe rain stopped.{x\n\r" );
 	    weather_info.sky = SKY_CLOUDY;
+	    weather_info.windspeed -= 10;
 	}
 	break;
 
@@ -642,8 +713,15 @@ void weather_update( void )
 	if (     weather_info.mmhg > 1010
 	    || ( weather_info.mmhg >  990 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The lightning has stopped.\n\r" );
+	    if ( time_info.month <= 4 || time_info.month >= 15 )
+	    {
+		strcat( buf, "{dThe blizzard subsides.{x\n\r" );
+		weather_info.temperature += 10;
+	    }
+	    else
+		strcat( buf, "{dThe lightning has stopped.{x\n\r" );
 	    weather_info.sky = SKY_RAINING;
+	    weather_info.windspeed -= 10;
 	    break;
 	}
 	break;
@@ -687,18 +765,6 @@ void char_update( void )
 	if ( ch->deleted )
 	    continue;
 
-	/*
-	 * Find dude with oldest save time.
-	 */
-	if ( !IS_NPC( ch )
-	    && ( !ch->desc || ch->desc->connected == CON_PLAYING )
-	    &&   ch->level >= 2
-	    &&   ch->save_time < save_time )
-	{
-	    ch_save	= ch;
-	    save_time	= ch->save_time;
-	}
-
 	if ( ch->position >= POS_STUNNED )
 	{
 	    if ( ch->hit  < ch->max_hit  )
@@ -714,8 +780,198 @@ void char_update( void )
 	if ( ch->position == POS_STUNNED )
 	    update_pos( ch );
 
-	if ( !IS_NPC( ch ) && ( ch->level < LEVEL_IMMORTAL
-			       || ( !ch->desc && !IS_SWITCHED( ch ) ) ) )
+	for ( paf = ch->affected; paf; paf = paf->next )
+	{
+	    if ( paf->deleted )
+	        continue;
+	    if ( paf->duration > 0 )
+		paf->duration--;
+	    else if ( paf->duration < 0 )
+		;
+	    else
+	    {
+		if ( !paf->next
+		    || paf->next->type != paf->type
+		    || paf->next->duration > 0 )
+		{
+		    if ( paf->type > 0 && skill_table[paf->type].msg_off )
+		    {
+			send_to_char( skill_table[paf->type].msg_off, ch );
+			send_to_char( "\n\r", ch );
+		    }
+		}
+
+		if ( paf->type == gsn_vampiric_bite )
+		    ch->race = race_lookup( "Vampire" );
+
+		affect_remove( ch, paf );
+	    }
+	}
+
+	if ( ch->in_room
+	    && ch->in_room->sector_type == SECT_AIR
+	    && ch->in_room->exit[5]
+	    && ch->in_room->exit[5]->to_room
+	    && !IS_AFFECTED( ch, AFF_FLYING )
+            && !IS_SET( race_table[ch->race].race_abilities, RACE_FLY ) )
+	{
+	    ROOM_INDEX_DATA *new_room = ch->in_room->exit[5]->to_room;
+
+	    if ( ( ch->in_room->people ) )
+	    {
+		act( "You are falling down!", ch, NULL, NULL, TO_CHAR );
+		act( "$n falls away.", ch, NULL, NULL, TO_ROOM );
+	    }
+
+	    char_from_room( ch );
+	    char_to_room( ch, new_room );
+
+	    if ( ch->in_room->people )
+	    {
+		act( "$n falls by.", ch, NULL, NULL, TO_ROOM );
+	    }
+	}
+
+        /*
+         * Careful with the damages here,
+         *   MUST NOT refer to ch after damage taken,
+         *   as it may be lethal damage (on NPC).
+         */
+	if ( is_affected( ch, gsn_plague ) )
+	{
+	    AFFECT_DATA *af;
+	    CHAR_DATA   *vch;
+	    AFFECT_DATA  plague;
+	    int          save;
+	    int          dam;
+
+	    act( "$n writhes in agony as plague sores erupt from $s skin.",
+		ch, NULL, NULL, TO_ROOM );
+	    send_to_char( "You writhe in agony from the plague.\n\r", ch );
+	    for ( af = ch->affected; af; af = af->next )
+                if ( af->type == gsn_plague )				break;
+
+	    if ( !af )
+	    {
+                REMOVE_BIT( ch->affected_by, AFF_PLAGUE );
+                continue;
+	    }
+
+	    if ( af->level == 1 )
+		continue;
+
+	    plague.type		= gsn_plague;
+	    plague.level	= af->level - 1;
+	    plague.duration	= number_range( 1, 2 * plague.level );
+	    plague.location	= APPLY_STR;
+	    plague.modifier	= -5;
+	    plague.bitvector	= AFF_PLAGUE;
+	    save		= plague.level;
+
+	    for ( vch = ch->in_room->people; vch; vch = vch->next_in_room )
+	    {
+		if ( vch->deleted )
+		    continue;
+
+		if ( save && !saves_spell( save, vch, DAM_DISEASE )
+		    && !IS_IMMORTAL( vch )
+		    && !IS_AFFECTED( vch, AFF_PLAGUE )
+		    && number_bits( 4 ) == 0 )
+		{
+		    send_to_char( "You feel hot and feverish.\n\r", vch );
+		    act( "$n shivers and looks very ill.", vch, NULL, NULL,
+			TO_ROOM );
+		    affect_join( vch, &plague );
+                }
+	    }
+
+	    dam = UMIN( ch->level, 5 );
+	    ch->mana -= dam;
+	    ch->move -= dam;
+	    damage( ch, ch, dam, gsn_plague, WEAR_NONE, DAM_DISEASE );
+        }
+
+	if ( ( time_info.hour > 5 && time_info.hour < 21 )
+	    && ch->in_room->room_flags != ROOM_UNDERGROUND
+	    && check_ris( ch, DAM_LIGHT ) == IS_SUSCEPTIBLE )
+	{
+	    int dmg = 0;
+
+	    if ( ch->in_room->sector_type == SECT_INSIDE )
+	    {
+	        dmg = 10;
+	    }
+	    else
+	    {
+		if ( ch->in_room->sector_type == SECT_FOREST )
+		{
+		    dmg = 25;
+		}
+		else
+		{
+		    dmg = 50;
+		}
+	    }
+	    
+	    if ( weather_info.sky == SKY_CLOUDY )
+	        dmg /= 2;
+	    if ( weather_info.sky == SKY_RAINING )
+	      {
+	        dmg /= 4;
+		dmg *= 3;
+	      }
+
+	    damage( ch, ch, dmg, gsn_poison, WEAR_NONE, DAM_LIGHT );
+	}
+	else
+	    if ( (   ch->in_room->sector_type == SECT_UNDERWATER
+		  && ( !IS_IMMORTAL( ch ) && !IS_AFFECTED( ch, AFF_GILLS )
+		      && !IS_SET( race_table[ ch->race ].race_abilities,
+				 RACE_WATERBREATH ) ) )
+		|| ( (    ch->in_room->sector_type != SECT_UNDERWATER
+		       && ch->in_room->sector_type != SECT_WATER_NOSWIM
+		       && ch->in_room->sector_type != SECT_WATER_SWIM )
+		    && IS_SET( race_table[ ch->race ].race_abilities,
+			      RACE_WATERBREATH )
+		    && ( strcmp( race_table[ ch->race ].name, "Object" )
+			&& strcmp( race_table[ ch->race ].name, "God" ) ) ) )
+        {
+            send_to_char( "You can't breathe!\n\r", ch );
+            act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
+            damage( ch, ch, 5, gsn_breathe_water, WEAR_NONE, DAM_DROWNING );
+        }
+        else if ( IS_AFFECTED( ch, AFF_POISON ) )
+        {
+            send_to_char( "You shiver and suffer.\n\r", ch );
+            act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
+            damage( ch, ch, 2, gsn_poison, WEAR_NONE, DAM_POISON );
+        }
+        else if ( ch->position == POS_INCAP )
+        {
+            damage( ch, ch, 1, TYPE_UNDEFINED, WEAR_NONE, DAM_NONE );
+        }
+        else if ( ch->position == POS_MORTAL )
+        {
+            damage( ch, ch, 2, TYPE_UNDEFINED, WEAR_NONE, DAM_NONE );
+        }
+
+	/* Thats all for mobs */
+        if ( IS_NPC( ch ) )
+	    continue;
+
+	/*
+	 * Find dude with oldest save time.
+	 */
+	if (   ( !ch->desc || ch->desc->connected == CON_PLAYING )
+	    &&   ch->level >= 2
+	    &&   ch->save_time < save_time )
+	{
+	    ch_save	= ch;
+	    save_time	= ch->save_time;
+	}
+
+	if ( ( ch->level < LEVEL_IMMORTAL
+	    || ( !ch->desc && !IS_SWITCHED( ch ) ) ) )
 	{
 	    OBJ_DATA *obj;
 
@@ -757,103 +1013,6 @@ void char_update( void )
 	    gain_condition( ch, COND_THIRST,
 			   ( -1 - race_table[ch->race].thirst_mod ) );
 	}
-
-	for ( paf = ch->affected; paf; paf = paf->next )
-	{
-	    if ( paf->deleted )
-	        continue;
-	    if ( paf->duration > 0 )
-		paf->duration--;
-	    else if ( paf->duration < 0 )
-		;
-	    else
-	    {
-		if ( !paf->next
-		    || paf->next->type != paf->type
-		    || paf->next->duration > 0 )
-		{
-		    if ( paf->type > 0 && skill_table[paf->type].msg_off )
-		    {
-			send_to_char( skill_table[paf->type].msg_off, ch );
-			send_to_char( "\n\r", ch );
-		    }
-		}
-
-		if ( paf->type == gsn_vampiric_bite )
-		    ch->race = race_lookup( "Vampire" );
-
-		affect_remove( ch, paf );
-	    }
-	}
-
-        /*
-         * Careful with the damages here,
-         *   MUST NOT refer to ch after damage taken,
-         *   as it may be lethal damage (on NPC).
-         */
-	if ( ( time_info.hour > 5 && time_info.hour < 21 )
-	    && ch->race == race_lookup( "vampire" )
-	    && ch->in_room->room_flags != ROOM_UNDERGROUND )
-	{
-	    int dmg = 0;
-
-	    if ( ch->in_room->sector_type == SECT_INSIDE )
-	    {
-	        dmg = 10;
-	    }
-	    else
-	    {
-		if ( ch->in_room->sector_type == SECT_FOREST )
-		{
-		    dmg = 25;
-		}
-		else
-		{
-		    dmg = 50;
-		}
-	    }
-	    
-	    if ( weather_info.sky == SKY_CLOUDY )
-	        dmg /= 2;
-	    if ( weather_info.sky == SKY_RAINING )
-	      {
-	        dmg /= 4;
-		dmg *= 3;
-	      }
-
-	    damage( ch, ch, dmg, gsn_poison, WEAR_NONE );
-	}
-	else
-	    if ( (   ch->in_room->sector_type == SECT_UNDERWATER
-		  && ( !IS_IMMORTAL( ch ) && !IS_AFFECTED( ch, AFF_GILLS )
-		      && !IS_SET( race_table[ ch->race ].race_abilities,
-				 RACE_WATERBREATH ) ) )
-		|| ( (    ch->in_room->sector_type != SECT_UNDERWATER
-		       && ch->in_room->sector_type != SECT_WATER_NOSWIM
-		       && ch->in_room->sector_type != SECT_WATER_SWIM )
-		    && IS_SET( race_table[ ch->race ].race_abilities,
-			      RACE_WATERBREATH )
-		    && ( strcmp( race_table[ ch->race ].name, "Object" )
-			&& strcmp( race_table[ ch->race ].name, "God" ) ) ) )
-        {
-            send_to_char( "You can't breathe!\n\r", ch );
-            act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
-            damage( ch, ch, 5, gsn_breathe_water, WEAR_NONE );
-        }
-        else if ( IS_AFFECTED( ch, AFF_POISON ) )
-        {
-            send_to_char( "You shiver and suffer.\n\r", ch );
-            act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
-            damage( ch, ch, 2, gsn_poison, WEAR_NONE );
-        }
-        else if ( ch->position == POS_INCAP )
-        {
-            damage( ch, ch, 1, TYPE_UNDEFINED, WEAR_NONE );
-        }
-        else if ( ch->position == POS_MORTAL )
-        {
-            damage( ch, ch, 2, TYPE_UNDEFINED, WEAR_NONE );
-        }
     }
 
     /*
@@ -1010,6 +1169,33 @@ void aggr_update( void )
     CHAR_DATA       *vch;
     CHAR_DATA       *victim;
     DESCRIPTOR_DATA *d;
+    ACT_PROG_DATA   *apdtmp;
+
+    while ( ( apdtmp = mob_act_list ) )
+    {
+        mch = mob_act_list->vo;
+        if ( !mch->deleted && mch->mpactnum > 0 )
+	{
+	    MPROG_ACT_LIST * tmp_act;
+
+	    while ( ( tmp_act = mch->mpact ) )
+            {
+		if ( tmp_act->obj && tmp_act->obj->deleted )
+		  tmp_act->obj = NULL;
+		if ( tmp_act->ch && !tmp_act->ch->deleted )
+		  mprog_wordlist_check( tmp_act->buf, mch, tmp_act->ch,
+					tmp_act->obj, tmp_act->vo, ACT_PROG );
+		mch->mpact = tmp_act->next;
+		free_string( tmp_act->buf );
+		tmp_act->buf = NULL;
+		free_mem( tmp_act, sizeof( MPROG_ACT_LIST ) );
+	    }
+	    mch->mpactnum = 0;
+	    mch->mpact    = NULL;
+	}
+        mob_act_list = apdtmp->next;
+        free_mem( apdtmp, sizeof( ACT_PROG_DATA ) );
+    }
 
     /*
      * Let's not worry about link dead characters. -Kahn
@@ -1018,7 +1204,7 @@ void aggr_update( void )
     {
 	ch = d->character;
 
-	if ( d->connected != CON_PLAYING
+	if ( !CONNECTED( d )
 	    || ch->level >= LEVEL_IMMORTAL
 	    || !ch->in_room )
 	    continue;
@@ -1029,34 +1215,6 @@ void aggr_update( void )
 	    int count;
 	    bool hate = FALSE;
 
-            /* MOBProgs ACT_PROG trigger.  Walker. */
-            /* Modified to free the mpact list w/o regard to nplayer.  Walker */
-            if( IS_NPC( mch ) && mch->mpactnum > 0 )
-            {
-                MPROG_ACT_LIST * tmp_act, *tmp2_act;
-
-                if( mch->in_room->area->nplayer > 0 )  /* meaningless test? */
-                {
-                    for ( tmp_act = mch->mpact; tmp_act;
-                             tmp_act = tmp_act->next )
-                    {
-                         mprog_wordlist_check( tmp_act->buf, mch, tmp_act->ch,
-                                          tmp_act->obj, tmp_act->vo, ACT_PROG );
-                         free_string( tmp_act->buf );
-                         tmp_act->buf = NULL;
-                    }
-                }
-		for ( tmp_act = mch->mpact; tmp_act; tmp_act = tmp2_act )
-		{
-                         tmp2_act = tmp_act->next;
-                         free_string( tmp_act->buf ); /* if wasn't freed */
-                         free_mem( tmp_act, sizeof( MPROG_ACT_LIST ) );
-                }
-                mch->mpactnum = 0;
-                mch->mpact    = NULL;
-            }
-            /* end of MOBProg trigger.  Walker */
-                
 	    if ( !IS_NPC( mch )
 		|| mch->deleted
 		|| mch->fighting
@@ -1075,6 +1233,12 @@ void aggr_update( void )
 	    if ( !str_infix( race_table[ch->race].name,
 			    race_table[mch->race].hate ) )
 	        hate = TRUE;
+
+            if ( is_hating( mch, ch ) )
+            {
+                found_prey( mch, ch );
+                continue;
+            }
 
 	    /*
 	     * Ok we have a 'ch' player character and a 'mch' npc aggressor.
@@ -1152,7 +1316,8 @@ void time_update( void )
     }
     if ( current_time > down_time )
     {
-	do_asave( NULL, "" );			/* OLC */
+	if ( IS_SET( sysdata.act, MUD_AUTOSAVE_DB ) )
+	    do_asave( NULL, "" );
         sprintf( buf, "%s by system.\n\r", Reboot ? "Reboot" : "Shutdown" );
 	send_to_all_char( buf );
 	log_string( buf );
@@ -1411,29 +1576,44 @@ void update_handler( void )
     static int pulse_mobile;
     static int pulse_violence;
     static int pulse_point;
-    static int pulse_db_dump;			/* OLC 1.1b */
+    static int pulse_db_dump = PULSE_DB_DUMP;
 
-    /* OLC 1.1b - Comment out in case you don't want auto-saving */
-    if ( --pulse_db_dump  <= 0 )
+    if ( IS_SET( sysdata.act, MUD_AUTOSAVE_DB ) )
     {
-        pulse_db_dump   = PULSE_DB_DUMP;
-        do_asave( NULL, "" );
+	if ( --pulse_db_dump  <= 0 )
+	{
+	    wiznet( NULL, WIZ_TICKS, L_DIR, "Dump Area pulse (OLC)" );
+	    pulse_db_dump   = PULSE_DB_DUMP;
+	    do_asave( NULL, "" );
+	}
+    }
+
+    /* Maniac, added this warning so it can be delayed on time... */
+    switch ( pulse_db_dump )
+    {
+    case   5: wiznet( NULL, WIZ_TICKS, L_JUN,
+		     "Dump Area pulse coming soon... beware of lag" );
+    case 100: wiznet( NULL, WIZ_TICKS, L_SEN,
+		     "Dump Area Pulse in 100 pulses..." );
     }
 
     if ( --pulse_area     <= 0 )
     {
+	wiznet( NULL, WIZ_TICKS, L_APP, "Area update pulse" );
 	pulse_area	= number_range( PULSE_AREA / 2, 3 * PULSE_AREA / 2 );
 	area_update	( );
     }
 
     if ( --pulse_violence <= 0 )
     {
+        wiznet( NULL, WIZ_TICKS, L_APP, "Violence update pulse" );
 	pulse_violence  = PULSE_VIOLENCE;
 	violence_update ( );
     }
 
     if ( --pulse_mobile   <= 0 )
     {
+        wiznet( NULL, WIZ_TICKS, L_APP, "Mobile update pulse" );
 	pulse_mobile    =
 	  number_range( PULSE_MOBILE / 2, 3 * PULSE_MOBILE / 2 );
 	mobile_update   ( );
@@ -1441,6 +1621,7 @@ void update_handler( void )
 
     if ( --pulse_point    <= 0 )
     {
+        wiznet( NULL, WIZ_TICKS, LEVEL_HERO, "Pulse point" );
 	pulse_point     = number_range( PULSE_TICK / 2, 3 * PULSE_TICK / 2 );
 	weather_update  ( );
 	char_update     ( );

@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #9900
 hollyphant~
@@ -200,7 +199,6 @@ want to be delayed in his task.
 #0
 
 
-
 #NEWOBJECTS
 #9900
 polearm body wrecker~
@@ -291,7 +289,6 @@ A cast iron girth lies here.~
 A
 3 -4 0
 #0
-
 
 
 #ROOMDATA
@@ -698,7 +695,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 9900 spec_cast_cleric
 M 9901 spec_cast_mage
@@ -711,7 +707,6 @@ M 9910 spec_cast_cleric
 M 9911 spec_thief
 M 9913 spec_breath_any
 S
-
 
 
 #RESETS
@@ -756,10 +751,8 @@ E 0 9900 0 16
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

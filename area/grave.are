@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #3600
 henry gardener~
@@ -81,7 +80,6 @@ Maggots crawl all over its decaying body.
 100 0
 0 Undead~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -217,7 +215,6 @@ It has a long, sharp blade that is made entirely from silver.  A small rune
 has been engraved on the blade next to the hilt.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -845,7 +842,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 3601 spec_cast_undead
 M 3602 spec_cast_undead
@@ -853,7 +849,6 @@ M 3603 spec_cast_undead
 M 3604 spec_cast_undead
 M 3605 spec_cast_undead
 S
-
 
 
 #RESETS
@@ -888,10 +883,8 @@ M 0 3605 3 3651
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

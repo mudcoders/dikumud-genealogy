@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2400
 insects swarm bugs~
@@ -947,7 +946,6 @@ The Boatseller sells... boats.
 #0
 
 
-
 #NEWOBJECTS
 #2400
 mantra compassion mu~
@@ -1792,7 +1790,6 @@ A boat lies here.~
 0~ 0~ 0~ 0~ 0~
 20 0 0
 #0
-
 
 
 #ROOMDATA
@@ -5112,7 +5109,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 2407 spec_poison
 M 2408 spec_cast_mage
@@ -5133,7 +5129,6 @@ M 2459 spec_cast_mage
 M 2460 spec_cast_mage
 M 2462 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -5347,13 +5342,11 @@ E 0 2449 0 6
 S
 
 
-
 #SHOPS
 2468 9 0 0 0 0 110 90 0 23
 2469 5 0 0 0 0 110 90 0 23
 2470 22 0 0 0 0 110 90 0 23
 0
-
 
 
 #$

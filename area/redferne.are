@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #7900
 grand knight paladin~
@@ -23,7 +22,6 @@ help the innocent.
 0 0
 0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -69,7 +67,6 @@ key~
 It is a small, simple brass key with no inscriptions or marks of any kind.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -459,11 +456,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 7900 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -486,10 +481,8 @@ P 0 7208 0 7910
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

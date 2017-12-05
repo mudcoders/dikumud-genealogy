@@ -1,258 +1,471 @@
-/****************************************************************************
- * [S]imulated [M]edieval [A]dventure multi[U]ser [G]ame      |   \\._.//   *
- * -----------------------------------------------------------|   (0...0)   *
- * SMAUG 1.0 (C) 1994, 1995, 1996 by Derek Snider             |    ).:.(    *
- * -----------------------------------------------------------|    {o o}    *
- * SMAUG code team: Thoric, Altrag, Blodkai, Narn, Haus,      |   / ' ' \   *
- * Scryn, Rennard, Swordbearer, Gorog, Grishnakh and Tricops  |~'~.VxvxV.~'~*
- * ------------------------------------------------------------------------ *
- *			 Tracking/hunting module			    *
- ****************************************************************************/
+/***************************************************************************
+ *  SillyMUD Distribution V1.1b copyright (C) 1993 SillyMUD Developement.  *
+ *                                                                         *
+ *  Modifications by Rip in attempt to port to Merc 2.1                    *
+ *  Modified by Turtle for Merc 2.2 (07-Nov-94)                            *
+ *                                                                         *
+ *  Got code from ftp.atinc.com:/pub/mud/outgoing/track.merc21.tar.gz      *
+ *  It cointained 5 files: README, hash.c, hash.h, skills.c, and skills.h  *
+ *  I combined the *.c and *.h files in this hunt.c, which should compile  *
+ *  without any warnings or errors.                                        *
+ *                                                                         *
+ *  Modified by Zen    for Envy 2.2 (14-Oct-97)                            *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
+ ***************************************************************************/
 
-/*
- * Ported to Envy2.2 by Zen, quite easy to port too! It only took 3 hours!
- */
-
+#if defined( macintosh )
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
 
-#define BFS_ERROR	   -1
-#define BFS_ALREADY_THERE  -2
-#define BFS_NO_PATH	   -3
-#define BFS_MARK    536870912
 
-extern int	top_room;
 
-struct bfs_queue_struct {
-   ROOM_INDEX_DATA *room;
-   char   dir;
-   struct bfs_queue_struct *next;
+extern int	             top_vnum_room;
+
+/*
+ * Structure types.
+ */
+typedef	struct	hash_link		HASH_LINK;
+typedef	struct	hash_header		HASH_HEADER;
+typedef	struct	hunting_data		HUNTING_DATA;
+typedef	struct	room_q			ROOM_Q;
+typedef	struct	nodes			NODES;
+
+/*
+ * Hunting parameters.
+ * Make sure area_last has the last room vnum!
+ */
+#define IS_DIR			( get_room_index( q_head->room_nr )->exit[i] )
+#define GO_OK			( !IS_SET( IS_DIR->exit_info, EX_CLOSED ) )
+#define GO_OK_SMARTER		1
+#define WORLD_SIZE		top_vnum_room
+#define	HASH_KEY( ht, key )	((((unsigned int)(key))*17)%(ht)->table_size)
+
+
+struct hash_link
+{
+    int			 key;
+    HASH_LINK	 	*next;
+    void		*data;
 };
 
-static struct bfs_queue_struct	*queue_head = NULL,
-				*queue_tail = NULL,
-				*room_queue = NULL;
-
-/* Utility macros */
-#define MARK(room)	(SET_BIT(	(room)->room_flags, BFS_MARK) )
-#define UNMARK(room)	(REMOVE_BIT(	(room)->room_flags, BFS_MARK) )
-#define IS_MARKED(room)	(IS_SET(	(room)->room_flags, BFS_MARK) )
-
-ROOM_INDEX_DATA *toroom( ROOM_INDEX_DATA *room, int door )
+struct hash_header
 {
-    return (room->exit[door]->to_room);
+    int			 rec_size;
+    int			 table_size;
+    int			 klistsize;
+    int			 klistlen; 
+    int			*keylist;    /* this is really lame, AMAZINGLY lame */
+    HASH_LINK	       **buckets;
+};
+
+struct hunting_data
+{
+    char		*name;
+    CHAR_DATA	       **victim;
+};
+
+struct room_q
+{
+    int			 room_nr;
+    ROOM_Q		*next_q;
+};
+
+struct nodes
+{
+    int visited;
+    int ancestor;
+};
+
+
+
+void init_hash_table( HASH_HEADER *ht, int rec_size, int table_size )
+{
+    ht->rec_size	= rec_size;
+    ht->table_size	= table_size;
+    ht->buckets		= (void *) calloc( sizeof( HASH_LINK ** ), table_size );
+    ht->keylist		= (void *) malloc( sizeof( ht->keylist ) * ( ht->klistsize = 128 ) );
+    ht->klistlen	= 0;
 }
 
-bool valid_edge( ROOM_INDEX_DATA *room, int door )
+void init_world( ROOM_INDEX_DATA *room_db[] )
 {
-    EXIT_DATA *pexit;
+    /* zero out the world */
+    memset( room_db, 0, sizeof( ROOM_INDEX_DATA * ) * WORLD_SIZE );
+    return;
+}
+
+void destroy_hash_table( HASH_HEADER *ht, void ( *gman ) ( ) )
+{
+    HASH_LINK *scan;
+    HASH_LINK *temp;
+    int        i;
+
+    for ( i = 0; i < ht->table_size; i++ )
+	for ( scan = ht->buckets[i]; scan; )
+	{
+	    temp = scan->next;
+	    ( *gman ) ( scan->data );
+	    free( scan );
+	    scan = temp;
+	}
+
+    free( ht->buckets );
+    free( ht->keylist );
+    return;
+}
+
+void _hash_enter( HASH_HEADER *ht, int key, void *data )
+{
+    /* precondition: there is no entry for <key> yet */
+    HASH_LINK *temp;
+    int        i;
+
+    temp	= (HASH_LINK *) malloc( sizeof( HASH_LINK ) );
+    temp->key	= key;
+    temp->next	= ht->buckets[HASH_KEY( ht, key )];
+    temp->data	= data;
+    ht->buckets[HASH_KEY( ht, key )] = temp;
+    if ( ht->klistlen >= ht->klistsize )
+    {
+	ht->keylist = (void *) realloc( ht->keylist, sizeof( *ht->keylist ) *
+					 ( ht->klistsize *= 2 ) );
+    }
+    for ( i = ht->klistlen; i >= 0; i-- )
+    {
+	if ( ht->keylist[i - 1] < key )
+	{
+	    ht->keylist[i] = key;
+	    break;
+	}
+	ht->keylist[i] = ht->keylist[i - 1];
+    }
+    ht->klistlen++;
+    return;
+}
+
+ROOM_INDEX_DATA *room_find( ROOM_INDEX_DATA *room_db[], int key )
+{
+    return ( ( key < WORLD_SIZE && key > -1 ) ? room_db[key] : 0 );
+}
+
+void *hash_find( HASH_HEADER *ht, int key )
+{
+    HASH_LINK *scan;
+
+    scan = ht->buckets[HASH_KEY( ht, key )];
+
+    while ( scan && scan->key != key )
+	scan = scan->next;
+
+    return scan ? scan->data : NULL;
+}
+
+int room_enter( ROOM_INDEX_DATA * rb[], int key, ROOM_INDEX_DATA *rm )
+{
+    ROOM_INDEX_DATA *temp;
+
+    temp = room_find( rb, key );
+    if ( temp )
+	return ( 0 );
+
+    rb[key] = rm;
+    return ( 1 );
+}
+
+int hash_enter( HASH_HEADER *ht, int key, void *data )
+{
+    void *temp;
+
+    temp = hash_find( ht, key );
+    if ( temp )
+	return 0;
+
+    _hash_enter( ht, key, data );
+    return 1;
+}
+
+ROOM_INDEX_DATA *room_find_or_create( ROOM_INDEX_DATA * rb[], int key )
+{
+    ROOM_INDEX_DATA *rv;
+
+    rv = room_find( rb, key );
+    if ( rv )
+	return rv;
+
+    rv = (ROOM_INDEX_DATA *) malloc( sizeof( ROOM_INDEX_DATA ) );
+    rb[key] = rv;
+
+    return rv;
+}
+
+void *hash_find_or_create( HASH_HEADER *ht, int key )
+{
+    void *rval;
+
+    rval = hash_find( ht, key );
+    if ( rval )
+	return rval;
+
+    rval = (void *) malloc( ht->rec_size );
+    _hash_enter( ht, key, rval );
+
+    return rval;
+}
+
+int room_remove( ROOM_INDEX_DATA * rb[], int key )
+{
+    ROOM_INDEX_DATA *tmp;
+
+    tmp = room_find( rb, key );
+    if ( tmp )
+    {
+	rb[key] = 0;
+	free( tmp );
+    }
+    return ( 0 );
+}
+
+void *hash_remove( HASH_HEADER *ht, int key )
+{
+    HASH_LINK **scan;
+
+    scan = ht->buckets + HASH_KEY( ht, key );
+
+    while ( *scan && ( *scan )->key != key )
+	scan = &( *scan )->next;
+
+    if ( *scan )
+    {
+	HASH_LINK *temp;
+	HASH_LINK *aux;
+	int        i;
+
+	temp = ( *scan )->data;
+	aux = *scan;
+	*scan = aux->next;
+	free( aux );
+
+	for ( i = 0; i < ht->klistlen; i++ )
+	    if ( ht->keylist[i] == key )
+		break;
+
+	if ( i < ht->klistlen )
+	{
+	    memmove( ht->keylist + i, ht->keylist + i + 1, ( ht->klistlen - i )
+		   * sizeof( *ht->keylist ) );
+	    ht->klistlen--;
+	}
+
+	return temp;
+    }
+
+    return NULL;
+}
+
+void room_iterate( ROOM_INDEX_DATA *rb[], void ( *func ) ( ), void *cdata )
+{
+    register int i;
+
+    for ( i = 0; i < WORLD_SIZE; i++ )
+    {
+	ROOM_INDEX_DATA *temp;
+
+	temp = room_find( rb, i );
+	if ( temp )
+	    ( *func ) ( i, temp, cdata );
+    }
+}
+
+void hash_iterate( HASH_HEADER *ht, void ( *func ) ( ), void *cdata )
+{
+    int i;
+
+    for ( i = 0; i < ht->klistlen; i++ )
+    {
+	void          *temp;
+	register int   key;
+
+	key = ht->keylist[i];
+	temp = hash_find( ht, key );
+	( *func ) ( key, temp, cdata );
+	if ( ht->keylist[i] != key )	/* They must have deleted this room */
+	    i--;		/* Hit this slot again. */
+    }
+}
+
+int exit_ok( EXIT_DATA *pexit )
+{
     ROOM_INDEX_DATA *to_room;
 
-    pexit = room->exit[door];
-    if ( pexit
-    &&  (to_room = pexit->to_room) != NULL
-    &&  !IS_MARKED( to_room ) )
-      return TRUE;
+    if ( ( !pexit )
+	|| !( to_room = pexit->to_room ) )
+	return 0;
+
+    return 1;
+}
+
+void donothing( )
+{
+    return;
+}
+
+int find_path( int in_room_vnum, int out_room_vnum, CHAR_DATA *ch,
+	      int depth, int in_zone )
+{
+    ROOM_INDEX_DATA *herep;
+    ROOM_INDEX_DATA *startp;
+    EXIT_DATA       *exitp;
+    ROOM_Q          *tmp_q;
+    ROOM_Q          *q_head;
+    ROOM_Q          *q_tail;
+    HASH_HEADER      x_room;
+    bool             thru_doors;
+    long             i;
+    int              tmp_room;
+    int              count = 0;
+
+    if ( depth < 0 )
+    {
+	thru_doors = TRUE;
+	depth = -depth;
+    }
     else
-      return FALSE;
+    {
+	thru_doors = FALSE;
+    }
+
+    startp = get_room_index( in_room_vnum );
+
+    init_hash_table( &x_room, sizeof( int ), 2048 );
+    hash_enter( &x_room, in_room_vnum, (void *) - 1 );
+
+    /* initialize queue */
+    q_head = (ROOM_Q *) malloc( sizeof( ROOM_Q ) );
+    q_tail = q_head;
+    q_tail->room_nr = in_room_vnum;
+    q_tail->next_q = 0;
+
+    while ( q_head )
+    {
+	herep = get_room_index( q_head->room_nr );
+	/* for each room test all directions */
+	if ( herep->area == startp->area || !in_zone )
+	{
+	    /*
+	     * only look in this zone...
+	     * saves cpu time and makes world safer for players
+	     */
+	    for ( i = 0; i < MAX_DIR; i++ )
+	    {
+		exitp = herep->exit[i];
+		if ( exit_ok( exitp ) && ( thru_doors ? GO_OK_SMARTER : GO_OK ) )
+		{
+		    /* next room */
+		    tmp_room = herep->exit[i]->to_room->vnum;
+		    if ( tmp_room != out_room_vnum )
+		    {
+			/* 
+			 * shall we add room to queue ?
+			 * count determines total breadth and depth
+			 */
+			if ( !hash_find( &x_room, tmp_room )
+			    && ( count < depth ) )
+			    /* && !IS_SET( RM_FLAGS(tmp_room), DEATH ) ) */
+			{
+			    count++;
+			    /* mark room as visted and put on queue */
+
+			    tmp_q = (ROOM_Q *)
+				malloc( sizeof( ROOM_Q ) );
+			    tmp_q->room_nr = tmp_room;
+			    tmp_q->next_q = 0;
+			    q_tail->next_q = tmp_q;
+			    q_tail = tmp_q;
+
+			    /* ancestor for first layer is the direction */
+			    hash_enter( &x_room, tmp_room,
+			    ( (long) hash_find( &x_room, q_head->room_nr ) == -1 )
+				? (void *) ( i + 1 )
+				: hash_find( &x_room, q_head->room_nr ) );
+			}
+		    }
+		    else
+		    {
+			/* have reached our goal so free queue */
+			tmp_room = q_head->room_nr;
+			for ( ; q_head; q_head = tmp_q )
+			{
+			    tmp_q = q_head->next_q;
+			    free( q_head );
+			}
+			/* return direction if first layer */
+			if ( (long) hash_find( &x_room, tmp_room ) == -1 )
+			{
+			    if ( x_room.buckets )
+			    {
+				/* junk left over from a previous track */
+				destroy_hash_table( &x_room, donothing );
+			    }
+			    return ( i );
+			}
+			else
+			{
+			    /* else return the ancestor */
+			    long i;
+
+			    i = (long) hash_find( &x_room, tmp_room );
+			    if ( x_room.buckets )
+			    {
+				/* junk left over from a previous track */
+				destroy_hash_table( &x_room, donothing );
+			    }
+			    return ( -1 + i );
+			}
+		    }
+		}
+	    }
+	}
+
+	/* free queue head and point to next entry */
+	tmp_q = q_head->next_q;
+	free( q_head );
+	q_head = tmp_q;
+    }
+
+    /* couldn't find path */
+    if ( x_room.buckets )
+    {
+	/* junk left over from a previous track */
+	destroy_hash_table( &x_room, donothing );
+    }
+    return -1;
 }
 
-void bfs_enqueue(ROOM_INDEX_DATA *room, char dir)
-{
-   struct bfs_queue_struct *curr;
-
-   curr = alloc_perm( sizeof( struct bfs_queue_struct ) );
-   curr->room = room;
-   curr->dir = dir;
-   curr->next = NULL;
-
-   if (queue_tail) {
-      queue_tail->next = curr;
-      queue_tail = curr;
-   } else
-      queue_head = queue_tail = curr;
-
-   return;
-}
-
-
-void bfs_dequeue(void)
-{
-   struct bfs_queue_struct *curr;
-
-   curr = queue_head;
-
-   if (!(queue_head = queue_head->next))
-      queue_tail = NULL;
-   free_mem( curr, sizeof( struct bfs_queue_struct ) );
-
-   return;
-}
-
-
-void bfs_clear_queue(void) 
-{
-   while (queue_head)
-      bfs_dequeue();
-
-  return;
-}
-
-void room_enqueue(ROOM_INDEX_DATA *room)
-{
-   struct bfs_queue_struct *curr;
-
-   curr = alloc_perm( sizeof( struct bfs_queue_struct ) );
-   curr->room = room;
-   curr->next = room_queue;
-
-   room_queue = curr;
-
-   return;
-}
-
-void clean_room_queue(void) 
-{
-   struct bfs_queue_struct *curr, *curr_next;
-
-   for (curr = room_queue; curr; curr = curr_next )
-   {
-      UNMARK( curr->room );
-      curr_next = curr->next;
-      free_mem( curr, sizeof( struct bfs_queue_struct ) );
-   }
-   room_queue = NULL;
-
-   return;
-}
-
-
-int find_first_step(ROOM_INDEX_DATA *src, ROOM_INDEX_DATA *target, int maxdist )
-{
-   int curr_dir, count;
-
-   if ( !src || !target )
-   {
-      bug("Illegal value passed to find_first_step (track.c)", 0 );
-      return BFS_ERROR;
-   }
-
-   if (src == target)
-      return BFS_ALREADY_THERE;
-
-   if ( src->area != target->area )
-      return BFS_NO_PATH;
-
-   room_enqueue( src );
-   MARK(src);
-
-   /* first, enqueue the first steps, saving which direction we're going. */
-   for (curr_dir = 0; curr_dir < MAX_DIR; curr_dir++)
-      if (valid_edge(src, curr_dir))
-      {
-         MARK(toroom(src, curr_dir));
-	 room_enqueue(toroom(src, curr_dir));
-         bfs_enqueue(toroom(src, curr_dir), curr_dir);
-      }
-
-   count = 0;
-   while (queue_head) {
-      if ( ++count > maxdist )
-      {
-	bfs_clear_queue();
-	clean_room_queue();
-	return BFS_NO_PATH;
-      }
-      if (queue_head->room == target) {
-	 curr_dir = queue_head->dir;
-	 bfs_clear_queue();
-	 clean_room_queue();
-	 return curr_dir;
-      } else {
-         for (curr_dir = 0; curr_dir < MAX_DIR; curr_dir++)
-            if (valid_edge(queue_head->room, curr_dir)) {
-               MARK(toroom(queue_head->room, curr_dir));
-	       room_enqueue(toroom(queue_head->room, curr_dir));
-	       bfs_enqueue(toroom(queue_head->room, curr_dir),queue_head->dir);
-            }
-         bfs_dequeue();
-      }
-   }
-   clean_room_queue();
-
-   return BFS_NO_PATH;
-}
-
-
-void do_track( CHAR_DATA *ch, char *argument )
-{
-   CHAR_DATA *vict;
-   char arg[MAX_INPUT_LENGTH];
-   char buf[MAX_STRING_LENGTH];
-   int dir, maxdist;
-
-   if ( !IS_NPC(ch) && !ch->pcdata->learned[gsn_track] )
-   {
-	send_to_char("You do not know of this skill yet.\n\r", ch );
-	return;
-   }
-
-   one_argument(argument, arg);
-   if ( arg[0]=='\0' ) {
-      send_to_char("Whom are you trying to track?\n\r", ch);
-      return;
-   }
-
-   WAIT_STATE( ch, skill_table[gsn_track].beats );
-
-   if (!(vict = get_char_world(ch, arg))) {
-      send_to_char("You can't find a trail of anyone like that.\n\r", ch);
-      return;
-   }
-
-   maxdist = 100 + ch->level * 30;
-
-   if ( !IS_NPC(ch) )
-     maxdist = (maxdist * ch->pcdata->learned[gsn_track]) / 100;
-
-   dir = find_first_step(ch->in_room, vict->in_room, maxdist);
-
-   switch(dir) {
-      case BFS_ERROR:
-         send_to_char( "Hmm... something seems to be wrong.\n\r", ch );
-         break;
-      case BFS_ALREADY_THERE:
-         send_to_char( "You're already in the same room!\n\r", ch );
-         break;
-      case BFS_NO_PATH:
-         sprintf( buf, "You can't sense a trail from here.\n\r" );
-         send_to_char( buf, ch );
-         break;
-      default:
-         sprintf( buf, "You sense a trail %s from here...\n\r", dir_name[dir] );
-         send_to_char( buf, ch );
-         break;
-   }
-
-   return;
-}
 
 
 void found_prey( CHAR_DATA *ch, CHAR_DATA *victim )
 {
-     char buf[MAX_STRING_LENGTH];
-     char victname[MAX_STRING_LENGTH];
+     char buf		[ MAX_STRING_LENGTH ];
+     char victname	[ MAX_STRING_LENGTH ];
 
-     if (victim == NULL)
+     if ( !victim || victim->deleted )
      {
-	bug("Found_prey: null victim", 0);
+	bug( "Found_prey: null victim", 0 );
 	return;
      }
 
-     if ( victim->in_room == NULL )
+     if ( !victim->in_room )
      {
         bug( "Found_prey: null victim->in_room", 0 );
         return;
@@ -260,7 +473,7 @@ void found_prey( CHAR_DATA *ch, CHAR_DATA *victim )
 
      sprintf( victname, IS_NPC( victim ) ? victim->short_descr : victim->name );
 
-     if ( !can_see(ch, victim) )
+     if ( !can_see( ch, victim ) )
      {
         if ( number_percent( ) < 90 )
 	  return;
@@ -324,67 +537,197 @@ void found_prey( CHAR_DATA *ch, CHAR_DATA *victim )
 	     act( "$n lunges at you from out of nowhere!", ch, NULL, victim, TO_VICT );
      }
      stop_hunting( ch );
-     multi_hit(ch, victim, TYPE_UNDEFINED);
+     multi_hit( ch, victim, TYPE_UNDEFINED );
      return;
 } 
 
+
+
+void do_track( CHAR_DATA *ch, char *argument )
+{
+    char       buf [ MAX_STRING_LENGTH ];
+    char       arg [ MAX_STRING_LENGTH ];
+    CHAR_DATA *victim;
+    int        direction;
+    bool       fArea;
+
+    if ( !IS_NPC( ch ) && !ch->pcdata->learned[gsn_track] )
+    {
+	send_to_char( "You do not know of this skill yet.\n\r", ch );
+	return;
+    }
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Whom are you trying to track?\n\r", ch );
+	return;
+    }
+
+    if ( ch->riding )
+    {
+        send_to_char( "You can't sniff a trail mounted.\n\r", ch );
+        return;
+    }
+
+    /* only imps can hunt to different areas */
+    fArea = ( get_trust( ch ) < L_DIR );
+
+    if ( fArea )
+	victim = get_char_area( ch, arg );
+    else
+	victim = get_char_world( ch, arg );
+
+    if ( !victim )
+    {
+	send_to_char( "You can't find a trail of anyone like that.\n\r", ch );
+	return;
+    }
+
+    if ( ch->in_room == victim->in_room )
+    {
+	act( "You're already in $N's room!", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    /*
+     * Deduct some movement.
+     */
+    if ( ch->move > 2 )
+	ch->move -= 3;
+    else
+    {
+	send_to_char( "You're too exhausted to hunt anyone!\n\r", ch );
+	return;
+    }
+
+    act( "$n carefully sniffs the air.", ch, NULL, NULL, TO_ROOM );
+    WAIT_STATE( ch, skill_table[gsn_track].beats );
+    direction = find_path( ch->in_room->vnum, victim->in_room->vnum,
+			  ch, -40000, fArea );
+
+    if ( direction == -1 )
+    {
+	act( "You can't sense $N's trail from here.",
+	    ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    if ( direction < 0 || direction >= MAX_DIR )
+    {
+	send_to_char( "Hmm... Something seems to be wrong.\n\r", ch );
+	return;
+    }
+
+    /*
+     * Give a random direction if the player misses the die roll.
+     */
+    if (   (  IS_NPC( ch ) && number_percent( ) > 75 )	/* NPC @ 25% */
+	|| ( !IS_NPC( ch ) && number_percent( ) >	/* PC @ norm */
+		ch->pcdata->learned[gsn_track] ) )
+    {
+	do
+	{
+	    direction = number_door( );
+	}
+	while (   !( ch->in_room->exit[direction] )
+	       || !( ch->in_room->exit[direction]->to_room ) );
+    }
+
+    /*
+     * Display the results of the search.
+     */
+    sprintf( buf, "You sense $N's trail %s from here...",
+	    dir_name[direction] );
+    act( buf, ch, NULL, victim, TO_CHAR );
+
+    return;
+}
+
+
+
 void hunt_victim( CHAR_DATA *ch )
 {
-   bool found;
-   CHAR_DATA *tmp;
-   int ret;
+    CHAR_DATA *tmp;
+    int        dir;
+    bool       found;
 
-   if (!ch || !ch->hunting)
-      return;
+    if ( !ch || ch->deleted || !ch->hunting )
+	return;
 
-   /* make sure the char still exists */
-   for (found = FALSE, tmp = char_list; tmp && !found; tmp = tmp->next)
-      if (ch->hunting->who == tmp)
-         found = TRUE;
+    /*
+     * Make sure the victim still exists.
+     */
+    for ( found = FALSE, tmp = char_list; tmp && !found; tmp = tmp->next )
+	if ( ch->hunting->who == tmp )
+	    found = TRUE;
 
-   if (!found)
-   {
-      do_say(ch, "Damn!  My prey is gone!!" );
-      stop_hunting( ch );
-      return;
-   }
+    if ( !found || !can_see( ch, ch->hunting->who ) )
+    {
+	do_say( ch, "Damn!  My prey is gone!!" );
+	stop_hunting( ch );
+	return;
+    }
 
-   if ( ch->in_room == ch->hunting->who->in_room )
-   {
-     if ( ch->fighting )
-       return;
-     found_prey( ch, ch->hunting->who );
-     return;
-   }
-   
-   ret = find_first_step(ch->in_room, ch->hunting->who->in_room, 500 + ch->level * 25);
-   if (ret<0)
-   {
-      do_say( ch, "Damn!  Lost my prey!" );
-      stop_hunting( ch );
-      return;
-   }
-   else
-   {
-      move_char( ch, ret );
-      if ( !ch->hunting )
-      {
-        if ( !ch->in_room )
-        {
-          char buf[MAX_STRING_LENGTH];
-          sprintf( buf, "Hunt_victim: no ch->in_room!  Mob #%d, name: %s.  Placing mob in limbo.",
-                   ch->pIndexData->vnum, ch->name );
-          bug( buf, 0 );
-          char_to_room( ch, get_room_index( ROOM_VNUM_LIMBO ) );
-          return;
-        } 
+    if ( ch->in_room == ch->hunting->who->in_room )
+    {
+	if ( ch->fighting )
+	    return;
+	found_prey( ch, ch->hunting->who );
+	return;
+    }
+
+    WAIT_STATE( ch, skill_table[gsn_track].beats );
+    dir = find_path( ch->in_room->vnum, ch->hunting->who->in_room->vnum,
+		    ch, -40000, TRUE );
+
+    if ( dir < 0 || dir >= MAX_DIR )
+    {
+	act( "$n says 'Damn!  Lost $M!'", ch, NULL, ch->hunting->who, TO_ROOM );
+	stop_hunting( ch );
+	return;
+    }
+
+    /*
+     * Give a random direction if the mob misses the die roll.
+     */
+    if ( number_percent( ) > 75 )	/* @ 25% */
+    {
+	do
+	{
+	    dir = number_door( );
+	}
+	while (   !( ch->in_room->exit[dir] )
+	       || !( ch->in_room->exit[dir]->to_room ) );
+    }
+
+
+    if ( IS_SET( ch->in_room->exit[dir]->exit_info, EX_CLOSED ) )
+    {
+	do_open( ch, (char *) dir_name[dir] );
+	return;
+    }
+
+    move_char( ch, dir );
+
+    if ( !ch->hunting )
+    {
+	if ( !ch->in_room )
+	{
+	    char buf [ MAX_STRING_LENGTH ];
+
+	    sprintf( buf, "Hunt_victim: no ch->in_room!  Mob #%d, name: %s.  Placing mob in limbo.",
+		    ch->pIndexData->vnum, ch->name );
+	    bug( buf, 0 );
+	    char_to_room( ch, get_room_index( ROOM_VNUM_LIMBO ) );
+	    return;
+	} 
 	do_say( ch, "Damn!  Lost my prey!" );
 	return;
-      }
-      if (ch->in_room == ch->hunting->who->in_room)
+    }
+    if ( ch->in_room == ch->hunting->who->in_room )
 	found_prey( ch, ch->hunting->who );
-      return;
-   }
 
-   return;
+    return;
 }

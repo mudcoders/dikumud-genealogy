@@ -1,7 +1,7 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
@@ -82,25 +82,60 @@ different authors.
 
 
 
+=== New area format and OLC info
+
+This file may be incomplete but at least you have a reference to work on.
+The server can still load old Envy areas and then you can do an 'asave world'
+to save the entire database in the new format.  This file format is picky on
+the #RESETS section.  You may need to erase one or two lines but it will warn
+of that in the log file. 
+
+The new area format is a work in progress, so it may change and i'm not certain
+i'll bother doing a converter from my older area file formats.
+
+If you want to do area editing using OLC, remember you need authorization to do
+it.  This means one of two things:
+
+1)  Your 'security' field (saved in the 'Security' line on the pfile) is higher
+      than the security level of the given area (use 'alist' to see this).
+2)  Your name is in the 'Builders' line on the area file's #AREADATA section.
+
+
+					- Zen
+
+
+
+=== How to convert the standard Envy2.2 areas
+
+If 'asaving' the Envy2.2 release areas it will warn you of bugs in 'ocean.are'
+and 'grove.are' #RESETS.  Just delete the lines it gives the warning and swap
+the order of haon.are and arachnos.are in the AREA.LST file so that the resets
+will load correctly.  The order in your AREA.LST file should now be:
+
+   arachnos.are
+   haon.are
+
+
+
 === Sections of an Area
 
 An area file contains the following sections:
 
-    #AREA
+    #AREADATA
     #HELPS
     #RECALL
     #MOBILES
-    #OBJECTS
+    #NEWOBJECTS
     #ROOMS
     #RESETS
     #SHOPS
     #SPECIALS
-    #GAMES (NOT IMPLEMENTED YET)
+    #GAMES
     #$
 
-An area is a collection of sections starting with #AREA until the next #AREA. 
-All of our area files (except 'help.are') contain just one #AREA section,
-which is at the top of the file.
+An area is a collection of sections starting with #AREADATA until the next
+#AREADATA.  All of our area files (except 'help.are') contain just one
+#AREADATA section, which is at the top of the file.
 
 The file 'proto.are' contains a prototype for developing new area files.
 
@@ -167,21 +202,40 @@ They will be changed when we incorporate your area into the mud.
 
 
 
-=== The #AREA section (from this point onwards, I have changed things around)
+== The #AREADATA section (from this point onwards, I have changed things around)
 
 The syntax of this section is:
 
-    #AREA <area-name:string>
+    #AREADATA
+    Name      <area-name:string>
+    Builders  <builders:string>
+    VNUMs     <start:number> <end:number>
+    Security  <security:number>
+    Recall    <recall-point:number>
+    End
 
 The 'area-name' can be any string.  The 'areas' command provides a list of
 areas, so it's worth while to follow the standard Envy format for this
 string:
 
-    #AREA { 5 35} Envy    Prototype for New Area~
+    #AREADATA
+    Name        {{ 5 35} Envy    Prototype for New Area~
+    Builders    None~
+    VNUMs       3000 3383
+    Security    1
+    Recall      3001
+    End
 
 The first two numbers are recommended level range.  The name is the name of
 the original author of the area.  The last phrase is the name of the area.
 
+The 'recall-point' gives the vnum of the room to which a player will 
+recall if they attempt to do so anywhere within the area defined in the
+current file.  If this section is omitted, the recall point will be the
+standard ROOM_VNUM_TEMPLE as defined in merc.h.  It is distributed as room
+vnum 3001 in midgaard.are.  If the 'recall-point' is invalid, the player
+is unable to recall when attempted in the zone.  This function was added by
+Kahn to allow for builder-settable recall points.
 
 
 === The #HELPS section
@@ -241,22 +295,6 @@ strings, so that picturesque greeting screens may be used.
 
 0 $~:  This goes to the end of the entire #HELPS section to notify the
 area loader that the #HELPS section is over.
-
-
-
-=== The #RECALL section
-
-The syntax of this section is:
-
-    #RECALL <recall-point:number>
-
-The 'recall-point' gives the vnum of the room to which a player will 
-recall if they attempt to do so anywhere within the area defined in the
-current file.  If this section is omitted, the recall point will be the
-standard ROOM_VNUM_TEMPLE as defined in merc.h.  It is distributed as room
-vnum 3001 in midgaard.are.  If the 'recall-point' is invalid, the player
-is unable to recall when attempted in the zone.  This function was added by
-Kahn to allow for builder-settable recall points.
 
 
 
@@ -325,36 +363,40 @@ ACT_ flags:
   PET            256         Auto set for pets
   TRAIN          512         Can train PC's   
   PRACTICE      1024         Can practice PC's
-  GAMBLE        2048         Runs a gambling game
+  MOUNTABLE   131072         Can be mounted (ridable)
+
 
 The 'affected-flags' define more attributes of the mobile.
 AFF_ flags:
-  BLIND              1
-  INVISIBLE          2
-  DETECT_EVIL        4
-  DETECT_INVIS       8
-  DETECT_MAGIC      16
-  DETECT_HIDDEN     32
-  HOLD              64       
-  SANCTUARY        128
-  FAERIE_FIRE      256
-  INFRARED         512
-  CURSE           1024
-  POISON          4096
-  PROTECT         8192
-  SNEAK          32768
-  HIDE           65536
-  SLEEP         131072
-  CHARM         262144
-  FLYING        524288
-  PASS_DOOR    1048576
-  WATERWALK    2097152       
-  SUMMONED     4194304       (Soon to be implemented) 
-  MUTE         8388608     
-  GILLS       16777216       
-  VAMP_BITE   33554432	     (internally set)
-  GHOUL	      67108864	     (internally set)
-  FLAMING    134217728
+  BLIND                  1
+  INVISIBLE              2
+  DETECT_EVIL            4
+  DETECT_INVIS           8
+  DETECT_MAGIC          16
+  DETECT_HIDDEN         32
+  HOLD                  64       
+  SANCTUARY            128
+  FAERIE_FIRE          256
+  INFRARED             512
+  CURSE               1024
+  POISON              4096
+  PROTECT_EVIL        8192
+  SNEAK              32768
+  HIDE               65536
+  SLEEP             131072
+  CHARM             262144
+  FLYING            524288
+  PASS_DOOR        1048576
+  WATERWALK        2097152       
+  SUMMONED         4194304       (Soon to be implemented) 
+  MUTE             8388608     
+  GILLS           16777216       
+  VAMP_BITE       33554432	     (internally set)
+  GHOUL	          67108864	     (internally set)
+  FLAMING        134217728
+  DETECT_GOOD    268435456
+  PROTECT_GOOD   536870912
+  PLAGUE        1073741824
 
 The 'alignment' of the mobile ranges from -1000 to +1000.  Keep in mind that
 certain spells ('protection' and 'dispel evil') give characters fighting evil
@@ -405,14 +447,14 @@ make your first move.
 
 
 
-=== The #OBJECTS section
+=== The #NEWOBJECTS section
 
 These are the items that the people who journey through you area will keep
 and use, it is best to think up good descriptions for them.  Remember to
 balance these items with those that already exist.
 The syntax of this section is:
 
-    #OBJECTS
+    #NEWOBJECTS
     {
      #<vnum:number>
      <keywords:string>~
@@ -420,7 +462,7 @@ The syntax of this section is:
      <long-description:string>~
      <action-description:string>~
      <item-type:number> <extra-flags:number> <wear-flags:number>     
-     <value-0:string>~ <value-1:string>~ <value-2:string>~ <value-3:string>~ 
+     <val0:string>~ <val1:string>~ <val2:string>~ <val3:string>~ <val4:string>~
      <weight:number> <cost:number> <cost-per-day:number>
      {
          E
@@ -429,7 +471,7 @@ The syntax of this section is:
      }
      {
          A
-         <apply-type:number> <apply-value:number>
+         <apply-type:number> <apply-value:number> <apply-bitvector:number>
      }
     }
     #0
@@ -475,6 +517,11 @@ ITEM_ types:
   CORPSE_PC  24
   FOUNTAIN   25
   PILL       26
+  PORTAL     28
+  WARP_STONE 29
+  CLOTHING   30
+  RANGED_WPN 31
+  AMMO       32
 
 The 'extra-flags' describe more attributes of the object.  The 'wear-flags'
 describe whether the item can be picked up, and if so, what bodily locations
@@ -497,6 +544,7 @@ Extra ITEM_ flags:
   INVENTORY    		8192
   POISONED    	       16384
   VAMPIRE_BANE         32768
+  VISIBLE_DEATH       131072
 
 WEAR_ flags:
   TAKE            1
@@ -541,10 +589,11 @@ descriptions on your important objects that have items of note on them.
 It might even be desirable to link your extra descriptions to give just so
 much information at a time, leading each extra description to each other.
 
-An 'A' section ('apply') contains an apply-type and an apply-value.  When a
-character uses this object as equipment (holds, wields, or wears it), then
-the value of 'apply-value' is added to the character attribute identified by
-'apply-type'.
+An 'A' section ('apply') contains an apply-type, an apply-value and an bitvector.
+When a character uses this object as equipment (holds, wields, or wears it),
+then the value of 'apply-value' is added to the character attribute identified
+by 'apply-type'. The 'apply-bitvector' is added to the attribute of the
+character.
 
 APPLY_ types:
   NONE           0
@@ -573,6 +622,38 @@ APPLY_ types:
   SAVING_BREATH 23
   SAVING_SPELL  24
 
+The 'apply-bitvector' defines the altered attributes of the character.
+AFF_ flags:
+  BLIND                  1
+  INVISIBLE              2
+  DETECT_EVIL            4
+  DETECT_INVIS           8
+  DETECT_MAGIC          16
+  DETECT_HIDDEN         32
+  HOLD                  64       
+  SANCTUARY            128
+  FAERIE_FIRE          256
+  INFRARED             512
+  CURSE               1024
+  POISON              4096
+  PROTECT_EVIL        8192
+  SNEAK              32768
+  HIDE               65536
+  SLEEP             131072
+  CHARM             262144
+  FLYING            524288
+  PASS_DOOR        1048576
+  WATERWALK        2097152       
+  SUMMONED         4194304       (Soon to be implemented) 
+  MUTE             8388608     
+  GILLS           16777216       
+  VAMP_BITE       33554432	     (internally set)
+  GHOUL	          67108864	     (internally set)
+  FLAMING        134217728
+  DETECT_GOOD    268435456
+  PROTECT_GOOD   536870912
+  PLAGUE        1073741824
+
 An object may have an unlimited number of 'E' and 'A' sections.
 
 
@@ -598,24 +679,28 @@ ITEM_CONTAINER, value[1])
    value[1]    unused
    value[2]    hours of light available, 0 is dead, -1 is infinite            
    value[3]    unused
+   value[4]    unused
 
 02 ITEM_SCROLL
    value[0]    level
    value[1]    spell name 1
    value[2]    spell name 2
    value[3]    spell name 3
+   value[3]    spell name 4
 
 03 ITEM_WAND
    value[0]    level
    value[1]    max charges
    value[2]    current charges
    value[3]    spell name
+   value[4]    unused
 
 04 ITEM_STAFF
    value[0]    level
    value[1]    max charges
    value[2]    current charges
    value[3]    spell name
+   value[4]    unused
 
 05 ITEM_WEAPON
    value[0]    unused
@@ -636,84 +721,101 @@ ITEM_CONTAINER, value[1])
       11     pierce
       12     suction
       13     chop
+      14     vorpal
+      15     cleave
+      16     wail
+   value[4]    unused
 
 08 ITEM_TREASURE
    value[0]    unused
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 09 ITEM_ARMOR
    value[0]    unused 
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 10 ITEM_POTION
    value[0]    level
    value[1]    spell name 1
    value[2]    spell name 2
    value[3]    spell name 3
+   value[3]    spell name 4
 
 12 ITEM_FURNITURE
    value[0]    unused
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 13 ITEM_TRASH
    value[0]    unused
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 15 ITEM_CONTAINER
    value[0]    weight capacity
-   value[1]    flags: 1 closeable, 2 pickproof, 4 closed, 8 locked            
+   value[1]    flags: 1 closeable, 2 pickproof, 4 closed, 8 locked
    value[2]    key vnum
    value[3]    unused
+   value[4]    unused
 
 17 ITEM_DRINK_CON
    value[0]    capacity
    value[1]    current quantity
    value[2]    liquid number (see 'liq_table' in const.c)
    value[3]    if non-zero, drink is poisoned
+   value[4]    unused
 
 18 ITEM_KEY
    value[0]    unused (often vnum of room/container it unlocks)
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 19 ITEM_FOOD
    value[0]    hours of food value
    value[1]    unused
    value[2]    unused
    value[3]    if non-zero, food is poisoned
+   value[4]    unused
 
 20 ITEM_MONEY
    value[0]    value in gold pieces
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 22 ITEM_BOAT
    value[0]    unused
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 23 ITEM_CORPSE_NPC
    value[0]    unused
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 24 ITEM_CORPSE_PC
    value[0]    unused
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 
 25 ITEM_FOUNTAIN
@@ -721,28 +823,76 @@ ITEM_CONTAINER, value[1])
    value[1]    unused
    value[2]    unused
    value[3]    unused
+   value[4]    unused
 
 26 ITEM_PILL
    value[0]    level
    value[1]    spell name 1
    value[2]    spell name 2
    value[3]    spell name 3
+   value[4]    spell name 3
+
+28 ITEM_PORTAL
+   value[0]    current charges
+   value[1]    flags: 1 closeable, 2 pickproof, 4 closed, 8 locked
+   value[2]    key vnum
+   value[3]    flags: 1 nocursed, 2 gowith, 4 random, 8 buggy
+   value[4]    destination vnum
+
+29 ITEM_WARP_STONE
+   value[0]    unused
+   value[1]    unused
+   value[2]    unused
+   value[3]    unused
+   value[4]    unused
+
+30 ITEM_CLOTHING
+   value[0]    unused
+   value[1]    unused
+   value[2]    unused
+   value[3]    unused
+   value[4]    unused
+
+31 ITEM_RANGED_WEAPON
+   value[0]    ammo vnum
+   value[1]    unused (formerly min damage)
+   value[2]    unused (formerly max damage)
+   value[3]    ranged weapon type:
+      00     bow
+      01     crossbow
+      02     catapult
+   value[4]    unused
+
+32 ITEM_AMMO
+   value[0]    ammo type:
+      00     bow
+      01     crossbow
+      02     catapult
+   value[1]    add to damage
+   value[2]    unused
+   value[3]    unused
+   value[4]    unused
 
 Examples:
 ITEM_ARMOR:
-0~ 0~ 0~ 0~        
+0~ 0~ 0~ 0~ 0~
 (all values are set internally)
 
 ITEM_WEAPON:
-0~ 0~ 0~ 11~
+0~ 0~ 0~ 11~ 0~
 (damage range value[1]-value[2] is set internally; this is a piercing weapon)
 
 ITEM_POTION:
-25~ teleport~ cure critical~ ~
+25~ teleport~ cure critical~ ~ ~
 (note that only two spells are used; the third is left blank)
 
+ITEM_PORTAL:
+12~ 1~ 0~ 0~ 3001~
+Portal with 12 charges (can transport 12 people), closeable, when you enter
+the portal you go to vnum 3001 (Temple of Midgaard)
+
 ITEM_STAFF:
-15~ 3~ 3~ ultrablast~
+15~ 3~ 3~ ultrablast~ 0~
 
 And a complete item from the githzerai castle:
 #15010
@@ -752,7 +902,7 @@ A black staff that is neither wood or rock stands here.
 ~
 ~
 4 64 16385
-47~ 25~ 25~ charm person~
+47~ 25~ 25~ charm person~ 0~
 2 0 0
 A
 24 -5
@@ -816,6 +966,7 @@ ROOM_ flags:
   PET_SHOP          4096       A pet shop
   NO_RECALL         8192       Can't recall
   CONE_OF_SILENCE  16384       No speech/spells/communication channels
+  ARENA            32768       May attack anyone, No xp loss upon death
 
 The 'sector-type' identifies the type of terrain.  This affects movement cost
 through the room.  Certain sector types (air and boat) require special
@@ -855,15 +1006,23 @@ features about a door, and there are several combinations.  Doors can be
 bashproof, pickproof, and passproof.  The following table gives the 'locks'
 value and how the door will be set for each acceptable value:
 
-      value  pickproof  bashproof  passproof
-        1        no         no         no
-        2       yes         no         no
-        3        no        yes         no
-        4       yes        yes         no
-        5        no         no        yes
-        6       yes         no        yes
-        7        no        yes        yes
-        8       yes        yes        yes
+      value  pickproof  bashproof  passproof  eatkey
+        1        no         no         no       no
+        2       yes         no         no       no
+        3        no        yes         no       no
+        4       yes        yes         no       no
+        5        no         no        yes       no
+        6       yes         no        yes       no
+        7        no        yes        yes       no
+        8       yes        yes        yes       no
+        9        no         no         no       yes
+       10       yes         no         no       yes
+       11        no        yes         no       yes
+       12       yes        yes         no       yes
+       13        no         no        yes       yes
+       14       yes         no        yes       yes
+       15        no        yes        yes       yes
+       16       yes        yes        yes       yes
 
 The 'key' value is the vnum of an object which locks and unlocks the door.
 
@@ -1123,7 +1282,7 @@ Use this section to make your mobs mages, clerics etc...
 
 The syntax of this section is:
 
-#SPECIALS
+    #SPECIALS
     {
      * <comment_to_eol>
     }
@@ -1170,19 +1329,20 @@ M  2243 spec_breath_any
 
 
 
-=== The #GAMES section (NOT IMPLEMENTED YET.  SEE GAMING SECTION BELOW)
+=== The #GAMES section
 ( Games and gambling structure developed by Thelonius for EnvyMud )
+( Furter coding by Maniac and later by Zen )
 
 Use this section to allow your mobs to host gambling games.
 
 The syntax of this section is:
 
-#GAMES
+    #GAMES
     {
      * <comment_to_eol>
     }
     {
-     M <mob-vnum:number> <game-fun:string>~ <bankroll:number> \
+     M <mob-vnum:number> <game-fun:string> <bankroll:number>  \
        <max_wait:number> <cheat:number>                       \
        <comment:to_eol>
     }
@@ -1212,13 +1372,15 @@ The following game functions are available for mobiles:
 
 game_blackjack	(Not yet here)	Blackjack or twenty-one, dealer participates
 game_u_l_t			Upper-Lower-Triple, a dice game
+game_high_dice			High dice, a dice game
+game_seven			Seven, a dice game
 
 Here is an example of a #GAMES section:
 
 #GAMES
 *
-M  3160 upper-lower-triple~	100000	  4	0	/* Croupier    */
-M  3161 blackjack~		1000000   8	0	/* Dealer      */
+M  3160 game_u_l_t		100000	  4	0	/* Croupier    */
+M  3161 game_blackjack		1000000   8	0	/* Dealer      */
 *
 S
 
@@ -1247,15 +1409,15 @@ and pills.  Note that staves typically are only useful with area-affect spells
 	agitation		fireball		frost breath
 	armor			flamestrike		gas breath
 	aura sight		flaming shield		lightning breath
-	awe			flesh armor
-	ballistic attack	fly
-	biofeedback		gate
-	bless			giant strength
-	blindness		harm
-	burning hands		heal
-	call lightning		identify
-	cause critical		inertial barrier
-	cause light		inflict pain
+	awe			flesh armor		meteor swarm
+	ballistic attack	fly                     chain lightning
+	biofeedback		gate                    vortex lift
+	bless			giant strength          mass vortex lift
+	blindness		harm                    home sick
+	burning hands		heal                    detect good
+	call lightning		identify                dispel good
+	cause critical		inertial barrier        portal
+	cause light		inflict pain            nexus
 	cause serious		intellect fortress
 	cell adjustment		infravision
 	change sex		invis
@@ -1314,7 +1476,7 @@ you can spell check your area before handing it in.
 
 === Booting and Testing Areas
 
-When the Envy server starts, it reads a file named 'area.lst' in the current
+When the Envy server starts, it reads a file named 'AREA.LST' in the current
 directory.  This file contains a list of all the area files to read in.  To add
 or delete areas, simply edit area.lst.
 
@@ -1326,7 +1488,7 @@ to a memory-based system allowed certain memory optimizations to be made,
 cutting memory usage by 50% from Merc 1.0).
 
 You can test areas by running Envy in a different directory with a different
-'area.lst' file with new areas dropped into it.  Setting up an appropriate
+'AREA.LST' file with new areas dropped into it.  Setting up an appropriate
 directory structure is an exercise for the student.  (You DID say you're
 running a mud because you wanted to learn more about system administration,
 right?)  Hint: you can run a program in another directory just by invoking its
@@ -1353,13 +1515,13 @@ checker.
 It is possible to run Envy with a single combined, compressed area file.
 Here's how to do this on a Unix system:
 
-(1) In 'area.lst', remove the last line (the '$' line).
+(1) In 'AREA.LST', remove the last line (the '$' line).
 
 (2) Execute the command:
 
-	cat `cat area.lst` | compress > all_area.Z
+	cat `cat AREA.LST` | compress > all_area.Z
 
-(3) Edit 'area.lst' again.  Insert a '-' at the beginning of every line.
+(3) Edit 'AREA.LST' again.  Insert a '-' at the beginning of every line.
     Do not put any spaces between the '-' and the file name.  Put the last
     '$' line back at the end of the file.
 
@@ -1390,7 +1552,7 @@ name (e.g. '-arachnos.are'), but the line number will be reported as zero.
 
 You can freely mix areas from standard input with ordinary area files.  Thus,
 you could compress all the Envy standard zones into a file such as envy_area.Z,
-prefixing them with '-' in 'area.lst'.  Then you could add your own areas
+prefixing them with '-' in 'AREA.LST'.  Then you could add your own areas
 anywhere in the file (beginning, middle, end, wherever your areas need to go),
 and omit the '-' on the lines for your areas.
 
@@ -1408,7 +1570,7 @@ In order to simplify the code, the EnvyMud server has a fixed maximum size on
 strings in the area database.  This size is defined at the beginning
 of 'ssm.c'.  As distributed, this size is:
 
-#define MAX_CHUNKS 27
+#define MAX_CHUNKS 33
 
 This size is about 6% (100k) larger than needed for the areas we
 distribute.  Thus, you can add about 2 more areas without touching the
@@ -1425,17 +1587,3 @@ There is no other limit on area sizes or memory usage.
 We decided to use a fixed size because it simplifies our job.  It also allows
 significant performance improvements: compare our load time and memory usage
 versus other Diku muds with the same quantity of areas.
-
-
-
-=== GAMING in Envy 2.0/2.2
-
-The gaming section available in this v2.2 release is rudimentary and
-is not activated in the area files.  To activate the game upper lower
-triple, you must:
-
-1)  Load the mobile vnum #3160 into the game.  Defined in merc.h as
-	MOB_VNUM_ULT.
-2)  Ensure the ACT bit ACT_GAMBLE is set on the mobile
-
-At this point, the gambling command (bet/wager) will be usable.

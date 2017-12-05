@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #8301
 troll~
@@ -210,7 +209,6 @@ This creepy fellow looks like he could use you as a meal.
 #0
 
 
-
 #NEWOBJECTS
 #8301
 spear long~
@@ -271,7 +269,6 @@ E
 potion~
 It looks really disgusting and doesn't smell very nice either.~
 #0
-
 
 
 #ROOMDATA
@@ -699,7 +696,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 8309 spec_poison
 M 8310 spec_poison
@@ -707,7 +703,6 @@ M 8312 spec_thief
 M 8313 spec_cast_undead
 M 8319 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -764,10 +759,8 @@ M 0 8321 2 8318
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

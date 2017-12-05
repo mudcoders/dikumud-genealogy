@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1100
 elven wizard~
@@ -420,7 +419,6 @@ somewhere outside the shire.
 #0
 
 
-
 #NEWOBJECTS
 #1100
 rainbow staff~
@@ -577,7 +575,6 @@ A flail is on the floor.~
 0~ 2~ 4~ 6~ 0~
 8 300 0
 #0
-
 
 
 #ROOMDATA
@@ -1664,7 +1661,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 1100 spec_cast_mage
 M 1101 spec_poison
@@ -1677,7 +1673,6 @@ M 1121 spec_guard
 M 1122 spec_thief
 M 1132 spec_guard
 S
-
 
 
 #RESETS
@@ -1826,7 +1821,6 @@ M 0 1131 1 1157
 S
 
 
-
 #SHOPS
 1113 17 0 0 0 0 150 50 0 23
 1118 13 5 15 1 17 150 50 0 23
@@ -1834,7 +1828,6 @@ S
 1120 9 5 0 0 0 150 50 0 23
 1130 17 0 0 0 0 150 50 0 23
 0
-
 
 
 #$

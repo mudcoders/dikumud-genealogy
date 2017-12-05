@@ -23,8 +23,8 @@ if exists shutdown.txt
 endif
 
 LAB Begin
-;    /src/Envy20 4000
-   /src/Envy20 $port  >> $logfile
+;    /src/envy2 4000
+   /src/envy2 $port  >> $logfile
 
     if exists shutdown.txt
        delete shutdown.txt

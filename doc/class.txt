@@ -1,23 +1,28 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
 === Classes
 
 The central organizing table for classes is class_table, which is an array of
-type 'struct class_type' (defined in 'merc.h') and is defined in 'const.c'.
-Mobs have class 0, and players have classes 0 through MAX_CLASS-1.
+type 'struct class_type' (defined in 'merc.h') and is defined in a class file
+located on area/classes.
 
 The fields of class_table are:
 
+    char *	name;
+
+	This is the full name of the class used for the 'who', 'whois' and
+	'score' listings.
+
     char *	who_name;
 
-	This three-letter name is used for the 'who' listing.  It's also used
-	for the list of classes shown to new characters for selecting a class,
-	and for matching the player's input in selecting a class.
+	It's also used for the list of classes shown to new characters for
+	selecting a class, and for matching the player's input in selecting a
+	class.
 
     int 	attr_prime;
 
@@ -60,7 +65,7 @@ The fields of class_table are:
 === Adding a new class
 
 This section enumerates the changes that need to be made to the base level
-Envy 2.2 code necessary for the addition of a new class.  These changes
+UltraEnvy code necessary for the addition of a new class.  These changes
 presuppose that certain functions (spells, skills) and structures (skill
 definitions, poses, titles, etc.) are already made.  These assumptions
 are summarized at the end of the file.  For more detailed information
@@ -103,20 +108,14 @@ ACT_COMM.C	- Add class poses (17 poses in standard Envy 2.2) to
 		  will get very screwed up if you miss a comma (see
 		  the example in INTERP.C above
 
-CONST.C		- Add class definition (structure) to class_table
--------		- Add class titles (54 * 2 + 2) to title_table
-                - #define CLASS_<class name> <class number> below others
-		- Change ALL skill_level's in skill_table to have
-		  MAX_CLASS values, i.e.
+CONST.C
+-------		- Add all skill/spell definitions to skill_table.
 
-        "armor",                {     5,     1, L_APP, L_APP, L_APP, L_APP },
-
-		  This spell now has 6 values, corresponding to 6
-		  classes.  (This step is probably the most painful.)
-		- Add all skill/spell definitions to skill_table.
-		- If your class will have access to existing skills
-		  and/or spells, change the value you added above (L_APP)
-		  to the appropriate level for your class
+NAME.CLASS	- Add class definition (structure) to the file.
+----------	- Add class titles (54 * 2 + 2) to the file.
+		- Add all skill/spell definitions to the file.
+		- If your class will have access to existing skills and/or
+		  spells add them to the file also.
 
 MAGIC.C		- Add code (spell_<name> functions) for all new spells.
 -------		  Best location would probably be at the end of the file,
@@ -155,8 +154,8 @@ HELP.ARE	- Add all HELPS for new spells, skills, class, or any
 NECESSARY FILES AND/OR FUNCTIONS:
 ---------------------------------
 ACT_COMM.C	- poses
-CONST.C		- class definition for class_table
-CONST.C		- class titles for title_table
+NAME.CLASS	- class definition for class_table
+NAME.CLASS	- class titles for title_table
 CONST.C		- skill/spell definitions for skill_table
 MAGIC.C		- spell code
 ACT_####.C	- skill code (usually in ACT_MOVE.C)

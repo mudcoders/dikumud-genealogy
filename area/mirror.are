@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #5300
 baby beholder~
@@ -424,7 +423,6 @@ A big, strong, helpful, trustworthy guard.
 #0
 
 
-
 #NEWOBJECTS
 #5300
 collar~
@@ -833,7 +831,6 @@ death of KhyrhaDenae, and we will not survive the next Khyrha.
 --- as prophesized by Me
 ~
 #0
-
 
 
 #ROOMDATA
@@ -2695,7 +2692,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 5300 spec_cast_mage
 M 5303 spec_guard
@@ -2712,7 +2708,6 @@ M 5332 spec_janitor
 M 5333 spec_fido
 M 5334 spec_guard
 S
-
 
 
 #RESETS
@@ -3003,7 +2998,6 @@ E 0 3354 0 11
 S
 
 
-
 #SHOPS
 5310 0 0 0 0 0 120 90 0 23
 5311 5 17 19 0 0 110 90 6 20
@@ -3012,7 +3006,6 @@ S
 5314 1 8 12 13 22 135 65 8 18
 5317 2 3 4 10 0 120 50 9 17
 0
-
 
 
 #$

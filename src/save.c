@@ -65,6 +65,7 @@ void	fwrite_obj	args( ( CHAR_DATA *ch,  OBJ_DATA  *obj,
 			       FILE *fp, int iNest ) );
 int	fread_char	args( ( CHAR_DATA *ch,  FILE *fp ) );
 int	fread_obj	args( ( CHAR_DATA *ch,  FILE *fp ) );
+int	new_fread_obj	args( ( CHAR_DATA *ch,  FILE *fp ) );
 
 
 /* Courtesy of Yaz of 4th Realm */
@@ -206,23 +207,23 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     int          sn;
     int		 pos;
 
-    fprintf( fp, "#%s\n", IS_NPC( ch ) ? "MOB" : "PLAYER"	);
+    fprintf( fp, "#%s\n", IS_NPC( ch ) ? "MOB" : "PLAYER"		);
 
-    fprintf( fp, "Nm          %s~\n",	ch->name		);
-    fprintf( fp, "ShtDsc      %s~\n",	ch->short_descr		);
-    fprintf( fp, "LngDsc      %s~\n",	ch->long_descr		);
-    fprintf( fp, "Dscr        %s~\n",	ch->description		);
-    fprintf( fp, "Prmpt       %s~\n",	ch->pcdata->prompt	);
-    fprintf( fp, "Sx          %d\n",	ch->sex			);
-    fprintf( fp, "Cla         %d\n",	ch->class		);
+    fprintf( fp, "Nm          %s~\n",	ch->name			);
+    fprintf( fp, "ShtDsc      %s~\n",	ch->short_descr			);
+    fprintf( fp, "LngDsc      %s~\n",	ch->long_descr			);
+    fprintf( fp, "Dscr        %s~\n",	fix_string( ch->description )	);
+    fprintf( fp, "Prmpt       %s~\n",	ch->pcdata->prompt		);
+    fprintf( fp, "Sx          %d\n",	ch->sex				);
+    fprintf( fp, "Cla         %d\n",	ch->class			);
 
-    fprintf( fp, "Race        %s~\n",	race_table[ ch->race ].name );
+    fprintf( fp, "Race        %s~\n",	race_table[ ch->race ].name 	);
 
-    fprintf( fp, "Lvl         %d\n",	ch->level		);
-    fprintf( fp, "Trst        %d\n",	ch->trust		);
+    fprintf( fp, "Lvl         %d\n",	ch->level			);
+    fprintf( fp, "Trst        %d\n",	ch->trust			);
     fprintf( fp, "Playd       %d\n",
-	ch->played + (int) ( current_time - ch->logon )		);
-    fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note );
+	ch->played + (int) ( current_time - ch->logon )			);
+    fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note 	);
     fprintf( fp, "Room        %d\n",
 	    (  ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
 	     && ch->was_in_room )
@@ -235,6 +236,13 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Exp         %d\n",	ch->exp			);
     fprintf( fp, "Act         %d\n",    ch->act			);
     fprintf( fp, "AffdBy      %d\n",	ch->affected_by		);
+
+    if ( ch->resistant )
+	fprintf( fp, "Res         %d\n",	ch->resistant		);
+    if ( ch->immune )
+	fprintf( fp, "Imm         %d\n",	ch->immune			);
+    if ( ch->susceptible )
+	fprintf( fp, "Susc        %d\n",	ch->susceptible		);
     /* Bug fix from Alander */
     fprintf( fp, "Pos         %d\n",
 	    ch->position == POS_FIGHTING ? POS_STANDING : ch->position );
@@ -258,6 +266,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "Bmfin       %s~\n",	ch->pcdata->bamfin	);
 	fprintf( fp, "Bmfout      %s~\n",	ch->pcdata->bamfout	);
 	fprintf( fp, "Immskll     %s~\n",	ch->pcdata->immskll	);
+	fprintf( fp, "Wiznet      %d\n",	ch->pcdata->wiznet	);
 	fprintf( fp, "Ttle        %s~\n",	ch->pcdata->title	);
 	fprintf( fp, "AtrPrm      %d %d %d %d %d\n",
 		ch->pcdata->perm_str,
@@ -278,10 +287,24 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		ch->pcdata->condition[1],
 		ch->pcdata->condition[2] );
 
-	fprintf( fp, "Security    %d\n",   ch->pcdata->security     );
-	fprintf( fp, "Clan        %d %d\n",   ch->pcdata->rank,
-						ch->pcdata->clan);
-	fprintf( fp, "Pglen       %d\n",   ch->pcdata->pagelen     );
+	fprintf( fp, "Security    %d\n",   ch->pcdata->security		);
+
+	if ( is_clan( ch ) )
+	    fprintf( fp, "PClan       %2d %s~\n",
+		    ch->pcdata->rank,
+		    ch->pcdata->clan->name );
+
+	if ( ch->pcdata->pkills )
+	    fprintf( fp, "PKills      %d\n", ch->pcdata->pkills	);
+	if ( ch->pcdata->pdeaths )
+	    fprintf( fp, "PDeaths     %d\n", ch->pcdata->pdeaths	);
+	if ( ch->pcdata->illegal_pk )
+	    fprintf( fp, "IllegalPK   %d\n", ch->pcdata->illegal_pk	);
+
+	fprintf( fp, "MKills      %d\n",   ch->pcdata->mkills		);
+	fprintf( fp, "MDeaths     %d\n",   ch->pcdata->mdeaths		);
+
+	fprintf( fp, "Pglen       %d\n",   ch->pcdata->pagelen		);
 
         for ( pos = 0; pos < MAX_ALIAS; pos++ )
 	{
@@ -345,7 +368,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 	|| obj->deleted )
 	return;
 
-    fprintf( fp, "#OBJECT\n" );
+    fprintf( fp, "#NEWOBJECT\n" );
     fprintf( fp, "Nest         %d\n",	iNest			     );
     fprintf( fp, "Name         %s~\n",	obj->name		     );
     fprintf( fp, "ShortDescr   %s~\n",	obj->short_descr	     );
@@ -460,8 +483,10 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->last_note                       = 0;
     ch->act				= PLR_BLANK
 					| PLR_COMBINE
-					| PLR_PROMPT;
+					| PLR_PROMPT
+					| PLR_PAGER;
     ch->pcdata->pwd			= str_dup( "" );
+    ch->pcdata->pwdnew			= str_dup( "" );
     ch->pcdata->bamfin			= str_dup( "" );
     ch->pcdata->bamfout			= str_dup( "" );
     ch->pcdata->immskll			= str_dup( "" );
@@ -474,9 +499,10 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->condition[COND_THIRST]	= 48;
     ch->pcdata->condition[COND_FULL]	= 48;
     ch->pcdata->pagelen                 = 20;
-    ch->pcdata->security		= 0;    /* OLC */
+    ch->pcdata->security		= 0;
     ch->pcdata->rank			= 0;
-    ch->pcdata->clan	                = 0;
+    ch->pcdata->clan	                = NULL;
+    ch->pcdata->wiznet			= 0;
 
     ch->pcdata->switched                = FALSE;
 
@@ -567,6 +593,18 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 		    return FALSE;
 		}
 	    }
+	    else if ( !str_cmp( word, "NEWOBJECT" ) )
+	    {
+	        if ( !new_fread_obj  ( ch, fp ) )
+		{
+		    sprintf( buf,
+			    "Load_char_obj:  %s section NEWOBJECT corrupt.\n\r",
+			    name );
+		    bug( buf, 0 );
+		    write_to_buffer( d, sorry_object, 0 );
+		    return FALSE;
+		}
+	    }
 	    else if ( !str_cmp( word, "END"    ) ) break;
 	    else
 	    {
@@ -604,17 +642,17 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
     int         num_keys;
     int         last_key = 0;
 
-    char        def_prompt [] = "{g<%hhp %mm %vmv>{x ";
+    char        def_prompt [] = "{o{g<%hhp %mm %vmv>{x ";
     char        def_sdesc  [] = "Your short description was corrupted.";
     char        def_ldesc  [] = "Your long description was corrupted.";
     char        def_desc   [] = "Your description was corrupted.";
     char        def_title  [] = "Your title was corrupted.";
 
     struct key_data key_tab [] = {
-      { "ShtDsc", TRUE,  (int) &def_sdesc,	{ &ch->short_descr,   NULL } },
-      { "LngDsc", TRUE,  (int) &def_ldesc,	{ &ch->long_descr,    NULL } },
-      { "Dscr",   TRUE,  (int) &def_desc,	{ &ch->description,   NULL } },
-      { "Prmpt",  TRUE,  (int) &def_prompt,	{ &ch->pcdata->prompt,NULL } },
+      { "ShtDsc", TRUE,  (long) &def_sdesc,	{ &ch->short_descr,   NULL } },
+      { "LngDsc", TRUE,  (long) &def_ldesc,	{ &ch->long_descr,    NULL } },
+      { "Dscr",   TRUE,  (long) &def_desc,	{ &ch->description,   NULL } },
+      { "Prmpt",  TRUE,  (long) &def_prompt,	{ &ch->pcdata->prompt,NULL } },
       { "Sx",     FALSE, SEX_MALE,		{ &ch->sex,           NULL } },
       { "Cla",    FALSE, MAND,			{ &ch->class,         NULL } },
       { "Lvl",    FALSE, MAND,			{ &ch->level,         NULL } },
@@ -631,6 +669,9 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
       { "Exp",    FALSE, MAND,			{ &ch->exp,           NULL } },
       { "Act",    FALSE, DEFLT,			{ &ch->act,           NULL } },
       { "AffdBy", FALSE, 0,			{ &ch->affected_by,   NULL } },
+      { "Res",    FALSE, 0,			{ &ch->resistant,     NULL } },
+      { "Imm",    FALSE, 0,			{ &ch->immune,        NULL } },
+      { "Susc",   FALSE, 0,			{ &ch->susceptible,   NULL } },
       { "Pos",    FALSE, POS_STANDING, 		{ &ch->position,      NULL } },
       { "Prac",   FALSE, MAND,			{ &ch->practice,      NULL } },
       { "SavThr", FALSE, MAND,			{ &ch->saving_throw,  NULL } },
@@ -647,7 +688,9 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 						                      NULL } },
       { "Immskll",TRUE,  DEFLT,			{ &ch->pcdata->immskll,
 						                      NULL } },
-      { "Ttle",   TRUE,  (int) &def_title,	{ &ch->pcdata->title, NULL } },
+      { "Wiznet", FALSE,  0,			{ &ch->pcdata->wiznet,
+						                      NULL } },
+      { "Ttle",   TRUE,  (long) &def_title,	{ &ch->pcdata->title, NULL } },
       { "AtrPrm", FALSE, MAND,			{ &ch->pcdata->perm_str,
 						  &ch->pcdata->perm_int,
 						  &ch->pcdata->perm_wis,
@@ -664,14 +707,22 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 						  &ch->pcdata->condition [1],
 						  &ch->pcdata->condition [2],
 						                      NULL } },
-      { "Security",   FALSE, DEFLT,             { &ch->pcdata->security,
+      { "Security", FALSE, DEFLT,             { &ch->pcdata->security,
 								      NULL } },
-      { "Clan",   FALSE, DEFLT,			{ &ch->pcdata->rank,
-						  &ch->pcdata->clan,
+      { "PKills",	FALSE, 0,		{ &ch->pcdata->pkills,
+						                      NULL } },
+      { "PDeaths",	FALSE, 0,		{ &ch->pcdata->pdeaths,
+						                      NULL } },
+      { "IllegalPK",	FALSE, 0,		{ &ch->pcdata->illegal_pk,
+						                      NULL } },
+      { "MKills",	FALSE, 0,		{ &ch->pcdata->mkills,
+						                      NULL } },
+      { "MDeaths",	FALSE, 0,		{ &ch->pcdata->mdeaths,
 						                      NULL } },
       { "Pglen",  FALSE, 20,			{ &ch->pcdata->pagelen,
 						                      NULL } },
       { "\0",     FALSE, 0                                                 } };
+
 
     for ( num_keys = 0; *key_tab [num_keys].key; )
         num_keys++;
@@ -759,7 +810,21 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 		  bug( "Fread_char: Unknown Race.", 0 );
 	      else
 		  ch->race = i;
-	      ch->parts       = race_table[ch->race].parts;
+	  }
+
+        else if ( !str_cmp( word, "PClan" ) )
+	  {
+	      char *clan_name;
+
+	      ch->pcdata->rank      = fread_number( fp, &status );
+	      clan_name             = fread_string( fp, &status );
+
+	      if ( !clan_name
+		  || !( ch->pcdata->clan = get_clan( clan_name ) ) )
+	      {
+		bug( "Fread_char: Unknown PClan.", 0 );
+		ch->pcdata->rank      = 0;
+	      }
 	  }
 
 	else if ( !str_cmp( word, "Alias" ) )
@@ -924,8 +989,293 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
     struct key_data key_tab [] =
       {
 	{ "Name",        TRUE,  MAND,             { &obj.name,        NULL } },
-	{ "ShortDescr",  TRUE,  (int) &corobj,    { &obj.short_descr, NULL } },
-	{ "Description", TRUE,  (int) &corobj,    { &obj.description, NULL } },
+	{ "ShortDescr",  TRUE,  (long) &corobj,   { &obj.short_descr, NULL } },
+	{ "Description", TRUE,  (long) &corobj,   { &obj.description, NULL } },
+	{ "ExtraFlags",  FALSE, MAND,             { &obj.extra_flags, NULL } },
+	{ "WearFlags",   FALSE, MAND,             { &obj.wear_flags,  NULL } },
+	{ "WearLoc",     FALSE, MAND,             { &obj.wear_loc,    NULL } },
+	{ "ItemType",    FALSE, MAND,             { &obj.item_type,   NULL } },
+	{ "Weight",      FALSE, 10,               { &obj.weight,      NULL } },
+	{ "Level",       FALSE, ch->level,        { &obj.level,       NULL } },
+	{ "Timer",       FALSE, 0,                { &obj.timer,       NULL } },
+	{ "Cost",        FALSE, 300,              { &obj.cost,        NULL } },
+	{ "Values",      FALSE, MAND,             { &obj.value [0],
+						    &obj.value [1],
+						    &obj.value [2],
+						    &obj.value [3],   NULL } },
+	{ "\0",          FALSE, 0                                          } };
+
+    memset( &obj, 0, sizeof( OBJ_DATA ) );
+
+    obj.name        = str_dup( "" );
+    obj.short_descr = str_dup( "" );
+    obj.description = str_dup( "" );
+    obj.deleted     = FALSE;
+
+    fNest           = FALSE;
+    fVnum           = TRUE;
+    iNest           = 0;
+
+    new_obj = new_object ();
+
+    for ( num_keys = 0; *key_tab [num_keys].key; )
+        num_keys++;
+
+    for ( fpos = ftell( fp ) ; !feof( fp ) ; )
+    {
+
+        word = fread_word( fp, &status );
+
+        for ( i = last_key;
+              i < last_key + num_keys &&
+                str_cmp( key_tab [i % num_keys].key, word ); )
+            i++;
+
+        i = i % num_keys;
+
+        if ( !str_cmp( key_tab [i].key, word ) )
+            last_key = i + 1;
+        else
+            i = num_keys;
+
+        if ( *key_tab [i].key )         /* Key entry found in key_tab */
+	{
+            if ( key_tab [i].string == SPECIFIED )
+                bug( "Key already specified.", 0 );
+
+                        /* Entry is a string */
+
+            else if ( key_tab [i].string )
+	    {
+                if ( ( p = fread_string( fp, &status ) ) && !status )
+		{
+                   free_string ( * (char **) key_tab [i].ptrs [0] );
+                   * (char **) key_tab [i].ptrs [0] = p;
+		}
+	    }
+
+                        /* Entry is an integer */
+            else
+                for ( j = 0; key_tab [i].ptrs [j]; j++ )
+		{
+                    tmpi = fread_number( fp, &status );
+                    if ( !status )
+                        * (int *) key_tab [i].ptrs [j] = tmpi;
+		}
+
+            if ( status )
+	    {
+                fread_to_eol( fp );
+                continue;
+	    }
+	    else
+                key_tab [i].string = SPECIFIED;
+	}
+
+        else if ( *word == '*' )
+            fread_to_eol( fp );
+
+        else if ( !str_cmp( word, "End" ) )
+	{
+            if ( !fNest || !fVnum )
+	    {
+                bug( "Fread_obj: incomplete object.", 0 );
+
+		recover    ( fp, fpos        );
+		free_string( obj.name        );
+		free_string( obj.short_descr );
+		free_string( obj.description );
+		extract_obj( new_obj         );
+
+		return FALSE;
+	    }
+            break;
+	}
+
+        else if ( !str_cmp( word, "Nest" ) )
+	{
+
+            iNest = fread_number( fp, &status );
+
+            if ( status )       /* Losing track of nest level is bad */
+                iNest = 0;      /* This makes objs go to inventory */
+
+            else if ( iNest < 0 || iNest >= MAX_NEST )
+                bug( "Fread_obj: bad nest %d.", iNest );
+
+            else
+	    {
+                rgObjNest[iNest] = new_obj;
+                fNest = TRUE;
+	    }
+	}
+
+        else if ( !str_cmp( word, "Spell" ) )
+	{
+
+            iValue = fread_number( fp, &status );
+
+            if ( !status )
+                spell_name = fread_word( fp, &status );
+
+            if ( status )       /* Recover is to skip spell */
+	    {
+                fread_to_eol( fp );
+                continue;
+	    }
+
+            sn = skill_lookup( spell_name );
+
+            if ( iValue < 0 || iValue > 3 )
+                bug( "Fread_obj: bad iValue %d.", iValue );
+
+            else if ( sn < 0 )
+                bug( "Fread_obj: unknown skill.", 0 );
+
+            else
+                obj.value [iValue] = sn;
+	}
+
+        else if ( !str_cmp( word, "Vnum" ) )
+	{
+
+            vnum = fread_number( fp, &status );
+
+            if ( status )               /* Can't live without vnum */
+	    {
+		recover    ( fp, fpos        );
+		free_string( obj.name        );
+		free_string( obj.short_descr );
+		free_string( obj.description );
+		extract_obj( new_obj         );
+		return FALSE;
+	    }
+
+            if ( !( obj.pIndexData = get_obj_index( vnum ) ) )
+                bug( "Fread_obj: bad vnum %d.", vnum );
+            else
+                fVnum = TRUE;
+	}
+
+                /* The following keys require extra processing */
+
+        if ( !str_cmp( word, "Affect" ) )
+	{
+            paf = new_affect ();
+
+	    paf->type       = fread_number( fp, &status );
+	    paf->duration   = fread_number( fp, &status );
+	    paf->modifier   = fread_number( fp, &status );
+	    paf->location   = fread_number( fp, &status );
+	    paf->bitvector  = fread_number( fp, &status );
+
+            paf->next = obj.affected;
+            obj.affected = paf;
+	}
+
+        else if ( !str_cmp( word, "ExtraDescr" ) )
+	{
+	    tmp_ptr = fread_string( fp, &status );
+
+            if ( !status )
+                p = fread_string( fp, &status );
+
+            if ( status )
+	    {
+		recover    ( fp, fpos        );
+		free_string( obj.name        );
+		free_string( obj.short_descr );
+		free_string( obj.description );
+		extract_obj( new_obj         );
+		return FALSE;
+	    }
+
+            ed = new_extra_descr ();
+
+            ed->keyword     = tmp_ptr;
+            ed->description = p;
+            ed->next        = obj.extra_descr;
+            obj.extra_descr = ed;
+	}
+    }
+                /* Require all manditory fields, set defaults */
+
+    for ( i = 0; *key_tab [i].key; i++ )
+    {
+
+        if ( key_tab [i].string == SPECIFIED ||
+             key_tab [i].deflt == DEFLT )
+            continue;
+
+        if ( key_tab [i].deflt == MAND )
+	{
+            sprintf( buf, "Manditory obj field '%s' missing from pfile.",
+		    key_tab [i].key );
+            bug( buf, 0 );
+
+	    recover    ( fp, fpos        );
+	    free_string( obj.name        );
+	    free_string( obj.short_descr );
+	    free_string( obj.description );
+	    extract_obj( new_obj         );
+
+	    return FALSE;
+	}
+
+                /* This if/else sets default strings and numbers */
+
+        if ( key_tab [i].string && key_tab [i].deflt )
+            * (char **) key_tab [i].ptrs [0] =
+                        str_dup ( (char *) key_tab [i].deflt );
+        else
+            for ( j = 0; key_tab [i].ptrs [j]; j++ )
+                * (int *) key_tab [i].ptrs [j] = key_tab [i].deflt;
+    }
+
+    memcpy( new_obj, &obj, sizeof( OBJ_DATA ) );
+
+    new_obj->next = object_list;
+    object_list   = new_obj;
+
+    new_obj->pIndexData->count++;
+    if ( iNest == 0 || !rgObjNest[iNest] )
+        obj_to_char( new_obj, ch );
+    else
+        obj_to_obj( new_obj, rgObjNest[iNest-1] );
+
+    return TRUE;
+}
+
+int new_fread_obj( CHAR_DATA *ch, FILE *fp )
+{
+    EXTRA_DESCR_DATA *ed;
+    OBJ_DATA         obj;
+    OBJ_DATA         *new_obj;
+    AFFECT_DATA      *paf;
+    char              buf[ MAX_STRING_LENGTH ];
+    char             *spell_name = NULL;
+    char             *p          = NULL;
+    char             *word;
+    char             *tmp_ptr;
+    bool              fNest;
+    bool              fVnum;
+    long              fpos;
+    int               iNest;
+    int               iValue;
+    int               status;
+    int               sn;
+    int               vnum;
+    int               num_keys;
+    int               last_key   = 0;
+    int               i, j, tmpi;
+
+    char              corobj [] = "This object was corrupted.";
+
+    struct key_data key_tab [] =
+      {
+	{ "Name",        TRUE,  MAND,             { &obj.name,        NULL } },
+	{ "ShortDescr",  TRUE,  (long) &corobj,   { &obj.short_descr, NULL } },
+	{ "Description", TRUE,  (long) &corobj,   { &obj.description, NULL } },
 	{ "ExtraFlags",  FALSE, MAND,             { &obj.extra_flags, NULL } },
 	{ "WearFlags",   FALSE, MAND,             { &obj.wear_flags,  NULL } },
 	{ "WearLoc",     FALSE, MAND,             { &obj.wear_loc,    NULL } },
@@ -1062,7 +1412,7 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
 
             sn = skill_lookup( spell_name );
 
-            if ( iValue < 0 || iValue > 3 )
+            if ( iValue < 0 || iValue > 4 )
                 bug( "Fread_obj: bad iValue %d.", iValue );
 
             else if ( sn < 0 )

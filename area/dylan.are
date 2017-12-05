@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #9101
 harpy~
@@ -99,7 +98,6 @@ they would be quite painful.  Her eyes pierce your very soul.
 #0
 
 
-
 #NEWOBJECTS
 #9101
 winged boots~
@@ -150,7 +148,6 @@ An ancient illustrated parchment in the corner~
 5~ blindness~ curse~ poison~  ~
 5 100 0
 #0
-
 
 
 #ROOMDATA
@@ -1727,11 +1724,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 9107 spec_cast_undead
 S
-
 
 
 #RESETS
@@ -1798,10 +1793,8 @@ G 0 9103 0
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

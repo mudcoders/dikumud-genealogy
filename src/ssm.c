@@ -21,7 +21,9 @@
  *                                                                            *
  *  <tadriaen@zorro.ruca.ua.ac.be>                                            *
  *                                                                            *
- *  Removed ROM 2.4 modifications as Envy doesnt need *fread_string_eol -Kahn *
+ *  Removed ROM2.4 modifications as Envy doesnt need *fread_string_eol - Kahn *
+ *                                                                            *
+ *  Included a more accurate hashing function by Erwin S.A. -- Zen            *
  *                                                                            *
  *****************************************************************************/
 
@@ -68,7 +70,6 @@ typedef struct TH TempHash;
 struct TH
 {
     TempHash *next;
-    uintType  len;
     char     *str;
 };
 
@@ -87,11 +88,12 @@ long         sOverFlowString;
 int          numFree;
 bool         Full;
 
-char         *str_dup        ( const char * );
-void          free_string    ( char * );
-char         *fread_string   ( FILE *, int * );
-void          temp_hash_add  ( char * );
-char         *temp_hash_find ( const char * );
+char *		str_dup		args( ( const char * ) );
+void		free_string	args( ( char * ) );
+char *		fread_string	args( ( FILE *, int * ) );
+void		temp_hash_add	args( ( char *, int ) );
+char *		temp_hash_find	args( ( const char *, int ) );
+static unsigned	get_string_hash	args( ( register const char *, int ) );
 
 /*
  * ssm_buf_head points to start of shared space,
@@ -116,7 +118,7 @@ int     HEADER_SIZE;
 void init_string_space()
 {
     BufEntry *walk;
-    int i;
+    int       i;
 
     string_space = (char *)malloc( MAX_STRING );
     if( !string_space )
@@ -368,7 +370,7 @@ void free_string( char *str )
 	{
 	    TempHash *ptr;
 	    TempHash *walk;
-	    int ihash = strlen( str ) % MAX_KEY_HASH;
+	    int ihash = get_string_hash( str, strlen( str ) );
 
 	    for( ptr = temp_string_hash[ ihash ]; ptr; ptr = ptr->next )
 	    {
@@ -412,7 +414,7 @@ void free_string( char *str )
  */
 char *fread_string( FILE *fp, int *status )
 {
-    char buf[ MAX_STRING_LENGTH*4 ];
+    char  buf [ MAX_STRING_LENGTH*4 ];
     char *ptr = buf;
     char  c;
 
@@ -450,12 +452,14 @@ char *fread_string( FILE *fp, int *status )
 		*ptr = '\0';
 		if( fBootDb )
 		{ 
-		    ptr = temp_hash_find( buf ); 
+		    int len = ptr - buf;
+	
+		    ptr = temp_hash_find( buf, len ); 
 		    if( ptr )
-		        return str_dup( ptr ); 
-		    
+			return str_dup( ptr );
+
 		    ptr = str_dup( buf );
-		    temp_hash_add( ptr );
+		    temp_hash_add( ptr, len );
 		    return ptr;
 		}
 
@@ -512,18 +516,28 @@ void temp_fread_string( FILE *fp, char *buf )
 }
 
 
+/* Hashing function from erwin@pip.dknet.dk */
+static unsigned get_string_hash( register const char *key, int len )
+{
+    register int      i		= UMIN( len, 32 );
+    register unsigned hash	= 0;
+
+    while( i-- )
+	hash = hash * 33U + *key++;
+
+    return hash % MAX_KEY_HASH;
+}
+
 /* Lookup the string in the boot-time hash table. */
-char *temp_hash_find( const char *str )
+char *temp_hash_find( const char *str, int len )
 {
     TempHash *ptr;
-    int       len;
     int       ihash;
 
     if( !fBootDb || !*str )
-        return 0;
+	return 0;
 
-    len   = strlen( str );
-    ihash = len % MAX_KEY_HASH;
+    ihash = get_string_hash( str, len );
 
     for( ptr = temp_string_hash[ ihash ]; ptr; ptr = ptr->next )
     {
@@ -531,11 +545,12 @@ char *temp_hash_find( const char *str )
 	    continue;
 	else if( strcmp( ptr->str, str ) )
 	    continue;
-	else return ptr->str;
+        else return ptr->str;
     }
 
     return 0;
 }
+
 
 
 /*
@@ -543,21 +558,19 @@ char *temp_hash_find( const char *str )
  * String is still in the linked list structure but
  * reference is kept here for quick lookup at boot time;
  */
-void temp_hash_add( char *str )
+void temp_hash_add( char *str, int len )
 {
     TempHash *add;
-    int      len;
-    int      ihash;
+    int       ihash;
 
-    if( !fBootDb || !*str || ( str <= string_space && str >= top_string ) )
-        return;
+    if( !fBootDb || !*str || ( str <= string_space && str >= top_string ))
+	return;
 
-    len   = strlen( str );
-    ihash = len % MAX_KEY_HASH;
-    add   = (TempHash *)malloc( sizeof( TempHash ) );
+    ihash = get_string_hash( str, len );
+
+    add = (TempHash *)malloc( sizeof( TempHash ) );
     add->next = temp_string_hash[ ihash ];
     temp_string_hash[ ihash ] = add;
-    add->len = len;
     add->str = str;
 }
 

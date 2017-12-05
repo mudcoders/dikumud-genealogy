@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #3400
 skeleton bony~
@@ -244,7 +243,6 @@ YUK! It's ugly, disgusting ... it smells ... it also moves a bit!
 83 0
 0 Undead~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -578,7 +576,6 @@ key silver~
 for the altar...
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1789,7 +1786,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 3400 spec_cast_undead
 M 3401 spec_cast_undead
@@ -1806,7 +1802,6 @@ M 3414 spec_cast_mage
 M 3415 spec_cast_undead
 M 3416 spec_cast_undead
 S
-
 
 
 #RESETS
@@ -1917,10 +1912,8 @@ G 0 3426 0
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

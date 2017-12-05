@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #11000
 sunbam magician~
@@ -202,6 +201,9 @@ He is full of muscle but hasn't much of a brain.
 0 0
 0 Giant~ 1
 >greet_prog 50~
+if isnpc($n)
+        break
+endif
 if isgood($n)
 	look $n
 	say So... A Mr. Nice Guy huh? Let's see how much you like my hammer!
@@ -335,7 +337,6 @@ could and eat you in one full swoop too!
 0 0
 0 Animal~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -713,7 +714,6 @@ A can of Coke lies here.~
 #0
 
 
-
 #ROOMDATA
 #11000
 Entrance to the Steel Cage~
@@ -847,7 +847,7 @@ S
 #11006
 In a moat.~
 You are in a moat! Ho-ho... it seems you aren't alone in here... You'd better 
-watch it. You wish you'd have learned how to swim. Buaaaa you want your mummy!
+watch it. You wish you'd have learned how to swim. Buaaaa you want your mommy!
 YOU SENSE SOMETHING MOVING!
 ~
 0 17 6
@@ -1221,12 +1221,23 @@ D3
 S
 #11030
 On a stone path~
-You are standing on a stone path. You notice this path as been placed here a
-short time ago as the stones are still pearly white. As you admire the
-wildlife of the small woods surrounding you everywhere you realize there is a
-gaping whole headed west of here... You wonder what lurks inside?
+You are standing on a stone path.  You notice this path as been placed
+here a short time ago as the stones are still pearly white.  As you admire
+the wildlife of the small woods surrounding you everywhere you realize there
+is a gaping whole headed west of here...  You wonder what lurks inside?  A
+small sign is here.  
 ~
 0 0 1
+E
+sign~
+Due to popular demand, after the mayor closed down the games boots in the
+circus we established a new casino to the north.  Come and play!  There are
+big money prizes to be won!  
+~
+D0
+~
+~
+0 0 507
 D1
 ~
 ~
@@ -1256,7 +1267,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 11000 spec_cast_mage
 M 11001 spec_cast_cleric
@@ -1274,6 +1284,9 @@ M 11018 spec_cast_undead
 M 11019 spec_fido
 S
 
+
+#GAMES
+S
 
 
 #RESETS
@@ -1346,12 +1359,10 @@ M 0 11017 6 11028
 S
 
 
-
 #SHOPS
 11001 19 5 1 0 0 100 100 12 14
 11016 0 0 0 0 0 100 100 0 23
 0
-
 
 
 #$

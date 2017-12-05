@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1201
 gandalf cat animal~
@@ -192,7 +191,6 @@ strength.  Your heart skips a beat as you gaze upon the wife of Lord Wyrmclaw.
 0 0
 0 Human~ 2
 #0
-
 
 
 #NEWOBJECTS
@@ -588,7 +586,6 @@ A
 A
 12 5 0
 #0
-
 
 
 #ROOMDATA
@@ -1095,7 +1092,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 1220 spec_poison
 M 1221 spec_poison
@@ -1104,7 +1100,6 @@ M 1223 spec_cast_mage
 M 1230 spec_cast_mage
 M 1231 spec_poison
 S
-
 
 
 #RESETS
@@ -1151,10 +1146,8 @@ M 0 1232 1 1233
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

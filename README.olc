@@ -1,7 +1,7 @@
 ILAB OLC Beta 1.1 for Envy 2.2
 Vasco Costa - aka Zen
 vasc@camoes.rnl.ist.utl.pt
-Monday, 30th June 1997
+Monday, 22nd September 1997
 
 ILAB OLC Beta 1.1 for Envy 2.0
 Christopher Smith
@@ -17,18 +17,12 @@ Apr. 07 1995
 
 This is Jason Dinkel's ILAB OLC Beta 1.1 package re-released for Envy 2.0
 muds.  It was derived from the package originally released for Envy 1.0.
-Changes were made to accomodate new features in Envy 2.0.  By no means
+Changes were made to accommodate new features in Envy 2.0.  By no means
 do I guarantee this to be stable, or work 100% of the time.  If you
 find something that doesn't work, please report it to the Merc-L mailing
 list (merc-l@webnexus.com) or email me directly at stoked@iastate.edu
 
-So far I am only including two things: the patched Envy 2.0 source with
-OLC built in, and an olcenvy20.diff patch file.  If I have the time I
-may re-create the snippet, as the original 1.0 is in the changes/ subdirectory.
-
 This is an updated version of one I released last month, with bug fixes.
-Please read the credits.txt file in the Envy20 subdirectory, and changes.txt
-to see exactly what I have changed.
 
 
 === What is ILAB OLC?
@@ -38,51 +32,23 @@ ILAB OLC = "I Love Amy Barr" On-Line Creation.
 ILAB OLC is a constantly revised online creation system distributed by
 Jason Dinkel.  It was based on the public domain version of OLC written
 by Surreality and distributed by Locke in The Isles 1.1.  The first
-release was in December of 1994.  Since then many changes have occured
-that make it a much better system to use for you online creation needs.
-
-
-=== Copyright and License
-
-Diku Mud is copyright (C) 1990, 1991 by Sebastian Hammer, Michael Seifert,
-Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.  Their license agreement
-is in the file 'license.doc'.
-
-Merc Diku Mud is a derivative of the original Diku Mud and is subject to their
-copyright and license agreement.  Merc Diku Mud contains substantial
-enhancements to Diku Mud.  These enhancements are copyright 1992, 1993 by
-Michael Chastain, Michael Quan, and Mitchell Tse.  Our license agreement is in
-'license.txt'.
-
-EnvyMud 1.0 is a derivative of the original Merc Diku Mud release 2.2 and
-is subject to their copyright and license agreement.  EnvyMud contains
-substantial enhancements to Merc 2.2.  These enhancements are copyright 1994
-by Michael Quan, David Love, Guilherme 'Willie' Arnold, and Mitchell Tse.
-Our license agreement is in 'license.nvy'.
-
-EnvyMud 2.0 is a derivative of EnvyMud 1.0 and is subject to their
-copyright and license agreement.  EnvyMud 2.0 contains substantial
-enhancements to EnvyMud 1.0.  These enhancements are copyright 1995 by
-Michael Quan and Mitchell Tse. Our license agreement is in 'license.nvy'.
-
-The license terms boil down to this: the people who wrote this mud want due
-credit for their work.
+release was in December of 1994.  Since then many changes have occurred
+that make it a much better system to use for your online creation needs.
 
 
 === Notes for Envy2.2 (by Zen)
 
-I just ported OLC to Envy2.2. I already had ported MobPrograms to Envy2.2 and
-i have them working on my system right now. They seem to be stable and i
-took out one bug 2 days ago. Now i tested the system for 4 hours and it
-didn't go down... The load was low but it didn't crash or slow down...
-I noticed the boot-up time seemed to take a bit longer though.
 Now MobPrograms have been fairly tested but OLC hasn't. So please have
-patiente and solve the bugs you find ;-) When and if i get a stable
-MobPrograms/OLC release, fairly tested i will bring it out to all of you.
-The mud should run 1st time. Just needs to compile the executable. It has
-been tested on a Linux 2.0.29 system and gives no compiling warnings or
-such. Check out the files in src/Contributions/OLC11 for OLC. I also took
-the liberty to add 'brew.c' from ftp.game.org which is quite nifty! 
+patience and solve the bugs you find ;-)
+The mud should run 1st time.  It has been tested on a Linux 2.0.29 system and
+gives no compiling warnings or such.  Check out the files in newdocs/OLC11
+for OLC.
+The code was severely mutilated by myself :) so you should have trouble
+recognizing olc.c & olc_act.c from the previous versions since i made a
+u-turn and now the code resembles more its The Isles origins.  Purists shall
+become shocked to know i purged the code of loads of small functions for
+a few monster 20+ page functions; however i find the code easier to read!
+This code may be rewritten again, i'm still not happy with it.
 
 
 - Zen

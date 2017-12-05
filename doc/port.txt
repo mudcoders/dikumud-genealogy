@@ -1,48 +1,31 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
 === Platforms
 
---- Envy 2.2
+--- UltraEnvy 0.87
 
-These platforms have been directly ported:
+These platforms have been directly tested:
 
-	Generic PC	x86	Linux 1.2.8	-Use Standard Makefile
-	Generic PC	x86	Linux 2.+	-Use Makefile.lnx
-	Generic PC	x86	Windows 95/NT	-Read README.WIN
-	Sequent		S81	Dynix		-Use Standard Makefile
-	DEC		5900	Ultrix V4.3A	-Use Standard Makefile
-	DEC Alpha	OSF			-Use Makefile.osf
-	Any IRIX Machine	IRIX 5.1.1.2	-Use Makefile.irx
-	HP		9000	Hp/UX		-Use Makefile.hp
-	Sequent		sysv			-Use Makefile.sys
-	Sparc		10	Solaris 2.*	-Use Makefile.sol
-	Sparc		20	Sun OS 4.1.4	-Use Standard Makefile
-	Amiga			Amiga OS	-Use Makefile.ami
+	Generic PC	x86		Linux 2.0.29	     -Use Makefile.lnx
+        DEC		AXP 10000/620	Digital Unix V4.0B   -Use Makefile.osf
+	Sun		Sun4		SunOS 5.5.1	     -Use Makefile.sol
+	Generic PC	x86		Windows NT           -See README.WIN
 
-
-These have not been tested for the Envy 2.2 release:
-
-	IBM		RS/6000	Aix 3.0		-Use Makefile.aix
-	Mips		R4000	Risc/OS 5.XX    -Use Makefile.mip
-	NeXT		68040	Ultrix		-Use Makefile.nex
-	Tektronix	xd88s	utek 3.2e	-Use Makefile.tek
 
 If you have gcc on your system, it would be best to try the standard Makefile
 first.  If you have cc on your system, it would be best to try the standard
 Makefile with gcc replaced with cc.
 
-The standard version of gcc as of this release is gcc 2.7.0
+The standard version of gcc as of this release is gcc 2.7.2.1
 
-We are simply unable to test Envy on every platform.  Typically a user tries
-a new platform, gets a file full of warnings, and mails us the warnings.
-We fix the base code; on the next release we ask that users mail us the
-new warnings (usually we never hear from the user again).
-
+I am simply unable to test UltraEnvy on every platform. It should work on the
+same platforms Envy2.2 does, since this code isn't very machine dependent
+(i think).
 
 
 === Requirements
@@ -60,20 +43,17 @@ the demand is nonexistent, and we don't have any 16-bit C compilers with which
 to test.)  If you are running on a personal computer, make sure your C compiler
 is giving you 32-bit integers and not running in 16-bit mode.
 
-Area files, player files, the note file, and the bugs/ideas/typo files are all
-in ASCII format, so that they may be freely moved from one machine type to
-another.
-
+Area files, player files, the note file, class files, the socials file and the
+bugs/ideas/typo files are all in ASCII format, so that they may be freely moved
+from one machine type to another.
 
 
 === Performance
 
-All this measured on a 486 DX4 100 mHz running Linux 1.2.8
+All this measured on a 16MB Pentium 100 MHz running Linux 2.0.29.
 
-Boot time:    5 CPU seconds.
-Memory:       4409 bytes SZ size.
-CPU usage:    1.2 CPU minutes per hour + 1-2 CPU seconds per player.
+Boot time:    7 CPU seconds (Envy2.2: 5 CPU seconds on my system).
+Memory:       5284 bytes SZ size.
+CPU usage:    1.5 CPU minutes per hour + 1-2 CPU seconds per player.
 Disk space:   6 megabytes plus 10K per player file.
-IP packets:   about 10 per second with 20 people logged in.
-
-This has improved from Envy 1.0 by about 25% overall.
+IP packets:   about 10 per second with 20 people logged in. (?)

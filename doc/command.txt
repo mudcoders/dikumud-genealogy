@@ -1,7 +1,7 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
@@ -41,6 +41,11 @@ or  GAME_FUN *	g_fun;
 	when the player is logged.  LOG_ALWAYS commands are always logged.
 	LOG_NEVER commands are never logged, even if the player is logged.
 
+    bool show;
+
+	Defines if this command is shown when usings 'commands' or not.  Used
+	so players can't see the mobprogram commands.
+
 
 
 === How to Add a Command
@@ -67,7 +72,8 @@ That's ALL there is to it!
 === Social Commands
 
 Social commands add to the atmosphere of the game.  The social commands are
-contained in 'social_table' in 'interp.c'.  The fields of this table are:
+contained in 'social_table' defined in SOCIALS.TXT on the 'area' directory.
+The fields of this table are:
 
     char *	name;
 
@@ -107,13 +113,44 @@ regular command table, the function 'check_social' looks in 'social_table' for
 a match.  This is the last stop before rejecting the command.
 
 Socials without arguments, such as 'hop', may have NULL for the strings sent
-when arguments are present.
+when arguments are present. i.e. don't put those lines in the file.
+
+
+
+=== Sections of the socials file
+
+The socials file contains the following sections:
+
+    #SOCIAL
+    #END
+
+The socials file may an unlimited number of #SOCIAL entries.
+
+
+
+=== The #SOCIAL section
+
+The syntax of this section is:
+
+    #SOCIAL
+    Name        <name:string>
+    CharNoArg   <act:string>
+    OthersNoArg <act:string>
+    CharFound   <act:string>
+    OthersFound <act:string>
+    VictFound   <act:string>
+    CharAuto    <act:string>
+    OthersAuto  <act:string>
+    End
+
+You MUST have a name (keyword) string of course.  The other strings are optional
+and will be set to NULL by default.
 
 
 
 === How to Add a Social Command
 
-(1) Write a new section into 'social_table' in 'interp.c' with the eight
+(1) Write a new section into SOCIALS.TXT on the 'area' directory with the
     messages in it.  The sections need not be alphabetized.
 
 That's ALL there is to it.

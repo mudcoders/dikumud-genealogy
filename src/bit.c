@@ -1,5 +1,22 @@
 /***************************************************************************
- *  File: bit.c                                                            *
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
+ *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
+ *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
+ *  In order to use any part of this Envy Diku Mud, you must comply with   *
+ *  the original Diku license in 'license.doc', the Merc license in        *
+ *  'license.txt', as well as the Envy license in 'license.nvy'.           *
+ *  In particular, you may not remove either of these copyright notices.   *
  *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
@@ -10,13 +27,12 @@
  *  all the previous coders who released their source code.                *
  ***************************************************************************/
 
-#if defined(macintosh)
+#if defined( macintosh )
 #include <types.h>
 #else
 #include <sys/types.h>
 #endif
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
@@ -27,25 +43,17 @@
  * The code below uses a table lookup system that is based on suggestions
  * from Russ Taylor.  There are many routines in handler.c that would benefit
  * with the use of tables.  You may consider simplifying your code base by
- * implementing a system like below with such functions. - Jason Dinkel
+ * implementing a system like below with such functions - Jason Dinkel
  */
-
 
 struct flag_stat_type
 {
-    const struct flag_type *structure;
-    bool stat;
+    const struct flag_type	*structure;
+    bool			 stat;
 };
 
 
-/*
- * Name:	flag_stat_table
- * Purpose:	This table catagorizes the tables following the lookup
- * 		functions below into stats and flags.  Flags can be toggled
- * 		but stats can only be assigned.  Update this table when a
- * 		new set of flags is installed.
- */
-const struct flag_stat_type flag_stat_table[] =
+const	struct	flag_stat_type	flag_stat_table	[ ]	=
 {
 /*
  * {    structure               stat    }, 
@@ -70,25 +78,21 @@ const struct flag_stat_type flag_stat_table[] =
     {	mprog_type_flags, 	TRUE	},
     {	portal_door_flags, 	FALSE	},
     {	portal_flags,	 	FALSE	},
+    {	mana_flags,	 	FALSE	},
+    {	rank_flags, 		TRUE	},
+    {	clan_flags, 		TRUE	},
     {	0, 			0	}
 };
 
 
-
-/*
- * Name:	is_stat( table )
- * Purpose:	Returns TRUE if the table is a stat table and FALSE if flag.
- * Called by:	flag_value and flag_string.
- * Note:	This function is local and used only in bit.c.
- */
-bool is_stat(const struct flag_type *flag_table)
+bool is_stat( const struct flag_type *flag_table )
 {
     int flag;
 
-    for (flag = 0; flag_stat_table[flag].structure; flag++)
+    for ( flag = 0; flag_stat_table[flag].structure; flag++ )
     {
-	if (flag_stat_table[flag].structure == flag_table
-	    && flag_stat_table[flag].stat)
+	if ( flag_stat_table[flag].structure == flag_table
+	    && flag_stat_table[flag].stat )
 	    return TRUE;
     }
     return FALSE;
@@ -97,24 +101,17 @@ bool is_stat(const struct flag_type *flag_table)
 
 /*
  * This function is Russ Taylor's creation.  Thanks Russ!
- * All code copyright (C) Russ Taylor, permission to use and/or distribute
+ * all code copyright (C) Russ Taylor, permission to use and/or distribute
  * has NOT been granted.  Use only in this OLC package has been granted.
- *
- * Name:	flag_lookup( flag, table )
- * Purpose:	Returns the value of a single, settable flag from the table.
- * Called by:	flag_value and flag_string.
- * Note:	This function is local and used only in bit.c.
  */
-int flag_lookup(const char *name, const struct flag_type *flag_table)
+int flag_lookup( const char *name, const struct flag_type *flag_table )
 {
     int flag;
 
-    for (flag = 0; *flag_table[flag].name; flag++)	/*
-							 * OLC 1.1b 
-							 */
+    for ( flag = 0; *flag_table[flag].name; flag++ )
     {
-	if (!str_cmp(name, flag_table[flag].name)
-	    && flag_table[flag].settable)
+	if ( !str_cmp( name, flag_table[flag].name )
+	    && flag_table[flag].settable )
 	    return flag_table[flag].bit;
     }
 
@@ -122,85 +119,70 @@ int flag_lookup(const char *name, const struct flag_type *flag_table)
 }
 
 
-/*
- * Name:	flag_value( table, flag )
- * Purpose:	Returns the value of the flags entered.  Multi-flags accepted.
- * Called by:	olc.c and olc_act.c.
- */
-int flag_value(const struct flag_type *flag_table, char *argument)
+int flag_value( const struct flag_type *flag_table, char *argument )
 {
-    char word[MAX_INPUT_LENGTH];
-    int bit;
-    int marked = 0;
-    bool found = FALSE;
+    char word [ MAX_INPUT_LENGTH ];
+    int  bit;
+    int  marked	= 0;
+    bool found	= FALSE;
 
-    if (is_stat(flag_table))
+    if ( is_stat( flag_table ) )
     {
-	one_argument(argument, word);
+	one_argument( argument, word );
 
-	if ((bit = flag_lookup(word, flag_table)) != NO_FLAG)
+	if ( ( bit = flag_lookup( word, flag_table ) ) != NO_FLAG )
 	    return bit;
 	else
 	    return NO_FLAG;
     }
 
-    /*
-     * Accept multiple flags.
-     */
-    for (;;)
+    for ( ; ; )
     {
-	argument = one_argument(argument, word);
+	argument = one_argument( argument, word );
 
-	if (word[0] == '\0')
+	if ( word[0] == '\0' )
 	    break;
 
-	if ((bit = flag_lookup(word, flag_table)) != NO_FLAG)
+	if ( ( bit = flag_lookup( word, flag_table ) ) != NO_FLAG )
 	{
-	    SET_BIT(marked, bit);
+	    SET_BIT( marked, bit );
 	    found = TRUE;
 	}
     }
 
-    if (found)
+    if ( found )
 	return marked;
     else
 	return NO_FLAG;
 }
 
 
-/*
- * Name:	flag_string( table, flags/stat )
- * Purpose:	Returns string with name(s) of the flags or stat entered.
- * Called by:	act_olc.c, olc.c, and olc_save.c.
- */
-char *flag_string(const struct flag_type *flag_table, int bits)
+char *flag_string( const struct flag_type *flag_table, int bits )
 {
-    static char buf[512];
-    int flag;
+    static char buf [ MAX_STRING_LENGTH ];
+    int         flag;
 
     buf[0] = '\0';
 
-    for (flag = 0; *flag_table[flag].name; flag++)	/*
-							 * OLC 1.1b 
-							 */
+    for ( flag = 0; *flag_table[flag].name; flag++ )
     {
-	if (!is_stat(flag_table) && IS_SET(bits, flag_table[flag].bit))
+	if ( !is_stat( flag_table ) && IS_SET( bits, flag_table[flag].bit ) )
 	{
-	    strcat(buf, " ");
-	    strcat(buf, flag_table[flag].name);
+	    strcat( buf, " " );
+	    strcat( buf, flag_table[flag].name );
 	}
-	else if (flag_table[flag].bit == bits)
+	else if ( flag_table[flag].bit == bits )
 	{
-	    strcat(buf, " ");
-	    strcat(buf, flag_table[flag].name);
+	    strcat( buf, " " );
+	    strcat( buf, flag_table[flag].name );
 	    break;
 	}
     }
-    return (buf[0] != '\0') ? buf + 1 : "none";
+    return ( buf[0] != '\0' ) ? buf + 1 : "none";
 }
 
 
-const struct flag_type area_flags[] =
+const	struct	flag_type	area_flags	[ ]	=
 {
     {	"none", 		AREA_NONE, 	FALSE	},
     {	"changed", 		AREA_CHANGED,	FALSE	},
@@ -211,7 +193,7 @@ const struct flag_type area_flags[] =
 };
 
 
-const struct flag_type sex_flags[] =
+const	struct	flag_type	sex_flags	[ ]	=
 {
     {	"male", 		SEX_MALE, 	TRUE	},
     {	"female", 		SEX_FEMALE, 	TRUE	},
@@ -220,7 +202,7 @@ const struct flag_type sex_flags[] =
 };
 
 
-const struct flag_type exit_flags[] =
+const	struct	flag_type	exit_flags	[ ]	=
 {
     {	"door", 		EX_ISDOOR, 	TRUE	},
     {	"closed", 		EX_CLOSED, 	TRUE	},
@@ -229,11 +211,12 @@ const struct flag_type exit_flags[] =
     {	"bashproof", 		EX_BASHPROOF, 	TRUE	},
     {	"pickproof", 		EX_PICKPROOF, 	TRUE	},
     {	"passproof", 		EX_PASSPROOF, 	TRUE	},
+    {	"eat_key", 		EX_EAT_KEY, 	TRUE	},
     {	"", 			0, 		0	}
 };
 
 
-const struct flag_type door_resets[] =
+const	struct	flag_type	door_resets	[ ]	=
 {
     {	"open and unlocked", 	0, 		TRUE	},
     {	"closed and unlocked", 	1, 		TRUE	},
@@ -242,7 +225,7 @@ const struct flag_type door_resets[] =
 };
 
 
-const struct flag_type room_flags[] =
+const	struct	flag_type	room_flags	[ ]	=
 {
     {	"dark", 		ROOM_DARK, 		TRUE	},
     {	"no_mob", 		ROOM_NO_MOB, 		TRUE	},
@@ -258,7 +241,7 @@ const struct flag_type room_flags[] =
 };
 
 
-const struct flag_type sector_flags[] =
+const	struct	flag_type	sector_flags	[ ]	=
 {
     {	"inside", 		SECT_INSIDE, 		TRUE	},
     {	"city", 		SECT_CITY, 		TRUE	},
@@ -275,7 +258,7 @@ const struct flag_type sector_flags[] =
 };
 
 
-const struct flag_type type_flags[] =
+const	struct	flag_type	type_flags	[ ]	=
 {
     {	"light", 		ITEM_LIGHT, 		TRUE	},
     {	"scroll", 		ITEM_SCROLL, 		TRUE	},
@@ -293,17 +276,21 @@ const struct flag_type type_flags[] =
     {	"food", 		ITEM_FOOD, 		TRUE	},
     {	"money", 		ITEM_MONEY, 		TRUE	},
     {	"boat", 		ITEM_BOAT, 		TRUE	},
-    {	"npc corpse", 		ITEM_CORPSE_NPC, 	TRUE	},
-    {	"pc corpse", 		ITEM_CORPSE_PC, 	FALSE	},
+    {	"npc_corpse", 		ITEM_CORPSE_NPC, 	TRUE	},
+    {	"pc_corpse", 		ITEM_CORPSE_PC, 	FALSE	},
     {	"fountain", 		ITEM_FOUNTAIN, 		TRUE	},
     {	"pill", 		ITEM_PILL, 		TRUE	},
     {	"portal", 		ITEM_PORTAL, 		TRUE	},
-    {	"warp stone", 		ITEM_WARP_STONE, 	TRUE	},
+    {	"warp_stone", 		ITEM_WARP_STONE, 	TRUE	},
+    {	"clothing", 		ITEM_CLOTHING, 		TRUE	},
+    {	"ranged_weapon", 	ITEM_RANGED_WEAPON, 	TRUE	},
+    {	"ammo", 		ITEM_AMMO, 		TRUE	},
+    {	"gem",	 		ITEM_GEM, 		TRUE	},
     {	"", 			0, 			0	}
 };
 
 
-const struct flag_type extra_flags[] =
+const	struct	flag_type	extra_flags	[ ]	=
 {
     {	"glow", 		ITEM_GLOW, 		TRUE	},
     {	"hum", 			ITEM_HUM, 		TRUE	},
@@ -322,12 +309,12 @@ const struct flag_type extra_flags[] =
     {	"poisoned", 		ITEM_POISONED, 		TRUE	},
     {	"vampire-bane", 	ITEM_VAMPIRE_BANE, 	TRUE	},
     {	"holy", 		ITEM_HOLY, 		TRUE	},
-    {	"visible death", 	ITEM_VIS_DEATH, 	TRUE	},
+    {	"visible_death", 	ITEM_VIS_DEATH, 	TRUE	},
     {	"", 			0, 			0	}
 };
 
 
-const struct flag_type wear_flags[] =
+const	struct	flag_type	wear_flags	[ ]	=
 {
     {	"take", 		ITEM_TAKE, 		TRUE	},
     {	"finger", 		ITEM_WEAR_FINGER, 	TRUE	},
@@ -344,11 +331,12 @@ const struct flag_type wear_flags[] =
     {	"wrist", 		ITEM_WEAR_WRIST, 	TRUE	},
     {	"wield", 		ITEM_WIELD, 		TRUE	},
     {	"hold", 		ITEM_HOLD, 		TRUE	},
+    {	"missile", 		ITEM_MISSILE_WIELD, 	TRUE	},
     {	"", 			0, 			0	}
 };
 
 
-const struct flag_type act_flags[] =
+const	struct	flag_type	act_flags	[ ]	=
 {
     {	"npc", 			ACT_IS_NPC, 		FALSE	},
     {	"sentinel", 		ACT_SENTINEL, 		TRUE	},
@@ -359,12 +347,12 @@ const struct flag_type act_flags[] =
     {	"pet", 			ACT_PET, 		TRUE	},
     {	"train", 		ACT_TRAIN, 		TRUE	},
     {	"practice", 		ACT_PRACTICE, 		TRUE	},
-    {	"gamble", 		ACT_GAMBLE, 		TRUE	},
+    {	"mountable", 		ACT_MOUNTABLE, 		TRUE	},
     {	"", 			0, 			0	}
 };
 
 
-const struct flag_type affect_flags[] =
+const	struct	flag_type	affect_flags	[ ]	=
 {
     {	"blind", 		AFF_BLIND, 		TRUE	},
     {	"invisible", 		AFF_INVISIBLE, 		TRUE	},
@@ -402,7 +390,7 @@ const struct flag_type affect_flags[] =
  * Used when adding an affect to tell where it goes.
  * See addaffect and delaffect in act_olc.c
  */
-const struct flag_type apply_flags[] =
+const	struct	flag_type	apply_flags	[ ]	=
 {
     {	"none", 		APPLY_NONE, 		TRUE	},
     {	"strength", 		APPLY_STR, 		TRUE	},
@@ -430,6 +418,9 @@ const struct flag_type apply_flags[] =
     {	"saving-breath", 	APPLY_SAVING_BREATH, 	TRUE	},
     {	"saving-spell", 	APPLY_SAVING_SPELL, 	TRUE	},
     {	"race", 		APPLY_RACE, 		TRUE	},
+    {	"resistant", 		APPLY_RESISTANT, 	TRUE	},
+    {	"immune", 		APPLY_IMMUNE, 		TRUE	},
+    {	"susceptible", 		APPLY_SUSCEPTIBLE,	TRUE	},
     {	"", 			0, 			0	}
 };
 
@@ -437,7 +428,7 @@ const struct flag_type apply_flags[] =
 /*
  * What is seen.
  */
-const struct flag_type wear_loc_strings[] =
+const	struct	flag_type	wear_loc_strings	[ ]	=
 {
     {	"in the inventory", 	WEAR_NONE, 		TRUE	},
     {	"as a light", 		WEAR_LIGHT, 		TRUE	},
@@ -459,15 +450,16 @@ const struct flag_type wear_loc_strings[] =
     {	"wielded", 		WEAR_WIELD, 		TRUE	},
     {	"held in the hands", 	WEAR_HOLD, 		TRUE	},
     {	"second wield", 	WEAR_WIELD_2, 		TRUE	},
+    {	"missile wield", 	WEAR_MISSILE_WIELD, 	TRUE	},
     {	"", 			0,			0	}
 };
 
 
 /*
  * What is typed.
- * Neck2 should not be settable for loaded mobiles.
+ * neck2 should not be settable for loaded mobiles.
  */
-const struct flag_type wear_loc_flags[] =
+const	struct	flag_type	wear_loc_flags	[ ]	=
 {
     {	"none", 		WEAR_NONE, 		TRUE	},
     {	"light", 		WEAR_LIGHT, 		TRUE	},
@@ -489,11 +481,12 @@ const struct flag_type wear_loc_flags[] =
     {	"wielded", 		WEAR_WIELD, 		TRUE	},
     {	"hold", 		WEAR_HOLD, 		TRUE	},
     {	"sec_wield", 		WEAR_WIELD_2, 		TRUE	},
+    {	"mis_wield", 		WEAR_MISSILE_WIELD, 	TRUE	},
     {	"", 			0, 			0	}
 };
 
 
-const struct flag_type weapon_flags[] =
+const	struct	flag_type	weapon_flags	[ ]	=
 {
     {	"hit", 			0, 		TRUE	},
     {	"slice", 		1, 		TRUE	},
@@ -509,11 +502,14 @@ const struct flag_type weapon_flags[] =
     {	"pierce", 		11, 		TRUE	},
     {	"suction", 		12, 		TRUE	},
     {	"chop", 		13, 		TRUE	},
+    {	"vorpal", 		14, 		TRUE	},
+    {	"cleave", 		15, 		TRUE	},
+    {	"wail", 		16, 		TRUE	},
     {	"", 			0, 		0	}
 };
 
 
-const struct flag_type container_flags[] =
+const	struct	flag_type	container_flags	[ ]	=
 {
     {	"closeable", 		1, 		TRUE	},
     {	"pickproof", 		2, 		TRUE	},
@@ -523,7 +519,7 @@ const struct flag_type container_flags[] =
 };
 
 
-const struct flag_type portal_door_flags[] =
+const struct flag_type portal_door_flags	[ ] =
 {
     {	"closeable", 		1, 		TRUE	},
     {	"pickproof", 		2, 		TRUE	},
@@ -532,7 +528,7 @@ const struct flag_type portal_door_flags[] =
     {	"", 			0, 		0	}
 };
 
-const struct flag_type portal_flags[] =
+const	struct	flag_type	portal_flags	[ ]	=
 {
     {	"nocursed", 		1, 		TRUE	},
     {	"gowithchar", 		2, 		TRUE	},
@@ -541,7 +537,16 @@ const struct flag_type portal_flags[] =
     {	"", 			0, 		0	}
 };
 
-const struct flag_type liquid_flags[] =
+const	struct	flag_type	mana_flags	[ ]	=
+{
+    {	"mana_earth", 		MANA_EARTH, 	TRUE	},
+    {	"mana_air", 		MANA_AIR, 	TRUE	},
+    {	"mana_fire", 		MANA_FIRE, 	TRUE	},
+    {	"mana_water", 		MANA_WATER, 	TRUE	},
+    {	"", 			0, 		0	}
+};
+
+const	struct	flag_type	liquid_flags	[ ]	=
 {
     {	"water", 		0, 		TRUE	},
     {	"beer", 		1, 		TRUE	},
@@ -574,10 +579,7 @@ const struct flag_type liquid_flags[] =
 };
 
 
-/*
- * For MobPrograms
- */
-const struct flag_type mprog_type_flags[] =
+const	struct	flag_type	mprog_type_flags	[ ]	=
 {
     {	"in_file_prog", 	IN_FILE_PROG, 		TRUE	},
     {	"act_prog", 		ACT_PROG, 		TRUE	},
@@ -593,3 +595,80 @@ const struct flag_type mprog_type_flags[] =
     {	"bribe_prog", 		BRIBE_PROG, 		TRUE	},
     {	"", 			0, 			0	}
 };
+
+
+const	struct	flag_type	clan_flags	[ ]	=
+{
+    {	"clan",			CLAN_PLAIN,	TRUE	},
+    {	"npk_clan",		CLAN_NOKILL,	TRUE	},
+    {	"order",		CLAN_ORDER,	TRUE	},
+    {	"guild",		CLAN_GUILD,	TRUE	},
+    {	"",			0,		0	}
+};
+
+
+const	struct	flag_type	rank_flags	[ ]	=
+{
+    {	"exiled",		RANK_EXILED,	TRUE	},
+    {	"clansman",		RANK_CLANSMAN,	TRUE	},
+    {	"clanhero",		RANK_CLANHERO,	TRUE	},
+    {	"subchief",		RANK_SUBCHIEF,	TRUE	},
+    {	"chieftain",		RANK_CHIEFTAIN,	TRUE	},
+    {	"overlord",		RANK_OVERLORD,	TRUE	},
+    {	"",			0,		0	}
+};
+
+
+struct wear_type
+{
+    int	wear_loc;
+    int	wear_bit;
+};
+
+const	struct	wear_type	wear_table_olc	[ ]	=
+{
+    {	WEAR_NONE, 		ITEM_TAKE		},
+    {	WEAR_LIGHT, 		ITEM_LIGHT		},
+    {	WEAR_FINGER_L, 		ITEM_WEAR_FINGER	},
+    {	WEAR_FINGER_R, 		ITEM_WEAR_FINGER	},
+    {	WEAR_NECK_1, 		ITEM_WEAR_NECK		},
+    {	WEAR_NECK_2, 		ITEM_WEAR_NECK		},
+    {	WEAR_BODY, 		ITEM_WEAR_BODY		},
+    {	WEAR_HEAD, 		ITEM_WEAR_HEAD		},
+    {	WEAR_LEGS, 		ITEM_WEAR_LEGS		},
+    {	WEAR_FEET, 		ITEM_WEAR_FEET		},
+    {	WEAR_HANDS, 		ITEM_WEAR_HANDS		},
+    {	WEAR_ARMS, 		ITEM_WEAR_ARMS		},
+    {	WEAR_SHIELD, 		ITEM_WEAR_SHIELD	},
+    {	WEAR_ABOUT, 		ITEM_WEAR_ABOUT		},
+    {	WEAR_WAIST, 		ITEM_WEAR_WAIST		},
+    {	WEAR_WRIST_L, 		ITEM_WEAR_WRIST		},
+    {	WEAR_WRIST_R, 		ITEM_WEAR_WRIST		},
+    {	WEAR_WIELD, 		ITEM_WIELD		},
+    {	WEAR_HOLD, 		ITEM_HOLD		},
+    {	WEAR_MISSILE_WIELD, 	ITEM_MISSILE_WIELD	},
+    {	NO_FLAG, 		NO_FLAG			}
+};
+
+int wear_loc( int bits, int count )
+{
+    int flag;
+
+    for ( flag = 0; wear_table_olc[flag].wear_bit != NO_FLAG; flag++ )
+	if ( IS_SET( bits, wear_table_olc[flag].wear_bit ) && --count < 1 )
+	    return wear_table_olc[flag].wear_loc;
+
+    return NO_FLAG;
+}
+
+
+int wear_bit( int loc )
+{
+    int flag;
+
+    for ( flag = 0; wear_table_olc[flag].wear_loc != NO_FLAG; flag++ )
+	if ( loc == wear_table_olc[flag].wear_loc )
+	    return wear_table_olc[flag].wear_bit;
+
+    return 0;
+}

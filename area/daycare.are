@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #6600
 youth dwarven dwarf~
@@ -126,7 +125,6 @@ biggest urge to put him out of his misery.
 #0
 
 
-
 #NEWOBJECTS
 #6600
 axe toy~
@@ -193,7 +191,6 @@ A toy gun with a sharp bayonet lies here.~
 0~ 2~ 3~ 7~ 0~
 5 1700 0
 #0
-
 
 
 #ROOMDATA
@@ -534,7 +531,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 6600 spec_thief
 M 6601 spec_thief
@@ -545,7 +541,6 @@ M 6605 spec_thief
 M 6606 spec_cast_cleric
 M 6608 spec_thief
 S
-
 
 
 #RESETS
@@ -601,10 +596,8 @@ M 0 6608 1 6631
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2101
 ogre gang member~
@@ -99,7 +98,6 @@ His fangs are blood-stained from hearty meals of ... steak?!
 10 0
 0 Animal~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -224,7 +222,6 @@ A
 A
 18 5 0
 #0
-
 
 
 #ROOMDATA
@@ -1548,10 +1545,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -1704,10 +1699,8 @@ E 0 2104 0 11
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

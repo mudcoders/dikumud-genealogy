@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #8000
 juve~
@@ -170,7 +169,6 @@ A bite fighter is here with sharpened teeth and a bad attitude.
 0 0
 0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -365,7 +363,6 @@ key card~
 It looks like it fits a slot somewhere.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -900,7 +897,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 8003 spec_cast_judge
 M 8004 spec_thief
@@ -908,7 +904,6 @@ M 8006 spec_cast_judge
 M 8010 spec_cast_judge
 M 8011 spec_cast_judge
 S
-
 
 
 #RESETS
@@ -973,10 +968,8 @@ P 0 8007 0 8004
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

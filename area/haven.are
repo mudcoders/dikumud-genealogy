@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1801
 gnome busy~
@@ -126,7 +125,6 @@ He REALLY likes your money!
 #0
 
 
-
 #NEWOBJECTS
 #1801
 staff ice~
@@ -191,7 +189,6 @@ A pinkish purple potion is on the floor.~
 15~ shield~ remove curse~  ~  ~
 1 100 0
 #0
-
 
 
 #ROOMDATA
@@ -833,13 +830,11 @@ S
 #0
 
 
-
 #SPECIALS
 M 1804 spec_cast_mage
 M 1805 spec_cast_mage
 M 1806 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -888,10 +883,8 @@ R 0 1833 4
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

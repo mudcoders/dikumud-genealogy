@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 0 HATCHET~
@@ -242,7 +241,6 @@ This ooze looks like bad stuff, almost as if it's alive.
 0 0
 0 Plant~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -695,7 +693,6 @@ four~
 by Hatchet 6/16/95
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1417,7 +1414,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 3801 spec_poison
 M 3802 spec_poison
@@ -1433,7 +1429,6 @@ M 3812 spec_poison
 M 3815 spec_cast_undead
 M 3816 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -1535,10 +1530,8 @@ M 0 3802 1 3842
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

@@ -4,7 +4,7 @@
 # With changes from Kahn.
 
 # Set the port number.
-set port = 2010
+set port = 4000
 if ( "$1" != "" ) set port="$1"
 
 # Change to area directory.

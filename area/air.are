@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #1000
 fairy dragon~
@@ -36,7 +35,6 @@ for the fact it is hungry and is attacking you!
 #0
 
 
-
 #NEWOBJECTS
 #1001
 rose~
@@ -52,7 +50,6 @@ This is no ordinary rose, as it is a gift from Dionysus to his
 dearest, Wendella.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1209,11 +1206,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 1000 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -1224,10 +1219,8 @@ M 0 1001 3 1034
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

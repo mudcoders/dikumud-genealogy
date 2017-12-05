@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #5000
 dervish raggity~
@@ -202,7 +201,6 @@ Don't mess with this animal.
 270 0
 0 Animal~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -485,11 +483,10 @@ gem emerald~
 a fiery green emerald~
 A fiery green emerald sits here.~
 ~
-8 64 1
+29 64 1
 23~ 0~ 0~ 0~ 0~
 7 5500 0
 #0
-
 
 
 #ROOMDATA
@@ -1339,13 +1336,11 @@ S
 #0
 
 
-
 #SPECIALS
 M 5005 spec_breath_any
 M 5010 spec_breath_fire
 M 5014 spec_cast_cleric
 S
-
 
 
 #RESETS
@@ -1419,10 +1414,8 @@ O 0 5015 0 5070
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

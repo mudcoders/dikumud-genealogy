@@ -1,7 +1,7 @@
-EnvyMud Release 2.2
-Friday, 14th February 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Kahn		
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
@@ -16,7 +16,7 @@ kept up to date since.
 02 ocean.are    22 draconia.are 42 -            62 arachnos.are 82 castle.are
 03 plains.are   23 mahntor.are  43 -            63 arachnos.are 83 marsh.are   
 04 purgator.are 24 ultima.are   44 circus.are   64 -            84 -           
-05 -            25 ultima.are   45 -            65 dwarven.are  85 -           
+05 casino.are   25 ultima.are   45 -            65 dwarven.are  85 -           
 06 ofcol2.are   26 pyramid.are  46 -            66 daycare.are  86 dream.are   
 07 -            27 -            47 juargan.are  67 -            87 -           
 08 -            28 trollden.are 48 -            68 -            88 -           
@@ -32,7 +32,7 @@ kept up to date since.
 18 haven.are    38 rats.are     58 -            78 valley.are   98 cult.are
 19 astral.are   39 moria.are    59 -            79 redferne.are 99 tree.are
 
-100 crystal.are 110 -            120 -            130 -       
+100 crystal.are 110 arena.are    120 -            130 -       
 101 -           111 -            121 -            131 -       
 102 solace.are  112 -            122 -            132 -       200 goblins.are
 103 solace.are  113 -            123 -            133 -       201 shaolin.are

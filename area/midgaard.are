@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #3000
 wizard~
@@ -34,6 +33,16 @@ body.
 50 2 2 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
+>greet_prog 100~
+if ispc($n)
+	smile $n
+	say Welcome to my bakery $n.
+    endif
+~
+>rand_prog 20~
+say Would you like to try some of my tasty pies?
+~
+|
 #3002
 grocer~
 the grocer~
@@ -45,6 +54,18 @@ A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.
 50 2 2 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
+>greet_prog 100~
+if ispc($n)
+	say Welcome to my store $n.
+endif
+~
+>rand_prog 5~
+say Can i interest you in a fine brass lantern today?
+~
+>rand_prog 5~
+say How about a fine buffalo water skin? Brand new!
+~
+|
 #3003
 weaponsmith~
 the weaponsmith~
@@ -389,6 +410,30 @@ A big, strong, helpful, trustworthy guard.
 15 15 -2 15d15+150 1d4+10
 500 0
 0 Dwarf~ 1
+>entry_prog 20~
+emote keeps an eye out for wanted criminals.
+~
+>greet_prog 30~
+look $n
+if isnpc($n)
+    break
+endif
+if isgood($n)
+    say Good day citizen.
+    smile $n
+else
+    mpechoaround $n $I wonders if $n is among the most wanted.
+    mpechoat $n $I wonders if you are among the most wanted.
+endif
+~
+>rand_prog 10~
+if rand(50)
+    emote whistles a little song.
+else
+    sing
+endif
+~
+|
 #3061
 janitor~
 the janitor~
@@ -399,6 +444,31 @@ A janitor is walking around, cleaning up.
 1 20 9 2d6+10 1d5+0
 34 0
 0 Gnome~ 1
+>rand_prog 20~
+grumble
+say Litterbugs...
+if rand(10)
+	say All I do each day is cleanup other people's messes.
+	if rand(10)
+		say I do not get paid enough.
+	else
+		if rand(10)
+			say Day in. Day out. This is all I do 24 hours a day.
+			if rand(10)
+				yell I want a vacation!
+			endif
+		endif
+	endif
+endif
+~
+>act_prog p drops~
+say Litterbug! You are all litterbugs!
+growl $n
+if rand(10)
+	mpkill $n
+endif
+~
+|
 #3062
 fido dog~
 the beastly fido~
@@ -415,10 +485,10 @@ around his teeth.
 bark $n
 if name($n) == mayor
         growl $n
-        kill $n
+        mpkill $n
 endif
 ~
->rand_prog 10~
+>rand_prog 5~
 emote leaves a deposit on the ground.~
 |
 #3063
@@ -432,6 +502,19 @@ He looks pretty mean.
 5 16 5 2d6+60 1d8+0
 47 0
 0 Human~ 1
+>rand_prog 10~
+say Kill! Blood! Gore!
+~
+>greet_prog 5~
+if ispc($n)
+    cacle
+    mpkill $n
+endif
+~
+>death_prog 60~
+mpechoaround $i $I throws back his head and cackles with insane glee!
+~
+|
 #3064
 drunk~
 the drunk~
@@ -443,6 +526,24 @@ A drunk who seems to be too happy, and to carry too much money.
 2 19 8 2d6+22 1d6+0
 85 0
 0 Human~ 1
+>rand_prog 20~
+if rand(60)
+    dance
+else
+    sing
+endif
+~
+>greet_prog 5~
+if ispc($n)
+    yell Monster! I found a monster! Kill! Banzai!
+    mpkill $n
+endif
+~
+>bribe_prog 10~
+say Ahh! More spirits! Good spirits!
+sing
+~
+|
 #3065
 beggar~
 the beggar~
@@ -454,7 +555,7 @@ The beggar looks like she is fed up with life.
 1 20 9 2d6+10 1d5+0
 0 0
 0 Human~ 2
->greet_prog 80~
+>greet_prog 70~
 if ispc($n)
 	beg $n
 	say Spare some gold?
@@ -512,6 +613,23 @@ A big, strong, helpful, trustworthy guard.
 15 5 -2 15d15+150 1d4+10
 500 0
 0 Human~ 1
+>greet_prog 80~
+if isnpc($n)
+break
+endif
+if level($n) > 18
+    mpechoat $n $I snaps to attention at your arrival.
+    mpechoaround $n $I snaps to attention at the arrival of $n.
+endif
+if isevil($n)
+    if rand(30)
+	growl $n
+	say Evil is not wanted in the city of Midgaard!
+	break
+    endif
+endif
+~
+|
 #3068
 cityguard guard~
 the cityguard~
@@ -523,6 +641,23 @@ A big, strong, helpful, trustworthy guard.
 15 5 -2 15d15+150 1d4+10
 500 0
 0 Dwarf~ 1
+>greet_prog 80~
+if isnpc($n)
+break
+endif
+if level($n) > 18
+    mpechoat $n $I snaps to attention at your arrival.
+    mpechoaround $n $I snaps to attention at the arrival of $n.
+endif
+if isevil($n)
+    if rand(30)
+	growl $n
+	say Evil is not wanted in the city of Midgaard!
+	break
+    endif
+endif
+~
+|
 #3069
 cityguard guard~
 the cityguard~
@@ -691,6 +826,16 @@ The Secretary says 'Please sit down and have a seat in the meantime'.
 12 9 2 1d12+148 2d7+1
 100 0
 0 Human~ 2
+>greet_prog 90~
+if ispc($n)
+    say Sorry $n, but the Mayor is extremely busy today.
+    say Please sit down and have a seat in the meantime.
+endif
+~
+>rand_prog 10~
+emote polishes her nails.
+~
+|
 #3143
 mayor~
 the mayor~
@@ -764,20 +909,7 @@ of parchment under poor lighting.
 50 2 2 1d1+30000 1d8+20
 12000 0
 0 Human~ 1
-#3160
-croupier~
-the slick croupier~
-A slick croupier is here, ready to take your bet.
-~
-He's a seedy-looking character, who doesn't look like he's happy to be
-playing by the rules.
-~
-2115 0 0 S
-50 1 2 6d8+200 1d6+12
-1000 0
-0 Human~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -940,7 +1072,7 @@ a scroll of identify~
 A scroll has carelessly been left here.~
 ~
 2 64 1
-12~ identify~  ~  ~  ~
+12~ identify~  999~  ~  ~
 1 2000 0
 E
 scroll identify~
@@ -1493,6 +1625,14 @@ Here is a wand which will allow you to breathe underwater.~
 3 66 16385
 0~ 10~ 10~ breathe water~ 0~
 3 0 0
+#3210
+donation pit~
+the donation pit~
+A pit for sacrifices is in front of the altar.~
+~
+15 0 0
+10000~ 0~ 0~ 0~ 0~
+0 0 0
 #3350
 standard sword~
 a standard issue sword~
@@ -2094,40 +2234,7 @@ E
 card clan~
 This item allows you to join a Clan to kill other players!
 ~
-#3382
-scroll clan~
-a scroll of the clan~
-A scroll has carelessly been left here.~
-~
-2 64 1
-20~ home sick~  ~  ~  ~
-1 2000 0
-E
-scroll clan~
-The scroll has a magic formula drawn upon it:
-"FAFEWJ JFIOAEJE EWJAOI!"
-~
-#3383
-vest clan~
-the vest of the Clan~
-You see a glowing vest here.~
-~
-9 65 9
-2~ 0~ 0~ 0~ 0~
-5 0 0
-A
-18 2 0
-A
-19 4 0
-A
-17 -20 0
-E
-clan vest~
-You see a great red serpent sign on it with the following words inscribed:
-"By this sign we of the Clan shall destroy all our enemies!"
-~
 #0
-
 
 
 #ROOMDATA
@@ -4648,43 +4755,9 @@ D3
 0 -1 3204
 S
 #3210
-The Castle of the Shining Clan~
-~
-0 1032 0
-D5
-~
-~
-0 0 3014
-S
-#3211
-The Castle of the Klowns Clan~
-~
-0 1032 0
-D5
-~
-~
-0 0 3014
-S
-#3212
-The Castle of the Berserkers Clan~
-~
-0 1032 0
-D5
-~
-~
-0 0 3014
-S
-#3213
 The Castle of the Krushers Clan~
-~
-0 1032 0
-D5
-~
-~
-0 0 3014
-S
-#3214
-The Castle of the White Dragon Clan~
+This is the castle of the Krushers Clan.  It was made by Zen for testing
+purposes only.  Make from it what you want to.  
 ~
 0 1032 0
 D5
@@ -4693,7 +4766,6 @@ D5
 0 0 3014
 S
 #0
-
 
 
 #SPECIALS
@@ -4724,6 +4796,9 @@ M 3151 spec_cast_psionicist
 M 3152 spec_cast_psionicist
 S
 
+
+#GAMES
+S
 
 
 #RESETS
@@ -4761,7 +4836,6 @@ G 0 3031 0
 G 0 3138 0
 G 0 3011 0
 G 0 3381 0
-G 0 3382 0
 E 0 3022 0 16
 M 0 3003 1 3011
 G 0 3020 0
@@ -4979,8 +5053,8 @@ G 0 3002 0
 G 0 3003 0
 G 0 3004 0
 M 0 3151 1 3152
+O 0 3210 0 3210
 S
-
 
 
 #SHOPS
@@ -5004,7 +5078,6 @@ S
 3152 0 0 0 0 0 150 100 0 23
 3153 0 0 0 0 0 150 100 0 23
 0
-
 
 
 #$

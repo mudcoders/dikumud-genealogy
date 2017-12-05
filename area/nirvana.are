@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #8100
 tridrone~
@@ -154,7 +153,6 @@ he looks very displeased to see you.
 #0
 
 
-
 #NEWOBJECTS
 #8100
 sword realms~
@@ -215,7 +213,6 @@ A
 A
 21 -6 0
 #0
-
 
 
 #ROOMDATA
@@ -1280,7 +1277,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 8100 spec_thief
 M 8106 spec_cast_cleric
@@ -1290,7 +1286,6 @@ M 8109 spec_cast_mage
 M 8110 spec_cast_mage
 M 8111 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -1345,10 +1340,8 @@ M 0 8110 4 8158
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

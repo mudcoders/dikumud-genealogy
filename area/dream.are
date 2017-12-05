@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #8600
 keeper~
@@ -21,7 +20,6 @@ Her job is to set the level for this equipment.
 100 0
 0 Elf~ 2
 #0
-
 
 
 #NEWOBJECTS
@@ -81,7 +79,6 @@ Made from the wood of a Yule Tree, this staff is about one meter long and
 highly polished.  It looks more like a ritual device than a weapon.
 ~
 #0
-
 
 
 #ROOMDATA
@@ -1262,10 +1259,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -1305,10 +1300,8 @@ M 0 8600 1 8699
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

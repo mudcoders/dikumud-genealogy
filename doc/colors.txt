@@ -1,0 +1,46 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
+
+Zen             vasc@camoes.rnl.ist.utl.pt
+
+
+
+You may use these color escapes in any string which is shown with the 'act' or
+'send_to_char' functions.  The color code is based on ColoUr 1.2.  ColoUr is
+written by Lope (ant@solace.mh.se)
+
+
+== Text style
+
+{x	to restore default color & style
+{o	for brighter colors (bold)
+{n	for underlined text
+{l	for flashing text (blink)
+{e	for reversed text (XORed background and foreground)
+
+
+== Foreground colors
+
+{d	for black foreground
+{r	for red foreground
+{g	for green foreground
+{y	for yellow (or brown) foreground
+{b	for blue foreground
+{m	for purple foreground
+{c	for cyan foreground
+{w	for white (or gray) foreground
+
+
+== Background colors
+
+{D	for black background
+{R	for red background
+{G	for green background
+{Y	for yellow (or brown) background
+{B	for blue background
+{M	for purple background
+{C	for cyan background
+{W	for white (or gray) background
+
+
+- Zen

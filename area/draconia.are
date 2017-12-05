@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #2200
 hatchling dragon baby~
@@ -242,7 +241,6 @@ it might be a good idea to leave her alone.
 10000 0
 0 Dragon~ 2
 #0
-
 
 
 #NEWOBJECTS
@@ -617,7 +615,6 @@ A tarnished gold key lies here.~
 0~ 0~ 0~ 0~ 0~
 1 500 0
 #0
-
 
 
 #ROOMDATA
@@ -1436,7 +1433,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 2200 spec_breath_any
 M 2203 spec_cast_mage
@@ -1454,7 +1450,6 @@ M 2241 spec_breath_gas
 M 2242 spec_thief
 M 2243 spec_breath_any
 S
-
 
 
 #RESETS
@@ -1562,10 +1557,8 @@ E 0 2298 0 17
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

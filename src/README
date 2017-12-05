@@ -1,14 +1,7 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
-Monday, 14th July 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
+Monday, 20th October 1997
 
-Zen		vasc@camoes.rnl.ist.utl.pt
-
-
-
-EnvyMud Release 2.2
-Friday, 14th February 1997
-
-Kahn		envy@envy.com
+Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
@@ -21,7 +14,6 @@ This file gives a brief description of the files in the src directory.
 	source files
 	startup scripts
 	executable file
-	Contributions directory
 	What is new, what is old in the source
 
 
@@ -100,9 +92,6 @@ save.c		- Contains procedures for player/mob file read and write
 ssm.c		- Contains procedures for string management
 special.c	- Contains procedures for mobile special abilities
 update.c	- Contains procedures for game operation
-
-+++ Added in HomeCooked (as of version 0.85) +++
-
 bit.c		- Contains tables used within OLC
 mem.c		- Contains procedures for OLC mem operations
 olc.c		- Contains procedures for OLC commands
@@ -113,6 +102,9 @@ mob_prog.c	- Contains procedures for MobPrograms
 mob_commands.c	- Contains procedures for mob commands (used by MobPrograms)
 tables.c	- Contains tables/procs used for class/social loading/saving
 track.c		- Contains procedures for hunt/track
+wiznet.c	- Contains procedures for wiznet
+gamble.c	- Contains procedures for player gambling.
+act_clan.c	- Contains procedures for clans
 
 
 === The startup scripts
@@ -169,31 +161,15 @@ To enter the game, type 'telnet localhost 4000' from your mud account.
 
 
 
-=== The Contributions directory
-
-The Contributions directory contains code snippets the majority of
-implementors in MudDom wish in Envy 2.2 but I personally feel should
-not be included in the base code.  But to give credit to those who
-worked so hard and contributed, I include the snippets in this
-directory.
-
-There is no guarantee the code snippets work as I have not tested them
-in the current release.  But I preserved all names, comments, and
-email addrs so you may contact the author directly.
-
-Should you use the code provided in this directory, of course, please
-give credit where credit is due.
-
-
-
 === What is new, what is old
 
-This source is based on the Envy 2.0 release source code.  Some internal
+This source is based on the Envy 2.2 release source code.  Some internal
 workings have changed and some player visible improvements have been made.
-We've been developing the code for the past 14 months with extensive playing.
-Unfortunately, there might be bugs we have missed.  If you encounter errors
-or bugs, first check your code additions then forward questions to the
-mailing list at merc-l@webnexus.com.
+I've been developing the code for the past 3 months with extensive playing.
+Unfortunately, there might be bugs i have missed.  If you encounter errors
+or bugs, first check your code additions then forward questions to me at
+vasc@camoes.rnl.ist.utl.pt, please check with your local Unix/GCC guru first,
+since i'm only one person here!  And i'm no genius either ;-)
 
 All in all, Envy will "feel" like any other MERC mud out there.  Envy is
 designed to go beyond the MERC releases and make into reality many
@@ -204,11 +180,6 @@ Envy does not support traditional C compilers.
 Envy no longer runs on MSDOS machines.  The alternative provided are
 the Windows 95/NT ports.  Also, you may load Linux or BSD on your PC
 to compile or modify Envy.
-
-A Contributions directory has been added to include code snippets I
-feel should not be in the base code but are included to provide credit
-to those who contributed the code to Envy Development.  Many thanks to
-the authors.  See the above section.
 
 See 'new.txt' to see a more accurate list of changes done to the code.
 

@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #HELPS
 
 3 'SHADOW DEMON' 'SHADOWDEMON' 'SHADOWLORD' 'SHADOW LORD' 'SHADE'~
@@ -583,7 +582,6 @@ predictable, but also very, very powerful.
 0 0
 0 Undead~ 1
 #0
-
 
 
 #NEWOBJECTS
@@ -1568,7 +1566,6 @@ A
 A
 18 5 0
 #0
-
 
 
 #ROOMDATA
@@ -2810,7 +2807,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 10700 spec_cast_judge
 M 10701 spec_repairman
@@ -2839,7 +2835,6 @@ M 10743 spec_cast_undead
 M 10744 spec_cast_undead
 M 10745 spec_cast_undead
 S
-
 
 
 #RESETS
@@ -3086,7 +3081,6 @@ R 0 10771 6
 S
 
 
-
 #SHOPS
 10700 0 0 0 0 0 100 100 0 23
 10707 0 0 0 0 0 100 100 0 23
@@ -3097,7 +3091,6 @@ S
 10723 0 0 0 0 0 110 100 0 23
 10726 0 0 0 0 0 1000 100 0 23
 0
-
 
 
 #$

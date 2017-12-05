@@ -7,7 +7,6 @@ Recall      401
 End
 
 
-
 #MOBILES
 #401
 dead reaper~
@@ -33,7 +32,6 @@ wasting time if you don't want to end up like it.
 0 0
 0 Mist~ 0
 #0
-
 
 
 #NEWOBJECTS
@@ -72,7 +70,6 @@ A
 A
 5 -12 0
 #0
-
 
 
 #ROOMDATA
@@ -919,11 +916,9 @@ S
 #0
 
 
-
 #SPECIALS
 M 401 spec_cast_mage
 S
-
 
 
 #RESETS
@@ -938,11 +933,9 @@ G 0 401 0
 S
 
 
-
 #SHOPS
 401 0 0 0 0 0 100 0 0 23
 0
-
 
 
 #$

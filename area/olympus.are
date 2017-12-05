@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #901
 zeus god~
@@ -331,7 +330,6 @@ prisoners.
 #0
 
 
-
 #NEWOBJECTS
 #900
 aegis plate~
@@ -598,7 +596,6 @@ A key has been left here.~
 0~ 0~ 0~ 0~ 0~
 1 100 0
 #0
-
 
 
 #ROOMDATA
@@ -1369,7 +1366,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 901 spec_cast_cleric
 M 902 spec_breath_fire
@@ -1386,6 +1382,9 @@ M 922 spec_poison
 M 926 spec_cast_mage
 S
 
+
+#GAMES
+S
 
 
 #RESETS
@@ -1495,11 +1494,9 @@ M 0 913 5 954
 S
 
 
-
 #SHOPS
 915 1 8 13 15 19 120 80 0 23
 0
-
 
 
 #$

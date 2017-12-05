@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #10401
 Guardian guard~
@@ -887,7 +886,6 @@ Mmmmmmm.....steak....mmmmmm...you feel your mouth start to water.
 #0
 
 
-
 #NEWOBJECTS
 #10401
 wicked trident~
@@ -922,13 +920,13 @@ A black hilted sword with engravings on the blade lies here.~
 0~ 1~ 100~ 11~ 0~
 7 10000 0
 A
-19 7 0
-A
-18 7 0
+13 -10 0
 A
 14 -20 0
 A
-13 -10 0
+18 7 0
+A
+19 7 0
 E
 sword~
 The blade of the sword is a full meter long, and straight as an arrow, with
@@ -965,7 +963,7 @@ vorpal blade~
 A magnificently crafted blade lies here humming softly.~
 ~
 5 0 8193
-0~ 1~ 40~ 1~ 0~
+0~ 1~ 40~ 14~ 0~
 6 20 0
 #10408
 flaming claw~
@@ -1315,8 +1313,35 @@ You see a nasty looking cleaver stuck in the ground.~
 5 0 8193
 0~ 20~ 80~ 1~ 0~
 6 20 0
+#10449
+fire opal gem~
+a precious fire opal~
+A flaming red gem lies on the ground.~
+~
+29 0 16385
+0~ 0~ 0~ 0~ 0~
+6 5000 0
+E
+fire opal gem~
+The fire opal is a nicely-polished round gem, with orange, gold, and red
+mixed together like the heart of flame.  You can almost feel the hellfire
+from whence it came.
+~
+#10450
+hellstone hell stone~
+a hellstone~
+An evil black gem rests here, hoping to seduce you with its evil.~
+~
+29 0 16385
+0~ 0~ 0~ 0~ 0~
+6 10000 0
+E
+hellstone hell stone~
+The hellstones are mined from the deepest pits of Hell at the cost of the
+blood, sweat, and pain of hundreds of damned souls.  You feel vaguely ill
+as you gaze into its lustrous black heart.
+~
 #0
-
 
 
 #ROOMDATA
@@ -4266,7 +4291,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 10401 spec_cast_judge
 M 10402 spec_thief
@@ -4287,6 +4311,9 @@ M 10468 spec_breath_fire
 M 10470 spec_fido
 S
 
+
+#GAMES
+S
 
 
 #RESETS
@@ -4369,6 +4396,7 @@ M 0 10426 1 10470
 E 0 10411 0 10
 M 0 10430 1 10470
 E 0 10414 0 16
+G 0 10449 0
 M 0 10435 1 10473
 M 0 10469 1 10474
 G 0 10421 0
@@ -4396,6 +4424,7 @@ M 0 10446 1 10495
 M 0 10445 1 10497
 E 0 10425 0 17
 E 0 10426 0 12
+G 0 10450 0
 M 0 10442 1 10498
 E 0 10423 0 16
 M 0 10441 1 10500
@@ -4465,11 +4494,9 @@ G 0 10418 0
 S
 
 
-
 #SHOPS
 10451 0 0 0 0 0 110 75 0 23
 0
-
 
 
 #$

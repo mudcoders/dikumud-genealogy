@@ -88,34 +88,34 @@ void do_mpstat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( victim ) )
     {
-	send_to_char( "Only Mobiles can have Programs!\n\r", ch);
+	send_to_char( "Only mobiles can have programs!\n\r", ch);
 	return;
     }
 
     if ( !( victim->pIndexData->progtypes ) )
     {
-	send_to_char( "That Mobile has no Programs set.\n\r", ch);
+	send_to_char( "That mobile has no programs set.\n\r", ch);
 	return;
     }
 
-    sprintf( buf, "Name: %s.  Vnum: %d.\n\r",
+    sprintf( buf, "{cName:{x %s{c.  Vnum:{x %d{c.{x\n\r",
 	victim->name, victim->pIndexData->vnum );
     send_to_char( buf, ch );
 
-    sprintf( buf, "Short description: %s.\n\rLong  description: %s",
+    sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong  description:{x %s",
 	    victim->short_descr,
 	    victim->long_descr[0] != '\0' ?
-	    victim->long_descr : "(none).\n\r" );
+	    victim->long_descr : "(none){c.{x\n\r" );
     send_to_char( buf, ch );
 
-    sprintf( buf, "Hp: %d/%d.  Mana: %d/%d.  Move: %d/%d. \n\r",
+    sprintf( buf, "{cHp:{x %d{c/{x%d{c.  Mana: {x%d{c/{x%d{c.  Move: {x%d{c/{x%d{c.{x\n\r",
 	victim->hit,         victim->max_hit,
 	victim->mana,        victim->max_mana,
 	victim->move,        victim->max_move );
     send_to_char( buf, ch );
 
     sprintf( buf,
-	"Lv: %d.  Class: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\n\r",
+	"{cLv: {x%d{c.  Class: {x%d{c.  Align: {x%d{c.  AC: {x%d{c.  Gold: {x%d{c.  Exp: {x%d{c.{x\n\r",
 	victim->level,       victim->class,        victim->alignment,
 	GET_AC( victim ),    victim->gold,         victim->exp );
     send_to_char( buf, ch );
@@ -123,7 +123,7 @@ void do_mpstat( CHAR_DATA *ch, char *argument )
     for ( mprg = victim->pIndexData->mobprogs; mprg != NULL;
 	 mprg = mprg->next )
     {
-      sprintf( buf, ">%s %s\n\r%s\n\r",
+      sprintf( buf, "{o{y>%s %s{x\n\r{o{y%s{x\n\r",
 	      mprog_type_to_name( mprg->type ),
 	      mprg->arglist,
 	      mprg->comlist );
@@ -311,7 +311,7 @@ void do_mpechoaround( CHAR_DATA *ch, char *argument )
        return;
     }
 
-    if ( !( victim=get_char_room( ch, arg ) ) )
+    if ( !( victim = get_char_room( ch, arg ) ) )
     {
         bug( "Mpechoaround - victim does not exist: vnum %d.",
 	    ch->pIndexData->vnum );
@@ -681,7 +681,7 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
     {
 	for ( d = descriptor_list; d; d = d->next )
 	{
-	    if ( d->connected == CON_PLAYING
+	    if ( CONNECTED( d )
 	    &&   d->character != ch
 	    &&   d->character->in_room
 	    &&   can_see( ch, d->character ) )

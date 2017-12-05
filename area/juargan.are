@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #4700
 dwarf~
@@ -128,7 +127,6 @@ of eternal pain.
 #0
 
 
-
 #NEWOBJECTS
 #4700
 key small~
@@ -214,7 +212,6 @@ A large and intricate staff rests here.~
 25~ 5~ 5~ charm person~ 0~
 10 10000 0
 #0
-
 
 
 #ROOMDATA
@@ -1630,10 +1627,8 @@ S
 #0
 
 
-
 #SPECIALS
 S
-
 
 
 #RESETS
@@ -1704,10 +1699,8 @@ O 0 4705 0 4770
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

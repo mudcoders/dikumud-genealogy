@@ -7,7 +7,6 @@ Recall      3001
 End
 
 
-
 #MOBILES
 #101
 smurf~
@@ -155,7 +154,6 @@ just grab a smurf in his teeth and chew away.
 #0
 
 
-
 #NEWOBJECTS
 #100
 bunch berries smurfberries~
@@ -242,7 +240,6 @@ A key to Gargamel's door lies here.~
 2~ 0~ 0~ 0~ 0~
 2 50 0
 #0
-
 
 
 #ROOMDATA
@@ -800,7 +797,6 @@ S
 #0
 
 
-
 #SPECIALS
 M 101 spec_thief
 M 102 spec_thief
@@ -815,7 +811,6 @@ M 110 spec_cast_mage
 M 111 spec_cast_cleric
 M 112 spec_poison
 S
-
 
 
 #RESETS
@@ -859,10 +854,8 @@ G 0 107 0
 S
 
 
-
 #SHOPS
 0
-
 
 
 #$

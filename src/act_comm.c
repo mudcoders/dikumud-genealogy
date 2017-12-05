@@ -55,11 +55,10 @@ bool is_note_to( CHAR_DATA *ch, NOTE_DATA *pnote )
     if ( is_name( "all", pnote->to_list ) )
 	return TRUE;
 
-    if ( IS_HERO( ch ) && (   is_name( "immortal",  pnote->to_list )
-			   || is_name( "immortals", pnote->to_list )
-			   || is_name( "imm",       pnote->to_list )
-			   || is_name( "immort",    pnote->to_list ) ) )
-	
+    if ( IS_IMMORTAL( ch ) && (   is_name( "immortal",  pnote->to_list )
+			       || is_name( "immortals", pnote->to_list )
+			       || is_name( "imm",       pnote->to_list )
+			       || is_name( "immort",    pnote->to_list ) ) )
 	return TRUE;
 
     if ( is_name( ch->name, pnote->to_list ) )
@@ -177,12 +176,12 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
     {
 	for ( pnote = note_list; pnote; pnote = pnote->next )
 	{
-	    fprintf( fp, "Sender  %s~\n", pnote->sender     );
-	    fprintf( fp, "Date    %s~\n", pnote->date       );
+	    fprintf( fp, "Sender  %s~\n", pnote->sender			);
+	    fprintf( fp, "Date    %s~\n", pnote->date			);
 	    fprintf( fp, "Stamp   %ld\n", (unsigned long)pnote->date_stamp );
-	    fprintf( fp, "To      %s~\n", pnote->to_list    );
-	    fprintf( fp, "Subject %s~\n", pnote->subject    );
-	    fprintf( fp, "Text\n%s~\n\n", pnote->text       );
+	    fprintf( fp, "To      %s~\n", pnote->to_list		);
+	    fprintf( fp, "Subject %s~\n", pnote->subject		);
+	    fprintf( fp, "Text\n%s~\n\n", fix_string( pnote->text )	);
 	}
 	fclose( fp );
     }
@@ -325,21 +324,10 @@ void do_note( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !str_cmp( arg, "+" ) )
+    if ( !str_cmp( arg, "edit" ) )
     {
 	note_attach( ch );
-	strcpy( buf, ch->pnote->text );
-	if ( strlen( buf ) + strlen( argument ) >= MAX_STRING_LENGTH - 200 )
-	{
-	    send_to_char( "Note too long.\n\r", ch );
-	    return;
-	}
-
-	strcat( buf, argument );
-	strcat( buf, "\n\r"   );
-	free_string( ch->pnote->text );
-	ch->pnote->text = str_dup( buf );
-	send_to_char( "Ok.\n\r", ch );
+	string_append( ch, &ch->pnote->text );
 	return;
     }
 
@@ -448,12 +436,12 @@ void do_note( CHAR_DATA *ch, char *argument )
 	}
 	else
 	{
-	    fprintf( fp, "Sender  %s~\n", pnote->sender     );
-	    fprintf( fp, "Date    %s~\n", pnote->date       );
+	    fprintf( fp, "Sender  %s~\n", pnote->sender			);
+	    fprintf( fp, "Date    %s~\n", pnote->date			);
 	    fprintf( fp, "Stamp   %ld\n", (unsigned long)pnote->date_stamp );
-	    fprintf( fp, "To      %s~\n", pnote->to_list    );
-	    fprintf( fp, "Subject %s~\n", pnote->subject    );
-	    fprintf( fp, "Text\n%s~\n\n", pnote->text       );
+	    fprintf( fp, "To      %s~\n", pnote->to_list		);
+	    fprintf( fp, "Subject %s~\n", pnote->subject		);
+	    fprintf( fp, "Text\n%s~\n\n", fix_string( pnote->text )	);
 	    fclose( fp );
 	}
 	fpReserve = fopen( NULL_FILE, "r" );
@@ -588,49 +576,49 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	break;
  
      case CHANNEL_AUCTION:
- 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{yYou %s '%s{x{y'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{y$n %ss '$t{x{y'{x",     verb );
  	break;
  
      case CHANNEL_MUSIC:
- 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{yYou %s '%s{x{y'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{y$n %ss '$t{x{y'{x",     verb );
  	break;
  
      case CHANNEL_QUESTION:
- 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{yYou %s '%s{x{y'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{y$n %ss '$t{x{y'{x",     verb );
  	break;
  
      case CHANNEL_SHOUT:
- 	sprintf( buf, "{rYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{rYou %s '%s{x{r'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{r$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{r$n %ss '$t{x{r'{x",     verb );
  	break;
  
      case CHANNEL_YELL:
- 	sprintf( buf, "{bYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{bYou %s '%s{x{b'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{b$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{b$n %ss '$t{x{b'{x",     verb );
  	break;
  
      case CHANNEL_CHAT:
- 	sprintf( buf, "{mYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{mYou %s '%s{x{m'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{m$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{m$n %ss '$t{x{m'{x",     verb );
  	break;
  
      case CHANNEL_GRATS:
- 	sprintf( buf, "{yYou %s '%s'{x\n\r", verb, argument );
+ 	sprintf( buf, "{yYou %s '%s{x{y'{x\n\r", verb, argument );
  	send_to_char( buf, ch );
- 	sprintf( buf, "{y$n %ss '$t'{x",     verb );
+ 	sprintf( buf, "{y$n %ss '$t{x{y'{x",     verb );
  	break;
  
      case CHANNEL_CLANTALK:
- 	sprintf( buf, "{y[{R$n{y]: $t{x" );
+ 	sprintf( buf, "{o{y[{r$n{y]: $t{x" );
 	act( buf, ch, argument, NULL, TO_CHAR );
  	break;
 
@@ -656,7 +644,7 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	och = d->original ? d->original : d->character;
 	vch = d->character;
 
-	if ( d->connected == CON_PLAYING
+	if ( CONNECTED( d )
 	    && vch != ch
 	    && !IS_SET( och->deaf, channel )
             && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
@@ -664,7 +652,7 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	    if ( channel == CHANNEL_IMMTALK && !IS_HERO( och ) )
 		continue;
 	    if ( channel == CHANNEL_CLANTALK
-	        && ( !IS_CLAN( och )
+	        && ( !is_clan( och )
 	        || !is_same_clan( ch, och ) ) )
 		continue;
 	    if ( channel == CHANNEL_YELL
@@ -766,13 +754,13 @@ void do_immtalk( CHAR_DATA *ch, char *argument )
 
 
 
-void do_clantalk( CHAR_DATA *ch, char *argument )
+void do_wartalk( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
   
     rch = get_char( ch );
 
-    if ( IS_NPC( rch ) || !IS_CLAN( rch ) )
+    if ( IS_NPC( rch ) || !is_clan( rch ) )
     {
 	send_to_char( "You aren't a clansman!\n\r", ch );
         return;
@@ -802,8 +790,9 @@ void do_say( CHAR_DATA *ch, char *argument )
 
     argument = makedrunk( argument, ch );
 
-    act( "{g$n says '$T'{x", ch, NULL, argument, TO_ROOM );
-    act( "{gYou say '$T'{x", ch, NULL, argument, TO_CHAR );
+    act( "{g$n says '$T{x{g'{x", ch, NULL, argument, TO_ROOM );
+    MOBtrigger = FALSE;
+    act( "{gYou say '$T{x{g'{x", ch, NULL, argument, TO_CHAR );
     mprog_speech_trigger( argument, ch );
     return;
 }
@@ -867,10 +856,10 @@ void do_tell( CHAR_DATA *ch, char *argument )
 
     argument = makedrunk( argument, ch );
 
-    act( "You tell $N '$t'", ch, argument, victim, TO_CHAR );
+    act( "{mYou tell $N '$t{x{m'{x", ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
+    act( "{m$n tells you '$t{x{m'{x", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -929,10 +918,10 @@ void do_reply( CHAR_DATA *ch, char *argument )
 
     argument = makedrunk( argument, ch );
 
-    act( "You tell $N '$t'",  ch, argument, victim, TO_CHAR );
+    act( "{mYou tell $N '$t{x{m'{x",  ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
+    act( "{m$n tells you '$t{x{m'{x", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -969,6 +958,7 @@ void do_emote( CHAR_DATA *ch, char *argument )
 	strcat( buf, "." );
 
     act( "$n $T", ch, NULL, buf, TO_ROOM );
+    MOBtrigger = FALSE;
     act( "$n $T", ch, NULL, buf, TO_CHAR );
     return;
 }
@@ -980,6 +970,7 @@ void do_emote( CHAR_DATA *ch, char *argument )
  */
 struct	pose_table_type
 {
+    
     char * message[ 2*MAX_CLASS ];
 };
 
@@ -1341,13 +1332,14 @@ void do_quit( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    send_to_char( "Adde parvum parvo magnus acervus erit.\n\r", ch );
-    send_to_char( "[Add little to little ",                     ch );
-    send_to_char( "and there will be a big pile]\n\r\n\r",      ch );
+    send_to_char( "{o{bAdde parvum parvo magnus acervus erit.{x\n\r", ch );
+    send_to_char( "{o{w[Add little to little ",                     ch );
+    send_to_char( "and there will be a big pile]{x\n\r\n\r",      ch );
 
     act( "$n has left the game.", ch, NULL, NULL, TO_ROOM );
     sprintf( log_buf, "%s has quit.", ch->name );
     log_string( log_buf );
+    wiznet ( ch, WIZ_LOGINS, get_trust( ch ), log_buf );
 
     /*
      * After extract_char the ch is no longer valid!
@@ -1791,7 +1783,7 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     /*
      * Note use of send_to_char, so gtell works on sleepers.
      */
-    sprintf( buf, "%s tells the group '%s'.\n\r", ch->name, argument );
+    sprintf( buf, "%s tells the group '{g%s{x'.\n\r", ch->name, argument );
     
     for ( gch = char_list; gch; gch = gch->next )
     {
@@ -1871,31 +1863,11 @@ bool is_same_group( CHAR_DATA *ach, CHAR_DATA *bch )
  */
 bool is_same_clan( CHAR_DATA *ach, CHAR_DATA *bch )
 {
-    CHAR_DATA   *xch;
-    CHAR_DATA   *ych;
-
     if ( ach->deleted || bch->deleted )
         return FALSE;
 
-    if ( !ach->desc )
-    {
-	if ( IS_NPC( ach ) ) return FALSE;
-        xch = ach;
-    }
-    else
-	xch = ( ach->desc->original ? ach->desc->original : ach );
-
-    if ( !bch->desc )
-    {
-	if ( IS_NPC( bch ) ) return FALSE;
-        ych = bch;
-    }
-    else
-	ych = ( bch->desc->original ? bch->desc->original : bch );
-
-    if ( IS_CLAN( xch )
-	&& IS_CLAN( ych ) )
-	return xch->pcdata->clan == ych->pcdata->clan;
+    if ( is_clan( ach ) && is_clan( bch ) )
+	return ach->pcdata->clan == bch->pcdata->clan;
     else
 	return FALSE;
 }
@@ -1905,11 +1877,11 @@ bool is_same_clan( CHAR_DATA *ach, CHAR_DATA *bch )
  */
 void do_colour( CHAR_DATA *ch, char *argument )
 {
-    char 	arg[ MAX_STRING_LENGTH ];
+    char arg[ MAX_STRING_LENGTH ];
 
     argument = one_argument( argument, arg );
 
-    if( !*arg )
+    if ( !*arg )
     {
 	if( !IS_SET( ch->act, PLR_COLOUR ) )
 	{
@@ -1950,10 +1922,7 @@ void do_retir( CHAR_DATA *ch, char *argument )
  */
 void do_retire( CHAR_DATA *ch, char *argument )
 {
-    char *pArg;
-    char  arg1 [ MAX_INPUT_LENGTH ];
-    char  cEnd;
-    DESCRIPTOR_DATA *d;
+    extern const char echo_off_str [ ];
 
     if ( IS_NPC( ch ) )
       return;
@@ -1977,124 +1946,48 @@ void do_retire( CHAR_DATA *ch, char *argument )
       return;
     }
 
-    /*
-     * Can't use one_argument here because it smashes case.
-     * So we just steal all its code.  Bleagh.
-     */
-    pArg = arg1;
-    while ( isspace( *argument ) )
-      argument++;
+    write_to_buffer( ch->desc, "Password: ", 0 );
+    write_to_buffer( ch->desc, echo_off_str, 0 );
+    ch->desc->connected = CON_RETIRE_GET_PASSWORD;
 
-    cEnd = ' ';
-    if ( *argument == '\'' || *argument == '"' )
-      cEnd = *argument++;
-
-    while ( *argument != '\0' )
-    {
-      if ( *argument == cEnd )
-      {
-          argument++;
-          break;
-      }
-      *pArg++ = *argument++;
-    }
-    *pArg = '\0';
-
-    *argument = '\0';
-
-    if ( arg1[0] == '\0' )
-    {
-      send_to_char( "Syntax: retire <password>.\n\r", ch );
-      return;
-    }
-
-    if ( strcmp( crypt( arg1, ch->pcdata->pwd ), ch->pcdata->pwd ) )
-    {
-      WAIT_STATE( ch, 40 );
-      send_to_char( "Wrong password.  Wait 10 seconds.\n\r", ch );
-      return;
-    }
-
-    send_to_char( "Hope you return soon brave adventurer!\n\r", ch );
-    send_to_char( "[Add little to little ",                     ch );
-    send_to_char( "and there will be a big pile]\n\r\n\r",      ch );
-
-    act( "$n has retired the game.", ch, NULL, NULL, TO_ROOM );
-    sprintf( log_buf, "%s has retired the game.", ch->name );
-    log_string( log_buf );
-
-    /*
-     * After extract_char the ch is no longer valid!
-     *
-     * By saving first i assure i am not removing a non existing file
-     * i know it's stupid and probably useless but... (Zen).
-     */
-    save_char_obj( ch );
-    delete_char_obj( ch ); /* handy function huh? :) */
-
-    d = ch->desc;
-    extract_char( ch, TRUE );
-    if ( d )
-      close_socket( d );
     return;
 }
 
 
-void do_join( CHAR_DATA *ch, char *argument )
+void send_ansi_title( CHAR_DATA *ch )
 {
-    CHAR_DATA *victim;
-    char       arg [ MAX_INPUT_LENGTH ];
-    char       buf[ MAX_STRING_LENGTH ];
-    OBJ_DATA  *card;	
-    OBJ_DATA  *armor;
+    FILE *titlefile;
+    char  buf [ MAX_STRING_LENGTH*2 ];
+    int   num;
 
-    one_argument( argument, arg );
-
-    if ( arg[0] == '\0' )
+    num = 0;
+    if ( ( titlefile = fopen( ANSI_TITLE_FILE, "r" ) ) )
     {
-	send_to_char( "Join whom to your clan?\n\r", ch );
-	return;
-    }
-    if ( IS_NPC( ch )
-	|| IS_SWITCHED( ch )
-    	|| !IS_CLAN( ch )
-    	|| !IS_SET( ch->pcdata->rank, CLAN_LEADER ) )
-    {
-	send_to_char( "You are not a clan leader.\n\r", ch );
-	return;
-    }
-    if ( !( victim = get_char_room( ch, arg ) ) )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-    if ( victim == ch || IS_NPC(victim) || IS_SWITCHED(victim) )
-	return;
-
-    card = get_eq_char(victim, WEAR_HOLD);
-    if ( IS_CLAN( victim )
-         || !card
-         || card->pIndexData->vnum != OBJ_VNUM_CLAN_CARD
-         || victim->level < 20
-         || victim->level >= 40 )
-    {
-	act("$N hasn't what's required to join.",ch,NULL, victim, TO_CHAR);
-	act("You can't join $n's clan.", ch, NULL, victim, TO_VICT);
-	return;
+	while ( ( buf[num] = fgetc( titlefile ) ) != EOF )
+	    num++;
+	fclose( titlefile );
+	buf[num] = '\0';
+	write_to_buffer( ch->desc, buf, num );
     }
 
-    victim->pcdata->clan = ch->pcdata->clan;
-    SET_BIT(victim->pcdata->rank, CLAN_MEMBER);
-    armor = create_object( get_obj_index( clan_table[ ch->pcdata->clan ].armor )
-    							, victim->level );
-    obj_to_char( armor, victim );
-    sprintf( buf, "Log %s: joined %s to %s #%d",
-    		ch->name,
-    		victim->name, clan_table[ ch->pcdata->clan ].name,
-    		ch->pcdata->clan );
-    log_clan( buf );
-    act("$N joins $n's clan.", ch, NULL, victim, TO_ROOM);
-    act("$N joins your clan.", ch, NULL, victim, TO_CHAR);
-    
+    return;
+}
+
+void send_ascii_title( CHAR_DATA *ch )
+{
+    FILE *titlefile;
+    char  buf [ MAX_STRING_LENGTH*2 ];
+    int   num;
+
+    num = 0;
+    if ( ( titlefile = fopen( ASCII_TITLE_FILE, "r" ) ) )
+    {
+	while ( ( buf[num] = fgetc( titlefile ) ) != EOF )
+	    num++;
+	fclose( titlefile );
+	buf[num] = '\0';
+	write_to_buffer( ch->desc, buf, num );
+    }
+
     return;
 }
