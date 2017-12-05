@@ -1,212 +1,216 @@
 #AREADATA
 Name        Ofcol~
 Author      Alfa~
-Levels      0 54
+Levels      0 64
 Security    1
 VNUMs       5550 5577
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #5550
-Village street~
+Name        Village street~
+Descr
 You stand at the small village street in Ofcol.
 From here you see small houses and only few people.
 North of here the village street continues up to the small
 square where some people are gathered as always.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 303 5 100
+Door        north~ ~ -1 5551
 You look up the village street noticing nothing special at all.
 ~
 ~
-0 -1 5551
-D2
+Door        south~ ~ -1 314
 The wide road leads south here towards the T-crossing.
 ~
 ~
-0 -1 314
-S
+End
+
 #5551
-Village street~
+Name        Village street~
+Descr
 You are standing on the village street of Ofcol.
 East from here is a small alley and north you enter the village
 square. Towards the south you can leave Ofcol.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 5552
 The village square is as usual not overcrowded.
 ~
 ~
-0 -1 5552
-D1
+Door        east~ ~ -1 5553
 The small alley looks relative peaceful.
 ~
 ~
-0 -1 5553
-D2
+Door        south~ ~ -1 5550
 You see the village street eventually becoming the wide road.
 ~
 ~
-0 -1 5550
-S
+End
+
 #5552
-Village square~
+Name        Village square~
+Descr
 The village square is a place where inhabitants of Ofcol gather
 to talk, trade and sell items and just have a good time.
 You see a small shop to the west and the local inn to the north.
 If you leave south you go to village street.  You see some new
 construction east of you!
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 304 5 100
+Reset       E 3020 16 100
+Door        north~ ~ -1 5556
 You see a local inn called 'The Ofcol Local Inn'. Looks nice.
 ~
 ~
-0 -1 5556
-D1
+Door        east~ ~ -1 10700
 ~
 ~
-0 -1 10700
-D2
+Door        south~ ~ -1 5551
 You see the village street of Ofcol.
 ~
 ~
-0 -1 5551
-D3
+Door        west~ ~ -1 5555
 A small shop with the sign 'Luxan's Mixed goods' hanging in front of it.
 ~
 ~
-0 -1 5555
-S
+End
+
 #5553
-The small alley~
+Name        The small alley~
+Descr
 You are in a small, quiet alley.  From here you see the village street
 to the west and a small room lies to the south.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 304 5 100
+Door        east~ ~ 0 601
 You see a big intersection.
 ~
 ~
-0 0 601
-D2
+Door        south~ ~ -1 5554
 It looks like the future site of a training room.
 ~
 ~
-0 -1 5554
-D3
+Door        west~ ~ -1 5551
 You notice nothing but the village street.
 ~
 ~
-0 -1 5551
-S
+End
+
 #5554
-The future training room~
+Name        The future training room~
+Descr
 This is the future site of a training room.  The only exit is north
 leading to the small alley.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 5553
 You are able to see the small alley, which is really not very interesting.
 ~
 ~
-0 -1 5553
-S
+End
+
 #5555
-Luxan's mixed shop~
+Name        Luxan's mixed shop~
+Descr
 You are standing in a small shop, filled with all kinds of goods.
 Here you might be able to find just the thing you're looking for.
 The only exit is east to village square.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 306 1 100
+Reset       E 304 -1 100
+Reset       E 3030 -1 100
+Door        east~ ~ -1 5552
 The village square is as usual not overcrowded.
 ~
 ~
-0 -1 5552
-S
+End
+
 #5556
-The Local Inn~
+Name        The Local Inn~
+Descr
 You are in the local inn, where the peaceful citizens of Ofcol
 gather to have a drink or 5 if they have dry throats.
 You can't help thinking that Ofcol is a dry city, when you see the
 many people here.
 The only exit is south to the village square.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 303 5 100
+Reset       M 308 1 100
+Reset       E 3000 -1 100
+Reset       E 3001 -1 100
+Door        south~ ~ -1 5552
 The village square is as usual not overcrowded.
 ~
 ~
-0 -1 5552
-S
+End
+
 #5577
-Ravan's hideout~
+Name        Ravan's hideout~
+Descr
 This place is a small, cosy place where no one disturbs you all
 the time. The room has little decoration except for some pictures
 on the wall.
 You notice that there are no exits from this room.
 ~
-0 0 0
-E
-friend friends~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  friend friends~
 The list include such prominent names as : God, Lottie, Kurgan,
 Ezzard, Mike, Sprocket and Stormbringer.
 ~
-E
-foe foes enemies~
+ExtraDescr  foe foes enemies~
 There is only one picture yet... Dim.
 It pictures him hanging from a gallow, north of the town.
 It has the letters R.I.P. inscripted underneath.
 ~
-E
-pictures picture decoration~
+ExtraDescr  pictures picture decoration~
 These pictures show the friend's and foe's of Ravan.
 They are easy to separate, as most of the foe's have the letters
 R.I.P. inscripted underneath them.
 ~
-S
+Reset       M 350 1 100
+End
+
 #0
 
-
-#SPECIALS
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 303 5 5550
-M 0 304 5 5552
-E 0 3020 0 16
-M 0 304 5 5553
-M 0 306 1 5555
-G 0 304 0
-G 0 3030 0
-M 0 303 5 5556
-M 0 308 1 5556
-G 0 3000 0
-G 0 3001 0
-M 0 350 1 5577
-S
-
-
-#SHOPS
-0
 
 
 #$

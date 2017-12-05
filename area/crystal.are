@@ -4,421 +4,601 @@ Author      Strahd~
 Levels      5 45
 Security    1
 VNUMs       10001 10082
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #10001
-Goldmoon girl~
-Goldmoon~
+Name        Goldmoon girl~
+Short       Goldmoon~
+Long
 Goldmoon is singing a beautiful song here.
 ~
+Descr
 The girl's eyes are a bright sky blue; her skin is a buttery tan. Most striking
 of all is the flowing white gold of her hair. Plush white furs trim her woven
 cape. A single feather folds back along the right side of her head.
 ~
-3 128 900 S
-45 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   900
+Level       45
+Gold        0
+Race        Human
+Sex         female~
+Spec        spec_cast_adept
+End
+
 #10002
-Fewmaster Toede~
-Fewmaster Toede~
+Name        Fewmaster Toede~
+Short       Fewmaster Toede~
+Long
 The Fewmaster Toede is here.
 ~
+Descr
 Toede's wispy, white hair tops a very ugly face. His speckled gray skin,
 double chins, and pot belly all resemble those of a vicious little toad.
 ~
-97 128 -900 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 1
+Act         aggressive stay_area~
+AffectBy    sanctuary~
+Alignment   -900
+Level       12
+Gold        0
+Race        Elf
+Sex         male~
+End
+
 #10003
-riverwind man~
-Riverwind~
+Name        riverwind man~
+Short       Riverwind~
+Long
 Riverwind the Ranger is standing here..
 ~
+Descr
 A black haired ranger who's muscles surge with power.
 He looks travel weary and tired.
 ~
-65 128 900 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    sanctuary~
+Alignment   900
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10004
-Baaz Draconian robed~
-Baaz Draconian~
+Name        Baaz Draconian robed~
+Short       Baaz Draconian~
+Long
 A robed figure is standing here.
 ~
+Descr
 Its hard to tell anything about the figure. It is concealed by its heavy robe
 and hood.
 ~
-67 512 -750 S
-7 0 0 0d0+0 0d0+0
-0 0
-0 Dragon~ 1
+Act         sentinel stay_area~
+AffectBy    infrared~
+Alignment   -750
+Level       7
+Gold        0
+Race        Dragon
+Sex         male~
+End
+
 #10005
-Farmer~
-The Farmer~
+Name        Farmer~
+Short       The Farmer~
+Long
 The Farmer is standing here looking after his workers...
 ~
+Descr
 He looks like a farmer.....go figure...
 ~
-1 0 150 S
-10 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         ~
+AffectBy    ~
+Alignment   150
+Level       10
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10006
-Farm worker~
-Farm worker~
+Name        Farm worker~
+Short       Farm worker~
+Long
 A farm worker is here harvesting grain.
 ~
+Descr
 The worker is very busy...leave him alone.
 ~
-65 0 125 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   125
+Level       5
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10007
-barracuda~
-Barracuda~
+Name        barracuda~
+Short       Barracuda~
+Long
 There is a barracuda swimming around you...it looks hungry..
 ~
+Descr
 This is a very hungry looking fish with BIG teeth...
 ~
-35 0 20 S
-7 0 0 0d0+0 0d0+0
-0 0
-0 Fish~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   20
+Level       7
+Gold        0
+Race        Fish
+Sex         neutral~
+End
+
 #10008
-Turtle Dragon~
-Turtle dragon~
+Name        Turtle Dragon~
+Short       Turtle dragon~
+Long
 There is a very large Turtle dragon here.
 ~
+Descr
 This is a very big dragon. It looks more turtle than dragon though.
 Its blue-green scales glisten with moisture. Steam jets from its nostrils.
 It looks intently at you as if you look you over before eating you.
 ~
-99 8 -700 S
-27 0 0 0d0+0 0d0+0
-0 0
-0 Dragon~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    detect-invis~
+Alignment   -700
+Level       27
+Gold        0
+Race        Dragon
+Sex         neutral~
+Spec        spec_breath_gas
+End
+
 #10009
-farmers guard dog~
-Farmers guarddog~
+Name        farmers guard dog~
+Short       Farmers guarddog~
+Long
 The Farmer's guarddog is here guarding whatever he's suppose to guard.
 ~
+Descr
 This is a very mean looking dog. And since it doesn't know you ...I think he's
 thinking of biting You!!....
 ~
-35 8 100 S
-7 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         sentinel aggressive~
+AffectBy    detect-invis~
+Alignment   100
+Level       7
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #10010
-strange fish~
-strange fish~
+Name        strange fish~
+Short       strange fish~
+Long
 A fish is swimming merrily by...
 ~
+Descr
 Some unknown type of fish....probably originally from near Guam.
 Probably walks too....
 ~
-65 0 200 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Fish~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   200
+Level       5
+Gold        0
+Race        Fish
+Sex         neutral~
+End
+
 #10011
-hobgoblin flunky~
-hobgoblin flunky~
+Name        hobgoblin flunky~
+Short       hobgoblin flunky~
+Long
 A small hobgoblin seems to be searching for something.
 ~
+Descr
 The hobgoblin screams at you, "Give me the blue crystal staff!!!!"
 ~
-69 0 -300 S
-6 12 6 6d6+60 2d4+0
-100 0
-0 Hobgoblin~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   -300
+Level       6
+Gold        100
+Race        Hobgoblin
+Sex         male~
+End
+
 #10012
-White Stag~
-the White Stag~
+Name        White Stag~
+Short       the White Stag~
+Long
 A beautiful white stag is here.
 ~
+Descr
 This is the White Stag. You can't believe you actually see it....its 
 suppose to be just a legend...
 ~
-69 65536 -300 S
-17 12 6 6d6+60 2d4+0
-100 0
-0 Animal~ 1
+Act         scavenger stay_area~
+AffectBy    hide~
+Alignment   -300
+Level       17
+Gold        100
+Race        Animal
+Sex         male~
+End
+
 #10013
-Old pooh bear~
-Old pooh bear~
+Name        Old pooh bear~
+Short       Old pooh bear~
+Long
 An old worn out winnie the pooh bear is here.
 ~
+Descr
 This is an old pooh bear. It looks as if it has been loved a little too much.
 ~
-69 0 300 S
-5 18 9 2d5+19 1d5+1
-250 0
-0 Bear~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   300
+Level       5
+Gold        250
+Race        Bear
+Sex         male~
+Spec        spec_thief
+End
+
 #10014
-rat large~
-a large rat~
+Name        rat large~
+Short       a large rat~
+Long
 A large rat is here eating grain.
 ~
+Descr
 You have the urge to kill this vile creature.
 I'm sure the farmers would appreciate it too.
 ~
-5 0 -200 S
-5 17 6 3d4+48 1d8+0
-10 0
-0 Rat~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   -200
+Level       5
+Gold        10
+Race        Rat
+Sex         male~
+End
+
 #10015
-mouse field~
-a field mouse~
+Name        mouse field~
+Short       a field mouse~
+Long
 A small mouse runs across your foot.
 ~
+Descr
 The Mouse is a cute little creature.
 ~
-7 0 100 S
-4 19 9 2d4+10 1d4+0
-1 0
-0 Rat~ 1
+Act         sentinel scavenger~
+AffectBy    ~
+Alignment   100
+Level       4
+Gold        1
+Race        Rat
+Sex         male~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #10001
-turtle dragon shell~
-turtle Dragon Shell~
+Name        turtle dragon shell~
+Short       turtle Dragon Shell~
+Descr
 A giant Turtle dragon shell lies here.~
-~
-9 1 1025
-14~ 0~ 0~ 0~ 0~
-20 0 0
-E
-turtle dragon shell~
+Type        armor~
+Extra       glow~
+Wear        take about~
+Values      14~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        0
+ExtraDescr  turtle dragon shell~
 This is the giant shell of a Turtle dragon.
 ~
+End
+
 #10002
-farmers scythe~
-farming scythe~
+Name        farmers scythe~
+Short       farming scythe~
+Descr
 A farming scythe lies here.~
-~
-5 0 8193
-0~ 5~ 15~ 3~ 0~
-10 0 0
-E
-farming scythe~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 5~ 15~ 3~ 0~
+Weight      10
+Cost        0
+ExtraDescr  farming scythe~
 This scythe is used by the farmers to harvest their wheat.
 ~
+End
+
 #10003
-blue crystal staff~
-a blue crystal staff~
+Name        blue crystal staff~
+Short       a blue crystal staff~
+Descr
 A blue crystal staff lies here.~
-~
-4 3136 16385
-10~ 20~ 20~ cure critical~ 0~
-5 0 0
-E
-blue crystal staff~
+Type        staff~
+Extra       magic anti-evil anti-neutral~
+Wear        take hold~
+Values      10~ 20~ 20~ cure critical~ 0~
+Weight      5
+Cost        0
+ExtraDescr  blue crystal staff~
 This staff is carved from a single piece of blue crystal. It is about five feet
 long and has a two-inch-diameter shaft. The ornamentally bladed head of
 the staff bears a gem in its center.
 ~
+End
+
 #10004
-bright silver bracer~
-a bright silver bracer~
+Name        bright silver bracer~
+Short       a bright silver bracer~
+Descr
 A bright silver bracer lies here.~
-~
-9 512 4097
-7~ 0~ 0~ 0~ 0~
-7 0 0
-A
-13 1 0
-A
-14 15 0
-A
-1 1 0
-E
-bright silver bracer~
+Type        armor~
+Extra       anti-good~
+Wear        take wrist~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      7
+Cost        0
+Affect      hp~ 1 ~
+Affect      move~ 15 ~
+Affect      strength~ 1 ~
+ExtraDescr  bright silver bracer~
 This is a bright silver bracer fitted with four gems. The inside of the
 band is engraved, "Firehawk, warrior of Que-shu"
 ~
+End
+
 #10005
-fire pit~
-fire pit~
+Name        fire pit~
+Short       fire pit~
+Descr
 There is a fire pit here, still smoldering.~
-~
-15 0 0
-10000~ 0~ 0~ 0~ 0~
-0 0 0
-E
-fire pit~
+Type        container~
+Extra       ~
+Wear        ~
+Values      10000~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  fire pit~
 This is the smoldering fire pit of whomever's camp this was.
 ~
+End
+
 #10006
-house key ~
-house key~
+Name        house key ~
+Short       house key~
+Descr
 There is a house key on the ground.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-2 0 0
-E
-house key~
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+ExtraDescr  house key~
 This looks like someones house key.
 ~
+End
+
 #10007
-coathanger~
-coathanger~
+Name        coathanger~
+Short       coathanger~
+Descr
 There is a coathanger on the ground.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-2 0 0
-E
-coathanger~
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+ExtraDescr  coathanger~
 It looks like a coathanger...duh....
 ~
+End
+
 #10008
-silver longsword~
-silver longsword~
+Name        silver longsword~
+Short       silver longsword~
+Descr
 There is a silver longsword on the ground.~
-~
-5 1024 8193
-0~ 5~ 20~ 1~ 0~
-7 0 0
-A
-24 5 0
-A
-13 3 0
-E
-silver longsword~
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 5~ 20~ 1~ 0~
+Weight      7
+Cost        0
+Affect      saving-spell~ 5 ~
+Affect      hp~ 3 ~
+ExtraDescr  silver longsword~
 This silver longsword looks as if it has seen many battles.
 ~
+End
+
 #10009
-farmer longjohns~
-a farmer's longjohns~
+Name        farmer longjohns~
+Short       a farmer's longjohns~
+Descr
 A pair of farmers longjohns are lying here.~
-~
-9 0 9
-5~ 0~ 0~ 0~ 0~
-2 20 0
-E
-longjohns~
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        20
+ExtraDescr  longjohns~
 Its a pair of longjohns....the kind a farmer would wear.
 ~
+End
+
 #10010
-ancient coins gold~
-a heap of ancient gold coins~
+Name        ancient coins gold~
+Short       a heap of ancient gold coins~
+Descr
 Some ancient gold coins lie piled up in a heap on the shipwreck maybe?
 ~
-~
-20 0 1
-1000~ 0~ 0~ 0~ 0~
-0 0 0
-E
-coins~
+Type        money~
+Extra       ~
+Wear        take~
+Values      1000~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  coins~
 The coins seem to be gold.  From a spanish shipwreck maybe?
 ~
+End
+
 #10011
-ancient coins gold~
-a heap of ancient gold coins~
+Name        ancient coins gold~
+Short       a heap of ancient gold coins~
+Descr
 Some ancient gold coins lie piled up in a heap on the floor.~
-~
-20 0 1
-1000~ 0~ 0~ 0~ 0~
-0 0 0
-E
-coins~
+Type        money~
+Extra       ~
+Wear        take~
+Values      1000~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  coins~
 The coins seem to be gold.  From a spanish shipwreck maybe?
 ~
+End
+
 #10012
-grain~
-some grain~
+Name        grain~
+Short       some grain~
+Descr
 There is some grain here.~
-~
-15 0 1
-2~ 0~ 0~ 0~ 0~
-5 100 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        100
+End
+
 #10013
-leather armor~
-leather armor~
+Name        leather armor~
+Short       leather armor~
+Descr
 There is a suit of leather armor on the ground.~
-~
-9 0 9
-2~ 0~ 0~ 0~ 0~
-5 100 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        100
+End
+
 #10014
-chamorro dagger~
-chamorro Dagger~
+Name        chamorro dagger~
+Short       chamorro Dagger~
+Descr
 There is a chamorro dagger lying here.~
-~
-5 0 8193
-0~ 5~ 12~ 2~ 0~
-5 0 0
-E
-chamorro dagger~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 5~ 12~ 2~ 0~
+Weight      5
+Cost        0
+ExtraDescr  chamorro dagger~
 a chamorro dagger what else? It is engraved with, "Made in Guam"
 ~
+End
+
 #10015
-Footman's Lance~
-a Footman's lance~
+Name        Footman's Lance~
+Short       a Footman's lance~
+Descr
 There is a long wicked looking pole arm lying here.~
-~
-5 0 8193
-0~ 7~ 15~ 0~ 0~
-20 0 0
-E
-footmans lance~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 7~ 15~ 0~ 0~
+Weight      20
+Cost        0
+ExtraDescr  footmans lance~
 This is a long pole arm with detailed engravings on the shaft. The blade at the
 end of the pole is formed in various hooks and spikes, to maximize the amount
 of damage inflicted...
 ~
+End
+
 #10016
-Humanskin vest~
-a Humanskin vest~
+Name        Humanskin vest~
+Short       a Humanskin vest~
+Descr
 A large pile of skin is lying here.~
-~
-9 0 9
-7~ 0~ 0~ 0~ 0~
-10 0 0
-E
-Human skin vest~
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+ExtraDescr  Human skin vest~
 This vest is made of multiple layers of human skin stitched together.
 ~
+End
+
 #10017
-draconian helmet~
-a draconian helmet~
+Name        draconian helmet~
+Short       a draconian helmet~
+Descr
 A helmet made of leather and iron lies here.~
-~
-9 0 17
-4~ 0~ 0~ 0~ 0~
-4 0 0
-E
-draconian helmet~
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        0
+ExtraDescr  draconian helmet~
 This is a crudly constructed leather helmet, held together with large
 iron bands.
 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #10001
-Rock Outcropping~
+Name        Rock Outcropping~
+Descr
 From this rock outcropping the valley below seems peaceful, untouched.
 Dense forests of pine carpet the mountainsides, broken only by thick aspen 
 woods. The mountains, deep blue in the distance, circle the valley floor and 
 form a soft highland bowl.
 There is a sign nailed to a nearby tree.
 ~
-0 0 5
-E
-sign~
+Flags       ~
+Sector      mountain~
+Regen       100 100
+ExtraDescr  sign~
 **CRYSTALMIR LAKE**
 
 For those of you who enjoy dragonlance.
@@ -433,352 +613,371 @@ Michael Dobson
 
 Brought to you by  -- Strahd
 ~
-D0
+Door        north~ ~ -1 6000
 You see the edge of the forest.
 ~
 ~
-0 -1 6000
-D5
+Door        down~ ~ -1 10002
 You see a small grove.
 ~
 ~
-0 -1 10002
-S
+End
+
 #10002
-Small Grove~
+Name        Small Grove~
+Descr
 Suddenly, soft music begins. Its source is slim, beautiful girl. Lyre in
 hand, she sits gracefully as she plays; nearby, a large plainsman raises
 a flute to his lips. Her voice clear as winter wind begins to sing...
 ~
-0 0 3
-D2
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 10001 1 100
+Reset       E 10003 17 100
+Reset       E 10013 5 100
+Reset       M 10003 1 100
+Reset       E 10008 16 100
+Reset       E 10013 5 100
+Door        south~ ~ -1 10029
 You see forest.
 ~
 ~
-0 -1 10029
-D3
+Door        west~ ~ -1 10003
 You see a town in the distance.
 ~
 ~
-0 -1 10003
-D4
+Door        up~ ~ -1 10001
 You see a rock outcropping.
 ~
 ~
-0 -1 10001
-S
+End
+
 #10003
-Entrance to the Town of Solace~
+Name        Entrance to the Town of Solace~
+Descr
 A warm autumn breeze rustles the great vallenwood trees of Solace. The
 road that wanders through the trees blazes in the bright colors of autumn.
 The richly stained buildings of Solace rest cradled over head in the boughs
 of the trees.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ door~ 10497 10201
 You see the gateway to Solace.
 ~
 gate~
-1 10497 10201
-D1
+Door        east~ ~ -1 10002
 You see a small grove.
 ~
 ~
-0 -1 10002
-D2
+Door        south~ ~ -1 10022
 You see road through the forest.
 ~
 ~
-0 -1 10022
-D3
+Door        west~ ~ -1 10004
 You see a lake shore.
 ~
 ~
-0 -1 10004
-S
+End
+
 #10004
-East shore of Crystalmir Lake~
+Name        East shore of Crystalmir Lake~
+Descr
 The blue of the autumn sky darkens on the deep stillness of the lake. The
 soft forests of giant vallenwood border the serene waters on the eastern, 
 southern and western shores. To the north a patchwork of fields stretches
 toward the distant purple mountains.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10007
 You see a path along the lake.
 ~
 ~
-0 -1 10007
-D1
+Door        east~ ~ -1 10003
 You see a town in the distance.
 ~
 ~
-0 -1 10003
-D2
+Door        south~ ~ -1 10011
 You see a path that follows the lakeshore.
 ~
 ~
-0 -1 10011
-D3
+Door        west~ ~ -1 10005
 You see water.
 ~
 ~
-0 -1 10005
-S
+End
+
 #10005
-Middle of Crystalmir Lake~
+Name        Middle of Crystalmir Lake~
+Descr
 You are in the middle of Crystalmir lake. The water is so still it is like a
 thin sheet of glass.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 10007 1 100
+Door        north~ ~ -1 10006
 You see north shore of lake.
 ~
 ~
-0 -1 10006
-D1
+Door        east~ ~ -1 10004
 You see east shore of lake.
 ~
 ~
-0 -1 10004
-D2
+Door        south~ ~ -1 10010
 You see south shore of lake.
 ~
 ~
-0 -1 10010
-D3
+Door        west~ ~ -1 10008
 You see west shore of lake.
 ~
 ~
-0 -1 10008
-D5
+Door        down~ ~ -1 10048
 You can't see much under the water.
 ~
 ~
-0 -1 10048
-S
+End
+
 #10006
-North shore of Crystalmir Lake~
+Name        North shore of Crystalmir Lake~
+Descr
 The blue of the autumn sky darkens on the deep stillness of the lake. The
 soft forests of giant vallenwood border the serene waters on the eastern, 
 southern and western shores. To the north a patchwork of fields stretches
 toward the distant purple mountains.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10014
 You see fields of grain.
 ~
 ~
-0 -1 10014
-D1
+Door        east~ ~ -1 10007
 You see a path along the lake.
 ~
 ~
-0 -1 10007
-D2
+Door        south~ ~ -1 10005
 You see water.
 ~
 ~
-0 -1 10005
-D3
+Door        west~ ~ -1 10009
 You see a path along the lakeshore.
 ~
 ~
-0 -1 10009
-S
+End
+
 #10007
-Path along lake~
+Name        Path along lake~
+Descr
 You are walking along a path that follows the shore of the lake.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10013
 You see fields of grain.
 ~
 ~
-0 -1 10013
-D2
+Door        south~ ~ -1 10004
 You see the east shore of Crystalmir Lake.
 ~
 ~
-0 -1 10004
-D3
+Door        west~ ~ -1 10006
 You see the north shore of Crystalmir Lake.
 ~
 ~
-0 -1 10006
-S
+End
+
 #10008
-West shore of Crystalmir Lake~
+Name        West shore of Crystalmir Lake~
+Descr
 The blue of the autumn sky darkens on the deep stillness of the lake. The
 soft forests of giant vallenwood border the serene waters on the eastern, 
 southern and western shores. To the north a patchwork of fields stretches
 toward the distant purple mountains.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10009
 You see a path along the lakeshore.
 ~
 ~
-0 -1 10009
-D1
+Door        east~ ~ -1 10005
 You see water.
 ~
 ~
-0 -1 10005
-D2
+Door        south~ ~ -1 10012
 You see a path that follows the lakeshore.
 ~
 ~
-0 -1 10012
-D3
+Door        west~ ~ -1 10021
 You see a rough path leading up a mountain.
 ~
 ~
-0 -1 10021
-S
+End
+
 #10009
-Path along the Lake~
+Name        Path along the Lake~
+Descr
 You are walking on a path that follows the shore of the lake.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10015
 You see the valley floor.
 ~
 ~
-0 -1 10015
-D1
+Door        east~ ~ -1 10006
 You see north shore of lake.
 ~
 ~
-0 -1 10006
-D2
+Door        south~ ~ -1 10008
 You see west shore of lake.
 ~
 ~
-0 -1 10008
-D3
+Door        west~ ~ -1 10019
 You see the canyon floor.
 ~
 ~
-0 -1 10019
-S
+End
+
 #10010
-South shore of Crystalmir Lake~
+Name        South shore of Crystalmir Lake~
+Descr
 The blue of the autumn sky darkens on the deep stillness of the lake. The
 soft forests of giant vallenwood border the serene waters on the eastern, 
 southern and western shores. To the north a patchwork of fields stretches
 toward the distant purple mountains.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10005
 You see water.
 ~
 ~
-0 -1 10005
-D1
+Door        east~ ~ -1 10011
 You see a path that follows the lakeshore.
 ~
 ~
-0 -1 10011
-D2
+Door        south~ ~ -1 10025
 You see a rocky path into the mountains.
 ~
 ~
-0 -1 10025
-D3
+Door        west~ ~ -1 10012
 You see a path that follows the lakeshore.
 ~
 ~
-0 -1 10012
-S
+End
+
 #10011
-Path along the lakeshore~
+Name        Path along the lakeshore~
+Descr
 You are walking along a path that follows the shore of Crystalmir Lake.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10004
 You see the east shore of the lake.
 ~
 ~
-0 -1 10004
-D1
+Door        east~ ~ -1 10022
 You see a road winding through the forest.
 ~
 ~
-0 -1 10022
-D3
+Door        west~ ~ -1 10010
 You see the south shore of the lake.
 ~
 ~
-0 -1 10010
-S
+End
+
 #10012
-Path along the lakeshore~
+Name        Path along the lakeshore~
+Descr
 You are walking along a path that follows the shore of Crystalmir Lake.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10008
 You see the west shore of the lake.
 ~
 ~
-0 -1 10008
-D1
+Door        east~ ~ -1 10010
 You see the south shore of the lake.
 ~
 ~
-0 -1 10010
-S
+End
+
 #10013
-Nearfields~
+Name        Nearfields~
+Descr
 Here, farmers and thief workers tread through fields of grain. The thick
 wheat falls smoothly before the flickering scythes.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 10005 1 100
+Reset       E 10002 16 100
+Reset       E 10009 5 100
+Reset       M 10006 10 100
+Reset       E 10009 5 100
+Door        north~ ~ -1 10036
 You see fields of grain.
 ~
 ~
-0 -1 10036
-D2
+Door        south~ ~ -1 10007
 You see a path along the lakeshore.
 ~
 ~
-0 -1 10007
-D3
+Door        west~ ~ -1 10014
 You see fields of grain.
 ~
 ~
-0 -1 10014
-S
+End
+
 #10014
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10031
 You see fields of grain.
 ~
 ~
-0 -1 10031
-D1
+Door        east~ ~ -1 10013
 You see fields of grain.
 ~
 ~
-0 -1 10013
-D2
+Door        south~ ~ -1 10006
 You see the shore of a lake.
 ~
 ~
-0 -1 10006
-D3
+Door        west~ ~ -1 10015
 You see the valley floor.
 ~
 ~
-0 -1 10015
-S
+End
+
 #10015
-Twin Flat~
+Name        Twin Flat~
+Descr
 A clear mountain valley sprawls about. To the northwest and southeast,
 thick vallenwoods flash yellow and scarlet against the bright autumn sky.
 To the east shimmers the cool blue of the Crystalmir Lake. Westward, the
@@ -788,599 +987,663 @@ Some distance away, a group of huddled men pulls a large cart slowly
 west down the Haven road. They sway rhythmically. Coarse, heavy robes
 completely conceal their features.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 10004 4 100
+Reset       E 10015 16 100
+Reset       E 10016 5 100
+Reset       E 10017 6 100
+Door        east~ ~ -1 10014
 You see fields of grain.
 ~
 ~
-0 -1 10014
-D2
+Door        south~ ~ -1 10009
 You see a path along the lakeshore.
 ~
 ~
-0 -1 10009
-D3
+Door        west~ ~ -1 10016
 You see a trail into the forest.
 ~
 ~
-0 -1 10016
-S
+End
+
 #10016
-Jakanth Vale~
+Name        Jakanth Vale~
+Descr
 Trails lead deeper into the woods, but even at its edge an unnatural
 stillness has settled on the place. The woods seem much the same, but
 there is a subtle difference, a heaviness in the air. Even the insects are
 silent.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 10012 1 100
+Door        north~ ~ -1 10017
 You see a path in the forest.
 ~
 ~
-0 -1 10017
-D1
+Door        east~ ~ -1 10015
 You see the valley floor.
 ~
 ~
-0 -1 10015
-D2
+Door        south~ ~ -1 10019
 You see the canyon floor.
 ~
 ~
-0 -1 10019
-S
+End
+
 #10017
-Trail through forest~
+Name        Trail through forest~
+Descr
 Heavily wrapped feet tread upon this trail a short time ago.
 You smell smoke.
 ~
-0 0 3
-D2
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ -1 10016
 You see an opening the the trees.
 ~
 ~
-0 -1 10016
-D3
+Door        west~ ~ -1 10018
 You see a trail winding through the forest.
 ~
 ~
-0 -1 10018
-S
+End
+
 #10018
-Smoldering Campsite~
+Name        Smoldering Campsite~
+Descr
 The campsite smells like burned hair. Charred bones lie in the ashes of the
 fire pit. The grass has been stamped down around the area.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       O 10005 0 100
+Reset       P 10004 10005 100
+Door        east~ ~ -1 10017
 You see a path winding through the forest.
 ~
 ~
-0 -1 10017
-S
+End
+
 #10019
-Sentinal Gap~
+Name        Sentinal Gap~
+Descr
 Walls of granite soar on either side of the narrow canyon floor. A chilly
 breeze whistles and rumbles between the cliffs.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10016
 You see a path into winding into the forest.
 ~
 ~
-0 -1 10016
-D1
+Door        east~ ~ -1 10009
 You see a path along the lakeshore.
 ~
 ~
-0 -1 10009
-D2
+Door        south~ ~ -1 10021
 You see a rough path leading up a mountain.
 ~
 ~
-0 -1 10021
-D3
+Door        west~ ~ -1 10020
 You see a path winding into the canyon.
 ~
 ~
-0 -1 10020
-S
+End
+
 #10020
-Twin Peaks Vale~
+Name        Twin Peaks Vale~
+Descr
 The twin peaks, Tasin and Fasin, stand to either side of the Shadow Canyon,
 overlooking the north road to the city of Haven. In front of them, a lush
 mountain valley echoes with the sweet sounds of the forest.
 ~
-0 0 0
-D1
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 10019
 You see the canyon floor.
 ~
 ~
-0 -1 10019
-S
+End
+
 #10021
-Prayers Eye Peak~
+Name        Prayers Eye Peak~
+Descr
 The flaming colors of fall surround you, and autumn breeze ripples 
 through your hair. To the southwest, the white-capped outline of Prayers
 Eye Peak soars in the distance. Barely visible from here, a sharp crack
 splits the peak as though it consisted of two hands pressed together.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        north~ ~ -1 10019
 You see the canyon floor.
 ~
 ~
-0 -1 10019
-D1
+Door        east~ ~ -1 10008
 You see the shore of a lake.
 ~
 ~
-0 -1 10008
-D2
+Door        south~ ~ -1 10028
 You see a rock path winding through the mountains.
 ~
 ~
-0 -1 10028
-S
+End
+
 #10022
-Road through the forest~
+Name        Road through the forest~
+Descr
 This is a well travelled dirt road.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 10011 17 100
+Door        north~ ~ -1 10003
 You see the entrance to a small town.
 ~
 ~
-0 -1 10003
-D1
+Door        east~ ~ -1 10029
 You see forest.
 ~
 ~
-0 -1 10029
-D2
+Door        south~ ~ -1 10023
 You see a stone bridge.
 ~
 ~
-0 -1 10023
-D3
+Door        west~ ~ -1 10011
 You see a path long the lakeshore.
 ~
 ~
-0 -1 10011
-S
+End
+
 #10023
-Stone bridge~
+Name        Stone bridge~
+Descr
 The Solace Stream sparkles beneath an ancient stone bridge. Water tumbles
 out of the forest, over the rocks, and toward the Southpass that lies between
 southern Sentinel Peaks. West of the bridge, the road splits in two, branching
 to the south and the west. Both roads wind among the great vallenwoods,
 whose boughs form a brilliant canopy over the roadway.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 10011 17 100
+Door        north~ ~ -1 10022
 You see a road winding through the forest.
 ~
 ~
-0 -1 10022
-D1
+Door        east~ ~ -1 10030
 You see forest.
 ~
 ~
-0 -1 10030
-D3
+Door        west~ ~ -1 10024
 You see a road winding through the forest.
 ~
 ~
-0 -1 10024
-S
+End
+
 #10024
-Road among the Vallenwoods.~
+Name        Road among the Vallenwoods.~
+Descr
 This dusty road winds among the vallenwoods. The breeze rustles the
 leaves above your head, as if to speak to you. The Road continues
 west into the mountains and south to Darkenwood.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ -1 10023
 You see a stone bridge.
 ~
 ~
-0 -1 10023
-D3
+Door        west~ ~ -1 10025
 You see a rocky path into the mountains.
 ~
 ~
-0 -1 10025
-S
+End
+
 #10025
-Mountain Trail~
+Name        Mountain Trail~
+Descr
 This rocky trail begins the ascent into the mountains. To the north
 is Crystalmir Lake.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        north~ ~ -1 10010
 You see the shore of a lake.
 ~
 ~
-0 -1 10010
-D1
+Door        east~ ~ -1 10024
 You see a road winding through the forest.
 ~
 ~
-0 -1 10024
-D3
+Door        west~ ~ -1 10026
 You see a road winding through the mountains.
 ~
 ~
-0 -1 10026
-S
+End
+
 #10026
-In the Mountains~
+Name        In the Mountains~
+Descr
 You are walking on a rocky trail that winds through the mountains. From
 here you can see the whole valley and Crystalmir Lake.
 ~
-0 0 5
-D1
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 10010 40 100
+Door        east~ ~ -1 10025
 You see a rocky trail descending into the forest.
 ~
 ~
-0 -1 10025
-D3
+Door        west~ ~ -1 10027
 You see a road winding through the mountains.
 ~
 ~
-0 -1 10027
-S
+End
+
 #10027
-In the Mountains~
+Name        In the Mountains~
+Descr
 You are walking on a rocky trail that winds through the mountains. From
 here you can see the whole valley and Crystalmir Lake.
 From here it almost looks as if there is something at the bottom of the lake.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 10011 17 100
+Door        north~ ~ -1 10028
 You see a rocky trail winding through the mountains.
 ~
 ~
-0 -1 10028
-D1
+Door        east~ ~ -1 10026
 You see a rocky trail winding through the mountains.
 ~
 ~
-0 -1 10026
-S
+End
+
 #10028
-In the Mountains~
+Name        In the Mountains~
+Descr
 You are walking on a rocky trail that winds through the mountains. From
 here you can see the whole valley and Crystalmir Lake.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        north~ ~ -1 10021
 You see a rocky trail winding through the mountains.
 ~
 ~
-0 -1 10021
-D2
+Door        south~ ~ -1 10027
 You see a rocky trail winding through the mountains.
 ~
 ~
-0 -1 10027
-S
+End
+
 #10029
-Among the Vallenwoods~
+Name        Among the Vallenwoods~
+Descr
 You are walking among the peaceful vallenwoods. They sway in the
 breeze in a dance of autumn.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 10011 17 100
+Door        north~ ~ -1 10002
 You see a small grove.
 ~
 ~
-0 -1 10002
-D2
+Door        south~ ~ -1 10030
 You see forest.
 ~
 ~
-0 -1 10030
-D3
+Door        west~ ~ -1 10022
 You see a road winding through the forest.
 ~
 ~
-0 -1 10022
-S
+End
+
 #10030
-Solace East Woods~
+Name        Solace East Woods~
+Descr
 The huge vallenwood trees tower above soft forest paths. Sunlight dapples
 the floor of the woods, and sparrows and squirrels quarrel overhead. The
 musty smell of fallen leaves rises through the fragrance of late wildflowers.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 10002 1 100
+Reset       E 10014 16 100
+Reset       E 10013 5 100
+Door        north~ ~ -1 10029
 You see a forest.
 ~
 ~
-0 -1 10029
-D2
+Door        south~ ~ -1 9900
 You see an enormous tree.
 ~
 ~
-0 -1 9900
-D3
+Door        west~ ~ -1 10023
 You see a stone bridge.
 ~
 ~
-0 -1 10023
-S
+End
+
 #10031
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D0
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       M 10014 7 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10034
 You see fields of grain.
 ~
 ~
-0 -1 10034
-D1
+Door        east~ ~ -1 10036
 You see fields of grain.
 ~
 ~
-0 -1 10036
-D2
+Door        south~ ~ -1 10014
 You see fields of grain.
 ~
 ~
-0 -1 10014
-D3
+Door        west~ ~ -1 10032
 You see fields of grain.
 ~
 ~
-0 -1 10032
-S
+End
+
 #10032
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D0
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10033
 You see fields of grain.
 ~
 ~
-0 -1 10033
-D1
+Door        east~ ~ -1 10031
 You see fields of grain.
 ~
 ~
-0 -1 10031
-D2
+Door        south~ ~ -1 10038
 You see fields of grain.
 ~
 ~
-0 -1 10038
-D3
+Door        west~ ~ -1 10038
 You see fields of grain.
 ~
 ~
-0 -1 10038
-S
+End
+
 #10033
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D1
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       R 4 0 0
+Door        east~ ~ -1 10034
 You see fields of grain.
 ~
 ~
-0 -1 10034
-D2
+Door        south~ ~ -1 10032
 You see fields of grain.
 ~
 ~
-0 -1 10032
-D3
+Door        west~ ~ -1 10037
 You see fields of grain.
 ~
 ~
-0 -1 10037
-S
+End
+
 #10034
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D1
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       M 10015 1 100
+Reset       R 4 0 0
+Reset       O 10012 0 100
+Door        east~ ~ -1 10035
 You see fields of grain.
 ~
 ~
-0 -1 10035
-D2
+Door        south~ ~ -1 10031
 You see fields of grain.
 ~
 ~
-0 -1 10031
-D3
+Door        west~ ~ -1 10033
 You see fields of grain.
 ~
 ~
-0 -1 10033
-S
+End
+
 #10035
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D1
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       M 10014 7 100
+Reset       R 4 0 0
+Door        east~ ~ -1 10038
 You see fields of grain.
 ~
 ~
-0 -1 10038
-D2
+Door        south~ ~ -1 10036
 You see fields of grain.
 ~
 ~
-0 -1 10036
-D3
+Door        west~ ~ -1 10034
 You see fields of grain.
 ~
 ~
-0 -1 10034
-S
+End
+
 #10036
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D0
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       R 4 0 0
+Reset       O 10012 0 100
+Door        north~ ~ -1 10035
 You see fields of grain.
 ~
 ~
-0 -1 10035
-D1
+Door        east~ ~ -1 10037
 You see fields of grain.
 ~
 ~
-0 -1 10037
-D2
+Door        south~ ~ -1 10013
 You see fields of grain.
 ~
 ~
-0 -1 10013
-D3
+Door        west~ ~ -1 10031
 You see fields of grain.
 ~
 ~
-0 -1 10031
-S
+End
+
 #10037
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D0
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       M 10015 1 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10038
 You see fields of grain.
 ~
 ~
-0 -1 10038
-D1
+Door        east~ ~ -1 10033
 You see fields of grain.
 ~
 ~
-0 -1 10033
-D2
+Door        south~ ~ -1 10039
 You see a house.
 ~
 ~
-0 -1 10039
-D3
+Door        west~ ~ -1 10036
 You see fields of grain.
 ~
 ~
-0 -1 10036
-S
+End
+
 #10038
-Northfields~
+Name        Northfields~
+Descr
 A sea of grain sweeps across the north flats. Stalks sag with ripened grain,
 ready for harvest. But no one is around to harvest the grains or tend the crops.
 ~
-0 8192 2
-D0
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       M 10014 7 100
+Reset       R 4 0 0
+Reset       O 10012 0 100
+Door        north~ ~ -1 10032
 You see fields of grain.
 ~
 ~
-0 -1 10032
-D1
+Door        east~ ~ -1 10032
 You see fields of grain.
 ~
 ~
-0 -1 10032
-D2
+Door        south~ ~ -1 10037
 You see fields of grain.
 ~
 ~
-0 -1 10037
-D3
+Door        west~ ~ -1 10035
 You see fields of grain.
 ~
 ~
-0 -1 10035
-S
+End
+
 #10039
-A Farmer's House~
+Name        A Farmer's House~
+Descr
 A typical farmers house is here next to the endless fields of grain.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 10009 2 100
+Reset       E 10006 -1 100
+Door        north~ ~ -1 10037
 You see fields of grain
 ~
 ~
-0 -1 10037
-D1
+Door        east~ door closed locked~ 10006 10040
 You see the farmer's house.
 ~
 door~
-7 10006 10040
-S
+End
+
 #10040
-Living Room~
+Name        Living Room~
+Descr
 This is the living room of the farmer. you don't live here.
 And you don't know the farmer. Why are you here?
 ~
-0 12 0
-D3
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ door~ 10006 10039
 Front door.
 ~
 ~
-1 10006 10039
-D4
+Door        up~ ~ -1 10041
 You see stairs
 ~
 ~
-0 -1 10041
-S
+End
+
 #10041
-Top of Stairs~
+Name        Top of Stairs~
+Descr
 You are standing at the top of the stairs.
 There is a picture of Grandma on the wall.
 ~
-0 8 0
-E
-picture~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  picture~
 It is a picture of Grandma....
 
 or is it Grandpa...?
 ~
-D0
+Door        north~ ~ -1 10042
 You see a bedroom
 ~
 ~
-0 -1 10042
-D1
+Door        east~ ~ -1 10043
 You see a bedroom
 ~
 ~
-0 -1 10043
-D5
+Door        down~ ~ -1 10040
 You see stairs
 ~
 ~
-0 -1 10040
-S
+End
+
 #10042
-Bedroom~
+Name        Bedroom~
+Descr
 You are standing in the bedroom of the farmer.
 There are family pictures hanging on the walls.
 An antique bed sits in one corner of the room.
 ~
-0 8 0
-E
-pictures~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  pictures~
 Thats strange...
 They all sorta look like pictures of like...
 
@@ -1390,1043 +1653,1002 @@ Farmers....
 
 well what did you expect?
 ~
-D1
+Reset       O 10007 0 100
+Door        east~ door closed~ -1 10044
 You see a bedroom closet.
 ~
 closet door~
-3 -1 10044
-D2
+Door        south~ ~ -1 10041
 You see the top of the stairs.
 ~
 ~
-0 -1 10041
-S
+End
+
 #10043
-Kids Room~
+Name        Kids Room~
+Descr
 You are standing in the kids bedroom.
 There are posters plastered to every inch of wallspace.
 An bunk bed sits against the wall.
 You see a closet to the south.
 ~
-0 8 0
-E
-autograph~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  autograph~
 I LOVE you 'cause you
 are SUPERDYDUPERDY!!!
 
 Barney
 ~
-E
-posters~
+ExtraDescr  posters~
 They seem to be various posters
 of a purple dinosaur singing...
 
 There is a autograph on one poster.
 ~
-D2
+Reset       M 10013 2 100
+Door        south~ door closed~ -1 10082
 You see a closet door.
 ~
 closet door~
-3 -1 10082
-D3
+Door        west~ ~ -1 10041
 You see the top of the stairs.
 ~
 ~
-0 -1 10041
-S
+End
+
 #10044
-In the closet~
+Name        In the closet~
+Descr
 You are standing in the bedroom closet.
 There are cedar blocks and
 mothballs in here.
 Uh oh....The door closed behind you.
 You are locked in.
 ~
-0 8200 0
-E
-mothballs~
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+ExtraDescr  mothballs~
 They look like white Malt balls...
 I wonder if they taste like it too?
 ~
-E
-cedar blocks~
+ExtraDescr  cedar blocks~
 Looks like cedar blocks.
 what did you expect ? Gold?
 This is a FARMER's house.
 ~
-D3
+Door        west~ door closed locked~ 10007 10042
 You see closet door.
 ~
 closet door~
-7 10007 10042
-S
+End
+
 #10048
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10055
 Its too dark to see.
 ~
 ~
-0 -1 10055
-D1
+Door        east~ ~ -1 10049
 Its too dark to see.
 ~
 door~
-0 -1 10049
-D2
+Door        south~ ~ -1 10051
 Its too dark to see.
 ~
 ~
-0 -1 10051
-D3
+Door        west~ ~ -1 10053
 Its too dark to see.
 ~
 ~
-0 -1 10053
-D4
+Door        up~ ~ -1 10005
 You see the surface of Crystalmir Lake.
 ~
 ~
-0 -1 10005
-S
+End
+
 #10049
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10056
 Its too dark to see.
 ~
 ~
-0 -1 10056
-D1
+Door        east~ ~ -1 10058
 Its too dark to see.
 ~
 ~
-0 -1 10058
-D2
+Door        south~ ~ -1 10050
 Its too dark to see.
 ~
 ~
-0 -1 10050
-D3
+Door        west~ ~ -1 10048
 Its too dark to see.
 ~
 ~
-0 -1 10048
-S
+End
+
 #10050
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10049
 Its too dark to see.
 ~
 ~
-0 -1 10049
-D1
+Door        east~ ~ -1 10059
 Its too dark to see.
 ~
 ~
-0 -1 10059
-D2
+Door        south~ ~ -1 10061
 Its too dark to see.
 ~
 ~
-0 -1 10061
-D3
+Door        west~ ~ -1 10051
 Its too dark to see.
 ~
 ~
-0 -1 10051
-S
+End
+
 #10051
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10048
 Its too dark to see.
 ~
 ~
-0 -1 10048
-D1
+Door        east~ ~ -1 10050
 Its too dark to see.
 ~
 ~
-0 -1 10050
-D2
+Door        south~ ~ -1 10062
 Its too dark to see.
 ~
 ~
-0 -1 10062
-D3
+Door        west~ ~ -1 10052
 Its too dark to see.
 ~
 ~
-0 -1 10052
-S
+End
+
 #10052
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10053
 Its too dark to see.
 ~
 ~
-0 -1 10053
-D1
+Door        east~ ~ -1 10051
 Its too dark to see.
 ~
 ~
-0 -1 10051
-D2
+Door        south~ ~ -1 10063
 Its too dark to see.
 ~
 ~
-0 -1 10063
-D3
+Door        west~ ~ -1 10065
 Its too dark to see.
 ~
 ~
-0 -1 10065
-S
+End
+
 #10053
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10054
 Its too dark to see.
 ~
 ~
-0 -1 10054
-D1
+Door        east~ ~ -1 10048
 Its too dark to see.
 ~
 ~
-0 -1 10048
-D2
+Door        south~ ~ -1 10052
 Its too dark to see.
 ~
 ~
-0 -1 10052
-D3
+Door        west~ ~ -1 10066
 Its too dark to see.
 ~
 ~
-0 -1 10066
-S
+End
+
 #10054
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10069
 Its too dark to see.
 ~
 ~
-0 -1 10069
-D1
+Door        east~ ~ -1 10055
 Its too dark to see.
 ~
 ~
-0 -1 10055
-D2
+Door        south~ ~ -1 10053
 Its too dark to see.
 ~
 ~
-0 -1 10053
-D3
+Door        west~ ~ -1 10067
 Its too dark to see.
 ~
 ~
-0 -1 10067
-S
+End
+
 #10055
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10070
 Its too dark to see.
 ~
 ~
-0 -1 10070
-D1
+Door        east~ ~ -1 10056
 Its too dark to see.
 ~
 ~
-0 -1 10056
-D2
+Door        south~ ~ -1 10048
 Its too dark to see.
 ~
 ~
-0 -1 10048
-D3
+Door        west~ ~ -1 10054
 Its too dark to see.
 ~
 ~
-0 -1 10054
-S
+End
+
 #10056
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10071
 Its too dark to see.
 ~
 ~
-0 -1 10071
-D1
+Door        east~ ~ -1 10057
 Its too dark to see.
 ~
 ~
-0 -1 10057
-D2
+Door        south~ ~ -1 10049
 Its too dark to see.
 ~
 ~
-0 -1 10049
-D3
+Door        west~ ~ -1 10055
 Its too dark to see.
 ~
 ~
-0 -1 10055
-S
+End
+
 #10057
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10007 1 100
+Door        north~ ~ -1 10072
 Its too dark to see.
 ~
 ~
-0 -1 10072
-D1
+Door        east~ ~ -1 10067
 Its too dark to see.
 ~
 ~
-0 -1 10067
-D2
+Door        south~ ~ -1 10058
 Its too dark to see.
 ~
 ~
-0 -1 10058
-D3
+Door        west~ ~ -1 10056
 Its too dark to see.
 ~
 ~
-0 -1 10056
-S
+End
+
 #10058
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10057
 Its too dark to see.
 ~
 ~
-0 -1 10057
-D1
+Door        east~ ~ -1 10073
 You see an opening in the lakebed.
 ~
 ~
-0 -1 10073
-D2
+Door        south~ ~ -1 10059
 Its too dark to see.
 ~
 ~
-0 -1 10059
-D3
+Door        west~ ~ -1 10049
 Its too dark to see.
 ~
 ~
-0 -1 10049
-S
+End
+
 #10059
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10058
 Its too dark to see.
 ~
 ~
-0 -1 10058
-D2
+Door        south~ ~ -1 10060
 Its too dark to see.
 ~
 ~
-0 -1 10060
-D3
+Door        west~ ~ -1 10050
 Its too dark to see.
 ~
 ~
-0 -1 10050
-S
+End
+
 #10060
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 10059
 Its too dark to see.
 ~
 ~
-0 -1 10059
-D1
+Door        east~ ~ -1 10064
 Its too dark to see.
 ~
 ~
-0 -1 10064
-D2
+Door        south~ ~ -1 10072
 Its too dark to see.
 ~
 ~
-0 -1 10072
-D3
+Door        west~ ~ -1 10061
 Its too dark to see.
 ~
 ~
-0 -1 10061
-S
+End
+
 #10061
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10050
 Its too dark to see.
 ~
 ~
-0 -1 10050
-D1
+Door        east~ ~ -1 10060
 Its too dark to see.
 ~
 ~
-0 -1 10060
-D2
+Door        south~ ~ -1 10071
 Its too dark to see.
 ~
 ~
-0 -1 10071
-D3
+Door        west~ ~ -1 10062
 Its too dark to see.
 ~
 ~
-0 -1 10062
-S
+End
+
 #10062
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10051
 Its too dark to see.
 ~
 ~
-0 -1 10051
-D1
+Door        east~ ~ -1 10061
 Its too dark to see.
 ~
 ~
-0 -1 10061
-D2
+Door        south~ ~ -1 10070
 Its too dark to see.
 ~
 ~
-0 -1 10070
-D3
+Door        west~ ~ -1 10063
 Its too dark to see.
 ~
 ~
-0 -1 10063
-S
+End
+
 #10063
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10052
 Its too dark to see.
 ~
 ~
-0 -1 10052
-D1
+Door        east~ ~ -1 10062
 Its too dark to see.
 ~
 ~
-0 -1 10062
-D2
+Door        south~ ~ -1 10069
 Its too dark to see.
 ~
 ~
-0 -1 10069
-D3
+Door        west~ ~ -1 10064
 Its too dark to see.
 ~
 ~
-0 -1 10064
-S
+End
+
 #10064
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10065
 Its too dark to see.
 ~
 ~
-0 -1 10065
-D1
+Door        east~ ~ -1 10063
 Its too dark to see.
 ~
 ~
-0 -1 10063
-D2
+Door        south~ ~ -1 10068
 Its too dark to see.
 ~
 ~
-0 -1 10068
-D3
+Door        west~ ~ -1 10060
 Its too dark to see.
 ~
 ~
-0 -1 10060
-S
+End
+
 #10065
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10066
 Its too dark to see.
 ~
 ~
-0 -1 10066
-D1
+Door        east~ ~ -1 10052
 Its too dark to see.
 ~
 ~
-0 -1 10052
-D2
+Door        south~ ~ -1 10064
 Its too dark to see.
 ~
 ~
-0 -1 10064
-D3
+Door        west~ ~ -1 10074
 You see an opening in the lakebed.
 ~
 ~
-0 -1 10074
-S
+End
+
 #10066
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10007 1 100
+Door        north~ ~ -1 10067
 Its too dark to see.
 ~
 ~
-0 -1 10067
-D1
+Door        east~ ~ -1 10053
 Its too dark to see.
 ~
 ~
-0 -1 10053
-D2
+Door        south~ ~ -1 10065
 Its too dark to see.
 ~
 ~
-0 -1 10065
-S
+End
+
 #10067
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10068
 Its too dark to see.
 ~
 ~
-0 -1 10068
-D1
+Door        east~ ~ -1 10054
 Its too dark to see.
 ~
 ~
-0 -1 10054
-D2
+Door        south~ ~ -1 10066
 Its too dark to see.
 ~
 ~
-0 -1 10066
-D3
+Door        west~ ~ -1 10057
 Its too dark to see.
 ~
 ~
-0 -1 10057
-S
+End
+
 #10068
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10064
 Its too dark to see.
 ~
 ~
-0 -1 10064
-D1
+Door        east~ ~ -1 10069
 Its too dark to see.
 ~
 ~
-0 -1 10069
-D2
+Door        south~ ~ -1 10067
 Its too dark to see.
 ~
 ~
-0 -1 10067
-D3
+Door        west~ ~ -1 10077
 There seems to a small crack in the lakebed.
 ~
 ~
-0 -1 10077
-S
+End
+
 #10069
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10007 1 100
+Door        north~ ~ -1 10063
 Its too dark to see.
 ~
 ~
-0 -1 10063
-D1
+Door        east~ ~ -1 10070
 Its too dark to see.
 ~
 ~
-0 -1 10070
-D2
+Door        south~ ~ -1 10054
 Its too dark to see.
 ~
 ~
-0 -1 10054
-D3
+Door        west~ ~ -1 10068
 Its too dark to see.
 ~
 ~
-0 -1 10068
-S
+End
+
 #10070
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10062
 Its too dark to see.
 ~
 ~
-0 -1 10062
-D1
+Door        east~ ~ -1 10071
 Its too dark to see.
 ~
 ~
-0 -1 10071
-D2
+Door        south~ ~ -1 10055
 Its too dark to see.
 ~
 ~
-0 -1 10055
-D3
+Door        west~ ~ -1 10069
 Its too dark to see.
 ~
 ~
-0 -1 10069
-S
+End
+
 #10071
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10061
 Its too dark to see.
 ~
 ~
-0 -1 10061
-D1
+Door        east~ ~ -1 10072
 Its too dark to see.
 ~
 ~
-0 -1 10072
-D2
+Door        south~ ~ -1 10056
 Its too dark to see.
 ~
 ~
-0 -1 10056
-D3
+Door        west~ ~ -1 10070
 Its too dark to see.
 ~
 ~
-0 -1 10070
-S
+End
+
 #10072
-Underwater~
+Name        Underwater~
+Descr
 It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10060
 Its too dark to see.
 ~
 ~
-0 -1 10060
-D2
+Door        south~ ~ -1 10057
 Its too dark to see.
 ~
 ~
-0 -1 10057
-D3
+Door        west~ ~ -1 10071
 Its too dark to see.
 ~
 ~
-0 -1 10071
-S
+End
+
 #10073
-Underwater Cave~
+Name        Underwater Cave~
+Descr
 This is an underwater cave that seems to have trapped some air in it.
 It seems as if the cave continued deeper, but it is blocked by a rock
 slide.
 ~
-0 0 8
-E
-rock slide~
+Flags       ~
+Sector      underwater~
+Regen       100 100
+ExtraDescr  rock slide~
 There is no way you are going to clear away all the rocks.
 ~
-D3
+Reset       M 10010 40 100
+Door        west~ ~ -1 10058
 Its too dark to see.
 ~
 ~
-0 -1 10058
-S
+End
+
 #10074
-Underwater Passageway~
+Name        Underwater Passageway~
+Descr
 This passageway is almost completely filled with water. It seems to have
 trapped some air. Some thing doesn't feel right. Maybe you should leave.
 ~
-0 0 8
-D1
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        east~ ~ -1 10065
 Its too dark to see.
 ~
 ~
-0 -1 10065
-D3
+Door        west~ ~ -1 10075
 Its too dark to see.
 ~
 ~
-0 -1 10075
-S
+End
+
 #10075
-Underwater Passageway~
+Name        Underwater Passageway~
+Descr
 This passageway is almost completely filled with air. This is REALLY strange.
 You wonder how this can be. Something is definetly wrong.
 The air here is very humid and it seem to be getting warmer to the south.
 ~
-0 0 8
-D1
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        east~ ~ -1 10074
 Underwater Passageway.
 ~
 ~
-0 -1 10074
-D2
+Door        south~ ~ -1 10076
 A very large cave entrance.
 ~
 ~
-0 -1 10076
-S
+End
+
 #10076
-Cave of the Turtle Dragon~
+Name        Cave of the Turtle Dragon~
+Descr
 This Cave is enormous. It is mostly flooded with water. The air is very
 humid and misty. Large piles of bones lay all over. The walls are covered
 with scratches and claw marks.
 ~
-0 0 8
-E
-bones~
+Flags       ~
+Sector      underwater~
+Regen       100 100
+ExtraDescr  bones~
 Mostly the are fish bones...
 But some of them look like humanoid bones...
 ~
-D0
+Reset       M 10008 1 100
+Reset       E 10001 12 100
+Reset       E 10010 -1 100
+Door        north~ ~ -1 10075
 Underwater Passageway.
 ~
 ~
-0 -1 10075
-S
+End
+
 #10077
-Narrow Crack in the rock.~
+Name        Narrow Crack in the rock.~
+Descr
 This seems to a crack caused by some earthquake or other natural event.
 The opening is large here, but seems to get smaller as it goes on.
 ~
-0 0 8
-D1
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        east~ ~ -1 10068
 Its too dark to see.
 ~
 ~
-0 -1 10068
-D3
+Door        west~ ~ -1 10078
 a very small tunnel.
 ~
 ~
-0 -1 10078
-S
+End
+
 #10078
-Small Tunnel~
+Name        Small Tunnel~
+Descr
 This is a small tunnel that seems to go deeper into the mountains.
 It is completely filled with water.
 Some light filters in through the muck to the east.
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10010 40 100
+Door        north~ ~ -1 10080
 a very small tunnel.
 ~
 ~
-0 -1 10080
-D1
+Door        east~ ~ -1 10077
 Narrow crack.
 ~
 ~
-0 -1 10077
-D2
+Door        south~ ~ -1 10079
 a very small tunnel.
 ~
 ~
-0 -1 10079
-S
+End
+
 #10079
-Dead end~
+Name        Dead end~
+Descr
 The tunnel seems to dead end here.
 There is nothing but mud and a small pocket of air.
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10007 1 100
+Door        north~ ~ -1 10078
 a very small tunnel.
 ~
 ~
-0 -1 10078
-S
+End
+
 #10080
-Nest Entrance~
+Name        Nest Entrance~
+Descr
 This seems to be the entrance to a nest of some kind.
 The water here is very murky.
 ~
-0 0 8
-D0
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Door        north~ ~ -1 10081
 Barracuda nest.
 ~
 ~
-0 -1 10081
-S
+End
+
 #10081
-Barracuda Nest~
+Name        Barracuda Nest~
+Descr
 You have disturbed a barracuda nest. They are none too pleased and
 now plan to use you for their next feeding....
 ~
-0 0 8
-D2
+Flags       ~
+Sector      underwater~
+Regen       100 100
+Reset       M 10007 1 100
+Door        south~ ~ -1 10080
 a small tunnel.
 ~
 ~
-0 -1 10080
-S
+End
+
 #10082
-Kids Closet.~
+Name        Kids Closet.~
+Descr
 You are standing in the kids closet. There are piles of unwashed laundry
 and toys. You see an evil looking book  lying against the south wall.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed~ -1 10043
 You see the closet door.
 ~
 door~
-3 -1 10043
-D2
+Door        south~ door closed~ -1 10401
 You see an evil book.
 ~
 book evil~
-1 -1 10401
-S
+End
+
 #0
 
-
-#SPECIALS
-M 10001 spec_cast_adept
-M 10008 spec_breath_gas
-M 10013 spec_thief
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 10001 1 10002
-E 0 10003 0 17
-E 0 10013 0 5
-M 0 10003 1 10002
-E 0 10008 0 16
-E 0 10013 0 5
-M 0 10007 1 10005
-M 0 10010 40 10006
-M 0 10010 40 10010
-M 0 10005 1 10013
-E 0 10002 0 16
-E 0 10009 0 5
-M 0 10006 10 10013
-E 0 10009 0 5
-M 0 10004 4 10015
-E 0 10015 0 16
-E 0 10016 0 5
-E 0 10017 0 6
-M 0 10012 1 10016
-O 0 10005 0 10018
-P 0 10004 0 10005
-M 0 10011 17 10022
-M 0 10011 17 10023
-M 0 10010 40 10026
-M 0 10011 17 10027
-M 0 10011 17 10029
-M 0 10002 1 10030
-E 0 10014 0 16
-E 0 10013 0 5
-M 0 10014 7 10031
-R 0 10031 4
-R 0 10032 4
-R 0 10033 4
-M 0 10015 1 10034
-R 0 10034 4
-O 0 10012 0 10034
-M 0 10014 7 10035
-R 0 10035 4
-R 0 10036 4
-O 0 10012 0 10036
-M 0 10015 1 10037
-R 0 10037 4
-M 0 10014 7 10038
-R 0 10038 4
-O 0 10012 0 10038
-M 0 10009 2 10039
-G 0 10006 0
-O 0 10007 0 10042
-M 0 10013 2 10043
-M 0 10010 40 10049
-R 0 10050 4
-M 0 10010 40 10051
-M 0 10010 40 10053
-R 0 10053 4
-M 0 10010 40 10055
-R 0 10056 4
-M 0 10007 1 10057
-R 0 10060 4
-M 0 10010 40 10061
-M 0 10010 40 10064
-M 0 10007 1 10066
-M 0 10010 40 10067
-M 0 10007 1 10069
-M 0 10010 40 10073
-M 0 10008 1 10076
-E 0 10001 0 12
-G 0 10010 0
-M 0 10010 40 10078
-M 0 10007 1 10079
-M 0 10007 1 10081
-S
-
-
-#SHOPS
-0
 
 
 #$

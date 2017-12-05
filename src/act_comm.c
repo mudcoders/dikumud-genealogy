@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -548,7 +550,10 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 		  const char *verb )
 {
     DESCRIPTOR_DATA *d;
-    char             buf [ MAX_STRING_LENGTH ];
+    char            *lingo;
+    char            *speech;
+    char             buf  [ MAX_STRING_LENGTH ];
+    char             buf1 [ MAX_INPUT_LENGTH  ];
     int              position;
 
     if ( argument[0] == '\0' )
@@ -642,6 +647,15 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
     /*
      * Make the words look drunk if needed...
      */
+    strcpy( buf1, argument );
+    lingo = buf1;
+
+    if ( ch->speaking != 0 )
+    {
+	lingo = translate( lingo, ch->speaking );
+	lingo = makedrunk( lingo, ch );
+    }
+
     argument = makedrunk( argument, ch );
 
     for ( d = descriptor_list; d; d = d->next )
@@ -670,7 +684,14 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	    position		= vch->position;
 	    if ( channel != CHANNEL_SHOUT && channel != CHANNEL_YELL )
 		vch->position	= POS_STANDING;
-	    act( buf, ch, argument, vch, TO_VICT );
+
+	    if ( knows_language( vch, ch->speaking, ch )
+		|| ch->speaking == 0 )
+		speech = argument;
+	    else
+		speech = lingo;
+
+	    act( buf, ch, speech, vch, TO_VICT );
 	    vch->position	= position;
 	}
     }
@@ -768,7 +789,7 @@ void do_wartalk( CHAR_DATA *ch, char *argument )
   
     rch = get_char( ch );
 
-    if ( IS_NPC( rch ) || !is_clan( rch ) )
+    if ( !is_clan( rch ) )
     {
 	send_to_char( "You aren't a clansman!\n\r", ch );
         return;
@@ -782,6 +803,11 @@ void do_wartalk( CHAR_DATA *ch, char *argument )
 
 void do_say( CHAR_DATA *ch, char *argument )
 {
+    CHAR_DATA *rch;
+    char      *lingo;
+    char      *speech;
+    char       buf [ MAX_INPUT_LENGTH ];
+
     if ( argument[0] == '\0' )
     {
  	send_to_char_bw( "Say what?\n\r", ch );
@@ -796,9 +822,30 @@ void do_say( CHAR_DATA *ch, char *argument )
         return;
     }
 
+    strcpy( buf, argument );
+    lingo = buf;
+
+    if ( ch->speaking != 0 )
+    {
+	lingo = translate( lingo, ch->speaking );
+	lingo = makedrunk( lingo, ch );
+    }
+
     argument = makedrunk( argument, ch );
 
-    act( "{g$n says '$T{x{g'{x", ch, NULL, argument, TO_ROOM );
+    for ( rch = ch->in_room->people; rch; rch = rch->next_in_room )
+    {
+	if ( rch->deleted || rch == ch )
+	    continue;
+
+	if ( knows_language( rch, ch->speaking, ch ) || ch->speaking == 0 )
+	    speech = argument;
+	else
+	    speech = lingo;
+
+	act( "{g$n says '$t{x{g'{x", ch, speech, rch, TO_VICT );
+    }
+
     MOBtrigger = FALSE;
     act( "{gYou say '$T{x{g'{x", ch, NULL, argument, TO_CHAR );
     mprog_speech_trigger( argument, ch );
@@ -973,273 +1020,6 @@ void do_emote( CHAR_DATA *ch, char *argument )
 
 
 
-/*
- * All the posing stuff.
- */
-struct	pose_table_type
-{
-    
-    char * message[ 2*MAX_CLASS ];
-};
-
-const	struct	pose_table_type	pose_table	[]	=
-{
-    {
-	{
-	    "You sizzle with energy.",
-	    "$n sizzles with energy.",
-	    "You feel very holy.",
-	    "$n looks very holy.",
-	    "You perform a small card trick.",
-	    "$n performs a small card trick.",
-	    "You show your bulging muscles.",
-	    "$n shows $s bulging muscles.",
-            "Stop it with the Ouija board, will ya?",
-            "Great, $n is playing with $s Ouija board again."
-	}
-    },
-
-    {
-	{
-	    "You turn into a butterfly, then return to your normal shape.",
-	    "$n turns into a butterfly, then returns to $s normal shape.",
-	    "You nonchalantly turn wine into water.",
-	    "$n nonchalantly turns wine into water.",
-	    "You wiggle your ears alternately.",
-	    "$n wiggles $s ears alternately.",
-	    "You crack nuts between your fingers.",
-	    "$n cracks nuts between $s fingers.",
-            "You read everyone's mind....and shudder with disgust.",
-            "$n reads your mind...eww, you pervert!"
-	}
-    },
-
-    {
-	{
-	    "Blue sparks fly from your fingers.",
-	    "Blue sparks fly from $n's fingers.",
-	    "A halo appears over your head.",
-	    "A halo appears over $n's head.",
-	    "You nimbly tie yourself into a knot.",
-	    "$n nimbly ties $mself into a knot.",
-	    "You grizzle your teeth and look mean.",
-	    "$n grizzles $s teeth and looks mean.",
-            "You show everyone your awards for perfect school attendance",
-            "You aren't impressed by $n's school attendance awards.  Geek."
-	}
-    },
-
-    {
-	{
-	    "Little red lights dance in your eyes.",
-	    "Little red lights dance in $n's eyes.",
-	    "You recite words of wisdom.",
-	    "$n recites words of wisdom.",
-	    "You juggle with daggers, apples, and eyeballs.",
-	    "$n juggles with daggers, apples, and eyeballs.",
-	    "You hit your head, and your eyes roll.",
-	    "$n hits $s head, and $s eyes roll.",
-            "A will-o-the-wisp arrives with your slippers.",
-            "A will-o-the-wisp arrives with $n's slippers."
-	}
-    },
-
-    {
-	{
-	    "A slimy green monster appears before you and bows.",
-	    "A slimy green monster appears before $n and bows.",
-	    "Deep in prayer, you levitate.",
-	    "Deep in prayer, $n levitates.",
-	    "You steal the underwear off every person in the room.",
-	    "Your underwear is gone!  $n stole it!",
-	    "Crunch, crunch -- you munch a bottle.",
-	    "Crunch, crunch -- $n munches a bottle.",
-            "What's with the extra leg?",
-            "Why did $n sprout an extra leg just now?"
-	}
-    },
-
-    {
-	{
-	    "You turn everybody into a little pink elephant.",
-	    "You are turned into a little pink elephant by $n.",
-	    "An angel consults you.",
-	    "An angel consults $n.",
-	    "The dice roll ... and you win again.",
-	    "The dice roll ... and $n wins again.",
-	    "... 98, 99, 100 ... you do pushups.",
-	    "... 98, 99, 100 ... $n does pushups.",
-            "The spoons flee as you begin to concentrate.",
-            "The spoons flee as $n begins to concentrate."
-	}
-    },
-
-    {
-	{
-	    "A small ball of light dances on your fingertips.",
-	    "A small ball of light dances on $n's fingertips.",
-	    "Your body glows with an unearthly light.",
-	    "$n's body glows with an unearthly light.",
-	    "You count the money in everyone's pockets.",
-	    "Check your money, $n is counting it.",
-	    "Arnold Schwarzenegger admires your physique.",
-	    "Arnold Schwarzenegger admires $n's physique.",
-            "Stop wiggling your brain at people.",
-            "Make $n stop wiggling $s brain at you!"
-	}
-    },
-
-    {
-	{
-	    "Smoke and fumes leak from your nostrils.",
-	    "Smoke and fumes leak from $n's nostrils.",
-	    "A spotlight hits you.",
-	    "A spotlight hits $n.",
-	    "You balance a pocket knife on your tongue.",
-	    "$n balances a pocket knife on your tongue.",
-	    "Watch your feet, you are juggling granite boulders.",
-	    "Watch your feet, $n is juggling granite boulders.",
-            "MENSA called...they want your opinion on something.",
-            "MENSA just called $n for consultation."
-	}
-    },
-
-    {
-	{
-	    "The light flickers as you rap in magical languages.",
-	    "The light flickers as $n raps in magical languages.",
-	    "Everyone levitates as you pray.",
-	    "You levitate as $n prays.",
-	    "You produce a coin from everyone's ear.",
-	    "$n produces a coin from your ear.",
-	    "Oomph!  You squeeze water out of a granite boulder.",
-	    "Oomph!  $n squeezes water out of a granite boulder.",
-            "Chairs fly around the room at your slightest whim.",
-            "Chairs fly around the room at $n's slightest whim."
-	}
-    },
-
-    {
-	{
-	    "Your head disappears.",
-	    "$n's head disappears.",
-	    "A cool breeze refreshes you.",
-	    "A cool breeze refreshes $n.",
-	    "You step behind your shadow.",
-	    "$n steps behind $s shadow.",
-	    "You pick your teeth with a spear.",
-	    "$n picks $s teeth with a spear.",
-            "Oof...maybe you shouldn't summon any more hippopotamuses.",
-            "Oof!  Guess $n won't be summoning any more hippos for a while."
-	}
-    },
-
-    {
-	{
-	    "A fire elemental singes your hair.",
-	    "A fire elemental singes $n's hair.",
-	    "The sun pierces through the clouds to illuminate you.",
-	    "The sun pierces through the clouds to illuminate $n.",
-	    "Your eyes dance with greed.",
-	    "$n's eyes dance with greed.",
-	    "Everyone is swept off their foot by your hug.",
-	    "You are swept off your feet by $n's hug.",
-            "Oops...your hair is sizzling from thinking too hard.",
-            "Oops...$n's hair is sizzling from thinking too hard."
-	}
-    },
-
-    {
-	{
-	    "The sky changes color to match your eyes.",
-	    "The sky changes color to match $n's eyes.",
-	    "The ocean parts before you.",
-	    "The ocean parts before $n.",
-	    "You deftly steal everyone's weapon.",
-	    "$n deftly steals your weapon.",
-	    "Your karate chop splits a tree.",
-	    "$n's karate chop splits a tree.",
-            "What?  You were too busy concentrating.",
-            "What?  Oh, $n was lost in thought...again."
-	}
-    },
-
-    {
-	{
-	    "The stones dance to your command.",
-	    "The stones dance to $n's command.",
-	    "A thunder cloud kneels to you.",
-	    "A thunder cloud kneels to $n.",
-	    "The Grey Mouser buys you a beer.",
-	    "The Grey Mouser buys $n a beer.",
-	    "A strap of your armor breaks over your mighty thews.",
-	    "A strap of $n's armor breaks over $s mighty thews.",
-            "Will you get down here before you get hurt?",
-            "Quick, get a stick, $n is doing $s pinata impression again."
-	}
-    },
-
-    {
-	{
-	    "The heavens and grass change colour as you smile.",
-	    "The heavens and grass change colour as $n smiles.",
-	    "The Burning Man speaks to you.",
-	    "The Burning Man speaks to $n.",
-	    "Everyone's pocket explodes with your fireworks.",
-	    "Your pocket explodes with $n's fireworks.",
-	    "A boulder cracks at your frown.",
-	    "A boulder cracks at $n's frown.",
-            "Careful...don't want to disintegrate anyone!",
-            "LOOK OUT!  $n is trying to disintegrate something!"
-	}
-    },
-
-    {
-	{
-	    "Everyone's clothes are transparent, and you are laughing.",
-	    "Your clothes are transparent, and $n is laughing.",
-	    "An eye in a pyramid winks at you.",
-	    "An eye in a pyramid winks at $n.",
-	    "Everyone discovers your dagger a centimeter from their eye.",
-	    "You discover $n's dagger a centimeter from your eye.",
-	    "Mercenaries arrive to do your bidding.",
-	    "Mercenaries arrive to do $n's bidding.",
-            "You run off at the mouth about 'mind over matter'.",
-            "Yeah, yeah, mind over matter.  Shut up, $n."
-	}
-    },
-
-    {
-	{
-	    "A black hole swallows you.",
-	    "A black hole swallows $n.",
-	    "Valentine Michael Smith offers you a glass of water.",
-	    "Valentine Michael Smith offers $n a glass of water.",
-	    "Where did you go?",
-	    "Where did $n go?",
-	    "Four matched Percherons bring in your chariot.",
-	    "Four matched Percherons bring in $n's chariot.",
-            "Thud.",
-            "Thud."
-	}
-    },
-
-    {
-	{
-	    "The world shimmers in time with your whistling.",
-	    "The world shimmers in time with $n's whistling.",
-	    "The great god Mota gives you a staff.",
-	    "The great god Mota gives $n a staff.",
-	    "Click.",
-	    "Click.",
-	    "Atlas asks you to relieve him.",
-	    "Atlas asks $n to relieve him.",
-            "You charm the pants off everyone...and refuse to give them back.",
-            "Your pants are charmed off by $n, and $e won't give them back."
-	}
-    }
-};
-
 void do_pose( CHAR_DATA *ch, char *argument )
 {
     int level;
@@ -1248,12 +1028,11 @@ void do_pose( CHAR_DATA *ch, char *argument )
     if ( IS_NPC( ch ) )
 	return;
 
-    level = UMIN( ch->level,
-		 sizeof( pose_table ) / sizeof( pose_table[0] ) - 1 );
+    level = UMIN( ch->level, MAX_POSE );
     pose  = number_range( 0, level );
 
-    act( pose_table[pose].message[2*ch->class+0], ch, NULL, NULL, TO_CHAR );
-    act( pose_table[pose].message[2*ch->class+1], ch, NULL, NULL, TO_ROOM );
+    act( ch->class[0]->pose[pose][0], ch, NULL, NULL, TO_CHAR );
+    act( ch->class[0]->pose[pose][1], ch, NULL, NULL, TO_ROOM );
 
     return;
 }
@@ -1352,7 +1131,7 @@ void do_quit( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    send_to_char( "{o{bAdde parvum parvo magnus acervus erit.{x\n\r", ch );
+    send_to_char( "{o{cAdde parvum parvo magnus acervus erit.{x\n\r", ch );
     send_to_char( "{o{w[Add little to little ",                     ch );
     send_to_char( "and there will be a big pile]{x\n\r\n\r",      ch );
 
@@ -1480,7 +1259,7 @@ void stop_follower( CHAR_DATA *ch )
 
     if ( IS_AFFECTED( ch, AFF_CHARM ) )
     {
-	REMOVE_BIT( ch->affected_by, AFF_CHARM );
+	remove_bit( ch->affected_by, AFF_CHARM );
 	affect_strip( ch, gsn_charm_person );
 	affect_strip( ch, gsn_domination   );
     }
@@ -1624,8 +1403,7 @@ void do_group( CHAR_DATA *ch, char *argument )
 		sprintf( buf,
 		"[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
 			gch->level,
-			IS_NPC( gch ) ? "Mob"
-			              : (char *)class_table[gch->class]->who_name,
+			class_short( gch ),
 			capitalize( PERS( gch, ch ) ),
 			gch->hit,   gch->max_hit,
 			gch->mana,  gch->max_mana,
@@ -1823,8 +1601,8 @@ void do_gtell( CHAR_DATA *ch, char *argument )
 void do_beep( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
-    char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_STRING_LENGTH];
+    char       arg [ MAX_INPUT_LENGTH  ];
+    char       buf [ MAX_STRING_LENGTH ];
 
     if ( IS_NPC( ch ) )
         return;
@@ -2024,5 +1802,31 @@ void send_ascii_title( DESCRIPTOR_DATA *d )
     }
 
     fpReserve = fopen( NULL_FILE, "r" );
+    return;
+}
+
+
+void news_channel( CHAR_DATA *ch, const char *string )
+{
+    DESCRIPTOR_DATA *d;
+    char             buf [ MAX_STRING_LENGTH ];
+
+    sprintf( buf, "{o{w{B[NEWS]{x {o{w%s{x\n\r", string );
+
+    for ( d = descriptor_list; d; d = d->next )
+    {
+	CHAR_DATA *och;
+	CHAR_DATA *vch;
+
+	och = d->original ? d->original : d->character;
+	vch = d->character;
+
+	if ( d->connected == CON_PLAYING
+	    && vch != ch
+	    && !IS_SET( och->deaf, CHANNEL_NEWS )
+            && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	    send_to_char( buf, vch );
+    }
+
     return;
 }

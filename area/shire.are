@@ -4,455 +4,708 @@ Author      Anon~
 Levels      5 35
 Security    1
 VNUMs       1100 1157
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #1100
-elven wizard~
-the Elven Wizard~
+Name        elven wizard~
+Short       the Elven Wizard~
+Long
 An Elven Wizard is here, creating fireworks for the festivities.
 ~
+Descr
 The Elven Wizard looks at you in a solemn sort of way.  His gaze seems to
 penetrate through your innermost being.  He is wearing a silvery cloak
 and holding a multi-colored staff.  Although he appears to be older
 than the oldest man, he seems to have an inner strength which most mortals
 cannot overcome.
 ~
-67 8 500 S
-18 5 0 18d18+180 3d2+15
-2109 0
-0 Elf~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis~
+Alignment   500
+Level       18
+Gold        2109
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #1101
-ring keeper~
-the Keeper of the Ring~
+Name        ring keeper~
+Short       the Keeper of the Ring~
+Long
 The Keeper of the Ring is here, guarding his treasure jealously.
 ~
+Descr
 The Ring Keeper is a rather big but short halfling.  His short stature and
 bulbous nose belie his true nature.  An elven sword that glows with a blue
 light hangs from his belt, and on his finger you see the One Ring.  Although
 usually a halfling of peace, he will fight you to the death if you attempt
 to take away that which belongs to him.
 ~
-67 10 0 S
-19 2 -5 19d19+190 1d8+16
-1231 0
-0 Hobbit~ 1
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis~
+Alignment   0
+Level       19
+Gold        1231
+Race        Hobbit
+Sex         male~
+Spec        spec_poison
+End
+
 #1102
-farmer gamgee~
-Farmer Gamgee~
+Name        farmer gamgee~
+Short       Farmer Gamgee~
+Long
 Farmer Gamgee sniffs the air, wondering if harvest time is near.
 ~
+Descr
 Farmer Gamgee is a short, stout halfling of thirty years.  His skin has
 been tanned from working the fields night and day.  He's quite a jolly
 chap, always ready to befriend an injured bunny rabbit.
 ~
-131 0 350 S
-7 14 4 7d7+77 1d4+5
-0 0
-0 Hobbit~ 1
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   350
+Level       7
+Gold        0
+Race        Hobbit
+Sex         male~
+End
+
 #1103
-toddler~
-a toddler~
+Name        toddler~
+Short       a toddler~
+Long
 A toddler crawls about, looking for something to chew on.
 ~
+Descr
 The toddler is dressed in nothing but his birthday suit.  He crawls about
 for he hasn't learned to walk yet.  He peers up at you and asks "da da?"
 ~
-131 0 100 S
-2 19 9 2d2+22 1d3+1
-0 0
-0 Hobbit~ 1
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   100
+Level       2
+Gold        0
+Race        Hobbit
+Sex         male~
+End
+
 #1104
-nursemaid~
-a nursemaid~
+Name        nursemaid~
+Short       a nursemaid~
+Long
 A nursemaid wanders about, trying to keep track of all the toddlers.
 ~
+Descr
 The nursemaid looks rather tired and worn out.  Taking care of so many
 toddlers for too long has evidently taken its toll.  She looks to you and
 in her eyes you can see her longing for a better life.
 ~
-3 0 100 S
-5 16 5 5d5+55 1d3+4
-30 0
-0 Hobbit~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   100
+Level       5
+Gold        30
+Race        Hobbit
+Sex         female~
+End
+
 #1105
-cow~
-a cow~
+Name        cow~
+Short       a cow~
+Long
 A cow is here, chewing her cud.
 ~
+Descr
 The cow looks like it hasn't been milked in quite some time.  Although she
 is past her prime, you see that she still has a lot of years left, and that
 if provoked, her rear kick can be quite deadly.
 ~
-65 0 0 S
-4 17 6 4d4+44 1d4+3
-0 0
-0 Animal~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #1106
-pig~
-a pig~
+Name        pig~
+Short       a pig~
+Long
 A pig wallows in the mud and oinks in contentment.
 ~
+Descr
 The pig appears quite happy to be a pig.  He is oblivious to your presence
 and cares only for the care-free life that he leads.  It is enormously fat
 and consequently cannot move around very quickly.
 ~
-65 0 0 S
-3 17 7 3d3+33 2d2+1
-0 0
-0 Animal~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #1107
-chicken~
-a chicken~
+Name        chicken~
+Short       a chicken~
+Long
 A chicken sits on her nest.
 ~
+Descr
 The chicken is bright and healthy.  She has no weapons but her beak.
 ~
-65 0 0 S
-2 20 7 2d2+22 1d4+0
-0 0
-0 Animal~ 2
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       2
+Gold        0
+Race        Animal
+Sex         female~
+End
+
 #1108
-bull~
-a bull~
+Name        bull~
+Short       a bull~
+Long
 A bull scratches at the ground and lowers his head.
 ~
+Descr
 The bull is in top condition.  He looks like quite a fighter, nothing to be
 reckoned with.  With his horns and his hooves he can attack just about
 anything.
 ~
-35 0 0 S
-6 15 4 6d6+66 1d4+4
-0 0
-0 Animal~ 1
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #1109
-horse~
-a horse~
+Name        horse~
+Short       a horse~
+Long
 A horse becomes frightened by your presence.
 ~
+Descr
 The horse looks at you and turns away.  You can tell that it is afraid of 
 you.
 ~
-67 0 0 S
-4 17 6 4d4+44 1d8+0
-2 0
-0 Animal~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        2
+Race        Animal
+Sex         neutral~
+End
+
 #1110
-shiriff~
-a shiriff~
+Name        shiriff~
+Short       a shiriff~
+Long
 A shiriff of the Shire looks for signs of trouble.
 ~
+Descr
 The shiriff is over waist high, quite tall for a halfling.  His eyes are
 ever roaming, looking for signs of trouble from riff-raff like you.  In
 his belt is a thin dagger, and on his body he wears a suit of leather armor.
 This is one halfling you don't want to mess with.
 ~
-69 0 150 S
-8 13 5 8d8+88 1d4+5
-50 0
-0 Hobbit~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   150
+Level       8
+Gold        50
+Race        Hobbit
+Sex         male~
+Spec        spec_guard
+End
+
 #1111
-shiriff~
-a shiriff~
+Name        shiriff~
+Short       a shiriff~
+Long
 A shiriff of the Shire looks for signs of trouble.
 ~
+Descr
 The shiriff is over waist high, quite tall for a halfling.  His eyes are
 ever roaming, looking for signs of trouble from riff raff like you.  In
 his belt is a thin dagger, and on his body he wears a suit of leather armor.
 This is one halfling you don't want to mess with.
 ~
-69 0 150 S
-8 13 5 8d8+88 1d4+5
-50 0
-0 Hobbit~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   150
+Level       8
+Gold        50
+Race        Hobbit
+Sex         male~
+Spec        spec_guard
+End
+
 #1112
-thain~
-the Thain~
+Name        thain~
+Short       the Thain~
+Long
 The Thain commands respect from all Shire folk.
 ~
+Descr
 A personable yet serious halfling, the Thain looks at you and yells a
 deep 'Hullo'.  He walks about comfortably, secure in the knowledge that
 as long as he's in office, the Shire will always remain a safe haven for
 Shire folk.
 ~
-65 0 400 S
-14 7 -3 14d14+140 1d4+12
-500 0
-0 Hobbit~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   400
+Level       14
+Gold        500
+Race        Hobbit
+Sex         male~
+Spec        spec_guard
+End
+
 #1113
-innkeeper~
-the Innkeeper~
+Name        innkeeper~
+Short       the Innkeeper~
+Long
 The Innkeeper stands here awaiting your order.
 ~
+Descr
 The Innkeeper is a jolly old halfling who spends his days eavesdropping on
 local gossip.  In his younger days, he was quite a seasoned traveller.
 ~
-67 0 200 S
-12 9 2 12d12+120 1d4+10
-700 0
-0 Hobbit~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   200
+Level       12
+Gold        700
+Race        Hobbit
+Sex         male~
+Shop        drink_con~ ~ ~ ~ ~ 150 50 0 23
+End
+
 #1114
-miller~
-the Miller~
+Name        miller~
+Short       the Miller~
+Long
 The Miller is here, overseeing his busy mill workers.
 ~
+Descr
 The Miller is an impatient young halfling, always trying to command more
 respect from his workers than he can get.  He looks like the type of person
 who deserves a spanking but never got one.
 ~
-197 0 50 S
-6 15 4 6d6+66 1d4+4
-200 0
-0 Hobbit~ 1
+Act         scavenger stay_area wimpy~
+AffectBy    ~
+Alignment   50
+Level       6
+Gold        200
+Race        Hobbit
+Sex         male~
+End
+
 #1115
-mill worker~
-the mill worker~
+Name        mill worker~
+Short       the mill worker~
+Long
 The mill worker runs to and fro.
 ~
+Descr
 The mill worker is in fine shape from the hard labor that he does at the
 mill.  He doesn't notice your presence, but he looks like he could break you
 in two without thinking about it.
 ~
-3 0 0 S
-5 16 5 5d5+55 1d6+3
-50 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        50
+Race        Hobbit
+Sex         male~
+End
+
 #1116
-elven warrior~
-the elven warrior~
+Name        elven warrior~
+Short       the elven warrior~
+Long
 The elven warrior watches you solemnly.
 ~
+Descr
 The tall elven warrior is light and fair-skinned.  The expression that he wears
 on his countenance is solemn and tragic.  He cares not for this world any
 longer and wearies of it.
 ~
-3 0 600 S
-17 4 -4 17d17+170 1d4+15
-500 0
-0 Elf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   600
+Level       17
+Gold        500
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #1117
-dwarven prince~
-the dwarven prince~
+Name        dwarven prince~
+Short       the dwarven prince~
+Long
 The dwarven prince sits here patiently for the return of his king.
 ~
+Descr
 Grim and cold, the dwarven prince is quite strong and bulky, even for the
 dwarves of his land.  His glowing eyes peer out of his bushy face and stare
 beyond your gaze.
 ~
-3 0 200 S
-17 6 -8 17d17+170 1d4+15
-700 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   200
+Level       17
+Gold        700
+Race        Dwarf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #1118
-shopkeeper~
-the shopkeeper~
+Name        shopkeeper~
+Short       the shopkeeper~
+Long
 The shopkeeper smiles and patiently waits for you to buy something.
 ~
+Descr
 The shopkeeper will fight like a madman to protect his store from riff-raff
 like you.
 ~
-3 0 600 S
-21 -2 -12 22d22+222 2d4+22
-12000 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   600
+Level       21
+Gold        12000
+Race        Dwarf
+Sex         male~
+Shop        trash~ weapon~ container~ light~ drink_con~ 150 50 0 23
+End
+
 #1119
-grocer~
-the grocer~
+Name        grocer~
+Short       the grocer~
+Long
 The grocer offers you the finest breads in all the land.
 ~
+Descr
 The grocer is a large, jovial halfling who knows how to enjoy his pipeweed.
 However, he also knows that it's worth protecting and so will do everything
 in his power to prevent riff-raff like you from stealing it.
 ~
-3 0 600 S
-21 -2 -12 22d22+222 2d4+22
-1500 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   600
+Level       21
+Gold        1500
+Race        Hobbit
+Sex         male~
+Shop        trash~ weapon~ container~ light~ drink_con~ 150 50 0 23
+End
+
 #1120
-blacksmith~
-the blacksmith~
+Name        blacksmith~
+Short       the blacksmith~
+Long
 The blacksmith bids you welcome to his humble store.
 ~
+Descr
 The blacksmith is a lean and mean fighting machine.  His knowledge of weapons
 and armour would certainly help him in any fight against riff-raff like you.
 ~
-3 0 600 S
-50 -20 -30 50d50+500 1d6+36
-18000 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   600
+Level       50
+Gold        18000
+Race        Dwarf
+Sex         male~
+Shop        armor~ weapon~ ~ ~ ~ 150 50 0 23
+End
+
 #1121
-battle master~
-the battle master~
+Name        battle master~
+Short       the battle master~
+Long
 The battle master offers you the services of his fine trainees.
 ~
+Descr
 The battle master is a wizened fighter, with many scars to prove his worth.
 ~
-3 0 350 S
-25 -2 -15 25d25+250 2d6+20
-1500 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   350
+Level       25
+Gold        1500
+Race        Hobbit
+Sex         male~
+Spec        spec_guard
+End
+
 #1122
-halfling youth~
-a halfling youth~
+Name        halfling youth~
+Short       a halfling youth~
+Long
 A halfling youth stands here, waiting for nothing in particular.
 ~
+Descr
 The halfling youth is not yet quite in the prime of his youth.  He's knee
 high and you get the sudden urge to step on him.
 ~
-193 0 0 S
-3 18 7 3d3+33 1d6+1
-0 0
-0 Hobbit~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        0
+Race        Hobbit
+Sex         male~
+Spec        spec_thief
+End
+
 #1123
-seasoned adventurer~
-a seasoned adventurer~
+Name        seasoned adventurer~
+Short       a seasoned adventurer~
+Long
 A seasoned adventurer sits here, telling tales of fame and fortune.
 ~
+Descr
 The seasoned adventurer has seen his share of glory days.  Although he is
 past his prime, he still looks like he could put up more than his share of
 a good fight.
 ~
-3 0 100 S
-8 13 3 8d8+88 2d3+7
-170 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   100
+Level       8
+Gold        170
+Race        Dwarf
+Sex         male~
+End
+
 #1124
-local gossip~
-a local gossip~
+Name        local gossip~
+Short       a local gossip~
+Long
 A local gossip asks you, "Have you heard the latest?"
 ~
+Descr
 The gossip is all talk and no action.  You're transfixed by her ability to
 talk so much so quickly.
 ~
-131 0 0 S
-4 17 6 4d4+44 1d4+2
-25 0
-0 Human~ 2
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        25
+Race        Human
+Sex         female~
+End
+
 #1125
-halfling beauty~
-a halfling beauty~
+Name        halfling beauty~
+Short       a halfling beauty~
+Long
 A halfling beauty stares dreamily into your eyes.
 ~
+Descr
 She is the most beautiful creature you've seen in quite some time.  As you
 stare at her, thoughts of all else vanish.  You get the sudden urge to grovel
 at her feet, hoping she'll take you in like a lost puppy.  You wouldn't dare
 harm a hair on her precious little head.
 ~
-3 0 1000 S
-6 15 4 6d6+66 1d4+4
-75 0
-0 Hobbit~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   1000
+Level       6
+Gold        75
+Race        Hobbit
+Sex         female~
+End
+
 #1126
-trainee~
-a trainee~
+Name        trainee~
+Short       a trainee~
+Long
 A trainee screams a death cry as he delivers the fatal blow to a dummy.
 ~
+Descr
 The trainee smiles smugly, aware of your interest in him.  He's a little
 fresh, but his enthusiasm and desire to please more than make up for what
 he lacks in skill.
 ~
-3 0 0 S
-5 16 5 5d5+55 1d6+3
-0 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        0
+Race        Hobbit
+Sex         male~
+End
+
 #1127
-chic urbanite~
-a chic urbanite~
+Name        chic urbanite~
+Short       a chic urbanite~
+Long
 A chic urbanite sits here, enjoying his class status.
 ~
+Descr
 The urbanite seems very much at home in his surroundings.  His clothes are
 all of the latest fashions and his manners impeccable.  He offers you some
 coins if you'd be so good as to order a drink for him.
 ~
-131 0 0 S
-4 17 6 4d4+44 2d2+2
-100 0
-0 Human~ 1
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #1128
-country bumpkin~
-a country bumpkin~
+Name        country bumpkin~
+Short       a country bumpkin~
+Long
 A country bumpkin dreams of pipeweed and its many uses.
 ~
+Descr
 The country bumpkin snores noisily.
 ~
-3 0 0 S
-5 16 5 5d5+55 1d4+3
-70 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        70
+Race        Human
+Sex         male~
+End
+
 #1130
-innkeeper~
-the Innkeeper~
+Name        innkeeper~
+Short       the Innkeeper~
+Long
 The Innkeeper stands here awaiting your order.
 ~
+Descr
 The Innkeeper is a jolly old halfling who spends his days eavesdropping on
 local gossip.  In his younger days, he was quite a seasoned traveller.
 ~
-3 0 200 S
-12 9 2 12d12+120 1d4+10
-1000 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   200
+Level       12
+Gold        1000
+Race        Dwarf
+Sex         male~
+Shop        drink_con~ ~ ~ ~ ~ 150 50 0 23
+End
+
 #1131
-receptionist~
-the receptionist~
+Name        receptionist~
+Short       the receptionist~
+Long
 The receptionist sits here, signing forms.
 ~
+Descr
 He is a very professional looking type.
 ~
-3 0 200 S
-12 4 -2 12d12+120 1d8+14
-70 0
-0 Elf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   200
+Level       12
+Gold        70
+Race        Elf
+Sex         male~
+End
+
 #1132
-shiriff~
-a shiriff~
+Name        shiriff~
+Short       a shiriff~
+Long
 A shiriff of the Shire looks for the lost halfling youth.
 ~
+Descr
 The shiriff is over waist high, quite tall for a halfling.
 He looks at you, smiles and asks you if you have seen a halfling youth
 somewhere outside the shire.
 ~
-3 0 150 S
-8 13 5 8d8+88 1d4+6
-50 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   150
+Level       8
+Gold        50
+Race        Hobbit
+Sex         male~
+Spec        spec_guard
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #1100
-rainbow staff~
-the rainbow staff~
+Name        rainbow staff~
+Short       the rainbow staff~
+Descr
 The rainbow staff lies here.~
-~
-1 64 65537
-0~ 0~ -1~ 0~ 0~
-8 5000 0
-A
-4 1 0
+Type        light~
+Extra       magic~
+Wear        take~
+Values      0~ 0~ -1~ 0~ 0~
+Weight      8
+Cost        5000
+Affect      wisdom~ 1 ~
+End
+
 #1101
-sting~
-sting~
+Name        sting~
+Short       sting~
+Descr
 Sting lies here.~
-~
-5 1027 8193
-0~ 2~ 7~ 11~ 0~
-1 10000 0
-A
-2 2 0
+Type        weapon~
+Extra       glow hum anti-evil~
+Wear        take wield~
+Values      0~ 2~ 7~ 11~ 0~
+Weight      1
+Cost        10000
+Affect      dexterity~ 2 ~
+End
+
 #1102
-sign~
-a sign~
+Name        sign~
+Short       a sign~
+Descr
 A sign demands your attention.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-0 0 0
-E
-sign~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  sign~
 Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under
 the jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,
 by entering these lands you agree to obey our laws.  If you break these laws,
@@ -463,613 +716,780 @@ town.
 					Peacekeeper of the Shire
 
 ~
+End
+
 #1103
-pipeweed bread food~
-a pipeweed bread~
+Name        pipeweed bread food~
+Short       a pipeweed bread~
+Descr
 A loaf of pipeweed bread arouses your hunger.~
-~
-19 0 1
-24~ 0~ 0~ 0~ 0~
-1 13 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        13
+End
+
 #1104
-silvery cloak~
-a silvery cloak~
+Name        silvery cloak~
+Short       a silvery cloak~
+Descr
 A silvery cloak lies here.~
-~
-9 65 1025
-7~ 0~ 0~ 0~ 0~
-3 10000 0
-A
-24 -2 0
+Type        armor~
+Extra       glow magic~
+Wear        take about~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        10000
+Affect      saving-spell~ -2 ~
+End
+
 #1105
-one ring~
-the One Ring~
+Name        one ring~
+Short       the One Ring~
+Descr
 The One Ring is here.~
-~
-9 64 16387
-0~ 0~ 0~ 0~ 0~
-3 2500 0
-A
-1 1 0
-A
-17 10 0
-A
-12 20 0
-A
-0 0 2
+Type        armor~
+Extra       magic~
+Wear        take finger hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        2500
+Affect      mana~ 20 ~
+Affect      ac~ 10 ~
+End
+
 #1106
-elven bow~
-an elven bow~
+Name        elven bow~
+Short       an elven bow~
+Descr
 An elven bow lies here.~
-~
-5 1090 8193
-0~ 2~ 8~ 4~ 0~
-10 2000 0
-A
-18 2 0
+Type        weapon~
+Extra       hum magic anti-evil~
+Wear        take wield~
+Values      0~ 2~ 8~ 4~ 0~
+Weight      10
+Cost        2000
+Affect      hitroll~ 2 ~
+End
+
 #1107
-mithril axe~
-a mithril axe~
+Name        mithril axe~
+Short       a mithril axe~
+Descr
 A mithril axe lies here.~
-~
-5 66 8193
-0~ 2~ 8~ 5~ 0~
-12 4000 0
-A
-19 2 0
+Type        weapon~
+Extra       hum magic~
+Wear        take wield~
+Values      0~ 2~ 8~ 5~ 0~
+Weight      12
+Cost        4000
+Affect      damroll~ 2 ~
+End
+
 #1108
-thain girth~
-the thain girth~
+Name        thain girth~
+Short       the thain girth~
+Descr
 The girth of the thain lies here.~
-~
-9 0 2049
-5~ 3~ 0~ 0~ 0~
-4 1000 0
-A
-4 2 0
+Type        armor~
+Extra       ~
+Wear        take waist~
+Values      5~ 3~ 0~ 0~ 0~
+Weight      4
+Cost        1000
+Affect      wisdom~ 2 ~
+End
+
 #1109
-tiny dagger~
-a tiny dagger~
+Name        tiny dagger~
+Short       a tiny dagger~
+Descr
 A tiny dagger lies here.~
-~
-5 0 8193
-0~ 1~ 6~ 11~ 0~
-3 40 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      3
+Cost        40
+End
+
 #1110
-egg food~
-an egg~
+Name        egg food~
+Short       an egg~
+Descr
 An egg lies here.~
-~
-19 0 1
-12~ 0~ 0~ 0~ 0~
-1 9 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      12~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        9
+End
+
 #1111
-bag~
-a bag~
+Name        bag~
+Short       a bag~
+Descr
 A bag is on the floor.~
-~
-15 0 1
-50~ 0~ 0~ 0~ 0~
-5 50 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        50
+End
+
 #1112
-lantern~
-a lantern~
+Name        lantern~
+Short       a lantern~
+Descr
 A lantern is on the floor.~
-~
-1 0 1
-0~ 0~ 20~ 0~ 0~
-4 50 0
+Type        light~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 20~ 0~ 0~
+Weight      4
+Cost        50
+End
+
 #1113
-bardiche~
-a bardiche~
+Name        bardiche~
+Short       a bardiche~
+Descr
 A long weapon with a sharp end is on the floor.~
-~
-5 0 8193
-0~ 3~ 4~ 3~ 0~
-10 1000 0
-A
-18 4 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 3~ 4~ 3~ 0~
+Weight      10
+Cost        1000
+Affect      hitroll~ 4 ~
+End
+
 #1114
-flail~
-a flail~
+Name        flail~
+Short       a flail~
+Descr
 A flail is on the floor.~
-~
-5 0 8193
-0~ 2~ 4~ 6~ 0~
-8 300 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 4~ 6~ 0~
+Weight      8
+Cost        300
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #1100
-A dimly lit path~
+Name        A dimly lit path~
+Descr
 You tread through the deep, dark forest on a dimly lit path.  Up ahead you
 can hear the faint sounds of a village.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 1101
 The dimly lit path leads north through the dense forest.
 ~
 ~
-0 -1 1101
-D2
+Door        south~ ~ -1 6000
 The dimly lit path leads south through the light forest.
 ~
 ~
-0 -1 6000
-S
+End
+
 #1101
-A dimly lit path~
+Name        A dimly lit path~
+Descr
 You tread through the deep, dark forest on a dimly lit path.  Up ahead you
 can hear the faint sounds of a village.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 1102
 The dimly lit path leads north through the dense forest.
 ~
 ~
-0 -1 1102
-D2
+Door        south~ ~ -1 1100
 The dimly lit path leads south through the dense forest.
 ~
 ~
-0 -1 1100
-S
+End
+
 #1102
-A dimly lit path~
+Name        A dimly lit path~
+Descr
 You tread through the deep, dark forest on a dimly lit path.  The forest
 here seems less dense than to the south.  Northward you see the faint outline
 of a village.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 1103
 The dimly lit path leads to a village.
 ~
 ~
-0 -1 1103
-D2
+Door        south~ ~ -1 1101
 The dimly lit path leads south through the dense forest.
 ~
 ~
-0 -1 1101
-S
+End
+
 #1103
-Entrance to the Shire~
+Name        Entrance to the Shire~
+Descr
 You stand at the entrance to the Shire.  You see halflings, no more than
 wee tall, every which way you look. Bywater Road leads east and west.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 1102 0 100
+Door        east~ ~ -1 1104
 To the east runs Bywater Road.
 ~
 ~
-0 -1 1104
-D2
+Door        south~ ~ -1 1102
 To the south you see a dimly lit path which leads to a dense forest.
 ~
 ~
-0 -1 1102
-D3
+Door        west~ ~ -1 1118
 To the west runs Bywater Road.
 ~
 ~
-0 -1 1118
-S
+End
+
 #1104
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the east and west while to the north lies the general store.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1105
 The general store lies to the north.
 ~
 ~
-0 -1 1105
-D1
+Door        east~ ~ -1 1106
 To the east runs Bywater Road.
 ~
 ~
-0 -1 1106
-D3
+Door        west~ ~ -1 1103
 To the west you see the entrance to the Shire.
 ~
 ~
-0 -1 1103
-S
+End
+
 #1105
-The General Store~
+Name        The General Store~
+Descr
 You are inside the general store.  All sorts of goodies are stacked on the
 many shelves.  Your local friendly shopkeeper is smiling patiently, waiting to 
 serve you to the best of his abilities.  The only exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1118 1 100
+Reset       E 1111 -1 100
+Reset       E 1112 -1 100
+Door        south~ ~ -1 1104
 The only exit lies to the south.
 ~
 ~
-0 -1 1104
-S
+End
+
 #1106
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the east and west.  To the north, steps lead to a friendly looking
 weaponry/armory while a nursery lies to the south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1107
 Steps lead to a friendly looking weaponry and armory.
 ~
 ~
-0 -1 1107
-D1
+Door        east~ ~ -1 1109
 To the east runs Bywater Road.
 ~
 ~
-0 -1 1109
-D2
+Door        south~ ~ -1 1108
 To the south lies Kid'n Keep, the local nursery.
 ~
 ~
-0 -1 1108
-D3
+Door        west~ ~ -1 1104
 To the west runs Bywater Road.
 ~
 ~
-0 -1 1104
-S
+End
+
 #1107
-The House of Arms~
+Name        The House of Arms~
+Descr
 You are inside the finest weapons and armour shop in all of Shiredom.  The
 shopkeeper proudly displays his fine wares and humbly offers the best daggers
 that you have ever laid eyes on.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1120 1 100
+Door        south~ ~ -1 1106
 The only exit lies to the south.
 ~
 ~
-0 -1 1106
-S
+End
+
 #1108
-Kid'n Keep~
+Name        Kid'n Keep~
+Descr
 You are inside Kid'n Keep, the convenient one-stop nursery that maintains
 the youth of the Shire.  Toddlers run every which way while their nursemaids
 sigh in exasperation.  The only exit lies to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1104 2 100
+Reset       M 1104 2 100
+Reset       M 1103 6 100
+Reset       M 1103 6 100
+Reset       M 1103 6 100
+Reset       M 1103 6 100
+Reset       M 1103 6 100
+Reset       M 1103 6 100
+Door        north~ ~ -1 1106
 The only exit lies to the north.
 ~
 ~
-0 -1 1106
-S
+End
+
 #1109
-A bend in the road~
+Name        A bend in the road~
+Descr
 Bywater Road continues west and south.  A large, imposing building lies
 to the east.  Farther to the south, you can see an Inn of some sort.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 1110
 A large, imposing building lies to the east.  A sign reads 'Shiriff Post'.
 ~
 ~
-0 -1 1110
-D2
+Door        south~ ~ -1 1112
 To the south runs Bywater Road.
 ~
 ~
-0 -1 1112
-D3
+Door        west~ ~ -1 1106
 To the west runs Bywater Road.
 ~
 ~
-0 -1 1106
-S
+End
+
 #1110
-Shiriff Post of the Eastern Shire~
+Name        Shiriff Post of the Eastern Shire~
+Descr
 You are in the Shiriff Post which acts as the nucleus for the three shiriffs
 of the Eastern Shire.  As you examine the shiriffs on duty, you come to realize
 that the halflings of the Shire are not to be reckoned with.  You cower with 
 awe.  A door offers passage to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1110 8 100
+Reset       E 1109 16 100
+Reset       E 616 5 100
+Reset       M 1110 8 100
+Reset       E 616 5 100
+Reset       M 1111 4 100
+Reset       E 616 5 100
+Door        east~ door~ 0 1111
 A door offers passage to the office of the Thain.
 ~
 door~
-1 0 1111
-D3
+Door        west~ ~ -1 1109
 To the west you can see Bywater Road.
 ~
 ~
-0 -1 1109
-S
+End
+
 #1111
-Thain's Office~
+Name        Thain's Office~
+Descr
 You stand inside the office of the Thain, the police protectorate of the
 great Shire.  The Thain has sworn to protect the Shire from all thieves and
 murderers with his life, and so eyes you suspiciously.  A door to the west
 leads to the Shiriff Post.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1112 1 100
+Reset       E 1113 16 100
+Reset       E 616 5 100
+Reset       E 1108 13 100
+Door        west~ door~ 0 1110
 A door offers passage to the Shiriff Post.
 ~
 door~
-1 0 1110
-S
+End
+
 #1112
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the north and south.  To the east you spy the training grounds for
 shiriffs in training.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1109
 To the north runs Bywater Road.
 ~
 ~
-0 -1 1109
-D1
+Door        east~ ~ -1 1117
 The Shiriff Training Grounds lies to the east.
 ~
 ~
-0 -1 1117
-D2
+Door        south~ ~ -1 1113
 To the south runs Bywater Road.
 ~
 ~
-0 -1 1113
-S
+End
+
 #1113
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the north.  The private residences of Shire inhabitants are to
 the east and west while to the south lies the Ivy Bush, second only to the
 Green Dragon for its hospitality and service.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1112
 To the north runs Bywater Road.
 ~
 ~
-0 -1 1112
-D1
+Door        east~ ~ -1 1115
 You spy the private dwelling of a Shire folk to the east.
 ~
 ~
-0 -1 1115
-D2
+Door        south~ ~ -1 1116
 To the south you see the Ivy Bush, a favorite haunt of Shire urbanites and
 seasoned travelers.
 ~
 ~
-0 -1 1116
-D3
+Door        west~ ~ -1 1114
 You spy the private dwelling of a Shire folk to the west.
 ~
 ~
-0 -1 1114
-S
+End
+
 #1114
-A smial~
+Name        A smial~
+Descr
 You are inside a smial, a hole in the ground which serves as the proper
 dwelling place for halflings.  As you look around this private abode, you feel
 as if you were intruding and so quickly cover your eyes.  The only exit lies
 to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1128 4 100
+Reset       E 1103 -1 100
+Door        east~ ~ -1 1113
 The only exit lies to the east.
 ~
 ~
-0 -1 1113
-S
+End
+
 #1115
-A smial~
+Name        A smial~
+Descr
 You are inside a smial, a hole in the ground which serves as the proper
 dwelling place for halflings.  As you look around this private abode, you feel
 as if you were intruding and so quickly cover your eyes.  The only exit lies
 to the west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1128 4 100
+Reset       E 1103 -1 100
+Door        west~ ~ -1 1113
 The only exit lies to the west.
 ~
 ~
-0 -1 1113
-S
+End
+
 #1116
-The Ivy Bush~
+Name        The Ivy Bush~
+Descr
 You are in the Ivy Bush, one of the most famous inns in all of Shiredom.
 Chique Shire urbanites and seasoned travelers fill the confines of the room
 with gay and lively talk.  A jovial innkeeper stops all that he is doing to
 await your command.  The only exit lies to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1113 1 100
+Reset       E 1110 -1 100
+Reset       E 648 -1 100
+Reset       E 649 -1 100
+Reset       E 650 -1 100
+Reset       M 1123 4 100
+Reset       M 1123 4 100
+Reset       M 1124 2 100
+Reset       M 1124 2 100
+Reset       M 1127 7 100
+Reset       M 1127 7 100
+Reset       M 1127 7 100
+Door        north~ ~ -1 1113
 The only exit lies to the north.
 ~
 ~
-0 -1 1113
-S
+End
+
 #1117
-Shiriff Training Grounds~
+Name        Shiriff Training Grounds~
+Descr
 The sounds of mock battle and feigned death cries fill your ears.  Every
 which way you turn you see halfling trainees at the prime of their youth.  A
 wizened old battle instructor meets your gaze and asks if he may be of 
 service.  The only exit lies to the west.
 ~
-0 0 0
-D3
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 1121 1 100
+Reset       E 1113 16 100
+Reset       M 1126 3 100
+Reset       E 1113 16 100
+Reset       M 1126 3 100
+Reset       E 1113 16 100
+Reset       M 1126 3 100
+Reset       E 1113 16 100
+Door        west~ ~ -1 1112
 The only exit lies to the west.
 ~
 ~
-0 -1 1112
-S
+End
+
 #1118
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the east and west.  A large, imposing building lies to the south.
 You catch a glimpse of the Brandywine River to the north.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 1103
 To the east you see the entrance to the Shire.
 ~
 ~
-0 -1 1103
-D2
+Door        south~ ~ -1 1119
 A large, imposing building lies to the south.  A sign reads 'Shiriff Post'.
 ~
 ~
-0 -1 1119
-D3
+Door        west~ ~ -1 1120
 To the west runs Bywater Road.
 ~
 ~
-0 -1 1120
-S
+End
+
 #1119
-Shiriff Post of the Bridge~
+Name        Shiriff Post of the Bridge~
+Descr
 You are in the Shiriff Post which acts as the nucleus for the three shiriffs
 of the Bridge.  As you examine the shiriffs on duty, you come to realize that
 the halflings of the Shire are not to be reckoned with.  You cower with awe.
 The only exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1110 8 100
+Reset       E 1109 16 100
+Reset       E 616 5 100
+Reset       M 1110 8 100
+Reset       E 616 5 100
+Reset       M 1111 4 100
+Reset       E 616 5 100
+Door        north~ ~ -1 1118
 The only exit is to the north.
 ~
 ~
-0 -1 1118
-S
+End
+
 #1120
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the east and west.  To the south you spy the Grocer's Delight,
 the premium grocer's shop in all the realm while to the north lies Brandywine
 Bridge.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1131
 Brandywine Bridge offers safe passage across the tumultuous river.
 ~
 ~
-0 -1 1131
-D1
+Door        east~ ~ -1 1118
 To the east runs Bywater Road.
 ~
 ~
-0 -1 1118
-D2
+Door        south~ ~ -1 1121
 You see the Grocer's Delight to the south.
 ~
 ~
-0 -1 1121
-D3
+Door        west~ ~ -1 1122
 To the west runs Bywater Road.
 ~
 ~
-0 -1 1122
-S
+End
+
 #1121
-The Grocer's Delight~
+Name        The Grocer's Delight~
+Descr
 You tremble with ecstasy as the tempting odors of freshly made pipeweed
 bread fill your lungs.  Rumor has it that the pipeweed bread sold here can
 restore vitality.  You look around but find no one to take your order.  
 You then peep over the counter and discover a friendly grocer who is too 
 short to be seen over the counter.  The only exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1119 1 100
+Reset       E 1103 -1 100
+Door        north~ ~ -1 1120
 The only exit is to the north.
 ~
 ~
-0 -1 1120
-S
+End
+
 #1122
-Bywater Road~
+Name        Bywater Road~
+Descr
 You stand on Bywater Road, the busiest street in all of Shiredom.  The road
 continues to the east.  A small hill lies to the west while you can see a
 watermill to the far south.  You catch a glimpse of the Brandywine River to
 the north.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 1120
 To the east runs Bywater Road.
 ~
 ~
-0 -1 1120
-D2
+Door        south~ ~ -1 1123
 An entrance to the watermill lies to the south.
 ~
 ~
-0 -1 1123
-D3
+Door        west~ ~ -1 1126
 A small hill to the west blocks your view.
 ~
 ~
-0 -1 1126
-S
+End
+
 #1123
-Entrance to Watermill~
+Name        Entrance to Watermill~
+Descr
 You stand at the entrance to a watermill.  You hear the bustle of busy
 workers and the sound of a creaking mill.  Bywater Road is to the north while
 the watermill continues to the south.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 1115 6 100
+Reset       M 1115 6 100
+Door        north~ ~ -1 1122
 You see Bywater Road to the north.
 ~
 ~
-0 -1 1122
-D2
+Door        south~ ~ -1 1124
 A watermill meets your gaze.
 ~
 ~
-0 -1 1124
-S
+End
+
 #1124
-The Watermill~
+Name        The Watermill~
+Descr
 Halfling workers are scattered everywhere, busy at work.  You see the river
 to the west and get a compelling urge to grab the nearest worker and to toss
 him into the river.  The entrance stands to the north while a door offers
 passage to the south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1115 6 100
+Reset       M 1115 6 100
+Reset       M 1115 6 100
+Reset       M 1114 1 100
+Door        north~ ~ -1 1123
 You see the entrance.
 ~
 ~
-0 -1 1123
-D2
+Door        south~ door~ 0 1125
 A wooden door leads to the rear of the watermill.
 ~
 door~
-1 0 1125
-S
+End
+
 #1125
-Rear of watermill~
+Name        Rear of watermill~
+Descr
 You stand in a damp, dimly lit room.  Mildew clings to the walls and it
 appears as if you were the first person to enter the room in ages.  A barely
 visible portal in the ground catches your eye.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1115 6 100
+Door        north~ ~ -1 1124
 A watermill meets your gaze.
 ~
 ~
-0 -1 1124
-D5
+Door        down~ ~ -1 1146
 A hidden portal reveals a passageway down.
 ~
 ~
-0 -1 1146
-S
+End
+
 #1126
-Took Hill~
+Name        Took Hill~
+Descr
 You stand on top of Took Hill, named after the legendary Bandobras Took.
 You feel honored to be standing on a hill named after your hero.  From this
 vantage point you can see all of shiredom.  You get the feeling that with
@@ -1077,307 +1497,367 @@ one stomp you could eliminate their great city.  You can see the outline of
 Midgaard to the far east.  Sounds of joyful celebration are heard from the
 fields west of here.  The Brandywine flows by lazily nearby.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ -1 1122
 To the east runs Bywater Road.
 ~
 ~
-0 -1 1122
-D3
+Door        west~ ~ -1 1128
 You see a grassy field to the west.
 ~
 ~
-0 -1 1128
-S
+End
+
 #1127
-Northern end of grassy field~
+Name        Northern end of grassy field~
+Descr
 You stand in a grassy field--nothing to get too excited about.  The field
 extends toward the south and the west.  To the east you see Took Hill.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1122 9 100
+Reset       M 1122 9 100
+Reset       M 1122 9 100
+Door        south~ ~ -1 1128
 You see a grassy field.
 ~
 ~
-0 -1 1128
-S
+End
+
 #1128
-A grassy field~
+Name        A grassy field~
+Descr
 You stand in the center of a grassy field.  A great birthday party appears
 to be taking place.  Great tables of food are spread out and a young halfling
 beauty offers you welcome.  You are enticed by her generosity and suggestive
 winks.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1125 1 100
+Reset       M 1100 1 100
+Reset       E 1104 12 100
+Reset       E 1100 0 100
+Door        north~ ~ -1 1127
 You see a grassy field.
 ~
 ~
-0 -1 1127
-D1
+Door        east~ ~ -1 1126
 A small hill to the east blocks your view.
 ~
 ~
-0 -1 1126
-D2
+Door        south~ ~ -1 1129
 You see a grassy field.
 ~
 ~
-0 -1 1129
-D3
+Door        west~ ~ -1 1130
 You see a grassy field.
 ~
 ~
-0 -1 1130
-S
+End
+
 #1129
-Southern end of grassy field~
+Name        Southern end of grassy field~
+Descr
 You stand in a grassy field--nothing to get too excited about.  The field
 extends toward the north and the west.  To the east you see Took Hill.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1122 9 100
+Reset       M 1122 9 100
+Reset       M 1122 9 100
+Door        north~ ~ -1 1128
 You see a grassy field.
 ~
 ~
-0 -1 1128
-S
+End
+
 #1130
-Western end of grassy field~
+Name        Western end of grassy field~
+Descr
 You stand in a grassy field--nothing to get too excited about.  The field
 extends every which way but west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1122 9 100
+Reset       M 1122 9 100
+Reset       M 1122 9 100
+Door        east~ ~ -1 1128
 You see a grassy field.
 ~
 ~
-0 -1 1128
-S
+End
+
 #1131
-Brandywine Bridge~
+Name        Brandywine Bridge~
+Descr
 You stand on a solidly built bridge.  As you look down you spy gaily
 colored fish swimming with the current of Brandywine River.  The cool water
 looks invitingly refreshing and you get a sudden urge to strip and bathe in
 the river, but you hear the laughter of women nearby and so resist the urge.
 Delving Lane extends to the north while Bywater Road can be seen to the south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1132
 You see Delving Lane.
 ~
 ~
-0 -1 1132
-D2
+Door        south~ ~ -1 1120
 To the south runs Bywater Road.
 ~
 ~
-0 -1 1120
-S
+End
+
 #1132
-Delving Lane~
+Name        Delving Lane~
+Descr
 Delving Lane runs north and south in this small borough of the Shire.  To 
 the south stands Brandywine Bridge.  The Green Dragon, the undisputed leader
 in the art of innkeeping, offers rest and comfort to the east.  You hear the
 bray of horses from the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1133
 You see Delving Lane.
 ~
 ~
-0 -1 1133
-D1
+Door        east~ ~ -1 1144
 The Green Dragon offers food, drink, and above all hospitality for mere gold.
 ~
 ~
-0 -1 1144
-D2
+Door        south~ ~ -1 1131
 Brandywine Bridge offers safe passage across the tumultuous river.
 ~
 ~
-0 -1 1131
-S
+End
+
 #1133
-Delving Lane~
+Name        Delving Lane~
+Descr
 Delving Lane runs north and south in this small borough of the Shire.  A 
 large, imposing building lies to the east.  You hear the bray of horses from
 the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1134
 You see Delving Lane.
 ~
 ~
-0 -1 1134
-D1
+Door        east~ ~ -1 1145
 A large, imposing building lies to the east.  A sign reads 'Shiriff Post'.
 ~
 ~
-0 -1 1145
-D2
+Door        south~ ~ -1 1132
 You see Delving Lane.
 ~
 ~
-0 -1 1132
-D3
+Door        west~ ~ -1 1138
 You see a grassy field.
 ~
 ~
-0 -1 1138
-S
+End
+
 #1134
-Delving Lane~
+Name        Delving Lane~
+Descr
 Delving Lane runs north and south in this small borough of the Shire. There
 is a small house to the west, nothing to the east, and up ahead you see a round
 door which leads to a rather impressive abode.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ door~ -1 1135
 A large, magnificent house meets your steady gaze.  Above the round door a
 sign reads 'Bag End'.
 ~
 ~
-1 -1 1135
-D2
+Door        south~ ~ -1 1133
 You see Delving Lane.
 ~
 ~
-0 -1 1133
-S
+End
+
 #1135
-Bag End~
+Name        Bag End~
+Descr
 You stand in a comfortably well-equipped house, a palace by humble halfling
 standards.  On the wall you see a banner which reads "Home Sweet Home".
 A solid oak door to the east leads to a pantry while you see a cozy bedroom
 to the west.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ door~ -1 1137
 Through the keyhole you see what looks like a well stocked pantry.
 ~
 door~
-1 -1 1137
-D2
+Door        south~ ~ -1 1134
 You see Delving Lane.
 ~
 ~
-0 -1 1134
-D3
+Door        west~ ~ -1 1136
 You see a bedroom.  It looks like the beds have recently been slept in.
 ~
 ~
-0 -1 1136
-S
+End
+
 #1136
-Bedroom~
+Name        Bedroom~
+Descr
 You stand in the private bedroom of Bag End.  There are two beds to the
 side, neither of which are made.  Portraits of halflings hang on the wall,
 and as you gaze upon them you come to the conclusion that the owner of
 Bag End comes from a long line of distinguished halflings.  A cozy fire
 in the fireplace keeps the room warm and comfortable.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1116 1 100
+Reset       E 1106 16 100
+Reset       E 622 6 100
+Reset       M 1117 1 100
+Reset       E 1107 16 100
+Reset       E 621 5 100
+Door        east~ ~ -1 1135
 Through the doorway you see the main room of Bag End.
 ~
 ~
-0 -1 1135
-S
+End
+
 #1137
-Pantry~
+Name        Pantry~
+Descr
 You are inside the pantry.  Shelves filled with food and drink surround
 you on all sides.  You wonder why a halfling would need so much to eat.
 The presence of something unseen chills you to your bones.  On the floor
 you spy a trapdoor.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1101 1 100
+Reset       E 1101 16 100
+Reset       E 1105 1 100
+Reset       E 623 7 100
+Door        west~ door~ -1 1135
 Beyond the door you see the main room of Bag End.
 ~
 door~
-1 -1 1135
-D5
+Door        down~ ~ -1 1156
 It's anyone's guess as to where the trapdoor leads.
 ~
 ~
-0 -1 1156
-S
+End
+
 #1138
-A grassy field~
+Name        A grassy field~
+Descr
 You stand upon a grassy field.  A bull stands grazing not far away and
 out of the corner of your eye you can see him considering you.  The sound
 of animals fill the air from the north.  To the south you see a pig pen.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1108 1 100
+Door        north~ ~ -1 1142
 You see a large barn.
 ~
 ~
-0 -1 1142
-D1
+Door        east~ ~ -1 1133
 You see Delving Lane.
 ~
 ~
-0 -1 1133
-D2
+Door        south~ ~ -1 1139
 A rather large pig pen is to the south.
 ~
 ~
-0 -1 1139
-S
+End
+
 #1139
-Pig pen~
+Name        Pig pen~
+Descr
 You feel your boots sinking into the mud.  Numerous pigs roam about,
 oblivious to your company.  A grassy field is to the north while you see
 a small path winding to the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 1106 5 100
+Reset       M 1106 5 100
+Reset       M 1106 5 100
+Reset       M 1106 5 100
+Reset       M 1106 5 100
+Door        north~ ~ -1 1138
 You see a grassy field.
 ~
 ~
-0 -1 1138
-D3
+Door        west~ ~ -1 1140
 A small path winds its way eastward.
 ~
 ~
-0 -1 1140
-S
+End
+
 #1140
-A stony path~
+Name        A stony path~
+Descr
 You walk on a stony path which leads to a small residence to the north.
 From the east you hear the noisy din of pigs.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 1141
 To the north you see a modest house.
 ~
 ~
-0 -1 1141
-D1
+Door        east~ ~ -1 1139
 A rather large pig pen is to the east.
 ~
 ~
-0 -1 1139
-S
+End
+
 #1141
-Gamgee Residence~
+Name        Gamgee Residence~
+Descr
 You stand inside a modest home.  You deduce that this is indeed the home
 of whomever owns the surrounding lands.  The air is somewhat musty and 
 the smell reminds you of a stable.  As you look around disdainfully, you
 think to yourself that this is more of a shack than a proper residence and
 you long for the urban riches of the Shire proper.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1102 1 100
+Door        south~ ~ -1 1140
 You see a small path winding its way southward.
 ~
 ~
-0 -1 1140
-S
+End
+
 #1142
-A barn~
+Name        A barn~
+Descr
 Animals of every sort fill the small barn.  You feel the hot breath of
 horses and cows on your neck and you feel the sudden need for fresh air.
 Other than that, you feel cozy and protected and don't mind staying for a
@@ -1385,32 +1865,56 @@ bit longer.  All the warmth and good vibes remind you of the days when your
 mother would hold you in her arms and sing you to sleep.  You find yourself
 wanting to cradle all the animals.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1105 3 100
+Reset       M 1105 3 100
+Reset       M 1105 3 100
+Reset       M 1109 4 100
+Reset       M 1109 4 100
+Reset       M 1109 4 100
+Reset       M 1109 4 100
+Door        north~ ~ -1 1143
 You see a chicken coop to the north.
 ~
 ~
-0 -1 1143
-D2
+Door        south~ ~ -1 1138
 You see a grassy field.
 ~
 ~
-0 -1 1138
-S
+End
+
 #1143
-A chicken coop~
+Name        A chicken coop~
+Descr
 You stand inside a rather crowded chicken coop.  The cackle of hens fill
 the air.  The only exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1107 6 100
+Reset       E 1110 -1 100
+Reset       M 1107 6 100
+Reset       E 1110 -1 100
+Reset       M 1107 6 100
+Reset       E 1110 -1 100
+Reset       M 1107 6 100
+Reset       E 1110 -1 100
+Reset       M 1107 6 100
+Reset       E 1110 -1 100
+Reset       M 1107 6 100
+Reset       E 1110 -1 100
+Door        south~ ~ -1 1142
 You see a large barn.
 ~
 ~
-0 -1 1142
-S
+End
+
 #1144
-The Green Dragon~
+Name        The Green Dragon~
+Descr
 Welcome to the Green Dragon, the undisputed leader in the art of
 innkeeping.  A rather charming and friendly hostess stands to the side,
 ready to offer you food and drink.  While most of the patrons are halfling
@@ -1420,422 +1924,306 @@ seasoned adventurers as well as the usual gossip.  You feel as if you've
 found your second home in the Green Dragon.  You see a stairway leading
 upwards.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1130 1 100
+Reset       E 1110 -1 100
+Reset       E 648 -1 100
+Reset       E 649 -1 100
+Reset       E 650 -1 100
+Reset       M 1123 6 100
+Reset       M 1123 6 100
+Reset       M 1123 6 100
+Reset       M 1127 7 100
+Reset       M 1127 7 100
+Reset       M 1127 7 100
+Reset       M 1127 7 100
+Door        west~ ~ -1 1132
 You see Delving Lane.
 ~
 ~
-0 -1 1132
-D4
+Door        up~ ~ -1 1157
 You see the reception.
 ~
 ~
-0 -1 1157
-S
+End
+
 #1145
-Shiriff Post of Delving Lane~
+Name        Shiriff Post of Delving Lane~
+Descr
 You are in the Shiriff Post which acts as the nucleus for the three shiriffs
 of Delving Lane.  As you examine the shiriffs on duty, you come to realize
 that the halflings of the Shire are not to be reckoned with.  You cower with
 awe.  The only exit is to the west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1110 8 100
+Reset       E 1109 16 100
+Reset       E 616 5 100
+Reset       M 1110 8 100
+Reset       E 616 5 100
+Reset       M 1111 4 100
+Reset       E 616 5 100
+Door        west~ ~ -1 1133
 You see Delving Lane.
 ~
 ~
-0 -1 1133
-S
+End
+
 #1146
-A dark tunnel~
+Name        A dark tunnel~
+Descr
 You stand inside a small underground tunnel.  The ceiling is so low that
 you must crouch to avoid hitting your head.  You see light from a small
 hole in the ceiling while to the east you see nothing but darkness.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 1147
 You see a dark tunnel.
 ~
 ~
-0 -1 1147
-D4
+Door        up~ ~ -1 1125
 You see a portal which leads to a small room.
 ~
 ~
-0 -1 1125
-S
+End
+
 #1147
-A dark tunnel~
+Name        A dark tunnel~
+Descr
 You stand inside a small underground tunnel.  The ceiling is so low that
 you must crouch to avoid hitting your head.  The tunnel continues east and
 west.  All you can see is darkness.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 1148
 You see a dark tunnel.
 ~
 ~
-0 -1 1148
-D3
+Door        west~ ~ -1 1146
 You see a dark tunnel.
 ~
 ~
-0 -1 1146
-S
+End
+
 #1148
-A dark tunnel~
+Name        A dark tunnel~
+Descr
 You stand inside a small underground tunnel.  The ceiling is so low that
 you must crouch to avoid hitting your head.  The tunnel continues east and
 west.  All you can see is darkness.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 1149
 You see a dark tunnel.
 ~
 ~
-0 -1 1149
-D3
+Door        west~ ~ -1 1147
 You see a dark tunnel.
 ~
 ~
-0 -1 1147
-S
+End
+
 #1149
-A three way intersection~
+Name        A three way intersection~
+Descr
 You stand at an intersection.  The tunnel continues east and west while
 to the north you can barely make out a smaller trail.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 1151
 You see a dark tunnel.
 ~
 ~
-0 -1 1151
-D1
+Door        east~ ~ -1 1150
 You see a dark tunnel.
 ~
 ~
-0 -1 1150
-D3
+Door        west~ ~ -1 1148
 You see a dark tunnel.
 ~
 ~
-0 -1 1148
-S
+End
+
 #1150
-End of a dark tunnel~
+Name        End of a dark tunnel~
+Descr
 You stand at the end of a dark tunnel.  The underground tunnel continues
 to the west.  From a trapdoor in the ceiling you can hear the din of
 adventurers.
 ~
-0 9 0
-D3
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ -1 1149
 You see a dark tunnel.
 ~
 ~
-0 -1 1149
-D4
+Door        up~ ~ -1 3001
 You hear the din of adventurers.
 ~
 ~
-0 -1 3001
-S
+End
+
 #1151
-A dark tunnel~
+Name        A dark tunnel~
+Descr
 You stand inside a small underground tunnel.  The ceiling is so low that
 you must crouch to avoid hitting your head.  The tunnel continues north and
 south.  To the west you see a Shirriff Post while to the east lies a small
 home.  All you can see is darkness.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 1152
 You see a dark tunnel.
 ~
 ~
-0 -1 1152
-D1
+Door        east~ ~ -1 1154
 You see a halfling hole.
 ~
 ~
-0 -1 1154
-D2
+Door        south~ ~ -1 1149
 You see a dark tunnel.
 ~
 ~
-0 -1 1149
-D3
+Door        west~ ~ -1 1153
 Above a great oak door you see a sign which reads 'Shirriff Post'.
 ~
 ~
-0 -1 1153
-S
+End
+
 #1152
-A dark tunnel~
+Name        A dark tunnel~
+Descr
 You stand inside a small underground tunnel.  The ceiling is so low that 
 you must crouch to avoid hitting your head.  The tunnel continues north and
 south.  To the west lies a small home.  All you can see is darkness.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 1156
 You see a dark tunnel.
 ~
 ~
-0 -1 1156
-D2
+Door        south~ ~ -1 1151
 You see a dark tunnel.
 ~
 ~
-0 -1 1151
-D3
+Door        west~ ~ -1 1155
 You see a halfling hole.
 ~
 ~
-0 -1 1155
-S
+End
+
 #1153
-Shiriff Post of the Lower Shire~
+Name        Shiriff Post of the Lower Shire~
+Descr
 You are in the shiriff Post which acts as the nucleus for the three shiriffs 
 of the Lower Shire.  As you examine the shiriffs on duty, you come to realize
 that the halflings of the Shire are not to be reckoned with.  You cower with
 awe.  The only exit is to the east.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1110 8 100
+Reset       E 1109 16 100
+Reset       E 616 5 100
+Reset       M 1110 8 100
+Reset       E 616 5 100
+Reset       M 1111 4 100
+Reset       E 616 5 100
+Door        east~ ~ -1 1151
 You see a dark tunnel.
 ~
 ~
-0 -1 1151
-S
+End
+
 #1154
-A halfling hole~
+Name        A halfling hole~
+Descr
 You stand inside a rather crudely built halfling hole.  The many passageways
 and winding paths remind you of a rodent's lair.  The air is musty and damp
 and you feel the need for fresh air.
 ~
-0 9 0
-D3
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1128 4 100
+Door        west~ ~ -1 1151
 You see a dark tunnel.
 ~
 ~
-0 -1 1151
-S
+End
+
 #1155
-A halfling hole~
+Name        A halfling hole~
+Descr
 You stand inside a rather crudely built halfling hole.  The many passageways
 and winding paths remind you of a rodent's lair.  The air is musty and damp
 and you feel the need for fresh air.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1128 4 100
+Door        east~ ~ -1 1152
 You see a dark tunnel.
 ~
 ~
-0 -1 1152
-S
+End
+
 #1156
-End of a dark tunnel~
+Name        End of a dark tunnel~
+Descr
 You are at one end of a dark tunnel.  The tunnel continues to the south
 while on the ceiling you can make out a trapdoor.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ -1 1152
 You see a dark tunnel.
 ~
 ~
-0 -1 1152
-D4
+Door        up~ ~ -1 1137
 A trapdoor on the ceiling reveals a passageway.
 ~
 ~
-0 -1 1137
-S
+End
+
 #1157
-The Inn of the Green Dragon~
+Name        The Inn of the Green Dragon~
+Descr
 You are standing in the Inn of the Green dragon.  Large paintings of 
 halflings at work, and halflings at play adorn the walls.  Comfortable 
 benches and seats line the walls.  A stairway leads down.
 ~
-0 24 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1131 1 100
+Door        down~ ~ -1 1144
 ~
 ~
-0 -1 1144
-S
+End
+
 #0
 
-
-#SPECIALS
-M 1100 spec_cast_mage
-M 1101 spec_poison
-M 1110 spec_guard
-M 1111 spec_guard
-M 1112 spec_guard
-M 1116 spec_cast_mage
-M 1117 spec_cast_mage
-M 1121 spec_guard
-M 1122 spec_thief
-M 1132 spec_guard
-O 1105 spec_giggle
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-O 0 1102 0 1103
-M 0 1118 1 1105
-G 0 1111 0
-G 0 1112 0
-M 0 1120 1 1107
-M 0 1104 2 1108
-M 0 1104 2 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1110 8 1110
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1110
-E 0 616 0 5
-M 0 1111 4 1110
-E 0 616 0 5
-M 0 1112 1 1111
-E 0 1113 0 16
-E 0 616 0 5
-E 0 1108 0 13
-M 0 1128 4 1114
-G 0 1103 0
-M 0 1128 4 1115
-G 0 1103 0
-M 0 1113 1 1116
-G 0 1110 0
-G 0 648 0
-G 0 649 0
-G 0 650 0
-M 0 1123 4 1116
-M 0 1123 4 1116
-M 0 1124 2 1116
-M 0 1124 2 1116
-M 0 1127 7 1116
-M 0 1127 7 1116
-M 0 1127 7 1116
-M 0 1121 1 1117
-E 0 1113 0 16
-M 0 1126 3 1117
-E 0 1113 0 16
-M 0 1126 3 1117
-E 0 1113 0 16
-M 0 1126 3 1117
-E 0 1113 0 16
-M 0 1110 8 1119
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1119
-E 0 616 0 5
-M 0 1111 4 1119
-E 0 616 0 5
-M 0 1119 1 1121
-G 0 1103 0
-M 0 1115 6 1123
-M 0 1115 6 1123
-M 0 1115 6 1124
-M 0 1115 6 1124
-M 0 1115 6 1124
-M 0 1114 1 1124
-M 0 1115 6 1125
-M 0 1122 9 1127
-M 0 1122 9 1127
-M 0 1122 9 1127
-M 0 1125 1 1128
-M 0 1100 1 1128
-E 0 1104 0 12
-E 0 1100 0 0
-M 0 1122 9 1129
-M 0 1122 9 1129
-M 0 1122 9 1129
-M 0 1122 9 1130
-M 0 1122 9 1130
-M 0 1122 9 1130
-M 0 1116 1 1136
-E 0 1106 0 16
-E 0 622 0 6
-M 0 1117 1 1136
-E 0 1107 0 16
-E 0 621 0 5
-M 0 1101 1 1137
-E 0 1101 0 16
-E 0 1105 0 1
-E 0 623 0 7
-M 0 1108 1 1138
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1102 1 1141
-M 0 1105 3 1142
-M 0 1105 3 1142
-M 0 1105 3 1142
-M 0 1109 4 1142
-M 0 1109 4 1142
-M 0 1109 4 1142
-M 0 1109 4 1142
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1130 1 1144
-G 0 1110 0
-G 0 648 0
-G 0 649 0
-G 0 650 0
-M 0 1123 6 1144
-M 0 1123 6 1144
-M 0 1123 6 1144
-M 0 1127 7 1144
-M 0 1127 7 1144
-M 0 1127 7 1144
-M 0 1127 7 1144
-M 0 1110 8 1145
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1145
-E 0 616 0 5
-M 0 1111 4 1145
-E 0 616 0 5
-M 0 1110 8 1153
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1153
-E 0 616 0 5
-M 0 1111 4 1153
-E 0 616 0 5
-M 0 1128 4 1154
-M 0 1128 4 1155
-M 0 1131 1 1157
-S
-
-
-#SHOPS
-1113 17 0 0 0 0 150 50 0 23
-1118 13 5 15 1 17 150 50 0 23
-1119 13 5 15 1 17 150 50 0 23
-1120 9 5 0 0 0 150 50 0 23
-1130 17 0 0 0 0 150 50 0 23
-0
 
 
 #$

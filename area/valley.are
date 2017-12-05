@@ -4,10 +4,13 @@ Author      Hatchet~
 Levels      5 20
 Security    1
 VNUMs       7800 7883
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
+
 
 
 #HELPS
@@ -34,2234 +37,2562 @@ ELVES have certain abilities available to them.
 
 0 $~
 
-#MOBILES
+
+
+#MOBDB
 #7800
-cooshee dog~
-a cooshee~
+Name        cooshee dog~
+Short       a cooshee~
+Long
 A rather large dog is here, wandering the valley.
 ~
+Descr
 A beast is the size of the largest common dog.  It has a greenish coat with
 brown spots.  Its shape, along with its colors, make this cooshee almost
 undetectable as it moves.
 ~
-193 32768 0 S
-5 15 4 4d4+55 2d4+1
-0 0
-0 Animal~ 0
+Act         stay_area wimpy~
+AffectBy    sneak~
+Alignment   0
+Level       5
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #7801
-valley elf~
-a valley elf~
+Name        valley elf~
+Short       a valley elf~
+Long
 A valley elf wanders here, cautious of your intrusion.
 ~
+Descr
 This elf is almost as tall as you are, but much slimmer and agile.  You see
 hatred in his eyes, and you try to avoid his stare.  His tense body looks ready
 to spring upon you, like a mountain lion stalking its prey.  He sees you
 noticing him, and quietly disappears.
 ~
-229 33280 0 S
-8 11 0 7d7+80 1d4+6
-10 0
-0 Elf~ 1
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    infrared sneak~
+Alignment   0
+Level       8
+Gold        10
+Race        Elf
+Sex         male~
+End
+
 #7802
-valley elf~
-a valley elf~
+Name        valley elf~
+Short       a valley elf~
+Long
 A female valley elf wanders here, skirting between the tall grasses.
 ~
+Descr
 This elf is almost as tall as you are, but much slimmer and more agile.
 She glares at you, then quickly disappears before you see more of her.
 ~
-229 33280 0 S
-8 11 0 7d7+80 1d4+6
-10 0
-0 Elf~ 2
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    infrared sneak~
+Alignment   0
+Level       8
+Gold        10
+Race        Elf
+Sex         female~
+End
+
 #7803
-sentry valley elf~
-a valley elf sentry~
+Name        sentry valley elf~
+Short       a valley elf sentry~
+Long
 A valley elf sentry stands here, then noticing you, attacks quickly!
 ~
+Descr
 This elf is almost as tall as you are, but much slimmer and more agile.
 He glares at your intrusion and attacks with menace.
 ~
-35 33280 0 S
-7 12 1 6d6+70 1d4+5
-10 0
-0 Elf~ 1
+Act         sentinel aggressive~
+AffectBy    infrared sneak~
+Alignment   0
+Level       7
+Gold        10
+Race        Elf
+Sex         male~
+End
+
 #7804
-sentry valley elf~
-a valley elf sentry~
+Name        sentry valley elf~
+Short       a valley elf sentry~
+Long
 A valley elf sentry stands here, then noticing you, attacks quickly!
 ~
+Descr
 This elf is almost as tall as you are, but much slimmer and more agile.
 She glares at your intrusion and attacks with menace.
 ~
-35 33280 0 S
-7 12 1 6d6+70 1d4+5
-10 0
-0 Elf~ 2
+Act         sentinel aggressive~
+AffectBy    infrared sneak~
+Alignment   0
+Level       7
+Gold        10
+Race        Elf
+Sex         female~
+End
+
 #7805
-scout valley elf~
-a valley elf scout~
+Name        scout valley elf~
+Short       a valley elf scout~
+Long
 A valley elf scout wanders the valley, searching for intruders like you!
 ~
+Descr
 The elf notices your intrusion and attacks with determination.
 ~
-101 33280 0 S
-6 13 2 5d5+60 1d4+4
-10 0
-0 Elf~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    infrared sneak~
+Alignment   0
+Level       6
+Gold        10
+Race        Elf
+Sex         male~
+End
+
 #7806
-valley elf~
-a valley elf~
+Name        valley elf~
+Short       a valley elf~
+Long
 A valley elf is here, doing her duties.
 ~
+Descr
 She is currently doing some menial chores, and ignores your intrusion except
 when you are in her way.
 ~
-193 33280 0 S
-6 13 2 5d5+60 1d4+4
-10 0
-0 Elf~ 2
+Act         stay_area wimpy~
+AffectBy    infrared sneak~
+Alignment   0
+Level       6
+Gold        10
+Race        Elf
+Sex         female~
+End
+
 #7807
-elder valley elf~
-a valley elf elder~
+Name        elder valley elf~
+Short       a valley elf elder~
+Long
 A valley elf elder is here, studying.  He notices you.
 A valley elf elder shouts 'You have intruded wrongly.  Be prepared to die!'
 ~
+Descr
 This elf looks quite old, probably twenty or more times your age.  He looks
 quite potent, though.
 ~
-39 8320 0 S
-15 3 -7 14d14+150 1d4+9
-10 0
-0 Elf~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    sanctuary protect-evil~
+Alignment   0
+Level       15
+Gold        10
+Race        Elf
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #7808
-elder valley elf~
-a valley elf elder~
+Name        elder valley elf~
+Short       a valley elf elder~
+Long
 A valley elf elder is here, studying.  She notices you.
 A valley elf elder says 'Your arrogance will be your end, human.'
 ~
+Descr
 This elf looks quite old, probably twenty or more times your age.  She looks
 quite potent, though.
 ~
-39 8192 0 S
-15 3 -10 14d14+150 1d4+9
-10 0
-0 Elf~ 2
+Act         sentinel scavenger aggressive~
+AffectBy    protect-evil~
+Alignment   0
+Level       15
+Gold        10
+Race        Elf
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #7809
-pyrohydra pyro hydra~
-the pyrohydra~
+Name        pyrohydra pyro hydra~
+Short       the pyrohydra~
+Long
 A big beast with many heads, each breathing fire, stares at you with malice.
 ~
+Descr
 This big beast looks like a small red dragon, but has many more heads than a
 regular dragon, too.  It doesn't look happy.
 ~
-35 0 0 S
-20 2 -5 20d20+200 1d20+12
-0 0
-0 Hydra~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   0
+Level       20
+Gold        0
+Race        Hydra
+Sex         neutral~
+Spec        spec_breath_fire
+End
+
 #7810
-hermit man old~
-an old hermit~
+Name        hermit man old~
+Short       an old hermit~
+Long
 An old hermit sits here, smoking a pipe.
 ~
+Descr
 He looks old and feeble.
 ~
-135 0 0 S
-3 17 7 3d3+33 1d4+2
-10 0
-0 Human~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        10
+Race        Human
+Sex         male~
+End
+
 #7811
-talemon wizard mage~
-Talemon~
+Name        talemon wizard mage~
+Short       Talemon~
+Long
 An old mage busies himself with some chemicals.
 ~
+Descr
 Talemon looks harmless, but the fireballs he throws at you don't.
 ~
-39 0 0 S
-25 0 -10 25d25+250 1d4+10
-1000 0
-0 Elf~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   0
+Level       25
+Gold        1000
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #7812
-guardian daemon~
-the guardian daemon~
+Name        guardian daemon~
+Short       the guardian daemon~
+Long
 A huge guardian daemon is here, watching the treasure.
 ~
+Descr
 This daemon is unhappy with its summoned job, and is willing to take out it's
 anger at you!
 ~
-35 0 -500 S
-25 -2 -10 25d25+250 2d4+20
-0 0
-0 God~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -500
+Level       25
+Gold        0
+Race        God
+Sex         neutral~
+End
+
 #7813
-wolf~
-a wolf~
+Name        wolf~
+Short       a wolf~
+Long
 A wolf is here, looking for small prey.
 ~
+Descr
 The wolf is covered with brown hair.  It looks at you with fright.
 ~
-161 0 0 S
-4 16 6 4d4+40 1d4+3
-0 0
-0 Bear~ 0
+Act         aggressive wimpy~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #7814
-antelope~
-an antelope~
+Name        antelope~
+Short       an antelope~
+Long
 An antelope is here, peacefully munching on grass.
 ~
+Descr
 With horns and spots over coarse, brown hair, this beast is the spit and
 image of ... an antelope.
 ~
-129 0 0 S
-6 14 4 6d6+66 1d4+5
-0 0
-0 Animal~ 0
+Act         wimpy~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #7800
-chainmail chain mail~
-elven chainmail~
+Name        chainmail chain mail~
+Short       elven chainmail~
+Descr
 A shiny metallic shirt is on the floor.~
-~
-9 0 9
-4~ 0~ 0~ 0~ 0~
-3 50 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        50
+End
+
 #7801
-boots~
-elven boots~
+Name        boots~
+Short       elven boots~
+Descr
 Some soft boots are on the floor.~
-~
-9 0 65
-3~ 0~ 0~ 0~ 0~
-3 10 0
-A
-14 50 0
+Type        armor~
+Extra       ~
+Wear        take feet~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        10
+Affect      move~ 50 ~
+End
+
 #7802
-longsword sword long~
-an elven longsword~
+Name        longsword sword long~
+Short       an elven longsword~
+Descr
 A shiny blade is on the floor.~
-~
-5 64 8193
-0~ 3~ 3~ 3~ 0~
-3 50 0
-A
-18 1 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 3~ 3~ 3~ 0~
+Weight      3
+Cost        50
+Affect      hitroll~ 1 ~
+End
+
 #7803
-cloak brown~
-a brown cloak~
+Name        cloak brown~
+Short       a brown cloak~
+Descr
 A pile of brown cloth is on the floor.~
-~
-9 64 5
-3~ 0~ 0~ 0~ 0~
-3 50 0
-A
-2 1 0
+Type        armor~
+Extra       magic~
+Wear        take neck~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        50
+Affect      dexterity~ 1 ~
+End
+
 #7804
-key~
-a key~
+Name        key~
+Short       a key~
+Descr
 A shiny key is on the floor.~
-~
-18 0 1
-7846~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      7846~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #7805
-key~
-a key~
+Name        key~
+Short       a key~
+Descr
 A shiny key is on the floor.~
-~
-18 0 1
-7880~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      7880~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #7806
-ring~
-a gold ring~
+Name        ring~
+Short       a gold ring~
+Descr
 A shiny ring is on the floor.~
-~
-9 64 3
-3~ 0~ 0~ 0~ 0~
-1 1000 0
-A
-12 10 0
+Type        armor~
+Extra       magic~
+Wear        take finger~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+Affect      mana~ 10 ~
+End
+
 #7807
-quarterstaff staff~
-a quarterstaff~
+Name        quarterstaff staff~
+Short       a quarterstaff~
+Descr
 A quarterstaff is on the floor.~
-~
-5 64 8193
-0~ 4~ 4~ 8~ 0~
-5 1000 0
-A
-19 2 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 4~ 4~ 8~ 0~
+Weight      5
+Cost        1000
+Affect      damroll~ 2 ~
+End
+
 #7808
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ armor~ invis~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ armor~ invis~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7809
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ energy drain~  ~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ energy drain~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7810
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ detect hidden~ detect magic~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ detect hidden~ detect magic~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7811
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-50~ dispel magic~ dispel magic~ dispel magic~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      50~ dispel magic~ dispel magic~ dispel magic~  ~
+Weight      1
+Cost        200
+End
+
 #7812
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ refresh~ protection~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ refresh~ protection evil~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7813
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ sleep~  ~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ sleep~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7814
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ bless~  ~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ bless~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7815
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~ cure critical~  ~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~ cure critical~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7816
-potion~
-a potion~
+Name        potion~
+Short       a potion~
+Descr
 A potion is on the floor.~
-~
-10 64 1
-10~  ~  ~  ~  ~
-1 200 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      10~  ~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7817
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~ cure critical~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~ cure critical~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7818
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~  ~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~  ~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7819
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~ detect evil~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~ detect evil~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7820
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~ create water~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~ create water~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7821
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~ magic missile~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~ magic missile~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7822
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~ chill touch~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~ chill touch~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7823
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll is on the floor.~
-~
-2 64 1
-10~ heal~  ~  ~  ~
-1 200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      10~ heal~  ~  ~  ~
+Weight      1
+Cost        200
+End
+
 #7824
-rod light~
-the Rod of Neutrality~
+Name        rod light~
+Short       the Rod of Neutrality~
+Descr
 A dull iron shaft is on the floor.~
-~
-1 1600 1
-0~ 0~ -1~ 0~ 0~
-1 1000 0
-A
-19 5 0
+Type        light~
+Extra       magic anti-good anti-evil~
+Wear        take~
+Values      0~ 0~ -1~ 0~ 0~
+Weight      1
+Cost        1000
+Affect      damroll~ 5 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #7800
-A Path from the Plains~
+Name        A Path from the Plains~
+Descr
 You are on a path away from the Plains of Ofcol.  The path doesn't look well
 tread, but it is relatively well kept.  To the south are the Plains of Ofcol,
 while this path leads north.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7801
 The path continues north.
 ~
 ~
-0 0 7801
-D2
+Door        south~ ~ 0 323
 You see the Plains of Ofcol.
 ~
 ~
-0 0 323
-S
+End
+
 #7801
-Along the Path~
+Name        Along the Path~
+Descr
 You are on the path away from the Plains of Ofcol.  The main path leads north
 to an overlook and south back toward the Plains of Ofcol.  Western and eastern
 side paths can be seen, probably deer trails by the width of them.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7804
 You see the overlook.
 ~
 ~
-0 0 7804
-D1
+Door        east~ ~ 0 7803
 You see the small trail.
 ~
 ~
-0 0 7803
-D2
+Door        south~ ~ 0 7800
 You see the path back toward Ofcol.
 ~
 ~
-0 0 7800
-D3
+Door        west~ ~ 0 7802
 You see the small trail.
 ~
 ~
-0 0 7802
-S
+End
+
 #7802
-A Small Trail~
+Name        A Small Trail~
+Descr
 This small deer trail leads north and east.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7867
 The trail continues north.
 ~
 ~
-0 0 7867
-D1
+Door        east~ ~ 0 7801
 The main path is to the east.
 ~
 ~
-0 0 7801
-S
+End
+
 #7803
-A Small Trail~
+Name        A Small Trail~
+Descr
 This small deer trail leads north and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7849
 The trail continues north.
 ~
 ~
-0 0 7849
-D3
+Door        west~ ~ 0 7801
 The main path is to the west.
 ~
 ~
-0 0 7801
-S
+End
+
 #7804
-The Overlook~
+Name        The Overlook~
+Descr
 You are above a large valley.  Below you, you see humanoid forms wandering
 around the valley.  Rich green grass covers the valley, with some small trees
 dotting the landscape.  To the south is the trail back toward Ofcol.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 7801
 You see the path back toward Ofcol.
 ~
 ~
-0 0 7801
-D5
+Door        down~ ~ 0 7805
 You see the entrance to the valley.
 ~
 ~
-0 0 7805
-S
+End
+
 #7805
-The Entrance to the Valley of the Elves~
+Name        The Entrance to the Valley of the Elves~
+Descr
 You are at the entrance to the Valley of the Elves.  Elves stare at your
 intrusion, but most are too busy to bother with you.  The valley spreads to
 the north, while enlarging toward the east and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7801 1 100
+Reset       E 7802 16 100
+Door        north~ ~ 0 7810
 The valley continues north.
 ~
 ~
-0 0 7810
-D1
+Door        east~ ~ 0 7807
 The valley continues east.
 ~
 ~
-0 0 7807
-D3
+Door        west~ ~ 0 7806
 The valley continues west.
 ~
 ~
-0 0 7806
-D4
+Door        up~ ~ 0 7804
 The overlook is above you.
 ~
 ~
-0 0 7804
-S
+End
+
 #7806
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues north and east.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7800 1 100
+Door        north~ ~ 0 7809
 The valley continues north.
 ~
 ~
-0 0 7809
-D1
+Door        east~ ~ 0 7805
 The entrance to the valley is to the east.
 ~
 ~
-0 0 7805
-S
+End
+
 #7807
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues north and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7800 2 100
+Door        north~ ~ 0 7811
 The valley continues north.
 ~
 ~
-0 0 7811
-D3
+Door        west~ ~ 0 7805
 The entrance to the valley is to the west.
 ~
 ~
-0 0 7805
-S
+End
+
 #7808
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues north and east.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7813
 The valley continues north.
 ~
 ~
-0 0 7813
-D1
+Door        east~ ~ 0 7809
 The valley continues east.
 ~
 ~
-0 0 7809
-S
+End
+
 #7809
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7814
 The valley continues north.
 ~
 ~
-0 0 7814
-D1
+Door        east~ ~ 0 7810
 The valley continues east.
 ~
 ~
-0 0 7810
-D2
+Door        south~ ~ 0 7806
 The valley continues south.
 ~
 ~
-0 0 7806
-D3
+Door        west~ ~ 0 7808
 The valley continues west.
 ~
 ~
-0 0 7808
-S
+End
+
 #7810
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 The entrance to the valley is towards the south.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7815
 The valley continues north.
 ~
 ~
-0 0 7815
-D1
+Door        east~ ~ 0 7811
 The valley continues east.
 ~
 ~
-0 0 7811
-D2
+Door        south~ ~ 0 7805
 You see the entrance to the valley.
 ~
 ~
-0 0 7805
-D3
+Door        west~ ~ 0 7809
 The valley continues west.
 ~
 ~
-0 0 7809
-S
+End
+
 #7811
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7802 2 100
+Reset       E 7802 16 100
+Door        north~ ~ 0 7816
 The valley continues north.
 ~
 ~
-0 0 7816
-D1
+Door        east~ ~ 0 7812
 The valley continues east.
 ~
 ~
-0 0 7812
-D2
+Door        south~ ~ 0 7807
 The valley continues south.
 ~
 ~
-0 0 7807
-D3
+Door        west~ ~ 0 7810
 The valley continues west.
 ~
 ~
-0 0 7810
-S
+End
+
 #7812
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues north and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7817
 The valley continues north.
 ~
 ~
-0 0 7817
-D3
+Door        west~ ~ 0 7811
 The valley continues west.
 ~
 ~
-0 0 7811
-S
+End
+
 #7813
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  A steep trail leads up toward
 the deer trail circling the valley.  The valley continues north, south, and
 east.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7818
 The valley continues north.
 ~
 ~
-0 0 7818
-D1
+Door        east~ ~ 0 7814
 The valley continues east.
 ~
 ~
-0 0 7814
-D2
+Door        south~ ~ 0 7808
 The valley continues south.
 ~
 ~
-0 0 7808
-D4
+Door        up~ ~ 0 7863
 The steep trail leads up.
 ~
 ~
-0 0 7863
-S
+End
+
 #7814
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7819
 The valley continues north.
 ~
 ~
-0 0 7819
-D1
+Door        east~ ~ 0 7815
 The valley continues east.
 ~
 ~
-0 0 7815
-D2
+Door        south~ ~ 0 7809
 The valley continues south.
 ~
 ~
-0 0 7809
-D3
+Door        west~ ~ 0 7813
 The valley continues west.
 ~
 ~
-0 0 7813
-S
+End
+
 #7815
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7814 3 100
+Door        north~ ~ 0 7820
 The valley continues north.
 ~
 ~
-0 0 7820
-D1
+Door        east~ ~ 0 7816
 The valley continues east.
 ~
 ~
-0 0 7816
-D2
+Door        south~ ~ 0 7810
 The valley continues south.
 ~
 ~
-0 0 7810
-D3
+Door        west~ ~ 0 7814
 The valley continues west.
 ~
 ~
-0 0 7814
-S
+End
+
 #7816
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7801 6 100
+Reset       E 7802 16 100
+Door        north~ ~ 0 7821
 The valley continues north.
 ~
 ~
-0 0 7821
-D1
+Door        east~ ~ 0 7817
 The valley continues east.
 ~
 ~
-0 0 7817
-D2
+Door        south~ ~ 0 7811
 The valley continues south.
 ~
 ~
-0 0 7811
-D3
+Door        west~ ~ 0 7815
 The valley continues west.
 ~
 ~
-0 0 7815
-S
+End
+
 #7817
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  A steep trail leads up toward
 the deer trail circling the valley.  The valley continues north, south, and
 west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7822
 The valley continues north.
 ~
 ~
-0 0 7822
-D2
+Door        south~ ~ 0 7812
 The valley continues south.
 ~
 ~
-0 0 7812
-D3
+Door        west~ ~ 0 7816
 The valley continues west.
 ~
 ~
-0 0 7816
-D4
+Door        up~ ~ 0 7853
 The steep trail leads up.
 ~
 ~
-0 0 7853
-S
+End
+
 #7818
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a
 small trail circling the entire valley.  The valley continues south and east.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7801 3 100
+Reset       E 7802 16 100
+Reset       M 7813 3 100
+Door        east~ ~ 0 7819
 The valley continues east.
 ~
 ~
-0 0 7819
-D2
+Door        south~ ~ 0 7813
 The valley continues south.
 ~
 ~
-0 0 7813
-S
+End
+
 #7819
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7823
 The valley continues north.
 ~
 ~
-0 0 7823
-D1
+Door        east~ ~ 0 7820
 The valley continues east.
 ~
 ~
-0 0 7820
-D2
+Door        south~ ~ 0 7814
 The valley continues south.
 ~
 ~
-0 0 7814
-D3
+Door        west~ ~ 0 7818
 The valley continues west.
 ~
 ~
-0 0 7818
-S
+End
+
 #7820
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7801 2 100
+Reset       E 7802 16 100
+Reset       M 7802 6 100
+Reset       E 7802 16 100
+Door        north~ ~ 0 7824
 The valley continues north.
 ~
 ~
-0 0 7824
-D1
+Door        east~ ~ 0 7821
 The valley continues east.
 ~
 ~
-0 0 7821
-D2
+Door        south~ ~ 0 7815
 The valley continues south.
 ~
 ~
-0 0 7815
-D3
+Door        west~ ~ 0 7819
 The valley continues west.
 ~
 ~
-0 0 7819
-S
+End
+
 #7821
-The Valley of the Elves~
+Name        The Valley of the Elves~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7825
 The valley continues north.
 ~
 ~
-0 0 7825
-D1
+Door        east~ ~ 0 7822
 The valley continues east.
 ~
 ~
-0 0 7822
-D2
+Door        south~ ~ 0 7816
 The valley continues south.
 ~
 ~
-0 0 7816
-D3
+Door        west~ ~ 0 7820
 The valley continues west.
 ~
 ~
-0 0 7820
-S
+End
+
 #7822
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues south and west.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 7817
 The valley continues south.
 ~
 ~
-0 0 7817
-D3
+Door        west~ ~ 0 7821
 The valley continues west.
 ~
 ~
-0 0 7821
-S
+End
+
 #7823
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues south and east.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7800 5 100
+Door        east~ ~ 0 7824
 The valley continues east.
 ~
 ~
-0 0 7824
-D2
+Door        south~ ~ 0 7819
 The valley continues south
 ~
 ~
-0 0 7819
-S
+End
+
 #7824
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are in the Valley of the Elves.  The valley continues in all directions.
 To the north, a small, narrow trail leads away from the valley.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7826
 A small trail leads away from the valley.
 ~
 ~
-0 0 7826
-D1
+Door        east~ ~ 0 7825
 The valley continues east.
 ~
 ~
-0 0 7825
-D2
+Door        south~ ~ 0 7820
 The valley continues south.
 ~
 ~
-0 0 7820
-D3
+Door        west~ ~ 0 7823
 The valley continues west.
 ~
 ~
-0 0 7823
-S
+End
+
 #7825
-The Edge of the Valley~
+Name        The Edge of the Valley~
+Descr
 You are at the edge of the Valley of the Elves.  High above you, you see a small
 trail circling the entire valley.  The valley continues south and west.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7814 3 100
+Door        south~ ~ 0 7821
 The valley continues south.
 ~
 ~
-0 0 7821
-D3
+Door        west~ ~ 0 7824
 The valley continues west.
 ~
 ~
-0 0 7824
-S
+End
+
 #7826
-A Trail Leading from the Valley~
+Name        A Trail Leading from the Valley~
+Descr
 You are on a narrow trail leading away from the Valley of the Elves.  This
 trail leads north and south.  A rope ladder leads up to a rope bridge.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7827
 The trail continues north.
 ~
 ~
-0 0 7827
-D2
+Door        south~ ~ 0 7824
 The trail leads back to the valley.
 ~
 ~
-0 0 7824
-D4
+Door        up~ ~ 0 7858
 You see the rope bridge above you.
 ~
 ~
-0 0 7858
-S
+End
+
 #7827
-Along the Trail~
+Name        Along the Trail~
+Descr
 You are on the trail away from the Valley of the Elves.  The hills around you
 keep this trail narrow.  The trail continues east, south, and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7805 3 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        east~ ~ 0 7828
 The trail continues east.
 ~
 ~
-0 0 7828
-D2
+Door        south~ ~ 0 7826
 The trail continues south back toward the valley.
 ~
 ~
-0 0 7826
-D3
+Door        west~ ~ 0 7868
 The trail continues west.
 ~
 ~
-0 0 7868
-S
+End
+
 #7828
-A Bend in the Trail~
+Name        A Bend in the Trail~
+Descr
 You are on the trail away from the Valley of the Elves.  The hills around you
 keep this trail narrow.  The trail continues north and back west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7829
 You see a small valley north.
 ~
 ~
-0 0 7829
-D3
+Door        west~ ~ 0 7827
 The trail goes back to the west.
 ~
 ~
-0 0 7827
-S
+End
+
 #7829
-A Smaller Valley~
+Name        A Smaller Valley~
+Descr
 You are in another valley within these hills. To the north, you can see a
 building, and to the south you see the trail away from this valley.  The
 west and east paths surround this building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ door closed~ -1 7834
 You see the building.
 ~
 door~
-3 -1 7834
-D1
+Door        east~ ~ 0 7831
 You see the trail around the building.
 ~
 ~
-0 0 7831
-D2
+Door        south~ ~ 0 7828
 You see the trail leading away from this valley.
 ~
 ~
-0 0 7828
-D3
+Door        west~ ~ 0 7830
 You see the trail around the building.
 ~
 ~
-0 0 7830
-S
+End
+
 #7830
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads north and
 east.  To the north-east is a building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7813 3 100
+Door        north~ ~ 0 7832
 You see the trail.
 ~
 ~
-0 0 7832
-D1
+Door        east~ ~ 0 7829
 You see the trail.
 ~
 ~
-0 0 7829
-S
+End
+
 #7831
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads west and
 east.  To the north is a building.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7833
 You see the trail.
 ~
 ~
-0 0 7833
-D3
+Door        west~ ~ 0 7829
 You see the trail.
 ~
 ~
-0 0 7829
-S
+End
+
 #7832
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads north and
 south.  To the east is a building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7837
 You see the trail.
 ~
 ~
-0 0 7837
-D2
+Door        south~ ~ 0 7830
 You see the trail.
 ~
 ~
-0 0 7830
-S
+End
+
 #7833
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads north and
 west.  To the north-west is a building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7800 6 100
+Door        north~ ~ 0 7836
 You see the trail.
 ~
 ~
-0 0 7836
-D3
+Door        west~ ~ 0 7831
 You see the trail.
 ~
 ~
-0 0 7831
-S
+End
+
 #7834
-The Elf Home~
+Name        The Elf Home~
+Descr
 You are in the home of the valley elves.  The building continues to the north
 and the east, and the exit is to the south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 7838
 The building continues to the north.
 ~
 ~
-0 0 7838
-D1
+Door        east~ ~ 0 7835
 The building continues to the east.
 ~
 ~
-0 0 7835
-D2
+Door        south~ door closed~ -1 7829
 The exit is to the south.
 ~
 door~
-3 -1 7829
-S
+End
+
 #7835
-The Kitchen~
+Name        The Kitchen~
+Descr
 You are in a community kitchen for this valley elven home.  Pots and pans line
 the walls, along with shelves filled with many foodstuffs.  A big oven is to one
 side, and you can smell elfcakes being baked.
 There is a doorway to the north and one to the west.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7806 3 100
+Door        north~ ~ 0 7839
 The building continues to the north.
 ~
 ~
-0 0 7839
-D3
+Door        west~ ~ 0 7834
 The building continues to the west.
 ~
 ~
-0 0 7834
-S
+End
+
 #7836
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads north and
 south.  To the west is a building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7840
 You see the trail.
 ~
 ~
-0 0 7840
-D2
+Door        south~ ~ 0 7833
 You see the trail.
 ~
 ~
-0 0 7833
-S
+End
+
 #7837
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads north and
 south.  To the east is a building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7800 3 100
+Door        north~ ~ 0 7841
 You see the trail.
 ~
 ~
-0 0 7841
-D2
+Door        south~ ~ 0 7832
 You see the trail.
 ~
 ~
-0 0 7832
-S
+End
+
 #7838
-The Living Room~
+Name        The Living Room~
+Descr
 You are in the living room of the elven home.  Mats cover the floor, and a
 on a table is a bowl full of fruits.  Through the window you can see the
 valley, with its wild flowers and tall, green grasses.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7806 4 100
+Door        east~ ~ 0 7839
 The building continues to the east.
 ~
 ~
-0 0 7839
-D2
+Door        south~ ~ 0 7834
 The entrance is to the south.
 ~
 ~
-0 0 7834
-S
+End
+
 #7839
-The Storage Room~
+Name        The Storage Room~
+Descr
 You are in the storage room of the elven home.  Sacks of flour cover one side,
 and cleaning accessories cover the other side.  You find nothing of use here.
 A staircase leads up.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7806 5 100
+Door        south~ ~ 0 7835
 The building continues to the south.
 ~
 ~
-0 0 7835
-D3
+Door        west~ ~ 0 7838
 The building continues to the west.
 ~
 ~
-0 0 7838
-D4
+Door        up~ ~ 0 7848
 You see the second floor.
 ~
 ~
-0 0 7848
-S
+End
+
 #7840
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads north and
 south.  To the west is a building.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7844
 You see the trail.
 ~
 ~
-0 0 7844
-D2
+Door        south~ ~ 0 7836
 You see the trail.
 ~
 ~
-0 0 7836
-S
+End
+
 #7841
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads south and
 east.  To the south-east is a building.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7842
 You see the trail.
 ~
 ~
-0 0 7842
-D2
+Door        south~ ~ 0 7837
 You see the trail.
 ~
 ~
-0 0 7837
-S
+End
+
 #7842
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads west and
 east.  To the south is a building.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7802 5 100
+Reset       E 7802 16 100
+Reset       M 7805 4 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        east~ ~ 0 7843
 You see the trail.
 ~
 ~
-0 0 7843
-D3
+Door        west~ ~ 0 7841
 You see the trail.
 ~
 ~
-0 0 7841
-S
+End
+
 #7843
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads east and
 west.  To the south is a building.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7844
 You see the trail.
 ~
 ~
-0 0 7844
-D3
+Door        west~ ~ 0 7842
 You see the trail.
 ~
 ~
-0 0 7842
-S
+End
+
 #7844
-A Trail in the Valley~
+Name        A Trail in the Valley~
+Descr
 You are on the trail in the Valley of the Elves.  This trail leads south and
 west.  To the south-west is a building.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7801 4 100
+Reset       E 7802 16 100
+Door        south~ ~ 0 7840
 You see the trail.
 ~
 ~
-0 0 7840
-D3
+Door        west~ ~ 0 7843
 You see the trail.
 ~
 ~
-0 0 7843
-S
+End
+
 #7845
-The Elders' Room~
+Name        The Elders' Room~
+Descr
 You are in the room of the valley elf elders.  Books written in strange
 languages line the numerous shelves, and scrolls cover a table.  There is a
 smooth spheric object in the center of the room.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7807 1 100
+Reset       E 7804 -1 100
+Reset       E 7806 1 100
+Reset       E 7807 16 100
+Reset       M 7808 1 100
+Reset       E 7806 1 100
+Reset       E 7807 16 100
+Door        north~ door closed~ -1 7847
 You see another room.
 ~
 door~
-3 -1 7847
-D1
+Door        east~ door closed locked~ 7804 7846
 You see another room.
 ~
 door~
-7 7804 7846
-S
+End
+
 #7846
-The Storage Room~
+Name        The Storage Room~
+Descr
 You are in a storage room.  Many useless (to you) items fill this room.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 7809 0 100
+Reset       O 7823 0 100
+Reset       O 7820 0 100
+Reset       O 7817 0 100
+Reset       O 7815 0 100
+Reset       O 7816 0 100
+Reset       O 7819 0 100
+Door        north~ door closed locked~ 7804 7848
 You see another room.
 ~
 door~
-7 7804 7848
-D3
+Door        west~ door closed locked~ 7804 7845
 You see another room.
 ~
 door~
-7 7804 7845
-S
+End
+
 #7847
-The Sleeping Quarters~
+Name        The Sleeping Quarters~
+Descr
 You are in the sleeping quarters of the valley elves.  Cots line the floor,
 with two windows showing a view of the valley.  Books in strange languages
 line the shelves, but nothing of interest is here.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7806 1 100
+Reset       M 7806 2 100
+Door        east~ door closed~ -1 7848
 You see another room.
 ~
 door~
-3 -1 7848
-D2
+Door        south~ door closed~ -1 7845
 You see another room.
 ~
 door~
-3 -1 7845
-S
+End
+
 #7848
-Study~
+Name        Study~
+Descr
 You are in the study room of the valley elves.  Comfortable mats are on the
 floor, and musical instruments are neatly stacked on shelves.  Books in
 strange languages line some other elves.  A stairway leads down to the
 first floor.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7803 4 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Reset       M 7804 1 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        south~ door closed locked~ 7804 7846
 You see another room.
 ~
 door~
-7 7804 7846
-D3
+Door        west~ door closed~ -1 7847
 You see another room.
 ~
 door~
-3 -1 7847
-D5
+Door        down~ ~ 0 7839
 You see the first floor.
 ~
 ~
-0 0 7839
-S
+End
+
 #7849
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7850
 ~
 ~
-0 0 7850
-D2
+Door        south~ ~ 0 7803
 ~
 ~
-0 0 7803
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7850
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7804 1 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        north~ ~ 0 7851
 ~
 ~
-0 0 7851
-D3
+Door        west~ ~ 0 7849
 ~
 ~
-0 0 7849
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7851
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7852
 ~
 ~
-0 0 7852
-D2
+Door        south~ ~ 0 7850
 ~
 ~
-0 0 7850
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7852
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7805 1 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Reset       M 7814 3 100
+Door        north~ ~ 0 7853
 ~
 ~
-0 0 7853
-D3
+Door        west~ ~ 0 7851
 ~
 ~
-0 0 7851
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7853
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 A safe trail leads down into the valley.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7803 1 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        north~ ~ 0 7854
 ~
 ~
-0 0 7854
-D2
+Door        south~ ~ 0 7852
 ~
 ~
-0 0 7852
-D5
+Door        down~ ~ 0 7817
 The trail down looks safe.
 ~
 ~
-0 0 7817
-S
+End
+
 #7854
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7802 4 100
+Reset       E 7802 16 100
+Door        south~ ~ 0 7853
 ~
 ~
-0 0 7853
-D3
+Door        west~ ~ 0 7855
 ~
 ~
-0 0 7855
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7855
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7856
 ~
 ~
-0 0 7856
-D1
+Door        east~ ~ 0 7854
 ~
 ~
-0 0 7854
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7856
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7804 1 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        south~ ~ 0 7855
 ~
 ~
-0 0 7855
-D3
+Door        west~ ~ 0 7857
 ~
 ~
-0 0 7857
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7857
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7856
 ~
 ~
-0 0 7856
-D3
+Door        west~ ~ 0 7858
 You see a rope bridge~
 ~
-0 0 7858
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7858
-On the Rope Bridge~
+Name        On the Rope Bridge~
+Descr
 You are on the rope bridge.  From here, you can see the whole Valley of the
 Elves.  To the south, you see the main valley.  To the north-east, you see a
 smaller valley with a building in the center of it.  To the north-west, you
 can see a very small valley with a shack in it's center.  A rope ladder
 leads down into a trail.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7857
 ~
 ~
-0 0 7857
-D3
+Door        west~ ~ 0 7859
 ~
 ~
-0 0 7859
-D5
+Door        down~ ~ 0 7826
 You see the trail.
 ~
 ~
-0 0 7826
-S
+End
+
 #7859
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7858
 You see a rope bridge.
 ~
 ~
-0 0 7858
-D3
+Door        west~ ~ 0 7860
 ~
 ~
-0 0 7860
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7860
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7803 3 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Reset       M 7813 3 100
+Door        east~ ~ 0 7859
 ~
 ~
-0 0 7859
-D2
+Door        south~ ~ 0 7861
 ~
 ~
-0 0 7861
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7861
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7860
 ~
 ~
-0 0 7860
-D3
+Door        west~ ~ 0 7862
 ~
 ~
-0 0 7862
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7862
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7805 2 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        east~ ~ 0 7861
 ~
 ~
-0 0 7861
-D2
+Door        south~ ~ 0 7863
 ~
 ~
-0 0 7863
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7863
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 A safe trail leads down into the valley.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7804 1 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        north~ ~ 0 7862
 ~
 ~
-0 0 7862
-D2
+Door        south~ ~ 0 7864
 ~
 ~
-0 0 7864
-D5
+Door        down~ ~ 0 7813
 The trail down looks safe.
 ~
 ~
-0 0 7813
-S
+End
+
 #7864
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7863
 ~
 ~
-0 0 7863
-D1
+Door        east~ ~ 0 7865
 ~
 ~
-0 0 7865
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7865
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7802 3 100
+Reset       E 7802 16 100
+Door        south~ ~ 0 7866
 ~
 ~
-0 0 7866
-D3
+Door        west~ ~ 0 7864
 ~
 ~
-0 0 7864
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7866
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7803 2 100
+Reset       E 7800 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        north~ ~ 0 7865
 ~
 ~
-0 0 7865
-D1
+Door        east~ ~ 0 7867
 ~
 ~
-0 0 7867
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7867
-Along a Windy Trail on the Rim of the Valley~
+Name        Along a Windy Trail on the Rim of the Valley~
+Descr
 You are on a narrow trail on the rim of the Valley of the Elves.  Below you,
 you can see the valley, filled with wild flowers and tall, green grasses.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 7802
 ~
 ~
-0 0 7802
-D3
+Door        west~ ~ 0 7866
 ~
 ~
-0 0 7866
-D5
+Door        down~ ~ 0 7883
 The trail down doesn't look safe to travel on at all.
 ~
 ~
-0 0 7883
-S
+End
+
 #7868
-A Bend in the Trail~
+Name        A Bend in the Trail~
+Descr
 You are on a bend in the trail leading from the main valley.  The hills around
 you make this trail quite narrow.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7802 1 100
+Reset       E 7802 16 100
+Door        north~ ~ 0 7869
 The trail continues north.
 ~
 ~
-0 0 7869
-D1
+Door        east~ ~ 0 7827
 The trail continues east.
 ~
 ~
-0 0 7827
-S
+End
+
 #7869
-A Bend in the Trail~
+Name        A Bend in the Trail~
+Descr
 You are on a bend in the trail leading from the main valley.  The hills around
 you make this trail quite narrow.  To the west, you can see an even smaller
 valley, with looks like a small shack in the center of it.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 7868
 The trail continues south.
 ~
 ~
-0 0 7868
-D3
+Door        west~ ~ 0 7870
 The entrance to the small valley is to the west.
 ~
 ~
-0 0 7870
-S
+End
+
 #7870
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  The exit from this valley is to the east, and
 the entrance to the shack is to the west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7871
 The valley continues to the north.
 ~
 ~
-0 0 7871
-D1
+Door        east~ ~ 0 7869
 The exit from this small valley is to the east.
 ~
 ~
-0 0 7869
-D2
+Door        south~ ~ 0 7872
 The valley continues to the south.
 ~
 ~
-0 0 7872
-D3
+Door        west~ door closed~ -1 7878
 You see the small shack.
 ~
 door~
-3 -1 7878
-S
+End
+
 #7871
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the south-west is a small shack.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 7870
 The valley continues to the south.
 ~
 ~
-0 0 7870
-D3
+Door        west~ ~ 0 7873
 The valley continues to the west.
 ~
 ~
-0 0 7873
-S
+End
+
 #7872
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the north-west is a small shack.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7870
 The valley continues to the north.
 ~
 ~
-0 0 7870
-D3
+Door        west~ ~ 0 7877
 The valley continues to the west.
 ~
 ~
-0 0 7877
-S
+End
+
 #7873
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the south is a small shack.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7800 4 100
+Door        east~ ~ 0 7871
 The valley continues to the east.
 ~
 ~
-0 0 7871
-D3
+Door        west~ ~ 0 7874
 The valley continues to the west.
 ~
 ~
-0 0 7874
-S
+End
+
 #7874
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the south-east is a small shack.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 7873
 The valley continues to the east.
 ~
 ~
-0 0 7873
-D2
+Door        south~ ~ 0 7875
 The valley continues to the south.
 ~
 ~
-0 0 7875
-S
+End
+
 #7875
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the east is a small shack.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 7874
 The valley continues to the north.
 ~
 ~
-0 0 7874
-D2
+Door        south~ ~ 0 7876
 The valley continues to the south.
 ~
 ~
-0 0 7876
-S
+End
+
 #7876
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the north-east is a small shack.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7805 5 100
+Reset       E 7801 8 100
+Reset       E 7802 16 100
+Reset       E 7803 3 100
+Door        north~ ~ 0 7875
 The valley continues to the north.
 ~
 ~
-0 0 7875
-D1
+Door        east~ ~ 0 7877
 The valley continues to the east.
 ~
 ~
-0 0 7877
-S
+End
+
 #7877
-The Small Valley~
+Name        The Small Valley~
+Descr
 You are in the small valley.  Strangely, tall trees grow here, almost as if some
 magic was used to help them grow.  To the north is a small shack.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 7801 5 100
+Reset       E 7802 16 100
+Door        east~ ~ 0 7872
 The valley continues to the east.
 ~
 ~
-0 0 7872
-D3
+Door        west~ ~ 0 7876
 The valley continues to the west.
 ~
 ~
-0 0 7876
-S
+End
+
 #7878
-Inside the Small Shack~
+Name        Inside the Small Shack~
+Descr
 You are inside the small shack.  A small stove is on the side, with soup
 cooking over it.  You see nothing valuable.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7810 1 100
+Door        east~ door closed~ -1 7870
 You see the valley outside.
 ~
 door~
-3 -1 7870
-D5
+Door        down~ door closed~ -1 7879
 You see a trap door!
 ~
 trap door~
-3 -1 7879
-S
+End
+
 #7879
-Beneath the Small Shack~
+Name        Beneath the Small Shack~
+Descr
 You are beneath the small shack, in a tunnel that leads south.  It feels
 quite warm down here.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 7880
 The room looks reddish down there.
 ~
 ~
-0 0 7880
-D4
+Door        up~ door closed~ -1 7878
 Back to known territory!
 ~
 trap door~
-3 -1 7878
-S
+End
+
 #7880
-The Den of the Pyrohydra~
+Name        The Den of the Pyrohydra~
+Descr
 You are in the den of the pyrohydra.  All the walls are charred, and this
 room is filled with a smell close to that of burning tar.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7809 1 100
+Reset       E 7805 -1 100
+Door        north~ ~ 0 7879
 You see the relative safety to the north.
 ~
 ~
-0 0 7879
-D1
+Door        east~ door closed locked~ 7805 7882
 You see breaks in the charred rock to the east.
 ~
 secret~
-7 7805 7882
-D3
+Door        west~ door closed locked~ 7805 7881
 You see a door to the west.
 ~
 door~
-7 7805 7881
-S
+End
+
 #7881
-The Workroom~
+Name        The Workroom~
+Descr
 This room looks like it is used for magical studies.  Potions bubble over
 burners, and the whole room spells of herbs and dead animal flesh.  A furnace
 to the side casts a bright light in this room.  The whole room radiates with
 a magical aura.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 7811 1 100
+Reset       E 7806 1 100
+Reset       E 7807 16 100
+Reset       E 7824 0 100
+Door        east~ door closed locked~ 7805 7880
 ~
 door~
-7 7805 7880
-S
+End
+
 #7882
-The Storage Room~
+Name        The Storage Room~
+Descr
 This room is used to store scrolls, potions, and other magical items.  The
 whole room radiates with a magical aura.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 7808 0 100
+Reset       O 7822 0 100
+Reset       O 7821 0 100
+Reset       O 7810 0 100
+Reset       O 7812 0 100
+Reset       O 7811 0 100
+Reset       O 7820 0 100
+Reset       O 7815 0 100
+Reset       O 7818 0 100
+Reset       O 7814 0 100
+Reset       O 7813 0 100
+Reset       O 7823 0 100
+Reset       M 7812 1 100
+Door        west~ door closed locked~ 7805 7880
 ~
 secret door~
-7 7805 7880
-S
+End
+
 #7883
-WAY Far Down into the Valley~
+Name        WAY Far Down into the Valley~
+Descr
 You have fallen trying to go down this steep hill.  Maybe that wasn't that
 good an idea, huh?
 
 
 You've fallen, and you can't get up!
 ~
-0 4 0
-S
+Flags       no_mob~
+Sector      inside~
+Regen       100 100
+End
+
 #0
 
-
-#SPECIALS
-M 7807 spec_cast_cleric
-M 7808 spec_cast_mage
-M 7809 spec_breath_fire
-M 7811 spec_cast_mage
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 7801 1 7805
-E 0 7802 0 16
-M 0 7800 1 7806
-M 0 7800 2 7807
-M 0 7802 2 7811
-E 0 7802 0 16
-M 0 7814 3 7815
-M 0 7801 6 7816
-E 0 7802 0 16
-M 0 7801 3 7818
-E 0 7802 0 16
-M 0 7813 3 7818
-M 0 7801 2 7820
-E 0 7802 0 16
-M 0 7802 6 7820
-E 0 7802 0 16
-M 0 7800 5 7823
-M 0 7814 3 7825
-M 0 7805 3 7827
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7813 3 7830
-M 0 7800 6 7833
-M 0 7806 3 7835
-M 0 7800 3 7837
-M 0 7806 4 7838
-M 0 7806 5 7839
-M 0 7802 5 7842
-E 0 7802 0 16
-M 0 7805 4 7842
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7801 4 7844
-E 0 7802 0 16
-M 0 7807 1 7845
-G 0 7804 0
-E 0 7806 0 1
-E 0 7807 0 16
-M 0 7808 1 7845
-E 0 7806 0 1
-E 0 7807 0 16
-O 0 7809 0 7846
-O 0 7823 0 7846
-O 0 7820 0 7846
-O 0 7817 0 7846
-O 0 7815 0 7846
-O 0 7816 0 7846
-O 0 7819 0 7846
-M 0 7806 1 7847
-M 0 7806 2 7847
-M 0 7803 4 7848
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7804 1 7848
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7804 1 7850
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7805 1 7852
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7814 3 7852
-M 0 7803 1 7853
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7802 4 7854
-E 0 7802 0 16
-M 0 7804 1 7856
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7803 3 7860
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7813 3 7860
-M 0 7805 2 7862
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7804 1 7863
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7802 3 7865
-E 0 7802 0 16
-M 0 7803 2 7866
-E 0 7800 0 5
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7802 1 7868
-E 0 7802 0 16
-M 0 7800 4 7873
-M 0 7805 5 7876
-E 0 7801 0 8
-E 0 7802 0 16
-E 0 7803 0 3
-M 0 7801 5 7877
-E 0 7802 0 16
-M 0 7810 1 7878
-M 0 7809 1 7880
-G 0 7805 0
-M 0 7811 1 7881
-E 0 7806 0 1
-E 0 7807 0 16
-E 0 7824 0 0
-O 0 7808 0 7882
-O 0 7822 0 7882
-O 0 7821 0 7882
-O 0 7810 0 7882
-O 0 7812 0 7882
-O 0 7811 0 7882
-O 0 7820 0 7882
-O 0 7815 0 7882
-O 0 7818 0 7882
-O 0 7814 0 7882
-O 0 7813 0 7882
-O 0 7823 0 7882
-M 0 7812 1 7882
-S
-
-
-#SHOPS
-0
 
 
 #$

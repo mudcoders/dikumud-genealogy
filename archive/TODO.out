@@ -1,0 +1,109 @@
+ $$$   $$$$   $$$$  $$$$  $$$$   
+$   $  $   $  $     $     $   $  
+$      $$$$   $$$   $$$   $   $  
+$  $$  $ $    $     $     $   $  
+$   $  $  $   $     $     $   $  
+ $$$$  $   $  $$$$  $$$$  $$$$ 
+
+
+
+=== History
+
+
+Expected Greed Development Tree:
+================================
+
+     Diku
+       |
+     Merc
+       |
+     Envy
+       |
+UltraEnvy 0.87k (Erased)
+       |
+(FUTURE DEVELOPMENTS)
+       |
+Greed 0.88aXX - Twilight to GREED!
+       .
+       .
+       
+Greed 0.88bXX - Beta Testing, debuging, balance, cleanup of Greed.
+       .
+       .
+       .
+GREED codebase 0.88 GAMMA
+       .
+GREED codebase 0.88 - 1st public code release???
+       .
+       .
+       .
+       ?
+
+
+
+=== TODO'S
+
+% - indicates these ideas have been incorporated in GREED
+
+	ROM checks for null passwords.		-- LOW PRIORITY FOR NOW ---
+	ROM race bonus skills.
+%	ROM class basics and defaults.		### WIP ###
+	NiMud/Smaug adds fields for skls/spls TO_ROOM, and VICT. --- LOW PRI ---
+	ROM saves pets.				-- LOW PRIORITY FOR NOW ---
+
+%	Add new bitvector loading method based on BV00|BV01|BVQQ
+%	Add IDENT protocol support.
+
+%	Add ctitle, cpose, cslist, cstat, immskills.
+
+	Bulletin boards like Erwin S.A.'s snippet.
+	Add Erwin S.A.'s auction snippet.
+
+	AWAY instead of AFK like in dragon.ods.com.
+
+%	Split skill_table[] into skills & spells like Smaug and use bsearch to
+	  speed up skill_lookup().  Profile: Now 0.01 vs Old 0.14 
+%	NiMud area file format.				(90%)
+%	Revamp OLC for new area format.			(80%)
+	NiMud XL scripts.  Maybe Grok's moded script code will help, if i can
+	persuade Grok's staff to share it...	--- LOW PRIORITY FOR NOW ---
+	Fix problem with pagelen > 40 and alist.  Smaug also has this problem...
+	Add '$n' thingie support.
+%	Languages - Oblivion/Smaug.			(70%)
+	lset, lstat wiz commands (languages).
+%	Clone imm cmd.
+	ROM like skill groupings and Oblivion/VME Schools.
+	Skills are based on Guilds (?).		--- LOW PRIORITY FOR NOW ---
+%	Teachers.
+%	Fix new gizmo do_slay() options.
+	Cleanup bugs on tables.c not initializing structs properly.
+%	Max % limit on skills (Smaug)
+	Learnability dificulty level (ROM).
+%	ROM/Oblivion like cp (creation points) system.	(40%)
+	Mana channeling.
+%	New skills/spells (including ice combat ones).	### WIP ###
+	New classes (Oblivion/VME/Smaug).
+	Mana channeling/Group spell casting.
+	Mana & hp regen rate flags in rooms like ROM.
+	HpMnMv Perm & HPMnMv Mod.
+	Learn spells/skills from use - (reduce prac gain to balance things ?).
+	"Teach" and "Study" skills.
+%	NEWS system like dragon.ods.com's one.
+%	Add pose table to class files.
+	Add spell_identify info for ITEM_GEM.
+%	Change area_update() or room_update() to new NiMud reset style.	# WIP #
+
+	Help editor.
+	Pose editor.
+	Title editor.
+	Social editor.
+
+	.
+	.
+	.
+
+	Rename mud engine to GREED = Greed Rpg's Enhanced Envy Diku
+	Yep, its YANC (yet another name change!)
+
+
+- Zen

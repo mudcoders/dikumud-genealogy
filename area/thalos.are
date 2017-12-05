@@ -4,1127 +4,1443 @@ Author      Anon~
 Levels      10 25
 Security    1
 VNUMs       5200 5280
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #5200
-beholder~
-The mighty beholder~
+Name        beholder~
+Short       The mighty beholder~
+Long
 You meet a beholder's deadly gaze!
 ~
+Descr
 It has a large central eye that projects an anti-magic ray and ten
 eyestalks atop the round body which can do anything from charm you
 to disintegrate you.  Beholders are not known for their personality.
 ~
-163 8 -870 S
-25 6 0 25d25+250 6d6+5
-22560 0
-0 Giant~ 0
+Act         sentinel aggressive wimpy~
+AffectBy    detect-invis~
+Alignment   -870
+Level       25
+Gold        22560
+Race        Giant
+Sex         neutral~
+Spec        spec_cast_mage
+End
+
 #5201
-lamia beast~
-The lamia~
+Name        lamia beast~
+Short       The lamia~
+Long
 A strange lamia stands here waiting for her next meal.
 ~
+Descr
 This is a creature with the upper torso of a beautiful woman, but the lower
 body of a four-legged beast.  She licks her lips as she looks at you greedily.
 ~
-101 0 -999 S
-9 12 1 9d9+99 1d5+4
-1000 0
-0 Animal~ 2
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -999
+Level       9
+Gold        1000
+Race        Animal
+Sex         female~
+End
+
 #5202
-mimic chest~
-The mimic~
+Name        mimic chest~
+Short       The mimic~
+Long
 A strong chest lies in one corner of the room.
 ~
+Descr
 A strong, wooden chest bound with iron straps and a heavy pad-lock on the
 front.
 ~
-229 32768 10 S
-11 10 1 11d11+110 2d7+0
-0 0
-0 Object~ 0
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    sneak~
+Alignment   10
+Level       11
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #5203
-mimic boulder~
-The mimic~
+Name        mimic boulder~
+Short       The mimic~
+Long
 Two skeletons lie crushed under a large boulder.
 ~
+Descr
 ~
-229 32768 -10 S
-11 10 1 11d11+110 3d5+1
-0 0
-0 Object~ 0
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    sneak~
+Alignment   -10
+Level       11
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #5204
-mimic floor~
-The mimic~
+Name        mimic floor~
+Short       The mimic~
+Long
 The stone floor of this house has been ripped apart.
 ~
+Descr
 ~
-229 32768 -140 S
-11 10 1 11d11+110 2d6+0
-0 0
-0 Object~ 0
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    sneak~
+Alignment   -140
+Level       11
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #5205
-mimic pottery~
-The mimic~
+Name        mimic pottery~
+Short       The mimic~
+Long
 Some broken shards of pottery lie strewn about the floor.
 ~
+Descr
 ~
-229 32768 200 S
-11 10 0 11d11+110 2d5+1
-0 0
-0 Object~ 0
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    sneak~
+Alignment   200
+Level       11
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #5206
-mimic planks~
-The mimic~
+Name        mimic planks~
+Short       The mimic~
+Long
 A few wooden planks lie stacked on a low shelf.
 ~
+Descr
 ~
-229 32768 0 S
-11 9 0 11d11+110 4d3+1
-0 0
-0 Object~ 0
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    sneak~
+Alignment   0
+Level       11
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #5207
-lizard horned~
-The horned lizard~
+Name        lizard horned~
+Short       The horned lizard~
+Long
 A small horned lizard flicks his tongue and slithers away.
 ~
+Descr
 A cute little lizard, that is, if you like reptiles!
 ~
-129 0 0 S
-3 17 4 1d4+30 1d4+0
-0 0
-0 Snake~ 0
+Act         wimpy~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        0
+Race        Snake
+Sex         neutral~
+End
+
 #5208
-golem stone~
-The stone golem~
+Name        golem stone~
+Short       The stone golem~
+Long
 In the corner you see a large, stone golem faithfully standing watch.
 ~
+Descr
 It is a big chunk of rock that has been magically formed into a giant
 stone creature. He stands here still guarding the city.
 ~
-3 8192 600 S
-25 0 0 6d10+600 3d7+15
-4250 0
-0 God~ 0
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   600
+Level       25
+Gold        4250
+Race        God
+Sex         neutral~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #5200
-mithril vest~
-a mithril vest~
+Name        mithril vest~
+Short       a mithril vest~
+Descr
 A vest made of mithril plates lies heaped on the floor.~
-~
-9 1088 9
-8~ 0~ 0~ 0~ 0~
-30 12000 0
-A
-1 2 0
-A
-19 1 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take body~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        12000
+Affect      strength~ 2 ~
+Affect      damroll~ 1 ~
+End
+
 #5201
-helm mithril~
-a mithril helm~
+Name        helm mithril~
+Short       a mithril helm~
+Descr
 Here lies a large mithril helm.~
-~
-9 1088 17
-8~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 2 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take head~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 2 ~
+End
+
 #5202
-gauntlets mithril~
-a pair of mithril gauntlets~
+Name        gauntlets mithril~
+Short       a pair of mithril gauntlets~
+Descr
 A pair of mithril gauntlets rests on the ground.~
-~
-9 1088 129
-8~ 0~ 0~ 0~ 0~
-10 2200 0
-A
-19 1 0
-A
-18 1 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take hands~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        2200
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+End
+
 #5203
-sleeves mithril~
-some mithril sleeves~
+Name        sleeves mithril~
+Short       some mithril sleeves~
+Descr
 A set of mithril sleeves lies on the ground.~
-~
-9 1088 257
-7~ 0~ 0~ 0~ 0~
-10 12450 0
-A
-19 1 0
-A
-18 1 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take arms~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        12450
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+End
+
 #5204
-boots mithril~
-a pair of mithril boots~
+Name        boots mithril~
+Short       a pair of mithril boots~
+Descr
 A pair of mithril boots stands has been left here.~
-~
-9 1088 65
-7~ 0~ 0~ 0~ 0~
-6 1800 0
-A
-2 1 0
-A
-18 1 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take feet~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        1800
+Affect      dexterity~ 1 ~
+Affect      hitroll~ 1 ~
+End
+
 #5205
-leggings mithril~
-a set of mithril leggings~
+Name        leggings mithril~
+Short       a set of mithril leggings~
+Descr
 A set of mithril leggings lie here unattended.~
-~
-9 1088 33
-7~ 0~ 0~ 0~ 0~
-10 5400 0
-A
-2 1 0
-A
-18 1 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take legs~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5400
+Affect      dexterity~ 1 ~
+Affect      hitroll~ 1 ~
+End
+
 #5206
-girth mithril~
-a mithril girth~
+Name        girth mithril~
+Short       a mithril girth~
+Descr
 A large iron girth lies at your feet.~
-~
-9 1088 2049
-7~ 0~ 0~ 0~ 0~
-6 14200 0
-A
-5 2 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take waist~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        14200
+Affect      constitution~ 2 ~
+End
+
 #5207
-breast plate iron~
-a battered iron breast plate~
+Name        breast plate iron~
+Short       a battered iron breast plate~
+Descr
 A battered iron breast plate lies here.~
-~
-9 0 9
-5~ 0~ 0~ 0~ 0~
-125 13000 0
-A
-18 -6 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      125
+Cost        13000
+Affect      hitroll~ -6 ~
+End
+
 #5208
-shield iron~
-a sturdy iron shield~
+Name        shield iron~
+Short       a sturdy iron shield~
+Descr
 A small, but sturdy, iron shield has been left here.~
-~
-9 576 513
-7~ 0~ 0~ 0~ 0~
-5 500 0
-A
-21 -2 0
-A
-20 -2 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take shield~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        500
+Affect      saving-rod~ -2 ~
+Affect      saving-para~ -2 ~
+End
+
 #5210
-potion black~
-a black potion~
+Name        potion black~
+Short       a black potion~
+Descr
 A jet black potion sits upright waiting to be taken.~
-~
-10 96 1
-16~ blindness~ giant strength~  ~  ~
-5 6000 0
+Type        potion~
+Extra       invis magic~
+Wear        take~
+Values      16~ blindness~ giant strength~  ~  ~
+Weight      5
+Cost        6000
+End
+
 #5211
-potion orange~
-an orange potion~
+Name        potion orange~
+Short       an orange potion~
+Descr
 A small orange potion lies here.~
-~
-10 96 1
-20~ detect hidden~  ~  ~  ~
-10 7500 0
+Type        potion~
+Extra       invis magic~
+Wear        take~
+Values      20~ detect hidden~  ~  ~  ~
+Weight      10
+Cost        7500
+End
+
 #5214
-ball quartz~
-a smooth quartz ball~
+Name        ball quartz~
+Short       a smooth quartz ball~
+Descr
 A smooth quartz ball lies here gleaming.~
-~
-1 64 16385
-0~ 0~ 72~ 0~ 0~
-30 3050 0
+Type        light~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 72~ 0~ 0~
+Weight      30
+Cost        3050
+End
+
 #5215
-scroll tattered~
-a tattered scroll~
+Name        scroll tattered~
+Short       a tattered scroll~
+Descr
 A worn and tattered scroll has been left here.~
-~
-2 64 1
-24~ enchant weapon~  ~  ~  ~
-15 11000 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      24~ enchant weapon~  ~  ~  ~
+Weight      15
+Cost        11000
+End
+
 #5216
-scroll bound~
-a bound scroll~
+Name        scroll bound~
+Short       a bound scroll~
+Descr
 A bound scroll of detection lies at your feet.~
-~
-2 64 1
-15~ detect evil~ detect invis~ detect magic~  ~
-15 4200 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      15~ detect evil~ detect invis~ detect magic~  ~
+Weight      15
+Cost        4200
+End
+
 #5217
-flute silver~
-a silver flute~
+Name        flute silver~
+Short       a silver flute~
+Descr
 A brilliant silver flute glimmers from beneath a rock.~
-~
-4 65 16385
-17~ 1~ 1~ charm person~ 0~
-6 10500 0
+Type        staff~
+Extra       glow magic~
+Wear        take hold~
+Values      17~ 1~ 1~ charm person~ 0~
+Weight      6
+Cost        10500
+End
+
 #5218
-talisman demon~
-a demon-faced talisman~
+Name        talisman demon~
+Short       a demon-faced talisman~
+Descr
 A demon-faced talisman glares at you angrily.~
-~
-9 65 5
-5~ 0~ 0~ 0~ 0~
-11 2500 0
-A
-2 -8 0
-A
-1 -10 0
+Type        armor~
+Extra       glow magic~
+Wear        take neck~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      11
+Cost        2500
+Affect      dexterity~ -8 ~
+Affect      strength~ -10 ~
+End
+
 #5219
-venison chunk~
-a chunk of venison~
+Name        venison chunk~
+Short       a chunk of venison~
+Descr
 A large chunk of venison sits here ready to be eaten.~
-~
-19 0 1
-24~ 0~ 0~ 0~ 0~
-20 100 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        100
+End
+
 #5220
-fountain water~
-a large cracked fountain~
+Name        fountain water~
+Short       a large cracked fountain~
+Descr
 Some stagnant water lies in the bottom of the fountain.~
-~
-25 0 0
-10~ 10~ 0~ 1~ 0~
-0 0 0
+Type        fountain~
+Extra       ~
+Wear        ~
+Values      10~ 10~ 0~ 1~ 0~
+Weight      0
+Cost        0
+End
+
 #5221
-two-handed two sword~
-a two-handed sword~
+Name        two-handed two sword~
+Short       a two-handed sword~
+Descr
 A nice two-handed sword hangs on a hook in the wall.~
-~
-5 1088 8193
-0~ 2~ 12~ 3~ 0~
-24 55000 0
-A
-19 3 0
-A
-18 2 0
+Type        weapon~
+Extra       magic anti-evil~
+Wear        take wield~
+Values      0~ 2~ 12~ 3~ 0~
+Weight      24
+Cost        55000
+Affect      damroll~ 3 ~
+Affect      hitroll~ 2 ~
+End
+
 #5222
-robe black silk~
-a black silk robe~
+Name        robe black silk~
+Short       a black silk robe~
+Descr
 A black silk robe lies heaped in one corner.~
-~
-9 0 1025
-1~ 0~ 0~ 0~ 0~
-6 1300 0
-A
-12 10 0
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        1300
+Affect      mana~ 10 ~
+End
+
 #5223
-cloak green~
-a dark green cloak~
+Name        cloak green~
+Short       a dark green cloak~
+Descr
 A beautiful dark green cloak has been dropped by someone.~
-~
-9 576 5
-8~ 0~ 0~ 0~ 0~
-12 14500 0
-A
-13 5 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take neck~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      12
+Cost        14500
+Affect      hp~ 5 ~
+End
+
 #5224
-seal ebony~
-an engraved ebony seal~
+Name        seal ebony~
+Short       an engraved ebony seal~
+Descr
 A small, engraved ebony seal is here.~
-~
-18 0 1
-30~ 0~ 0~ 0~ 0~
-2 500 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      30~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        500
+End
+
 #5225
-desk curved~
-the desk~
+Name        desk curved~
+Short       the desk~
+Descr
 A dirty, crumbling curved desk is here.~
-~
-15 0 0
-100~ 13~ 5224~ 0~ 0~
-0 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 5224~ 0~ 0~
+Weight      0
+Cost        0
+End
+
 #5226
-seal ivory~
-an engraved ivory seal~
+Name        seal ivory~
+Short       an engraved ivory seal~
+Descr
 A small, engraved ivory seal lies here.~
-~
-18 0 1
-31~ 0~ 0~ 0~ 0~
-2 500 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      31~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        500
+End
+
 #5227
-cabinet glass~
-the glass cabinet~
+Name        cabinet glass~
+Short       the glass cabinet~
+Descr
 A broken glass cabinet is here.~
-~
-15 0 0
-500~ 13~ 5226~ 0~ 0~
-0 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      500~ 13~ 5226~ 0~ 0~
+Weight      0
+Cost        0
+End
+
 #5228
-arm rotted~
-a rotten arm~
+Name        arm rotted~
+Short       a rotten arm~
+Descr
 A rotted arm floats lazily by your feet.~
-~
-19 0 1
-50~ 0~ 0~ 1~ 0~
-20 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      50~ 0~ 0~ 1~ 0~
+Weight      20
+Cost        0
+End
+
 #5230
-stone pale blue~
-a pale blue stone~
+Name        stone pale blue~
+Short       a pale blue stone~
+Descr
 A pale blue stone sits here.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 5500 0
-A
-1 1 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5500
+Affect      strength~ 1 ~
+End
+
 #5231
-stone scarlet blue~
-a scarlet and blue stone~
+Name        stone scarlet blue~
+Short       a scarlet and blue stone~
+Descr
 A pretty scarlet and blue stone has been dropped here.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 5500 0
-A
-3 1 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5500
+Affect      intelligence~ 1 ~
+End
+
 #5232
-stone blue incandescent~
-an incandescent blue stone~
+Name        stone blue incandescent~
+Short       an incandescent blue stone~
+Descr
 A small incandescent blue stone lies here.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 5500 0
-A
-4 1 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5500
+Affect      wisdom~ 1 ~
+End
+
 #5233
-stone red deep~
-a deep red stone~
+Name        stone red deep~
+Short       a deep red stone~
+Descr
 Someone has left a deep red stone here.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 5500 0
-A
-2 1 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5500
+Affect      dexterity~ 1 ~
+End
+
 #5234
-stone pink~
-a pink stone~
+Name        stone pink~
+Short       a pink stone~
+Descr
 A tiny pink stone lies at your feet.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 5500 0
-A
-5 1 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5500
+Affect      constitution~ 1 ~
+End
+
 #5235
-stone pearly white~
-a pearly white stone~
+Name        stone pearly white~
+Short       a pearly white stone~
+Descr
 This pearly white stone would probably sell for a good price.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 8700 0
-A
-13 1 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        8700
+Affect      hp~ 1 ~
+End
+
 #5237
-stone lavender green~
-a lavender and green stone~
+Name        stone lavender green~
+Short       a lavender and green stone~
+Descr
 A stunning lavender and green stone rests on the ground.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 4700 0
-A
-24 -4 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        4700
+Affect      saving-spell~ -4 ~
+End
+
 #5239
-stone grey dull~
-a dull grey stone~
+Name        stone grey dull~
+Short       a dull grey stone~
+Descr
 You can barely make out a dull grey stone on the ground.~
-~
-8 0 16385
-0~ 0~ 0~ 0~ 0~
-10 20 0
+Type        treasure~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        20
+End
+
 #5241
-stone pink green~
-a pink and green stone~
+Name        stone pink green~
+Short       a pink and green stone~
+Descr
 A bright pink and green stone has been left here.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 6600 0
-A
-18 -5 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        6600
+Affect      hitroll~ -5 ~
+End
+
 #5243
-stone clear~
-a clear stone~
+Name        stone clear~
+Short       a clear stone~
+Descr
 A odd clear stone lies at your feet.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-10 8900 0
-A
-17 3 0
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        8900
+Affect      ac~ 3 ~
+End
+
 #5250
-mandolin~
-a mandolin~
+Name        mandolin~
+Short       a mandolin~
+Descr
 A mandolin lies against the wall.~
-~
-4 64 16385
-13~ 3~ 3~ cure critical~ 0~
-20 3000 0
+Type        staff~
+Extra       magic~
+Wear        take hold~
+Values      13~ 3~ 3~ cure critical~ 0~
+Weight      20
+Cost        3000
+End
+
 #5251
-harp golden~
-a golden harp~
+Name        harp golden~
+Short       a golden harp~
+Descr
 A battered golden harp has been tipped over.~
-~
-4 64 16385
-18~ 1~ 1~ call lightning~ 0~
-100 2500 0
+Type        staff~
+Extra       magic~
+Wear        take hold~
+Values      18~ 1~ 1~ call lightning~ 0~
+Weight      100
+Cost        2500
+End
+
 #5252
-long dagger slim~
-a long slim dagger~
+Name        long dagger slim~
+Short       a long slim dagger~
+Descr
 A long slim dagger has been left here.~
-~
-5 64 8193
-0~ 2~ 5~ 11~ 0~
-4 1000 0
-A
-19 1 0
-A
-18 1 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 2~ 5~ 11~ 0~
+Weight      4
+Cost        1000
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #5200
-The Grand Gate of Thalos~
+Name        The Grand Gate of Thalos~
+Descr
 You stand in the archway of a gigantic stone archway. The two
 steel gates have been forced open and have rusted in place. A hollow
 gust of wind blows by you into the deserted, and seemingly destroyed,
 city.
 ~
-0 4 1
-D1
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 5256
 You see a trail out of this blasted place.
 ~
 ~
-0 0 5256
-D3
+Door        west~ ~ 0 5201
 You see devastation everywhere. Houses lie in ruin and skeletons litter
 the streets. You see strange beasts stalking the shadows.
 ~
 ~
-0 0 5201
-S
+End
+
 #5201
-Main Street~
+Name        Main Street~
+Descr
 This was once a magnificent street, but now is in total ruin. The
 streets are barren and windswept and the silence is unending.  A dark alley
 leads north and south.  Howls and screams echo through the deserted city.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5239
 It's a dark alley.
 ~
 ~
-0 0 5239
-D1
+Door        east~ ~ 0 5200
 The entrance to the city lies this way.
 ~
 ~
-0 0 5200
-D2
+Door        south~ ~ 0 5255
 It's a dark alley.
 ~
 ~
-0 0 5255
-D3
+Door        west~ ~ 0 5202
 Main Street lies this way.
 ~
 ~
-0 0 5202
-S
+End
+
 #5202
-Main Street~
+Name        Main Street~
+Descr
 This was once a magnificent street, but now is in total ruin. The
 streets are barren and windswept and the silence is unending. On one
 side is a collapsed house while on the other is the entrance to a large
 ruined mansion. Eerie sounds echo within the mansion. Near the center of
 town you see a large domed building, relatively intact.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 5230 0 100
+Door        north~ ~ 0 5236
 The remnants of a store lie this way.
 ~
 ~
-0 0 5236
-D1
+Door        east~ ~ 0 5201
 ~
 ~
-0 0 5201
-D2
+Door        south~ ~ 0 5232
 It looks like what used to be the main building in the city.
 ~
 ~
-0 0 5232
-D3
+Door        west~ ~ 0 5203
 A withered garden path lies this way.
 ~
 ~
-0 0 5203
-S
+End
+
 #5203
-A Garden Path~
+Name        A Garden Path~
+Descr
 A circular path surrounds a magnificent domed temple in the center of
 the city. Flowers have withered away and the once lush trees are bare.
 Vines and ivy snake up the sides of the temple and entangle themselves
 around your feet. A sudden volley of howls pierces the air.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        north~ ~ 0 5204
 The garden path continues around the building.
 ~
 ~
-0 0 5204
-D1
+Door        east~ ~ 0 5202
 This is the main street leading to the city's entrance
 ~
 ~
-0 0 5202
-D2
+Door        south~ ~ 0 5206
 The garden path continues around the building.
 ~
 ~
-0 0 5206
-D3
+Door        west~ ~ 0 5250
 Inside the temple, small patches of light shoot through each doorway as
 well as a few holes in the ceiling.
 ~
 ~
-0 0 5250
-S
+End
+
 #5204
-A Garden Path~
+Name        A Garden Path~
+Descr
 A circular path surrounds a magnificent domed temple in the center of
 the city. Flowers have withered away and the once lush trees are bare.
 Vines and ivy snake up the sides of the temple and entangle themselves
 around your feet. A sudden volley of howls pierces the air.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        north~ ~ 0 5211
 A side street leads off to the northern half of the city.
 ~
 ~
-0 0 5211
-D2
+Door        south~ ~ 0 5203
 The garden path continues around the building.
 ~
 ~
-0 0 5203
-D3
+Door        west~ ~ 0 5205
 The garden path continues around the building.
 ~
 ~
-0 0 5205
-S
+End
+
 #5205
-A Garden Path~
+Name        A Garden Path~
+Descr
 A circular path surrounds a magnificent domed temple in the center of
 the city. Flowers have withered away and the once lush trees are bare.
 Vines and ivy snake up the sides of the temple and entangle themselves
 around your feet. A sudden volley of howls pierces the air.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       O 5231 0 100
+Door        east~ ~ 0 5204
 The garden path continues around the building.
 ~
 ~
-0 0 5204
-D2
+Door        south~ ~ 0 5250
 Inside the temple, small patches of light shoot through each doorway as
 well as a few holes in the ceiling.
 ~
 ~
-0 0 5250
-S
+End
+
 #5206
-A Garden Path~
+Name        A Garden Path~
+Descr
 A circular path surrounds a magnificent domed temple in the center of
 the city. Flowers have withered away and the once lush trees are bare.
 Vines and ivy snake up the sides of the temple and entangle themselves
 around your feet. A sudden volley of howls pierces the air.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        north~ ~ 0 5203
 The garden path continues around the building.
 ~
 ~
-0 0 5203
-D2
+Door        south~ ~ 0 5212
 A small side street leads to the southern half of the city.
 ~
 ~
-0 0 5212
-S
+End
+
 #5207
-The market place~
+Name        The market place~
+Descr
 You stand in the middle of a large square lined on each side with
 baskets, carts, and stands of all shapes and sizes. Abandoned, these
 little shops still contain some of their goods once sold to a demanding
 public.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5225
 A small table has been toppled over, spilling fine jewelery and gems
 onto the ground.
 ~
 ~
-0 0 5225
-D2
+Door        south~ ~ 0 5220
 Rotted remains of fruits and vegetables lie strewn about.
 ~
 ~
-0 0 5220
-D3
+Door        west~ ~ 0 5208
 The market place continues.
 ~
 ~
-0 0 5208
-S
+End
+
 #5208
-The market place~
+Name        The market place~
+Descr
 You stand at the end of the market square. Stands and carts line
 each side, filled with remnants of fine foods and exquisite goods.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 5232 0 100
+Door        north~ ~ 0 5222
 Tattered carpets and ruined bales of silk sit idly by a run down stand.
 ~
 ~
-0 0 5222
-D1
+Door        east~ ~ 0 5207
 The center of the market lies this way.
 ~
 ~
-0 0 5207
-D2
+Door        south~ ~ 0 5217
 From the massive stench, this must have been a meat and poultry stand.
 It lies totally bare.
 ~
 ~
-0 0 5217
-S
+End
+
 #5209
-A Side Street~
+Name        A Side Street~
+Descr
 This small side street leads east and west into back alleys while
 to the south you see the temple. The incessant howling tears at your mind.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 5243
 ~
 ~
-0 0 5243
-D2
+Door        south~ ~ 0 5210
 ~
 ~
-0 0 5210
-D3
+Door        west~ ~ 0 5228
 ~
 ~
-0 0 5228
-S
+End
+
 #5210
-A Side Street~
+Name        A Side Street~
+Descr
 You are in the common section of the city. Ruined buildings made of
 clay and stone is all the view has to offer. Most of these homes are
 nothing but piles of rubble, but some look almost safe enough to venture
 into. The street continues north and south and buildings line the street.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5209
 ~
 ~
-0 0 5209
-D1
+Door        east~ door~ -1 5244
 A small doorway leads into a partially collapsed house.
 ~
 ~
-1 -1 5244
-D2
+Door        south~ ~ 0 5211
 ~
 ~
-0 0 5211
-D3
+Door        west~ ~ 0 5226
 A small clay dwelling sits here.
 ~
 ~
-0 0 5226
-S
+End
+
 #5211
-A Side Street~
+Name        A Side Street~
+Descr
 This small side street leads away from the garden path to the south.
 Around you stand large piles or rubble where the houses of commoners
 used to be. A lone howl makes you worry greatly about your safety here.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 5233 0 100
+Door        north~ ~ 0 5210
 ~
 ~
-0 0 5210
-D1
+Door        east~ ~ 0 5237
 An unusually tall dwelling stands looming over you.
 ~
 ~
-0 0 5237
-D2
+Door        south~ ~ 0 5204
 A garden path circles around the temple.
 ~
 ~
-0 0 5204
-D3
+Door        west~ ~ 0 5227
 Here lies a small stone house with a thatched roof.
 ~
 ~
-0 0 5227
-S
+End
+
 #5212
-A side street~
+Name        A side street~
+Descr
 This small side street leads south away from the temple into the
 business section of town. The destruction that leveled this city was not
 biased; these important looking buildings have been almost totally
 destroyed. There is a hole in the wall of a very large structure to the
 east.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5206
 A small garden path encircles the temple.
 ~
 ~
-0 0 5206
-D1
+Door        east~ ~ 0 5232
 This possibly could be the city hall.
 ~
 ~
-0 0 5232
-D2
+Door        south~ ~ 0 5213
 ~
 ~
-0 0 5213
-D3
+Door        west~ ~ 0 5221
 Inside the building you see long pieces of metal, an oven, and some
 anvils.
 ~
 ~
-0 0 5221
-S
+End
+
 #5213
-A side street~
+Name        A side street~
+Descr
 This small side street is lined with the remains of once great
 buildings. To the north is a dark, foreboding structure while to the
 south lies the entrance to a small tavern. The street continues north
 and south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5212
 ~
 ~
-0 0 5212
-D1
+Door        east~ ~ 0 5230
 From the looks of it, this was once a two story abode. The entire second
 floor has collapsed leaving a very little part of the bar still free
 from debris.
 ~
 ~
-0 0 5230
-D2
+Door        south~ ~ 0 5214
 ~
 ~
-0 0 5214
-D3
+Door        west~ ~ 0 5219
 This seems to be the only guild house in the entire city. Its dark nature
 makes you wonder about its origins.
 ~
 ~
-0 0 5219
-S
+End
+
 #5214
-A side street~
+Name        A side street~
+Descr
 You are at the end of a long street leading to the center of the city.
 A long dark alley runs east and west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5213
 ~
 ~
-0 0 5213
-D1
+Door        east~ ~ 0 5251
 ~
 ~
-0 0 5251
-D2
+Door        south~ ~ 0 5229
 ~
 ~
-0 0 5229
-D3
+Door        west~ ~ 0 5218
 ~
 ~
-0 0 5218
-S
+End
+
 #5215
-Under a ruined watchtower~
+Name        Under a ruined watchtower~
+Descr
 You stand at the base of a tall watchtower built to protect the city
 from invaders. From the looks of things, it did not do a good job.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5216
 ~
 ~
-0 0 5216
-D1
+Door        east~ ~ 0 5218
 ~
 ~
-0 0 5218
-D4
+Door        up~ ~ 0 5247
 ~
 ~
-0 0 5247
-S
+End
+
 #5216
-A back alley~
+Name        A back alley~
+Descr
 This alley leads to the rear of what used to be a meat stand. You wince
 at the stench. South is one of the city watchtowers.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        north~ ~ 0 5217
 You see the back-side of the market place meat stand.
 ~
 ~
-0 0 5217
-D2
+Door        south~ ~ 0 5215
 A tall watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5215
-S
+End
+
 #5217
-The meat stand~
+Name        The meat stand~
+Descr
 A large stand has been set up here with metal hooks and wooden racks
 in the background. Hanging on the hooks are very small scraps of meat
 and other game. This stand is relatively empty, and a sudden burst of
 howling and screaming makes you realize why this is so.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 5219 0 100
+Reset       O 5235 0 100
+Reset       M 5207 4 100
+Door        north~ ~ 0 5208
 The market place lies this way.
 ~
 ~
-0 0 5208
-D1
+Door        east~ ~ 0 5220
 This is a cart full of rotted vegetables and fruits.
 ~
 ~
-0 0 5220
-D2
+Door        south~ ~ 0 5216
 ~
 ~
-0 0 5216
-S
+End
+
 #5218
-A back alley~
+Name        A back alley~
+Descr
 A narrow alley leads east to a wider street and west to one of
 the city watchtowers.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        east~ ~ 0 5214
 A small side street greets you.
 ~
 ~
-0 0 5214
-D3
+Door        west~ ~ 0 5215
 A tall watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5215
-S
+End
+
 #5219
-The guild house~
+Name        The guild house~
+Descr
 You are standing in what once was this city's ONLY guild house.
 Tables and chairs have been smashed and broken weapons lie strewn about
 the floor as if some massive battle had taken place here. Draped along
 the back wall is a tattered, jet-black banner with the symbol of the
 Darkside set upon it.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       M 5204 1 100
+Reset       E 5218 -1 100
+Door        east~ ~ 0 5213
 A small side street runs past the building.
 ~
 ~
-0 0 5213
-S
+End
+
 #5220
-The produce stand~
+Name        The produce stand~
+Descr
 A large cart sits here carrying rotted fruit and vegetables. Flys
 swarm all about what seems to be the last remaining bits of food left
 in the city.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        north~ ~ 0 5207
 The market place is deserted.
 ~
 ~
-0 0 5207
-D3
+Door        west~ ~ 0 5217
 A strong stench emanates from the meat stand next to you.
 ~
 ~
-0 0 5217
-S
+End
+
 #5221
-The smithy~
+Name        The smithy~
+Descr
 In here you find tools and anvils used to make various weapons
 and items. The walls have been stripped clean and only a few incomplete
 pieces of armor and weaponry are left.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        east~ ~ 0 5212
 A small side street runs past the building.
 ~
 ~
-0 0 5212
-S
+End
+
 #5222
-The tapestry stand~
+Name        The tapestry stand~
+Descr
 Tattered and torn tapestries and rugs lie heaped in piles. Fancy
 robes and various articles of clothing are now just rags. You stare at
 the strange piles for a long time until a piercing howl makes you
 think these might be beds.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5223
 ~
 ~
-0 0 5223
-D1
+Door        east~ ~ 0 5225
 A fine jewelry stand lies in ruin next to you.
 ~
 ~
-0 0 5225
-D2
+Door        south~ ~ 0 5208
 The market place is deserted.
 ~
 ~
-0 0 5208
-S
+End
+
 #5223
-A back alley~
+Name        A back alley~
+Descr
 A narrow alley leads north to one of the city watchtowers while
 to the south there lies a market stand full of torn clothes and rugs.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5224
 A tall watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5224
-D2
+Door        south~ ~ 0 5222
 ~
 ~
-0 0 5222
-S
+End
+
 #5224
-Under the watchtower~
+Name        Under the watchtower~
+Descr
 You stand under one of the city watchtowers built to protect
 the city from invaders. Obviously, it failed.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       O 5237 0 100
+Door        east~ ~ 0 5228
 ~
 ~
-0 0 5228
-D2
+Door        south~ ~ 0 5223
 ~
 ~
-0 0 5223
-D4
+Door        up~ ~ 0 5246
 Above you looms a tall watchtower.
 ~
 ~
-0 0 5246
-S
+End
+
 #5225
-The jewelery stand~
+Name        The jewelery stand~
+Descr
 A table has been tipped over, spilling fine jewelery and gems
 across the market place. Most of these trinkets are battered and
 tarnished and few would have any value anymore.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        south~ ~ 0 5207
 The market place is deserted.
 ~
 ~
-0 0 5207
-D3
+Door        west~ ~ 0 5222
 Next to you is a stand full of ruined clothes and rugs.
 ~
 ~
-0 0 5222
-S
+End
+
 #5226
-A ruined clay dwelling~
+Name        A ruined clay dwelling~
+Descr
 This was once a very plain house with nothing more than a few chairs
 and a bed. A cold fireplace suggests that the city has been abandoned
 for quite a while. Almost nothing remains of this humble abode.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       M 5203 1 100
+Reset       E 5215 -1 100
+Door        east~ ~ 0 5210
 Outside is a small side street.
 ~
 ~
-0 0 5210
-S
+End
+
 #5227
-A collapsed stone dwelling~
+Name        A collapsed stone dwelling~
+Descr
 This small house has completely collapsed upon itself leaving piles
 of debris here and there. A few rafters still stand with thatched straw
 hanging down and a hot wind gusts through the hollow dwelling.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5207 4 100
+Door        east~ ~ 0 5211
 A small side street runs past the house.
 ~
 ~
-0 0 5211
-S
+End
+
 #5228
-A back alley~
+Name        A back alley~
+Descr
 A narrow alley leads east to one of the city watchtowers and west to
 a small side street.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 5209
 ~
 ~
-0 0 5209
-D3
+Door        west~ ~ 0 5224
 ~
 ~
-0 0 5224
-S
+End
+
 #5229
-An abandoned shop~
+Name        An abandoned shop~
+Descr
 From the outside this place looks like an ordinary pile of rubble,
 but inside these cramped quarters you discover what used to be a shop
 filled with armor, weapons, and various other goods. A small sign flutters
 in the wind.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       O 5207 0 100
+Reset       M 5202 1 100
+Reset       E 5214 17 100
+Door        north~ ~ 0 5214
 A small side street runs past the shop.
 ~
 ~
-0 0 5214
-S
+End
+
 #5230
-The Tavern of the Sun~
+Name        The Tavern of the Sun~
+Descr
 A glorious place in it's prime, this tavern now lies in ruin; tables
 and chairs are broken scattered, bottles and glasses shattered, and
 a small performance stage crushed. Musical instruments and personal
@@ -1132,81 +1448,100 @@ belongings lie under the rubble, but the people they once belonged to are
 not with them. Looking up you see that the entire second floor and roof
 has fallen in, leaving a gaping hole above.
 ~
-0 0 1
-D3
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 5217 0 100
+Reset       O 5250 0 100
+Reset       O 5251 0 100
+Reset       O 5239 0 100
+Door        west~ ~ 0 5213
 A small side street runs past the tavern.
 ~
 ~
-0 0 5213
-S
+End
+
 #5231
-South wing of the city hall~
+Name        South wing of the city hall~
+Descr
 You stand in a large room attached to this end of the hallway which
 leads back north to the reception area.  Pedestals and columns have fallen
 and most of the valuable items have been taken, leaving worthless debris.
 A few chairs have survived, as well as a large curved desk. To the east
 is a vine-covered archway leading out into a private courtyard.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       O 5225 0 100
+Reset       P 5215 5225 100
+Reset       P 5216 5225 100
+Door        north~ ~ 0 5232
 The long hallway leads back to the main reception area of the city hall.
 ~
 ~
-0 0 5232
-D1
+Door        east~ ~ 0 5234
 ~
 ~
-0 0 5234
-S
+End
+
 #5232
-The city hall~
+Name        The city hall~
+Descr
 This is the main reception area of Thalos' city hall. The walls have
 been charred and scored massively and debris is spread from wall to wall.
 A large gaping hole in the west wall allows you to see out to one of
 the city's side streets. Obviously no one will be seeing you through today.
 Hallways lead south and east.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       M 5207 4 100
+Door        north~ ~ 0 5202
 Main street runs past the city hall.
 ~
 ~
-0 0 5202
-D1
+Door        east~ ~ 0 5233
 A hallway leads to the east wing of the city hall.
 ~
 ~
-0 0 5233
-D2
+Door        south~ ~ 0 5231
 A hallway leads to the south wing of the city hall.
 ~
 ~
-0 0 5231
-D3
+Door        west~ ~ 0 5212
 ~
 ~
-0 0 5212
-S
+End
+
 #5233
-East wing of the city hall~
+Name        East wing of the city hall~
+Descr
 Here lies the remnants of a fancy office, possibly the mayor's. A few
 withered plants and broken pieces of furniture make this place anything
 but fancy, though. The only thing remaining intact here is a large
 glass cabinet. A long hallway leads west back to the reception area and
 an ivy-covered archway leads south into a private courtyard.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       O 5227 0 100
+Reset       P 3105 5227 100
+Door        south~ ~ 0 5234
 ~
 ~
-0 0 5234
-D3
+Door        west~ ~ 0 5232
 ~
 ~
-0 0 5232
-S
+End
+
 #5234
-The private gardens and courtyard of Thalos~
+Name        The private gardens and courtyard of Thalos~
+Descr
 What a shame that this mass destruction also touched this once
 beautiful place. The temple's garden path has nothing on this garden.
 Flowers and trees have been smashed into the ground and lawn benches
@@ -1215,44 +1550,61 @@ courtyard still stands, though, defying any attempts to destroy its
 beauty. Above stands the remnants of one of the watchtowers. Archways
 north and west lead back into the city hall.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       O 5220 0 100
+Door        north~ ~ 0 5233
 ~
 ~
-0 0 5233
-D3
+Door        west~ ~ 0 5231
 ~
 ~
-0 0 5231
-S
+End
+
 #5235
-A small guard house~
+Name        A small guard house~
+Descr
 This was once the barracks for Thalos' cityguards. Now just an empty
 shell, this small shack still stands guarding the entrance both to the
 city and to the city hall.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        east~ ~ 0 5255
 The alley runs by this building.
 ~
 ~
-0 0 5255
-S
+End
+
 #5236
-A collapsed home~
+Name        A collapsed home~
+Descr
 All that's left of this house is a few scattered piles of rubble
 and a very large blast crater. Obviously someone or something important
 was once housed here. A shrieking howl chills your blood.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       M 5206 1 100
+Reset       E 5222 12 100
+Door        south~ ~ 0 5202
 Main street runs past this ruined home.
 ~
 ~
-0 0 5202
-S
+End
+
 #5237
-A tall dwelling~
+Name        A tall dwelling~
+Descr
 This seems to be the tallest structure remaining in the city. At
 one time this could have been an inn of some sort, but now it's just
 a mess. The back wall as been completely knocked down revealing an
@@ -1260,92 +1612,110 @@ entrance into another building through yet another collapsed wall.
 Between the two buildings are a few blast craters and boulders. An old
 set of wooden steps leads up to a creaking second floor.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        east~ ~ 0 5238
 ~
 ~
-0 0 5238
-D3
+Door        west~ ~ 0 5211
 A small side street winds past the dwelling.
 ~
 ~
-0 0 5211
-D4
+Door        up~ ~ 0 5245
 The stairs and even the entire second floor itself looks very unsafe
 for travel. Gusts of wind make them creak and shudder.
 ~
 ~
-0 0 5245
-S
+End
+
 #5238
-A small shack~
+Name        A small shack~
+Descr
 This cramped dwelling could not have housed more than one person. Now
 with the back wall missing, it could hold many more. Looking around you
 find broken shelves and workbenches with various vials and pouches spilling
 contents all across the floor. This was possibly the magic shop of the
 city. The doorway to the east is blocked, making the only exit back west.
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       O 5210 0 100
+Reset       O 5211 0 100
+Reset       O 5241 0 100
+Reset       M 5205 1 100
+Reset       E 5214 17 100
+Door        west~ ~ 0 5237
 ~
 ~
-0 0 5237
-S
+End
+
 #5239
-A back alley~
+Name        A back alley~
+Descr
 A narrow back alley goes south to main street and north towards
 a watchtower. A mass of howls catches you of guard.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5240
 ~
 ~
-0 0 5240
-D2
+Door        south~ ~ 0 5201
 Main street runs past here.
 ~
 ~
-0 0 5201
-S
+End
+
 #5240
-A back alley~
+Name        A back alley~
+Descr
 A narrow back alley leads north to one of the city watchtowers
 and south towards main street. To the west is a doorway to a small
 house blocked by debris.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Door        north~ ~ 0 5241
 A tall watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5241
-D2
+Door        south~ ~ 0 5239
 ~
 ~
-0 0 5239
-S
+End
+
 #5241
-Under a watchtower~
+Name        Under a watchtower~
+Descr
 You stand under a tall watchtower. Narrow back alleys lead west and
 south and a very weak looking ladder leads up into the tower.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        south~ ~ 0 5240
 ~
 ~
-0 0 5240
-D3
+Door        west~ ~ 0 5243
 ~
 ~
-0 0 5243
-D4
+Door        up~ ~ 0 5248
 Winds howl high above your head in the tower above.
 ~
 ~
-0 0 5248
-S
+End
+
 #5242
-A bath house~
+Name        A bath house~
+Descr
 This was once the bath house for the commoners of the city. Hot
 steamy water still wells up from a hole in the floor. Obviously there
 is a hot spring located under the city (making the decision to put
@@ -1354,111 +1724,147 @@ yields a dead body floating around in it, skin melted away from months
 of floating in there. The west wall has collapsed revealing another
 collapsed house.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5201 20 100
+Reset       E 5252 16 100
+Reset       O 5228 0 100
+Door        north~ ~ 0 5243
 ~
 ~
-0 0 5243
-D3
+Door        west~ ~ 0 5244
 The wall has collapsed on the adjoining house, creating a new opening
 in it.
 ~
 ~
-0 0 5244
-S
+End
+
 #5243
-A back alley~
+Name        A back alley~
+Descr
 A narrow back alley leads west to a small side street and east to one
 of the city watchtowers. Great amounts of steam issue forth from the
 building to the south.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 5241
 A watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5241
-D2
+Door        south~ ~ 0 5242
 ~
 ~
-0 0 5242
-D3
+Door        west~ ~ 0 5209
 A side street runs by here.
 ~
 ~
-0 0 5209
-S
+End
+
 #5244
-An upright house~
+Name        An upright house~
+Descr
 This home is practically the only one around that is still standing.
 Except for the massive hole in the east wall, everything else looks
 intact, including the windows. Great amounts of steam issue forth from
 the hole in the east wall.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5207 4 100
+Door        east~ ~ 0 5242
 ~
 ~
-0 0 5242
-D3
+Door        west~ ~ 0 5210
 A small side street runs past the house.
 ~
 ~
-0 0 5210
-S
+End
+
 #5245
-On the second floor~
+Name        On the second floor~
+Descr
 The minute you step off onto this floor you realize it was a mistake.
 The old rotted floorboards suddenly give way and you fall down, impaling
 yourself on jagged boards below.
 
 You've fallen, and you can't get up!!!
 ~
-0 4 1
-S
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+End
+
 #5246
-The north-west watchtower~
+Name        The north-west watchtower~
+Descr
 You stand atop one of the city watchtowers. The view is magnificent
 from here and you can see all the way to the western mountains. No wonder
 this place stood for so long.
 ~
-0 0 1
-D5
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 5243 0 100
+Reset       M 5208 8 100
+Reset       E 5221 16 100
+Reset       E 5226 17 100
+Reset       E 5203 10 100
+Door        down~ ~ 0 5224
 The city lies below.
 ~
 ~
-0 0 5224
-S
+End
+
 #5247
-The south-west watchtower~
+Name        The south-west watchtower~
+Descr
 You stand atop one of the city watchtowers. The view is magnificent
 from here and you can see all the way to the western mountains. To the
 south the desert stretches to the horizon. No wonder this place stood
 for so long.
 ~
-0 0 1
-D5
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5208 8 100
+Reset       E 5221 16 100
+Reset       E 5224 17 100
+Reset       E 5200 5 100
+Reset       E 5204 8 100
+Door        down~ ~ 0 5215
 The city lies below.
 ~
 ~
-0 0 5215
-S
+End
+
 #5248
-The north-east watchtower~
+Name        The north-east watchtower~
+Descr
 You stand atop one of the city watchtowers. The view is magnificent
 from here and you can see a great floating pyramid to the north-east.
 Desert sand stretches to the horizon. No wonder this place stood for so
 long.
 ~
-0 0 1
-D5
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 5208 8 100
+Reset       E 5221 16 100
+Reset       E 5205 7 100
+Reset       E 5206 13 100
+Door        down~ ~ 0 5241
 The city lies below.
 ~
 ~
-0 0 5241
-S
+End
+
 #5250
-The Temple of Thalos~
+Name        The Temple of Thalos~
+Descr
 You stand within one of the most holy places in the realm. This
 stunning domed temple once housed the city's worshipers en masse.
 Unfortunately, it succumbed to the destruction brought on this city.
@@ -1469,726 +1875,669 @@ strange tongue.
      Wind gusts through the four archways and howls and screams can be
 heard from all parts of the city.
 ~
-0 136 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 5200 1 100
+Reset       E 5208 11 100
+Reset       E 5223 3 100
+Door        north~ ~ 0 5205
 A side street leads to the northern half of the city.
 ~
 ~
-0 0 5205
-D1
+Door        east~ ~ 0 5203
 Main street leads out to the main gate of the city.
 ~
 ~
-0 0 5203
-S
+End
+
 #5251
-A back alley~
+Name        A back alley~
+Descr
 A narrow alley leads east to a wider street and west to one of
 the city watchtowers.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 5252
 A tall watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5252
-D3
+Door        west~ ~ 0 5214
 A small side street greets you.
 ~
 ~
-0 0 5214
-S
+End
+
 #5252
-Under a ruined watchtower~
+Name        Under a ruined watchtower~
+Descr
 You stand at the base of a tall watchtower built to protect the city
 from invaders. From the looks of things, it did not do a good job.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5253
 ~
 ~
-0 0 5253
-D3
+Door        west~ ~ 0 5251
 ~
 ~
-0 0 5251
-D4
+Door        up~ ~ 0 5254
 ~
 ~
-0 0 5254
-S
+End
+
 #5253
-A back alley~
+Name        A back alley~
+Descr
 A narrow alley leads south to one of the city watchtowers.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5255
 The alley continues to the north.
 ~
 ~
-0 0 5255
-D2
+Door        south~ ~ 0 5252
 A tall watchtower stands a silent vigil over the city.
 ~
 ~
-0 0 5252
-S
+End
+
 #5254
-The south-east watchtower~
+Name        The south-east watchtower~
+Descr
 You stand atop one of the city watchtowers. The view is magnificent
 from here and you can see all the way to the western mountains. To the
 south the desert stretches to the horizon. No wonder this place stood
 for so long.  There is a small plaque on the stones.
 ~
-0 0 1
-E
-sign plaque~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign plaque~
 This extension to Thalos, along with the dwarf forest, is made by Hatchet for
 any Merc Mud.
 copyright 1992
 ~
-D5
+Reset       M 5208 8 100
+Reset       E 5221 16 100
+Reset       E 5201 6 100
+Reset       E 5202 9 100
+Door        down~ ~ 0 5252
 The city lies below.
 ~
 ~
-0 0 5252
-S
+End
+
 #5255
-A back alley~
+Name        A back alley~
+Descr
 A narrow alley leads north to the main street, and south toward a tall
 watchtower.  A ruined building is to the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 5201
 You see main street.
 ~
 ~
-0 0 5201
-D2
+Door        south~ ~ 0 5253
 ~
 ~
-0 0 5253
-D3
+Door        west~ ~ 0 5235
 It looks in bad shape inside, but structurally intact.
 ~
 ~
-0 0 5235
-S
+End
+
 #5256
-A trail at the end of the dwarf forest~
+Name        A trail at the end of the dwarf forest~
+Descr
 The trail ends here, with short, dry stumps of trees all around you.
 To the west, you can see the ruins of a huge city.  Something about it gives
 you an uneasy feeling.  To the east is your way back to home and safety.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 5257
 You see the trail.
 ~
 ~
-0 0 5257
-D3
+Door        west~ ~ 0 5200
 You see Thalos!
 ~
 ~
-0 0 5200
-S
+End
+
 #5257
-A trail at the end of the dwarf forest~
+Name        A trail at the end of the dwarf forest~
+Descr
 A side trail here leads from the dwarf forest.  It is definitely drier
 and hotter here.  The trail continues to the west, and to the east, you see
 the T-intersection.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 5258
 You see the intersection.
 ~
 ~
-0 0 5258
-D3
+Door        west~ ~ 0 5256
 You see the trail continue on.
 ~
 ~
-0 0 5256
-S
+End
+
 #5258
-The dwarf forest~
+Name        The dwarf forest~
+Descr
 You see more stunted trees here.  A side trail leads west from here.
 To the east, you THINK you see a trail, but you can never be sure.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5259
 You see the trail lead back north.
 ~
 ~
-0 0 5259
-D1
+Door        east~ ~ 0 5262
 You can't see into the gloom of this forest.
 ~
 ~
-0 0 5262
-D3
+Door        west~ ~ 0 5257
 You see the trail branch off.
 ~
 ~
-0 0 5257
-S
+End
+
 #5259
-The dwarf forest~
+Name        The dwarf forest~
+Descr
 You see more stunted trees here.  It looks almost as if this place was
 cursed by a god to be short and dry.  The trail leads north and south.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5260
 You see the trail continue north.
 ~
 ~
-0 0 5260
-D2
+Door        south~ ~ 0 5258
 You see the trail continue south.
 ~
 ~
-0 0 5258
-S
+End
+
 #5260
-The dwarf forest~
+Name        The dwarf forest~
+Descr
 You see more stunted trees here.  It looks almost as if this place was
 cursed by a god to be short and dry.  The trail leads north and south.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5261
 You see the trail continue north.
 ~
 ~
-0 0 5261
-D2
+Door        south~ ~ 0 5259
 You see the trail continue south.
 ~
 ~
-0 0 5259
-S
+End
+
 #5261
-The dwarf forest~
+Name        The dwarf forest~
+Descr
 You see many stunted trees here.  You don't see any leaves on these barren
 trees.  No grass grows on the ground.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 3502
 You see the trail continue north.
 ~
 ~
-0 0 3502
-D2
+Door        south~ ~ 0 5260
 You see the trail continue south.
 ~
 ~
-0 0 5260
-S
+End
+
 #5262
-The dwarf forest~
+Name        The dwarf forest~
+Descr
 You see more stunted trees here.  It looks almost as if this place was
 cursed by a god to be short and dry.  The trail leads east and west.  It looks
 dark toward the east.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 5263
 You see a darker part of the forest.
 ~
 ~
-0 0 5263
-D3
+Door        west~ ~ 0 5258
 You see the lighter forest and the T-intersection west.
 ~
 ~
-0 0 5258
-S
+End
+
 #5263
-The darker dwarf forest~
+Name        The darker dwarf forest~
+Descr
 You see a more dense foliage in these stunted trees.  The gloom caused
 by them is enhanced by a draft coming from all around.  The trail turns south
 from the west.
 ~
-0 1 3
-D2
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 5264
 You see nothing in the gloom south of you.
 ~
 ~
-0 0 5264
-D3
+Door        west~ ~ 0 5262
 You see the dwarf forest.
 ~
 ~
-0 0 5262
-S
+End
+
 #5264
-The darker dwarf forest~
+Name        The darker dwarf forest~
+Descr
 You see a more dense foliage in these stunted trees.  The gloom caused
 by them is enhanced by a draft coming from all around.  The trail turns east
 from the north.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5263
 You see nothing in the gloom north of you.
 ~
 ~
-0 0 5263
-D1
+Door        east~ ~ 0 5265
 You see nothing in the gloom east of you.
 ~
 ~
-0 0 5265
-S
+End
+
 #5265
-The darker dwarf forest~
+Name        The darker dwarf forest~
+Descr
 You see a more dense foliage in these stunted trees.  The gloom caused
 by them is enhanced by a draft coming from all around.  The trail leads
 east and west.
 ~
-0 1 3
-D1
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 5266
 You see nothing in the gloom east of you.
 ~
 ~
-0 0 5266
-D3
+Door        west~ ~ 0 5264
 You see nothing in the gloom west of you.
 ~
 ~
-0 0 5264
-S
+End
+
 #5266
-The darker dwarf forest~
+Name        The darker dwarf forest~
+Descr
 You see a more dense foliage in these stunted trees.  The gloom caused
 by them is enhanced by a draft coming from all around.  The trail leads
 down into a valley and west.
 ~
-0 1 3
-D3
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Door        west~ ~ 0 5265
 You see nothing in the gloom west of you.
 ~
 ~
-0 0 5265
-D5
+Door        down~ ~ 0 5267
 You see the trail lead down into gloom.
 ~
 ~
-0 0 5267
-S
+End
+
 #5267
-A valley in the dark dwarf forest~
+Name        A valley in the dark dwarf forest~
+Descr
 You are in a valley in the dark dwarf forest.  Short black grass grows
 around you.  Trails lead in all directions.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 5111 2 100
+Reset       E 5100 16 100
+Door        north~ ~ 0 5271
 ~
 ~
-0 0 5271
-D1
+Door        east~ ~ 0 1701
 ~
 ~
-0 0 1701
-D2
+Door        south~ ~ 0 9201
 You see a large mountain on the far side of a canyon.
 ~
 ~
-0 0 9201
-D3
+Door        west~ door closed~ -1 5268
 You see a dark fox hole.
 ~
 hole fox~
-3 -1 5268
-D4
+Door        up~ ~ 0 5266
 ~
 ~
-0 0 5266
-S
+End
+
 #5268
-A small ugly cave~
+Name        A small ugly cave~
+Descr
 You see a small cave.  Skeletons of many types of creatures litter the area.
 Obviously, no fox lives here!  The oppression makes you want to leave and
 vomit.
 ~
-0 1 3
-E
-skeleton skeletons~
+Flags       dark~
+Sector      forest~
+Regen       100 100
+ExtraDescr  skeleton skeletons~
 Something is strange about these skeletons.  Upon further investigation, these
 skeletons appear illusionary.
 ~
-D1
+Door        east~ door closed~ -1 5267
 You see the exit from here!
 ~
 fox hole~
-3 -1 5267
-D2
+Door        south~ ~ 0 5269
 You see more of the cave.
 ~
 ~
-0 0 5269
-S
+End
+
 #5269
-A small ugly cave~
+Name        A small ugly cave~
+Descr
 You are in a small ugly cave.  More skeletons lie around.  It is obvious
 that the owner doesn't want you here.  The exit north is still visible.
 Some writings are on this wall.
 ~
-0 1 3
-E
-skeleton skeletons~
+Flags       dark~
+Sector      forest~
+Regen       100 100
+ExtraDescr  skeleton skeletons~
 Something is strange about these skeletons.  Upon further investigation, these
 skeletons appear illusionary.
 ~
-E
-writings writing words~
+ExtraDescr  writings writing words~
 This cave along with the valley and dwarf forest is made by Hatchet for any
 Merc Mud.
 copyright 1992
 ~
-D0
+Door        north~ ~ 0 5268
 You see more of the cave.
 ~
 ~
-0 0 5268
-D5
+Door        down~ ~ 0 5270
 You see a path leading down into the dark gloom.
 ~
 ~
-0 0 5270
-S
+End
+
 #5270
-Down the path into a dead end~
+Name        Down the path into a dead end~
+Descr
 You are down the path.  There is no obvious exit in this place, exit the
 one back up north.  All around you, you see skeletons.
 ~
-0 1 3
-E
-skeleton skeletons~
+Flags       dark~
+Sector      forest~
+Regen       100 100
+ExtraDescr  skeleton skeletons~
 Something is strange about these skeletons.  Upon further investigation, these
 skeletons appear illusionary.  In fact, through the skeletons, you see a
 secret door!!
 ~
-D4
+Reset       M 5110 2 100
+Reset       E 5100 16 100
+Reset       M 5110 2 100
+Reset       E 5100 16 100
+Door        up~ ~ 0 5269
 You see your only way back up.
 ~
 ~
-0 0 5269
-D5
+Door        down~ door closed~ -1 5100
 You see nothing on the floor except skeletons.
 ~
 secret~
-3 -1 5100
-S
+End
+
 #5271
-The Valley in the dark dwarf forest~
+Name        The Valley in the dark dwarf forest~
+Descr
 You are in a valley in the forest.  To the north is a trail out of this
 dark valley.  South is more of this valley.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5272
 You see a trail away from this gloomy valley.
 ~
 ~
-0 0 5272
-D2
+Door        south~ ~ 0 5267
 You see more of this gloomy valley.
 ~
 ~
-0 0 5267
-S
+End
+
 #5272
-A dim trail in the dwarf forest~
+Name        A dim trail in the dwarf forest~
+Descr
 You are in a dim trail in the dwarf forest.  Not much light passes through
 here.  To the south is a gloomy valley, while to the north the light grows
 brighter.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 5111 2 100
+Reset       E 5100 16 100
+Door        north~ ~ 0 5273
 You can actually see the trail north of you!
 ~
 ~
-0 0 5273
-D2
+Door        south~ ~ 0 5271
 You can barely see the gloomy valley south of you.
 ~
 ~
-0 0 5271
-S
+End
+
 #5273
-A dim trail in the dwarf forest~
+Name        A dim trail in the dwarf forest~
+Descr
 You are in a dim trail in the dwarf forest.  Not much light passes through
 here.  The trail runs north and south, and the light seems to come from the
 north.  To the east, you see a small path into darkness.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5274
 You see the dim trail lead north.
 ~
 ~
-0 0 5274
-D1
+Door        east~ ~ 0 5280
 You see the small path.
 ~
 ~
-0 0 5280
-D2
+Door        south~ ~ 0 5272
 You see the dim trail lead south.
 ~
 ~
-0 0 5272
-S
+End
+
 #5274
-A dim trail in the dwarf forest~
+Name        A dim trail in the dwarf forest~
+Descr
 You are in a dim trail in the dwarf forest.  Not much light passes through
 here.  The trail runs north and south, and the light seems to come from the
 north.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 5275
 You see the dim trail lead north.
 ~
 ~
-0 0 5275
-D2
+Door        south~ ~ 0 5273
 You see the dim trail lead south.
 ~
 ~
-0 0 5273
-S
+End
+
 #5275
-A bend in the dim trail in the dwarf forest~
+Name        A bend in the dim trail in the dwarf forest~
+Descr
 You are in a dim trail in the dwarf forest.  Not much light passes through
 here.  The trail runs south and west.  The trail west looks much friendlier
 than the one leading south.
 ~
-0 0 3
-D2
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 5274
 You see the dim trail lead south.
 ~
 ~
-0 0 5274
-D3
+Door        west~ ~ 0 5276
 You see the trail lead west.
 ~
 ~
-0 0 5276
-S
+End
+
 #5276
-A trail in the dwarf forest~
+Name        A trail in the dwarf forest~
+Descr
 You are in a trail in the dwarf forest.  The trees are stunted and it
 looks dry around here.  The trail leads east and west.  It looks dimmer to
 the east.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 5275
 The trail continues east to the dimmer parts of the forest.
 ~
 ~
-0 0 5275
-D3
+Door        west~ ~ 0 5277
 The trail continues west.
 ~
 ~
-0 0 5277
-S
+End
+
 #5277
-A trail in the dwarf forest~
+Name        A trail in the dwarf forest~
+Descr
 You are in a trail in the dwarf forest.  The trees are stunted and it
 looks dry around here.  The trail leads east and west.  A dark mountain blocks 
 your progress north.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 5276
 The trail continues east.
 ~
 ~
-0 0 5276
-D3
+Door        west~ ~ 0 5278
 The trail continues west.
 ~
 ~
-0 0 5278
-S
+End
+
 #5278
-A trail in the dwarf forest~
+Name        A trail in the dwarf forest~
+Descr
 You are in a trail in the dwarf forest.  The trees are stunted and it
 looks dry around here.  The trail leads east and west.  A dark mountain is to
 the north, which you can climb.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 20000
 You see the beginning to the Goblin Caves.
 ~
 ~
-0 0 20000
-D1
+Door        east~ ~ 0 5277
 The trail continues east.
 ~
 ~
-0 0 5277
-D3
+Door        west~ ~ 0 5279
 The trail continues west.
 ~
 ~
-0 0 5279
-S
+End
+
 #5279
-The bend in the trail in the dwarf forest~
+Name        The bend in the trail in the dwarf forest~
+Descr
 You are in a bend in the trail in the forest.  The trees are stunted, but
 not so dry around here.  The trail leads east, and to the south, you see a
 waterfall.  A dark mountain blocks your progress north.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 5278
 The trail continues east.
 ~
 ~
-0 0 5278
-D2
+Door        south~ ~ 0 4774
 You see the waterfall.
 ~
 ~
-0 0 4774
-S
+End
+
 #5280
-A dark bend in the forest~
+Name        A dark bend in the forest~
+Descr
 You are in a dark bend in the forest.  To the west, you see the trail
 leading back to the dwarven forest, and to the south, you see a dark and
 dismal path.
 ~
-0 0 3
-D2
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 2300
 You see the dark path.
 ~
 ~
-0 0 2300
-D3
+Door        west~ ~ 0 5273
 You see the trail back to the Dwarven Forest.
 ~
 ~
-0 0 5273
-S
+End
+
 #0
 
-
-#SPECIALS
-M 5200 spec_cast_mage
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-O 0 5230 0 5202
-M 0 5201 20 5203
-E 0 5252 0 16
-M 0 5201 20 5204
-E 0 5252 0 16
-M 0 5201 20 5205
-E 0 5252 0 16
-O 0 5231 0 5205
-M 0 5201 20 5206
-E 0 5252 0 16
-O 0 5232 0 5208
-O 0 5233 0 5211
-M 0 5201 20 5216
-E 0 5252 0 16
-O 0 5219 0 5217
-O 0 5235 0 5217
-M 0 5207 4 5217
-M 0 5201 20 5218
-E 0 5252 0 16
-M 0 5201 20 5219
-E 0 5252 0 16
-M 0 5204 1 5219
-G 0 5218 0
-M 0 5201 20 5220
-E 0 5252 0 16
-M 0 5201 20 5221
-E 0 5252 0 16
-M 0 5201 20 5224
-E 0 5252 0 16
-O 0 5237 0 5224
-M 0 5201 20 5225
-E 0 5252 0 16
-M 0 5201 20 5226
-E 0 5252 0 16
-M 0 5203 1 5226
-G 0 5215 0
-M 0 5207 4 5227
-M 0 5201 20 5229
-E 0 5252 0 16
-O 0 5207 0 5229
-M 0 5202 1 5229
-E 0 5214 0 17
-O 0 5217 0 5230
-O 0 5250 0 5230
-O 0 5251 0 5230
-O 0 5239 0 5230
-O 0 5225 0 5231
-P 0 5215 0 5225
-P 0 5216 0 5225
-M 0 5201 20 5232
-E 0 5252 0 16
-M 0 5207 4 5232
-O 0 5227 0 5233
-P 0 3105 0 5227
-M 0 5201 20 5234
-E 0 5252 0 16
-O 0 5220 0 5234
-M 0 5201 20 5235
-E 0 5252 0 16
-M 0 5201 20 5236
-E 0 5252 0 16
-M 0 5206 1 5236
-E 0 5222 0 12
-M 0 5201 20 5237
-E 0 5252 0 16
-O 0 5210 0 5238
-O 0 5211 0 5238
-O 0 5241 0 5238
-M 0 5205 1 5238
-E 0 5214 0 17
-M 0 5201 20 5240
-E 0 5252 0 16
-M 0 5201 20 5242
-E 0 5252 0 16
-O 0 5228 0 5242
-M 0 5207 4 5244
-O 0 5243 0 5246
-M 0 5208 8 5246
-E 0 5221 0 16
-E 0 5226 0 17
-E 0 5203 0 10
-M 0 5208 8 5247
-E 0 5221 0 16
-E 0 5224 0 17
-E 0 5200 0 5
-E 0 5204 0 8
-M 0 5208 8 5248
-E 0 5221 0 16
-E 0 5205 0 7
-E 0 5206 0 13
-M 0 5200 1 5250
-E 0 5208 0 11
-E 0 5223 0 3
-M 0 5208 8 5254
-E 0 5221 0 16
-E 0 5201 0 6
-E 0 5202 0 9
-M 0 5111 2 5267
-E 0 5100 0 16
-M 0 5110 2 5270
-E 0 5100 0 16
-M 0 5110 2 5270
-E 0 5100 0 16
-M 0 5111 2 5272
-E 0 5100 0 16
-S
-
-
-#SHOPS
-0
 
 
 #$

@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -113,25 +115,29 @@ AREA_DATA *get_vnum_area( int vnum )
 
 const	struct	olc_help_type	help_table	[ ]	=
 {
-    {	"area", 	area_flags, 	   "area attributes:   e.g. changed" },
-    {	"room", 	room_flags,	   "room attributes:   e.g. safe"    },
-    {	"sector", 	sector_flags, 	   "sector types:      e.g. desert"  },
-    {	"exit", 	exit_flags, 	   "exit types:        e.g. locked"  },
-    {	"type", 	type_flags, 	   "types of objects:  e.g. wand"    },
-    {	"extra", 	extra_flags, 	   "obj attributes:    e.g. humming" },
-    {	"wear", 	wear_flags, 	   "obj wear location: e.g. wield"   },
-    {	"wear-loc", 	wear_loc_flags,    "eq wear location:  e.g. body"    },
-    {	"sex", 		sex_flags, 	   "sexes:             e.g. male"    },
-    {	"weapon", 	weapon_flags, 	   "weapon type:       e.g. slice"   },
-    {	"container", 	container_flags,   "container flags:   e.g. closed"  },
-    {	"liquid", 	liquid_flags, 	   "liquids types:     e.g. water"   },
-    {	"act", 		act_flags, 	   "ACT_ bits:      e.g. scavenger"  },
-    {	"affect", 	affect_flags, 	   "AFF_ bits:      e.g. invisible"  },
-    {	"spec-mob", 	spec_mob_table,    "mob spec progs: e.g. spec_fido"  },
-    {	"mobprogs", 	mprog_type_flags,  "MobProg types:  e.g. act_prog"   },
-    {	"game",		game_table,	   "gambling progs: e.g. game_u_l_t" },
-    {	"spells", 	skill_table, 	   "spell names:    e.g. blindness"  },
-    {	"", 		0, 		   ""				     }
+    {	"act", 		act_flags,		"ACT_ bits"		},
+    {	"affect", 	affect_flags,		"AFF_ bits"		},
+    {	"area", 	area_flags,		"area attributes"	},
+    {	"container", 	container_flags,	"container flags"	},
+    {	"exit", 	exit_flags,		"exit types"		},
+    {	"extra", 	extra_flags,		"obj attributes"	},
+    {	"game",		game_table,		"gambling progs"	},
+    {	"liquid", 	liquid_flags,		"liquids types"		},
+    {	"mobprogs", 	mprog_type_flags,	"mobprog types"		},
+    {	"portal", 	portal_flags,		"portal attributes"	},
+    {	"portal_door", 	portal_door_flags,	"portal door flags"	},
+    {	"race", 	race_table,		"race types"		},
+    {	"room", 	room_flags,		"room attributes"	},
+    {	"sector", 	sector_flags,		"sector types"		},
+    {	"sex", 		sex_flags,		"sexes"			},
+    {	"spec_mob", 	spec_mob_table,		"mob spec progs"	},
+    {	"spec_obj", 	spec_obj_table,		"obj spec progs"	},
+    {	"spells", 	skill_table,		"spell names"		},
+    {	"type", 	type_flags,		"types of objects"	},
+    {	"weapon", 	weapon_flags,		"weapon type"		},
+    {	"wear", 	wear_flags,		"obj wear location"	},
+    {	"wear_loc", 	wear_loc_flags,		"eq wear location"	},
+    {	"", 		0,			""			}
 };
 
 
@@ -166,8 +172,8 @@ void show_flag_cmds( CHAR_DATA *ch, const struct flag_type *flag_table )
 
 void show_skill_cmds( CHAR_DATA *ch, int tar )
 {
-    char buf  [MAX_STRING_LENGTH];
-    char buf1 [MAX_STRING_LENGTH*2];
+    char buf  [ MAX_STRING_LENGTH   ];
+    char buf1 [ MAX_STRING_LENGTH*2 ];
     int  sn;
     int  col;
 
@@ -202,13 +208,13 @@ void show_skill_cmds( CHAR_DATA *ch, int tar )
 
 void show_spec_mob_cmds( CHAR_DATA *ch )
 {
-    char buf  [MAX_STRING_LENGTH];
-    char buf1 [MAX_STRING_LENGTH];
+    char buf  [ MAX_STRING_LENGTH ];
+    char buf1 [ MAX_STRING_LENGTH ];
     int  spec;
     int  col;
 
     buf1[0] = '\0';
-    col = 0;
+    col     = 0;
     send_to_char( "SPEC MOB FUN's (preceed with spec_):\n\r\n\r", ch );
     for ( spec = 0; *spec_mob_table[spec].spec_fun; spec++ )
     {
@@ -226,15 +232,41 @@ void show_spec_mob_cmds( CHAR_DATA *ch )
 }
 
 
+void show_spec_obj_cmds( CHAR_DATA *ch )
+{
+    char buf  [ MAX_STRING_LENGTH ];
+    char buf1 [ MAX_STRING_LENGTH ];
+    int  spec;
+    int  col;
+
+    buf1[0] = '\0';
+    col     = 0;
+    send_to_char( "SPEC OBJ FUN's (preceed with spec_):\n\r\n\r", ch );
+    for ( spec = 0; *spec_obj_table[spec].spec_fun; spec++ )
+    {
+	sprintf( buf, "%-19.18s", &spec_obj_table[spec].spec_name[5] );
+	strcat( buf1, buf );
+	if ( ++col % 4 == 0 )
+	    strcat( buf1, "\n\r" );
+    }
+
+    if ( col % 4 != 0 )
+	strcat( buf1, "\n\r" );
+
+    send_to_char( buf1, ch );
+    return;
+}
+
+
 void show_game_cmds( CHAR_DATA *ch )
 {
-    char buf  [MAX_STRING_LENGTH];
-    char buf1 [MAX_STRING_LENGTH];
+    char buf  [ MAX_STRING_LENGTH ];
+    char buf1 [ MAX_STRING_LENGTH ];
     int  game;
     int  col;
 
     buf1[0] = '\0';
-    col = 0;
+    col     = 0;
     send_to_char( "GAME FUN's (preceed with game_):\n\r", ch );
     for ( game = 0; *game_table[game].game_fun; game++ )
     {
@@ -252,25 +284,56 @@ void show_game_cmds( CHAR_DATA *ch )
 }
 
 
-void show_help( CHAR_DATA *ch, char *argument )
+void show_race_types( CHAR_DATA *ch )
 {
-    char buf   [ MAX_STRING_LENGTH ];
-    char arg   [ MAX_INPUT_LENGTH  ];
-    char spell [ MAX_INPUT_LENGTH  ];
-    int  cnt;
+    char buf  [ MAX_STRING_LENGTH ];
+    char buf1 [ MAX_STRING_LENGTH ];
+    int  race;
+    int  col;
+
+    buf1[0] = '\0';
+    col     = 0;
+    for ( race = 0; race < MAX_RACE; race++ )
+    {
+	sprintf( buf, "%-19.18s", race_table[race].name );
+	strcat( buf1, buf );
+	if ( ++col % 4 == 0 )
+	    strcat( buf1, "\n\r" );
+    }
+
+    if ( col % 4 != 0 )
+	strcat( buf1, "\n\r" );
+
+    send_to_char( buf1, ch );
+    return;
+}
+
+
+void do_qhelp( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    char       buf   [ MAX_STRING_LENGTH ];
+    char       arg   [ MAX_STRING_LENGTH ];
+    char       spell [ MAX_INPUT_LENGTH  ];
+    int        cnt;
+
+    rch = get_char( ch );
+    
+    if ( !authorized( rch, "qhelp" ) )
+        return;
 
     argument = one_argument( argument, arg );
     one_argument( argument, spell );
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Syntax: ? <command>\n\r",    ch );
+	send_to_char( "Syntax: qhelp <command>\n\r",    ch );
 	send_to_char( "\n\r",                       ch );
 	send_to_char( "Command being one of:\n\r",  ch );
 
 	for ( cnt = 0; help_table[cnt].command[0] != '\0'; cnt++ )
 	{
-	    sprintf( buf, "  %-10.10s    %s\n\r",
+	    sprintf( buf, "  %-14.14s    %s\n\r",
 		    capitalize( help_table[cnt].command ),
 		    help_table[cnt].desc );
 	    send_to_char( buf, ch );
@@ -288,20 +351,29 @@ void show_help( CHAR_DATA *ch, char *argument )
 		show_spec_mob_cmds( ch );
 		return;
 	    }
+	    else if ( help_table[cnt].structure == spec_obj_table )
+	    {
+		show_spec_obj_cmds( ch );
+		return;
+	    }
 	    else if ( help_table[cnt].structure == game_table )
 	    {
 		show_game_cmds( ch );
+		return;
+	    }
+	    else if ( help_table[cnt].structure == race_table )
+	    {
+		show_race_types( ch );
 		return;
 	    }
 	    else if ( help_table[cnt].structure == skill_table )
 	    {
 		if ( spell[0] == '\0' )
 		{
-		    send_to_char( "Syntax: ? spells <option>", ch );
-		    send_to_char( "\n\r",                      ch );
-		    send_to_char( "Option being one of:\n\r",  ch );
+		    send_to_char( "Syntax: qhelp spells <option>\n\r",	ch );
+		    send_to_char( "Option being one of:\n\r",		ch );
 		    send_to_char( "  ignore attack defend self object all\n\r",
-							       ch );
+									ch );
 		    return;
 		}
 
@@ -319,11 +391,10 @@ void show_help( CHAR_DATA *ch, char *argument )
 		    show_skill_cmds( ch, TAR_OBJ_INV );
 		else
 		{
-		    send_to_char( "Syntax: ? spells <option>", ch );
-		    send_to_char( "\n\r",                      ch );
-		    send_to_char( "Option being one of:\n\r",  ch );
+		    send_to_char( "Syntax: qhelp spells <option>\n\r",	ch );
+		    send_to_char( "Option being one of:\n\r",		ch );
 		    send_to_char( "  ignore attack defend self object all\n\r",
-							       ch );
+									ch );
 		}
 
 		return;
@@ -389,13 +460,6 @@ void aedit( CHAR_DATA *ch, char *argument )
     if ( !str_prefix( arg1, "done" ) )
     {
 	edit_done( ch, "" );
-        return;
-    }
-
-
-    if ( !str_prefix( arg1, "?" ) )
-    {
-        show_help( ch, arg2 );
         return;
     }
 
@@ -817,13 +881,6 @@ void redit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( !str_prefix( arg1, "?" ) )
-    {
-        show_help( ch, arg2 );
-        return;
-    }
-
-
     if ( !is_builder( ch, pArea ) )
     {
         send_to_char( "Insufficient security to modify room.\n\r", ch );
@@ -862,6 +919,12 @@ void redit( CHAR_DATA *ch, char *argument )
     {
         argument = one_argument( argument, arg1 );
         strcpy( arg2, argument );
+
+        if ( !str_cmp( arg1, "help" ) )
+        {
+	    do_help( ch, "EXITEDIT" );
+            return;
+        }
 
         if ( !str_cmp( arg1, "delete" ) )
         {
@@ -1217,6 +1280,28 @@ void redit( CHAR_DATA *ch, char *argument )
         return;
     }
 
+    if ( !str_prefix( arg1, "regen" ) )
+    {
+       argument = one_argument( argument, arg1 );
+       strcpy( arg2, argument );
+
+       if ( !is_number( arg1 ) || arg1[0] == '\0'
+         || !is_number( arg2 ) || arg2[0] == '\0' )
+       {
+            send_to_char( "Syntax:  regen <heal> <mana>\n\r", ch );
+            return;
+        }
+
+        value = atoi( arg1 );
+        pRoom->heal_rate = value;
+        value = atoi( arg2 );
+        pRoom->mana_rate = value;
+        send_to_char( "Regenation fields changed.\n\r", ch );
+
+        SET_BIT( pArea->area_flags, AREA_CHANGED );
+        return;
+    }
+
     interpret( ch, arg );
     return;
 }
@@ -1234,17 +1319,17 @@ void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
     default:								break;
     case ITEM_LIGHT:
 	if ( obj->value[2] == -1 )
-	    sprintf( buf, "v2{c light {xinfinite{c.  {x-1{c,{x\n\r" );
+	    sprintf( buf, "value[2]{c light {xinfinite{c.  {x-1{c,{x\n\r" );
 	else
-	    sprintf( buf, "v2{c light {x%d{c.{x\n\r", obj->value[2] );
+	    sprintf( buf, "value[2]{c light {x%d{c.{x\n\r", obj->value[2] );
 	break;
     case ITEM_WAND:
     case ITEM_STAFF:
 	sprintf( buf,
-		"v0{c level         {x%d{c.{x\n\r"
-		"v1{c charges total {x%d{c.{x\n\r"
-		"v2{c charges left  {x%d{c.{x\n\r"
-		"v3{c spell         {x%s{c.{x\n\r",
+		"value[0]{c level         {x%d{c.{x\n\r"
+		"value[1]{c charges total {x%d{c.{x\n\r"
+		"value[2]{c charges left  {x%d{c.{x\n\r"
+		"value[3]{c spell         {x%s{c.{x\n\r",
 		obj->value[0],
 		obj->value[1],
 		obj->value[2],
@@ -1255,11 +1340,11 @@ void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
     case ITEM_POTION:
     case ITEM_PILL:
 	sprintf( buf,
-		"v0{c level {x%d{c.{x\n\r"
-		"v1{c spell {x%s{c.{x\n\r"
-		"v2{c spell {x%s{c.{x\n\r"
-		"v3{c spell {x%s{c.{x\n\r"
-		"v4{c spell {x%s{c.{x\n\r",
+		"value[0]{c level {x%d{c.{x\n\r"
+		"value[1]{c spell {x%s{c.{x\n\r"
+		"value[2]{c spell {x%s{c.{x\n\r"
+		"value[3]{c spell {x%s{c.{x\n\r"
+		"value[4]{c spell {x%s{c.{x\n\r",
 		obj->value[0],
 		obj->value[1] != -1 ? skill_table[obj->value[1]].name : "none",
 		obj->value[2] != -1 ? skill_table[obj->value[2]].name : "none",
@@ -1269,18 +1354,18 @@ void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
 	break;
     case ITEM_WEAPON:
 	sprintf( buf,
-		"v1{c damage minimum {x%d{c.{x\n\r"
-		"v2{c damage maximum {x%d{c.{x\n\r"
-		"v3{c type           {x%s{c.{x\n\r",
+		"value[1]{c damage minimum {x%d{c.{x\n\r"
+		"value[2]{c damage maximum {x%d{c.{x\n\r"
+		"value[3]{c type           {x%s{c.{x\n\r",
 		obj->value[1],
 		obj->value[2],
 		flag_string( weapon_flags, obj->value[3] ) );
 	break;
     case ITEM_CONTAINER:
 	sprintf( buf,
-		"v0{c weight {x%d{c kg.{x\n\r"
-		"v1{c flags  {x%s{c.{x\n\r"
-		"v2{c key    {x%s{c.  {x%d{c.{x\n\r",
+		"value[0]{c weight {x%d{c kg.{x\n\r"
+		"value[1]{c flags  {x%s{c.{x\n\r"
+		"value[2]{c key    {x%s{c.  {x%d{c.{x\n\r",
 		obj->value[0],
 		flag_string( container_flags, obj->value[1] ),
 		get_obj_index( obj->value[2] )
@@ -1289,10 +1374,10 @@ void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
 	break;
     case ITEM_DRINK_CON:
 	sprintf( buf,
-		"v0{c liquid total {x%d{c.{x\n\r"
-		"v1{c liquid left  {x%d{c.{x\n\r"
-		"v2{c liquid       {x%s{c.{x\n\r"
-		"v3{c poisoned     {x%s{c.{x\n\r",
+		"value[0]{c liquid total {x%d{c.{x\n\r"
+		"value[1]{c liquid left  {x%d{c.{x\n\r"
+		"value[2]{c liquid       {x%s{c.{x\n\r"
+		"value[3]{c poisoned     {x%s{c.{x\n\r",
 		obj->value[0],
 		obj->value[1],
 		flag_string( liquid_flags, obj->value[2] ),
@@ -1300,21 +1385,21 @@ void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
 	break;
     case ITEM_FOOD:
 	sprintf( buf,
-		"v0{c food hours {x%d{c.{x\n\r"
-		"v3{c poisoned   {x%s{c.{x\n\r",
+		"value[0]{c food hours {x%d{c.{x\n\r"
+		"value[3]{c poisoned   {x%s{c.{x\n\r",
 		obj->value[0],
 		obj->value[3] != 0 ? "yes" : "no" );
 	break;
     case ITEM_MONEY:
-	sprintf( buf, "v0{c gold {x%d{c.{x\n\r", obj->value[0] );
+	sprintf( buf, "value[0]{c gold {x%d{c.{x\n\r", obj->value[0] );
 	break;
     case ITEM_PORTAL:
 	sprintf( buf,
-		"v0{c charges {x%d{c.{x\n\r"
-		"v1{c flags   {x%s{c.{x\n\r"
-		"v2{c key     {x%s{c.  {x%d{c.{x\n\r"
-		"v3{c flags   {x%s{c.{x\n\r"
-		"v4{c destiny {x%d{c.{x\n\r",
+		"value[0]{c charges {x%d{c.{x\n\r"
+		"value[1]{c flags   {x%s{c.{x\n\r"
+		"value[2]{c key     {x%s{c.  {x%d{c.{x\n\r"
+		"value[3]{c flags   {x%s{c.{x\n\r"
+		"value[4]{c destiny {x%d{c.{x\n\r",
 		obj->value[0],
 		flag_string( portal_door_flags, obj->value[1] ),
 		get_obj_index( obj->value[2] )
@@ -1325,9 +1410,9 @@ void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
 	break;
     case ITEM_GEM:
 	sprintf( buf,
-		"v0{c flags    {x%s{c.{x\n\r"
-		"v1{c mana     {x%d{c.{x\n\r"
-		"v2{c max_mana {x%d{c.{x\n\r",
+		"value[0]{c flags    {x%s{c.{x\n\r"
+		"value[1]{c mana     {x%d{c.{x\n\r"
+		"value[2]{c max_mana {x%d{c.{x\n\r",
 		flag_string( mana_flags, obj->value[0] ),
 		obj->value[1],
 		obj->value[2] );
@@ -1384,7 +1469,7 @@ bool set_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *pObj, int value_num,
 	    break;
 	case 3:
 	    send_to_char( "Spell type set.\n\r", ch );
-	    pObj->value[3] = skill_lookup( argument );
+	    pObj->value[3] = skill_blookup( argument, 0, MAX_SPELL );
 	    break;
 	}
 	break;
@@ -1407,7 +1492,7 @@ bool set_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *pObj, int value_num,
 	case 4:
 	    sprintf( buf, "Spell type %d set.\n\r\n\r", value_num );
 	    send_to_char( buf, ch );
-	    pObj->value[value_num] = skill_lookup( argument );
+	    pObj->value[value_num] = skill_blookup( argument, 0, MAX_SPELL );
 	    break;
 	}
 	break;
@@ -1477,7 +1562,7 @@ bool set_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *pObj, int value_num,
 	switch ( value_num )
 	{
 	default:
-	    do_help( ch, "ITEM_DRINK" );
+	    do_help( ch, "ITEM_DRINK_CON" );
 	    return FALSE;
 	case 0:
 	    send_to_char( "Maximum amout of liquid hours set.\n\r\n\r", ch );
@@ -1728,13 +1813,6 @@ void oedit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( !str_prefix( arg1, "?" ) )
-    {
-        show_help( ch, arg2 );
-        return;
-    }
-
-
     if ( !is_builder( ch, pArea ) )
     {
         send_to_char( "Insufficient security to modify object.\n\r", ch );
@@ -1746,6 +1824,7 @@ void oedit( CHAR_DATA *ch, char *argument )
     if ( !str_prefix( arg1, "addaffect" ) )
     {
 	char  arg3 [MAX_STRING_LENGTH];
+	int   bit;
 
         argument = one_argument( argument, arg1 );
         argument = one_argument( argument, arg2 );
@@ -1764,7 +1843,7 @@ void oedit( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( flag_value( affect_flags, arg3 ) == NO_FLAG )
+	if ( ( bit = flag_value( affect_flags, arg3 ) ) == NO_FLAG )
 	{
 	    send_to_char( "Affect bitvector doesn't exist!\n\r", ch );
 	    return;
@@ -1775,7 +1854,10 @@ void oedit( CHAR_DATA *ch, char *argument )
         pAf->modifier   =   atoi( arg2 );
         pAf->type       =   -1;
         pAf->duration   =   -1;
-        pAf->bitvector  =   flag_value( affect_flags, arg3 );
+
+	if ( bit >= 0 )
+	    toggle_bit( pAf->bitvector, bit );
+
         pAf->next       =   pObj->affected;
         pObj->affected  =   pAf;
 
@@ -1989,7 +2071,7 @@ void oedit( CHAR_DATA *ch, char *argument )
         pObj->weight = value;
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Weight set.\n\r", ch);
+        send_to_char( "Weight set.\n\r", ch );
         return;
     }
 
@@ -2013,7 +2095,7 @@ void oedit( CHAR_DATA *ch, char *argument )
         pObj->cost = value;
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Cost set.\n\r", ch);
+        send_to_char( "Cost set.\n\r", ch );
         return;
     }
 
@@ -2022,6 +2104,33 @@ void oedit( CHAR_DATA *ch, char *argument )
     {
 	oedit_create( ch, arg2 );
 	return;
+    }
+
+
+    if ( !str_prefix( arg1, "spec" ) )
+    {
+        if ( arg2[0] == '\0' )
+        {
+            send_to_char( "Syntax:  spec <special function>\n\r", ch );
+            return;
+        }
+
+	if ( spec_obj_lookup( arg2 ) )
+	{
+	    pObj->spec_fun = spec_obj_lookup( argument );
+	    SET_BIT( pArea->area_flags, AREA_CHANGED );
+	    send_to_char( "Spec set.\n\r", ch );
+	    return;
+	}
+
+	if ( !str_cmp( arg2, "none" ) )
+	{
+	    pObj->spec_fun = NULL;
+
+	    SET_BIT( pArea->area_flags, AREA_CHANGED );
+	    send_to_char( "Spec removed.\n\r", ch );
+	    return;
+	}
     }
 
 
@@ -2223,13 +2332,6 @@ void medit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( !str_prefix( arg1, "?" ) )
-    {
-        show_help( ch, arg2 );
-        return;
-    }
-
-
     if ( !is_builder( ch, pArea ) )
     {
         send_to_char( "Insufficient security to modify mobile.\n\r", ch );
@@ -2386,7 +2488,7 @@ void medit( CHAR_DATA *ch, char *argument )
             pMob->pGame = NULL;
 
             SET_BIT( pArea->area_flags, AREA_CHANGED );
-            send_to_char( "Game deleted.\n\r", ch);
+            send_to_char( "Game deleted.\n\r", ch );
             return;
         }
 
@@ -2438,7 +2540,7 @@ void medit( CHAR_DATA *ch, char *argument )
             pMob->pShop->close_hour = atoi( arg2 );
 
             SET_BIT( pArea->area_flags, AREA_CHANGED );
-            send_to_char( "Shop hours set.\n\r", ch);
+            send_to_char( "Shop hours set.\n\r", ch );
             return;
         }
 
@@ -2467,7 +2569,7 @@ void medit( CHAR_DATA *ch, char *argument )
             pMob->pShop->profit_sell    = atoi( arg2 );
 
             SET_BIT( pArea->area_flags, AREA_CHANGED );
-            send_to_char( "Shop profit set.\n\r", ch);
+            send_to_char( "Shop profit set.\n\r", ch );
             return;
         }
 
@@ -2507,7 +2609,7 @@ void medit( CHAR_DATA *ch, char *argument )
             pMob->pShop->buy_type[atoi( arg1 )] = value;
 
             SET_BIT( pArea->area_flags, AREA_CHANGED );
-            send_to_char( "Shop type set.\n\r", ch);
+            send_to_char( "Shop type set.\n\r", ch );
             return;
         }
 
@@ -2525,7 +2627,7 @@ void medit( CHAR_DATA *ch, char *argument )
             pMob->pShop = NULL;
 
             SET_BIT( pArea->area_flags, AREA_CHANGED );
-            send_to_char( "Shop deleted.\n\r", ch);
+            send_to_char( "Shop deleted.\n\r", ch );
             return;
         }
 
@@ -2549,7 +2651,7 @@ void medit( CHAR_DATA *ch, char *argument )
         pMob->player_name = str_dup( arg2 );
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Name set.\n\r", ch);
+        send_to_char( "Name set.\n\r", ch );
         return;
     }
 
@@ -2566,7 +2668,7 @@ void medit( CHAR_DATA *ch, char *argument )
         pMob->short_descr = str_dup( arg2 );
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Short description set.\n\r", ch);
+        send_to_char( "Short description set.\n\r", ch );
         return;
     }
 
@@ -2585,7 +2687,7 @@ void medit( CHAR_DATA *ch, char *argument )
 	pMob->long_descr[0] = UPPER( pMob->long_descr[0] );
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Long description set.\n\r", ch);
+        send_to_char( "Long description set.\n\r", ch );
         return;
     }
 
@@ -2632,9 +2734,9 @@ void medit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( ( value = flag_value( affect_flags, arg ) ) != NO_FLAG )
+    if ( ( value = flag_value( affect_flags, arg ) ) != NO_FLAG && value >= 0 )
     {
-	TOGGLE_BIT( pMob->affected_by, value );
+	toggle_bit( pMob->affected_by, value );
 
 	SET_BIT( pArea->area_flags, AREA_CHANGED );
 	send_to_char( "Affect flag toggled.\n\r", ch );
@@ -2653,7 +2755,7 @@ void medit( CHAR_DATA *ch, char *argument )
         pMob->level = atoi( arg2 );
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Level set.\n\r", ch);
+        send_to_char( "Level set.\n\r", ch );
         return;
     }
 
@@ -2668,7 +2770,7 @@ void medit( CHAR_DATA *ch, char *argument )
         pMob->alignment = atoi( arg2 );
 
         SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Alignment set.\n\r", ch);
+        send_to_char( "Alignment set.\n\r", ch );
         return;
     }
 
@@ -2684,7 +2786,7 @@ void medit( CHAR_DATA *ch, char *argument )
 	{
 	    pMob->spec_fun = spec_mob_lookup( argument );
 	    SET_BIT( pArea->area_flags, AREA_CHANGED );
-	    send_to_char( "Spec set.\n\r", ch);
+	    send_to_char( "Spec set.\n\r", ch );
 	    return;
 	}
 
@@ -2693,7 +2795,7 @@ void medit( CHAR_DATA *ch, char *argument )
 	    pMob->spec_fun = NULL;
 
 	    SET_BIT( pArea->area_flags, AREA_CHANGED );
-	    send_to_char( "Spec removed.\n\r", ch);
+	    send_to_char( "Spec removed.\n\r", ch );
 	    return;
 	}
     }
@@ -2767,7 +2869,7 @@ bool mpedit_create( CHAR_DATA *ch, char *argument )
 }
 
 
-int mprog_count( MOB_INDEX_DATA * pMob )
+int mprog_count( MOB_INDEX_DATA *pMob )
 {
     MPROG_DATA *mprg;
     int         count;
@@ -2777,7 +2879,7 @@ int mprog_count( MOB_INDEX_DATA * pMob )
     return count;
 }
 
-MPROG_DATA *edit_mprog( CHAR_DATA * ch, MOB_INDEX_DATA * pMob )
+MPROG_DATA *edit_mprog( CHAR_DATA *ch, MOB_INDEX_DATA *pMob )
 {
     MPROG_DATA *mprg;
     int         mprog_num;
@@ -2790,7 +2892,7 @@ MPROG_DATA *edit_mprog( CHAR_DATA * ch, MOB_INDEX_DATA * pMob )
     return mprg;
 }
 
-void show_mprog( CHAR_DATA * ch, MPROG_DATA * pMobProg )
+void show_mprog( CHAR_DATA *ch, MPROG_DATA *pMobProg )
 {
     char buf [ MAX_STRING_LENGTH ];
 
@@ -2904,13 +3006,6 @@ void mpedit( CHAR_DATA *ch, char *argument )
     if ( !str_prefix( arg1, "done" ) )
     {
 	edit_done( ch, "" );
-        return;
-    }
-
-
-    if ( !str_prefix( arg1, "?" ) )
-    {
-        show_help( ch, arg2 );
         return;
     }
 
@@ -3106,110 +3201,118 @@ void mpedit( CHAR_DATA *ch, char *argument )
 
 
 
-void do_oindex( CHAR_DATA * ch, char *argument )
+void do_oindex( CHAR_DATA *ch, char *argument )
 {
-    char            buf  [ MAX_STRING_LENGTH ];
-    char            arg  [ MAX_INPUT_LENGTH ];
-    char            arg2 [ MAX_INPUT_LENGTH ];
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_DATA *obj;
     AFFECT_DATA    *paf;
+    char            buf  [ MAX_STRING_LENGTH ];
+    char            buf1 [ MAX_STRING_LENGTH ];
+    char            arg  [ MAX_INPUT_LENGTH  ];
     int             cnt;
 
-    argument = one_argument( argument, arg );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg );
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Oindex whom?\n\r", ch );
+	send_to_char( "Oindex what?\n\r", ch );
         return;
     }
 
-    if ( !( pObj = get_obj_index( atoi( arg ) ) ) )
+    buf1[0] = '\0';
+
+    if ( !( obj = get_obj_index( atoi( arg ) ) ) )
     {
-	send_to_char( "Invalid obj index VNUM.\n\r", ch );
+	send_to_char( "Invalid obj index vnum.\n\r", ch );
         return;
     }
 
-    sprintf( buf, "{cName: {x%s{c.{x\n\r{cArea: [%5d] '{x%s{c'.{x\n\r",
-	    pObj->name,
-	    !pObj->area ? -1 : pObj->area->vnum,
-	    !pObj->area ? "No Area" : pObj->area->name );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cArea: {x%s{c.  |{x%d{c|{x\n\r",
+	    obj->area ? obj->area->name : "(no area)",
+	    obj->area ? obj->area->vnum : -1 );
+    strcat( buf1, buf );
 
+    sprintf( buf, "{cName:{x %s{c.{x\n\r",
+	    obj->name );
+    strcat( buf1, buf );
 
-    sprintf( buf, "{cVnum: {x%d{c.{x\n\r{cType: {x%s{c.{x\n\r",
-	    pObj->vnum,
-	    flag_string( type_flags, pObj->item_type ) );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cVnum: {x%d{c.  Type: {x%s{c.{x\n\r",
+	    obj->vnum, flag_string( type_flags, obj->item_type ) );
+    strcat( buf1, buf );
 
-    sprintf( buf, "{cWear flags: {x%s{c.{x\n\r",
-	    flag_string( wear_flags, pObj->wear_flags ) );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong description: {x%s\n\r",
+	    obj->short_descr, obj->description );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cWear flags: {x%s{c.{x  ",
+	    flag_string( wear_flags,  obj->wear_flags  ) );
+    strcat( buf1, buf );
 
     sprintf( buf, "{cExtra flags: {x%s{c.{x\n\r",
-	    flag_string( extra_flags, pObj->extra_flags ) );
-    send_to_char( buf, ch );
+	    flag_string( extra_flags, obj->extra_flags ) );
+    strcat( buf1, buf );
 
-    sprintf( buf, "{cWeight: {x%d{c.{x\n\r{cCost: {x%d{c.{x\n\r",
-	    pObj->weight, pObj->cost );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cWeight: {x%d{c.{x  {cCost: {x%d{c.{x\n\r",
+	    obj->weight, obj->cost );
+    strcat( buf1, buf );
 
-    if ( pObj->extra_descr )
+    if ( obj->extra_descr )
     {
 	EXTRA_DESCR_DATA *ed;
 
-	send_to_char( "{cExtra description keywords: {x", ch );
+	strcat( buf1, "{cExtra description keywords: '{x" );
 
-	for ( ed = pObj->extra_descr; ed; ed = ed->next )
+	for ( ed = obj->extra_descr; ed; ed = ed->next )
 	{
-	    send_to_char( ed->keyword, ch );
-	    send_to_char( " ", ch );
+	    strcat( buf1, ed->keyword );
+	    if ( ed->next )
+		strcat( buf1, " " );
 	}
 
-	send_to_char( "{c.{x\n\r", ch );
+	strcat( buf1, "{c'.{x\n\r" );
     }
 
-    sprintf( buf, "{cShort description: {x%s{c.{x\n\r",
-	    pObj->short_descr );
-    send_to_char( buf, ch );
+    if ( obj->spec_fun != 0 )
+    {
+	sprintf( buf, "{cObject has {x%s{c.{x\n\r",
+		spec_obj_string( obj->spec_fun ) );
+        strcat( buf1, buf );
+    }
 
-    sprintf( buf, "{cLong description: {x%s{x\n\r",
-	    pObj->description );
-    send_to_char( buf, ch );
-
-    for ( cnt = 0, paf = pObj->affected; paf; paf = paf->next )
+    for ( cnt = 0, paf = obj->affected; paf; paf = paf->next, cnt++ )
     {
 	if ( cnt == 0 )
 	{
-	    send_to_char( "\n\r{o{c{B| Number | Modifier | Affects      | Bitvector             {x\n\r", ch );
-	    send_to_char( "{o{c{B+--------+----------+--------------+-----------------------{x\n\r", ch );
+	    strcat( buf1, "\n\r" );
+	    strcat( buf1, "{o{c{B| Number | Location     | Modifier | Bitvector             {x\n\r" );
+	    strcat( buf1, "{o{c{B+--------+--------------+----------+-----------------------{x\n\r" );
 	}
-	sprintf( buf, "{o{c{B|{o %-4d   {x{o{c{B| %-8d | %-12.12s | ",
+
+	sprintf( buf, "{o{c{B| %-4d   | %-12.12s | %-8d | ",
 		cnt,
-		paf->modifier,
-		flag_string( apply_flags, paf->location ) );
-	sprintf( buf + strlen( buf ), "%-22.22s{x\n\r",
-		flag_string( affect_flags, paf->bitvector ) );
-	send_to_char( buf, ch );
-	cnt++;
+		flag_string( apply_flags, paf->location   ),
+		paf->modifier );
+	strcat( buf1, buf );
+
+	sprintf( buf, "%-22.22s{x\n\r",
+		vect_string( affect_flags, paf->bitvector ) );
+	strcat( buf1, buf );
     }
+    strcat( buf1, "\n\r" );
 
-    send_to_char( "\n\r", ch );
-    show_obj_values( ch, pObj );
-
+    send_to_char( buf1, ch );
+    show_obj_values( ch, obj );
     return;
 }
 
 
-void do_mindex( CHAR_DATA * ch, char *argument )
+void do_mindex( CHAR_DATA *ch, char *argument )
 {
+    MOB_INDEX_DATA *mob;
     char            buf  [ MAX_STRING_LENGTH ];
-    char            arg  [ MAX_INPUT_LENGTH ];
-    char            arg2 [ MAX_INPUT_LENGTH ];
-    MOB_INDEX_DATA *pMob;
+    char            buf1 [ MAX_STRING_LENGTH ];
+    char            arg  [ MAX_INPUT_LENGTH  ];
 
-    argument = one_argument( argument, arg );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg );
 
     if ( arg[0] == '\0' )
     {
@@ -3217,98 +3320,116 @@ void do_mindex( CHAR_DATA * ch, char *argument )
         return;
     }
 
-    if ( !( pMob = get_mob_index( atoi( arg ) ) ) )
+    buf1[0] = '\0';
+
+    if ( !( mob = get_mob_index( atoi( arg ) ) ) )
     {
-	send_to_char( "Invalid mob index VNUM.\n\r", ch );
+	send_to_char( "Invalid mob index vnum.\n\r", ch );
         return;
     }
 
-    sprintf( buf, "{cName: {x%s{c.{x\n\r{cArea: [%5d] '{x%s{c'.{x\n\r",
-	    pMob->player_name,
-	    !pMob->area ? -1 : pMob->area->vnum,
-	    !pMob->area ? "No Area" : pMob->area->name );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cArea: {x%s{c.  |{x%d{c|{x\n\r",
+	    mob->area ? mob->area->name : "(no area)",
+	    mob->area ? mob->area->vnum : -1 );
+    strcat( buf1, buf );
 
-    sprintf( buf, "{cRace: {x%s{c.{x\n\r", race_table[ pMob->race ].name );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cName:{x %s{c.{x\n\r",
+	    mob->player_name );
+    strcat( buf1, buf );
 
-    sprintf( buf, "{cVnum: {x%d{c.  Sex: {x%s{c.{x\n\r",
-	    pMob->vnum,
-	    pMob->sex == SEX_MALE ? "male" :
-	    pMob->sex == SEX_FEMALE ? "female" : "neutral" );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cRace: {x%s{c.{x\n\r", race_table[mob->race].name );
+    strcat( buf1, buf );
 
-    sprintf( buf,
-	    "{cLevel: {x%2d{c.  Align: {x%4d{c.{x\n\r",
-	    pMob->level, pMob->alignment );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cVnum: {x%d{c.  Sex: {x%s{c.{x  ",
+	    mob->vnum,
+	    mob->sex == SEX_MALE    ? "male"   :
+	    mob->sex == SEX_FEMALE  ? "female" : "neutral" );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cLevel: {x%d{c.  Align: {x%d{c.{x\n\r",
+	    mob->level, mob->alignment );
+    strcat( buf1, buf );
 
     sprintf( buf, "{cAffected by: {x%s{c.{x\n\r",
-	    flag_string( affect_flags, pMob->affected_by ) );
-    send_to_char( buf, ch );
+	    vect_string( affect_flags, mob->affected_by ) );
+    strcat( buf1, buf );
 
     sprintf( buf, "{cAct: {x%s{c.{x\n\r",
-	    flag_string( act_flags, pMob->act ) );
-    send_to_char( buf, ch );
+	    flag_string( act_flags, mob->act ) );
+    strcat( buf1, buf );
 
-    sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong description: {x%s",
-	    pMob->short_descr,
-	    pMob->long_descr );
-    send_to_char( buf, ch );
+    sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong  description: {x%s",
+	    mob->short_descr,
+	    mob->long_descr[0] != '\0' ? mob->long_descr
+				       : "(none).\n\r" );
+    strcat( buf1, buf );
 
-    if ( pMob->spec_fun )
+    if ( mob->spec_fun != 0 )
     {
-	sprintf( buf, "{cSpec fun: {x%s{c.{x\n\r",
-		spec_mob_string( pMob->spec_fun ) );
-	send_to_char( buf, ch );
+	sprintf( buf, "{cMobile has {x%s{c.{x\n\r",
+		spec_mob_string( mob->spec_fun ) );
+        strcat( buf1, buf );
     }
 
-    if ( pMob->pGame )
+    sprintf( buf, "{cDescription:{x\n\r%s", mob->description );
+    strcat( buf1, buf );
+
+    if ( mob->pGame )
     {
-	sprintf( buf, "{cGame fun: {x%s{c. Bankroll: {x%d{c.  Maxwait: {x%d{c."
-		      " Cheat: {x%s{c.{x\n\r",
-		game_string( pMob->pGame->game_fun ),
-		pMob->pGame->bankroll,
-		pMob->pGame->max_wait,
-		pMob->pGame->cheat ? "TRUE" : "FALSE" );
-	send_to_char( buf, ch );
+	strcat( buf1, "\n\r" );
+
+	sprintf( buf, "{cGame fun: {x%s{c.  Bankroll: {x%d{c.{x  ",
+		game_string( mob->pGame->game_fun ),
+		mob->pGame->bankroll );
+	strcat( buf1, buf );
+
+	sprintf( buf, "{cMaxwait: {x%d{c.  Cheat: {x%s{c.{x\n\r",
+		mob->pGame->max_wait,
+		mob->pGame->cheat ? "TRUE" : "FALSE" );
+	strcat( buf1, buf );
     }
 
-    sprintf( buf, "{cDescription:{x\n\r%s", pMob->description );
-    send_to_char( buf, ch );
-
-    if ( pMob->pShop )
+    if ( mob->pShop )
     {
 	SHOP_DATA *pShop;
-	int iTrade;
+	int        iTrade;
 
-	pShop = pMob->pShop;
+	pShop = mob->pShop;
 
-	sprintf( buf,
-		"{cShop data for [{x%5d{c]:{x\n\r  {cMarkup for purchaser:"
-		" {x%d%%\n\r  {cMarkdown for seller:  {x%d%%\n\r",
-		pShop->keeper, pShop->profit_buy, pShop->profit_sell );
-	send_to_char( buf, ch );
-	sprintf( buf, "  {cHours: {x%d{c to {x%d.\n\r",
+	strcat( buf1, "\n\r" );
+
+	sprintf( buf, "{cShop data for {x%d{c.{x  ",
+		pShop->keeper );
+	strcat( buf1, buf );
+
+	sprintf( buf, "{cProfit buy: {x%d%%{c.  Profit sell: {x%d%%{c.{x  ",
+		pShop->profit_buy, pShop->profit_sell );
+	strcat( buf1, buf );
+
+	sprintf( buf, "{cHours: {x%d{c to {x%d{c.{x\n\r",
 		pShop->open_hour, pShop->close_hour );
-	send_to_char( buf, ch );
+	strcat( buf1, buf );
 
 	for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
 	{
-	    if ( pShop->buy_type[iTrade] != 0 )
+	    if ( pShop->buy_type[iTrade] == 0 )
+		continue;
+
+	    if ( iTrade == 0 )
 	    {
-		if ( iTrade == 0 )
-		{
-		    send_to_char( "  {cNumber Trades Type{x\n\r", ch );
-		    send_to_char( "  {c------ -----------{x\n\r", ch );
-		}
-		sprintf( buf, "  {c[{x%4d{c] {x%s\n\r", iTrade,
-		  flag_string( type_flags, pShop->buy_type[iTrade] ) );
-		send_to_char( buf, ch );
+		strcat( buf1, "\n\r" );
+		strcat( buf1, "{o{c{B| Number | Trade Type       {x\n\r" );
+		strcat( buf1, "{o{c{B+--------+------------------{x\n\r" );
 	    }
+
+	    sprintf( buf, "{o{c{B| %-4d   | %-16.16s {x\n\r",
+		    iTrade,
+		    flag_string( type_flags, pShop->buy_type[iTrade] ) );
+	    strcat( buf1, buf );
 	}
     }
 
+    send_to_char( buf1, ch );
     return;
 }
 

@@ -4,1710 +4,1968 @@ Author      Anon~
 Levels      10 25
 Security    1
 VNUMs       4700 4785
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #4700
-dwarf~
-the small dwarf~
+Name        dwarf~
+Short       the small dwarf~
+Long
 A small dwarf is here mining at the tunnel walls.
 ~
+Descr
 The small dwarf is dirty and dressed only in a small tunic and leggings.  His
 beard is encrusted with cracked rock and dust from the tunnel walls.
 ~
-5 0 500 S
-7 13 3 1d10+150 1d8+0
-50 0
-0 Dwarf~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   500
+Level       7
+Gold        50
+Race        Dwarf
+Sex         male~
+End
+
 #4701
-dwarf~
-the small dwarf~
+Name        dwarf~
+Short       the small dwarf~
+Long
 A small dwarf is here, on the watch for Duergar.
 ~
+Descr
 The small dwarf is dressed in colorful clothing and has a full and long
 beard.  His eyes are keen and sharp, well suited for sight in the dark tunnels
 of the mines.
 ~
-5 0 500 S
-5 18 5 1d12+60 1d8+0
-100 0
-0 Dwarf~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   500
+Level       5
+Gold        100
+Race        Dwarf
+Sex         male~
+End
+
 #4702
-dwarf guard~
-the dwarf guard~
+Name        dwarf guard~
+Short       the dwarf guard~
+Long
 A small dwarf is here, dressed in a makeshift suit of armor.
 ~
+Descr
 This small dwarf is the militia of the Dwarven Kingdom it watches over.  The
 small body is strong which makes him a match for any foe.  The armor of the
 dwarf is of no use to anyone but him, but provides adequate defense.
 ~
-3 0 700 S
-10 10 0 1d12+170 1d8+6
-150 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   700
+Level       10
+Gold        150
+Race        Dwarf
+Sex         male~
+End
+
 #4703
-dwarf yentle~
-Yentle the dwarf~
+Name        dwarf yentle~
+Short       Yentle the dwarf~
+Long
 A small dwarf sits here trying to grow a new rock.
 ~
+Descr
 The insane little dwarf who thinks he can grow a rock.  He is dressed in many
 yellows and oranges, and seems to have a happy look about him despite his years
 of failure at growing rocks.
 ~
-5 8 1000 S
-10 11 2 10d10+100 2d6+1
-300 0
-0 Dwarf~ 1
+Act         scavenger~
+AffectBy    detect-invis~
+Alignment   1000
+Level       10
+Gold        300
+Race        Dwarf
+Sex         male~
+End
+
 #4704
-juargan dwarf king~
-Juargan the Dwarven King~
+Name        juargan dwarf king~
+Short       Juargan the Dwarven King~
+Long
 Juargan the Dwarven King sits upon his throne, looking out over his gardens.
 ~
+Descr
 The small king is bulging at the seems with muscle.  He is dressed in nothing
 but a noble robe made of a grey silk.  His face has a visage of stone like his
 surroundings, as if his burden has become to much for him.
 ~
-3 8 1000 S
-27 -1 -10 27d27+270 3d6+9
-1000 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    detect-invis~
+Alignment   1000
+Level       27
+Gold        1000
+Race        Dwarf
+Sex         male~
+End
+
 #4705
-duergar dwarf~
-the duergar dwarf~
+Name        duergar dwarf~
+Short       the duergar dwarf~
+Long
 A repulsive Duergar is here, biting at its own arm.
 ~
+Descr
 The Duergar are the outcast dark dwarves.  They have grown insane through
 their isolation from the rest of the dwarven population and have become bitter
 enemies with them.
 ~
-37 8 -1000 S
-8 13 3 2d10+150 2d4+0
-100 0
-0 Dwarf~ 1
+Act         scavenger aggressive~
+AffectBy    detect-invis~
+Alignment   -1000
+Level       8
+Gold        100
+Race        Dwarf
+Sex         male~
+End
+
 #4706
-grimdale king dwarf~
-Grimdale the ancient king~
+Name        grimdale king dwarf~
+Short       Grimdale the ancient king~
+Long
 A ancient and partially decayed dwarf lies here ever so silent.
 ~
+Descr
 The ancient king of the dwarves lies here.  Forgotten over the past decades
 his once cherished body has fallen into utter decay.  His once cheery face has
 turned into a crude scowl as you can feel that his soul is not at ease.
 ~
-35 40 -999 S
-27 -1 -10 27d27+270 2d10+9
-0 0
-0 Undead~ 1
+Act         sentinel aggressive~
+AffectBy    detect-invis detect-hidden~
+Alignment   -999
+Level       27
+Gold        0
+Race        Undead
+Sex         male~
+End
+
 #4707
-rock worm dreaded~
-The dreaded rock worm~
+Name        rock worm dreaded~
+Short       The dreaded rock worm~
+Long
 The dreaded rock worm has blasted through the rock wall, its jaws open wide!
 ~
+Descr
 The jaws of this strange beast are large enough to fit at lease two dwarves
 into.  Judging by the size you can see that is has been eating quite a few too
 many dwarves as it's body is at least five feet in diameter.
 ~
-35 8 0 S
-20 10 5 4d10+250 3d4+6
-4000 0
-0 Worm~ 0
+Act         sentinel aggressive~
+AffectBy    detect-invis~
+Alignment   0
+Level       20
+Gold        4000
+Race        Worm
+Sex         neutral~
+End
+
 #4708
-spirit dwarf~
-a dwarven spirit~
+Name        spirit dwarf~
+Short       a dwarven spirit~
+Long
 A small dwarven spirit is at unrest here.
 ~
+Descr
 The small spirit screams in agony as it is bound to this wretched existence.
 The soul of some unfortunate dwarf now has to fly aimlessly through this chamber
 of eternal pain.
 ~
-35 168 -999 S
-15 6 1 5d10+150 2d6+3
-0 0
-0 Undead~ 0
+Act         sentinel aggressive~
+AffectBy    detect-invis detect-hidden sanctuary~
+Alignment   -999
+Level       15
+Gold        0
+Race        Undead
+Sex         neutral~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #4700
-key small~
-a small key~
+Name        key small~
+Short       a small key~
+Descr
 A small key of red rock lies here on the ground.~
-~
-18 0 1
-2~ 0~ 0~ 0~ 0~
-1 10 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10
+End
+
 #4701
-pick mining~
-a mining pick~
+Name        pick mining~
+Short       a mining pick~
+Descr
 A small pick lies here on the ground.~
-~
-5 0 8193
-0~ 1~ 6~ 11~ 0~
-10 100 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      10
+Cost        100
+End
+
 #4702
-helm dwarven~
-a dwarven helm~
+Name        helm dwarven~
+Short       a dwarven helm~
+Descr
 A large dwarven helm lies here on the ground.~
-~
-9 0 17
-6~ 0~ 0~ 0~ 0~
-10 1000 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+End
+
 #4703
-plate dwarven breast~
-a dwarven breast plate~
+Name        plate dwarven breast~
+Short       a dwarven breast plate~
+Descr
 A dwarven breast plate lies here on the ground.~
-~
-9 0 9
-10~ 0~ 0~ 0~ 0~
-15 1500 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        1500
+End
+
 #4704
-shield large dwarven~
-a large dwarven shield~
+Name        shield large dwarven~
+Short       a large dwarven shield~
+Descr
 A large dwarven shield lies here on the ground.~
-~
-9 1 513
-4~ 0~ 0~ 0~ 0~
-7 2000 0
-A
-24 4 0
-A
-17 -2 0
+Type        armor~
+Extra       glow~
+Wear        take shield~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      7
+Cost        2000
+Affect      saving-spell~ 4 ~
+Affect      ac~ -2 ~
+End
+
 #4705
-coins large pile~
-a large pile of coins~
+Name        coins large pile~
+Short       a large pile of coins~
+Descr
 A large pile of coins are piled here.~
-~
-20 0 1
-30000~ 0~ 0~ 0~ 0~
-0 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      30000~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+End
+
 #4706
-dwarven battle axe~
-a large dwarven battle axe~
+Name        dwarven battle axe~
+Short       a large dwarven battle axe~
+Descr
 A large battle axe lies here on the ground.~
-~
-5 320 8193
-0~ 2~ 12~ 1~ 0~
-5 10000 0
-A
-19 1 0
-A
-18 1 0
-E
-dwarven battle axe~
+Type        weapon~
+Extra       magic bless~
+Wear        take wield~
+Values      0~ 2~ 12~ 1~ 0~
+Weight      5
+Cost        10000
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+ExtraDescr  dwarven battle axe~
 It is engraved with beautiful dwarven runes.~
+End
+
 #4707
-large stone sarcophagus~
-a large stone sarcophagus~
+Name        large stone sarcophagus~
+Short       a large stone sarcophagus~
+Descr
 A large stone sarcophagus lies here, the lid fallen on the floor.~
-~
-15 0 0
-1000~ 1~ -1~ 0~ 0~
-1000 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      1000~ 1~ -1~ 0~ 0~
+Weight      1000
+Cost        0
+End
+
 #4708
-staff ruling large~
-the staff of ruling~
+Name        staff ruling large~
+Short       the staff of ruling~
+Descr
 A large and intricate staff rests here.~
-~
-4 2 16385
-25~ 5~ 5~ charm person~ 0~
-10 10000 0
+Type        staff~
+Extra       hum~
+Wear        take hold~
+Values      25~ 5~ 5~ charm person~ 0~
+Weight      10
+Cost        10000
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #4700
-The Spiral Stair~
+Name        The Spiral Stair~
+Descr
 A spiral stone stair leads up higher in the mountain, spiraling into the
 spine of the Dra-Korrin.  A small glint of light can be seen far up the
 stair shaft.
 ~
-0 0 1
-D3
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        west~ ~ -1 4701
 ~
 ~
-0 -1 4701
-D4
+Door        up~ door closed~ -1 4772
 ~
 stone~
-3 -1 4772
-S
+End
+
 #4701
-Mines~
+Name        Mines~
+Descr
 A small glint of the burning torches is all that lights the way here.  Spots
 along the jagged wall show that these mines are rich as gold and silver glitters
 all around you.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4700
 ~
 ~
-0 -1 4700
-D3
+Door        west~ ~ -1 4702
 ~
 ~
-0 -1 4702
-S
+End
+
 #4702
-Mines~
+Name        Mines~
+Descr
 This small dark tunnel continues to the north where to light no longer allows
 normal sight.  To the east the small mine leads a a better lit area and you can
 smell a brisk fresh air.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4703
 ~
 ~
-0 -1 4703
-D1
+Door        east~ ~ -1 4701
 ~
 ~
-0 -1 4701
-S
+End
+
 #4703
-Mines~
+Name        Mines~
+Descr
 This small tunnel is only five to six feet high and possibly the same
 dimensions wide.  It travels on a slight downslope to the west and to the south
 some light can be seen.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4702
 ~
 ~
-0 -1 4702
-D3
+Door        west~ ~ -1 4704
 ~
 ~
-0 -1 4704
-S
+End
+
 #4704
-Mines~
+Name        Mines~
+Descr
 The small mine continues east and west here, small rocks and precious jewels
 scattered about.  There is a small tunnel that leads to the south here.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4703
 ~
 ~
-0 -1 4703
-D2
+Door        south~ ~ -1 4705
 ~
 ~
-0 -1 4705
-D3
+Door        west~ ~ -1 4706
 ~
 ~
-0 -1 4706
-S
+End
+
 #4705
-Unfinished Mine~
+Name        Unfinished Mine~
+Descr
 This is a small area that has been left unfinished at the moment.  It would
 have continued south from the main shaft that is to the north of here.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        north~ ~ -1 4704
 ~
 ~
-0 -1 4704
-S
+End
+
 #4706
-Mines~
+Name        Mines~
+Descr
 This small shaft of the mines continues its tunneling east and west.  Small
 glints of metal can be seen within the walls.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4704
 ~
 ~
-0 -1 4704
-D3
+Door        west~ ~ -1 4707
 ~
 ~
-0 -1 4707
-S
+End
+
 #4707
-Turn in the Mine~
+Name        Turn in the Mine~
+Descr
 The small shaft travels east and south here, the masterful mining skills that
 made this turn possible are evidently by the smooth cuts in the walls.  Almost
 as if a hot knife made its way through some warm butter.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4706
 ~
 ~
-0 -1 4706
-D2
+Door        south~ ~ -1 4708
 ~
 ~
-0 -1 4708
-S
+End
+
 #4708
-Mines~
+Name        Mines~
+Descr
 This is a three-way intersection in these mazes of mines with directions
 going north, west, and south which travels further down into the heart of the
 mountain itself.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4707
 ~
 ~
-0 -1 4707
-D2
+Door        south~ ~ -1 4709
 ~
 ~
-0 -1 4709
-D3
+Door        west~ ~ -1 4736
 ~
 ~
-0 -1 4736
-S
+End
+
 #4709
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 The walls of this mine are chipped and cut to perfection.  Workmanship of
 this type could only have been done by the masterful Dwarven race.  Tunnels
 continue to the south and east, and the tunnel travels upward to the north.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        north~ ~ -1 4708
 ~
 ~
-0 -1 4708
-D1
+Door        east~ ~ -1 4724
 ~
 ~
-0 -1 4724
-D2
+Door        south~ ~ -1 4710
 ~
 ~
-0 -1 4710
-S
+End
+
 #4710
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 Tunnels spread off in all directions except to the west where the wall is made
 of a dark and bleak stone.  A small glow emanates from the walls of the mines,
 but not enough to see by.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4709
 ~
 ~
-0 -1 4709
-D1
+Door        east~ ~ -1 4712
 ~
 ~
-0 -1 4712
-D2
+Door        south~ ~ -1 4711
 ~
 ~
-0 -1 4711
-S
+End
+
 #4711
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 The small shaft ends abruptly at a jewel encrusted wall.  To the north the
 small shaft continues some past some small rocks.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4710
 ~
 ~
-0 -1 4710
-S
+End
+
 #4712
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 This section of small shaft is a turning point and continues to the west and to
 the south.  Small glints of gold and silver can be seen in the walls.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4713
 ~
 ~
-0 -1 4713
-D3
+Door        west~ ~ -1 4710
 ~
 ~
-0 -1 4710
-S
+End
+
 #4713
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 The small shaft continues north and south deep inside this large mountain.  A
 light glow can be seen in the walls, but not enough to see by.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        north~ ~ -1 4712
 ~
 ~
-0 -1 4712
-D2
+Door        south~ ~ -1 4714
 ~
 ~
-0 -1 4714
-S
+End
+
 #4714
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This section of the small shafts is a intersection of three separate tunnels.
 They lead north, east, and west.  A faint glow is within the walls of this
 small intersection.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4713
 ~
 ~
-0 -1 4713
-D1
+Door        east~ ~ -1 4719
 ~
 ~
-0 -1 4719
-D3
+Door        west~ ~ -1 4715
 ~
 ~
-0 -1 4715
-S
+End
+
 #4715
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 The small shaft of glittering gold and silver travels east and south here.
 The faint glow from within the walls give you a sense of safety.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4705 10 100
+Door        east~ ~ -1 4714
 ~
 ~
-0 -1 4714
-D2
+Door        south~ ~ -1 4716
 ~
 ~
-0 -1 4716
-S
+End
+
 #4716
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 The small Dwarven carved shaft continues to the north and to the east here.
 Small clumps of precious metals can be seen within the rocky walls.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        north~ ~ -1 4715
 ~
 ~
-0 -1 4715
-D1
+Door        east~ ~ -1 4717
 ~
 ~
-0 -1 4717
-S
+End
+
 #4717
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 The small shaft of the mine continues to the west and to the south here.  A
 small amount of light can be seen to the south.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4718
 ~
 ~
-0 -1 4718
-D3
+Door        west~ ~ -1 4716
 ~
 ~
-0 -1 4716
-S
+End
+
 #4718
-End of the mine~
+Name        End of the mine~
+Descr
 The south section of the small tunnel is covered in a blue light, and also
 radiating a aura of heat.  The eastern and western walls also glow but not as
 fierce as the southern section.
 ~
-0 12 1
-D0
+Flags       no_mob indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4717
 ~
 ~
-0 -1 4717
-S
+End
+
 #4719
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 Small shafts lead off in all directions except northerly, where the wall seems
 to have a tinted blue color to it.  The southern tunnel seems to end a small
 ways down.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4721
 ~
 ~
-0 -1 4721
-D2
+Door        south~ ~ -1 4720
 ~
 ~
-0 -1 4720
-D3
+Door        west~ ~ -1 4714
 ~
 ~
-0 -1 4714
-S
+End
+
 #4720
-Unfinished shaft~
+Name        Unfinished shaft~
+Descr
 The walls here are jagged and unfinished in there cuts, leaving sharp and
 jagged edges at every turn.  The only exit appears to be to the north.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Reset       M 4707 1 100
+Door        north~ ~ -1 4719
 ~
 ~
-0 -1 4719
-S
+End
+
 #4721
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This small shaft travels to the west and to the south, sporting small clumps
 of precious metals as they go.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4722
 ~
 ~
-0 -1 4722
-D3
+Door        west~ ~ -1 4719
 ~
 ~
-0 -1 4719
-S
+End
+
 #4722
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 A slight downslope is present as this tunnel continues to the south and to the
 north.  To the south is where the small slope is present, traveling slightly
 further down into the depths of the mountain.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4721
 ~
 ~
-0 -1 4721
-D2
+Door        south~ ~ -1 4723
 ~
 ~
-0 -1 4723
-S
+End
+
 #4723
-Unfinished mine~
+Name        Unfinished mine~
+Descr
 The southern wall of this mine has been left uncarved and unfinished as you
 can see that the amount of metals in the walls have decreased slightly here.
 The tunnel leads to the north out of this dead end.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        north~ ~ -1 4722
 ~
 ~
-0 -1 4722
-S
+End
+
 #4724
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 This small shaft travels to the east and west while along the way several
 spots of precious metal and rock jut forth from the red rock.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4725
 ~
 ~
-0 -1 4725
-D3
+Door        west~ ~ -1 4709
 ~
 ~
-0 -1 4709
-S
+End
+
 #4725
-Dwarven mine~
+Name        Dwarven mine~
+Descr
 The small tunnel continues to the west and to the south from this turning
 point.  Small spots of gold and silver can be seen in the walls.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        south~ ~ -1 4726
 ~
 ~
-0 -1 4726
-D3
+Door        west~ ~ -1 4724
 ~
 ~
-0 -1 4724
-S
+End
+
 #4726
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This is a north and south shaft that has been carved to perfection.  The walls
 are almost square here, giving it a hall like appearance.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4725
 ~
 ~
-0 -1 4725
-D2
+Door        south~ ~ -1 4727
 ~
 ~
-0 -1 4727
-S
+End
+
 #4727
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 The small shaft here continues to the north and to the east. As it slopes
 slightly downward to the east, the walls have a more unfinished look to them.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        north~ ~ -1 4726
 ~
 ~
-0 -1 4726
-D1
+Door        east~ ~ -1 4728
 ~
 ~
-0 -1 4728
-S
+End
+
 #4728
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This small east-west shaft, which travels slightly downward to the east, has
 a distinct smell to it.  The smell is revolting, coming close to that of rotting
 flesh.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4729
 ~
 ~
-0 -1 4729
-D3
+Door        west~ ~ -1 4727
 ~
 ~
-0 -1 4727
-S
+End
+
 #4729
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This intersection combines three tunnels, the western tunnel leading up.  To
 the south is darkness, but there is a disgusting stench emanating from a very
 large cavern.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Reset       M 4705 10 100
+Reset       M 4705 10 100
+Door        north~ ~ -1 4732
 ~
 ~
-0 -1 4732
-D2
+Door        south~ ~ -1 4730
 ~
 ~
-0 -1 4730
-D3
+Door        west~ ~ -1 4728
 ~
 ~
-0 -1 4728
-S
+End
+
 #4730
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This is a small north and south passage that is bleak and void of any gold or
 silver in the walls.  It continues into darkness to the south.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4729
 ~
 ~
-0 -1 4729
-D2
+Door        south~ ~ -1 4731
 ~
 ~
-0 -1 4731
-S
+End
+
 #4731
-Dwarven mines~
+Name        Dwarven mines~
+Descr
 This small shaft ends abruptly at the southern wall.  There is a faint blue
 glow to the southern wall but no metals of jewels are present.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4730
 ~
 ~
-0 -1 4730
-S
+End
+
 #4732
-Duergar Outcamp~
+Name        Duergar Outcamp~
+Descr
 This is a large cavern that stinks of decay and death.  To the north there is
 a rather large hut, while to the west there is a small fire and several big
 boulders.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4705 10 100
+Door        north~ ~ -1 4733
 ~
 ~
-0 -1 4733
-D2
+Door        south~ ~ -1 4729
 ~
 ~
-0 -1 4729
-D3
+Door        west~ ~ -1 4735
 ~
 ~
-0 -1 4735
-S
+End
+
 #4733
-Duergar Barracks~
+Name        Duergar Barracks~
+Descr
 Several small cots line the walls here  inside this large thatched hut.  Small
 scraps of food and several small disfigured bodies lie about, no doubt the
 remains of some unfortunate dwarf.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4705 10 100
+Reset       M 4705 10 100
+Reset       M 4705 10 100
+Reset       M 4705 10 100
+Door        south~ ~ -1 4732
 ~
 ~
-0 -1 4732
-S
+End
+
 #4734
-Small cave~
+Name        Small cave~
+Descr
 Many small and disfigured bodies have been piled up here stinking up the whole
 cavern.  Blood stains line the walls and entrails are strewn about the floor.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4735
 ~
 ~
-0 -1 4735
-S
+End
+
 #4735
-By a small fire~
+Name        By a small fire~
+Descr
 Several large rocks surround a petty little fire that has formed a cloud in
 the ceiling of this large cavern.  A window of the hut looks out over this small
 meeting area.  To the north a small dark cave can be seen.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4705 10 100
+Reset       M 4705 10 100
+Door        north~ ~ -1 4734
 ~
 ~
-0 -1 4734
-D1
+Door        east~ ~ -1 4732
 ~
 ~
-0 -1 4732
-S
+End
+
 #4736
-Carved Tunnel~
+Name        Carved Tunnel~
+Descr
 This small tunnel has been carved to perfection, the walls are smooth and the
 floor has been worn soft through years of passage.  The red coloring of the
 rock gives this small tunnel a soft glow.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4737
 ~
 ~
-0 -1 4737
-D1
+Door        east~ ~ -1 4708
 ~
 ~
-0 -1 4708
-S
+End
+
 #4737
-Carved Tunnel~
+Name        Carved Tunnel~
+Descr
 The walls of the small tunnel have been carved to perfection as well as the
 floor that has been worn smooth.  It travels south and west leading off into
 darkness.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4736
 ~
 ~
-0 -1 4736
-D3
+Door        west~ ~ -1 4738
 ~
 ~
-0 -1 4738
-S
+End
+
 #4738
-Carved Tunnel~
+Name        Carved Tunnel~
+Descr
 The walls here are red and smooth as they have been carved into perfection.
 The floor has been worm smooth with use and clear of any rubble.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4700 10 100
+Reset       E 4701 16 100
+Door        east~ ~ -1 4737
 ~
 ~
-0 -1 4737
-D2
+Door        south~ ~ -1 4739
 ~
 ~
-0 -1 4739
-S
+End
+
 #4739
-Stone Gates~
+Name        Stone Gates~
+Descr
 Two monstrous pillars of stone support a great stone gate that leads south
 into a gigantic cavern with a small city inside.  The redden rock of the of
 mountain gives this small gate and cavern within a slight reddish glow.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4702 11 100
+Reset       M 4702 11 100
+Door        north~ ~ -1 4738
 ~
 ~
-0 -1 4738
-D2
+Door        south~ ~ -1 4740
 ~
 ~
-0 -1 4740
-S
+End
+
 #4740
-Walkway~
+Name        Walkway~
+Descr
 A small stone walkway leads its way through the immense cavern and all of its
 scattered boulders and misplaced stalagmites.  To the south you can see a large
 area of many multicolored rock, rising up in the center of which is a small
 building.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4701 6 100
+Reset       M 4701 6 100
+Door        north~ ~ -1 4739
 ~
 ~
-0 -1 4739
-D2
+Door        south~ ~ -1 4741
 ~
 ~
-0 -1 4741
-D3
+Door        west~ ~ -1 4750
 ~
 ~
-0 -1 4750
-S
+End
+
 #4741
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way through all types of multicolored boulders of all
 sizes and shapes.  Despite it's hardness and great size it has a certain
 beauty to it.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4740
 ~
 ~
-0 -1 4740
-D1
+Door        east~ ~ -1 4742
 ~
 ~
-0 -1 4742
-D3
+Door        west~ ~ -1 4748
 ~
 ~
-0 -1 4748
-S
+End
+
 #4742
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way south and west from this section of a enormously
 large, yet beautiful conglomeration of rocks and boulders.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 4743
 ~
 ~
-0 -1 4743
-D3
+Door        west~ ~ -1 4741
 ~
 ~
-0 -1 4741
-S
+End
+
 #4743
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way north and south through this large display of many
 different colored boulders and rocks.  A large building can be seen rising above
 the boulders directly to the west.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4703 1 100
+Door        north~ ~ -1 4742
 ~
 ~
-0 -1 4742
-D2
+Door        south~ ~ -1 4744
 ~
 ~
-0 -1 4744
-S
+End
+
 #4744
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way to the north and to the west as the many different
 colored boulders and rocks perform a array of beauty before you.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4743
 ~
 ~
-0 -1 4743
-D3
+Door        west~ ~ -1 4745
 ~
 ~
-0 -1 4745
-S
+End
+
 #4745
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way west and east through this array of multicolored
 boulders and rocks.  To the north a smooth path leads to a large and immaculate
 stone building.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4749
 ~
 ~
-0 -1 4749
-D1
+Door        east~ ~ -1 4744
 ~
 ~
-0 -1 4744
-D3
+Door        west~ ~ -1 4746
 ~
 ~
-0 -1 4746
-S
+End
+
 #4746
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way east and north through this small section of the
 large array of boulders and rocks of all different colors.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4747
 ~
 ~
-0 -1 4747
-D1
+Door        east~ ~ -1 4745
 ~
 ~
-0 -1 4745
-S
+End
+
 #4747
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way north and south through this small section of the
 large garden of multicolored boulders.  Directly to the east a large building
 can be seen rising above the piles of boulders.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4748
 ~
 ~
-0 -1 4748
-D2
+Door        south~ ~ -1 4746
 ~
 ~
-0 -1 4746
-S
+End
+
 #4748
-Rock Garden~
+Name        Rock Garden~
+Descr
 A small path works its way east and south through this section of the great
 multicolored array of boulders and rock formations.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4741
 ~
 ~
-0 -1 4741
-D2
+Door        south~ ~ -1 4747
 ~
 ~
-0 -1 4747
-S
+End
+
 #4749
-Temple of Juargan~
+Name        Temple of Juargan~
+Descr
 This large building is circular in shape and open on all sides, as the ceiling
 is supported by pillars made of the deep red stone from the heart of the
 Dra-Korrin.
   In the center there is rests a large throne, formed of red rock.
 ~
-0 8 1
-E
-throne~
+Flags       indoors~
+Sector      city~
+Regen       100 100
+ExtraDescr  throne~
 The throne is made of deep red rock from the core of the Dra-Korrin.~
-D2
+Reset       M 4702 11 100
+Reset       E 4702 6 100
+Reset       E 4703 5 100
+Reset       M 4702 11 100
+Reset       E 4702 6 100
+Reset       E 4703 5 100
+Reset       M 4704 1 100
+Reset       E 4700 -1 100
+Door        south~ ~ -1 4745
 ~
 ~
-0 -1 4745
-S
+End
+
 #4750
-Walkway~
+Name        Walkway~
+Descr
 A small stone walkway travels east and west through the many stalagmites and
 stray boulders that scatter the floor of the great cavern.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4740
 ~
 ~
-0 -1 4740
-D3
+Door        west~ ~ -1 4751
 ~
 ~
-0 -1 4751
-S
+End
+
 #4751
-Walkway~
+Name        Walkway~
+Descr
 A small stone walkway travels east and south through the debris of many
 boulders and stalagmites.  Another small walkway leads west to a small building
 pushing a black smoke from its roof.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4750
 ~
 ~
-0 -1 4750
-D2
+Door        south~ ~ -1 4753
 ~
 ~
-0 -1 4753
-D3
+Door        west~ ~ -1 4752
 ~
 ~
-0 -1 4752
-S
+End
+
 #4752
-Blacksmith's Home~
+Name        Blacksmith's Home~
+Descr
 A large black forge lies in the center of this small house pushing waves of
 heat into your face, barley allowing you to stand within the entranceway.  A
 large trough of water and several anvils are resting here as well.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4751
 ~
 ~
-0 -1 4751
-S
+End
+
 #4753
-Walkway~
+Name        Walkway~
+Descr
 A small walkway travels north and south through the many scattered boulders
 and stalagmites.  A separate, less used path leads to the west.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4751
 ~
 ~
-0 -1 4751
-D2
+Door        south~ ~ -1 4759
 ~
 ~
-0 -1 4759
-D3
+Door        west~ ~ -1 4754
 ~
 ~
-0 -1 4754
-S
+End
+
 #4754
-Path in the Rock~
+Name        Path in the Rock~
+Descr
 A small path leads west further into the less carved rock while to the east
 the larger walkway can be seen.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4753
 ~
 ~
-0 -1 4753
-D3
+Door        west~ ~ -1 4755
 ~
 ~
-0 -1 4755
-S
+End
+
 #4755
-Path in the Rock~
+Name        Path in the Rock~
+Descr
 This small uncarved path travels south and east as the edge of the cavern
 blocks any travel further west.  The wall of the cavern has a deep red color to
 it and with the many stalactites parts resemble dripping blood.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4754
 ~
 ~
-0 -1 4754
-D2
+Door        south~ ~ -1 4756
 ~
 ~
-0 -1 4756
-S
+End
+
 #4756
-Path in the Rock~
+Name        Path in the Rock~
+Descr
 This small, uncarved path leads north and south along the cavern wall, over
 many boulders at points.  To the east you can see a path leading up to a small
 hole in a large boulder.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4755
 ~
 ~
-0 -1 4755
-D1
+Door        east~ ~ -1 4771
 ~
 ~
-0 -1 4771
-D2
+Door        south~ ~ -1 4757
 ~
 ~
-0 -1 4757
-S
+End
+
 #4757
-Path in the Rock~
+Name        Path in the Rock~
+Descr
 A small path travels over boulders and crevices to the north and east.  The
 edge of the cavern lies to the west while mounds of boulders are heaped to the
 south.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4702 11 100
+Reset       M 4702 11 100
+Door        north~ ~ -1 4756
 ~
 ~
-0 -1 4756
-D1
+Door        east~ ~ -1 4758
 ~
 ~
-0 -1 4758
-S
+End
+
 #4758
-Path in the Rock~
+Name        Path in the Rock~
+Descr
 A small and unused path travels over boulders and by many large hole as it
 makes its way to the west.  To the east the small path ends in the larger walk-
 way of the city.  To the south a path leads to a small hut perched on top of a
 large boulder.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 4760
 ~
 ~
-0 -1 4760
-D2
+Door        south~ ~ -1 4761
 ~
 ~
-0 -1 4761
-D3
+Door        west~ ~ -1 4757
 ~
 ~
-0 -1 4757
-S
+End
+
 #4759
-Walkway~
+Name        Walkway~
+Descr
 A stone walkway travels north and south through this section of this rocky
 city.  To the west you can see a uncarved and hug mound of rock and boulder.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4701 6 100
+Reset       M 4701 6 100
+Door        north~ ~ -1 4753
 ~
 ~
-0 -1 4753
-D2
+Door        south~ ~ -1 4760
 ~
 ~
-0 -1 4760
-S
+End
+
 #4760
-Walkway~
+Name        Walkway~
+Descr
 A stone walkway travels north and south through this section of the city.  A
 small and unused path can be seen traveling west into the uncut and jagged rock.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4759
 ~
 ~
-0 -1 4759
-D2
+Door        south~ ~ -1 4762
 ~
 ~
-0 -1 4762
-D3
+Door        west~ ~ -1 4758
 ~
 ~
-0 -1 4758
-S
+End
+
 #4761
-Pasty's Dwelling~
+Name        Pasty's Dwelling~
+Descr
 This is a small stone dwelling with a large oven on the south wall.  There are
 many tables and chairs placed about the place and by the oven there is a table
 piled with grains and a small bowl of dough.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4758
 ~
 ~
-0 -1 4758
-S
+End
+
 #4762
-Walkway~
+Name        Walkway~
+Descr
 A stone walkway travels north and east through this section of the stone city.
 A small path leads south to a small rock dwelling.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4760
 ~
 ~
-0 -1 4760
-D1
+Door        east~ ~ -1 4763
 ~
 ~
-0 -1 4763
-D2
+Door        south~ ~ -1 4764
 ~
 ~
-0 -1 4764
-S
+End
+
 #4763
-Walkway~
+Name        Walkway~
+Descr
 A stone walkway leads west from here.  To the east the small walkway ends in a
 large building, and to the south a small path leads to a small stone dwelling.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4701 6 100
+Reset       M 4701 6 100
+Door        east~ ~ -1 4766
 ~
 ~
-0 -1 4766
-D2
+Door        south~ ~ -1 4765
 ~
 ~
-0 -1 4765
-D3
+Door        west~ ~ -1 4762
 ~
 ~
-0 -1 4762
-S
+End
+
 #4764
-Leatherbies Home~
+Name        Leatherbies Home~
+Descr
 This is a small stone dwelling with many sizes of leather strewn about the
 place.  A small table with a few chairs sits in the center of the house.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4762
 ~
 ~
-0 -1 4762
-S
+End
+
 #4765
-The Stone Jewel~
+Name        The Stone Jewel~
+Descr
 Many different colors and sizes of jewels hang from the walls of this well
 kept dwelling.  A small counter sits on the far wall with other small tables
 lining the walls.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4763
 ~
 ~
-0 -1 4763
-S
+End
+
 #4766
-Guard Barrack~
+Name        Guard Barrack~
+Descr
 Many small cots line the walls of this large building as it serves for the
 homes of many brave Dwarven men who pledge their lives to the suppression of
 their Duergar enemies.  A small archway leads south to a lower level.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4702 11 100
+Reset       M 4702 11 100
+Reset       M 4702 11 100
+Reset       M 4702 11 100
+Reset       M 4702 11 100
+Door        south~ ~ -1 4767
 ~
 ~
-0 -1 4767
-D3
+Door        west~ ~ -1 4763
 ~
 ~
-0 -1 4763
-S
+End
+
 #4767
-Alcove~
+Name        Alcove~
+Descr
 A small alcove serves as a turning point for this small, dark tunnel that goes
 north and west from here.
 ~
-0 13 1
-D0
+Flags       dark no_mob indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4766
 ~
 ~
-0 -1 4766
-D3
+Door        west~ ~ -1 4768
 ~
 ~
-0 -1 4768
-S
+End
+
 #4768
-Entrance to Tomb~
+Name        Entrance to Tomb~
+Descr
 A large archway leads north to a dark vault.  An old stench emanates from it,
 as dust seems to continually flow from the old arch.  There is a small tunnel
 that travels east into a darkness.
 ~
-0 13 1
-D0
+Flags       dark no_mob indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 4769
 ~
 ~
-0 -1 4769
-D1
+Door        east~ ~ -1 4767
 ~
 ~
-0 -1 4767
-S
+End
+
 #4769
-Ancients Tomb~
+Name        Ancients Tomb~
+Descr
 Two large stone sarcophagus's lie stagnant in the center of this small tomb.
 The walls are lined with holes that contain many coffers containing, no doubt,
 the remains of some ancient dwarf.
   A great stone door leads to the west, it has many inscriptions upon it.
 ~
-0 13 1
-D2
+Flags       dark no_mob indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4706 1 100
+Reset       E 4706 16 100
+Reset       M 4708 3 100
+Reset       M 4708 3 100
+Reset       M 4708 3 100
+Reset       O 4707 0 100
+Reset       P 4708 4707 100
+Door        south~ ~ -1 4768
 ~
 ~
-0 -1 4768
-D3
+Door        west~ door closed locked pickproof~ 4700 4770
 ~
 tomb vault door~
-39 4700 4770
-S
+End
+
 #4770
-Ancients Vault~
+Name        Ancients Vault~
+Descr
 This is more of a small alcove than anything else.  The ceiling is covered
 with many descriptive carvings, as are the walls and floor.  Where it not for
 the years of decay and no upkeep, this would be a glamorous chamber.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       O 4704 0 100
+Reset       O 4705 0 100
+Door        east~ door closed locked pickproof~ 4700 4769
 ~
 tomb vault door~
-39 4700 4769
-S
+End
+
 #4771
-Siven's Stone~
+Name        Siven's Stone~
+Descr
 A small and dark little room entombed within a large boulder, a very strange
 place to want to live.  There is a small table in the center, but the room is
 void of any other objects.
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        west~ ~ -1 4756
 ~
 ~
-0 -1 4756
-S
+End
+
 #4772
-The small cave~
+Name        The small cave~
+Descr
 You barely squeeze through into this cave, and you don't see much to it
 either.  All you see are piles of stones.  At least none of the stones has
 fallen over your exit north.
 ~
-0 8 4
-D0
+Flags       indoors~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ -1 4773
 You see a sparkling light north.
 ~
 ~
-0 -1 4773
-D5
+Door        down~ door closed~ -1 4700
 You see rocks and stones.
 ~
 stone stones rock rocks~
-3 -1 4700
-S
+End
+
 #4773
-Beneath the waterfall~
+Name        Beneath the waterfall~
+Descr
 As you wring your clothes, you see sunlight reflect beautifully off the
 waterfall, forming at rainbow.  With the sparkling illumination, you think you
 see a cave to the south.
 ~
-0 12 4
-D2
+Flags       no_mob indoors~
+Sector      hills~
+Regen       100 100
+Door        south~ ~ -1 4772
 You think you hear a small noise coming from there too.
 ~
 ~
-0 -1 4772
-D3
+Door        west~ ~ -1 4774
 You see fish falling down the waterfall.
 ~
 ~
-0 -1 4774
-S
+End
+
 #4774
-By the beautiful waterfall~
+Name        By the beautiful waterfall~
+Descr
 You see a VERY beautiful waterfall here.  It looks almost as if diamonds are
 falling down the mountain.  (You reach out and grab and no, it IS only water.)
 It looks so nice here, you feel like taking a nap.
 The trail leads north and south.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ 0 5279
 You see the trail leading north.
 ~
 ~
-0 0 5279
-D1
+Door        east~ ~ 0 4773
 You see fish falling down the waterfall.
 ~
 ~
-0 0 4773
-D2
+Door        south~ ~ 0 4775
 You see the trail leading back to the valley.
 ~
 ~
-0 0 4775
-S
+End
+
 #4775
-A valley~
+Name        A valley~
+Descr
 You see a fresh green valley.  Flowers blossom everywhere around you, and you
 have a big urge to giggle.  To the north, you can see the source of this
 greenness, a waterfall.  To the west, you see the trail along the valley.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4774
 You hear the rush of a waterfall.
 ~
 ~
-0 0 4774
-D3
+Door        west~ ~ 0 4776
 You see the valley.
 ~
 ~
-0 0 4776
-S
+End
+
 #4776
-A valley~
+Name        A valley~
+Descr
 You see a fresh green valley.  Flowers blossom everywhere around you, and you
 have a big urge to giggle.  The valley continues to the east, or you can take
 a steep trail up.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4775
 You see the valley.
 ~
 ~
-0 0 4775
-D4
+Door        up~ ~ 0 4777
 You see the trail up to the uncomfortable hills.
 ~
 ~
-0 0 4777
-S
+End
+
 #4777
-At the end of the hills~
+Name        At the end of the hills~
+Descr
 What a view!  From here, you can see a waterfall toward the east, and lush
 green forests south-east.  To the north, you see the Mountains of Moria.  To
 the west, you see the dirty trail again.  A trail leads down to the valley
 below.
 ~
-0 4 2
-D3
+Flags       no_mob~
+Sector      field~
+Regen       100 100
+Door        west~ ~ 0 4778
 You see the trail continue west.
 ~
 ~
-0 0 4778
-D5
+Door        down~ ~ 0 4776
 You see the valley.
 ~
 ~
-0 0 4776
-S
+End
+
 #4778
-A trail along the hills~
+Name        A trail along the hills~
+Descr
 The dirt road you are treading on is as gentle as you can believe.  Rocks
 catch on you as you try to keep your balance.  The trail continues east and
 back west to relative safety.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ 0 4777
 You see the trail.
 ~
 ~
-0 0 4777
-D3
+Door        west~ ~ 0 4779
 You see the trail.
 ~
 ~
-0 0 4779
-S
+End
+
 #4779
-A trail along the hills~
+Name        A trail along the hills~
+Descr
 The trail flattens out a bit, giving you time to breathe.  You don't see much
 water and don't think the sun is going to help your thirst.  The closest shade
 appears to be the dwarf forest, which is VERY far away.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ 0 4778
 You see the trail.
 ~
 ~
-0 0 4778
-D5
+Door        down~ ~ 0 4780
 You see the scary cliff down, but at least you know you can climb it.
 ~
 ~
-0 0 4780
-S
+End
+
 #4780
-Up the hill~
+Name        Up the hill~
+Descr
 You continue to climb this hill as sweat breaks out upon your forehead.  It
 looks like you are close to the plateau.  Down is the relative comfort of
 ground again, but you are SO close to the top!
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        up~ ~ 0 4779
 You see rocks.
 ~
 ~
-0 0 4779
-D5
+Door        down~ ~ 0 4781
 You see rocks.
 ~
 ~
-0 0 4781
-S
+End
+
 #4781
-Up the hill~
+Name        Up the hill~
+Descr
 You continue to climb this hill as sweat breaks out upon your forehead.  It
 looks like you are close to the plateau.  Down is the relative comfort of
 ground again, but you are SO close to the top!
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        up~ ~ 0 4780
 You see rocks.
 ~
 ~
-0 0 4780
-D5
+Door        down~ ~ 0 4782
 You see rocks.
 ~
 ~
-0 0 4782
-S
+End
+
 #4782
-Up the hill~
+Name        Up the hill~
+Descr
 You continue to climb this hill as sweat breaks out upon your forehead.  It
 looks like you are close to the plateau.  Down is the relative comfort of
 ground again, but you are SO close to the top!
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        up~ ~ 0 4781
 You see rocks.
 ~
 ~
-0 0 4781
-D5
+Door        down~ ~ 0 4783
 You see rocks.
 ~
 ~
-0 0 4783
-S
+End
+
 #4783
-Up the hill~
+Name        Up the hill~
+Descr
 You continue to climb this hill as sweat breaks out upon your forehead.  It
 looks like you are close to the plateau.  Down is the relative comfort of
 ground again, but you are SO close to the top!
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        up~ ~ 0 4782
 You see rocks.
 ~
 ~
-0 0 4782
-D5
+Door        down~ ~ 0 4784
 You see the floor again!
 ~
 ~
-0 0 4784
-S
+End
+
 #4784
-The hills~
+Name        The hills~
+Descr
 You sigh as the trail continues straight up into the mountain.  West leads
 back to the more stable ground, but you wonder what's on the other side of this
 little hill.....
 ~
-0 0 4
-D3
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        west~ ~ 0 4785
 You see the trail back.
 ~
 ~
-0 0 4785
-D4
+Door        up~ ~ 0 4783
 You see rocks.
 ~
 ~
-0 0 4783
-S
+End
+
 #4785
-The hills~
+Name        The hills~
+Descr
 You see all around you ... hills.  You're lucky you get to get so much
 exercise today!  You wonder if you should save your breath and go back west or
 continue east toward the hills.  There is a trail leading south towards
 a black glassy mountain range.  A small plaque is on the rock.
 ~
-0 0 4
-E
-plaque~
+Flags       ~
+Sector      hills~
+Regen       100 100
+ExtraDescr  plaque~
 This extension (hills and dwarf forest) is made my Hatchet for any Merc Mud.
 copyright 1992
 ~
-D1
+Door        east~ ~ 0 4784
 You see the trail along the hills.
 ~
 ~
-0 0 4784
-D2
+Door        south~ ~ 0 2900
 You see a black glassy mountain range.
 ~
 ~
-0 0 2900
-D3
+Door        west~ ~ 0 4000
 You see the dirty hills still.
 ~
 ~
-0 0 4000
-S
+End
+
 #0
 
-
-#SPECIALS
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 4700 10 4705
-E 0 4701 0 16
-M 0 4700 10 4709
-E 0 4701 0 16
-M 0 4700 10 4713
-E 0 4701 0 16
-M 0 4705 10 4715
-M 0 4700 10 4716
-E 0 4701 0 16
-M 0 4700 10 4720
-E 0 4701 0 16
-M 0 4707 1 4720
-M 0 4700 10 4723
-E 0 4701 0 16
-M 0 4700 10 4725
-E 0 4701 0 16
-M 0 4700 10 4727
-E 0 4701 0 16
-M 0 4700 10 4729
-E 0 4701 0 16
-M 0 4705 10 4729
-M 0 4705 10 4729
-M 0 4705 10 4732
-M 0 4705 10 4733
-M 0 4705 10 4733
-M 0 4705 10 4733
-M 0 4705 10 4733
-M 0 4705 10 4735
-M 0 4705 10 4735
-M 0 4700 10 4738
-E 0 4701 0 16
-M 0 4702 11 4739
-M 0 4702 11 4739
-M 0 4701 6 4740
-M 0 4701 6 4740
-M 0 4703 1 4743
-M 0 4702 11 4749
-E 0 4702 0 6
-E 0 4703 0 5
-M 0 4702 11 4749
-E 0 4702 0 6
-E 0 4703 0 5
-M 0 4704 1 4749
-G 0 4700 0
-M 0 4702 11 4757
-M 0 4702 11 4757
-M 0 4701 6 4759
-M 0 4701 6 4759
-M 0 4701 6 4763
-M 0 4701 6 4763
-M 0 4702 11 4766
-M 0 4702 11 4766
-M 0 4702 11 4766
-M 0 4702 11 4766
-M 0 4702 11 4766
-M 0 4706 1 4769
-E 0 4706 0 16
-M 0 4708 3 4769
-M 0 4708 3 4769
-M 0 4708 3 4769
-O 0 4707 0 4769
-P 0 4708 0 4707
-O 0 4704 0 4770
-O 0 4705 0 4770
-S
-
-
-#SHOPS
-0
 
 
 #$

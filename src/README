@@ -141,8 +141,8 @@ and backup your old one by renaming it 'envy.old'.
 --- Debugging
 
 Get to know the debugger setup in your computer system.  The most well known
-are dbx, adb, and gdb.  My favorite is dbx.  All can be accessed by
-issuing this command at your computer prompt, 'dbx envy 1000.core'.  The
+are dbx, adb, and gdb.  My favorite is gdb.  All can be accessed by
+issuing this command at your computer prompt, 'gdb envy 1000.core'.  The
 output is the line of code where the game has crashed.  To gain more
 information, you must obtain a stack trace.  (See the system manual for
 information on your resident debugger)

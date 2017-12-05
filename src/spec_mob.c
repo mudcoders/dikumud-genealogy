@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -31,33 +33,6 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
-
-
-
-/*
- * The following special functions are available for mobiles.
- */
-DECLARE_MOB_FUN(	spec_breath_any		);
-DECLARE_MOB_FUN(	spec_breath_acid	);
-DECLARE_MOB_FUN(	spec_breath_fire	);
-DECLARE_MOB_FUN(	spec_breath_frost	);
-DECLARE_MOB_FUN(	spec_breath_gas		);
-DECLARE_MOB_FUN(	spec_breath_lightning	);
-DECLARE_MOB_FUN(	spec_cast_adept		);
-DECLARE_MOB_FUN(	spec_cast_cleric	);
-DECLARE_MOB_FUN(	spec_cast_ghost         );
-DECLARE_MOB_FUN(	spec_cast_judge		);
-DECLARE_MOB_FUN(	spec_cast_mage		);
-DECLARE_MOB_FUN(	spec_cast_psionicist    );
-DECLARE_MOB_FUN(	spec_cast_undead	);
-DECLARE_MOB_FUN(	spec_executioner	);
-DECLARE_MOB_FUN(	spec_fido		);
-DECLARE_MOB_FUN(	spec_guard		);
-DECLARE_MOB_FUN(	spec_janitor		);
-DECLARE_MOB_FUN(	spec_mayor		);
-DECLARE_MOB_FUN(	spec_poison		);
-DECLARE_MOB_FUN(	spec_repairman		);
-DECLARE_MOB_FUN(	spec_thief		);
 
 
 
@@ -142,6 +117,9 @@ void summon_if_hating( CHAR_DATA *ch )
     /* Make sure the char exists; works even if player quits. */
     for ( victim = char_list; victim; victim = victim->next )
     {
+	if ( victim->deleted )
+	    continue;
+
 	if ( !str_cmp( ch->hating->name, victim->name ) )
 	{
 	    found = TRUE;
@@ -187,7 +165,7 @@ bool dragon( CHAR_DATA *ch, char *spell_name )
     if ( !victim )
 	return FALSE;
 
-    if ( ( sn = skill_lookup( spell_name ) ) < 0 )
+    if ( ( sn = skill_blookup( spell_name, 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -248,7 +226,7 @@ bool spec_breath_gas( CHAR_DATA *ch )
     if ( ch->position != POS_FIGHTING )
 	return FALSE;
 
-    if ( ( sn = skill_lookup( "gas breath" ) ) < 0 )
+    if ( ( sn = skill_blookup( "gas breath", 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, NULL );
     return TRUE;
@@ -293,41 +271,44 @@ bool spec_cast_adept( CHAR_DATA *ch )
     {
     case 0:
 	act( "$n utters the word 'tehctah'.", ch, NULL, NULL, TO_ROOM );
-	spell_armor( skill_lookup( "armor" ), ch->level, ch, victim );
+	spell_armor( skill_blookup( "armor", 0, MAX_SPELL ),
+		    ch->level, ch, victim );
 	return TRUE;
 
     case 1:
 	act( "$n utters the word 'nhak'.",    ch, NULL, NULL, TO_ROOM );
-	spell_bless( skill_lookup( "bless" ), ch->level, ch, victim );
+	spell_bless( skill_blookup( "bless", 0, MAX_SPELL ),
+		    ch->level, ch, victim );
 	return TRUE;
 
     case 2:
 	act( "$n utters the word 'yeruf'.",   ch, NULL, NULL, TO_ROOM );
-	spell_cure_blindness( skill_lookup( "cure blindness" ),
+	spell_cure_blindness( skill_blookup( "cure blindness", 0, MAX_SPELL ),
 			     ch->level, ch, victim );
 	return TRUE;
 
     case 3:
 	act( "$n utters the word 'garf'.",    ch, NULL, NULL, TO_ROOM );
-	spell_cure_light( skill_lookup( "cure light" ),
+	spell_cure_light( skill_blookup( "cure light", 0, MAX_SPELL ),
 			 ch->level, ch, victim );
 	return TRUE;
 
     case 4:
 	act( "$n utters the words 'rozar'.",  ch, NULL, NULL, TO_ROOM );
-	spell_cure_poison( skill_lookup( "cure poison" ),
+	spell_cure_poison( skill_blookup( "cure poison", 0, MAX_SPELL ),
 			  ch->level, ch, victim );
 	return TRUE;
 
     case 5:
 	act( "$n utters the words 'nadroj'.", ch, NULL, NULL, TO_ROOM );
-	spell_refresh( skill_lookup( "refresh" ), ch->level, ch, victim );
+	spell_refresh( skill_blookup( "refresh", 0, MAX_SPELL ),
+		      ch->level, ch, victim );
 	return TRUE;
 
     case 6:
 	act( "$n utters the words 'suinoleht'.", ch, NULL, NULL, TO_ROOM );
-	spell_combat_mind( skill_lookup( "combat mind" ), ch->level, ch,
-			  victim );
+	spell_combat_mind( skill_blookup( "combat mind", 0, MAX_SPELL ),
+			  ch->level, ch, victim );
 	return TRUE;
     }
 
@@ -386,7 +367,7 @@ bool spec_cast_cleric( CHAR_DATA *ch )
 	    break;
     }
 
-    if ( ( sn = skill_lookup( spell ) ) < 0 )
+    if ( ( sn = skill_blookup( spell, 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -397,7 +378,6 @@ bool spec_cast_cleric( CHAR_DATA *ch )
 bool spec_cast_judge( CHAR_DATA *ch )
 {
     CHAR_DATA *victim;
-    char      *spell;
     int        sn;
 
     if ( ch->position != POS_FIGHTING )
@@ -418,8 +398,7 @@ bool spec_cast_judge( CHAR_DATA *ch )
     if ( !victim )
 	return FALSE;
 
-    spell = "high explosive";
-    if ( ( sn = skill_lookup( spell ) ) < 0 )
+    if ( ( sn = skill_blookup( "high explosive", 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -478,7 +457,7 @@ bool spec_cast_mage( CHAR_DATA *ch )
 	    break;
     }
 
-    if ( ( sn = skill_lookup( spell ) ) < 0 )
+    if ( ( sn = skill_blookup( spell, 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -540,7 +519,7 @@ bool spec_cast_undead( CHAR_DATA *ch )
 	    break;
     }
 
-    if ( ( sn = skill_lookup( spell ) ) < 0 )
+    if ( ( sn = skill_blookup( spell, 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -920,7 +899,7 @@ bool spec_cast_psionicist( CHAR_DATA *ch )
             break;
     }
 
-    if ( ( sn = skill_lookup( spell ) ) < 0 )
+    if ( ( sn = skill_blookup( spell, 0, MAX_SPELL ) ) == -1 )
         return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -997,7 +976,7 @@ bool spec_cast_ghost( CHAR_DATA *ch )
 	    break;
     }
 
-    if ( ( sn = skill_lookup( spell ) ) < 0 )
+    if ( ( sn = skill_blookup( spell, 0, MAX_SPELL ) ) == -1 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
     return TRUE;
@@ -1012,7 +991,6 @@ bool spec_repairman( CHAR_DATA *ch )
 		 EXIT_DATA       *pexit;
 		 EXIT_DATA       *pexit_rev;
                  ROOM_INDEX_DATA *to_room;
-    extern const int              rev_dir [ ];
 		 int              door;
 
     if ( !IS_AWAKE( ch ) )

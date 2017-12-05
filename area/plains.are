@@ -4,636 +4,769 @@ Author      Copper~
 Levels      1 20
 Security    1
 VNUMs       300 350
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #300
-druid Aruncus~
-Aruncus the Druid~
+Name        druid Aruncus~
+Short       Aruncus the Druid~
+Long
 Aruncus the Druid is walking around here, searching for herbs.
 ~
+Descr
 Aruncus is a tall, skinny druid with a face marked by nature.
 He seems to be in peace with himself and his surroundings.
 ~
-193 8 -500 S
-13 8 2 13d13+130 3d5+2
-500 0
-0 Elf~ 1
+Act         stay_area wimpy~
+AffectBy    detect-invis~
+Alignment   -500
+Level       13
+Gold        500
+Race        Elf
+Sex         male~
+End
+
 #301
-hermit sorbus~
-Sorbus the Hermit~
+Name        hermit sorbus~
+Short       Sorbus the Hermit~
+Long
 Sorbus the Hermit is sitting here, roasting a rabbit.
 ~
+Descr
 Sorbus bares the marks of a long, hard life in solitude.
 He is dressed in simple clothing and looks like he has little
 or nothing to say.
 ~
-3 0 0 S
-4 16 6 4d4+40 1d9+2
-1 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        1
+Race        Hobbit
+Sex         male~
+End
+
 #303
-citizen~
-the citizen~
+Name        citizen~
+Short       the citizen~
+Long
 There is a citizen of Ofcol here glaring at you ... stranger!
 ~
+Descr
 He seems like a nice person with no interest in harming you or others.
 He wears normal, light clothing and has an anonymous face.
 ~
-69 0 0 S
-6 15 6 6d6+60 2d4+2
-200 0
-0 Halfdwarf~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        200
+Race        Halfdwarf
+Sex         male~
+End
+
 #304
-citizen~
-the citizen~
+Name        citizen~
+Short       the citizen~
+Long
 There is a citizen of Ofcol here glaring at you ... stranger!
 ~
+Descr
 She seems like a nice person with no interest in harming you or others.
 She wears a minimum of clothing and has big ... eyes.
 ~
-69 0 0 S
-5 16 5 5d5+50 2d4+1
-100 0
-0 Halfdwarf~ 2
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        100
+Race        Halfdwarf
+Sex         female~
+End
+
 #305
-worm Shudde-M'ell~
-Shudde-M'ell~
+Name        worm Shudde-M'ell~
+Short       Shudde-M'ell~
+Long
 Shudde-M'ell the Giant worm of G'harne is guarding his treasure.
 ~
+Descr
 Shudde-M'ell is about 15 ft long and is surrounded by an evil stench,
 The worm is the protector of the treasure of G'harne and has been so
 for as long anyone can remember.
 ~
-35 8 -1000 S
-24 -2 0 24d24+240 3d8+8
-13666 0
-0 Worm~ 1
+Act         sentinel aggressive~
+AffectBy    detect-invis~
+Alignment   -1000
+Level       24
+Gold        13666
+Race        Worm
+Sex         male~
+End
+
 #306
-luxan shopkeeper~
-Luxan~
+Name        luxan shopkeeper~
+Short       Luxan~
+Long
 Luxan the Shopkeeper is here, eager to sell you anything.
 ~
+Descr
 Luxan is dressed in a strange jacket.
 He looks like a mean trader from the outskirts of Midgaard.
 His life is seems to be totally occupied with trading.
 He looks very fit and capable of protecting his goods.
 ~
-7 0 400 S
-23 0 0 1d1+30000 2d10+0
-8000 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    ~
+Alignment   400
+Level       23
+Gold        8000
+Race        Human
+Sex         male~
+Shop        light~ potion~ ~ food~ ~ 120 60 0 23
+End
+
 #308
-keeper innkeeper~
-the Innkeeper~
+Name        keeper innkeeper~
+Short       the Innkeeper~
+Long
 An Innkeeper is here waiting for your order.
 ~
+Descr
 The Innkeeper looks skilled in brewing different beers and mixing the
 weirdest drinks known. He also looks very big.
 ~
-3 0 -100 S
-23 0 0 1d1+30000 2d10+1
-100 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   -100
+Level       23
+Gold        100
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 110 100 0 23
+End
+
 #309
-rabbit~
-the cute rabbit~
+Name        rabbit~
+Short       the cute rabbit~
+Long
 A cute rabbit is here.
 ~
+Descr
 It is a small, furry creature with long ears and big feet.
 ~
-65 0 0 S
-1 20 6 1d4+1 1d4+0
-0 0
-0 Animal~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #350
-dragon pet~
-the pet dragon~
+Name        dragon pet~
+Short       the pet dragon~
+Long
 Ravan's pet dragon is bouncing around here flapping her cute wings.
 ~
+Descr
 Ravan's pet dragon is about 3 ft. tall with small pointy teeth.
 The small wings are eagerly trying to lift her from the ground,
 but so far they haven't succeeded.
 ~
-131 524424 1000 S
-10 0 0 10d10+100 10d10+0
-0 0
-0 Dragon~ 2
+Act         sentinel wimpy~
+AffectBy    detect-invis sanctuary flying~
+Alignment   1000
+Level       10
+Gold        0
+Race        Dragon
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #300
-herbs herb timian~
-a small dusk of timian herbs~
+Name        herbs herb timian~
+Short       a small dusk of timian herbs~
+Descr
 Some herbs are lying here, small green leaves and tiny pink flowers.~
-~
-19 0 1
-1~ 0~ 0~ 0~ 0~
-1 5 0
-E
-herbs herb timian~
+Type        food~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        5
+ExtraDescr  herbs herb timian~
 This herb smells rather spicy; maybe you should try it?
 ~
+End
+
 #301
-herbs herb gyvel~
-a small dusk of black gyvel~
+Name        herbs herb gyvel~
+Short       a small dusk of black gyvel~
+Descr
 Some black gyvel is lying here, dark green with black leaves and tiny
 blood red flowers.~
-~
-19 0 1
-1~ 0~ 0~ 0~ 0~
-1 50 0
-E
-herbs herb gyvel~
+Type        food~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        50
+ExtraDescr  herbs herb gyvel~
 This herb smells rather special, but is it poisonous?
 ~
+End
+
 #302
-plant ivy~
-a small dusk of poison ivy~
+Name        plant ivy~
+Short       a small dusk of poison ivy~
+Descr
 Some poison ivy is growing here.~
-~
-19 0 1
-1~ 0~ 0~ 1~ 0~
-1 5 0
-E
-plant ivy~
+Type        food~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 1~ 0~
+Weight      1
+Cost        5
+ExtraDescr  plant ivy~
 This plant has dark green juicy leaves.
 You notice some small white thorns on it.~
+End
+
 #303
-blood jar~
-a dark red jar~
+Name        blood jar~
+Short       a dark red jar~
+Descr
 A small jar in a dark, red colour.~
-~
-17 0 1
-2~ 2~ 13~ 0~ 0~
-2 50 0
-E
-blood jar~
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      2~ 2~ 13~ 0~ 0~
+Weight      2
+Cost        50
+ExtraDescr  blood jar~
 The jar is made of dry clay, covered with markings suggesting its
 occult origin.
 ~
+End
+
 #304
-wild flowers~
-wild flowers~
+Name        wild flowers~
+Short       wild flowers~
+Descr
 A bunch of pretty wild flowers is here.~
-~
-13 1024 16401
-0~ 0~ 0~ 0~ 0~
-1 10 0
-E
-wild flowers~
+Type        trash~
+Extra       anti-evil~
+Wear        take head hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10
+ExtraDescr  wild flowers~
 These wild flowers are really pretty.
 Just like the flowers you would wear in your hair.~
+End
+
 #307
-amulet~
-a strange amulet~
+Name        amulet~
+Short       a strange amulet~
+Descr
 A strange looking amulet is lying here, half covered with dust.~
-~
-9 192 5
-2~ 0~ 0~ 0~ 0~
-1 500 0
-A
-21 5 0
-E
-amulet~
+Type        armor~
+Extra       magic nodrop~
+Wear        take neck~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        500
+Affect      saving-rod~ 5 ~
+ExtraDescr  amulet~
 Judging from the signs inscripted in the amulet, you gather it must
 have belonged to a druid.  It is weird looking with symbols from nature
 dominating it.
 ~
+End
+
 #308
-staff stick~
-a druish staff~
+Name        staff stick~
+Short       a druish staff~
+Descr
 A staff with druidic marks have been left here.~
-~
-12 0 16385
-0~ 0~ 0~ 0~ 0~
-4 15 0
-E
-staff stick~
+Type        furniture~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        15
+ExtraDescr  staff stick~
 Then staff is about 5 ft long, engraved with mythical signs and figures.
 Otherwise the staff seems of no real interest.
 ~
+End
+
 #309
-rabbit roast wabbit~
-a rabbit roast~
+Name        rabbit roast wabbit~
+Short       a rabbit roast~
+Descr
 You see a deliciously looking rabbit roast.~
-~
-19 0 1
-24~ 0~ 0~ 0~ 0~
-5 40 0
-E
-roast rabbit wabbit~
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        40
+ExtraDescr  roast rabbit wabbit~
 Well the rabbit looks rather dead.
 You guess that this once was a ferocious rabbit who's life now has
 changed to that of a tasty wabbit woast.
 ~
+End
+
 #310
-template scroll~
-a strange template~
+Name        template scroll~
+Short       a strange template~
+Descr
 A strange template made of an exotic green metal is placed here~
-~
-2 64 16385
-15~ sleep~ blindness~ fireball~  ~
-1 15000 0
-E
-template scroll metal~
+Type        scroll~
+Extra       magic~
+Wear        take hold~
+Values      15~ sleep~ blindness~ fireball~  ~
+Weight      1
+Cost        15000
+ExtraDescr  template scroll metal~
 The template is made of an exotic green metal and looks
 centuries old.
 Inscripted upon is the words 'Ep ep fi'hur G'harne
                              G'harne fhtagn Shudde-M'ell hyas Negg'h'
 And beneath the inscription you see horrifying death scenes depicted.
 ~
+End
+
 #311
-potion clear~
-a clear potion~
+Name        potion clear~
+Short       a clear potion~
+Descr
 A clear potion wrapped in leather is unnoticed placed here.~
-~
-10 64 1
-20~ detect evil~ detect invis~ detect magic~  ~
-2 2500 0
-E
-leather~
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      20~ detect evil~ detect invis~ detect magic~  ~
+Weight      2
+Cost        2500
+ExtraDescr  leather~
 The leather wrapped around the potion is old and decayed, originating
 from an, to you, unknown creature.~
-E
-potion clear~
+ExtraDescr  potion clear~
 As you examine the potion more, you notice the oddities of this
 potion. When you look through it you notice strange things...
 The clear potion is certainly not of this world.
 ~
+End
+
 #312
-scroll jhyfrdow~
-a scroll titled 'jhyfrdow'~
+Name        scroll jhyfrdow~
+Short       a scroll titled 'jhyfrdow'~
+Descr
 An odd looking scroll is here.~
-~
-2 0 1
-0~  ~  ~  ~  ~
-1 500 0
-E
-ritual men drawings~
+Type        scroll~
+Extra       ~
+Wear        take~
+Values      0~  ~  ~  ~  ~
+Weight      1
+Cost        500
+ExtraDescr  ritual men drawings~
 The drawing pictures people gathered round giant stone formations,
 worshipping a giant worm like creature.
 It seems they are sacrificing some of their own species.
 ~
-E
-scroll jhyfrdow~
+ExtraDescr  scroll jhyfrdow~
 The scroll is titled 'jhyfrdow' and looks very old.
 As you examine it closer you notice primitive drawings of
 men doing some kind of a ritual.
 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #300
-Path in the plains~
+Name        Path in the plains~
+Descr
 You are walking on a path situated in the rough plains.
 You feel the strong winds blow through your hair as you study
 the beautiful landscaping here. The path continues east, north
 and west leads to plains and you see the path around Midgaard
 to the south.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 315
 You see the grassy plains.
 ~
 ~
-0 -1 315
-D1
+Door        east~ ~ -1 301
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 301
-D2
+Door        south~ ~ -1 3904
 Towards the south you notice the citywall of Midgaard.
 ~
 ~
-0 -1 3904
-D3
+Door        west~ ~ -1 316
 You see the grassy plains.
 ~
 ~
-0 -1 316
-S
+End
+
 #301
-Path in the plains~
+Name        Path in the plains~
+Descr
 You are walking on a path situated in the rough plains.
 You feel the strong winds blow through your hair as you study
 the beautiful landscaping here. The path continues east and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 302
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 302
-D3
+Door        west~ ~ -1 300
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 300
-S
+End
+
 #302
-Path in the plains~
+Name        Path in the plains~
+Descr
 You are walking on a path situated in the rough plains.
 You feel the strong winds blow through your hair as you study
 the beautiful landscaping here. The path continues north and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 303
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 303
-D3
+Door        west~ ~ -1 301
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 301
-S
+End
+
 #303
-Path in the plains~
+Name        Path in the plains~
+Descr
 You are walking on a path situated in the rough plains.
 You feel the strong winds blow through your hair as you study
 the beautiful landscaping here. The path leads north and south.
 To the east and the west you have the grassy plains.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 304
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 304
-D1
+Door        east~ ~ -1 317
 To the east you notice the grassy plains.
 ~
 ~
-0 -1 317
-D2
+Door        south~ ~ -1 302
 You notice nothing special, except that the path in the plains continues.
 ~
 ~
-0 -1 302
-D3
+Door        west~ ~ -1 315
 To the west you can see more of the beautiful grassy plains.
 ~
 ~
-0 -1 315
-S
+End
+
 #304
-Path in the plains~
+Name        Path in the plains~
+Descr
 You are walking on a path situated in the rough plains.
 You feel the strong winds blow through your hair as you study
 the beautiful landscaping here. The Path leads north and south.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 305
 The path continues north as small foothills begins to appear.
 ~
 ~
-0 -1 305
-D2
+Door        south~ ~ -1 303
 The path leads south towards the town.
 ~
 ~
-0 -1 303
-S
+End
+
 #305
-Path in the plains~
+Name        Path in the plains~
+Descr
 You are walking on a path situated in the rough plains.
 You feel the strong winds blow through your hair as you watch the
 beautiful landscaping here. To the east and west you see the grassy plains.
 The path extends into small foothills to the north and also continues south.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 306
 The path continues into the small foothills.
 ~
 ~
-0 -1 306
-D1
+Door        east~ ~ -1 321
 You see the grassy plains here.
 ~
 ~
-0 -1 321
-D2
+Door        south~ ~ -1 304
 The path continues towards Midgaard.
 ~
 ~
-0 -1 304
-D3
+Door        west~ ~ -1 320
 You see the grassy plains here.
 ~
 ~
-0 -1 320
-S
+End
+
 #306
-Path in the foothills~
+Name        Path in the foothills~
+Descr
 You are on the path leading through the small foothills.
 The wind blow through your hair as you study the beautiful
 landscaping here. From the north you sense a certain freshness.
 The path continues east and south. You smell freshness from north.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 326
 You see grassy plains and perhaps some crystal clear water.
 ~
 ~
-0 -1 326
-D1
+Door        east~ ~ -1 307
 The path continues towards east here.
 ~
 ~
-0 -1 307
-D2
+Door        south~ ~ -1 305
 The path in the plains wind through the small foothills.
 ~
 ~
-0 -1 305
-S
+End
+
 #307
-Path in the foothills~
+Name        Path in the foothills~
+Descr
 You are walking on a path situated in the small foothills.
 The winds are more than average here but it feels nice. You can follow
 the path east or west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 308
 The path continues in the foothills
 ~
 ~
-0 -1 308
-D3
+Door        west~ ~ -1 306
 To the west the path takes a bend southwards.
 ~
 ~
-0 -1 306
-S
+End
+
 #308
-Path in the foothills~
+Name        Path in the foothills~
+Descr
 You are walking on a narrow path in the foothills.
 You feel the strong winds blow through your hair as you study
 the beautiful landscaping here. The path goes north and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 309
 The narrow path through the foothills turns left here.
 ~
 ~
-0 -1 309
-D3
+Door        west~ ~ -1 307
 To the west you can see the path continues.
 ~
 ~
-0 -1 307
-S
+End
+
 #309
-Path in the foothills~
+Name        Path in the foothills~
+Descr
 You are walking on a path situated in foothills.
 To the west you sense a certain freshness and the path continues
 south and east.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 310
 You see the path continues in the foothills.
 ~
 ~
-0 -1 310
-D2
+Door        south~ ~ -1 308
 You see the path continues in the foothills.
 ~
 ~
-0 -1 308
-D3
+Door        west~ ~ -1 326
 You see grassy plains and perhaps some crystal clear water.
 ~
 ~
-0 -1 326
-S
+End
+
 #310
-Path in the foothills~
+Name        Path in the foothills~
+Descr
 You are walking on a long path in the east-west direction.
 The surroundings are green, vegetated foothills.
 You are able to force your way through some dense plants to the north.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 327
 You can't really see much through the vegetation on the foothills.
 ~
 ~
-0 -1 327
-D1
+Door        east~ ~ -1 311
 To the east you notice that the path continues towards a T-intersection.
 ~
 ~
-0 -1 311
-D3
+Door        west~ ~ -1 309
 You just see the path through the foothills.
 ~
 ~
-0 -1 309
-S
+End
+
 #311
-Path in the foothills~
+Name        Path in the foothills~
+Descr
 You are walking on the long, narrow path through the foothills.
 To your east you see a T-intersection and to the west the path
 continues far.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 312
 You can go to the T-intersection this way.
 ~
 ~
-0 -1 312
-D3
+Door        west~ ~ -1 310
 You can see the long path through the plains.
 ~
 ~
-0 -1 310
-S
+End
+
 #312
-The path intersection~
+Name        The path intersection~
+Descr
 You are standing on an intersection between 3 paths.
 To the west you can follow a long, narrow path through the foothills.
 To the north a wide path leads to the Village of Ofcol and an
 ancient path leads towards the south.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 313
 The wide road to Ofcol runs here.
 ~
 ~
-0 -1 313
-D2
+Door        south~ ~ -1 332
 Here is a partially hidden, ancient looking path.
 ~
 ~
-0 -1 332
-D3
+Door        west~ ~ -1 311
 You can see the long narrow path running through the foothills.
 ~
 ~
-0 -1 311
-S
+End
+
 #313
-Road to Ofcol~
+Name        Road to Ofcol~
+Descr
 You are walking on a wide road with trail marks on it.  To the north
 you see the village of Ofcol and to the south there is the T intersection.
 You can enter the foothills west.  The foothills to your east are too
 steep to climb.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 314
 The road continues towards Ofcol.
 ~
 ~
-0 -1 314
-D2
+Door        south~ ~ -1 312
 You can see the T-intersection in the souther direction.
 ~
 ~
-0 -1 312
-D3
+Door        west~ ~ -1 327
 You think you can climb these foothills.
 ~
 ~
-0 -1 327
-S
+End
+
 #314
-Outside Ofcol~
+Name        Outside Ofcol~
+Descr
 You are standing outside the village of Ofcol.
 The village looks very small, but still a nice and safe place to stay.
 You may enter the city to the north or journey towards the
 T-intersection in the southern direction.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 5550
 You notice a sign saying : Stranger we welcome you to the
                            peaceful city of Ofcol.
 ~
 ~
-0 -1 5550
-D2
+Door        south~ ~ -1 313
 Here you see the road go towards the intersection.
 ~
 ~
-0 -1 313
-S
+End
+
 #315
-Gallow hill~
+Name        Gallow hill~
+Descr
 You walk in the grassy plains. On this little hill you can see
 two gallows, with rotting human tissue hanging from the robe.
 There is a sign here.  Gamma is still hanging from the gallows, but
 the body of Zenin is gone!
 ~
-0 0 4
-E
-sign~
+Flags       ~
+Sector      hills~
+Regen       100 100
+ExtraDescr  sign~
 The sign says:
 
   Loyal citizens of Midgaard.  These are the earthly remains of the
@@ -643,636 +776,682 @@ The sign says:
 
                                     -- the Powers that Be.
 ~
-D0
+Door        north~ ~ -1 320
 The plains extend far to the north.
 ~
 ~
-0 -1 320
-D1
+Door        east~ ~ -1 303
 To the east you can see a small path in the plains.
 ~
 ~
-0 -1 303
-D2
+Door        south~ ~ -1 300
 To the south you can see a small path in the plains.
 ~
 ~
-0 -1 300
-D3
+Door        west~ ~ -1 318
 The plains extend far to the west.
 ~
 ~
-0 -1 318
-D4
+Door        up~ door~ -1 2400
 You see a strange moongate here!
 ~
 moongate~
-1 -1 2400
-S
+End
+
 #316
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in the grassy plains among the herbs which grow here. The wind is
 strong and rough. Far to the north you can see the foothills and further on
 mountain peaks are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       O 304 0 100
+Door        north~ ~ -1 318
 The plains extend far to the north.
 ~
 ~
-0 -1 318
-D1
+Door        east~ ~ -1 300
 When you look to the east you notice at small path.
 ~
 ~
-0 -1 300
-S
+End
+
 #317
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in the grassy plains among the herbs which grow here. The wind is
 strong and rough. Far to the north you can see the foothills and further on
 mountain peaks are visible. City of Midgaard is to the south but so are some
 VERY steep slopes.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ -1 338
 The plains extend far to the east.
 ~
 ~
-0 -1 338
-D2
+Door        south~ ~ -1 345
 Some VERY steep slopes prevent you from going this way, it might kill you.
 ~
 ~
-0 -1 345
-D3
+Door        west~ ~ -1 303
 A small path is running through the plains.
 ~
 ~
-0 -1 303
-S
+End
+
 #318
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in the beautiful grassy plains. The wind is strong and rough.
 Far to the north you can see the foothills and further on mountain peaks
 are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 309 10 100
+Door        north~ ~ -1 319
 The plains extend far to the north.
 ~
 ~
-0 -1 319
-D1
+Door        east~ ~ -1 315
 The plains extend far to the east.
 ~
 ~
-0 -1 315
-D2
+Door        south~ ~ -1 316
 The plains extend far to the south.
 ~
 ~
-0 -1 316
-S
+End
+
 #319
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in the grassy plains among the herbs which grow here. The wind is
 strong and rough. To the north you can see the foothills and just behind
 mountain peaks are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       O 301 0 100
+Door        north~ ~ -1 330
 To the north, the plains extend into small foothills, behind a small hill
 you notice something ...
 ~
 ~
-0 -1 330
-D1
+Door        east~ ~ -1 320
 The plains extend far to the east.
 ~
 ~
-0 -1 320
-D2
+Door        south~ ~ -1 318
 The plains extend far to the south.
 ~
 ~
-0 -1 318
-S
+End
+
 #320
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in some grassy plains. The wind is strong and rough. To the
 north you can see the foothills and further on mountain peaks are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ -1 322
 The plains extend into small foothills to the north.
 ~
 ~
-0 -1 322
-D1
+Door        east~ ~ -1 305
 East of here you see a winding path in the plains.
 ~
 ~
-0 -1 305
-D2
+Door        south~ ~ -1 315
 The plains extend far to the south.
 ~
 ~
-0 -1 315
-D3
+Door        west~ ~ -1 319
 The plains extend far to the west.
 ~
 ~
-0 -1 319
-S
+End
+
 #321
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in the grassy plains. The wind is fairly strong.
 ~
-0 0 4
-D2
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        south~ ~ -1 338
 The plains extend far to the south.
 ~
 ~
-0 -1 338
-D3
+Door        west~ ~ -1 305
 A small path is running through the plains.
 ~
 ~
-0 -1 305
-S
+End
+
 #322
-Grassy foothills~
+Name        Grassy foothills~
+Descr
 You walk in the grassy foothills north of the plains. The wind is rough.
 To the north you can see foothills and just behind them mountain peaks
 are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ -1 324
 The small foothills extend into foothills far to the north.
 ~
 ~
-0 -1 324
-D2
+Door        south~ ~ -1 320
 The small foothills extend into plains far to the south.
 ~
 ~
-0 -1 320
-D3
+Door        west~ ~ -1 330
 The small foothills extend far to the west.
 ~
 ~
-0 -1 330
-S
+End
+
 #323
-The steep foothills~
+Name        The steep foothills~
+Descr
 You walk in the steep foothills. It is rather hard to move here.
 To the north you can see a grassy valley with wildflowers.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       O 304 0 100
+Reset       M 300 1 100
+Reset       E 308 17 100
+Reset       E 307 3 100
+Reset       E 312 -1 100
+Reset       E 302 -1 100
+Door        north~ ~ 0 7800
 You see a path toward the valley.
 ~
 ~
-0 0 7800
-D1
+Door        east~ ~ -1 324
 The foothills extend far to the east.
 ~
 ~
-0 -1 324
-D2
+Door        south~ ~ -1 330
 On the horizon you can see the City of Midgaard.
 ~
 ~
-0 -1 330
-S
+End
+
 #324
-The steep foothills~
+Name        The steep foothills~
+Descr
 You are walking in the steep foothills. It is rather hard to move here.
 To the north you can see the mountains towering over you.  Pine trees
 grow here.
 ~
-0 0 4
-E
-pine tree trees pines~
+Flags       ~
+Sector      hills~
+Regen       100 100
+ExtraDescr  pine tree trees pines~
 The all too quiet trees suggest that something roams these woods.
 ~
-E
-mountains~
+ExtraDescr  mountains~
 The mountains seems dark and all most alive, as they contrast against
 the sky.
 ~
-D0
+Reset       M 309 10 100
+Door        north~ ~ -1 901
 The path continues up the mountain.
 ~
 ~
-0 -1 901
-D1
+Door        east~ ~ -1 325
 The foothills extend far to the east.
 ~
 ~
-0 -1 325
-D2
+Door        south~ ~ -1 322
 The foothills extend downwards to the south. In the horizon you can
 see the City Of Midgaard.
 ~
 ~
-0 -1 322
-D3
+Door        west~ ~ -1 323
 The foothills extend far to the west.
 ~
 ~
-0 -1 323
-S
+End
+
 #325
-The steep foothills~
+Name        The steep foothills~
+Descr
 You are walking in the steep foothills. It is rather hard to move here.
 Further to the north you can see the mountains towering over you.
 Several pinetrees grow here.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ -1 326
 The foothills extend into smaller hills far to the east.
 ~
 ~
-0 -1 326
-D3
+Door        west~ ~ -1 324
 The foothills extend far to the west.
 ~
 ~
-0 -1 324
-S
+End
+
 #326
-The pool in the foothills~
+Name        The pool in the foothills~
+Descr
 You are standing by a pool in the small foothills. It is clear and cold.
 A steep slope rises up into the foothills to the north. Behind them ...
 the mountains.
 ~
-0 0 4
-E
-pool~
+Flags       ~
+Sector      hills~
+Regen       100 100
+ExtraDescr  pool~
 The pool is crystal clear, but as you look into it you notice that
 you can't see the bottom of it ... it must be pretty deep.
 ~
-D1
+Door        east~ ~ -1 309
 To the east you notice a small path in the foothills.
 ~
 ~
-0 -1 309
-D2
+Door        south~ ~ -1 306
 To the south a path winds its way south into the plains.
 ~
 ~
-0 -1 306
-D3
+Door        west~ ~ -1 325
 The foothills extend far to the west.
 ~
 ~
-0 -1 325
-S
+End
+
 #327
-The foothills~
+Name        The foothills~
+Descr
 You are walking in some foothills. It is rather hard to move here.
 Further to the north you can see the mountains towering over you.
 Several pinetrees grow here.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       O 300 0 100
+Door        east~ ~ -1 313
 To the east you notice a small path in the foothills.
 ~
 ~
-0 -1 313
-D2
+Door        south~ ~ -1 310
 To the south a steep slope runs down to a small path in the foothills.
 ~
 ~
-0 -1 310
-S
+End
+
 #330
-In front of hut in foothills~
+Name        In front of hut in foothills~
+Descr
 You are standing in the foothills. To the west, well hidden among the small
 foothills and pines, you see a small hut. To the north you can see
 the foothills, and some pineforrest. Further on mountain peaks are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ -1 323
 The steep foothills seems hard to climb
 ~
 ~
-0 -1 323
-D1
+Door        east~ ~ -1 322
 The foothills extend far to the east.
 ~
 ~
-0 -1 322
-D2
+Door        south~ ~ -1 319
 To the south the foothills extend into plains far to the south.
 ~
 ~
-0 -1 319
-D3
+Door        west~ door~ -1 331
 You see a small crumbled hut here, must be a hermit living here.
 ~
 door~
-1 -1 331
-S
+End
+
 #331
-Hermit's hut~
+Name        Hermit's hut~
+Descr
 You are inside the hermit's hut. It is rather old, but serves it purpose.
 It keeps its habitant from the rough winds and dangerous beasts of the
 plains and foothills. There is a small fireplace here.
 ~
-0 8 0
-E
-fireplace~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  fireplace~
 The hermit cooks here.
 ~
-D1
+Reset       M 301 1 100
+Reset       E 303 -1 100
+Reset       O 309 0 100
+Door        east~ door~ -1 330
 Through the door you can see the foothills.
 ~
 door~
-1 -1 330
-S
+End
+
 #332
-The ancient path~
+Name        The ancient path~
+Descr
 You are moving on an ancient path. The path is slightly covered with
 leaves and twitches.
 To the north you can see the T-crossing and the path continues south.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 312
 As you look to the north you see a T-intersection.
 ~
 ~
-0 -1 312
-D2
+Door        south~ ~ -1 333
 The ancient path continues through the plains.
 ~
 ~
-0 -1 333
-S
+End
+
 #333
-The ancient path~
+Name        The ancient path~
+Descr
 You are standing on the ancient path which runs north and south.
 The path is hardly visible here.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 332
 You see the ancient path.
 ~
 ~
-0 -1 332
-D2
+Door        south~ ~ -1 334
 You trace the path carefully and see no immediate dangers.
 ~
 ~
-0 -1 334
-S
+End
+
 #334
-The ancient path~
+Name        The ancient path~
+Descr
 You are standing on the ancient path which runs north and south.
 The path is hardly visible here.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 309 10 100
+Door        north~ ~ -1 333
 You see the ancient path.
 ~
 ~
-0 -1 333
-D2
+Door        south~ ~ -1 335
 You trace the path carefully and see no immediate dangers.
 ~
 ~
-0 -1 335
-S
+End
+
 #335
-The ancient path~
+Name        The ancient path~
+Descr
 The path runs north and east from here.  You notice some markers placed
 along the side of the path.
 ~
-0 0 3
-E
-markers~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  markers~
 The markers seems like normal stones, but the way they are
 arranged makes you think there is something special about them.
 ~
-D0
+Door        north~ ~ -1 334
 You see the ancient path winding its way north from here. Looks safe.
 ~
 ~
-0 -1 334
-D1
+Door        east~ ~ -1 336
 Further ahead you see a bridge over a small creak.
 ~
 ~
-0 -1 336
-S
+End
+
 #336
-The wooden bridge~
+Name        The wooden bridge~
+Descr
 You have stepped upon a wooden bridge. It looks old but safe to cross.
 It is made of a wood you haven't seen before.
 ~
-0 0 2
-E
-rock formation formations~
+Flags       ~
+Sector      field~
+Regen       100 100
+ExtraDescr  rock formation formations~
 The rock formations are made of 7 huge, monolith like stones, placed
 in a symbolic circle.
 You notice it's possible to enter the ring.
 ~
-D1
+Door        east~ ~ -1 337
 The path continues, further ahead you notice some rock formations.
 ~
 ~
-0 -1 337
-D3
+Door        west~ ~ -1 335
 The ancient path leads west and turns north further ahead.
 ~
 ~
-0 -1 335
-S
+End
+
 #337
-The ancient path~
+Name        The ancient path~
+Descr
 You find yourself located between the bridge and the rock formations.
 As you approach the formations you begin to realize the true size of
 them, about 15 feet tall and almost perfect rectangular shape.
 You feel impressed with the awesome sight.
 ~
-0 0 3
-E
-rock formation formations~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  rock formation formations~
 The rock formations are made of seven huge monolith placed in a circle.
 You notice it's possible to enter the ring.
 ~
-D1
+Door        east~ ~ -1 339
 To the east you enter the ring of stones. You wonder if it's safe.
 ~
 ~
-0 -1 339
-D3
+Door        west~ ~ -1 336
 To the west the ancient path leads across the wooden bridge.
 ~
 ~
-0 -1 336
-S
+End
+
 #338
-Grassy plains~
+Name        Grassy plains~
+Descr
 You walk in the grassy plains among the herbs which grow here. The wind is
 strong and rough. Far to the north you can see the foothills and further on
 mountain peaks are visible.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       O 304 0 100
+Door        north~ ~ -1 321
 The plains extend far to the north.
 ~
 ~
-0 -1 321
-D3
+Door        west~ ~ -1 317
 The plains extend far to the east.
 ~
 ~
-0 -1 317
-S
+End
+
 #339
-The Stones of G'harne~
+Name        The Stones of G'harne~
+Descr
 You are in the center of 7, 15 ft tall monolith like black stones.
 In the center of the ring formed by the monolith you can't help
 noticing a big sacrifice altar. The ground is covered with dirt, but the
 altar shows no sign of such. West of here is the ancient path.
 ~
-0 0 2
-E
-death rituals worms engraving picture~
+Flags       ~
+Sector      field~
+Regen       100 100
+ExtraDescr  death rituals worms engraving picture~
 The pictures are depicting evil rituals.
 You see druids pouring blood over herbs on an altar like this one.
 There are people calling giant worms into existence with dark spells.
 ~
-E
-altar sacrifice~
+ExtraDescr  altar sacrifice~
 You move closer to examine the sacrifice altar of G'harne.
 The altar is about 3 feet high, 10 feet long and 4 feet wide.
 It has engraved pictures of death rituals and horrifying worms.
 ~
-E
-stones g'harne monolith~
+ExtraDescr  stones g'harne monolith~
 The stones of G'harne tower fifteen feet over you.
 The giant stones are made of a material you haven't seen before.
 It resembles black marble, but somehow feels different.
 ~
-D3
+Door        west~ ~ -1 337
 You see the ancient path and the wooden bridge here.
 ~
 ~
-0 -1 337
-D5
+Door        down~ ~ -1 340
 You see a tunnel down there.
 ~
 ~
-0 -1 340
-S
+End
+
 #340
-Dark smelly tunnels~
+Name        Dark smelly tunnels~
+Descr
 You are standing in a gloomy tunnel leading south and west, right under
 the altar of G'harne.  The walls are covered with a smelly slime and small
 rotting pieces of a meat like substance, fills the air with an unbearable
 stench.  You might be able to force your way up into fresh air from here.
 ~
-0 265 0
-E
-meat rotting slime substance~
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  meat rotting slime substance~
 You try to examine the substance closer, but must refrain from this
 as all you really want to do is puke.
 You puke.
 ~
-D2
+Door        south~ ~ -1 341
 ~
 ~
-0 -1 341
-D3
+Door        west~ ~ -1 342
 ~
 ~
-0 -1 342
-D4
+Door        up~ ~ -1 339
 You welcome the sight of fresh air.
 ~
 ~
-0 -1 339
-S
+End
+
 #341
-Dead end of tunnel~
+Name        Dead end of tunnel~
+Descr
 The tunnel comes to an abrupt end here. It simply looks like it
 hasn't been excavated further.  North of here the tunnel makes a turn east.
 ~
-0 265 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 340
 ~
 ~
-0 -1 340
-S
+End
+
 #342
-Dark smelly tunnels~
+Name        Dark smelly tunnels~
+Descr
 You are standing in a gloomy tunnel leading east and west.
 The walls are covered with a smelly slime and small rotting pieces of a
 meat like substance, fills the air with an unbearable stench.
 ~
-0 265 0
-E
-meat rotting slime substance~
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  meat rotting slime substance~
 You try to examine the substance closer, but must refrain from this
 as all you really want to do is puke.
 You puke.
 ~
-D1
+Door        east~ ~ -1 340
 The tunnel continues in this direction.
 ~
 ~
-0 -1 340
-D3
+Door        west~ ~ -1 343
 The tunnel continues in this direction.
 ~
 ~
-0 -1 343
-S
+End
+
 #343
-Dark smelly tunnels~
+Name        Dark smelly tunnels~
+Descr
 You are standing in a small smelly tunnel under the plains.
 The smell is growing stronger to the west, so is the density of the
 slime and other undeterminable substances ...
 ~
-0 256 0
-E
-slime substance~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  slime substance~
 BWADR! ...
 ~
-D1
+Door        east~ ~ -1 342
 The unbearable stench is less intensive in this direction.
 ~
 ~
-0 -1 342
-D3
+Door        west~ ~ -1 344
 The tunnel seems to extend into some kind of cave.
 ~
 ~
-0 -1 344
-S
+End
+
 #344
-The Hall of G'harne~
+Name        The Hall of G'harne~
+Descr
 You stand in the hall of G'harne. The walls are dressed with strange
 carving, symbolizing human sacrifice and people worshipping giant worms.
 Disgusting slime and gore are also very dominant in your view of this room.
 ~
-0 265 0
-E
-slime gore~
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  slime gore~
 You puke.
 ~
-D1
+Reset       M 305 1 100
+Reset       E 310 -1 100
+Reset       E 311 -1 100
+Door        east~ ~ -1 343
 It looks like a good idea just to run in this direction.
 ~
 ~
-0 -1 343
-S
+End
+
 #345
-Steep slope~
+Name        Steep slope~
+Descr
 You try to climb down the slope.
 >
 You slip!
@@ -1282,47 +1461,13 @@ You die.
 
 You've fallen, and you can't get up!
 ~
-0 4 2
-S
+Flags       no_mob~
+Sector      field~
+Regen       100 100
+End
+
 #0
 
-
-#SPECIALS
-M 350 spec_cast_mage
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-O 0 304 0 316
-M 0 309 10 318
-O 0 301 0 319
-O 0 304 0 323
-M 0 300 1 323
-E 0 308 0 17
-E 0 307 0 3
-G 0 312 0
-G 0 302 0
-M 0 309 10 324
-O 0 300 0 327
-M 0 301 1 331
-G 0 303 0
-O 0 309 0 331
-M 0 309 10 334
-O 0 304 0 338
-M 0 305 1 344
-G 0 310 0
-G 0 311 0
-S
-
-
-#SHOPS
-306 1 10 11 19 0 120 60 0 23
-308 0 0 0 0 0 110 100 0 23
-0
 
 
 #$

@@ -1,0 +1,21 @@
+==== GREED SKILL SYSTEM
+
+=== do_practice
+
+*	can practice if ch->pcdata->learned[sn] >= 1.
+
+*	can spend only one practice on do_practice() like on SMAUG.
+	if ( ch->pcdata->learned[sn] >=
+				class_table[ch->class]->skill_adept * 0.2 )
+
+*	check_improve() only works if ch->pcdata->learned[sn] > 1;
+
+=== do_gain
+
+*	10 pracs => 1 gps.
+
+*	20 pracs => ch->points -= 1.
+
+*	10 * group_table[gn].group_rating[ch->class] pracs => gain 1 new group.
+*	10 * skill_table[sn].skill_rating[ch->class] pracs => gain 1 new skill.
+

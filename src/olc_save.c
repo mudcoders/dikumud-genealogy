@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -102,42 +104,66 @@ void save_area_list( )
 void save_mobiles( FILE *fp, AREA_DATA *pArea )
 {
     MOB_INDEX_DATA *pMobIndex;
+    SHOP_DATA      *pShopIndex;
+    GAME_DATA      *pGameIndex;
     int             vnum;
+    int             iTrade;
 
-    fprintf( fp, "#MOBILES\n" );
+    fprintf( fp, "#MOBDB\n" );
     for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
 	if ( !( pMobIndex = get_mob_index( vnum ) )
 	    ||  pMobIndex->area != pArea )
 	    continue;
 
-	fprintf( fp, "#%d\n",	pMobIndex->vnum			     );
-	fprintf( fp, "%s~\n",	pMobIndex->player_name		     );
-	fprintf( fp, "%s~\n",	pMobIndex->short_descr		     );
-	fprintf( fp, "%s~\n",	fix_string( pMobIndex->long_descr  ) );
-	fprintf( fp, "%s~\n",	fix_string( pMobIndex->description ) );
-	fprintf( fp, "%d ",	pMobIndex->act			     );
-	fprintf( fp, "%d ",	pMobIndex->affected_by		     );
-	fprintf( fp, "%d S\n",	pMobIndex->alignment		     );
-	fprintf( fp, "%d ",	pMobIndex->level		     );
-	fprintf( fp, "%d ",	pMobIndex->hitroll		     );
-	fprintf( fp, "%d ",	pMobIndex->ac			     );
-	fprintf( fp, "%dd%d+%d ",
-				pMobIndex->hitnodice,
-				pMobIndex->hitsizedice,
-				pMobIndex->hitplus		     );
-	fprintf( fp, "%dd%d+%d\n",
-				pMobIndex->damnodice,
-				pMobIndex->damsizedice,
-				pMobIndex->damplus		     );
-	fprintf( fp, "%d ",	pMobIndex->gold			     );
-	fprintf( fp, "0\n0 "					     );
-	fprintf( fp, "%s~ ",	race_table[pMobIndex->race].name     );
-	fprintf( fp, "%d\n",	pMobIndex->sex			     );
+	fprintf( fp, "#%d\n",		  pMobIndex->vnum		     );
+	fprintf( fp, "Name        %s~\n", pMobIndex->player_name	     );
+	fprintf( fp, "Short       %s~\n", pMobIndex->short_descr	     );
+	fprintf( fp, "Long\n%s~\n",	fix_string( pMobIndex->long_descr  ) );
+	fprintf( fp, "Descr\n%s~\n",	fix_string( pMobIndex->description ) );
+	fprintf( fp, "Act         %s~\n", flag_strings( act_flags,
+							    pMobIndex->act ) );
+	fprintf( fp, "AffectBy    %s~\n", vect_strings( affect_flags,
+						    pMobIndex->affected_by ) );
+	fprintf( fp, "Alignment   %d\n",  pMobIndex->alignment  	     );
+	fprintf( fp, "Level       %d\n",  pMobIndex->level		     );
+	fprintf( fp, "Gold        %d\n",  pMobIndex->gold		     );
+	fprintf( fp, "Race        %s\n",  race_table[pMobIndex->race].name   );
+	fprintf( fp, "Sex         %s~\n", flag_strings( sex_flags,
+							    pMobIndex->sex ) );
+
+	if ( pMobIndex->spec_fun )
+	fprintf( fp, "Spec        %s\n",	spec_mob_string( pMobIndex->spec_fun ) );
+
+	if ( pMobIndex->pShop )
+	{
+	    pShopIndex = pMobIndex->pShop;
+
+	fprintf( fp, "Shop        " );
+	for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
+	    fprintf( fp, "%s~ ", flag_strings( type_flags,
+					       pShopIndex->buy_type[iTrade] ) );
+	fprintf( fp, "%d %d ",
+				pShopIndex->profit_buy,
+				pShopIndex->profit_sell			);
+	fprintf( fp, "%d %d\n",
+				pShopIndex->open_hour,
+				pShopIndex->close_hour			);
+	}
+
+	if ( pMobIndex->pGame )
+	{
+	    pGameIndex = pMobIndex->pGame;
+
+	fprintf( fp, "Game        %s %d %d %d\n",
+		game_string( pGameIndex->game_fun ),
+		pGameIndex->bankroll,
+		pGameIndex->max_wait,
+		pGameIndex->cheat );
+	}
 
 	/*
 	 * This is responsible for writing MOBprograms in_file.
-	 * By Farix of Oz.
 	 */
 	if ( pMobIndex->mobprogs )
 	{
@@ -145,46 +171,50 @@ void save_mobiles( FILE *fp, AREA_DATA *pArea )
 
 	    for ( mPtr = pMobIndex->mobprogs; mPtr; mPtr = mPtr->next )
 	    {
-		fprintf( fp, ">%s ",	mprog_type_to_name( mPtr->type ) );
-		fprintf( fp, "%s~\n",	mPtr->arglist			 );
-		fprintf( fp, "%s~\n",	fix_string( mPtr->comlist )	 );
+		fprintf( fp, "Trigger     %s %s~\n%s~\n",
+			mprog_type_to_name( mPtr->type ),
+			mPtr->arglist,
+			fix_string( mPtr->comlist ) );
 	    }
-	    fprintf( fp, "|\n" );
-
 	}
+	fprintf( fp, "End\n\n" );
+
     }
-    fprintf( fp, "#0\n\n\n" );
+    fprintf( fp, "#0\n\n\n\n" );
 
     return;
 }
 
 
-void new_save_objects( FILE *fp, AREA_DATA *pArea )
+void save_objects( FILE *fp, AREA_DATA *pArea )
 {
     EXTRA_DESCR_DATA *pEd;
     OBJ_INDEX_DATA   *pObjIndex;
     AFFECT_DATA      *pAf;
     int               vnum;
 
-    fprintf( fp, "#NEWOBJECTS\n" );
+    fprintf( fp, "#OBJDB\n" );
     for ( vnum = pArea->low_o_vnum; vnum <= pArea->hi_o_vnum; vnum++ )
     {
 	if ( !( pObjIndex = get_obj_index( vnum ) )
 	    ||  pObjIndex->area != pArea )
 	    continue;
 
-	fprintf( fp, "#%d\n",	  pObjIndex->vnum		       );
-	fprintf( fp, "%s~\n",	  pObjIndex->name		       );
-	fprintf( fp, "%s~\n",	  pObjIndex->short_descr	       );
-	fprintf( fp, "%s~\n",	  fix_string( pObjIndex->description ) );
-	fprintf( fp, "~\n"					       );
-	fprintf( fp, "%d ",	  pObjIndex->item_type		       );
-	fprintf( fp, "%d ",	  pObjIndex->extra_flags	       );
-	fprintf( fp, "%d\n",	  pObjIndex->wear_flags		       );
+	fprintf( fp, "#%d\n",	  pObjIndex->vnum			   );
+	fprintf( fp, "Name        %s~\n", pObjIndex->name		   );
+	fprintf( fp, "Short       %s~\n", pObjIndex->short_descr	   );
+	fprintf( fp, "Descr\n%s~\n",  fix_string( pObjIndex->description ) );
+	fprintf( fp, "Type        %s~\n", flag_strings( type_flags, pObjIndex->item_type )	);
+	fprintf( fp, "Extra       %s~\n", flag_strings( extra_flags, pObjIndex->extra_flags )	);
+	fprintf( fp, "Wear        %s~\n", flag_strings( wear_flags, pObjIndex->wear_flags )	);
+
+	if ( pObjIndex->spec_fun )
+	fprintf( fp, "Spec        %s\n", spec_obj_string( pObjIndex->spec_fun ) );
+
 
 	switch ( pObjIndex->item_type )
 	{
-	default:	  fprintf( fp, "%d~ %d~ %d~ %d~ %d~\n",
+	default:	  fprintf( fp, "Values      %d~ %d~ %d~ %d~ %d~\n",
 				  pObjIndex->value[0],
 				  pObjIndex->value[1],
 				  pObjIndex->value[2],
@@ -194,7 +224,7 @@ void new_save_objects( FILE *fp, AREA_DATA *pArea )
 
 	case ITEM_PILL:
 	case ITEM_POTION:
-	case ITEM_SCROLL: fprintf( fp, "%d~ %s~ %s~ %s~ %s~\n",
+	case ITEM_SCROLL: fprintf( fp, "Values      %d~ %s~ %s~ %s~ %s~\n",
 				  pObjIndex->value[0],
 				  pObjIndex->value[1] != -1 ?
 				  skill_table[pObjIndex->value[1]].name : " ",
@@ -207,7 +237,7 @@ void new_save_objects( FILE *fp, AREA_DATA *pArea )
 			  break;
 
 	case ITEM_WAND:
-	case ITEM_STAFF:  fprintf( fp, "%d~ %d~ %d~ %s~ %d~\n",
+	case ITEM_STAFF:  fprintf( fp, "Values      %d~ %d~ %d~ %s~ %d~\n",
 				  pObjIndex->value[0],
 				  pObjIndex->value[1],
 				  pObjIndex->value[2],
@@ -216,25 +246,26 @@ void new_save_objects( FILE *fp, AREA_DATA *pArea )
 				  pObjIndex->value[4] );
 			  break;
 	}
-	fprintf( fp, "%d ",	  pObjIndex->weight );
-	fprintf( fp, "%d 0\n",	  pObjIndex->cost   );
+	fprintf( fp, "Weight      %d\n",	  pObjIndex->weight );
+	fprintf( fp, "Cost        %d\n",	  pObjIndex->cost   );
 
 	for ( pAf = pObjIndex->affected; pAf; pAf = pAf->next )
 	{
-	    fprintf( fp, "A\n%d %d %d\n",
-				  pAf->location,
+	    fprintf( fp, "Affect      %s~ %d %s~\n",
+				  flag_strings( apply_flags, pAf->location ),
 				  pAf->modifier,
-				  pAf->bitvector );
+				  vect_strings( affect_flags, pAf->bitvector ) );
 	}
 
 	for ( pEd = pObjIndex->extra_descr; pEd; pEd = pEd->next )
 	{
-	    fprintf( fp, "E\n%s~\n%s~\n",
+	    fprintf( fp, "ExtraDescr  %s~\n%s~\n",
 				  pEd->keyword,
 				  fix_string( pEd->description ) );
 	}
+	fprintf( fp, "End\n\n" );
     }
-    fprintf( fp, "#0\n\n\n" );
+    fprintf( fp, "#0\n\n\n\n" );
 
     return;
 }
@@ -245,10 +276,11 @@ void save_rooms( FILE *fp, AREA_DATA *pArea )
     EXTRA_DESCR_DATA *pEd;
     ROOM_INDEX_DATA  *pRoomIndex;
     EXIT_DATA        *pExit;
+    RESET_DATA      *pReset;
     int               vnum;
     int               door;
 
-    fprintf( fp, "#ROOMDATA\n" );
+    fprintf( fp, "#ROOMDB\n" );
     for ( vnum = pArea->low_r_vnum; vnum <= pArea->hi_r_vnum; vnum++ )
     {
 	if ( !( pRoomIndex = get_room_index( vnum ) )
@@ -256,17 +288,27 @@ void save_rooms( FILE *fp, AREA_DATA *pArea )
 	    continue;
 
 	fprintf( fp, "#%d\n",	pRoomIndex->vnum		      );
-	fprintf( fp, "%s~\n",	pRoomIndex->name		      );
-	fprintf( fp, "%s~\n",	fix_string( pRoomIndex->description ) );
-	fprintf( fp, "0 "					      );
-	fprintf( fp, "%d ",	pRoomIndex->orig_room_flags	      );
-	fprintf( fp, "%d\n",	pRoomIndex->sector_type		      );
+	fprintf( fp, "Name        %s~\n",	pRoomIndex->name		      );
+	fprintf( fp, "Descr\n%s~\n",		fix_string( pRoomIndex->description ) );
+	fprintf( fp, "Flags       %s~\n",	flag_strings( room_flags, pRoomIndex->orig_room_flags ) );
+	fprintf( fp, "Sector      %s~\n",	flag_strings( sector_flags, pRoomIndex->sector_type ) );
+	fprintf( fp, "Regen       %d %d\n",	pRoomIndex->heal_rate,
+						pRoomIndex->mana_rate	);
 
 	for ( pEd = pRoomIndex->extra_descr; pEd; pEd = pEd->next )
 	{
-	    fprintf( fp, "E\n%s~\n%s~\n",
+	    fprintf( fp, "ExtraDescr  %s~\n%s~\n",
 		    		pEd->keyword,
 		    		fix_string( pEd->description )	      );
+	}
+
+	for( pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next )
+	{
+	    fprintf( fp, "Reset       %c %d %d %d\n",
+						pReset->command,
+						pReset->rs_vnum,
+						pReset->loc,
+						pReset->percent );
 	}
 
 	for ( door = 0; door < MAX_DIR; door++ )
@@ -274,416 +316,19 @@ void save_rooms( FILE *fp, AREA_DATA *pArea )
 	    if ( !( pExit = pRoomIndex->exit[door] ) )
 		continue;
 
-	    fprintf( fp, "D%d\n",  door				      );
-	    fprintf( fp, "%s~\n",  fix_string( pExit->description )   );
-	    fprintf( fp, "%s~\n",  pExit->keyword		      );
-	    fprintf( fp, "%d %d %d\n",
-				   pExit->rs_flags,
+	    fprintf( fp, "Door        %s~ %s~ %d %d\n",
+				   dir_name[door],
+				   flag_strings( exit_flags, pExit->rs_flags ),
 				   pExit->key,
 				   pExit->to_room
 				   ? pExit->to_room->vnum : 0	      );
+	    fprintf( fp, "%s~\n",  fix_string( pExit->description )   );
+	    fprintf( fp, "%s~\n",  pExit->keyword		      );
 	}
-	fprintf( fp, "S\n" );
+	fprintf( fp, "End\n\n" );
 
     }
-    fprintf( fp, "#0\n\n\n" );
-
-    return;
-}
-
-
-void save_specials( FILE *fp, AREA_DATA *pArea )
-{
-    MOB_INDEX_DATA *pMobIndex;
-    OBJ_INDEX_DATA *pObjIndex;
-    int             vnum;
-
-    fprintf( fp, "#SPECIALS\n" );
-    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
-    {
-	if ( !( pMobIndex = get_mob_index( vnum ) )
-	    ||  pMobIndex->area != pArea
-	    || !pMobIndex->spec_fun )
-	    continue;
-
-	fprintf( fp, "M %d %s\n",
-		pMobIndex->vnum,
-		spec_mob_string( pMobIndex->spec_fun ) );
-    }
-
-    for ( vnum = pArea->low_o_vnum; vnum <= pArea->hi_o_vnum; vnum++ )
-    {
-	if ( !( pObjIndex = get_obj_index( vnum ) )
-	    ||  pObjIndex->area != pArea
-	    || !pObjIndex->spec_fun )
-	    continue;
-
-	fprintf( fp, "O %d %s\n",
-		pObjIndex->vnum,
-		spec_obj_string( pObjIndex->spec_fun ) );
-    }
-    fprintf( fp, "S\n\n\n" );
-
-    return;
-}
-
-
-/* New formating thanks to Rac */
-void vsave_specials( FILE *fp, AREA_DATA *pArea )
-{
-    MOB_INDEX_DATA *pMobIndex;
-    OBJ_INDEX_DATA *pObjIndex;
-    int             vnum;
-
-    fprintf( fp, "#SPECIALS\n" );
-    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
-    {
-	if ( !( pMobIndex = get_mob_index( vnum ) )
-	    ||  pMobIndex->area != pArea
-	    || !pMobIndex->spec_fun )
-	    continue;
-
-	fprintf( fp, "M %5d %-30s \t* %s\n",
-		pMobIndex->vnum,
-		spec_mob_string( pMobIndex->spec_fun ),
-		pMobIndex->short_descr );
-    }
-
-    for ( vnum = pArea->low_o_vnum; vnum <= pArea->hi_o_vnum; vnum++ )
-    {
-	if ( !( pObjIndex = get_obj_index( vnum ) )
-	    ||  pObjIndex->area != pArea
-	    || !pObjIndex->spec_fun )
-	    continue;
-
-	fprintf( fp, "O %5d %-30s \t* %s\n",
-		pObjIndex->vnum,
-		spec_obj_string( pObjIndex->spec_fun ),
-		pObjIndex->short_descr );
-    }
-    fprintf( fp, "S\n\n\n" );
-
-    return;
-}
-
-
-/* Written by: Maniac */
-void save_games( FILE *fp, AREA_DATA *pArea )
-{
-    MOB_INDEX_DATA *pMobIndex;
-    GAME_DATA      *pGameIndex;
-    int             vnum;
-
-    fprintf( fp, "#GAMES\n" );
-    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
-    {
-	if ( !( pMobIndex = get_mob_index( vnum ) )
-	    ||  pMobIndex->area != pArea
-	    || !pMobIndex->pGame )
-	    continue;
-
-	pGameIndex = pMobIndex->pGame;
-
-	fprintf( fp, "M %d %s %d %d %d\n",
-		pGameIndex->croupier,
-		game_string( pGameIndex->game_fun ),
-		pGameIndex->bankroll,
-		pGameIndex->max_wait,
-		pGameIndex->cheat );
-    }
-    fprintf( fp, "S\n\n\n" );
-
-    return;
-}
-
-
-/* Written by: Maniac */
-void vsave_games( FILE *fp, AREA_DATA *pArea )
-{
-    MOB_INDEX_DATA *pMobIndex;
-    GAME_DATA      *pGameIndex;
-    int             vnum;
-
-    fprintf( fp, "#GAMES\n" );
-    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
-    {
-	if ( !( pMobIndex = get_mob_index( vnum ) )
-	    ||  pMobIndex->area != pArea
-	    || !pMobIndex->pGame )
-	    continue;
-
-	pGameIndex = pMobIndex->pGame;
-
-	fprintf( fp, "M %5d %-30s %10d %3d %1d\t* %s\n",
-		pGameIndex->croupier,
-		game_string( pGameIndex->game_fun ),
-		pGameIndex->bankroll,
-		pGameIndex->max_wait,
-		pGameIndex->cheat,
-		pMobIndex->short_descr );
-    }
-    fprintf( fp, "S\n\n\n" );
-
-    return;
-}
-
-
-/* New format thanks to Rac */
-void save_resets( FILE *fp, AREA_DATA *pArea )
-{
-    ROOM_INDEX_DATA *pRoomIndex;
-    MOB_INDEX_DATA  *pLastMob	= NULL;
-    OBJ_INDEX_DATA  *pLastObj;
-    RESET_DATA      *pReset;
-    char             buf	[MAX_STRING_LENGTH];
-    int              vnum;
-
-    fprintf( fp, "#RESETS\n" );
-    for ( vnum = pArea->low_r_vnum; vnum <= pArea->hi_r_vnum; vnum++ )
-    {
-	if ( !( pRoomIndex = get_room_index( vnum ) )
-	    ||  pRoomIndex->area != pArea )
-	    continue;
-
-	for ( pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next )
-	{
-	    switch ( pReset->command )
-	    {
-	    default:	bug( "Save_resets: bad command %c.", pReset->command );
-			break;
-
-	    case 'M':	pLastMob = get_mob_index( pReset->arg1 );
-			fprintf( fp, "M 0 %d %d %d\n",
-				pReset->arg1,
-				pReset->arg2,
-				pReset->arg3 );
-			break;
-
-	    case 'O':	pLastObj = get_obj_index( pReset->arg1 );
-			fprintf( fp, "O 0 %d 0 %d\n",
-				pReset->arg1,
-				pReset->arg3 );
-			break;
-
-	    case 'P':	pLastObj = get_obj_index( pReset->arg3 );
-			fprintf( fp, "P 0 %d 0 %d\n",
-				pReset->arg1,
-				pReset->arg3 );
-			if ( !pLastObj )
-			{
-			    sprintf( buf, "Save_resets: !NO_OBJ! in [%s]",
-				    pArea->filename );
-			    bug( buf, 0 );
-			}
-			break;
-
-	    case 'G':	fprintf( fp, "G 0 %d 0\n", pReset->arg1 );
-			if ( !pLastMob )
-			{
-			    sprintf( buf, "Save_resets: !NO_MOB! in [%s]",
-				    pArea->filename );
-			    bug( buf, 0 );
-			}
-			break;
-
-	    case 'E':	fprintf( fp, "E 0 %d 0 %d\n",
-				pReset->arg1,
-				pReset->arg3 );
-			if ( !pLastMob )
-			{
-			    sprintf( buf, "Save_resets: !NO_MOB! in [%s]",
-				    pArea->filename );
-			    bug( buf, 0 );
-			}
-			break;
-
-	    case 'D':	break;
-
-	    case 'R':	fprintf( fp, "R 0 %d %d\n",
-				pReset->arg1,
-				pReset->arg2 );
-			break;
-	    }
-	}
-    }
-    fprintf( fp, "S\n\n\n" );
-
-    return;
-}
-
-
-/* New format thanks to Rac */
-void vsave_resets( FILE *fp, AREA_DATA *pArea )
-{
-    ROOM_INDEX_DATA *pRoomIndex;
-    MOB_INDEX_DATA  *pLastMob	= NULL;
-    OBJ_INDEX_DATA  *pLastObj	= NULL;
-    RESET_DATA      *pReset;
-    char             buf	[MAX_STRING_LENGTH];
-    int              vnum;
-
-    fprintf( fp, "#RESETS\n" );
-    for ( vnum = pArea->low_r_vnum; vnum <= pArea->hi_r_vnum; vnum++ )
-    {
-	if ( !( pRoomIndex = get_room_index( vnum ) )
-	    ||  pRoomIndex->area != pArea )
-	    continue;
-
-	for ( pReset = pRoomIndex->reset_first; pReset; pReset = pReset->next )
-	{
-	    switch ( pReset->command )
-	    {
-	    default:	bug( "Save_resets: bad command %c.", pReset->command );
-			break;
-
-	    case 'M':	pLastMob = get_mob_index( pReset->arg1 );
-			fprintf( fp, "M 0 %5d %2d %5d \t* %s -> %s\n",
-				pReset->arg1,
-				pReset->arg2,
-				pReset->arg3,
-				pLastMob->short_descr,
-				pRoomIndex->name );
-			break;
-
-	    case 'O':	pLastObj = get_obj_index( pReset->arg1 );
-			fprintf( fp, "O 0 %5d  0 %5d \t* %s -> %s\n",
-				pReset->arg1,
-				pReset->arg3,
-				capitalize( pLastObj->short_descr ),
-				pRoomIndex->name );
-			break;
-
-	    case 'P':	pLastObj = get_obj_index( pReset->arg3 );
-			fprintf( fp, "P 0 %5d  0 %5d \t* %s inside %s\n",
-				pReset->arg1,
-				pReset->arg3,
-				capitalize( get_obj_index( pReset->arg1 )->short_descr ),
-				pLastObj ? pLastObj->short_descr : "!NO_OBJ!" );
-
-			if ( !pLastObj ) /*
-					  * Thanks Rac! 
-					  */
-			{
-			    sprintf( buf, "Save_resets: !NO_OBJ! in [%s]",
-				    pArea->filename );
-			    bug( buf, 0 );
-			}
-			break;
-
-	    case 'G':	fprintf( fp, "G 0 %5d  0      \t*   %s\n",
-				pReset->arg1,
-				capitalize( pLastObj->short_descr ) );
-			if ( !pLastMob )
-			{
-			    sprintf( buf, "Save_resets: !NO_MOB! in [%s]",
-				    pArea->filename );
-			    bug( buf, 0 );
-			}
-			break;
-
-	    case 'E':	fprintf( fp, "E 0 %5d  0 %5d \t*   %s %s\n",
-				pReset->arg1,
-				pReset->arg3,
-				capitalize( get_obj_index( pReset->arg1 )->short_descr ),
-				flag_string( wear_loc_strings, pReset->arg3 ) );
-			if ( !pLastMob )
-			{
-			    sprintf( buf, "Save_resets: !NO_MOB! in [%s]",
-				    pArea->filename );
-			    bug( buf, 0 );
-			}
-			break;
-
-	    case 'D':	break;
-
-	    case 'R':	fprintf( fp, "R 0 %5d %2d      \t* Randomize %s\n",
-				pReset->arg1,
-				pReset->arg2,
-				pRoomIndex->name );
-			break;
-	    }
-	}
-    }
-    fprintf( fp, "S\n\n\n" );
-
-    return;
-}
-
-
-void save_shops( FILE *fp, AREA_DATA *pArea )
-{
-    MOB_INDEX_DATA *pMobIndex;
-    SHOP_DATA      *pShopIndex;
-    int             iTrade;
-    int             vnum;
-
-    fprintf( fp, "#SHOPS\n" );
-    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
-    {
-	if ( !( pMobIndex = get_mob_index( vnum ) )
-	    ||  pMobIndex->area != pArea
-	    || !pMobIndex->pShop )
-	    continue;
-
-	pShopIndex = pMobIndex->pShop;
-
-	fprintf( fp, "%d ", pShopIndex->keeper );
-	for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
-	{
-	    if ( pShopIndex->buy_type[iTrade] != 0 )
-		fprintf( fp, "%d ", pShopIndex->buy_type[iTrade]	);
-	    else
-		fprintf( fp, "0 "					);
-	}
-	fprintf( fp, "%d %d ",
-				pShopIndex->profit_buy,
-				pShopIndex->profit_sell			);
-	fprintf( fp, "%d %d\n",
-				pShopIndex->open_hour,
-				pShopIndex->close_hour			);
-    }
-    fprintf( fp, "0\n\n\n" );
-
-    return;
-}
-
-
-/* New format thanks to Rac */
-void vsave_shops( FILE *fp, AREA_DATA *pArea )
-{
-    MOB_INDEX_DATA *pMobIndex;
-    SHOP_DATA      *pShopIndex;
-    int             iTrade;
-    int             vnum;
-
-    fprintf( fp, "#SHOPS\n" );
-    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
-    {
-	if ( !( pMobIndex = get_mob_index( vnum ) )
-	    ||  pMobIndex->area != pArea
-	    || !pMobIndex->pShop )
-	    continue;
-
-	pShopIndex = pMobIndex->pShop;
-
-	fprintf( fp, "%d ", pShopIndex->keeper );
-	for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
-	{
-	    if ( pShopIndex->buy_type[iTrade] != 0 )
-		fprintf( fp, "%2d ", pShopIndex->buy_type[iTrade]	 );
-	    else
-		fprintf( fp, " 0 "					 );
-	}
-	fprintf( fp, "%3d %3d ",
-			pShopIndex->profit_buy,
-			pShopIndex->profit_sell				 );
-	fprintf( fp, "%2d %2d ",
-			pShopIndex->open_hour,
-			pShopIndex->close_hour				 );
-	fprintf( fp, "\t* %s\n",
-			get_mob_index( pShopIndex->keeper )->short_descr );
-    }
-    fprintf( fp, "0\n\n\n" );
+    fprintf( fp, "#0\n\n\n\n" );
 
     return;
 }
@@ -715,7 +360,7 @@ void save_helps( FILE *fp, AREA_DATA *pArea )
     }
 
     if ( found )
-	fprintf( fp, "0 $~\n\n" );
+	fprintf( fp, "0 $~\n\n\n\n" );
 
     return;
 }
@@ -745,26 +390,29 @@ void save_area( AREA_DATA *pArea )
     fprintf( fp, "Builders    %s~\n",	fix_string( pArea->builders ) );
     fprintf( fp, "Recall      %d\n",	pArea->recall		      );
     fprintf( fp, "Reset       %s~\n",	pArea->resetmsg		      );
-    fprintf( fp, "End\n\n\n"					      );
+    fprintf( fp, "Note\n%s~\n",		fix_string( pArea->note	)     );
+    fprintf( fp, "End\n\n\n\n"					      );
 
     save_helps( fp, pArea );
     save_mobiles( fp, pArea );
-    new_save_objects( fp, pArea );
+    save_objects( fp, pArea );
     save_rooms( fp, pArea );
 
     if ( IS_SET( pArea->area_flags, AREA_VERBOSE ) )
     {
+/*
 	vsave_specials( fp, pArea );
 	vsave_games   ( fp, pArea );
-	vsave_resets  ( fp, pArea );
 	vsave_shops   ( fp, pArea );
+*/
     }
     else
     {
+/*
 	save_specials( fp, pArea );
 	save_games   ( fp, pArea );
-	save_resets  ( fp, pArea );
 	save_shops   ( fp, pArea );
+*/
     }
 
     fprintf( fp, "#$\n" );

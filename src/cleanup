@@ -1,9 +1,25 @@
 #! /bin/csh -f
 # Written by Zen.
 
-cd ../log
-rm -f *.log
-cd ../sys
-rm -f BUGS.TXT
-rm -f CLANS.TXT
-cd ../src
+if ( -e ../sys/BUGS.TXT ) then
+    \echo "Removed BUGS.TXT"
+    \rm -f ../sys/BUGS.TXT
+endif
+
+if ( -e ../sys/CLANS.TXT ) then
+    \echo "Removed CLANS.TXT"
+    \rm -f ../sys/CLANS.TXT
+endif
+
+echo -n "Removing log files"
+
+set index = 1000
+while ( 1 )
+    set logfile = ../log/$index.log
+    if ( ! -e $logfile ) break
+    rm -f $logfile
+    echo -n "."
+    @ index++
+end
+
+echo ""

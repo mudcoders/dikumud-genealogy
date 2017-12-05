@@ -4,2898 +4,3771 @@ Author      Hatchet~
 Levels      5 35
 Security    1
 VNUMs       600 699
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #600
-cityguard guard~
-the Ofcol cityguard~
+Name        cityguard guard~
+Short       the Ofcol cityguard~
+Long
 An Ofcol cityguard is standing here, making sure there is no trouble.
 ~
+Descr
 This guard is surely a trained and skilled fighter.  He is fully armed and
 armored, and he uses his equipment with a practiced precision.  Luckily for 
 you, this guard will only use his deadly skills for the good of the citizens of
 Ofcol.
 ~
-5 8192 1000 S
-19 6 -4 18d18+180 1d4+12
-1000 0
-0 Human~ 1
+Act         scavenger~
+AffectBy    protect-evil~
+Alignment   1000
+Level       19
+Gold        1000
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #601
-marshall diana~
-Marshall Diana~
+Name        marshall diana~
+Short       Marshall Diana~
+Long
 Diana, the Marshall of Ofcol, stands here proudly.
 ~
+Descr
 Diana is a beautiful, powerfully built woman.  She wears platinum armor for
 three reasons.  The first is to show she is strong enough to withstand the
 weight.  The second is to show her rank of office.  The third is that platinum
 is the hardest metal she can find.  She is willing to defend Ofcol to her 
 death.
 ~
-3 8328 1000 S
-33 -10 -10 33d33+400 1d4+30
-5000 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    detect-invis sanctuary protect-evil~
+Alignment   1000
+Level       33
+Gold        5000
+Race        Human
+Sex         female~
+Spec        spec_cast_cleric
+End
+
 #602
-derrick captain guard cityguard~
-Captain Derrick~
+Name        derrick captain guard cityguard~
+Short       Captain Derrick~
+Long
 Derrick, Captain of the Guard, is here disciplining his guards.
 ~
+Descr
 Derrick is a very big man.  He has acquired this station, not by brains or
 charm, but by brute strength.  He had fought in three orc wars and is a
 descendent of a surviving cityguard of old Thalos.  He believes that everything
 has to be hard won to be kept, and that laxity is for the weak.
 ~
-65 8328 1000 S
-27 -3 -7 27d27+270 1d4+20
-5000 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    detect-invis sanctuary protect-evil~
+Alignment   1000
+Level       27
+Gold        5000
+Race        Human
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #603
-jacklyn captain guard cityguard~
-Captain Jacklyn~
+Name        jacklyn captain guard cityguard~
+Short       Captain Jacklyn~
+Long
 Jacklyn, Captain of the Citadel Guard, is here
 bringing her soldiers' morale up.
 ~
+Descr
 Jacklyn is pale and wiry, but then, so are most other witches.  The fact that
 Jacklyn is a mage and a warrior makes her the perfect captain of the citadel
 guards.  Jacklyn is very beautiful, but whether it is due to her pale softness
 or her magic, no one has ever found out.  She isn't very strong physically, 
 but she need not be.
 ~
-3 8200 1000 S
-27 0 -8 27d27+180 1d4+17
-5000 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    detect-invis protect-evil~
+Alignment   1000
+Level       27
+Gold        5000
+Race        Human
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #604
-jim blacksmith~
-Jim the Blacksmith~
+Name        jim blacksmith~
+Short       Jim the Blacksmith~
+Long
 Jim the Blacksmith is here, selling his latest works of metal.
 ~
+Descr
 Jim is big and brawny, just like what you'd expect of a blacksmith.  He is
 smiling a very big smile, as he looks at your coins.  You wonder if he likes
 the metals or the value of the coins.
 ~
-3 8192 1000 S
-30 -5 -10 1d1+2000 1d4+25
-75000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       30
+Gold        75000
+Race        Human
+Sex         male~
+Shop        weapon~ armor~ container~ ~ ~ 120 80 0 23
+End
+
 #605
-sam~
-Sam~
+Name        sam~
+Short       Sam~
+Long
 Sam is here, selling his leather works.
 ~
+Descr
 Sam is a middle-aged workman.  He looks tired, but never too tired to get that
 last sale from you.  He grins at you slightly.
 ~
-3 8192 1000 S
-30 -2 -10 1d1+2000 1d4+20
-15000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       30
+Gold        15000
+Race        Human
+Sex         male~
+Shop        armor~ ~ ~ ~ ~ 120 80 0 23
+End
+
 #606
-madam tracy~
-Madam Tracy~
+Name        madam tracy~
+Short       Madam Tracy~
+Long
 Madam Tracy is here, selling and buying little treasures.
 ~
+Descr
 Madam Tracy is a bit old, but not to the point of senility.  Besides, she knows
 the hard ways of this world and is ready for it.  She spends her time at the
 shop, trading little things (for a wee bit of profit).
 ~
-3 8192 1000 S
-20 1 -10 1d1+1500 1d4+15
-25000 0
-0 Elf~ 2
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       20
+Gold        25000
+Race        Elf
+Sex         female~
+Shop        treasure~ furniture~ trash~ ~ ~ 120 80 0 23
+End
+
 #607
-marty~
-Marty~
+Name        marty~
+Short       Marty~
+Long
 Marty the meat store owner is here, selling you his choice meats.
 ~
+Descr
 Marty is a big man.  He used to hunt the animals he sells, but now he lets his
 son, Jim, raise and slaughter the animals for him.  Marty still knows how to
 kill, though.
 ~
-3 8192 1000 S
-30 -5 -10 1d1+2000 1d4+20
-5000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       30
+Gold        5000
+Race        Human
+Sex         male~
+Shop        ~ food~ ~ ~ ~ 120 10 0 23
+End
+
 #608
-elizabeth farmer~
-Farmer Elizabeth~
+Name        elizabeth farmer~
+Short       Farmer Elizabeth~
+Long
 Farmer Elizabeth is here, selling the latest crop.
 ~
+Descr
 Elizabeth is a very happy woman.  She can't believe the nice weather here in
 Ofcol, and the great vegetables this land produces is unbelievable to her too.
 Farmer Elizabeth smiles at you nicely, but you bet she is doing that just to
 get a good price off of you!
 ~
-3 8192 1000 S
-20 1 -10 1d1+1000 1d4+15
-5000 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       20
+Gold        5000
+Race        Human
+Sex         female~
+Shop        ~ drink_con~ food~ ~ ~ 120 10 0 23
+End
+
 #609
-granny jenkins~
-Granny Jenkins~
+Name        granny jenkins~
+Short       Granny Jenkins~
+Long
 Granny Jenkins is here, running the still.
 ~
+Descr
 Granny Jenkins is a feeble woman, but she knows her brew.  She might be very
 old, but she is still in charge of the still.  She cackles lightly at herself
 every time she tastes her whiskey, which is quite often!
 Granny Jenkins cackles again.
 ~
-3 8192 500 S
-6 17 6 4d4+40 1d4+4
-100 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   500
+Level       6
+Gold        100
+Race        Human
+Sex         female~
+End
+
 #610
-jack~
-Jack~
+Name        jack~
+Short       Jack~
+Long
 Jack is here slaughtering away at the animals.
 ~
+Descr
 Jack is the son of Marty, and you can see the family resemblance (especially in
 their shared affinity for slaughtering animals.)  Jack leers at you as you
 enter.  "Came by to watch, eh?", he asks.
 ~
-163 0 200 S
-12 8 -3 12d12+120 1d4+10
-100 0
-0 Human~ 1
+Act         sentinel aggressive wimpy~
+AffectBy    ~
+Alignment   200
+Level       12
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #611
-sara farmer~
-Farmer Sara~
+Name        sara farmer~
+Short       Farmer Sara~
+Long
 Farmer Sara is here, milking the cows.
 ~
+Descr
 Farmer Sara is all covered with bits of straw and grime, but underneath all
 that, she doesn't look that bad.  She smiles at you demurely, and goes back to
 her work.
 ~
-131 0 800 S
-5 16 5 5d5+50 1d4+3
-100 0
-0 Human~ 2
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   800
+Level       5
+Gold        100
+Race        Human
+Sex         female~
+End
+
 #612
-chicken hen~
-a hen~
+Name        chicken hen~
+Short       a hen~
+Long
 A hen is here, squawking at your intrusion.
 ~
+Descr
 The hen has yellow feathers and small wings.  It looks like a chicken, if
 you've ever seen one.
 ~
-129 0 0 S
-1 20 10 1d1+10 1d5+0
-0 0
-0 Animal~ 2
+Act         wimpy~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        0
+Race        Animal
+Sex         female~
+End
+
 #613
-cow~
-the cow~
+Name        cow~
+Short       the cow~
+Long
 A cow is here, munching on grass.
 ~
+Descr
 The cow is here happily grazing.  It moos at you and goes back to grazing.
 ~
-1 0 0 S
-5 16 5 5d5+50 1d8+3
-0 0
-0 Animal~ 0
+Act         ~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #614
-cow~
-the cow~
+Name        cow~
+Short       the cow~
+Long
 A cow is here, waiting to be milked.
 ~
+Descr
 The cow is just standing here.  She moos at you and otherwise ignores you.
 ~
-3 0 0 S
-5 16 5 5d5+50 1d8+3
-0 0
-0 Animal~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        0
+Race        Animal
+Sex         female~
+End
+
 #615
-horse young~
-the young horse~
+Name        horse young~
+Short       the young horse~
+Long
 A young horse is here, grazing.
 ~
+Descr
 The horse whinnies at you, then runs around you a few times, then just goes
 back to grazing.
 ~
-129 0 0 S
-6 15 4 6d6+60 1d8+4
-0 0
-0 Animal~ 0
+Act         wimpy~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #616
-pig~
-the pig~
+Name        pig~
+Short       the pig~
+Long
 A pig is playing here, getting itself and you dirty.
 ~
+Descr
 The pig looks dirty.  It snorts and sniffs at you, then goes back to its slop.
 ~
-3 0 0 S
-4 17 6 4d4+40 1d4+3
-0 0
-0 Animal~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #617
-citizen man~
-the citizen~
+Name        citizen man~
+Short       the citizen~
+Long
 A citizen is here, smiling at you.
 ~
+Descr
 The citizen smiles at you.  He is having a great day, and he wishes the same
 for you.  He looks at you strangely, though, wondering why you are so armed and
 armored.
 ~
-129 0 500 S
-5 16 5 5d5+50 1d6+3
-100 0
-0 Human~ 1
+Act         wimpy~
+AffectBy    ~
+Alignment   500
+Level       5
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #618
-citizen woman~
-the citizen~
+Name        citizen woman~
+Short       the citizen~
+Long
 A citizen is here, smiling at you.
 ~
+Descr
 The citizen smiles at you.  She is having a great day, and she wishes the same
 for you.  She looks at you strangely, though, wondering why you are so armed
 and armored.
 ~
-129 0 500 S
-5 16 5 5d5+50 1d6+3
-100 0
-0 Human~ 2
+Act         wimpy~
+AffectBy    ~
+Alignment   500
+Level       5
+Gold        100
+Race        Human
+Sex         female~
+End
+
 #619
-child boy~
-the boy~
+Name        child boy~
+Short       the boy~
+Long
 A boy is here, playing tag and other kids' games.
 ~
+Descr
 The little boy looks up at you and says, 'Hi.  Can I have a piece of candy?'
 He then smiles and runs away, remembering his game.
 ~
-129 0 500 S
-3 18 7 3d3+30 1d4+2
-10 0
-0 Human~ 1
+Act         wimpy~
+AffectBy    ~
+Alignment   500
+Level       3
+Gold        10
+Race        Human
+Sex         male~
+End
+
 #620
-child girl~
-the girl~
+Name        child girl~
+Short       the girl~
+Long
 A girl is here, playing jump jacks and other kids' games.
 ~
+Descr
 The little girl looks up at you and says, 'Hi.  Can I have a pretty little
 coin?'  She then smiles and runs away, remembering her game.
 ~
-129 0 500 S
-3 18 7 3d3+30 1d4+2
-10 0
-0 Human~ 2
+Act         wimpy~
+AffectBy    ~
+Alignment   500
+Level       3
+Gold        10
+Race        Human
+Sex         female~
+End
+
 #621
-maid woman~
-the maid~
+Name        maid woman~
+Short       the maid~
+Long
 A maid is here, cleaning the house and preparing the next meal.
 ~
+Descr
 The maid startles at your presence.  'You are ruining my floors!  Wait till
 Master and Mistress come back.  You will get me in trouble!  Shoo!', she says.
 She hits you with her broom.
 ~
-129 0 500 S
-5 16 5 5d5+50 1d6+3
-50 0
-0 Human~ 2
+Act         wimpy~
+AffectBy    ~
+Alignment   500
+Level       5
+Gold        50
+Race        Human
+Sex         female~
+Spec        spec_janitor
+End
+
 #622
-Nyles~
-Nyles the Bartender~
+Name        Nyles~
+Short       Nyles the Bartender~
+Long
 Nyles the Bartender is here, ready to serve you up a good brew.
 ~
+Descr
 Nyles is a hefty guy, who looks like he's waiting for the next bar fight to
 join in.  He keeps an eye on you and his glasses, making sure you don't steal
 any.
 ~
-3 8192 1000 S
-30 0 -15 30d30+3000 1d5+15
-1000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       30
+Gold        1000
+Race        Human
+Sex         male~
+Shop        ~ drink_con~ ~ ~ ~ 120 10 0 23
+End
+
 #623
-cityguard guard~
-the Ofcol cityguard~
+Name        cityguard guard~
+Short       the Ofcol cityguard~
+Long
 An Ofcol cityguard is posted here to guard the gate.
 ~
+Descr
 This guard is surely a trained and skilled fighter.  He is fully armed and
 armored, and he uses his equipment with a practiced precision.  Luckily for 
 you, this guard will only use his deadly skills for the good of the citizens of
 Ofcol.
 ~
-3 8192 1000 S
-19 6 -4 18d18+180 1d4+12
-1000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       19
+Gold        1000
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #624
-bard~
-a bard~
+Name        bard~
+Short       a bard~
+Long
 A bard is here, singing of the glories of Ofcol.
 ~
+Descr
 After years of traveling around the world, this bard has decided to stay in the
 peaceful city of Ofcol, and to sing of its unmatched glories.  He smiles at
 you, hinting toward a tip from you in ever a subtle way.
 ~
-3 8192 800 S
-13 7 -3 13d13+130 1d4+8
-1000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   800
+Level       13
+Gold        1000
+Race        Human
+Sex         male~
+End
+
 #625
-servant~
-a servant~
+Name        servant~
+Short       a servant~
+Long
 A servant is here, carrying the duties of the Keeper of the Golden Citadel.
 ~
+Descr
 The servant smiles good-naturedly at you, then goes on his duties.
 ~
-65 8192 1000 S
-6 14 4 6d6+60 1d4+4
-100 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    protect-evil~
+Alignment   1000
+Level       6
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #626
-squire~
-a squire~
+Name        squire~
+Short       a squire~
+Long
 A squire is here, scurrying from duty to duty.
 ~
+Descr
 This young man smiles at you, but is too busy to chat.
 ~
-65 8192 1000 S
-7 13 3 7d7+70 1d4+5
-100 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    protect-evil~
+Alignment   1000
+Level       7
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #627
-page~
-a page~
+Name        page~
+Short       a page~
+Long
 A page is here, sending a message to his knight.
 ~
+Descr
 The page smiles for you, asking if he can do you a favor too.
 ~
-65 8192 1000 S
-5 15 5 5d5+50 1d4+3
-100 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    protect-evil~
+Alignment   1000
+Level       5
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #628
-priestess~
-the Priestess of Ofcol~
+Name        priestess~
+Short       the Priestess of Ofcol~
+Long
 The Priestess of Ofcol is here, blessing you with her beatific smile.
 ~
+Descr
 The Priestess of Ofcol is an old woman, perfectly at peace with herself and 
 with the world.  She devotes all her time to help teach you the ways of her
 god, Bahamut.  The dragon symbol around her neck looks almost alive.
 ~
-3 8328 1000 S
-30 -10 -20 30d30+300 1d4+20
-1000 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    detect-invis sanctuary protect-evil~
+Alignment   1000
+Level       30
+Gold        1000
+Race        Human
+Sex         female~
+Spec        spec_cast_adept
+End
+
 #629
-chaplain Jerrold~
-Chaplain Jerrold~
+Name        chaplain Jerrold~
+Short       Chaplain Jerrold~
+Long
 Jerrold, the chaplain of this Citadel, is here 
 directing the activities of the people around here.
 ~
+Descr
 He smiles at you, with the enthusiasm of a little kid.  "What're you doing just
 STANDING here, young man?  Go help that other squire there!", he yells.  He
 turns to you and with a consipatory tone, whispers, "Kids!"
 ~
-65 8328 1000 S
-20 0 -10 20d20+200 1d4+15
-1000 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    detect-invis sanctuary protect-evil~
+Alignment   1000
+Level       20
+Gold        1000
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #630
-dragonlord lord dragon~
-a Dragonlord~
+Name        dragonlord lord dragon~
+Short       a Dragonlord~
+Long
 A knight wearing the scales of a dragon stands here.
 ~
+Descr
 This person looks almost like a dragon itself.  His golden scales gleam with
 power.  He smiles at you with a vicious grin.  You're happy that he doesn't
 look upset at your presence. 
 ~
-3 8328 1000 S
-29 -9 -19 29d29+290 1d4+20
-1000 0
-0 Dragon~ 1
+Act         sentinel~
+AffectBy    detect-invis sanctuary protect-evil~
+Alignment   1000
+Level       29
+Gold        1000
+Race        Dragon
+Sex         male~
+Spec        spec_breath_any
+End
+
 #631
-dragon gold~
-The Ancient Gold Dragon~
+Name        dragon gold~
+Short       The Ancient Gold Dragon~
+Long
 An old dragon shimmering with the colors of this 
 cavern peers at you sleepily.
 ~
+Descr
 This dragon's head is taller than you.  He is annoyed at your disturbance, but
 realizing that you're no danger to him, he ignores you.  He waves to one of
 his attendants to escort you away.
 ~
-7 8840 1000 S
-37 -15 -25 37d37+370 1d4+30
-100000 0
-0 Dragon~ 1
+Act         sentinel scavenger~
+AffectBy    detect-invis sanctuary infrared protect-evil~
+Alignment   1000
+Level       37
+Gold        100000
+Race        Dragon
+Sex         male~
+Spec        spec_breath_any
+End
+
 #632
-attendant~
-an attendant of the dragon~
+Name        attendant~
+Short       an attendant of the dragon~
+Long
 A person robed in gold is attending to the Keeper of the Citadel.
 ~
+Descr
 This elder servant to the Gold Dragon is very loyal to him, willing to risk
 his life for his liege.
 ~
-3 8200 1000 S
-21 -1 -11 21d21+210 1d4+15
-5000 0
-0 Dragon~ 1
+Act         sentinel~
+AffectBy    detect-invis protect-evil~
+Alignment   1000
+Level       21
+Gold        5000
+Race        Dragon
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #633
-dragonknight knight dragon~
-a Dragonknight~
+Name        dragonknight knight dragon~
+Short       a Dragonknight~
+Long
 A person dressed in the scales of a gold dragon 
 stands here, guarding the Golden Citadel.
 ~
+Descr
 This person looks like a dragon itself.  His golden scales gleam with power.
 He smiles at you, showing very sharp teeth.
 ~
-65 8200 1000 S
-21 -1 -11 21d21+210 1d4+15
-5000 0
-0 Dragon~ 1
+Act         stay_area~
+AffectBy    detect-invis protect-evil~
+Alignment   1000
+Level       21
+Gold        5000
+Race        Dragon
+Sex         male~
+Spec        spec_breath_any
+End
+
 #634
-cityguard guard~
-the Ofcol cityguard~
+Name        cityguard guard~
+Short       the Ofcol cityguard~
+Long
 An Ofcol cityguard is posted here to guard the gate.
 ~
+Descr
 This guard is surely a trained and skilled fighter.  He is fully armed and
 armored, and he uses his equipment with a practiced precision.  Luckily for 
 you, this guard will only use his deadly skills for the good of the citizens of
 Ofcol.
 ~
-3 8192 1000 S
-19 6 -4 18d18+180 1d4+12
-1000 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    protect-evil~
+Alignment   1000
+Level       19
+Gold        1000
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #600
-handaxe hand axe~
-a handaxe~
+Name        handaxe hand axe~
+Short       a handaxe~
+Descr
 A handaxe is on the floor here.~
-~
-5 0 8193
-0~ 1~ 8~ 3~ 0~
-10 100 0
-E
-handaxe hand axe~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 1~ 8~ 3~ 0~
+Weight      10
+Cost        100
+ExtraDescr  handaxe hand axe~
 You see a finely made axe.  Iron, with a nice wooden shaft, this axe can
 withstand years of use.
 ~
+End
+
 #601
-meat cleaver~
-a meat cleaver~
+Name        meat cleaver~
+Short       a meat cleaver~
+Descr
 A sharp meat cleaver is just lying on the floor here!~
-~
-5 0 8193
-0~ 2~ 4~ 3~ 0~
-5 150 0
-E
-meat cleaver~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 4~ 3~ 0~
+Weight      5
+Cost        150
+ExtraDescr  meat cleaver~
 This meat cleaver is made of good steel.
 ~
+End
+
 #602
-side meat beef~
-a side of beef~
+Name        side meat beef~
+Short       a side of beef~
+Descr
 A side of beef is here on the floor.~
-~
-19 0 1
-24~ 0~ 0~ 0~ 0~
-10 50 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        50
+End
+
 #603
-side meat pork~
-a side of pork~
+Name        side meat pork~
+Short       a side of pork~
+Descr
 A side of pork is here on the floor.~
-~
-19 0 1
-23~ 0~ 0~ 0~ 0~
-10 45 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      23~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        45
+End
+
 #604
-side meat horse~
-a side of horse~
+Name        side meat horse~
+Short       a side of horse~
+Descr
 A side of horse is here on the floor.~
-~
-19 0 1
-30~ 0~ 0~ 0~ 0~
-12 60 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      30~ 0~ 0~ 0~ 0~
+Weight      12
+Cost        60
+End
+
 #605
-meat chicken~
-a defeathered chicken~
+Name        meat chicken~
+Short       a defeathered chicken~
+Descr
 A defeathered chicken is here on the floor.~
-~
-19 0 1
-16~ 0~ 0~ 0~ 0~
-5 30 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      16~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        30
+End
+
 #606
-emerald ring~
-an emerald ring~
+Name        emerald ring~
+Short       an emerald ring~
+Descr
 An emerald ring is on the floor, gathering dust.~
-~
-8 64 3
-0~ 0~ 0~ 0~ 0~
-1 10000 0
+Type        treasure~
+Extra       magic~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10000
+End
+
 #607
-glass trinket~
-a glass trinket~
+Name        glass trinket~
+Short       a glass trinket~
+Descr
 A glass trinket is on the floor, gathering dust.~
-~
-8 0 16385
-0~ 0~ 0~ 0~ 0~
-1 100 0
-A
-24 -1 0
+Type        treasure~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        100
+Affect      saving-spell~ -1 ~
+End
+
 #608
-golden necklace~
-a golden necklace~
+Name        golden necklace~
+Short       a golden necklace~
+Descr
 A golden necklace is on the floor, gathering dust.~
-~
-8 0 5
-0~ 0~ 0~ 0~ 0~
-2 10000 0
-A
-9 10 0
-A
-4 -1 0
+Type        treasure~
+Extra       ~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        10000
+Affect      age~ 10 ~
+Affect      wisdom~ -1 ~
+End
+
 #609
-cabbage~
-a head of cabbage~
+Name        cabbage~
+Short       a head of cabbage~
+Descr
 Some fresh cabbage is here, get it while it lasts!~
-~
-19 0 1
-12~ 0~ 0~ 0~ 0~
-2 20 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      12~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        20
+End
+
 #610
-lettuce~
-a head of lettuce~
+Name        lettuce~
+Short       a head of lettuce~
+Descr
 Some fresh lettuce is here, get it while it lasts!~
-~
-19 0 1
-12~ 0~ 0~ 0~ 0~
-2 20 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      12~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        20
+End
+
 #611
-milk bottle~
-a bottle of milk~
+Name        milk bottle~
+Short       a bottle of milk~
+Descr
 A glass bottle of milk is on a shelf here, fresh from the cow.~
-~
-17 0 1
-20~ 20~ 10~ 0~ 0~
-5 40 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      20~ 20~ 10~ 0~ 0~
+Weight      5
+Cost        40
+End
+
 #612
-apple~
-an apple~
+Name        apple~
+Short       an apple~
+Descr
 An apple is on the ground.~
-~
-19 0 1
-8~ 0~ 0~ 0~ 0~
-1 5 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        5
+End
+
 #613
-corn~
-an ear of corn~
+Name        corn~
+Short       an ear of corn~
+Descr
 An ear of corn is on the ground.~
-~
-19 0 1
-8~ 0~ 0~ 0~ 0~
-1 5 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        5
+End
+
 #614
-hay pile~
-a pile of hay~
+Name        hay pile~
+Short       a pile of hay~
+Descr
 There is a big pile of hay here.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-20 0 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        0
+End
+
 #615
-pitchfork fork~
-a pitchfork~
+Name        pitchfork fork~
+Short       a pitchfork~
+Descr
 A pitchfork is on the floor.~
-~
-5 0 8193
-0~ 3~ 3~ 11~ 0~
-10 50 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 3~ 3~ 11~ 0~
+Weight      10
+Cost        50
+End
+
 #616
-vest~
-a leather vest~
+Name        vest~
+Short       a leather vest~
+Descr
 A leather vest is on the floor.~
-~
-9 0 9
-2~ 0~ 0~ 0~ 0~
-10 50 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        50
+End
+
 #617
-sleeves~
-some leather sleeves~
+Name        sleeves~
+Short       some leather sleeves~
+Descr
 Some leather sleeves are on the floor.~
-~
-9 0 257
-2~ 0~ 0~ 0~ 0~
-5 50 0
+Type        armor~
+Extra       ~
+Wear        take arms~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        50
+End
+
 #618
-leggings~
-some leather leggings~
+Name        leggings~
+Short       some leather leggings~
+Descr
 Some leather leggings are on the floor.~
-~
-9 0 33
-2~ 0~ 0~ 0~ 0~
-5 50 0
+Type        armor~
+Extra       ~
+Wear        take legs~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        50
+End
+
 #619
-boots~
-some leather boots~
+Name        boots~
+Short       some leather boots~
+Descr
 Some leather boots are on the floor.~
-~
-9 0 65
-2~ 0~ 0~ 0~ 0~
-5 50 0
+Type        armor~
+Extra       ~
+Wear        take feet~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        50
+End
+
 #620
-signet ring~
-an Ofcol signet ring~
+Name        signet ring~
+Short       an Ofcol signet ring~
+Descr
 A shiny ring of gold is in the dirt.~
-~
-9 64 3
-6~ 0~ 0~ 0~ 0~
-1 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take finger~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #621
-plate brass~
-brass plate~
+Name        plate brass~
+Short       brass plate~
+Descr
 A pile of brass plates is against the wall here.~
-~
-9 64 9
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 10 0
-A
-24 -2 0
+Type        armor~
+Extra       magic~
+Wear        take body~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 10 ~
+Affect      saving-spell~ -2 ~
+End
+
 #622
-helm brass~
-a brass helm~
+Name        helm brass~
+Short       a brass helm~
+Descr
 A brass helm is against the wall here.~
-~
-9 64 17
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take head~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #623
-leggings brass~
-brass leggings~
+Name        leggings brass~
+Short       brass leggings~
+Descr
 A pile of brass plates is against the wall here.~
-~
-9 64 33
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take legs~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #624
-boots brass~
-brass boots~
+Name        boots brass~
+Short       brass boots~
+Descr
 Some brass boots are against the wall here.~
-~
-9 64 65
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take feet~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #625
-gauntlets brass~
-brass gauntlets~
+Name        gauntlets brass~
+Short       brass gauntlets~
+Descr
 Some brass gauntlets are against the wall here.~
-~
-9 64 129
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take hands~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #626
-sleeves brass~
-brass sleeves~
+Name        sleeves brass~
+Short       brass sleeves~
+Descr
 A pile of brass plates is against the wall here.~
-~
-9 64 257
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take arms~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #627
-shield brass~
-a brass shield~
+Name        shield brass~
+Short       a brass shield~
+Descr
 A big plate of brass is against the wall here.~
-~
-9 64 513
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take shield~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #628
-girth brass~
-a brass girth~
+Name        girth brass~
+Short       a brass girth~
+Descr
 A brass girth is against the wall here.~
-~
-9 64 2049
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take waist~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #629
-bracer brass~
-a brass bracer~
+Name        bracer brass~
+Short       a brass bracer~
+Descr
 A brass bracer is against the wall here.~
-~
-9 64 4097
-6~ 0~ 0~ 0~ 0~
-10 1000 0
-A
-13 5 0
-A
-24 -1 0
+Type        armor~
+Extra       magic~
+Wear        take wrist~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        1000
+Affect      hp~ 5 ~
+Affect      saving-spell~ -1 ~
+End
+
 #630
-claymore sword~
-a claymore~
+Name        claymore sword~
+Short       a claymore~
+Descr
 A VERY big sword is against the wall here.~
-~
-5 64 8193
-0~ 4~ 4~ 1~ 0~
-16 1000 0
-A
-19 5 0
-A
-18 -2 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 4~ 4~ 1~ 0~
+Weight      16
+Cost        1000
+Affect      damroll~ 5 ~
+Affect      hitroll~ -2 ~
+End
+
 #631
-plate silver~
-silver plate~
+Name        plate silver~
+Short       silver plate~
+Descr
 A pile of silver plating and chain is on the floor.~
-~
-9 1088 9
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-1 1 0
-A
-12 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take body~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      strength~ 1 ~
+Affect      mana~ 10 ~
+End
+
 #632
-helm silver~
-a silver helm~
+Name        helm silver~
+Short       a silver helm~
+Descr
 A shiny helm is on the floor.~
-~
-9 1088 17
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-2 1 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take head~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      dexterity~ 1 ~
+Affect      mana~ 5 ~
+End
+
 #633
-leggings silver~
-silver leggings~
+Name        leggings silver~
+Short       silver leggings~
+Descr
 Some shiny leggings are on the floor.~
-~
-9 1088 33
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-3 1 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take legs~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      intelligence~ 1 ~
+Affect      mana~ 5 ~
+End
+
 #634
-boots silver~
-silver boots~
+Name        boots silver~
+Short       silver boots~
+Descr
 Some shiny boots are on the floor.~
-~
-9 1088 65
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-4 1 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take feet~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      wisdom~ 1 ~
+Affect      mana~ 5 ~
+End
+
 #635
-gauntlets silver~
-silver gauntlets~
+Name        gauntlets silver~
+Short       silver gauntlets~
+Descr
 Some shiny gauntlets are on the floor.~
-~
-9 1088 129
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-5 1 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take hands~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      constitution~ 1 ~
+Affect      mana~ 5 ~
+End
+
 #636
-sleeves silver~
-silver sleeves~
+Name        sleeves silver~
+Short       silver sleeves~
+Descr
 Some shiny sleeves are on the floor.~
-~
-9 1088 257
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-18 1 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take arms~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      hitroll~ 1 ~
+Affect      mana~ 5 ~
+End
+
 #637
-shield silver~
-the silver shield~
+Name        shield silver~
+Short       the silver shield~
+Descr
 A shiny shield is on the floor.~
-~
-9 1088 513
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-17 -3 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take shield~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      ac~ -3 ~
+Affect      mana~ 5 ~
+End
+
 #638
-girth silver~
-the silver girth~
+Name        girth silver~
+Short       the silver girth~
+Descr
 A shiny girth is on the floor.~
-~
-9 1088 2049
-8~ 0~ 0~ 0~ 0~
-20 2000 0
-A
-19 1 0
-A
-12 5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take waist~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        2000
+Affect      damroll~ 1 ~
+Affect      mana~ 5 ~
+End
+
 #639
-plate platinum~
-platinum plate~
+Name        plate platinum~
+Short       platinum plate~
+Descr
 A pile of silvery metal is on the floor.~
-~
-9 1088 9
-9~ 0~ 0~ 0~ 0~
-50 10000 0
-A
-5 2 0
-A
-13 15 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take body~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      50
+Cost        10000
+Affect      constitution~ 2 ~
+Affect      hp~ 15 ~
+End
+
 #640
-helmet platinum~
-the platinum helmet~
+Name        helmet platinum~
+Short       the platinum helmet~
+Descr
 A silvery helmet is on the floor.~
-~
-9 1088 17
-9~ 0~ 0~ 0~ 0~
-30 10000 0
-A
-4 2 0
-A
-12 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take head~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        10000
+Affect      wisdom~ 2 ~
+Affect      mana~ 10 ~
+End
+
 #641
-leggings platinum~
-platinum leggings~
+Name        leggings platinum~
+Short       platinum leggings~
+Descr
 Some silvery leggings are on the floor.~
-~
-9 1088 33
-9~ 0~ 0~ 0~ 0~
-40 10000 0
-A
-2 2 0
-A
-13 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take legs~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        10000
+Affect      dexterity~ 2 ~
+Affect      hp~ 10 ~
+End
+
 #642
-boots platinum~
-platinum boots~
+Name        boots platinum~
+Short       platinum boots~
+Descr
 Some silvery boots are on the floor.~
-~
-9 1088 65
-9~ 0~ 0~ 0~ 0~
-40 10000 0
-A
-14 100 0
-A
-13 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take feet~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        10000
+Affect      move~ 100 ~
+Affect      hp~ 10 ~
+End
+
 #643
-gauntlets platinum~
-platinum gauntlets~
+Name        gauntlets platinum~
+Short       platinum gauntlets~
+Descr
 A pair of silvery gauntlets are on the floor.~
-~
-9 1088 129
-9~ 0~ 0~ 0~ 0~
-40 10000 0
-A
-18 2 0
-A
-13 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take hands~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        10000
+Affect      hitroll~ 2 ~
+Affect      hp~ 10 ~
+End
+
 #644
-sleeves platinum~
-platinum sleeves~
+Name        sleeves platinum~
+Short       platinum sleeves~
+Descr
 A pair of silvery sleeves are on the floor.~
-~
-9 1088 257
-9~ 0~ 0~ 0~ 0~
-40 10000 0
-A
-1 2 0
-A
-13 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take arms~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        10000
+Affect      strength~ 2 ~
+Affect      hp~ 10 ~
+End
+
 #645
-shield spiked platinum~
-the platinum spiked shield~
+Name        shield spiked platinum~
+Short       the platinum spiked shield~
+Descr
 A jagged, silvery shield is on the floor.~
-~
-9 1088 513
-9~ 0~ 0~ 0~ 0~
-40 10000 0
-A
-19 3 0
-A
-13 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take shield~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        10000
+Affect      damroll~ 3 ~
+Affect      hp~ 10 ~
+End
+
 #646
-girth platinum~
-the platinum girth~
+Name        girth platinum~
+Short       the platinum girth~
+Descr
 A silvery girth is on the floor.~
-~
-9 1088 2049
-9~ 0~ 0~ 0~ 0~
-40 10000 0
-A
-24 -5 0
-A
-13 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take waist~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        10000
+Affect      saving-spell~ -5 ~
+Affect      hp~ 10 ~
+End
+
 #647
-avenger holy sword~
-holy Avenger~
+Name        avenger holy sword~
+Short       holy Avenger~
+Descr
 A glowing silvery sword is hovering here, ready to possess an owner.~
-~
-5 1088 8193
-0~ 5~ 6~ 1~ 0~
-25 10000 0
-A
-19 6 0
-A
-18 1 0
+Type        weapon~
+Extra       magic anti-evil~
+Wear        take wield~
+Values      0~ 5~ 6~ 1~ 0~
+Weight      25
+Cost        10000
+Affect      damroll~ 6 ~
+Affect      hitroll~ 1 ~
+End
+
 #648
-whiskey shot~
-a shot of whiskey~
+Name        whiskey shot~
+Short       a shot of whiskey~
+Descr
 A shot of whiskey is on the table.~
-~
-17 0 1
-5~ 5~ 5~ 0~ 0~
-1 10 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      5~ 5~ 5~ 0~ 0~
+Weight      1
+Cost        10
+End
+
 #649
-ale quart~
-a quart of ale~
+Name        ale quart~
+Short       a quart of ale~
+Descr
 A quart of ale is on the table.~
-~
-17 0 1
-50~ 50~ 3~ 0~ 0~
-8 20 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      50~ 50~ 3~ 0~ 0~
+Weight      8
+Cost        20
+End
+
 #650
-port brew quart~
-a quart of port brew~
+Name        port brew quart~
+Short       a quart of port brew~
+Descr
 A quart of port brew is on the table.~
-~
-17 0 1
-50~ 50~ 4~ 0~ 0~
-8 20 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      50~ 50~ 4~ 0~ 0~
+Weight      8
+Cost        20
+End
+
 #651
-key citadel~
-the citadel key~
+Name        key citadel~
+Short       the citadel key~
+Descr
 A key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #652
-symbol holy~
-the Holy Symbol of Bahamut~
+Name        symbol holy~
+Short       the Holy Symbol of Bahamut~
+Descr
 A very shiny symbol is on the floor.~
-~
-9 3392 5
-8~ 0~ 0~ 0~ 0~
-5 1000 0
-A
-4 2 0
-A
-12 10 0
+Type        armor~
+Extra       magic bless anti-evil anti-neutral~
+Wear        take neck~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        1000
+Affect      wisdom~ 2 ~
+Affect      mana~ 10 ~
+End
+
 #653
-ranseur polearm~
-a ranseur~
+Name        ranseur polearm~
+Short       a ranseur~
+Descr
 A heavy polearm is against the wall here, ready to inflict damage.~
-~
-5 1088 8193
-0~ 5~ 6~ 2~ 0~
-20 10000 0
-A
-19 -1 0
-A
-18 5 0
+Type        weapon~
+Extra       magic anti-evil~
+Wear        take wield~
+Values      0~ 5~ 6~ 2~ 0~
+Weight      20
+Cost        10000
+Affect      damroll~ -1 ~
+Affect      hitroll~ 5 ~
+End
+
 #654
-torso dragonscale golden~
-a golden dragonscale torso~
+Name        torso dragonscale golden~
+Short       a golden dragonscale torso~
+Descr
 A golden dragonscale torso is on the floor!~
-~
-9 1088 9
-9~ 0~ 0~ 0~ 0~
-25 5000 0
-A
-18 2 0
-A
-17 -5 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take body~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      25
+Cost        5000
+Affect      hitroll~ 2 ~
+Affect      ac~ -5 ~
+End
+
 #655
-dragonhelm golden~
-a golden dragonhelm~
+Name        dragonhelm golden~
+Short       a golden dragonhelm~
+Descr
 A golden dragonhelm is on the floor!~
-~
-9 1088 17
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take head~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #656
-leggings golden~
-golden dragonscale leggings~
+Name        leggings golden~
+Short       golden dragonscale leggings~
+Descr
 Some golden dragonscale leggings are on the floor!~
-~
-9 1088 33
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take legs~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #657
-boots golden~
-golden dragonscale boots~
+Name        boots golden~
+Short       golden dragonscale boots~
+Descr
 Some golden dragonscale boots are on the floor!~
-~
-9 1088 65
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take feet~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #658
-gauntlets golden~
-golden dragonscale gauntlets~
+Name        gauntlets golden~
+Short       golden dragonscale gauntlets~
+Descr
 Some golden dragonscale gauntlets are on the floor!~
-~
-9 1088 129
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take hands~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #659
-sleeves golden~
-golden dragonscale sleeves~
+Name        sleeves golden~
+Short       golden dragonscale sleeves~
+Descr
 Some golden dragonscale sleeves are on the floor!~
-~
-9 1088 257
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take arms~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #660
-shield golden~
-a golden dragonscale shield~
+Name        shield golden~
+Short       a golden dragonscale shield~
+Descr
 A golden dragonscale shield is on the floor!~
-~
-9 1088 513
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take shield~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #661
-girth golden~
-a golden dragonscale girth~
+Name        girth golden~
+Short       a golden dragonscale girth~
+Descr
 A golden dragonscale girth is on the floor!~
-~
-9 1088 2049
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-18 1 0
-A
-17 -3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take waist~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      hitroll~ 1 ~
+Affect      ac~ -3 ~
+End
+
 #662
-claw golden~
-the Golden Claw~
+Name        claw golden~
+Short       the Golden Claw~
+Descr
 A huge golden claw is on the floor~
-~
-5 1088 8193
-0~ 5~ 5~ 5~ 0~
-20 5000 0
-A
-19 6 0
+Type        weapon~
+Extra       magic anti-evil~
+Wear        take wield~
+Values      0~ 5~ 5~ 5~ 0~
+Weight      20
+Cost        5000
+Affect      damroll~ 6 ~
+End
+
 #663
-orb dragonorb~
-the Gold Dragon Orb~
+Name        orb dragonorb~
+Short       the Gold Dragon Orb~
+Descr
 A very large pearl-like sphere is in the center of this room.~
-~
-4 3136 16385
-14~ 10~ 10~ heal~ 0~
-30 100000 0
-A
-4 3 0
-A
-3 3 0
+Type        staff~
+Extra       magic anti-evil anti-neutral~
+Wear        take hold~
+Values      14~ 10~ 10~ heal~ 0~
+Weight      30
+Cost        100000
+Affect      wisdom~ 3 ~
+Affect      intelligence~ 3 ~
+End
+
 #664
-robe golden~
-a golden robe~
+Name        robe golden~
+Short       a golden robe~
+Descr
 A golden robe is on the floor.~
-~
-9 1088 1025
-9~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-3 3 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take about~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      intelligence~ 3 ~
+End
+
 #665
-house key~
-a house key~
+Name        house key~
+Short       a house key~
+Descr
 A house key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #666
-broom~
-a broom~
+Name        broom~
+Short       a broom~
+Descr
 A broom is against the wall here.~
-~
-5 0 8193
-0~ 2~ 3~ 7~ 0~
-8 100 0
-A
-19 -3 0
-A
-18 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 3~ 7~ 0~
+Weight      8
+Cost        100
+Affect      damroll~ -3 ~
+Affect      hitroll~ 3 ~
+End
+
 #667
-chest~
-a chest~
+Name        chest~
+Short       a chest~
+Descr
 A chest is on the floor here.~
-~
-15 0 1
-100~ 0~ 0~ 0~ 0~
-10 100 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        100
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #600
-Granny's Still Room~
+Name        Granny's Still Room~
+Descr
 You are in Granny Jenkins' still room.  The smell of whiskey is heady, and
 the bottles of it on the floor make your mouth water and your mind swirl.  You
 also see a very large still.  So THIS is why there are so many grain fields!
 The exit is to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 609 1 100
+Reset       O 649 0 100
+Door        east~ door closed~ -1 616
 You see the storage shed.
 ~
 door~
-3 -1 616
-S
+End
+
 #601
-The Big Intersection~
+Name        The Big Intersection~
+Descr
 You are in the big intersection between Raff Way and Impy Way.  Crowds 
 of people walk past you as they go on their daily tasks.  Raff Way continues
 east and west, and Impy Way runs north and south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 624 8 100
+Reset       M 601 1 100
+Reset       E 620 1 100
+Reset       E 639 5 100
+Reset       E 640 6 100
+Reset       E 641 7 100
+Reset       E 642 8 100
+Reset       E 643 9 100
+Reset       E 644 10 100
+Reset       E 645 11 100
+Reset       E 646 13 100
+Reset       E 647 16 100
+Reset       M 617 3 100
+Door        north~ ~ 0 625
 Impy Way continues north.
 ~
 ~
-0 0 625
-D1
+Door        east~ ~ 0 666
 Raff Way continues east.
 ~
 ~
-0 0 666
-D2
+Door        south~ ~ 0 602
 Impy Way continues south.
 ~
 ~
-0 0 602
-D3
+Door        west~ ~ 0 5553
 Raff Way continues west.
 ~
 ~
-0 0 5553
-S
+End
+
 #602
-Impy Way~
+Name        Impy Way~
+Descr
 You are on Impy Way.  You can see a leather shop east and a blacksmith
 west.  To the north you see a big intersection, and Impy Way continues south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 601
 You see the big intersection.
 ~
 ~
-0 0 601
-D1
+Door        east~ ~ 0 604
 You see the leather shop.
 ~
 ~
-0 0 604
-D2
+Door        south~ ~ 0 605
 Impy Way continues south.
 ~
 ~
-0 0 605
-D3
+Door        west~ ~ 0 603
 You see the blacksmith.
 ~
 ~
-0 0 603
-S
+End
+
 #603
-The Blacksmith~
+Name        The Blacksmith~
+Descr
 You are in a black and smelly room.  Pieces of metal are strewn all over
 the floor, and a wave of heat from a big furnace hits you.  An anvil sits on 
 one side of the room, and on the other side is a workbench.  The exit is east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 604 1 100
+Reset       E 600 -1 100
+Reset       E 601 -1 100
+Reset       E 615 -1 100
+Reset       E 667 -1 100
+Door        east~ ~ 0 602
 You see Impy Way.
 ~
 ~
-0 0 602
-S
+End
+
 #604
-The Leather Shop~
+Name        The Leather Shop~
+Descr
 You are in a brown and smelly room.  Pieces of leather are strewn all over
 the floor.  The smell of burnt hide assaults your nose.  You can tell by the
 looks that the tanning is done VERY CLOSE to here!   A table is near the
 entrance.  The exit is west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 623 7 100
+Reset       M 605 1 100
+Reset       E 616 -1 100
+Reset       E 617 -1 100
+Reset       E 618 -1 100
+Reset       E 619 -1 100
+Door        west~ ~ 0 602
 You see Impy Way.
 ~
 ~
-0 0 602
-S
+End
+
 #605
-Impy Way~
+Name        Impy Way~
+Descr
 You are on Impy Way.  To the east is a meat store, and to the west is a
 pawn shop.  Impy Way continues north and south.  People are rushing around you
 to go to these stores.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 602
 Impy Way continues North.
 ~
 ~
-0 0 602
-D1
+Door        east~ ~ 0 607
 You see the Meat Store.
 ~
 ~
-0 0 607
-D2
+Door        south~ ~ 0 608
 Impy Way continues south.
 ~
 ~
-0 0 608
-D3
+Door        west~ ~ 0 606
 You see the Pawn Shop.
 ~
 ~
-0 0 606
-S
+End
+
 #606
-The Pawn Shop.~
+Name        The Pawn Shop.~
+Descr
 You are in a little shop filled with a lot of knick knacks and semi-
 valuable goods.  There is a display case full of little treasures that you are
 sure that you or any other little kid would like to touch!  The exit is east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 606 1 100
+Reset       E 606 -1 100
+Reset       E 607 -1 100
+Reset       E 608 -1 100
+Door        east~ ~ 0 605
 You see Impy Way.
 ~
 ~
-0 0 605
-S
+End
+
 #607
-The Meat Store~
+Name        The Meat Store~
+Descr
 You are in a meat store.  Hanging on hooks are meats of many kinds of
 animals.  In the background, you can hear the sound of blade against flesh.
 It smells like meat here (which is not a good smell).  The exit is west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 607 1 100
+Reset       E 602 -1 100
+Reset       E 603 -1 100
+Reset       E 604 -1 100
+Reset       E 605 -1 100
+Door        west~ ~ 0 605
 You see Impy Way.
 ~
 ~
-0 0 605
-S
+End
+
 #608
-Impy Way~
+Name        Impy Way~
+Descr
 You are on Impy Way.  To the east is Farmer's Market, and to the west is
 Nyles' House of Ale.  Impy Way runs north and ends south of here.  You can hear
 the sound of housewives gossiping at the market.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 622 6 100
+Door        north~ ~ 0 605
 Impy Way continues north.
 ~
 ~
-0 0 605
-D1
+Door        east~ ~ 0 610
 You see the Farmer's Market.
 ~
 ~
-0 0 610
-D2
+Door        south~ ~ 0 611
 You see the end of Impy Way.
 ~
 ~
-0 0 611
-D3
+Door        west~ ~ 0 609
 You see Nyles' House of Ale.
 ~
 ~
-0 0 609
-S
+End
+
 #609
-Nyles' House of Ale~
+Name        Nyles' House of Ale~
+Descr
 This is a very busy bar, with everyone holding homemade bottles of
 ale.  You see even the more gentile persons here, laughing along with
 Nyles, who offers you a quart of ale too.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 622 1 100
+Reset       E 648 -1 100
+Reset       E 649 -1 100
+Reset       E 650 -1 100
+Reset       M 624 1 100
+Door        east~ ~ 0 608
 You see Impy Way.
 ~
 ~
-0 0 608
-S
+End
+
 #610
-Farmer's Market~
+Name        Farmer's Market~
+Descr
 You see many carts filled with fruits and vegetables.  Many farmers are
 all trying to sell you their produce, each saying their's is better.  The exit
 is west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 608 1 100
+Reset       E 609 -1 100
+Reset       E 610 -1 100
+Reset       E 611 -1 100
+Reset       E 612 -1 100
+Reset       E 613 -1 100
+Door        west~ ~ 0 608
 You see Impy Way.
 ~
 ~
-0 0 608
-S
+End
+
 #611
-The End of Impy Way~
+Name        The End of Impy Way~
+Descr
 You are at the end of Impy and of the city part of Ofcol.  To the east is
 a dirt road leading toward the farm animals.  West from here are fields.  Impy
 Way continues north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 618 3 100
+Door        north~ ~ 0 608
 Impy Way continues north.
 ~
 ~
-0 0 608
-D1
+Door        east~ ~ 0 668
 You see the dirt road.
 ~
 ~
-0 0 668
-D3
+Door        west~ ~ 0 612
 You see the fields.
 ~
 ~
-0 0 612
-S
+End
+
 #612
-Fields~
+Name        Fields~
+Descr
 You are in a corn field.  You can't see far, since the corn stalks are
 taller than you are.  You remember that the end of Impy Way is east of here, 
 and you think you see a building to the north.  The field continues south and 
 west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 616
 You think you see a building north of here.
 ~
 ~
-0 0 616
-D1
+Door        east~ ~ 0 611
 You remember that the end of Impy Way is east.
 ~
 ~
-0 0 611
-D2
+Door        south~ ~ 0 613
 You can make a path to the fields south.
 ~
 ~
-0 0 613
-D3
+Door        west~ ~ 0 615
 You can make a path to the fields west.
 ~
 ~
-0 0 615
-S
+End
+
 #613
-Fields~
+Name        Fields~
+Descr
 You are among fruit trees in a field.  You see many apple and orange 
 trees.  You can make out the corn fields north and some vegetable patches west.
 The sight of the fruit makes your mouth water.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 612
 You see the corn fields.
 ~
 ~
-0 0 612
-D3
+Door        west~ ~ 0 614
 You see the vegetable fields.
 ~
 ~
-0 0 614
-S
+End
+
 #614
-Fields~
+Name        Fields~
+Descr
 You are among the vegetable fields.  You see many cabbage and lettuce
 patches, along with tomato bushes and potato plants.  To the east are some
 fruit trees, and north are some wheat fields.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 615
 You see the wheat fields.
 ~
 ~
-0 0 615
-D1
+Door        east~ ~ 0 613
 You see the fruit trees.
 ~
 ~
-0 0 613
-S
+End
+
 #615
-Fields~
+Name        Fields~
+Descr
 You are among the wheat fields.  The gentle caress of the wheat and the
 cool shadow from the tall stalks and scarecrow lulls you to sleep and dream
 of a little girl and little dog from a faraway place.  To the east are the corn
 stalks, and south of you are the vegetable patches.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 612
 You see the corn fields.
 ~
 ~
-0 0 612
-D2
+Door        south~ ~ 0 614
 You see the vegetable patches.
 ~
 ~
-0 0 614
-S
+End
+
 #616
-The Shed~
+Name        The Shed~
+Descr
 You are in the storage shed.  Bales of wheat, corn and hay are piled
 against the wall, and some vegetables are in carts.  You see a small door
 on the west door.  The main exit is south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 612
 You see the corn fields.
 ~
 ~
-0 0 612
-D3
+Door        west~ door closed~ -1 600
 You see the door.
 ~
 door~
-3 -1 600
-S
+End
+
 #617
-Slaughterhouse~
+Name        Slaughterhouse~
+Descr
 You are in the slaughterhouse, where all the animals are slaughtered so
 that they can be sold or their skins be tanned.  The scream of dying animals
 makes your stomach churn.  The exit is to the west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 610 1 100
+Reset       E 601 16 100
+Door        west~ ~ 0 668
 You see the dirt road.
 ~
 ~
-0 0 668
-S
+End
+
 #618
-Dirt Road~
+Name        Dirt Road~
+Descr
 You are on a dirt road.  To the east is a barn, and you see a big chicken
 coop south of you.  The dirt road continues north and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 668
 You see the dirt road.
 ~
 ~
-0 0 668
-D1
+Door        east~ ~ 0 620
 You see the barn.
 ~
 ~
-0 0 620
-D2
+Door        south~ door closed~ -1 619
 You see the chicken coop.
 ~
 coop~
-3 -1 619
-D3
+Door        west~ ~ 0 621
 You see the dirt road.
 ~
 ~
-0 0 621
-S
+End
+
 #619
-Chicken Coop~
+Name        Chicken Coop~
+Descr
 You are in the chicken coop.  The smell of chickens and chicken droppings
 makes you gasp.  The exit is north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 612 4 100
+Reset       M 612 4 100
+Reset       M 612 4 100
+Reset       M 612 4 100
+Door        north~ door closed~ -1 618
 You can sense the fresh air.
 ~
 ~
-3 -1 618
-S
+End
+
 #620
-Barn~
+Name        Barn~
+Descr
 You are in a barn.  There are some cows here, munching on mounds of hay.
 Milk is milked and bottled here.  You see the exit west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 611 1 100
+Reset       E 615 16 100
+Reset       O 614 0 100
+Reset       O 611 0 100
+Reset       M 614 2 100
+Reset       M 614 2 100
+Door        west~ ~ 0 618
 You see the dirt road.
 ~
 ~
-0 0 618
-S
+End
+
 #621
-Dirt Road~
+Name        Dirt Road~
+Descr
 You are on a dirt road.  To the north and south, you see some grass 
 fields.  There is a pigsty west, and the dirt road continues east.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 622
 You see some grass fields.
 ~
 ~
-0 0 622
-D1
+Door        east~ ~ 0 618
 You see the dirt road.
 ~
 ~
-0 0 618
-D2
+Door        south~ ~ 0 623
 You see some grass fields.
 ~
 ~
-0 0 623
-D3
+Door        west~ ~ 0 624
 You see the pigsty.
 ~
 ~
-0 0 624
-S
+End
+
 #622
-Grass Field~
+Name        Grass Field~
+Descr
 You are in a grass field.  Fences block the way north, east, and west.
 The dirt road is to the south.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 615 4 100
+Reset       M 615 4 100
+Reset       M 615 4 100
+Reset       M 615 4 100
+Door        south~ ~ 0 621
 You see the dirt road.
 ~
 ~
-0 0 621
-S
+End
+
 #623
-Grass Field~
+Name        Grass Field~
+Descr
 You are in a grass field.  Fences block the way south, east, and west.
 The dirt road is to the north.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 613 3 100
+Reset       M 613 3 100
+Reset       M 613 3 100
+Door        north~ ~ 0 621
 You see the dirt road.
 ~
 ~
-0 0 621
-S
+End
+
 #624
-Pig Sty~
+Name        Pig Sty~
+Descr
 For some reason, you are in a pig sty.  You wonder why you are standing in
 muck.  To realize your senses and notice the dirt road is to the east.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 616 4 100
+Reset       M 616 4 100
+Reset       M 616 4 100
+Reset       M 616 4 100
+Door        east~ ~ 0 621
 You see the dry dirt road.
 ~
 ~
-0 0 621
-S
+End
+
 #625
-Impy Way~
+Name        Impy Way~
+Descr
 You are on Impy Way.  East and west of you are big houses.  Impy Way
 continues north and reaches a big intersection south.  Children are running to
 from home to home.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 632
 Impy Way continues north.
 ~
 ~
-0 0 632
-D1
+Door        east~ door closed locked~ 665 626
 You see a big house.
 ~
 door~
-7 665 626
-D2
+Door        south~ ~ 0 601
 You see a big intersection.
 ~
 ~
-0 0 601
-D3
+Door        west~ door closed locked~ 665 629
 You see a big house.
 ~
 door~
-7 665 629
-S
+End
+
 #626
-Big House~
+Name        Big House~
+Descr
 You are in a big house.  Evidently, the owners of this house are richer
 than the average citizen, since there is more than one room to this house.  A
 door leads to the kitchen east, and a bedroom is upstairs.  The exit is to the
 west.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 628
 You see the kitchen.
 ~
 ~
-0 0 628
-D3
+Door        west~ door closed locked~ 665 625
 You see Impy Way.
 ~
 door~
-7 665 625
-D4
+Door        up~ ~ 0 627
 You see the bedroom.
 ~
 ~
-0 0 627
-S
+End
+
 #627
-Bedroom~
+Name        Bedroom~
+Descr
 You are in the bedroom.  There isn't much of interest except for a bed and
 a closet.  The stairs lead back down.
 ~
-0 8 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 621 3 100
+Reset       E 665 -1 100
+Reset       E 666 16 100
+Door        down~ ~ 0 626
 You see the main room of the house.
 ~
 ~
-0 0 626
-S
+End
+
 #628
-Kitchen~
+Name        Kitchen~
+Descr
 You are in a kitchen.  There isn't much of interest here.  The main room
 is west of here.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ 0 626
 You see the main room of the house.
 ~
 ~
-0 0 626
-S
+End
+
 #629
-Big House~
+Name        Big House~
+Descr
 You are in a big house.  Evidently, the owners of this house are richer
 than the average citizen, since there is more than one room to this house.  A
 door leads to the kitchen west, and a bedroom is upstairs.  The exit is to the
 east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 621 3 100
+Reset       E 665 -1 100
+Reset       E 666 16 100
+Door        east~ door closed locked~ 665 625
 You see Impy Way.
 ~
 door~
-7 665 625
-D3
+Door        west~ ~ 0 631
 You see the kitchen.
 ~
 ~
-0 0 631
-D4
+Door        up~ ~ 0 630
 You see the bedroom.
 ~
 ~
-0 0 630
-S
+End
+
 #630
-Bedroom~
+Name        Bedroom~
+Descr
 You are in the bedroom.  There isn't much of interest except for a bed and
 a closet.  The stairs lead back down.
 ~
-0 8 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        down~ ~ 0 629
 You see the main room of the house.
 ~
 ~
-0 0 629
-S
+End
+
 #631
-Kitchen~
+Name        Kitchen~
+Descr
 You are in a kitchen.  There isn't much of interest here.  The main room
 is east of here.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 629
 You see the main room of the house.
 ~
 ~
-0 0 629
-S
+End
+
 #632
-Impy Way~
+Name        Impy Way~
+Descr
 You are on Impy Way.  Houses are to the east and west of here.  Impy Way
 continues north and south.  There are many people walking along the streets.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 637
 Impy Way continues north.
 ~
 ~
-0 0 637
-D1
+Door        east~ door closed~ -1 633
 You see a house.
 ~
 door~
-3 -1 633
-D2
+Door        south~ ~ 0 625
 Impy Way continues south.
 ~
 ~
-0 0 625
-D3
+Door        west~ door closed~ -1 635
 You see a house.
 ~
 door~
-3 -1 635
-S
+End
+
 #633
-House~
+Name        House~
+Descr
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is west.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 634
 You see the bedroom.
 ~
 ~
-0 0 634
-D3
+Door        west~ door closed~ -1 632
 You see Impy Way.
 ~
 door~
-3 -1 632
-S
+End
+
 #634
-Bedroom~
+Name        Bedroom~
+Descr
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 633
 You see the main room of the house.
 ~
 ~
-0 0 633
-S
+End
+
 #635
-House~
+Name        House~
+Descr
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 620 2 100
+Door        east~ door closed~ -1 632
 You see Impy Way.
 ~
 door~
-3 -1 632
-D2
+Door        south~ ~ 0 636
 You see the bedroom.
 ~
 ~
-0 0 636
-S
+End
+
 #636
-Bedroom~
+Name        Bedroom~
+Descr
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 635
 You see the main room of the house.
 ~
 ~
-0 0 635
-S
+End
+
 #637
-Impy Way~
+Name        Impy Way~
+Descr
 You are on Impy Way.  Houses are to the east and west of here.  Impy Way
 continues south.  To the north is a big intersection.  There are many people
 walking along the streets.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 629 14 100
+Reset       M 618 3 100
+Door        north~ ~ 0 642
 You see a big intersection.
 ~
 ~
-0 0 642
-D1
+Door        east~ door closed~ -1 638
 You see a house.
 ~
 door~
-3 -1 638
-D2
+Door        south~ ~ 0 632
 Impy Way continues south.
 ~
 ~
-0 0 632
-D3
+Door        west~ door closed~ -1 640
 You see a house.
 ~
 door~
-3 -1 640
-S
+End
+
 #638
-House~
+Name        House~
+Descr
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is west.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 639
 You see the bedroom.
 ~
 ~
-0 0 639
-D3
+Door        west~ door closed~ -1 637
 You see Impy Way.
 ~
 door~
-3 -1 637
-S
+End
+
 #639
-Bedroom~
+Name        Bedroom~
+Descr
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 638
 You see the main room of the house.
 ~
 ~
-0 0 638
-S
+End
+
 #640
-House~
+Name        House~
+Descr
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ door closed~ -1 637
 You see Impy Way.
 ~
 door~
-3 -1 637
-D2
+Door        south~ ~ 0 641
 You see the bedroom.
 ~
 ~
-0 0 641
-S
+End
+
 #641
-Bedroom~
+Name        Bedroom~
+Descr
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 640
 You see the main room of the house.
 ~
 ~
-0 0 640
-S
+End
+
 #642
-The Big Intersection~
+Name        The Big Intersection~
+Descr
 You are on the intersection of Impy Way and Swiftest Way.  To the north of
 you is a big house.  Swiftest Way runs east and west, and Impy way continues
 south.  There are quite a few people on this intersection.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 626 10 100
+Door        north~ door closed locked~ 665 643
 You see the big house.
 ~
 door~
-7 665 643
-D1
+Door        east~ ~ 0 646
 Swiftest Way continues east.
 ~
 ~
-0 0 646
-D2
+Door        south~ ~ 0 637
 Impy Way continues south.
 ~
 ~
-0 0 637
-D3
+Door        west~ ~ 0 649
 Swiftest Way continues west.
 ~
 ~
-0 0 649
-S
+End
+
 #643
-Big House~
+Name        Big House~
+Descr
 You are in a big house.  Evidently, the owners of this house are richer
 than the average citizen, since there is more than one room to this house.  A
 door leads to the kitchen north, and a bedroom is upstairs.  The exit is to 
 the south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 621 3 100
+Reset       E 665 -1 100
+Reset       E 666 16 100
+Door        north~ ~ 0 645
 You see the kitchen.
 ~
 ~
-0 0 645
-D2
+Door        south~ door closed locked~ 665 642
 You see Impy Way.
 ~
 door~
-7 665 642
-D4
+Door        up~ ~ 0 644
 You see the bedroom.
 ~
 ~
-0 0 644
-S
+End
+
 #644
-Bedroom~
+Name        Bedroom~
+Descr
 You are in the bedroom.  There isn't much of interest except for a bed 
 and a closet.  The stairs lead back down.
 ~
-0 8 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        down~ ~ 0 643
 You see the main room of the house.
 ~
 ~
-0 0 643
-S
+End
+
 #645
-Kitchen~
+Name        Kitchen~
+Descr
 You are in a kitchen.  There isn't much of interest here.  The main room
 is east of here.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 643
 You see the main room of the house.
 ~
 ~
-0 0 643
-S
+End
+
 #646
-Swiftest Way~
+Name        Swiftest Way~
+Descr
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues east, and west is a big
 intersection.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 652
 You see a small house.
 ~
 ~
-0 0 652
-D1
+Door        east~ ~ 0 647
 Swiftest Way continues east.
 ~
 ~
-0 0 647
-D2
+Door        south~ ~ 0 653
 You see a small house.
 ~
 ~
-0 0 653
-D3
+Door        west~ ~ 0 642
 You see a big intersection.
 ~
 ~
-0 0 642
-S
+End
+
 #647
-Swiftest Way~
+Name        Swiftest Way~
+Descr
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues east and west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Door        north~ ~ 0 654
 You see a small house.
 ~
 ~
-0 0 654
-D1
+Door        east~ ~ 0 648
 You see the end of Swiftest Way.
 ~
 ~
-0 0 648
-D2
+Door        south~ ~ 0 655
 You see a small house.
 ~
 ~
-0 0 655
-D3
+Door        west~ ~ 0 646
 Swiftest Way continues west.
 ~
 ~
-0 0 646
-S
+End
+
 #648
-End of Swiftest Way~
+Name        End of Swiftest Way~
+Descr
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north, south, and east of you.  Swiftest Way continues west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 617 3 100
+Door        north~ ~ 0 656
 You see a small house.
 ~
 ~
-0 0 656
-D1
+Door        east~ ~ 0 657
 You see a small house.
 ~
 ~
-0 0 657
-D2
+Door        south~ ~ 0 658
 You see a small house.
 ~
 ~
-0 0 658
-D3
+Door        west~ ~ 0 647
 Swiftest Way continues west.
 ~
 ~
-0 0 647
-S
+End
+
 #649
-Swiftest Way~
+Name        Swiftest Way~
+Descr
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues west, and to the east you
 see a big intersection.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 659
 You see a small house.
 ~
 ~
-0 0 659
-D1
+Door        east~ ~ 0 642
 You see the big intersection.
 ~
 ~
-0 0 642
-D2
+Door        south~ ~ 0 660
 You see a small house.
 ~
 ~
-0 0 660
-D3
+Door        west~ ~ 0 650
 Swiftest Way continues west.
 ~
 ~
-0 0 650
-S
+End
+
 #650
-Swiftest Way~
+Name        Swiftest Way~
+Descr
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues east and west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 625 9 100
+Reset       M 617 3 100
+Door        north~ ~ 0 661
 You see a small house.
 ~
 ~
-0 0 661
-D1
+Door        east~ ~ 0 649
 Swiftest Way continues east.
 ~
 ~
-0 0 649
-D2
+Door        south~ ~ 0 662
 You see a small house.
 ~
 ~
-0 0 662
-D3
+Door        west~ ~ 0 651
 You see the end of Swiftest Way.
 ~
 ~
-0 0 651
-S
+End
+
 #651
-The end of Swiftest Way~
+Name        The end of Swiftest Way~
+Descr
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north, south, and west of you.  Swiftest Way continues east.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 663
 You see a small house.
 ~
 ~
-0 0 663
-D1
+Door        east~ ~ 0 650
 Swiftest Way continues east.
 ~
 ~
-0 0 650
-D2
+Door        south~ ~ 0 664
 You see a small house.
 ~
 ~
-0 0 664
-D3
+Door        west~ ~ 0 665
 You see a small house.
 ~
 ~
-0 0 665
-S
+End
+
 #652
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 620 2 100
+Door        south~ ~ 0 646
 You see Swiftest Way.
 ~
 ~
-0 0 646
-S
+End
+
 #653
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 646
 You see Swiftest Way.
 ~
 ~
-0 0 646
-S
+End
+
 #654
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 647
 You see Swiftest Way.
 ~
 ~
-0 0 647
-S
+End
+
 #655
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 619 2 100
+Door        north~ ~ 0 647
 You see Swiftest Way.
 ~
 ~
-0 0 647
-S
+End
+
 #656
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 648
 You see the end of Swiftest Way.
 ~
 ~
-0 0 648
-S
+End
+
 #657
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ 0 648
 You see the end of Swiftest Way.
 ~
 ~
-0 0 648
-S
+End
+
 #658
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 648
 You see the end of Swiftest Way.
 ~
 ~
-0 0 648
-S
+End
+
 #659
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 649
 You see Swiftest Way.
 ~
 ~
-0 0 649
-S
+End
+
 #660
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 649
 You see Swiftest Way.
 ~
 ~
-0 0 649
-S
+End
+
 #661
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 619 2 100
+Door        south~ ~ 0 650
 You see Swiftest Way.
 ~
 ~
-0 0 650
-S
+End
+
 #662
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 650
 You see Swiftest Way.
 ~
 ~
-0 0 650
-S
+End
+
 #663
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 651
 You see the end of Swiftest Way.
 ~
 ~
-0 0 651
-S
+End
+
 #664
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 651
 You see the end of Swiftest Way.
 ~
 ~
-0 0 651
-S
+End
+
 #665
-Small House~
+Name        Small House~
+Descr
 You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 651
 You see the end of Swiftest Way.
 ~
 ~
-0 0 651
-S
+End
+
 #666
-Raff Way~
+Name        Raff Way~
+Descr
 You are on Raff Way.  To the west, you can see a big intersection.  To 
 the east, you see Raff Way continue toward the Golden Citadel.  There are 
 beautiful flowers growing along the rode here, making this more of a garden
 than a road.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 618 3 100
+Door        east~ ~ 0 667
 Raff Way continues east.
 ~
 ~
-0 0 667
-D3
+Door        west~ ~ 0 601
 You see the big intersection.
 ~
 ~
-0 0 601
-S
+End
+
 #667
-Raff Way~
+Name        Raff Way~
+Descr
 You are on Raff Way.  Raff Way continues west to the city of Ofcol.  To 
 the east, you see Raff Way continue toward the Golden Citadel.  There are 
 beautiful flowers growing along the rode here, making this more of a garden
 than a road.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 600 8 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 628 13 100
+Door        east~ ~ 0 699
 You see the entrance of the Golden Citadel.
 ~
 ~
-0 0 699
-D3
+Door        west~ ~ 0 666
 Raff Way continues west.
 ~
 ~
-0 0 666
-S
+End
+
 #668
-Dirt Road~
+Name        Dirt Road~
+Descr
 You are on a dirt road.  To the east is a large building with a bad smell
 emanating from it.  To the west is the end of Impy Way, and this road continues
 south.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 617
 You see the large building with the bad smell.
 ~
 ~
-0 0 617
-D2
+Door        south~ ~ 0 618
 The dirt road continues south.
 ~
 ~
-0 0 618
-D3
+Door        west~ ~ 0 611
 You see the end of Impy Way.
 ~
 ~
-0 0 611
-S
+End
+
 #669
-The Temple of Ofcol~
+Name        The Temple of Ofcol~
+Descr
 You are in the Temple of Ofcol.  Golden tiles cover the floor, and solid
 gold columns reach the twelve foot ceiling of this vast chamber.  Servants in
 golden livery wander this place, making even the raggiest messenger boy look
 richer than you are.  Exits lead to the anterooms in the cardinal directions.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 602 1 100
+Reset       E 620 1 100
+Reset       E 631 5 100
+Reset       E 653 16 100
+Reset       E 632 6 100
+Reset       E 633 7 100
+Reset       E 634 8 100
+Reset       E 635 9 100
+Reset       E 626 10 100
+Reset       E 627 11 100
+Reset       E 628 13 100
+Reset       M 628 1 100
+Reset       E 620 1 100
+Reset       E 664 12 100
+Reset       E 652 3 100
+Door        north~ ~ 0 670
 ~
 ~
-0 0 670
-D1
+Door        east~ ~ 0 672
 ~
 ~
-0 0 672
-D2
+Door        south~ ~ 0 673
 ~
 ~
-0 0 673
-D3
+Door        west~ ~ 0 671
 ~
 ~
-0 0 671
-S
+End
+
 #670
-The Anteroom to the Temple of Ofcol~
+Name        The Anteroom to the Temple of Ofcol~
+Descr
 You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the south, and to the north is a hallway.  A stairways leads up.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 675
 ~
 ~
-0 0 675
-D2
+Door        south~ ~ 0 669
 ~
 ~
-0 0 669
-D4
+Door        up~ ~ 0 686
 ~
 ~
-0 0 686
-S
+End
+
 #671
-The Anteroom to the Temple of Ofcol~
+Name        The Anteroom to the Temple of Ofcol~
+Descr
 You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the east, and to the west is a hallway.  A stairways leads up.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 669
 ~
 ~
-0 0 669
-D3
+Door        west~ ~ 0 679
 ~
 ~
-0 0 679
-D4
+Door        up~ ~ 0 687
 ~
 ~
-0 0 687
-S
+End
+
 #672
-The Anteroom to the Temple of Ofcol~
+Name        The Anteroom to the Temple of Ofcol~
+Descr
 You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the west, and to the east is a hallway.  A stairways leads up.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 680
 ~
 ~
-0 0 680
-D3
+Door        west~ ~ 0 669
 ~
 ~
-0 0 669
-D4
+Door        up~ ~ 0 689
 ~
 ~
-0 0 689
-S
+End
+
 #673
-The Anteroom to the Temple of Ofcol~
+Name        The Anteroom to the Temple of Ofcol~
+Descr
 You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the north, and to the south is a hallway.  A stairways leads up.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 625 2 100
+Door        north~ ~ 0 669
 ~
 ~
-0 0 669
-D2
+Door        south~ ~ 0 684
 ~
 ~
-0 0 684
-D4
+Door        up~ ~ 0 690
 ~
 ~
-0 0 690
-S
+End
+
 #674
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead east and south.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 625 2 100
+Door        east~ ~ 0 675
 ~
 ~
-0 0 675
-D2
+Door        south~ ~ 0 677
 ~
 ~
-0 0 677
-S
+End
+
 #675
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead east, west, and south.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 676
 ~
 ~
-0 0 676
-D2
+Door        south~ ~ 0 670
 ~
 ~
-0 0 670
-D3
+Door        west~ ~ 0 674
 ~
 ~
-0 0 674
-S
+End
+
 #676
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead west and south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 633 3 100
+Reset       E 620 1 100
+Reset       E 654 5 100
+Reset       E 660 11 100
+Reset       E 662 16 100
+Door        south~ ~ 0 678
 ~
 ~
-0 0 678
-D3
+Door        west~ ~ 0 675
 ~
 ~
-0 0 675
-S
+End
+
 #677
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 674
 ~
 ~
-0 0 674
-D2
+Door        south~ ~ 0 679
 ~
 ~
-0 0 679
-S
+End
+
 #678
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 627 1 100
+Door        north~ ~ 0 676
 ~
 ~
-0 0 676
-D2
+Door        south~ ~ 0 680
 ~
 ~
-0 0 680
-S
+End
+
 #679
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead to the cardinal directions, with the east leading
 toward the Temple of Ofcol, and west leading toward the City of Ofcol.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 677
 ~
 ~
-0 0 677
-D1
+Door        east~ ~ 0 671
 ~
 ~
-0 0 671
-D2
+Door        south~ ~ 0 681
 ~
 ~
-0 0 681
-D3
+Door        west~ ~ 0 698
 ~
 ~
-0 0 698
-S
+End
+
 #680
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead west, north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 678
 ~
 ~
-0 0 678
-D2
+Door        south~ ~ 0 682
 ~
 ~
-0 0 682
-D3
+Door        west~ ~ 0 672
 ~
 ~
-0 0 672
-S
+End
+
 #681
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 633 3 100
+Reset       E 620 1 100
+Reset       E 654 5 100
+Reset       E 660 11 100
+Reset       E 662 16 100
+Door        north~ ~ 0 679
 ~
 ~
-0 0 679
-D2
+Door        south~ ~ 0 683
 ~
 ~
-0 0 683
-S
+End
+
 #682
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 626 2 100
+Door        north~ ~ 0 680
 ~
 ~
-0 0 680
-D2
+Door        south~ ~ 0 685
 ~
 ~
-0 0 685
-S
+End
+
 #683
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and east.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 626 2 100
+Door        north~ ~ 0 681
 ~
 ~
-0 0 681
-D1
+Door        east~ ~ 0 684
 ~
 ~
-0 0 684
-S
+End
+
 #684
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead east, west, and north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 673
 ~
 ~
-0 0 673
-D1
+Door        east~ ~ 0 685
 ~
 ~
-0 0 685
-D3
+Door        west~ ~ 0 683
 ~
 ~
-0 0 683
-S
+End
+
 #685
-A Hallway of the Golden Citadel~
+Name        A Hallway of the Golden Citadel~
+Descr
 You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead west and north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 682
 ~
 ~
-0 0 682
-D3
+Door        west~ ~ 0 684
 ~
 ~
-0 0 684
-S
+End
+
 #686
-An Upper Chamber of the Golden Citadel~
+Name        An Upper Chamber of the Golden Citadel~
+Descr
 You are in one of the upper chambers of the Golden Citadel.  The decora-
 tions of this place surpass even those of the first floor.  Gold tiles etched
 with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads south. 
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 688
 ~
 ~
-0 0 688
-D4
+Door        up~ ~ 0 691
 ~
 ~
-0 0 691
-D5
+Door        down~ ~ 0 670
 ~
 ~
-0 0 670
-S
+End
+
 #687
-An Upper Chamber of the Golden Citadel~
+Name        An Upper Chamber of the Golden Citadel~
+Descr
 You are in one of the upper chambers of the Golden Citadel.  The decora-
 tions of this place surpass even those of the first floor.  Gold tiles etched
 with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads east. 
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 688
 ~
 ~
-0 0 688
-D4
+Door        up~ ~ 0 692
 ~
 ~
-0 0 692
-D5
+Door        down~ ~ 0 671
 ~
 ~
-0 0 671
-S
+End
+
 #688
-The Hall of the DragonLords~
+Name        The Hall of the DragonLords~
+Descr
 You are in a vast hall, filled with the commanders of the Golden Citadel.
 Golden tiles etched with platinum cover the floors, and weapons of all types
 are mounted on the walls of this meeting hall.  Surrounding a solid gold table
 are four sons of the Keeper of the Golden Citadel.  They smile at you and ask 
 you to join them in lunch.  Exits lead to the cardinal directions. 
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 629 1 100
+Reset       E 664 12 100
+Reset       M 630 3 100
+Reset       E 620 1 100
+Reset       E 654 5 100
+Reset       E 660 11 100
+Reset       E 662 16 100
+Reset       E 656 6 100
+Reset       E 657 7 100
+Reset       M 630 3 100
+Reset       E 620 1 100
+Reset       E 654 5 100
+Reset       E 660 11 100
+Reset       E 662 16 100
+Reset       E 657 8 100
+Reset       E 658 9 100
+Reset       M 630 3 100
+Reset       E 620 1 100
+Reset       E 654 5 100
+Reset       E 660 11 100
+Reset       E 662 16 100
+Reset       E 659 10 100
+Reset       E 661 13 100
+Door        north~ ~ 0 686
 ~
 ~
-0 0 686
-D1
+Door        east~ ~ 0 689
 ~
 ~
-0 0 689
-D2
+Door        south~ ~ 0 690
 ~
 ~
-0 0 690
-D3
+Door        west~ ~ 0 687
 ~
 ~
-0 0 687
-S
+End
+
 #689
-An Upper Chamber of the Golden Citadel~
+Name        An Upper Chamber of the Golden Citadel~
+Descr
 You are in one of the upper chambers of the Golden Citadel.  The decora-
 tions of this place surpass even those of the first floor.  Gold tiles etched
 with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads west. 
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ 0 688
 ~
 ~
-0 0 688
-D4
+Door        up~ ~ 0 694
 ~
 ~
-0 0 694
-D5
+Door        down~ ~ 0 672
 ~
 ~
-0 0 672
-S
+End
+
 #690
-An Upper Chamber of the Golden Citadel~
+Name        An Upper Chamber of the Golden Citadel~
+Descr
 You are in one of the upper chambers of the Golden Citadel.  The decora-
 tions of this place surpass even those of the first floor.  Gold tiles etched
 with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads north. 
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 633 3 100
+Reset       E 620 1 100
+Reset       E 654 5 100
+Reset       E 660 11 100
+Reset       E 662 16 100
+Door        north~ ~ 0 688
 ~
 ~
-0 0 688
-D4
+Door        up~ ~ 0 695
 ~
 ~
-0 0 695
-D5
+Door        down~ ~ 0 673
 ~
 ~
-0 0 673
-S
+End
+
 #691
-A Top Chamber of the Golden Citadel~
+Name        A Top Chamber of the Golden Citadel~
+Descr
 You are in one of the top chambers of the Golden Citadel.  The decorations
 of this room looks like a dragon's hoard.  The whole room is carved out of pure
 gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 693
 ~
 ~
-0 0 693
-D5
+Door        down~ ~ 0 686
 ~
 ~
-0 0 686
-S
+End
+
 #692
-A Top Chamber of the Golden Citadel~
+Name        A Top Chamber of the Golden Citadel~
+Descr
 You are in one of the top chambers of the Golden Citadel.  The decorations
 of this room looks like a dragon's hoard.  The whole room is carved out of pure
 gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 693
 ~
 ~
-0 0 693
-D5
+Door        down~ ~ 0 687
 ~
 ~
-0 0 687
-S
+End
+
 #693
-The Dragon Chamber~
+Name        The Dragon Chamber~
+Descr
 You are in a vast chamber carved from gold and platinum.  Gems the size of
 a man's fist protrude from the walls, ceiling, and the floor, making your step
 painful.  A vast open sky-light lets fresh air come in from the top.  In the
@@ -2903,400 +3776,194 @@ center of this chamber, you see a great wealth of coins, and on top of that
 pile of coins, you see a golden dragon squinting at you.  Exits lead to the
 cardinal directions to the anterooms.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 631 1 100
+Reset       E 620 1 100
+Reset       E 662 16 100
+Reset       E 663 17 100
+Reset       M 632 2 100
+Reset       E 620 1 100
+Reset       E 664 12 100
+Reset       M 632 2 100
+Reset       E 620 1 100
+Reset       E 664 12 100
+Door        north~ ~ 0 691
 ~
 ~
-0 0 691
-D1
+Door        east~ ~ 0 694
 ~
 ~
-0 0 694
-D2
+Door        south~ ~ 0 695
 ~
 ~
-0 0 695
-D3
+Door        west~ ~ 0 692
 ~
 ~
-0 0 692
-D4
+Door        up~ ~ 0 696
 ~
 ~
-0 0 696
-S
+End
+
 #694
-A Top Chamber of the Golden Citadel~
+Name        A Top Chamber of the Golden Citadel~
+Descr
 You are in one of the top chambers of the Golden Citadel.  The decorations
 of this room looks like a dragon's hoard.  The whole room is carved out of pure
 gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ 0 693
 ~
 ~
-0 0 693
-D5
+Door        down~ ~ 0 689
 ~
 ~
-0 0 689
-S
+End
+
 #695
-A Top Chamber of the Golden Citadel~
+Name        A Top Chamber of the Golden Citadel~
+Descr
 You are in one of the top chambers of the Golden Citadel.  The decorations
 of this room looks like a dragon's hoard.  The whole room is carved out of pure
 gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 693
 ~
 ~
-0 0 693
-D5
+Door        down~ ~ 0 690
 ~
 ~
-0 0 690
-S
+End
+
 #696
-Above the Dragon Chamber~
+Name        Above the Dragon Chamber~
+Descr
 You are above the Dragon Chamber.  You curiously note that this shaft that
 connects the chamber to the sky is wide enough that even a dragon can fit
 through.  This shaft leads up and down.
 ~
-0 8 0
-D4
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        up~ ~ 0 697
 ~
 ~
-0 0 697
-D5
+Door        down~ ~ 0 693
 ~
 ~
-0 0 693
-S
+End
+
 #697
-In the Shaft from the Dragon Chamber~
+Name        In the Shaft from the Dragon Chamber~
+Descr
 You are in the shaft leading from the Dragon Chamber.  Below you lies the
 Dragon Chamber of the Golden Citadel.  Above you, you see the sky, but 
 currently, the way out is sealed by a layer of diamond that looks impenetrable.
 ~
-0 8 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        down~ ~ 0 696
 ~
 ~
-0 0 696
-S
+End
+
 #698
-Inside the Entrance to the Golden Citadel~
+Name        Inside the Entrance to the Golden Citadel~
+Descr
 You are inside the entrance to the Golden Citadel.  Rich golden tapestries
 line the walls, and golden tiles cover the floors.  The exit to this citadel is
 to the west, while the citadel itself is to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 634 3 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Reset       E 651 -1 100
+Reset       M 634 3 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Reset       E 651 -1 100
+Reset       M 634 3 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Reset       E 651 -1 100
+Door        east~ ~ 0 679
 ~
 ~
-0 0 679
-D3
+Door        west~ door~ 651 699
 ~
 gate~
-1 651 699
-S
+End
+
 #699
-Outside the Entrance to the Golden Citadel~
+Name        Outside the Entrance to the Golden Citadel~
+Descr
 You are outside the entrance to the Golden Citadel.  A great gate is to
 to the east, marking the entranceway into the citadel.  The road also leads
 back west to Raff Way.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 603 1 100
+Reset       E 620 1 100
+Reset       E 631 5 100
+Reset       E 653 16 100
+Reset       E 632 6 100
+Reset       E 623 7 100
+Reset       E 624 8 100
+Reset       E 625 9 100
+Reset       E 636 10 100
+Reset       E 637 11 100
+Reset       E 638 13 100
+Reset       M 623 3 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Reset       E 651 -1 100
+Reset       M 623 3 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Reset       E 651 -1 100
+Reset       M 623 3 100
+Reset       E 620 1 100
+Reset       E 621 5 100
+Reset       E 630 16 100
+Reset       E 627 11 100
+Reset       E 651 -1 100
+Door        east~ door~ 651 698
 ~
 ~
-1 651 698
-D3
+Door        west~ ~ 0 667
 ~
 ~
-0 0 667
-S
+End
+
 #0
 
-
-#SPECIALS
-M 600 spec_guard
-M 601 spec_cast_cleric
-M 602 spec_cast_cleric
-M 603 spec_cast_mage
-M 621 spec_janitor
-M 623 spec_guard
-M 628 spec_cast_adept
-M 629 spec_guard
-M 630 spec_breath_any
-M 631 spec_breath_any
-M 632 spec_cast_mage
-M 633 spec_breath_any
-M 634 spec_guard
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 609 1 600
-O 0 649 0 600
-M 0 600 8 601
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 624 0 8
-M 0 601 1 601
-E 0 620 0 1
-E 0 639 0 5
-E 0 640 0 6
-E 0 641 0 7
-E 0 642 0 8
-E 0 643 0 9
-E 0 644 0 10
-E 0 645 0 11
-E 0 646 0 13
-E 0 647 0 16
-M 0 617 3 601
-M 0 604 1 603
-G 0 600 0
-G 0 601 0
-G 0 615 0
-G 0 667 0
-M 0 600 8 604
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 623 0 7
-M 0 605 1 604
-G 0 616 0
-G 0 617 0
-G 0 618 0
-G 0 619 0
-M 0 606 1 606
-G 0 606 0
-G 0 607 0
-G 0 608 0
-M 0 607 1 607
-G 0 602 0
-G 0 603 0
-G 0 604 0
-G 0 605 0
-M 0 600 8 608
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 622 0 6
-M 0 622 1 609
-G 0 648 0
-G 0 649 0
-G 0 650 0
-M 0 624 1 609
-M 0 608 1 610
-G 0 609 0
-G 0 610 0
-G 0 611 0
-G 0 612 0
-G 0 613 0
-M 0 618 3 611
-M 0 610 1 617
-E 0 601 0 16
-M 0 612 4 619
-M 0 612 4 619
-M 0 612 4 619
-M 0 612 4 619
-M 0 611 1 620
-E 0 615 0 16
-O 0 614 0 620
-O 0 611 0 620
-M 0 614 2 620
-M 0 614 2 620
-M 0 615 4 622
-M 0 615 4 622
-M 0 615 4 622
-M 0 615 4 622
-M 0 613 3 623
-M 0 613 3 623
-M 0 613 3 623
-M 0 616 4 624
-M 0 616 4 624
-M 0 616 4 624
-M 0 616 4 624
-M 0 621 3 627
-G 0 665 0
-E 0 666 0 16
-M 0 621 3 629
-G 0 665 0
-E 0 666 0 16
-M 0 620 2 635
-M 0 600 8 637
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 629 0 14
-M 0 618 3 637
-M 0 600 8 642
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 626 0 10
-M 0 621 3 643
-G 0 665 0
-E 0 666 0 16
-M 0 600 8 647
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-M 0 617 3 648
-M 0 600 8 650
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 625 0 9
-M 0 617 3 650
-M 0 620 2 652
-M 0 619 2 655
-M 0 619 2 661
-M 0 618 3 666
-M 0 600 8 667
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 628 0 13
-M 0 602 1 669
-E 0 620 0 1
-E 0 631 0 5
-E 0 653 0 16
-E 0 632 0 6
-E 0 633 0 7
-E 0 634 0 8
-E 0 635 0 9
-E 0 626 0 10
-E 0 627 0 11
-E 0 628 0 13
-M 0 628 1 669
-E 0 620 0 1
-E 0 664 0 12
-E 0 652 0 3
-M 0 625 2 673
-M 0 625 2 674
-M 0 633 3 676
-E 0 620 0 1
-E 0 654 0 5
-E 0 660 0 11
-E 0 662 0 16
-M 0 627 1 678
-M 0 633 3 681
-E 0 620 0 1
-E 0 654 0 5
-E 0 660 0 11
-E 0 662 0 16
-M 0 626 2 682
-M 0 626 2 683
-M 0 629 1 688
-E 0 664 0 12
-M 0 630 3 688
-E 0 620 0 1
-E 0 654 0 5
-E 0 660 0 11
-E 0 662 0 16
-E 0 656 0 6
-E 0 657 0 7
-M 0 630 3 688
-E 0 620 0 1
-E 0 654 0 5
-E 0 660 0 11
-E 0 662 0 16
-E 0 657 0 8
-E 0 658 0 9
-M 0 630 3 688
-E 0 620 0 1
-E 0 654 0 5
-E 0 660 0 11
-E 0 662 0 16
-E 0 659 0 10
-E 0 661 0 13
-M 0 633 3 690
-E 0 620 0 1
-E 0 654 0 5
-E 0 660 0 11
-E 0 662 0 16
-M 0 631 1 693
-E 0 620 0 1
-E 0 662 0 16
-E 0 663 0 17
-M 0 632 2 693
-E 0 620 0 1
-E 0 664 0 12
-M 0 632 2 693
-E 0 620 0 1
-E 0 664 0 12
-M 0 634 3 698
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-G 0 651 0
-M 0 634 3 698
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-G 0 651 0
-M 0 634 3 698
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-G 0 651 0
-M 0 603 1 699
-E 0 620 0 1
-E 0 631 0 5
-E 0 653 0 16
-E 0 632 0 6
-E 0 623 0 7
-E 0 624 0 8
-E 0 625 0 9
-E 0 636 0 10
-E 0 637 0 11
-E 0 638 0 13
-M 0 623 3 699
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-G 0 651 0
-M 0 623 3 699
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-G 0 651 0
-M 0 623 3 699
-E 0 620 0 1
-E 0 621 0 5
-E 0 630 0 16
-E 0 627 0 11
-G 0 651 0
-S
-
-
-#SHOPS
-604 5 9 15 0 0 120 80 0 23
-605 9 0 0 0 0 120 80 0 23
-606 8 12 13 0 0 120 80 0 23
-607 0 19 0 0 0 120 10 0 23
-608 0 17 19 0 0 120 10 0 23
-622 0 17 0 0 0 120 10 0 23
-0
 
 
 #$

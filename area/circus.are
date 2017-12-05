@@ -4,1074 +4,1571 @@ Author      Binky~
 Levels      1 12
 Security    1
 VNUMs       4400 4469
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #4400
-ticket clerk~
-the Ticket Clerk~
+Name        ticket clerk~
+Short       the Ticket Clerk~
+Long
 The Ticket Clerk extends his hand for your money.
 ~
+Descr
 The ticket clerk is bored, but is not so bored that he really wants to talk 
 to you.  So are you going to buy a ticket or what????
 ~
-3 0 250 S
-31 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   250
+Level       31
+Gold        8
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 100 50 0 23
+End
+
 #4401
-child small~
-a small child~
+Name        child small~
+Short       a small child~
+Long
 A small child waits in line for the Big Top.
 ~
+Descr
 He is standing in line, whining and complaining that his feet hurt.  Why 
 don't you put him out of your misery?
 ~
-3 0 1000 S
-1 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   1000
+Level       1
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4402
-dad father man~
-the child's father~
+Name        dad father man~
+Short       the child's father~
+Long
 The child's father is here.
 ~
+Descr
 The child's father seems irked that you have been pushing past the others 
 in line.
 ~
-3 0 0 S
-5 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4403
-woman mother mom~
-the child's mother~
+Name        woman mother mom~
+Short       the child's mother~
+Long
 The child's mother stands here, patiently waiting in line.
 ~
+Descr
 The mother is tired of taking care of her son, and wishes she was in a bubble
 bath at home right now.
 ~
-3 0 0 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        8
+Race        Human
+Sex         female~
+End
+
 #4404
-bobby boy~
-little Bobby~
+Name        bobby boy~
+Short       little Bobby~
+Long
 Little Bobby is lost, and is looking for his mommy.
 ~
+Descr
 Bobby is scared, he should never have ran off to look at the Bearded Lady.
 Besides being lost, he is now psychologically scarred.
 ~
-197 0 1000 S
-1 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         scavenger stay_area wimpy~
+AffectBy    ~
+Alignment   1000
+Level       1
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4405
-mother woman~
-Bobby's mother~
+Name        mother woman~
+Short       Bobby's mother~
+Long
 Bobby's mother is here, frantically calling out her son's name.
 ~
+Descr
 Bobby's mother is looking quite worried.  If you see Bobby, you will tell her,
 won't you?
 ~
-197 0 1000 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 2
+Act         scavenger stay_area wimpy~
+AffectBy    ~
+Alignment   1000
+Level       3
+Gold        8
+Race        Human
+Sex         female~
+End
+
 #4406
-bearded lady~
-the Bearded Lady~
+Name        bearded lady~
+Short       the Bearded Lady~
+Long
 The Bearded Lady is here.
 ~
+Descr
 The Bearded Lady is kind of scary looking.  She looks at you with lust in her
 eyes.   RUN!!!!
 ~
-3 0 0 S
-5 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        8
+Race        Human
+Sex         female~
+End
+
 #4407
-Illusionist mage~
-the Illusionist~
+Name        Illusionist mage~
+Short       the Illusionist~
+Long
 The Illusionist is here, doing tricks to amaze the crowd.
 ~
+Descr
 He puts on quite a show.  If you couldn't see the wires on half of his 
 creations, you might actually be amazed.
 ~
-3 40 0 S
-5 8 8 8d8+8 10d10+10
-8 0
-0 Elf~ 1
+Act         sentinel~
+AffectBy    detect-invis detect-hidden~
+Alignment   0
+Level       5
+Gold        8
+Race        Elf
+Sex         male~
+End
+
 #4408
-midget~
-the Midget~
+Name        midget~
+Short       the Midget~
+Long
 A Midget is here, doing acrobatics to amuse the crowd.
 ~
+Descr
 The Midget acts very silly, but you see a cunning gleam in his eye.  This is 
 one to watch out for.
 ~
-135 512 -300 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Dwarf~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    infrared~
+Alignment   -300
+Level       3
+Gold        8
+Race        Dwarf
+Sex         male~
+End
+
 #4409
-Ivan strongman man strong~
-Ivan~
+Name        Ivan strongman man strong~
+Short       Ivan~
+Long
 Ivan the Strongman poses for the crowd.
 ~
+Descr
 Ivan really is an impressive figure of a man.  You will want to think twice
 before tangling with him.
 ~
-199 8396800 100 S
-7 8 8 8d8+8 10d10+10
-8 0
-0 Giant~ 1
+Act         sentinel scavenger stay_area wimpy~
+AffectBy    protect-evil mute~
+Alignment   100
+Level       7
+Gold        8
+Race        Giant
+Sex         male~
+End
+
 #4410
-swallower~
-the Sword Swallower~
+Name        swallower~
+Short       the Sword Swallower~
+Long
 The Sword Swallower is in the act of swallowing an entire bastard sword.
 ~
+Descr
 This guy has eaten more swords than you have even seen.  He probably knows how
 to use his sword as well.
 ~
-3 0 0 S
-1 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4411
-member audience~
-a member of the audience~
+Name        member audience~
+Short       a member of the audience~
+Long
 A member of the audience goes "Ooooh!   Ahhhhh!" 
 ~
+Descr
 This person is so interested in the show, he doesn't even realize you are here.
 ~
-135 0 0 S
-1 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4412
-clown red~
-a red-nosed clown~
+Name        clown red~
+Short       a red-nosed clown~
+Long
 A red-nosed clown is ready to throw a pie in your face.
 ~
+Descr
 The clown is laughing and throwing pies, and generally being a nuisance.  
 He turns towards you with a pie.  DUCK!
 ~
-135 0 500 S
-1 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    ~
+Alignment   500
+Level       1
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4413
-clown big~
-a clown with big shoes~
+Name        clown big~
+Short       a clown with big shoes~
+Long
 A clown with big shoes is trying to get into a small car.
 ~
+Descr
 The clown is trying to fit his shoes into the carriage.  It will be a tight 
 fit.
 ~
-135 0 500 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Halfdwarf~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    ~
+Alignment   500
+Level       3
+Gold        8
+Race        Halfdwarf
+Sex         male~
+End
+
 #4414
-clown big~
-a big clown~
+Name        clown big~
+Short       a big clown~
+Long
 A big clown is getting ready to throw confetti at you.
 ~
+Descr
 The big clown has a bucket full of confetti.  Or is it water?  Better stay 
 away from him until you know.
 ~
-135 0 300 S
-5 8 8 8d8+8 10d10+10
-8 0
-0 Giant~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    ~
+Alignment   300
+Level       5
+Gold        8
+Race        Giant
+Sex         male~
+End
+
 #4415
-ringmaster master~
-the Ringmaster~
+Name        ringmaster master~
+Short       the Ringmaster~
+Long
 The Ringmaster is introducing the next act.
 ~
+Descr
 The Ringmaster is dressed in a red coat, and is wearing a big black top hat.
 He was probably hired because he has a voice you could hear over a roaring 
 dragon (which, incidently, is the next act).
 ~
-7 8192 0 S
-10 8 8 8d8+8 10d10+10
-8 0
-0 Halfelf~ 1
+Act         sentinel scavenger~
+AffectBy    protect-evil~
+Alignment   0
+Level       10
+Gold        8
+Race        Halfelf
+Sex         male~
+End
+
 #4416
-thrower~
-the knife thrower~
+Name        thrower~
+Short       the knife thrower~
+Long
 The knife thrower is getting ready to throw 4 knifes at his assistant.
 ~
+Descr
 He is getting ready to put on a blind fold.  He has spent years of practice, 
 and is completely confident in his skills.  He also has a handkerchief he keeps
 wiping his face with.  You here him mumble, 'maybe I shouldn't have stopped 
 by the Grunting Boar before my act'.
 ~
-7 0 0 S
-4 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4417
-assistant~
-the knife thrower's assistant~
+Name        assistant~
+Short       the knife thrower's assistant~
+Long
 The knife thrower's assistant is asleep against the target.
 ~
+Descr
 The assistant dreams a drugged sleep.  It seems she thought she would be 
 helping with the animals, until a slight mishap last night during the knife
 throwers rehearsal last night.  She did wonder why the dashing knife thrower
 invited her out to dinner.
 ~
-3 131072 0 S
-1 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    sleep~
+Alignment   0
+Level       1
+Gold        8
+Race        Human
+Sex         female~
+End
+
 #4418
-tamer~
-the lion tamer~
+Name        tamer~
+Short       the lion tamer~
+Long
 The lion tamer is putting his head in a lion's mouth.
 ~
+Descr
 He is a dashing man, who seems at home with the deadly beasts.  He controls 
 the animals with whip and force of mind.
 ~
-3 8388608 500 S
-8 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    mute~
+Alignment   500
+Level       8
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4419
-lion~
-a ferocious Lion~
+Name        lion~
+Short       a ferocious Lion~
+Long
 A ferocious Lion leaps from his stand to attack you!
 ~
+Descr
 This is the King of the Beasts, and you understand why as he tears a chunk of 
 flesh from your body!
 ~
-39 0 -1000 S
-8 8 8 8d8+8 10d10+10
-8 0
-0 Bear~ 0
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       8
+Gold        8
+Race        Bear
+Sex         neutral~
+End
+
 #4420
-walker tightrope~
-a tightrope walker~
+Name        walker tightrope~
+Short       a tightrope walker~
+Long
 A tightrope walker balances on the wire.
 ~
+Descr
 The only way past him seems to be to push him off.  You wouldn't do that,
 would you?  
 ~
-7 0 200 S
-5 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    ~
+Alignment   200
+Level       5
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4421
-keeper~
-an animal keeper~
+Name        keeper~
+Short       an animal keeper~
+Long
 An animal keeper is here, taking care of the animals.
 ~
+Descr
 She loves her work, and takes good care of the animals, despite the cheap 
 supplies bought for them by the Circus Owner.
 ~
-65 8192 1000 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 2
+Act         stay_area~
+AffectBy    protect-evil~
+Alignment   1000
+Level       3
+Gold        8
+Race        Human
+Sex         female~
+End
+
 #4422
-elephant~
-an elephant~
+Name        elephant~
+Short       an elephant~
+Long
 An elephant nudges you with his trunk, asking for peanuts.
 ~
+Descr
 This is a gigantic animal!  But he seems pretty docile.  Good thing.  You 
 probably would not want to get him angry.
 ~
-3 0 0 S
-10 8 8 8d8+8 10d10+10
-8 0
-0 Animal~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       10
+Gold        8
+Race        Animal
+Sex         neutral~
+End
+
 #4423
-bear~
-a trained bear~
+Name        bear~
+Short       a trained bear~
+Long
 The trained bear hasn't been fed in a week.  Look out!
 ~
+Descr
 The bear hasn't been fed for a long time.  The Circus Owner figures he can
 save a lot of money buy feeding the bear on unwary adventurers like yourself.
 ~
-35 0 0 S
-6 8 8 8d8+8 10d10+10
-8 0
-0 Bear~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        8
+Race        Bear
+Sex         neutral~
+End
+
 #4424
-horse~
-a horse~
+Name        horse~
+Short       a horse~
+Long
 A trained horse is here, prancing in anticipation.
 ~
+Descr
 The horse has been trained by the bare back rider.  These are magnificent 
 animals, although they look like they could use more food.  More evidence 
 of the cheapness of the Circus Owner.
 ~
-3 0 0 S
-4 8 8 8d8+8 10d10+10
-8 0
-0 Animal~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        8
+Race        Animal
+Sex         neutral~
+End
+
 #4425
-unicorn horse white~
-a poor horse~
+Name        unicorn horse white~
+Short       a poor horse~
+Long
 A poor white horse is here, about to have a horn implanted in it's head.
 ~
+Descr
 This poor animal had the unfortunate luck of being white.  Just what the 
 Circus Owner was looking for.
 ~
-3 0 0 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Animal~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        8
+Race        Animal
+Sex         neutral~
+End
+
 #4426
-owner~
-the Circus Owner~
+Name        owner~
+Short       the Circus Owner~
+Long
 The greedy Circus owner is about to cut into the poor horse.
 ~
+Descr
 This man has no scruples.  When the Owner got the thought of putting a horn on
 a regular horse and passing it off as a Unicorn, he almost wet his pants with
 delight.  This man is in trouble if the ASPCA ever finds out, but until then,
 he will probably keep making a LOT of money.
 ~
-135 0 -1000 S
-10 8 8 8d8+8 10d10+10
-8 0
-0 Drow~ 1
+Act         sentinel scavenger wimpy~
+AffectBy    ~
+Alignment   -1000
+Level       10
+Gold        8
+Race        Drow
+Sex         male~
+End
+
 #4427
-vendor~
-the cotton candy vendor~
+Name        vendor~
+Short       the cotton candy vendor~
+Long
 The cotton candy vendor waits to take your money.
 ~
+Descr
 He is wearing a colorful pair of overalls and a bright painter's cap.  He
 makes cotton candy in a big tub, where all the kids can watch him.
 ~
-3 0 1000 S
-7 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   1000
+Level       7
+Gold        8
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 100 50 0 23
+End
+
 #4428
-Illusionist mage~
-the Illusionist~
+Name        Illusionist mage~
+Short       the Illusionist~
+Long
 The Illusionist is here, doing tricks to amaze the crowd.
 ~
+Descr
 He puts on quite a show.  If you couldn't see the wires on half of his 
 creations, you might actually be amazed.
 ~
-35 40 0 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Elf~ 1
+Act         sentinel aggressive~
+AffectBy    detect-invis detect-hidden~
+Alignment   0
+Level       3
+Gold        8
+Race        Elf
+Sex         male~
+End
+
 #4429
-dog guard~
-a guard dog~
+Name        dog guard~
+Short       a guard dog~
+Long
 A guard dog growls at you, then attacks.
 ~
+Descr
 He looks like he has been purposely abused to keep him mean.  Maybe if you 
 gave him a pie, he would be your friend?
 ~
-39 40 -500 S
-4 8 8 8d8+8 10d10+10
-8 0
-0 Animal~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    detect-invis detect-hidden~
+Alignment   -500
+Level       4
+Gold        8
+Race        Animal
+Sex         male~
+End
+
 #4430
-burly worker~
-a burly worker~
+Name        burly worker~
+Short       a burly worker~
+Long
 A burly worker coming to the aid of the Circus Owner.
 ~
+Descr
 The burly worker has sweat dripping off of every inch of his body.
 ~
-35 0 -1000 S
-8 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       8
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4450
-chef~
-Binky's chef~
+Name        chef~
+Short       Binky's chef~
+Long
 Binky's chef stands here, ready to carve the turkey.
 ~
+Descr
 ~
-3 0 0 S
-18 8 8 8d8+8 10d10+10
-8 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       18
+Gold        8
+Race        Human
+Sex         male~
+End
+
 #4451
-midget thief~
-the Midget~
+Name        midget thief~
+Short       the Midget~
+Long
 A Midget is here, stealing money from the crowd.
 ~
+Descr
 The Midget is very good at his trade, and makes quit a bit of money buy picking
 pockets of the unwary. 
 ~
-65 512 -900 S
-3 8 8 8d8+8 10d10+10
-8 0
-0 Dwarf~ 1
+Act         stay_area~
+AffectBy    infrared~
+Alignment   -900
+Level       3
+Gold        8
+Race        Dwarf
+Sex         male~
+Spec        spec_thief
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #4400
-ticket~
-a ticket~
+Name        ticket~
+Short       a ticket~
+Descr
 An unwanted scrap of paper lies here.~
-~
-18 0 1
-1~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4401
-candy~
-cotton candy~
+Name        candy~
+Short       cotton candy~
+Descr
 Some pink fluffy candy lies here.~
-~
-26 0 1
-1~ refresh~ refresh~  ~  ~
-1 15 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      1~ refresh~ refresh~  ~  ~
+Weight      1
+Cost        15
+End
+
 #4402
-key hairy~
-a hairy key~
+Name        key hairy~
+Short       a hairy key~
+Descr
 A key lies here, covered with hair clippings.~
-~
-18 0 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4403
-key~
-a huge key~
+Name        key~
+Short       a huge key~
+Descr
 A humongous, heavy key lies here.~
-~
-18 0 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4404
-key small~
-a small key~
+Name        key small~
+Short       a small key~
+Descr
 A small key lies here.~
-~
-18 0 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4405
-key shimmering~
-a shimmering key~
+Name        key shimmering~
+Short       a shimmering key~
+Descr
 An object lies here, shimmering, so that you aren't sure what it is.~
-~
-18 0 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4406
-key slender~
-a slender key~
+Name        key slender~
+Short       a slender key~
+Descr
 A very thin key lies here.~
-~
-18 0 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4407
-bracers strongman~
-the strongman's bracers~
+Name        bracers strongman~
+Short       the strongman's bracers~
+Descr
 A pair of large bracers lies here.~
-~
-9 0 257
-3~ 0~ 0~ 0~ 0~
-8 0 0
-A
-5 1 0
-A
-1 1 0
+Type        armor~
+Extra       ~
+Wear        take arms~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      8
+Cost        0
+Affect      constitution~ 1 ~
+Affect      strength~ 1 ~
+End
+
 #4408
-sword small~
-a small, thin sword~
+Name        sword small~
+Short       a small, thin sword~
+Descr
 A small sword lies here.~
-~
-5 0 8193
-0~ 0~ 11~ 11~ 0~
-1 0 0
-A
-17 8 0
-A
-18 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 11~ 11~ 0~
+Weight      1
+Cost        0
+Affect      ac~ 8 ~
+Affect      hitroll~ 3 ~
+End
+
 #4409
-staff translucent~
-a pointy translucent staff~
+Name        staff translucent~
+Short       a pointy translucent staff~
+Descr
 A long, thin, shimmering object lies here.~
-~
-5 0 8193
-0~ 0~ 7~ 7~ 0~
-0 0 0
-A
-19 1 0
-A
-18 2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 7~ 7~ 0~
+Weight      0
+Cost        0
+Affect      damroll~ 1 ~
+Affect      hitroll~ 2 ~
+End
+
 #4410
-sword bastard~
-the sword swallower's sword~
+Name        sword bastard~
+Short       the sword swallower's sword~
+Descr
 A rubber bastard sword is here.~
-~
-5 0 8193
-0~ 0~ 1~ 1~ 0~
-0 0 0
-A
-19 -1 0
-A
-18 1 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 1~ 1~ 0~
+Weight      0
+Cost        0
+Affect      damroll~ -1 ~
+Affect      hitroll~ 1 ~
+End
+
 #4411
-purse~
-the midget's purse~
+Name        purse~
+Short       the midget's purse~
+Descr
 A small purse lies here.~
-~
-15 0 16385
-30~ 5~ 0~ 0~ 0~
-1 500 0
+Type        container~
+Extra       ~
+Wear        take hold~
+Values      30~ 5~ 0~ 0~ 0~
+Weight      1
+Cost        500
+End
+
 #4412
-bunch coins~
-a bunch of coins~
+Name        bunch coins~
+Short       a bunch of coins~
+Descr
 A bunch of coins lies here.~
-~
-20 0 1
-700~ 0~ 0~ 0~ 0~
-1 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      700~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4413
-razor~
-a razor~
+Name        razor~
+Short       a razor~
+Descr
 A razor lies here.~
-~
-5 0 8193
-0~ 0~ 2~ 2~ 0~
-1 0 0
-A
-17 6 0
-A
-19 2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 2~ 2~ 0~
+Weight      1
+Cost        0
+Affect      ac~ 6 ~
+Affect      damroll~ 2 ~
+End
+
 #4414
-barbell~
-a barbell~
+Name        barbell~
+Short       a barbell~
+Descr
 A huge barbell lies here.~
-~
-12 0 16385
-0~ 0~ 0~ 0~ 0~
-120 0 0
+Type        furniture~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      120
+Cost        0
+End
+
 #4415
-sign~
-a letter~
+Name        sign~
+Short       a letter~
+Descr
 A letter is posted on the games booths.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-40 0 0
-E
-letter~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+ExtraDescr  letter~
 The letter reads:  This area has been closed by order of the Mayor of Midgaard,
 because of dishonest activities perpetrated by the persons running the games.
 Another example of how your government cares for you.
 
                - Captain of the Watch
 ~
+End
+
 #4416
-knife~
-a sharp knife~
+Name        knife~
+Short       a sharp knife~
+Descr
 A sharp, well balanced knife lies on the ground.~
-~
-5 0 8193
-0~ 0~ 2~ 2~ 0~
-1 0 0
-A
-18 2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 2~ 2~ 0~
+Weight      1
+Cost        0
+Affect      hitroll~ 2 ~
+End
+
 #4417
-blindfold~
-a blindfold~
+Name        blindfold~
+Short       a blindfold~
+Descr
 A strip of black cloth lies here.~
-~
-9 0 17
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-14 -50 0
-A
-18 -10 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      move~ -50 ~
+Affect      hitroll~ -10 ~
+End
+
 #4418
-whip~
-a whip~
+Name        whip~
+Short       a whip~
+Descr
 A leather whip is lying on the ground.~
-~
-5 0 8193
-2~ 2~ 4~ 4~ 0~
-1 0 0
-A
-4 -1 0
-A
-18 5 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      2~ 2~ 4~ 4~ 0~
+Weight      1
+Cost        0
+Affect      wisdom~ -1 ~
+Affect      hitroll~ 5 ~
+End
+
 #4419
-pole~
-tightrope walker's pole~
+Name        pole~
+Short       tightrope walker's pole~
+Descr
 A long pole lies here.~
-~
-12 1 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-2 2 0
+Type        furniture~
+Extra       glow~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      dexterity~ 2 ~
+End
+
 #4420
-clown shoes~
-big clown shoes~
+Name        clown shoes~
+Short       big clown shoes~
+Descr
 A huge pair of shoes lies here, apparently forgotten.~
-~
-9 0 65
-0~ 0~ 0~ 0~ 0~
-4 0 0
-A
-2 -1 0
-A
-14 -20 0
+Type        armor~
+Extra       ~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        0
+Affect      dexterity~ -1 ~
+Affect      move~ -20 ~
+End
+
 #4421
-tophat hat~
-a tophat~
+Name        tophat hat~
+Short       a tophat~
+Descr
 The Ringmaster's tophat lies here.~
-~
-9 0 17
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-17 4 0
-A
-12 10 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      ac~ 4 ~
+Affect      mana~ 10 ~
+End
+
 #4422
-chest~
-a chest~
+Name        chest~
+Short       a chest~
+Descr
 A chest lies here, buried in a pile of hair.~
-~
-15 0 0
-100~ 13~ 4402~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4402~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4423
-chest~
-a chest~
+Name        chest~
+Short       a chest~
+Descr
 A shimmering object sits in the corner.~
-~
-15 0 0
-100~ 13~ 4405~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4405~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4424
-chest~
-a chest~
+Name        chest~
+Short       a chest~
+Descr
 The strongman's huge chest lies here. ~
-~
-15 0 0
-100~ 13~ 4403~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4403~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4425
-chest~
-a chest~
+Name        chest~
+Short       a chest~
+Descr
 A small chest lies here.~
-~
-15 0 0
-100~ 13~ 4404~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4404~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4426
-chest~
-another chest~
+Name        chest~
+Short       another chest~
+Descr
 A chest sits in the corner.~
-~
-15 0 0
-100~ 13~ 4406~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4406~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4427
-slip paper~
-a paper~
+Name        slip paper~
+Short       a paper~
+Descr
 A piece of wadded up paper has been left on the ground.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4428
-safe~
-a combination safe~
+Name        safe~
+Short       a combination safe~
+Descr
 A painting hangs on the wall, but it doesn't appear that valuable. Stick to 
 the cash.~
-~
-15 0 0
-100~ 13~ 4427~ 0~ 0~
-1 0 0
-E
-painting~
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4427~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  painting~
 Behind the painting you find a safe!  It has a combination lock.  You can 
 probably never guess the combination.
 ~
+End
+
 #4429
-note~
-a note~
+Name        note~
+Short       a note~
+Descr
 A sign hangs by the ticket booth.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-sign~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  sign~
 The sign says:     type BUY TICKET to buy a ticket for the Big Top.
 ~
+End
+
 #4430
-bucket~
-a bucket~
+Name        bucket~
+Short       a bucket~
+Descr
 A colorful bucket lies here.~
-~
-15 0 16385
-15~ 0~ 0~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        take hold~
+Values      15~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4431
-drugged food~
-drugged food~
+Name        drugged food~
+Short       drugged food~
+Descr
 A delicious looking dinner lies here.~
-~
-26 0 1
-36~ sleep~ weaken~ poison~  ~
-1 0 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      36~ sleep~ weaken~ poison~  ~
+Weight      1
+Cost        0
+End
+
 #4432
-pizza food~
-a slice of Tombstone Sausage and Pepperoni pizza~
+Name        pizza food~
+Short       a slice of Tombstone Sausage and Pepperoni pizza~
+Descr
 A slice of pizza lies here, piping hot.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4433
-steak food~
-a juicy steak~
+Name        steak food~
+Short       a juicy steak~
+Descr
 A juicy steak dinner lies here.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4434
-bigmac food~
-a delicious BigMac~
+Name        bigmac food~
+Short       a delicious BigMac~
+Descr
 Some food lies here, wrapped in paper.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4435
-coke can~
-a can of Coke~
+Name        coke can~
+Short       a can of Coke~
+Descr
 A can of Coke lies here.~
-~
-17 0 1
-100~ 96~ 15~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      100~ 96~ 15~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4436
-key~
-the key to the lion's cage~
+Name        key~
+Short       the key to the lion's cage~
+Descr
 The key to the lion's cage lies here.~
-~
-18 0 1
-1~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4437
-bunch coins~
-a bunch of coins~
+Name        bunch coins~
+Short       a bunch of coins~
+Descr
 A bunch of coins lies here.~
-~
-20 0 1
-50~ 0~ 0~ 0~ 0~
-1 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4438
-bunch coins~
-a bunch of coins~
+Name        bunch coins~
+Short       a bunch of coins~
+Descr
 A bunch of coins lies here.~
-~
-20 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4439
-nose red~
-a red clown nose~
+Name        nose red~
+Short       a red clown nose~
+Descr
 A red nose like a clown might wear, lies forgotten upon the ground.~
-~
-9 0 17
-0~ 0~ 0~ 0~ 0~
-1 100 0
-A
-4 -1 0
-A
-3 -2 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        100
+Affect      wisdom~ -1 ~
+Affect      intelligence~ -2 ~
+End
+
 #4440
-chest~
-a chest~
+Name        chest~
+Short       a chest~
+Descr
 A chest sits under the hammock.~
-~
-15 0 0
-100~ 13~ 4441~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      100~ 13~ 4441~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4441
-key~
-a key~
+Name        key~
+Short       a key~
+Descr
 A small key lies in the dirt.~
-~
-18 0 1
-1~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4442
-clear potion~
-a clear potion~
+Name        clear potion~
+Short       a clear potion~
+Descr
 A clear vial of fluid sits here.~
-~
-10 192 16385
-30~ fly~ remove curse~ continual light~  ~
-3 0 0
+Type        potion~
+Extra       magic nodrop~
+Wear        take hold~
+Values      30~ fly~ remove curse~ continual light~  ~
+Weight      3
+Cost        0
+End
+
 #4443
-roast pheasant food~
-a roast~
+Name        roast pheasant food~
+Short       a roast~
+Descr
 Delicious roast pheasant tempts your taste buds.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4444
-turkey food~
-a slice of turkey~
+Name        turkey food~
+Short       a slice of turkey~
+Descr
 A plump turkey sits on the table.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4445
-stuffing food~
-homemade stuffing~
+Name        stuffing food~
+Short       homemade stuffing~
+Descr
 A bowl of homemade stuffing sits upon the table.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4446
-cherry pie food~
-a slice of cherry pie~
+Name        cherry pie food~
+Short       a slice of cherry pie~
+Descr
 Some Cherry Pie A La Mode on the table makes your mouth water.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4447
-wineskin~
-a wineskin~
+Name        wineskin~
+Short       a wineskin~
+Descr
 A wineskin filled with Chardonnay sits upon the table.~
-~
-17 0 1
-30~ 30~ 2~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      30~ 30~ 2~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #4448
-scalpel~
-a scalpel~
+Name        scalpel~
+Short       a scalpel~
+Descr
 A thin knife with a sharp blade lies here.~
-~
-5 0 8193
-0~ 0~ 1~ 1~ 0~
-1 0 0
-A
-19 6 0
-A
-18 -2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 1~ 1~ 0~
+Weight      1
+Cost        0
+Affect      damroll~ 6 ~
+Affect      hitroll~ -2 ~
+End
+
 #4449
-refrigerator frig fridge~
-binky's refrigerator~
+Name        refrigerator frig fridge~
+Short       binky's refrigerator~
+Descr
 Binky's refrigerator sits here, packed full of goodies.~
-~
-15 66 2
-999~ 5~ 0~ 0~ 0~
-20 0 0
+Type        container~
+Extra       hum magic~
+Wear        finger~
+Values      999~ 5~ 0~ 0~ 0~
+Weight      20
+Cost        0
+End
+
 #4450
-carving knife~
-a carving knife~
+Name        carving knife~
+Short       a carving knife~
+Descr
 A very sharp knife gleams from the floor.~
-~
-5 0 8193
-0~ 0~ 11~ 11~ 0~
-1 0 0
-A
-19 3 0
-A
-18 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 11~ 11~ 0~
+Weight      1
+Cost        0
+Affect      damroll~ 3 ~
+Affect      hitroll~ 3 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #4401
-The Path to the Circus~
+Name        The Path to the Circus~
+Descr
 You hear music and laughter coming from ahead of you.  Posters hang 
 from the trees, advertisements for the Circus that has just arrived in town.
 ~
-0 0 1
-E
-poster~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  poster~
 The poster reads:  Come one, come all!!  See the greatest show in the
 4th realm!!  See the Bearded Lady!!  Ivan the strongman!!  Laugh at the antics
 of the crazy Klawson Klowns!! 
 ~
-D0
+Door        north~ ~ 0 2172
 ~
 ~
-0 0 2172
-D2
+Door        south~ ~ 0 4402
 ~
 ~
-0 0 4402
-S
+End
+
 #4402
-The Entrance to the Circus~
+Name        The Entrance to the Circus~
+Descr
 Ahead you see the Circus laid out in all its glory.  Freak shows, 
 games booths, and dwarfing them all, the Big Top.  A ticket booth is set here.
 You will need a ticket to enter the Big Top.
 
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4400 1 100
+Reset       E 4400 -1 100
+Reset       O 4429 0 100
+Door        north~ ~ 0 4401
 ~
 ~
-0 0 4401
-D2
+Door        south~ ~ 0 4403
 ~
 ~
-0 0 4403
-S
+End
+
 #4403
-The Path to the Big Top~
+Name        The Path to the Big Top~
+Descr
 This way to the Big Top is lined with people.  They seem to be having 
 a good time.  Everyone that is, except the people waiting in line for the 
 Big Top.  They seem annoyed at you as you push your way past them.  To the
 east and west you see games booths.  
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4401 1 100
+Reset       M 4403 1 100
+Door        north~ ~ 0 4402
 ~
 ~
-0 0 4402
-D1
+Door        east~ ~ 0 4405
 ~
 ~
-0 0 4405
-D2
+Door        south~ ~ 0 4406
 ~
 ~
-0 0 4406
-D3
+Door        west~ ~ 0 4404
 ~
 ~
-0 0 4404
-S
+End
+
 #4404
-The Game Booths~
+Name        The Game Booths~
+Descr
 This area seems deserted.  The booths are boarded up, and the only
 Circus employee you see is sitting on a counter, muttering obscenities at the
 Mayor and City council.  He makes it a point to let you know that he knows 
 you are there, and he is ignoring you on purpose.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4403 1 100
+Reset       M 4421 6 100
+Reset       O 4415 0 100
+Door        east~ ~ 0 4403
 ~
 ~
-0 0 4403
-S
+End
+
 #4405
-The Game Booths~
+Name        The Game Booths~
+Descr
 This area seems deserted.  The booths are boarded up, and the only
 Circus employee you see is sitting on a counter, muttering obscenities at the
 Mayor and City council.  He makes it a point to let you know that he knows 
 you are there, and he is ignoring you on purpose.
 ~
-0 0 1
-D3
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4401 1 100
+Reset       O 4415 0 100
+Door        west~ ~ 0 4403
 ~
 ~
-0 0 4403
-S
+End
+
 #4406
-The Path to the Big Top~
+Name        The Path to the Big Top~
+Descr
 This way to the Big Top is lined with people.  They seem to be having 
 a good time.  Everyone that is, except the people waiting in line for the 
 Big Top.  They seem annoyed at you as you push your way past them.  To the
 east you see the freak shows.  To the west you see a vendor.  
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4401 1 100
+Reset       M 4403 1 100
+Door        north~ ~ 0 4403
 ~
 ~
-0 0 4403
-D1
+Door        east~ ~ 0 4408
 ~
 ~
-0 0 4408
-D2
+Door        south~ ~ 0 4414
 ~
 ~
-0 0 4414
-D3
+Door        west~ ~ 0 4407
 ~
 ~
-0 0 4407
-S
+End
+
 #4407
-The Cotton Candy Vendor~
+Name        The Cotton Candy Vendor~
+Descr
 The smell of cotton candy makes your mouth water.  Be careful about
 eating too much, all that sugar may make you hyper.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4427 1 100
+Reset       E 4401 -1 100
+Door        east~ ~ 0 4406
 ~
 ~
-0 0 4406
-S
+End
+
 #4408
-The Entrance to the Freak Shows~
+Name        The Entrance to the Freak Shows~
+Descr
 This area is filled with posters of the attractions the Circus has 
 to offer to the curious.  You are invited to watch feats of strength from the
 strong man, gasp as a man swallows a sword, see a real, Bearded Lady, 
 be amazed by the midget's feats of acrobatics, and be dazzled by the great
 magical powers of the Illusionist.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4404 1 100
+Door        east~ ~ 0 4409
 You see the Bearded Lady's tent.
 ~
 ~
-0 0 4409
-D2
+Door        south~ ~ 0 4413
 You see the Strongman's tent.
 ~
 ~
-0 0 4413
-D3
+Door        west~ ~ 0 4406
 ~
 ~
-0 0 4406
-S
+End
+
 #4409
-The Tent of the Bearded Lady~
+Name        The Tent of the Bearded Lady~
+Descr
 This tent consists of chairs for you to rest in, and a rickety wooden
 stage up front.  You hear the stage creak as you enter, and you understand
 why when you see who is standing on it.  She is bearded all right.  And big.
 Very big.  Colossally huge.  You don't seem to have any problem finding a seat.
 The place is deserted of spectators.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4406 1 100
+Reset       E 4402 17 100
+Door        east~ ~ 0 4410
 You see the Illusionist's tent.
 ~
 ~
-0 0 4410
-D2
+Door        south~ ~ 0 4412
 You see the Sword Swallower's tent.
 ~
 ~
-0 0 4412
-D3
+Door        west~ ~ 0 4408
 ~
 ~
-0 0 4408
-S
+End
+
 #4410
-The Tent of the Illusionist~
+Name        The Tent of the Illusionist~
+Descr
 This tent is darkened at first.  Then it gradually lightens, although
 you do not see the source of the light.  You do hear a loud breathing sound
 though.  You think it may be coming from right behind you.  You think this 
@@ -1080,116 +1577,139 @@ and see a very large, very evil looking creature.  It's a Dragon.  It opens
 its mouth, but does not attack.  Instead it just laughs at you mercilessly.
 The Dragon snorts a cloud of smoke at you.
 ~
-0 8 0
-E
-Dragon~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  Dragon~
 The Dragon looks incredibly powerful.  You are in awe of it, not believing that
 something so powerful, so huge, could be controlled by man.  Let alone fit in
 this tent.  Fit in this tent?  Hey, wait a minute, is it shimmering a little,
 or are your eyes playing tricks on you?
 ~
-D2
+Reset       M 4407 1 100
+Reset       E 4405 17 100
+Door        south~ ~ 0 4411
 You see the Midget's tent.
 ~
 ~
-0 0 4411
-D3
+Door        west~ ~ 0 4409
 You see the Bearded Lady's tent.
 ~
 ~
-0 0 4409
-S
+End
+
 #4411
-The Midget's Tent~
+Name        The Midget's Tent~
+Descr
 This tent has a mat laid out, no doubt where the Midget performs his
 acrobatics.  You overhear another member of the audience telling his friend,
 'I'd watch out for that Midget.  I hear that a new rash of robberies broke out
 right after the Circus came to town.  Wouldn't surprise me if he is the one
 responsible.'
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4408 1 100
+Reset       E 4404 17 100
+Reset       E 4411 -1 100
+Reset       P 4437 4411 100
+Door        north~ ~ 0 4410
 You see the Illusionist's Tent.
 ~
 ~
-0 0 4410
-D3
+Door        west~ ~ 0 4412
 You see the Sword Swallower's Tent.
 ~
 ~
-0 0 4412
-S
+End
+
 #4412
-The Sword Swallower's Tent~
+Name        The Sword Swallower's Tent~
+Descr
 This tent is decorated with many deadly looking weapons.  A warrior
 could find any kind of weapon he ever dreamed of in here.  A stage at the 
 front is obviously where the Sword Swallower performs his acts of bravery.
 Several rickety chairs sit in front of the stage, looking as if they might
 not hold the weight of the next customer to sit down.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4410 1 100
+Reset       E 4406 17 100
+Door        north~ ~ 0 4409
 You see the Bearded Lady's Tent.
 ~
 ~
-0 0 4409
-D1
+Door        east~ ~ 0 4411
 You see the Midget's Tent.
 ~
 ~
-0 0 4411
-D3
+Door        west~ ~ 0 4413
 You see the Strongman's Tent.
 ~
 ~
-0 0 4413
-S
+End
+
 #4413
-The Strongman's Tent~
+Name        The Strongman's Tent~
+Descr
 This tent is the largest one in The Circus besides the Big Top.  It
 is decorated with pictures and drawings of huge men lifting huger weights.
 You see heavy objects at the front of the room, that must be part of the act.
 If Ivan the Strongman can lift those, then he really must be strong.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4409 1 100
+Reset       E 4403 17 100
+Reset       O 4414 0 100
+Door        north~ ~ 0 4408
 You see the Entrance to the Freak Shows.
 ~
 ~
-0 0 4408
-D1
+Door        east~ ~ 0 4412
 You see the Sword Swallower's Tent.
 ~
 ~
-0 0 4412
-S
+End
+
 #4414
-The Path to the Big Top~
+Name        The Path to the Big Top~
+Descr
 This way to the Big Top is lined with people.  They seem to be having 
 a good time.  Everyone that is, except the people waiting in line for the 
 Big Top.  They seem annoyed at you as you push your way past them.  To the
 east and west you see games booths.  
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4401 1 100
+Reset       M 4402 1 100
+Reset       M 4403 1 100
+Door        north~ ~ 0 4406
 ~
 ~
-0 0 4406
-D2
+Door        south~ ~ 0 4415
 You see the Entrance to the Big Top.
 ~
 ~
-0 0 4415
-S
+End
+
 #4415
-The Entrance to the Big Top.~
+Name        The Entrance to the Big Top.~
+Descr
 You've finally made it to the front of the line!  The entrance to the
 Big Top is in front of you.  You see a slot where you insert your ticket, to
 unlock the magic of The Circus that lies inside. There is a small sign here.
 ~
-0 0 1
-E
-sign~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign~
 KILL FUN! BLOOD FUN! GORE FUN! KILL FUN! BLOOD FUN! GORE FUN! KILL FUN! 
 Do you want to kill that wimp who lives next door? Are you afraid of getting a
 KILLER flag? Wanna try acid blast's damage but your pal doesn't want to lose
@@ -1202,21 +1722,24 @@ THEN WE HAVE THE ANSWER! GO RIGHT NOW TO...
 Head west from here trough the hole. You'll know it when you see it!
 KILL FUN! BLOOD FUN! GORE FUN! KILL FUN! BLOOD FUN! GORE FUN! KILL FUN!
 ~
-D0
+Reset       M 4401 1 100
+Reset       M 4402 1 100
+Reset       M 4403 1 100
+Reset       M 4405 1 100
+Door        north~ ~ 0 4414
 ~
 ~
-0 0 4414
-D2
+Door        south~ door closed locked pickproof~ 4400 4416
 ~
 door~
-39 4400 4416
-D3
+Door        west~ ~ 0 11031
 ~
 ~
-0 0 11031
-S
+End
+
 #4416
-Entryway between the Grand Stands~
+Name        Entryway between the Grand Stands~
+Descr
 The noise of the crowd greets you as you enter the Big Top.  The 
 sounds and smells that greet you take you back to the time when you were a
 child, in wonder and awe of the Circus that came to your town.  You can hear
@@ -1224,62 +1747,69 @@ the trumpet of an elephant somewhere, and the roar of a lion.  The applause
 of the crowd is momentarily deafening.  To the west and east you see under
 the Grand Stands.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked pickproof~ 4400 4415
 You see the Entrance to the Big Top.
 ~
 door~
-39 4400 4415
-D1
+Door        east~ ~ 0 4417
 You see under the stands.
 ~
 ~
-0 0 4417
-D2
+Door        south~ ~ 0 4419
 You see your first good look at the Big Top ahead.
 ~
 ~
-0 0 4419
-D3
+Door        west~ ~ 0 4421
 You see under the stands.
 ~
 ~
-0 0 4421
-S
+End
+
 #4417
-Under the Grand Stands~
+Name        Under the Grand Stands~
+Descr
 You are under the Stands.  Popcorn and peanut shells litter the floor.
 You can climb up the supports into the stands from here.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4411 1 100
+Door        west~ ~ 0 4416
 ~
 ~
-0 0 4416
-D4
+Door        up~ ~ 0 4418
 ~
 ~
-0 0 4418
-S
+End
+
 #4418
-In the Grand Stands~
+Name        In the Grand Stands~
+Descr
 You find yourself in a crowd of people enjoying the show.  The people 
 behind you yell at you to sit down.  If you don't sit down soon, there may
 be a fight.  You may climb down below the stands, or exit by the stairs and
 get a good look at the Big Top.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4411 1 100
+Reset       M 4411 1 100
+Door        west~ ~ 0 4419
 ~
 ~
-0 0 4419
-D5
+Door        down~ ~ 0 4417
 ~
 ~
-0 0 4417
-S
+End
+
 #4419
-First Look at the Big Top~
+Name        First Look at the Big Top~
+Descr
 You receive your first good look at the Big Top.  The size of this
 tent was amazing from the outside, but is even more breathtaking from the 
 inside.  You feel as if you are in a different world, where the sky is only
@@ -1291,60 +1821,70 @@ preparing to put on a blind fold, while his assistant stands against a target.
 He has a rack of knives next to him.  You may enter the 2nd Ring to the south.
 To the east and west are the Grand Stands, and the Entryway is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4411 1 100
+Reset       M 4415 1 100
+Reset       E 4421 6 100
+Door        north~ ~ 0 4416
 You see the Entryway.
 ~
 ~
-0 0 4416
-D1
+Door        east~ ~ 0 4418
 ~
 ~
-0 0 4418
-D2
+Door        south~ ~ 0 4422
 You see the 2nd Ring.
 ~
 ~
-0 0 4422
-D3
+Door        west~ ~ 0 4420
 ~
 ~
-0 0 4420
-S
+End
+
 #4420
-In the Grand Stands~
+Name        In the Grand Stands~
+Descr
 You find yourself in a crowd of people enjoying the show.  The people 
 behind you yell at you to sit down.  If you don't sit down soon, there may
 be a fight.  You may climb down below the stands, or exit by the stairs and
 get a good look at the Big Top.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4411 1 100
+Reset       M 4411 1 100
+Reset       M 4411 1 100
+Door        east~ ~ 0 4419
 ~
 ~
-0 0 4419
-D5
+Door        down~ ~ 0 4421
 ~
 ~
-0 0 4421
-S
+End
+
 #4421
-Under the Grand Stands~
+Name        Under the Grand Stands~
+Descr
 You are under the Stands.  Popcorn and peanut shells litter the floor.
 You can climb up the supports into the stands from here.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 4416
 ~
 ~
-0 0 4416
-D4
+Door        up~ ~ 0 4420
 ~
 ~
-0 0 4420
-S
+End
+
 #4422
-The 2nd Ring - You'd better read the description of this room. ~
+Name        The 2nd Ring - You'd better read the description of this room. ~
+Descr
 You are in the 2nd Ring.  You see a rickety carriage, which a line of
 clowns are trying to squeeze into.  You've already seen many more fit into it
 than could possibly fit.  The 1st Ring is to the west and the 3rd Ring is 
@@ -1353,62 +1893,80 @@ To the north is the first look a visitor to the Big Top has.  You notice that
 the 1st ring is a cage which contains several HUNGRY Lions.  Entering it would
 be fairly suicidal.  It is a good thing it is locked!
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4412 1 100
+Reset       E 4439 5 100
+Reset       M 4413 1 100
+Reset       E 4420 8 100
+Door        north~ ~ 0 4419
 ~
 ~
-0 0 4419
-D1
+Door        east~ ~ 0 4423
 ~
 ~
-0 0 4423
-D3
+Door        west~ door closed locked pickproof~ 4436 4424
 ~
 door~
-39 4436 4424
-D4
+Door        up~ ~ 0 4427
 ~
 ~
-0 0 4427
-D5
+Door        down~ ~ 0 4444
 You can't see into the car, you'll just have to go in.
 ~
 ~
-0 0 4444
-S
+End
+
 #4423
-The 3rd Ring~
+Name        The 3rd Ring~
+Descr
 A target is set up in this Ring for the knife thrower.  Up close, 
 you can see many red smears which have been not quite cleaned from the target.
 You see the crowd looking at you, probably wondering what your act is.  The
 only exit is to the 2nd Ring to the west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4416 1 100
+Reset       E 4416 16 100
+Reset       E 4431 -1 100
+Reset       M 4417 1 100
+Reset       E 4417 17 100
+Door        west~ ~ 0 4422
 ~
 ~
-0 0 4422
-S
+End
+
 #4424
-The 1st Ring~
+Name        The 1st Ring~
+Descr
 This is a cage, which contains several large stands that the lions
 are supposed to sit on when they are not eating foolish people who walk into
 this room.  A few hoops are in the cage, one of which is flaming.  You think
 that only an idiot would be in here with the lions.  With the lions?  Hey, 
 YOU ARE IN HERE WITH THE LIONS!!!  YOU'D BETTER RUN!!!!!!
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4418 1 100
+Reset       E 4418 16 100
+Reset       M 4419 3 100
+Reset       M 4419 3 100
+Reset       M 4419 3 100
+Door        east~ door closed locked pickproof~ 4436 4422
 ~
 door~
-39 4436 4422
-D5
+Door        down~ door closed locked pickproof~ 4414 4469
 ~
 hole~
-39 4414 4469
-S
+End
+
 #4425
-On the High Wire~
+Name        On the High Wire~
+Descr
 You are still 80 feet up in the air.  DIRECTLY below you is the Lion's
 Cage.  If you survived the fall, YOU WOULD SURELY DIE when the Lions got ahold
 of you.  You note that the door is closed to the cage, so you would have very
@@ -1416,101 +1974,114 @@ little chance of running away if you did fall into the cage.  As you take
 your eyes off the ground below, you see the end of the wire immediately to 
 your west.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4420 1 100
+Reset       E 4419 17 100
+Door        east~ ~ 0 4426
 ~
 ~
-0 0 4426
-D3
+Door        west~ ~ 0 4428
 ~
 ~
-0 0 4428
-D5
+Door        down~ ~ 0 4424
 The Lion's Cage.  A suicidal move.
 ~
 ~
-0 0 4424
-S
+End
+
 #4426
-On the High Wire~
+Name        On the High Wire~
+Descr
 You try to balance on the wire, and try not to look down the 80 feet
 to the ground below.  It is good thing your training as adventurer has given
 you a little better sense of balance than most people.  From up here, you 
 really do have a nice view, of a very long wire.  You still have a ways to go.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4420 1 100
+Reset       E 4419 17 100
+Door        east~ ~ 0 4427
 ~
 ~
-0 0 4427
-D3
+Door        west~ ~ 0 4425
 ~
 ~
-0 0 4425
-S
+End
+
 #4427
-On the Platform Way, Way Up in the Air~
+Name        On the Platform Way, Way Up in the Air~
+Descr
 You hug the pole as you realize just how high you are.  Your only 
 choices are to go back down, or try to walk the high wire to the west.  Of 
 course, the wire goes above the lion's cage, which has an open top.  If you 
 did survive the fall, you probably wouldn't feel like adventuring again.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ 0 4426
 ~
 ~
-0 0 4426
-D5
+Door        down~ ~ 0 4422
 ~
 ~
-0 0 4422
-S
+End
+
 #4428
-The End of the Highwire~
+Name        The End of the Highwire~
+Descr
 You made it safely.  Now you may climb down and sneak out the back 
 entrance of the Big Top.  Or you can brave the Tightrope again.  You hear
 the noises of animals outside the Big Top.  Below you is the trapdoor.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 4425
 ~
 ~
-0 0 4425
-D5
+Door        down~ door closed~ 0 4429
 ~
 trapdoor~
-3 0 4429
-S
+End
+
 #4429
-Behind the Big Top~
+Name        Behind the Big Top~
+Descr
 This is where the show behind the show goes on.  There are a lot
 of workers preparing the next act, moving animals around, and doing too much
 to take much notice of you.  The workers are taking the animals to the pens
 to the south.  You see some of the performers trailers off to the east.  From
 inside, you hear applause from the crowd.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4412 1 100
+Reset       E 4439 5 100
+Door        east~ ~ 0 4434
 You see the Row of Trailers.
 ~
 ~
-0 0 4434
-D2
+Door        south~ ~ 0 4430
 You see the Animal Pens.
 ~
 ~
-0 0 4430
-D3
+Door        west~ ~ 0 4445
 ~
 ~
-0 0 4445
-D4
+Door        up~ door closed~ 0 4428
 ~
 door~
-3 0 4428
-S
+End
+
 #4430
-The Animal Pens~
+Name        The Animal Pens~
+Descr
 From here you may enter the animal pens.  You see a large sign that
 says the following:
           
@@ -1528,148 +2099,178 @@ Penned underneath this is a note that says:  Beware the Bear!!!
 You may enter the Elephant Pen to the west, the Bear Pen to the south, or
 the Horse Corral to the east.  Or you may return north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4421 6 100
+Door        north~ ~ 0 4429
 ~
 ~
-0 0 4429
-D1
-~
-door~
-3 0 4433
-D2
+Door        east~ door closed~ 0 4433
 ~
 door~
-3 0 4432
-D3
+Door        south~ door closed~ 0 4432
 ~
 door~
-3 0 4431
-S
+Door        west~ door closed~ 0 4431
+~
+door~
+End
+
 #4431
-The Elephant Pen~
+Name        The Elephant Pen~
+Descr
 The first thing you notice in this pen is the rather pungent odor.  Oh
 my, you seem to have stepped in an extremely large pile of droppings.  Maybe 
 you should leave to the north?
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4422 2 100
+Door        east~ door closed~ 0 4430
 ~
 door~
-3 0 4430
-S
+End
+
 #4432
-The Bear Pen~
+Name        The Bear Pen~
+Descr
 This room is rather dark, and it doesn't seem to have been cleaned 
 very well lately.  The Circus Owner found that he could let some of his 
 security guards go and save the price of feeding the bear if he just put up
 a sign inviting visitors to visit the friendly bear.  It appears you fell
 for it.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4423 2 100
+Reset       M 4423 2 100
+Door        north~ door closed~ 0 4430
 ~
 door~
-3 0 4430
-S
+End
+
 #4433
-The Horse Corral~
+Name        The Horse Corral~
+Descr
 This corral is where the show horses are kept when they are not 
 performing.  It is rather small for the amount of horses that are kept here.
 ~
-0 0 1
-D3
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4424 1 100
+Door        west~ door closed~ 0 4430
 ~
 door~
-3 0 4430
-S
+End
+
 #4434
-The Row of Trailers~
+Name        The Row of Trailers~
+Descr
 You are between the two rows of trailers where the performers live.
 To the north is the Strongman's Trailer, to the south the Bearded Lady's
 Trailer.  You may also continue east or west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4421 6 100
+Door        north~ door closed~ 0 4435
 ~
 door~
-3 0 4435
-D1
+Door        east~ ~ 0 4438
 ~
 ~
-0 0 4438
-D2
+Door        south~ door closed~ 0 4436
 ~
 door~
-3 0 4436
-D3
+Door        west~ ~ 0 4429
 ~
 ~
-0 0 4429
-S
+End
+
 #4435
-The Strongman's Trailer~
+Name        The Strongman's Trailer~
+Descr
 This trailer is pretty small to you, so, it must be tiny for Ivan.
 The furnishing's are spartan, and you see nothing of value.  You might want
 to consider leaving before Ivan returns.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 4424 0 100
+Reset       P 4407 4424 100
+Door        south~ door closed~ 0 4434
 ~
 door~
-3 0 4434
-S
+End
+
 #4436
-The Bearded Lady's Trailer~
+Name        The Bearded Lady's Trailer~
+Descr
 This is the filthiest place you think you have ever seen.  The floor
 is covered with hair clippings.  In the corner are several bottles entitled
 Miracle Stu's Wonderful Hair Tonic!!  It appears the Bearded Lady must go
 through that stuff like it is water.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 4422 0 100
+Reset       P 4413 4422 100
+Door        north~ door closed~ 0 4434
 ~
 door~
-3 0 4434
-S
+End
+
 #4437
-The Sword Swallower's Trailer~
+Name        The Sword Swallower's Trailer~
+Descr
 This trailer is kept immaculately clean.  You see a knife sharpening
 kit, as well as several rubber swords that are standing in a small display
 case.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 4426 0 100
+Reset       P 4410 4426 100
+Door        south~ door closed~ 0 4438
 ~
 door~
-3 0 4438
-S
+End
+
 #4438
-The Row of Trailers~
+Name        The Row of Trailers~
+Descr
 You are between the two rows of trailers where the performets live.
 To the north is the Sword Swallower's Trailer, to the south is the Midget's
 Trailer.  You may also continue east or west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ door closed~ 0 4437
 ~
 door~
-3 0 4437
-D1
+Door        east~ ~ 0 4440
 ~
 ~
-0 0 4440
-D2
+Door        south~ door closed~ 0 4439
 ~
 door~
-3 0 4439
-D3
+Door        west~ ~ 0 4434
 ~
 ~
-0 0 4434
-S
+End
+
 #4439
-The Midget's Tiny Trailer~
+Name        The Midget's Tiny Trailer~
+Descr
 The cheap Circus Owner believes in rewarding people according to their
 stature.  Accordingly, this trailer is so small that even the Midget thinks
 that it is a tight fit.  The poor Midget is also the poorest paid of all the
@@ -1677,38 +2278,46 @@ Freaks.  But that doesn't bother him.  He has a second profession that he
 practices on the side to make a little extra cash.  He also keeps a rather
 large guard dog in his trailer to discourage visitors.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 4425 0 100
+Reset       P 4438 4425 100
+Reset       P 4408 4425 100
+Reset       M 4429 1 100
+Door        north~ door closed~ 0 4438
 ~
 door~
-3 0 4438
-S
+End
+
 #4440
-The Row of Trailers~
+Name        The Row of Trailers~
+Descr
 You are between the two rows of trailers where the performets live.
 To the north is the Illusionist's Trailer, to the south is a very large 
 Trailer.  You may also go back to the west, or enter a trailer to the east.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4421 6 100
+Door        north~ door closed~ 0 4441
 ~
 door~
-3 0 4441
-D1
+Door        east~ door closed~ 0 4448
 ~
 door~
-3 0 4448
-D2
+Door        south~ door closed~ 0 4442
 ~
 door~
-3 0 4442
-D3
+Door        west~ ~ 0 4438
 ~
 ~
-0 0 4438
-S
+End
+
 #4441
-The Illusionist's Trailer~
+Name        The Illusionist's Trailer~
+Descr
 This trailer seems much larger on the inside that it does on the 
 outside.  You see a spacious, king-sized bed, a large table and kitchenette,
 and a separate sitting room.  The longer that you look though, you see that 
@@ -1716,262 +2325,186 @@ all the objects in the room have a slight shimmer to them.  Closer examination
 reveals that the bed is a cot, the table a nightstand, and the sitting room
 is a chair.  It appears the Illusionist tries to fool even himself sometimes.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 4423 0 100
+Reset       P 4409 4423 100
+Door        south~ door closed~ 0 4440
 ~
 door~
-3 0 4440
-S
+End
+
 #4442
-The Circus Owner's Trailer~
+Name        The Circus Owner's Trailer~
+Descr
 This is by far the biggest and nicest trailer.  If the furnishings are
 any indication of the amount of money this man makes, maybe you should go into
 his line of work.  The walls are covered with walnut colored wood siding, and
 the furniture is of the finest workmanship.  Paintings hang on the walls, 
 and there is even a medium sized icebox to keep the Owner's food fresh.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4425 1 100
+Reset       M 4426 1 100
+Reset       E 4448 16 100
+Reset       E 4427 -1 100
+Door        north~ door closed~ 0 4440
 ~
 door~
-3 0 4440
-D2
+Door        south~ door closed~ 0 4443
 ~
 icebox~
-3 0 4443
-S
+End
+
 #4443
-The Secret Room~
+Name        The Secret Room~
+Descr
 This is a small area in the back of the Circus Owner's Trailer.  You
 see that this must be where he keeps the money that he makes off his employee's
 hard work.  There are several objects of value in here, but you know you would
 not be able to make it off The Circus property with them, so you'd better just
 take the coins.  Most things here you couldn't sell easily, except the artwork.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 4428 0 100
+Door        north~ door~ 0 4442
 ~
 secret~
-1 0 4442
-S
+End
+
 #4444
-The Clown's Room below the 2nd Ring~
+Name        The Clown's Room below the 2nd Ring~
+Descr
 This room has been cunningly hollowed out below the 2nd Ring, giving
 the clown's a place to hide after they supposedly hid in the car.  This place 
 is very hot.  That doesn't surprise you, as it is filled with clowns.
 ~
-0 9 0
-D4
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4412 1 100
+Reset       E 4439 5 100
+Reset       M 4412 1 100
+Reset       E 4439 5 100
+Reset       M 4413 1 100
+Reset       E 4420 8 100
+Reset       M 4414 1 100
+Reset       E 4430 17 100
+Reset       M 4414 1 100
+Reset       E 4430 17 100
+Door        up~ ~ 0 4422
 ~
 ~
-0 0 4422
-S
+End
+
 #4445
-Behind the Big Top~
+Name        Behind the Big Top~
+Descr
 This is where the show behind the show goes on.  There are a lot
 of workers preparing the next act, moving animals around, and doing too much
 to take much notice of you. 
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4421 6 100
+Door        east~ ~ 0 4429
 ~
 ~
-0 0 4429
-D3
+Door        west~ ~ 0 4446
 ~
 ~
-0 0 4446
-S
+End
+
 #4446
-Behind the Big Top~
+Name        Behind the Big Top~
+Descr
 This is where the show behind the show goes on.  There are a lot
 of workers preparing the next act, moving animals around, and doing too much
 to take much notice of you.  
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4412 1 100
+Reset       E 4439 5 100
+Door        east~ ~ 0 4445
 ~
 ~
-0 0 4445
-D3
+Door        west~ ~ 0 4447
 ~
 ~
-0 0 4447
-S
+End
+
 #4447
-Behind the Big Top~
+Name        Behind the Big Top~
+Descr
 This is where the show behind the show goes on.  There are a lot
 of workers preparing the next act, moving animals around, and doing too much
 to take much notice of you.  
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 4421 6 100
+Door        east~ ~ 0 4446
 ~
 ~
-0 0 4446
-S
+End
+
 #4448
-The Tightrope Walkers Trailer~
+Name        The Tightrope Walkers Trailer~
+Descr
 This trailer like most of the others shows how poorly the performers
 are paid.  The tightrope walkers are forced to (or choose to?) sleep in tiny
 hammocks, that you probably couldn't even fit in.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 4420 1 100
+Reset       E 4419 17 100
+Reset       E 4441 -1 100
+Reset       O 4440 0 100
+Reset       P 4442 4440 100
+Door        west~ door closed~ 0 4440
 ~
 door~
-3 0 4440
-S
+End
+
 #4469
-Binky's Kitchen~
+Name        Binky's Kitchen~
+Descr
 A rather small room really, but the aromas drifting to you make your
 mouth water.  A feast fit for a king, or an immortal is spread upon the table
 before you.  You feel compelled to sit and at least taste some of the deli-
 cacies.  Somehow, you know that everything you find here will be very filling,
 yet completely fat free.
 ~
-0 4 1
-S
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+Reset       O 4449 0 100
+Reset       P 4434 4449 100
+Reset       P 4435 4449 100
+Reset       P 4432 4449 100
+Reset       P 4433 4449 100
+Reset       O 4443 0 100
+Reset       O 4444 0 100
+Reset       O 4445 0 100
+Reset       O 4446 0 100
+Reset       O 4447 0 100
+Reset       M 4450 1 100
+Reset       E 4450 16 100
+End
+
 #0
 
-
-#SPECIALS
-M 4451 spec_thief
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 4400 1 4402
-G 0 4400 0
-O 0 4429 0 4402
-M 0 4401 1 4403
-M 0 4403 1 4403
-M 0 4403 1 4404
-M 0 4421 6 4404
-O 0 4415 0 4404
-M 0 4401 1 4405
-O 0 4415 0 4405
-M 0 4401 1 4406
-M 0 4403 1 4406
-M 0 4427 1 4407
-G 0 4401 0
-M 0 4404 1 4408
-M 0 4406 1 4409
-E 0 4402 0 17
-M 0 4407 1 4410
-E 0 4405 0 17
-M 0 4408 1 4411
-E 0 4404 0 17
-G 0 4411 0
-P 0 4437 0 4411
-M 0 4410 1 4412
-E 0 4406 0 17
-M 0 4409 1 4413
-E 0 4403 0 17
-O 0 4414 0 4413
-M 0 4401 1 4414
-M 0 4402 1 4414
-M 0 4403 1 4414
-M 0 4401 1 4415
-M 0 4402 1 4415
-M 0 4403 1 4415
-M 0 4405 1 4415
-M 0 4411 1 4417
-M 0 4411 1 4418
-M 0 4411 1 4418
-M 0 4411 1 4419
-M 0 4415 1 4419
-E 0 4421 0 6
-M 0 4411 1 4420
-M 0 4411 1 4420
-M 0 4411 1 4420
-M 0 4412 1 4422
-E 0 4439 0 5
-M 0 4413 1 4422
-E 0 4420 0 8
-M 0 4416 1 4423
-E 0 4416 0 16
-G 0 4431 0
-M 0 4417 1 4423
-E 0 4417 0 17
-M 0 4418 1 4424
-E 0 4418 0 16
-M 0 4419 3 4424
-M 0 4419 3 4424
-M 0 4419 3 4424
-M 0 4420 1 4425
-E 0 4419 0 17
-M 0 4420 1 4426
-E 0 4419 0 17
-M 0 4412 1 4429
-E 0 4439 0 5
-M 0 4421 6 4430
-M 0 4422 2 4431
-M 0 4423 2 4432
-M 0 4423 2 4432
-M 0 4424 1 4433
-M 0 4421 6 4434
-O 0 4424 0 4435
-P 0 4407 0 4424
-O 0 4422 0 4436
-P 0 4413 0 4422
-O 0 4426 0 4437
-P 0 4410 0 4426
-O 0 4425 0 4439
-P 0 4438 0 4425
-P 0 4408 0 4425
-M 0 4429 1 4439
-M 0 4421 6 4440
-O 0 4423 0 4441
-P 0 4409 0 4423
-M 0 4425 1 4442
-M 0 4426 1 4442
-E 0 4448 0 16
-G 0 4427 0
-P 0 4412 0 4428
-O 0 4428 0 4443
-M 0 4412 1 4444
-E 0 4439 0 5
-M 0 4412 1 4444
-E 0 4439 0 5
-M 0 4413 1 4444
-E 0 4420 0 8
-M 0 4414 1 4444
-E 0 4430 0 17
-M 0 4414 1 4444
-E 0 4430 0 17
-M 0 4421 6 4445
-M 0 4412 1 4446
-E 0 4439 0 5
-M 0 4421 6 4447
-M 0 4420 1 4448
-E 0 4419 0 17
-G 0 4441 0
-O 0 4440 0 4448
-P 0 4442 0 4440
-O 0 4449 0 4469
-P 0 4434 0 4449
-P 0 4435 0 4449
-P 0 4432 0 4449
-P 0 4433 0 4449
-O 0 4443 0 4469
-O 0 4444 0 4469
-O 0 4445 0 4469
-O 0 4446 0 4469
-O 0 4447 0 4469
-M 0 4450 1 4469
-E 0 4450 0 16
-S
-
-
-#SHOPS
-4400 0 0 0 0 0 100 50 0 23
-4427 0 0 0 0 0 100 50 0 23
-0
 
 
 #$

@@ -1,4 +1,4 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+GreedMud 0.88a4
 Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
@@ -12,10 +12,11 @@ These features are by NO MEANS guaranteed to be coded. You might notice most of
 the ideas aren't highly original. You see, my mind is usually useless at having
 ideas for what to do if i don't have a set goal :-)
 
-		Full language support.
+% - means finished code.
+
+%		Full language support.
 
 		Debugging, cleanup, testing, improvement of code. You know...
-		Now i am using strstr and strchr in lots of code...
 
                 Different "schools" like in OBLIVION.
 
@@ -31,29 +32,27 @@ ideas for what to do if i don't have a set goal :-)
 
 		Add value5 field to objects? Or value10?
 
-		Increase number of mortal levels to 60?
+%		Increase number of mortal levels to 60?
 
-		Now we have OLC the time is right to change the area format
+%		Now we have OLC the time is right to change the area format
 		while keeping compatibility with old areas (you will lose
 		some of the new format's features but that's life!).
-		Maybe Slash of MZF fame's idea for a new code format?  It has a
-		couple of small flaws in my view though.
 
-		Add pose table to class files
+%		Add pose table to class files
 
                 A new class different from the others (no Paladins please)!
 		( ideas desperately needed, my mind is void... )
 
-                Even more spells, even more skills.
+...		Even more spells, even more skills.
 
-                Traps (discussed in the Merc mailing list)
-		(Useless if we had proper room progs)
+%		Traps (discussed in the Merc mailing list)
+		( can be made with a room special )
 
-		Add a couple more immskills ( never can have enough :-) )
+...		Add a couple more immskills ( never can have enough :-) )
 
 		Online editing of classes & socials (save routine already made)
 
-		RFC 1413 protocol use: well, SMAUG, EOS and Mordor feature
+%		RFC 1413 protocol use: well, SMAUG, EOS and Mordor feature
 		this, so it should be fairly simple to slam it in Envy2.2
 		Of course my knowledge of networking protocols is near zero
 		:-) But hey! The old art of cut & paste usually works... With

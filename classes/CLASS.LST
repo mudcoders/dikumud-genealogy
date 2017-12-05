@@ -1,6 +1,7 @@
-Mage.class
-Cleric.class
-Thief.class
-Psionicist.class
-Warrior.class
+mag.cls
+cle.cls
+thi.cls
+war.cls
+psi.cls
+rng.cls
 $

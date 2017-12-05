@@ -1,0 +1,56 @@
+-1 GREETING~
+.
+                            o                                                 
+                        _---|         _ _ _ _ _                               
+                     o   ---|     o   ]-I-I-I-[                               
+    _ _ _ _ _ _  _---|      | _---|    \ ` ' /                                
+    ]-I-I-I-I-[   ---|      |  ---|    |.   |
+     \ `   '_/       |     / \    |    | /^\|      	    GreedMud
+      [*]  __|       ^    / ^ \   ^    | |*||	          version 0.88
+      |__   ,|      / \  /    `\ / \   | ===|
+   ___| ___ ,|__   /    /=_=_=_=\   \  |,  _|	    Based on DikuMud by Hans,
+   I_I__I_I__I_I  (====(_________)___|_|____|____     Katja, Tom, Michael,
+   \-\--|-|--/-/  |     I  [ ]__I I_I__|____I_I_|  	  and Sebastian
+    |[]      '|   | []  |`__  . [  \-\--|-|--/-/
+    |.   | |' |___|_____I___|___I___|---------|    	Based on Envy 2.2
+   / \| []   .|_|-|_|-|-|_|-|_|-|_|-| []   [] |    	  (C)1993-1997
+  <===>  |   .|-=-=-=-=-=-=-=-=-=-=-|   |    / \       by Kahn and Hatchet
+  ] []|`   [] ||.|.|.|.|.|.|.|.|.|.||-      <===>
+  ] []| ` |   |/////////\\\\\\\\\\.||__.  | |[] [      Based on Greed 0.88
+  <===>     ' ||||| |   |   | ||||.||  []   <===>  	  (C)1997-1998
+   \T/  | |-- ||||| | O | O | ||||.|| . |'   \T/	     by Zen
+    |      . _||||| |   |   | ||||.|| |     | |   
+ ../|' v . | .|||||/____|____\|||| /|. . | . ./
+  |//\............/...........\........../../\\\
+
+State thy name: ~
+
+-1 GREED~
+[Note: this entry may not be removed or altered or you will face legal
+ action.  See my 'license.grd'.]
+This mud is based on GreedMud 0.88, created by Zen.  GreedMud is based
+on Envy 2.2, created by Kahn, Thelonius, Kith, and Hatchet.
+Greed 0.88 will be available as greed0.88a.tgz from ftp.talon.org?,
+and ftp.game.org under /pub/mud.  The file is about 1114560
+bytes long.  E-mail to '???' to join the greed mailing list.
+
+Thanks to ...
+  ... EnvyMud for being the first and greatest mud i played on.
+  ... Canth, Maniac of Mythran for keeping EnvyMud derived development.
+  ... Alander of ROM for ideas although i didn't use much of his code.
+  ... Thoric and the rest of the SMAUG team for the more feature full
+      Merc derived codebase around and for ftp.game.org, the ultimate
+      source for mud resources.
+  ... Locke and Surreality of TheIsles for lots of cool features and code.
+  ... Erwin A. for the coolest snippets around and administering the Merc
+      coders ring.
+  ... Jason Dinkel and Stoked for EnvyMud 2.2's ILAB OLC.
+  ... Jason Huang, Lope, Morpheus, Slash and Stimpy for snippets.
+  ... Rakot, Sektor, and others for code and bug fixes.
+  ... Joguel, Satan, Spear and Thanatos for playtesting GreedMud in
+      the early days and providing constructive input.
+  ... AND the many players of GreedMud for which this mud was created.
+
+Share and enjoy.
+Zen
+~

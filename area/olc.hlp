@@ -1,92 +1,126 @@
 #HELPS
 
-51 OLC~
+53 OLC~
+{o***  *        **    *****          ***   *       ***
+{o *   *       *  *    *   *        *   *  *      *   *{x   Original code by:
+{o *   *      *    *   *   *        *   *  *      *    {x   Surreality
+{o *   *      *    *   *   *        *   *  *      *    {x  
+{o *   *      *    *   ****         *   *  *      *    {x   From TheIsles by:
+{o *   *      ******   *   *        *   *  *      *    {x   Locke
+{o *   *      *    *   *   *        *   *  *      *    {x  
+{o *   *      *    *   *   *        *   *  *      *   *{x   Envy conversion by:
+{o***  *****  *    *  *****          ***   *****   *** {x   Jason Dinkel
+
+Later work for Envy 2.0 conversion was done by Stoked.
+Later on, the code was severely mutilated by Zen who included it on UE.
+
+Tutorial parts are mostly based on Envy 2.2's area.txt which was written
+by the Farside staff.
+
+These commands are used to expand the game world.  Use '?' for help.
+
+See also: 'OLC COMMANDS'
+~
+
+53 'OLC COMMANDS'~
 Syntax: aedit create
-Syntax: aedit reset		- area creation and repoping.
+or:     aedit reset
+
+These commands are used for area creation and repoping.
+
 
 Syntax: redit create <vnum>
-Syntax: redit reset
-Syntax: redit reset  <vnum>	- room creation and editing.
+or:     redit reset
+or:     redit reset  <vnum>
 
-Syntax: oedit create <vnum>	- object creation and editing.
-Syntax: medit create <vnum>	- mobile creation and editing.
+These commands are used for room creation and editing.
 
+Syntax: oedit create <vnum>
+
+This command is used for object creation and editing.
+
+
+Syntax: medit create <vnum>
+
+This command is used for mobile creation and editing.
+
+
+AEDIT and REDIT default to the current area or room.
+REDIT RESET resets the current room.
+
+Most commands with no arguments display syntax.
+
+See also: {oAEDIT REDIT OEDIT MEDIT ALIST ASAVE RESETS{x
+~
+
+53 ASAVE~
 Syntax: asave world
-Syntax: asave area
-Syntax: asave changed
-Syntax: asave list              - save editing to disk.
+or:     asave area
+or:     asave changed
+or:     asave list
 
-Syntax: alist					- listing of areas.
-
-Syntax: resets  See also: RESETS. 		- set game resets.
-
-The above commands are used to expand the game world.  The original code it is
-based on was written by Surreality and installed in The Isles by Locke.  It was
-then converted to work with Envy by Jason Dinkel.
-
-Inside an editor ? gives help. AEDIT and REDIT default to the current area or
-room. EDIT ROOM RESET resets the current room.  Most commands with no arguments
-display syntax.
-
-See also: AEDIT REDIT MEDIT OEDIT
+This command allows you to save your editing to disk.
 ~
 
 51 ALIST~
-Syntax: ALIST
+Syntax: alist
 
 This command gives you a listing of all the areas along with their
-vnum assignments and the builder(s) assigned to editing them.
+vnum assignments and the builders assigned to editing them.
 ~
 
-51 AEDIT~
-Syntax: aedit		-Enters the editor for the current area.
-Syntax: aedit <vnum>	-Enters the editor for the selected area.
+53 AEDIT~
+Syntax: aedit
+or:     aedit <vnum>
 
-The follow commands are available from within the AEDITOR:
+Use this command to enter the area editor.
 
-age <number>        - set the age of the area
-builder <player>    - toggle that builder's access
-commands            - prints a list of possible commands
-create              - create a brand new area and switch to it
-done                - exits the area editor and returns to normal play
-filename <filename> - change the file name for the area. '.are' is appended.
-name <name>         - change the 'AREAS' name of this area
-recall <room vnum>  - set the room to recall to
-reset               - resets the current area
-security <rating>   - set the security rating for this area
-show                - hitting return, or 'show' shows the area stats
-vnum <lower> <upper>- set the lower and upper vnum's
-lvnum <lower>       - set the lower vnum
-uvnum <upper>       - set the upper vnum
-<flags>             - area flags, type ? AREA for a list
+The following commands are available from within the editor:
+age             builder         create          done            filename
+name            recall          reset           security        show
+vnum            lvnum           uvnum           flags
+
+
+{oSee also: 'AEDIT TUTORIAL'{x
 ~
 
-51 REDIT~
-Syntax: redit			-Enters the editor for the current room.
-
-The following commands are available from within the REDITOR:
-
-commands            - prints a list of possible commands
-create <vnum>       - creates a room with a certain vnum
-desc                - edit description of room
-done                - exists the room editor and returns to normal play
-ed                  - type this command for additonal extra-description help
-format              - format(word-wrap) the room description
-name <room title>   - changes the room title
-show                - hitting return, or 'show' shows the room stats
-oshow <vnum>        - shows an object with given vnum
-olist               - lists objects in this area.
-mshow <vnum>        - shows a mobile with given vnum
-mlist               - lists mobiles in this area.
-<room-flags>        - room attributes, type ? ROOM for a list
-<sector>            - terrain of room, type ? SECTOR for a list
-<direction>         - see help EXIT, or type <dir> ?
-walk <direction>    - use the walk command to move in a direction
+53 'AEDIT TUTORIAL'~
+An area is one piece of the world.  Each area is defined in a separate file.
+All of our area files have the extension '.are'.  Areas are what make the
+game special, sure the gods help, but it is the areas.  Please keep your
+areas original and not too far out.  Use good and proper English and try and
+spell check your area before sending it in.  Hatchet and the high up gods will
+debug if necessary.  Remember the world is a magical one, where technology
+was not really developed.  So please keep the machine guns, grenades, lasers,
+etc out.
 ~
 
-51 EXIT~
-Syntax: <dir> <command> <argument(s)>
-For exits, type the direction (north/s/e/w) followed by:
+53 REDIT~
+Syntax: redit
+
+Use this command to enter the room editor.
+
+The following commands are available from within the editor:
+create          desc            done            ed              format
+name            show            oshow           mshow           flags
+sector
+
+For exit editing use:
+
+[direction]
+See 'help EXITEDIT', or type '[direction] help'
+
+
+{oSee also: 'REDIT TUTORIAL'{x
+~
+
+53 'REDIT TUTORIAL'~
+~
+
+53 EXITEDIT~
+Syntax: [direction] <command> <argument list>
+
+For exits, type the direction ( north|south|east|west ) followed by:
 
 dig  <vnum>        - creates the room and makes a two way link
 link <room vnum>   - make a two way link
@@ -96,73 +130,193 @@ name <door name>   - makes the door's name/keywords = to the given name
 desc               - edit the description of the exit
 remove <arg>       - used to remove keys, names, and descriptions
 delete             - delete this exit
-<exit-flags>       - type ? EXIT for a list(door, locked etc.)
+<exit-flags>       - see '? exit'
 
 The exit flags are presented in the following manner.  The capitalized
 flags are ones not included in the reset info.  i.e. closed is due to
 a player closing the door and not due to the door being set to be closed.
 ~
 
-51 OEDIT~
-Syntax: oedit <vnum>		-Enters the editor for the selected object.
+53 OEDIT~
+Syntax: oedit <vnum>
 
-The following commands are available from within the OEDITOR:
+Use this command to enter the object editor.
 
-addaffect           - applies an affect to an object, no args for help
-delaffect           - removes an affect to an object, no args for help
-commands            - prints a list of possible commands
-cost   <gold>       - sets the gold value of the object
-create <vnum>       - creates object with specified vnum
-done                - exits the object editor and returns to normal play
-ed                  - type this for info on adding/editing extended descripts
-long                - edit long description (the one in the room)
-name  <keywords>    - sets the keywords on an object
-short <desc>        - sets the 'name' of an object (a sword, a fish etc)
-show                - hitting return, or 'show' shows the object stats
-v0 <num>            - sets the value '0' on the object
-v1 <num>            - sets the value '1' on the object
-v2 <num>            - sets the value '2' on the object
-v3 <num>            - sets the value '3' on the object
-v4 <num>            - sets the value '4' on the object
-weight <num>        - sets the weight of the object
-<obj-type>          - type of object, type ? TYPE for a list
-<extra-flags>       - attributes of object, type ? EXTRA for a list
-<wear-flags>        - where object is worn, type ? WEAR for a list
+The following commands are available from within the editor:
+addaffect       delaffect       cost            create          done
+ed              long            keywords        short           show
+v0              v1              v2              v3              v4
+weight          type            extra           wear
+
+
+{oSee also: 'OEDIT TUTORIAL'{x
 ~
 
-51 MEDIT~
-Syntax: medit <vnum>		-Enters the editor for the selected mobile.
+53 'OEDIT TUTORIAL'~
+These are the items that the people who journey through you area will keep
+and use, it is best to think up good descriptions for them.  Remember to
+balance these items with those that already exist.
 
-The following commands are available from within the OEDITOR:
+The 'vnum' is the virtual number of the object.
 
-alignment <value>   - set the mobile's alignment
-commands            - prints a list of possible commands
-create <vnum>       - creates mobile with specified vnum
-desc                - edit the mobile's description (when looked at)
-done                - exits the mobile editor and returns to normal play
-level <level>       - set the mobile's level
-long                - edit long description (the one in the room)
-name <keywords>     - sets the keywords on an mobile
-shop                - type this command for further information
-game                - type this command for further information
-short <desc>        - sets the 'name' of an mobile (a sword, a fish etc)
-show                - hitting return, or 'show' shows the mobile stats
-spec                - sets a mobiles spec proc, type ? SPEC for a list
-<sex>               - set the mobile's sex, type ? SEX for a list
-<act>               - mobiles actions, type ? ACT for a list
-<affected-by>       - mobile affects, type ? AFFECT for a list
+The 'keywords' are words which can be used in commands to identify the
+object.
+
+The 'short-description' is the description used by the 'act' function and
+other functions to identify the object.  The first character of the short-
+description should be lower case, because this description is used in the
+middle of sentences.  The 'short-description' is used with the
+commands: 'get', 'drop', 'inventory', 'equipment', 'look', etc.
+
+The 'long-description' is the description used when a character walks in the
+room and the object is visible.  This string will display when someone
+types 'look <obj>'.
+
+The 'item-type' is the type of the item. (see '? type')
+
+The 'extra-flags' describe more attributes of the object.  The 'wear-flags'
+describe whether the item can be picked up, and if so, what bodily locations
+can wear it. (see '? extra')
+
+The 'weight' of the object is just that.
 ~
 
-51 RESETS~
-Syntax: RESET <number> OBJ <vnum> <location on body>    - equips last mobile
-        RESET <number> OBJ <vnum> inside <obj vnum>     - store in container
-        RESET <number> OBJ <vnum> room                  - store in room
-        RESET <number> MOB <vnum> [<max #>]             - load a mobile
-        RESET <number> DELETE                           - delete a reset
+53 MEDIT~
+Syntax: medit <vnum>
 
-RESET alone will display the resets in the current room.  The <number> will
-be displayed with this list.  Typing ? WEAR-LOC will list possible locations
-that an object can be loaded to.  The [<max #>] is the maximum number of
+Use this command to enter the mobile editor.
+
+The following commands are available from within the editor:
+alignment       create          desc            done            level
+long            keywords        shop            game            short
+show            spec            sex             act             affect
+
+
+{oSee also: 'MEDIT TUTORIAL'{x
+~
+
+53 'MEDIT TUTORIAL'~
+These are the mobs in your neighborhood, in your neighborhood.. oh sorry
+just passed through Lenny's area.  Anyways, it is here that a lot of the
+character of your area comes out.  This is the most important section to
+those players who walk around with brief on.
+
+The 'vnum' is the virtual number of the mobile.  IE) #654
+
+The 'keywords' are words which can be used in commands to identify the
+mobile.  Most mudders consider the keywords the mobile's name.
+Separate each keyword you use with a space and make sure at least one
+of them occurs in the description the player sees when they enter the
+room for ease of reference if you intention is to have a visible mobile.
+
+The 'short-description' is the description used by the 'act' function and
+other functions to identify the mobile.  Do not use a capital letter
+in the description as it is used from within sentences.
+
+The 'long-description' is the description used when a character walks in the
+room and the mobile is visible.  It is suggested to not use more than
+one line for the 'long-description'.
+
+The 'description' is the longest description.  It is used when a character
+explicitly looks at the mobile.  This may contain as many lines as you
+wish.  This can even include a fake listing of what it is wearing.
+
+The 'act-flags' define how the mobile acts. (see '? act')
+
+The 'affected-flags' define more attributes of the mobile. (see '? affect')
+
+The 'alignment' of the mobile ranges from -1000 to +1000.  Keep in mind that
+certain spells ('protection' and 'dispel evil') give characters fighting evil
+monsters an advantage, and that experience earned is influenced by alignment.
+
+The 'level' is a number from 1 to 50.
+
+Race name consists of one of these many races built into Envy. (see '? race')
+~
+
+53 MPEDIT~
+Syntax: mpedit <vnum>
+
+Use this command to enter the mobprograms editor.
+
+The following commands are available from within the editor:
+add             copy            delete          done            program
+show            trigger
+
+
+{oSee also: 'MPEDIT TUTORIAL'{x
+~
+
+53 'MPEDIT TUTORIAL'~
+    MOBprogram quick reference to triggers/variables/ifchecks/mobcommands
+
+trigger         argument and what must happen to activate trigger
+-----------------------------------------------------------------------------
+act_prog        WORDLIST or P WORD_PHRASE to match from act() to mobile
+bribe_prog      INTEGER amount of miminum gold amount given to mobile
+entry_prog      PERCENT chance to check when mobile moves to a new room
+give_prog       FULL OBJECT NAME or ALL to match when obj given to mobile
+greet_prog      PERCENT chance to check if visable char enters mobile's room
+all_greet_prog  PERCENT chance to check when any char enters mobile's room
+fight_prog      PERCENT chance to check at fight_pulse if mobile is fighting
+hitprcnt_prog   PERCENT lower than mobiles hit/max_hit if mobile is fighting
+death_prog      PERCENT chance to check after mobile has been slain
+rand_prog       PERCENT chance to check whenever a PC is in the mobiles zone
+speech_prog     WORDLIST or P WORD_PHRASE to match in dialogue to mobile
+
+variable         mobile actor victim random     object 2nd_object
+-----------------------------------------------------------------------------
+  name             $i    $n     $t     $r         $o       $p      
+shrt_desc/title    $I    $N     $T     $R         $O       $P          
+he/she/it          $j    $e     $E     $J         --       --    '$'symbol=$$
+him/her/it         $l    $m     $M     $L         --       --          
+his/hers/its       $k    $s     $S     $K         --       --
+a/an               --    --     --     --         $a       $A
+ 
+ifcheck       argument?        meaning
+-----------------------------------------------------------------------------
+rand(num)                   Is a random percentage less than or equal to num
+isnpc($*)                   Is $* an NPC
+ispc($*)                    Is $* a PC
+isgood($*)                  Does $* have a good alignment 
+isfight($*)                 Is $* fighting
+isimmort($*)                Is the level of $* greater than max_mortal
+ischarmed($*)               Is $* affected by charm
+isfollow($*)                Is $* a follower with their master in the room
+isaffected($*) & integer    Is ($*->affected_by & integer) true (person only) 
+hitprcnt($*)  == percent    Is the hit/max_hit of $* equal to percent
+inroom($*)    == integer    Is the room of $* equal to integer (person only)
+sex($*)       == integer    Is the sex of $* equal to integer
+position($*)  == integer    Is the position of $* equal to integer
+level($*)     == integer    Is the level of $* equal to integer
+class($*)     == integer    Is the class of $* equal to integer
+goldamt($*)   == integer    Does $* have a gold total equal to integer
+objtype($*)   == integer    Is the type of $* equal to integer (armor,boat,etc)
+objval#($*)   == integer    Is $*->value[#] equal to integer (# from 0-4)
+number($*)    == integer    Is the vnum of $* equal to integer
+name($*)      == string     Is the name of $* equal to string
+
+MOBcommand	argument_list		MOBcommand	argument_list
+-----------------------------------------------------------------------------
+MPSTAT		<mobile>		MPASOUND	<text_string>
+MPJUNK		<object>		MPECHO		<text_string>
+MPMLOAD		<mobile>		MPECHOAT	<victim> <text_string>
+MPOLOAD		<object> <level>	MPECHOAROUND	<victim> <text_string>
+MPKILL		<victim>		MPPURGE		[argument]
+MPGOTO		<dest>			MPAT		<dest> <command> 
+MPTRANSFER	<dest> [location]	MPFORCE		<victim> <command>
+~
+
+53 RESETS~
+Syntax: resets <number> obj <vnum> <location on body>	 - equips last mobile
+or:     resets <number> obj <vnum> inside <obj vnum>	 - store in container
+or:     resets <number> obj <vnum> room 		 - store in room
+or:     resets <number> mob <vnum> [<max #>]		 - load a mobile
+or:     resets <number> delete  			 - delete a reset
+
+RESETS alone will display the resets in the current room.  The <number> will
+be displayed with this list.  See '? wear_loc' for possible locations that
+an object can be loaded to.  The [<max #>] is the maximum number of
 mobiles allowed in this room and will default to 1 if no number is entered.
 
 For resets to be successful make sure that you add them in a logical order.
@@ -170,97 +324,79 @@ For example, if you are equipping a mobile, don't load a container in the
 room and fill it with some objects and then continue equipping the mobile.
 It is likely that resets will backfire if they are not carefully entered.
 
-If you wish to reset the room then use EDIT ROOM RESET.  
+If you wish to reset the room then use 'REDIT RESET'.
 ~
 
-51 ITEM_LIGHT~
-.   value 0    unused
-   value 1    unused
-   value 2    hours of light available, 0 is dead, -1 is infinite            
-   value 3    unused
-   value 4    unused
+53 ITEM_LIGHT~
+.   value[0]    unused
+   value[1]    unused
+   value[2]    hours of light available, 0 is dead, -1 is infinite            
+   value[3]    unused
+   value[4]    unused
 ~
 
-51 ITEM_STAFF_WAND~
-.   value 0    level
-   value 1    max charges
-   value 2    current charges
-   value 3    spell name
-   value 4    unused
-
-An up-to-date list of spells can be obtained by typing:
-? SPELLS [ignore/attack/defend/self/object/all]
+53 ITEM_STAFF_WAND~
+.   value[0]    level
+   value[1]    max charges
+   value[2]    current charges
+   value[3]    spell name (see '? spells')
+   value[4]    unused
 ~
 
-51 ITEM_SCROLL_POTION_PILL~
-.   value 0    level
-   value 1    spell name 1
-   value 2    spell name 2
-   value 3    spell name 3
-   value 4    spell name 4
-
-An up-to-date list of spells can be obtained by typing:
-? SPELLS [ignore/attack/defend/self/object/all]
+53 ITEM_SCROLL_POTION_PILL~
+.   value[0]    level
+   value[1]    spell name 1 (see '? spells')
+   value[2]    spell name 2 (see '? spells')
+   value[3]    spell name 3 (see '? spells')
+   value[4]    spell name 4 (see '? spells')
 ~
 
-51 ITEM_WEAPON~
-.   value 0    unused
-   value 1    unused (formerly min damage)
-   value 2    unused (formerly max damage)
-   value 3    weapon type: hit, slice, stab, slash, whip, claw, blast,
-                           pound, crush, grep, bite, pierce, suction, chop
-   value 4    unused
-
-An up-to-date list of weapon types can be obtained by typing
-? WEAPON
+53 ITEM_WEAPON~
+.   value[0]    unused
+   value[1]    unused (formerly min damage)
+   value[2]    unused (formerly max damage)
+   value[3]    weapon type (see '? weapon')
+   value[4]    unused
 ~
 
-51 ITEM_CONTAINER~
-.   value 0    weight capacity
-   value 1    flags: closeable, pickproof, closed, locked            
-   value 2    key vnum
-   value 3    unused
-   value 4    unused
-
-An up-to-date list of flags can be obtained by typing
-? CONTAINER
+53 ITEM_CONTAINER~
+.   value[0]    weight capacity
+   value[1]    flags (see '? container')
+   value[2]    key vnum
+   value[3]    unused
+   value[4]    unused
 ~
 
-51 ITEM_DRINK~
-.   value0    capacity
-   value1    current quantity
-   value2    liquid type: water, beer, wine, ale, dark-ale, whisky, lemonade,
-                          firebreather, local-specialty, slime-mold-juice,
-                          milk, tea, coffee, blood, salt-water, cola
-   value3    poisoned?
-   value 4    unused
-
-An up-to-date list of liquids can be obtained by typing
-? LIQUID
+53 ITEM_DRINK_CON~
+.   value[0]    capacity
+   value[1]    current quantity
+   value[2]    liquid (see '? liquid')
+   value[3]    if non-zero, drink is poisoned
+   value[4]    unused
 ~
 
-51 ITEM_FOOD~
-.   value 0    hours of food value
-   value 1    unused
-   value 2    unused
-   value 3    poisoned?
-   value 4    unused
+53 ITEM_FOOD~
+.   value[0]    hours of food value
+   value[1]    unused
+   value[2]    unused
+   value[3]    if non-zero, food is poisoned
+   value[4]    unused
 ~
 
-51 ITEM_MONEY~
-.   value 0    value in gold pieces
-   value 1    unused
-   value 2    unused
-   value 3    unused
-   value 4    unused
+53 ITEM_MONEY~
+.   value[0]    value in gold pieces
+   value[1]    unused
+   value[2]    unused
+   value[3]    unused
+   value[4]    unused
 ~
 
-51 ITEM_PORTAL~
-.   value 0    charges
-   value 1    flags: closeable, pickproof, closed, locked
-   value 2    key vnum
-   value 3    flags: nocursed, gowithchar, random, buggy
-   value 4    destination vnum
+53 ITEM_PORTAL~
+.   value[0]    current charges
+   value[1]    flags (see '? portal')
+   value[2]    key vnum
+   value[3]    flags (see '? portal_door')
+   value[4]    destination vnum
 ~
 
 0 $~

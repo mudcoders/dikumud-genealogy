@@ -5,6 +5,8 @@
  *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
  *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Merc Diku Mud, you must comply with   *
  *  both the original Diku license in 'license.doc' as well the Merc       *
  *  license in 'license.txt'.  In particular, you may not remove either of *
@@ -339,7 +341,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 		    && chkchar->master->in_room == chkchar->in_room );
 
 	if ( !str_cmp( buf, "isaffected" ) )
-	    return ( IS_SET( chkchar->affected_by, atoi( arg ) ) );
+	    return ( is_set( chkchar->affected_by, atoi( arg ) ) );
 
 	if ( !str_cmp( buf, "hitprcnt" ) )
 	{
@@ -377,11 +379,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 	}
 
 	if ( !str_cmp( buf, "class" ) )
-	{
-	    lhsvl = chkchar->class;
-	    rhsvl = atoi( val );
-	    return mprog_veval( lhsvl, opr, rhsvl );
-	}
+	    return mprog_seval( chkchar->class[0]->name, opr, val );
 
 	if ( !str_cmp( buf, "goldamt" ) )
 	{

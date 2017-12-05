@@ -550,7 +550,7 @@ void do_track( CHAR_DATA *ch, char *argument )
     int        direction;
     bool       fArea;
 
-    if ( !IS_NPC( ch ) && !ch->pcdata->learned[gsn_track] )
+    if ( !can_use( ch, gsn_track ) )
     {
 	send_to_char( "You do not know of this skill yet.\n\r", ch );
 	return;
@@ -632,7 +632,11 @@ void do_track( CHAR_DATA *ch, char *argument )
 	}
 	while (   !( ch->in_room->exit[direction] )
 	       || !( ch->in_room->exit[direction]->to_room ) );
+
+	learn( ch, gsn_track, FALSE );
     }
+    else
+	learn( ch, gsn_track, TRUE );
 
     /*
      * Display the results of the search.

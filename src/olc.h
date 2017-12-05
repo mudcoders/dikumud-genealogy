@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -65,11 +67,11 @@ DECLARE_DO_FUN( mpedit_show		);
 /*
  * Interpreter prototypes.
  */
-void	aedit	args( ( CHAR_DATA * ch, char *argument ) );
-void	redit	args( ( CHAR_DATA * ch, char *argument ) );
-void	medit	args( ( CHAR_DATA * ch, char *argument ) );
-void	oedit	args( ( CHAR_DATA * ch, char *argument ) );
-void	mpedit	args( ( CHAR_DATA * ch, char *argument ) );
+void	aedit	args( ( CHAR_DATA *ch, char *argument ) );
+void	redit	args( ( CHAR_DATA *ch, char *argument ) );
+void	medit	args( ( CHAR_DATA *ch, char *argument ) );
+void	oedit	args( ( CHAR_DATA *ch, char *argument ) );
+void	mpedit	args( ( CHAR_DATA *ch, char *argument ) );
 
 
 /*
@@ -94,44 +96,56 @@ EXD *	new_exit 	args( ( void ) );
 AFD *	new_affect 	args( ( void ) );
 SD *	new_shop 	args( ( void ) );
 GD *	new_game 	args( ( void ) );
-void 	free_reset_data args( ( RESET_DATA * pReset ) );
-void 	free_area 	args( ( AREA_DATA * pArea ) );
-void 	free_exit 	args( ( EXIT_DATA * pExit ) );
-void 	free_extra_descr 	args( ( ED * pExtra ) );
-void 	free_affect 	args( ( AFFECT_DATA * pAf ) );
-void 	free_shop 	args( ( SHOP_DATA * pGame ) );
-void 	free_game 	args( ( GAME_DATA * pGame ) );
+void 	free_reset_data args( ( RESET_DATA *pReset ) );
+void 	free_area 	args( ( AREA_DATA *pArea ) );
+void 	free_exit 	args( ( EXIT_DATA *pExit ) );
+void 	free_extra_descr 	args( ( ED *pExtra ) );
+void 	free_affect 	args( ( AFFECT_DATA *pAf ) );
+void 	free_shop 	args( ( SHOP_DATA *pGame ) );
+void 	free_game 	args( ( GAME_DATA *pGame ) );
 RID *	new_room_index 	args( ( void ) );
 OID *	new_obj_index 	args( ( void ) );
 MID *	new_mob_index 	args( ( void ) );
-void 	free_room_index args( ( ROOM_INDEX_DATA * pRoom ) );
-void 	free_obj_index 	args( ( OBJ_INDEX_DATA * pObj ) );
-void 	free_mob_index 	args( ( MOB_INDEX_DATA * pMob ) );
+void 	free_room_index args( ( ROOM_INDEX_DATA *pRoom ) );
+void 	free_obj_index 	args( ( OBJ_INDEX_DATA *pObj ) );
+void 	free_mob_index 	args( ( MOB_INDEX_DATA *pMob ) );
 
 /* bit.c */
-int	flag_value	args( ( const struct flag_type * flag_table,
+int	flag_value	args( ( const struct flag_type *flag_table,
 			       char *argument ) );
-char *	flag_string	args( ( const struct flag_type * flag_table,
+char *	flag_string	args( ( const struct flag_type *flag_table,
 			       int bits ) );
+char *	flag_strings	args( ( const struct flag_type *flag_table,
+			       int bits ) );
+int	vect_value	args( ( const struct flag_type *flag_table,
+			       char *arg, u_intc *vector ) );
+char *	vect_string	args( ( const struct flag_type *flag_table,
+			       const u_intc *vector ) );
+char *	vect_strings	args( ( const struct flag_type *flag_table,
+			       const u_intc *vector ) );
+int	fread_flag	args( ( FILE *fp,
+			     const struct flag_type *flag_table ) );
+u_intc *fread_vect	args( ( FILE *fp, const struct flag_type *flag_table,
+			     int *status ) );
 int	wear_loc	args( ( int bits, int count ) );
 int	wear_bit	args( ( int loc ) );
 
 /* olc_act.c */
-int	mprog_count	args( ( MOB_INDEX_DATA * pMob ) );
-MPD *	edit_mprog	args( ( CHAR_DATA * ch, MOB_INDEX_DATA * pMob ) );
-void	show_mprog	args( ( CHAR_DATA * ch, MPROG_DATA * pMobProg ) );
-void	delete_mprog	args( ( CHAR_DATA * ch, int pnum ) );
+int	mprog_count	args( ( MOB_INDEX_DATA *pMob ) );
+MPD *	edit_mprog	args( ( CHAR_DATA *ch, MOB_INDEX_DATA *pMob ) );
+void	show_mprog	args( ( CHAR_DATA *ch, MPROG_DATA * pMobProg ) );
+void	delete_mprog	args( ( CHAR_DATA *ch, int pnum ) );
 ARD *	get_area_data 	args( ( int vnum ) );
-void	add_reset	args( ( ROOM_INDEX_DATA * room, RESET_DATA * pReset,
+void	add_reset	args( ( ROOM_INDEX_DATA *room, RESET_DATA *pReset,
 			       int index ) );
-bool	is_builder	args( ( CHAR_DATA * ch, AREA_DATA * area ) );
+bool	is_builder	args( ( CHAR_DATA *ch, AREA_DATA *area ) );
 ARD *	get_vnum_area 	args( ( int vnum ) );
 
-bool	aedit_create	args( ( CHAR_DATA * ch, char * argument ) );
-bool	redit_create	args( ( CHAR_DATA * ch, char * argument ) );
-bool	oedit_create	args( ( CHAR_DATA * ch, char * argument ) );
-bool	medit_create	args( ( CHAR_DATA * ch, char * argument ) );
-bool	mpedit_create	args( ( CHAR_DATA * ch, char * argument ) );
+bool	aedit_create	args( ( CHAR_DATA *ch, char *argument ) );
+bool	redit_create	args( ( CHAR_DATA *ch, char *argument ) );
+bool	oedit_create	args( ( CHAR_DATA *ch, char *argument ) );
+bool	medit_create	args( ( CHAR_DATA *ch, char *argument ) );
+bool	mpedit_create	args( ( CHAR_DATA *ch, char *argument ) );
 
 #undef	ARD
 #undef	RD

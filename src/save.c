@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -34,6 +36,7 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "olc.h"
 
 #if defined( sun )
 #include <memory.h>
@@ -64,8 +67,8 @@ void	fwrite_char	args( ( CHAR_DATA *ch,  FILE *fp ) );
 void	fwrite_obj	args( ( CHAR_DATA *ch,  OBJ_DATA  *obj,
 			       FILE *fp, int iNest ) );
 int	fread_char	args( ( CHAR_DATA *ch,  FILE *fp ) );
+int	envy_fread_obj	args( ( CHAR_DATA *ch,  FILE *fp ) );
 int	fread_obj	args( ( CHAR_DATA *ch,  FILE *fp ) );
-int	new_fread_obj	args( ( CHAR_DATA *ch,  FILE *fp ) );
 
 
 /* Courtesy of Yaz of 4th Realm */
@@ -98,7 +101,7 @@ void backup_char_obj( CHAR_DATA *ch )
     fclose( fpReserve );
 
     /* player files parsed directories by Yaz 4th Realm */
-#if !defined( macintosh ) && !defined( WIN32 )
+#if !defined( macintosh ) && !defined( _WIN32 )
     sprintf( strsave, "%s%s%s%s", BACKUP_DIR, initial( ch->name ),
 	    "/", capitalize( ch->name ) );
 #else
@@ -136,7 +139,7 @@ void delete_char_obj( CHAR_DATA *ch )
 	return;
 
     /* player files parsed directories by Yaz 4th Realm */
-#if !defined( macintosh ) && !defined( WIN32 )
+#if !defined( macintosh ) && !defined( _WIN32 )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( ch->name ) );
 #else
@@ -172,7 +175,7 @@ void save_char_obj( CHAR_DATA *ch )
     fclose( fpReserve );
 
     /* player files parsed directories by Yaz 4th Realm */
-#if !defined( macintosh ) && !defined( WIN32 )
+#if !defined( macintosh ) && !defined( _WIN32 )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( ch->name ) );
 #else
@@ -215,7 +218,11 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Dscr        %s~\n",	fix_string( ch->description )	);
     fprintf( fp, "Prmpt       %s~\n",	ch->pcdata->prompt		);
     fprintf( fp, "Sx          %d\n",	ch->sex				);
-    fprintf( fp, "Cla         %d\n",	ch->class			);
+
+    fprintf( fp, "Class      " );
+    for ( sn = 0; sn < MAX_MULTICLASS; sn++ )
+      fprintf( fp, " %s~", ch->class[sn] ? ch->class[sn]->name : "" );
+    fprintf( fp, "\n" );
 
     fprintf( fp, "Race        %s~\n",	race_table[ ch->race ].name 	);
 
@@ -234,8 +241,8 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move );
     fprintf( fp, "Gold        %d\n",	ch->gold		);
     fprintf( fp, "Exp         %d\n",	ch->exp			);
-    fprintf( fp, "Act         %d\n",    ch->act			);
-    fprintf( fp, "AffdBy      %d\n",	ch->affected_by		);
+    fprintf( fp, "ActF        %s~\n",   flag_strings( plr_flags, ch->act ) );
+    fprintf( fp, "AffectedBy  %s~\n",	vect_strings( affect_flags, ch->affected_by ) );
 
     if ( ch->resistant )
 	fprintf( fp, "Res         %d\n",	ch->resistant		);
@@ -243,6 +250,9 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "Imm         %d\n",	ch->immune			);
     if ( ch->susceptible )
 	fprintf( fp, "Susc        %d\n",	ch->susceptible		);
+
+    fprintf( fp, "Langs       %d %d\n",		ch->speaks, ch->speaking );
+
     /* Bug fix from Alander */
     fprintf( fp, "Pos         %d\n",
 	    ch->position == POS_FIGHTING ? POS_STANDING : ch->position );
@@ -324,12 +334,12 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
         if ( paf->deleted )
 	    continue;
 
-	fprintf( fp, "Afft       %18s~ %3d %3d %3d %10d\n",
+	fprintf( fp, "Affect     %18s~ %3d %3d %s~ %s~\n",
 		skill_table[ paf->type ].name,
 		paf->duration,
 		paf->modifier,
-		paf->location,
-		paf->bitvector );
+		flag_strings( apply_flags, paf->location ),
+		vect_strings( affect_flags, paf->bitvector ) );
     }
 
     fprintf( fp, "End\n\n" );
@@ -361,7 +371,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 	|| obj->deleted )
 	return;
 
-    fprintf( fp, "#NEWOBJECT\n" );
+    fprintf( fp, "#OBJ\n" );
     fprintf( fp, "Nest         %d\n",	iNest			     );
     fprintf( fp, "Name         %s~\n",	obj->name		     );
     fprintf( fp, "ShortDescr   %s~\n",	obj->short_descr	     );
@@ -427,12 +437,12 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 
     for ( paf = obj->affected; paf; paf = paf->next )
     {
-	fprintf( fp, "Affect       %d %d %d %d %d\n",
+	fprintf( fp, "Affect       %d %d %d %d %s~\n",
 		paf->type,
 		paf->duration,
 		paf->modifier,
 		paf->location,
-		paf->bitvector );
+		vect_strings( affect_flags, paf->bitvector ) );
     }
 
     for ( ed = obj->extra_descr; ed; ed = ed->next )
@@ -457,24 +467,23 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
  */
 bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 {
-    extern char      *daPrompt;
-           FILE      *fp;
-	   CHAR_DATA *ch;
-	   char       strsave [ MAX_INPUT_LENGTH ];
-	   bool       found;
-           char       sorry_player [] =
-	     "********************************************************\n\r"
-	     "** One or more of the critical fields in your player  **\n\r"
-	     "** file were corrupted since you last played.  Please **\n\r"
-	     "** contact an administrator or programmer to          **\n\r"
-	     "** investigate the recovery of your characters.       **\n\r"
-	     "********************************************************\n\r";
-           char       sorry_object [] =
-	     "********************************************************\n\r"
-	     "** One or more of the critical fields in your player  **\n\r"
-	     "** file were corrupted leading to the loss of one or  **\n\r"
-	     "** more of your possessions.                          **\n\r"
-	     "********************************************************\n\r";
+    FILE      *fp;
+    CHAR_DATA *ch;
+    char       strsave [ MAX_INPUT_LENGTH ];
+    bool       found;
+    char       sorry_player [] =
+      "********************************************************\n\r"
+      "** One or more of the critical fields in your player  **\n\r"
+      "** file were corrupted since you last played.  Please **\n\r"
+      "** contact an administrator or programmer to	     **\n\r"
+      "** investigate the recovery of your characters.       **\n\r"
+      "********************************************************\n\r";
+    char       sorry_object [] =
+      "********************************************************\n\r"
+      "** One or more of the critical fields in your player  **\n\r"
+      "** file were corrupted leading to the loss of one or  **\n\r"
+      "** more of your possessions.			     **\n\r"
+      "********************************************************\n\r";
 
 
     ch					= new_character( TRUE );
@@ -514,7 +523,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
     /* parsed player file directories by Yaz of 4th Realm */
     /* decompress if .gz file exists - Thx Alander */
-#if !defined( macintosh ) && !defined( WIN32 )
+#if !defined( macintosh ) && !defined( _WIN32 )
     sprintf( strsave, "%s%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( name ), ".gz" );
     if ( ( fp = fopen( strsave, "r" ) ) )
@@ -527,7 +536,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     }
 #endif
 
-#if !defined( macintosh ) && !defined( WIN32 )
+#if !defined( macintosh ) && !defined( _WIN32 )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( name ) );
 #else
@@ -545,7 +554,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 	for ( ; ; )
 	{
 	    char *word;
-	    char  letter;
+	    int   letter;
 	    int   status;
 
 	    letter = fread_letter( fp );
@@ -586,7 +595,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 	    }
 	    else if ( !str_cmp( word, "OBJECT" ) )
 	    {
-	        if ( !fread_obj  ( ch, fp ) )
+	        if ( !envy_fread_obj  ( ch, fp ) )
 		{
 		    sprintf( buf,
 			    "Load_char_obj:  %s section OBJECT corrupt.\n\r",
@@ -596,12 +605,12 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 		    return FALSE;
 		}
 	    }
-	    else if ( !str_cmp( word, "NEWOBJECT" ) )
+	    else if ( !str_cmp( word, "OBJ" ) )
 	    {
-	        if ( !new_fread_obj  ( ch, fp ) )
+	        if ( !fread_obj  ( ch, fp ) )
 		{
 		    sprintf( buf,
-			    "Load_char_obj:  %s section NEWOBJECT corrupt.\n\r",
+			    "Load_char_obj:  %s section OBJ corrupt.\n\r",
 			    name );
 		    bug( buf, 0 );
 		    write_to_buffer( d, sorry_object, 0 );
@@ -645,7 +654,6 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
     int         num_keys;
     int         last_key = 0;
 
-    char        def_prompt [] = "{o{g<%hhp %mm %vmv>{x ";
     char        def_sdesc  [] = "Your short description was corrupted.";
     char        def_ldesc  [] = "Your long description was corrupted.";
     char        def_desc   [] = "Your description was corrupted.";
@@ -655,9 +663,8 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
       { "ShtDsc", TRUE,  (unlong) &def_sdesc,	{ &ch->short_descr,   NULL } },
       { "LngDsc", TRUE,  (unlong) &def_ldesc,	{ &ch->long_descr,    NULL } },
       { "Dscr",   TRUE,  (unlong) &def_desc,	{ &ch->description,   NULL } },
-      { "Prmpt",  TRUE,  (unlong) &def_prompt,	{ &ch->pcdata->prompt,NULL } },
+      { "Prmpt",  TRUE,  (unlong) &daPrompt,	{ &ch->pcdata->prompt,NULL } },
       { "Sx",     FALSE, SEX_MALE,		{ &ch->sex,           NULL } },
-      { "Cla",    FALSE, MAND,			{ &ch->class,         NULL } },
       { "Lvl",    FALSE, MAND,			{ &ch->level,         NULL } },
       { "Trst",   FALSE, 0,			{ &ch->trust,         NULL } },
       { "Playd",  FALSE, 0,			{ &ch->played,        NULL } },
@@ -671,10 +678,11 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
       { "Gold",   FALSE, 0,			{ &ch->gold,          NULL } },
       { "Exp",    FALSE, MAND,			{ &ch->exp,           NULL } },
       { "Act",    FALSE, DEFLT,			{ &ch->act,           NULL } },
-      { "AffdBy", FALSE, 0,			{ &ch->affected_by,   NULL } },
       { "Res",    FALSE, 0,			{ &ch->resistant,     NULL } },
       { "Imm",    FALSE, 0,			{ &ch->immune,        NULL } },
       { "Susc",   FALSE, 0,			{ &ch->susceptible,   NULL } },
+      { "Langs",  FALSE, 0,			{ &ch->speaks,
+						  &ch->speaking,      NULL } },
       { "Pos",    FALSE, POS_STANDING, 		{ &ch->position,      NULL } },
       { "Prac",   FALSE, MAND,			{ &ch->practice,      NULL } },
       { "SavThr", FALSE, MAND,			{ &ch->saving_throw,  NULL } },
@@ -798,6 +806,31 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
         else if ( !str_cmp( word, "End" ) )
             break;
 
+        else if ( !str_cmp( word, "ActF" ) )
+	  {
+	      ch->act = fread_flag( fp, plr_flags );
+	  }
+
+        else if ( !str_cmp( word, "AffdBy" ) )
+	  {
+	      fread_vector( fp, ch->affected_by );
+	  }
+
+        else if ( !str_cmp( word, "AffectedBy" ) )
+	  {
+	      vcopy( ch->affected_by, fread_vect( fp, affect_flags, &status ) );
+	  }
+
+        else if ( !str_cmp( word, "Class" ) )
+	  {
+	      for ( i = 0; i < MAX_MULTICLASS; i++ )
+	      {
+		  temp_fread_string( fp, buf );
+
+		  ch->class[i] = class_lookup( buf );
+	      }
+	  }
+
         else if ( !str_cmp( word, "Room" ) )
 	  {
 	      ch->in_room = get_room_index( fread_number( fp, &status ) );
@@ -869,6 +902,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 		  continue;
 	      }
 
+	      alias->next            = ch->pcdata->alias_list;
 	      ch->pcdata->alias_list = alias;
 	  }
 
@@ -884,7 +918,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 		  continue;
 	      }
 
-	      if ( sn < 0 )
+	      if ( sn == -1 )
                   bug( "Fread_char: unknown skill.", 0 );
 	      else
                   ch->pcdata->learned[sn] = i;
@@ -917,7 +951,42 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 	      paf->duration       = fread_number( fp, &status );
 	      paf->modifier       = fread_number( fp, &status );
 	      paf->location       = fread_number( fp, &status );
-	      paf->bitvector      = fread_number( fp, &status );
+	      fread_vector( fp, paf->bitvector );
+	      paf->deleted        = FALSE;
+	      paf->next           = ch->affected;
+	      ch->affected        = paf;
+	  }
+
+	else if ( !str_cmp ( word, "Affect" ) )
+	  {
+
+	      int   status;
+	      char  buf1 [ MAX_STRING_LENGTH ];
+
+	      paf                 = new_affect();
+
+	      temp_fread_string( fp, buf1 );
+
+	      paf->type           = affect_lookup( buf1 );
+
+	      if ( paf->type < 0 )
+	      {
+		  paf->next	  = affect_free;
+		  affect_free	  = paf;
+
+		  sprintf( buf, "Fread_char: Error reading Affect %s.", buf1 );
+		  bug( buf, 0 );
+
+		  fread_to_eol( fp );
+		  continue;
+	      }
+
+	      paf->duration       = fread_number( fp, &status );
+	      paf->modifier       = fread_number( fp, &status );
+	      paf->location       = fread_flag( fp, apply_flags );
+
+	      vcopy( paf->bitvector, fread_vect( fp, affect_flags, &status ) );
+
 	      paf->deleted        = FALSE;
 	      paf->next           = ch->affected;
 	      ch->affected        = paf;
@@ -982,7 +1051,7 @@ void recover( FILE *fp, long fpos )
 
     fseek( fp, fpos, 0 );
 
-    while ( !feof (fp) )
+    while ( !feof ( fp ) )
     {
         fpos = ftell( fp );
 
@@ -990,6 +1059,7 @@ void recover( FILE *fp, long fpos )
             return;
 
         if ( !strncmp( buf, "#OBJECT", 7 ) ||
+	     !strncmp( buf, "#OBJ", 4 ) ||
              !strncmp( buf, "#END", 4 ) )
 	{
             fseek( fp, fpos, 0 );
@@ -998,7 +1068,7 @@ void recover( FILE *fp, long fpos )
     }
 }
 
-int fread_obj( CHAR_DATA *ch, FILE *fp )
+int envy_fread_obj( CHAR_DATA *ch, FILE *fp )
 {
     EXTRA_DESCR_DATA *ed;
     OBJ_DATA         obj;
@@ -1166,7 +1236,7 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
             if ( iValue < 0 || iValue > 3 )
                 bug( "Fread_obj: bad iValue %d.", iValue );
 
-            else if ( sn < 0 )
+            else if ( sn == -1 )
                 bug( "Fread_obj: unknown skill.", 0 );
 
             else
@@ -1204,7 +1274,7 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
 	    paf->duration   = fread_number( fp, &status );
 	    paf->modifier   = fread_number( fp, &status );
 	    paf->location   = fread_number( fp, &status );
-	    paf->bitvector  = fread_number( fp, &status );
+	    fread_vector( fp, paf->bitvector );
 
             paf->next = obj.affected;
             obj.affected = paf;
@@ -1283,7 +1353,7 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
     return TRUE;
 }
 
-int new_fread_obj( CHAR_DATA *ch, FILE *fp )
+int fread_obj( CHAR_DATA *ch, FILE *fp )
 {
     EXTRA_DESCR_DATA *ed;
     OBJ_DATA         obj;
@@ -1468,7 +1538,7 @@ int new_fread_obj( CHAR_DATA *ch, FILE *fp )
             if ( iValue < 0 || iValue > 4 )
                 bug( "Fread_obj: bad iValue %d.", iValue );
 
-            else if ( sn < 0 )
+            else if ( sn == -1 )
                 bug( "Fread_obj: unknown skill.", 0 );
 
             else
@@ -1506,7 +1576,8 @@ int new_fread_obj( CHAR_DATA *ch, FILE *fp )
 	    paf->duration   = fread_number( fp, &status );
 	    paf->modifier   = fread_number( fp, &status );
 	    paf->location   = fread_number( fp, &status );
-	    paf->bitvector  = fread_number( fp, &status );
+
+	    vcopy( paf->bitvector, fread_vect( fp, affect_flags, &status ) );
 
             paf->next = obj.affected;
             obj.affected = paf;

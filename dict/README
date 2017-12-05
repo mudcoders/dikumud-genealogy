@@ -1,0 +1,15 @@
+GreedMud Release 0.88a4 (NON PUBLIC INTERNAL RELEASE)
+Wednesday, 14th January 1997
+
+Zen             vasc@camoes.rnl.ist.utl.pt
+
+
+
+=== The dict directory
+
+This file gies a brief description of the files in the dict directory.
+
+LANG.LST	- Contains a list of all dictionaries to be loaded into the
+		server.  The dictionaries are loaded in top-down order.
+
+*.dic		- An individual dictionary file.

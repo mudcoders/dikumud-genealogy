@@ -3,673 +3,902 @@ Name        God Rooms~
 Author      Envy~
 Levels      51 54
 Security    1
-VNUMs       1200 1275
-Builders    None~
+VNUMs       1200 4475
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #1201
-gandalf cat animal~
-Gandalf the gray cat~
+Name        gandalf cat animal~
+Short       Gandalf the gray cat~
+Long
 A long haired gray cat looks expectantly at you, wanting to be petted and fed.
 ~
+Descr
 Gandalf is a trim and healthy cat for his age of nine. His long coat is a
 shiny gray. He's quite vocal, meowing at the slightest hint of attention.
 The looks you are getting from him is a "feed me, pet me, love me, but I 
 don't need you" sort of thing. Guess it's just a cat thing...
 ~
-65 60 400 S
-30 40 -200 10d8+10 3d6+20
-0 0
-0 Animal~ 1
+Act         stay_area~
+AffectBy    detect-evil detect-invis detect-magic detect-hidden~
+Alignment   400
+Level       30
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #1202
-pinto cat animal~
-Merlin the pinto cat~
+Name        pinto cat animal~
+Short       Merlin the pinto cat~
+Long
 A pinto cat eyes you for food before deciding to ignore you.
 ~
+Descr
 Merlin is a white and gray pinto spotted cat. He's quite arrogant, but in
 a cat, it's more cute than annoying. He sniffs the air around you, looking
 for food or perhaps affection. Just when you're about to bend down and pet
 him, he bounds off with a playful look in his eyes.
 ~
-65 60 400 S
-30 40 -200 10d8+10 3d6+20
-0 0
-0 Animal~ 1
+Act         stay_area~
+AffectBy    detect-evil detect-invis detect-magic detect-hidden~
+Alignment   400
+Level       30
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #1203
-scrappy dog stuffed~
-Scrappy~
+Name        scrappy dog stuffed~
+Short       Scrappy~
+Long
 It's Scrappy, Mephi's stuffed dog!
 ~
+Descr
 A present from his best-friend, Scrappy stands here, protecting his
 master's bed
 ~
-5 128 0 S
-1 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         scavenger~
+AffectBy    sanctuary~
+Alignment   0
+Level       1
+Gold        0
+Race        Object
+Sex         male~
+End
+
 #1204
-tobie bear stuffed~
-Tobie~
+Name        tobie bear stuffed~
+Short       Tobie~
+Long
 Tobie... Mephi's stuffed bear is here.
 ~
+Descr
 Another present from a best friend, Tobie stands here protecting his
 master's computer.
 ~
-5 128 0 S
-1 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         scavenger~
+AffectBy    sanctuary~
+Alignment   0
+Level       1
+Gold        0
+Race        Object
+Sex         male~
+End
+
 #1210
-granddad grandpa pa grand dad strickland strick man~
-Grandpa Strickland~
+Name        granddad grandpa pa grand dad strickland strick man~
+Short       Grandpa Strickland~
+Long
 Grandpa sits in a chair here.
 ~
+Descr
 This man may be old, but he is very wise in his age, and should not be messed
 with unless you want him to turn you over and give you a really good whipping.
 He is wearing blue overalls and a cap.
 ~
-129 40 1000 S
-80 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         wimpy~
+AffectBy    detect-invis detect-hidden~
+Alignment   1000
+Level       80
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #1211
-grandma ma woman~
-Grandma Strickland~
+Name        grandma ma woman~
+Short       Grandma Strickland~
+Long
 Grandma busily moves about the room.
 ~
+Descr
 Grandma has worked herself nearly to death because being idle has never
 seemed to suit her tastes.  She is wearing a Sunday dress which looks
 quite stunning, even for her.
 ~
-129 40 1000 S
-80 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         wimpy~
+AffectBy    detect-invis detect-hidden~
+Alignment   1000
+Level       80
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #1220
-dog snoopy~
-Snoopy~
+Name        dog snoopy~
+Short       Snoopy~
+Long
 Smoof's dog, Snoopy stands here staring at you.
 ~
+Descr
 Snoopy is a short dog with golden hair. He stands here staring 
 at you looking hungry. As you approach him he growls and barks 
 at you.
 ~
-7 65664 1000 S
-30 13 13 13d13+13 13d13+1
-13 0
-0 Animal~ 1
+Act         sentinel scavenger~
+AffectBy    sanctuary hide~
+Alignment   1000
+Level       30
+Gold        13
+Race        Animal
+Sex         male~
+Spec        spec_poison
+End
+
 #1221
-bird parakeet Angel~
-Angel~
+Name        bird parakeet Angel~
+Short       Angel~
+Long
 Smoof's bird, Angel sits on a swing chirping at you.
 ~
+Descr
 Angel is a parakeet. He is about 4 inches tall and is a 
 bluish-whitish color.
 ~
-7 65664 1000 S
-20 13 13 13d13+13 13d13+1
-13 0
-0 Animal~ 1
+Act         sentinel scavenger~
+AffectBy    sanctuary hide~
+Alignment   1000
+Level       20
+Gold        13
+Race        Animal
+Sex         male~
+Spec        spec_poison
+End
+
 #1222
-james brother~
-James~
+Name        james brother~
+Short       James~
+Long
 James, Smoof's brother stands here yelling at you.
 ~
+Descr
 James stands here staring at you. He is over 6 feet tall and 
 looks down at you. When you look at him, you have a sudden 
 urge to rip his brain out and eat his heart.
 ~
-7 1032 -1000 S
-35 13 13 13d13+13 13d13+13
-1000 0
-0 Human~ 0
+Act         sentinel scavenger~
+AffectBy    detect-invis curse~
+Alignment   -1000
+Level       35
+Gold        1000
+Race        Human
+Sex         neutral~
+Spec        spec_breath_any
+End
+
 #1223
-twilight guardian~
-the Guardian of Twilight~
+Name        twilight guardian~
+Short       the Guardian of Twilight~
+Long
 The Guardian of Twilight is here, guarding against Entropy.
 ~
+Descr
 The Guardian of Twilight is the apprentice of the Lord of the Morning. 
 He stays here, guarding vigilantly against the encroachment of Entropy,
 while his master is away.  He glowers at you, and asks : 'Do you walk 
 in the Shadow, or the Light?'.
 ~
-67 29909162 1000 S
-60 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying mute gills~
+Alignment   1000
+Level       60
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #1224
-robin hood robbie kitten cat~
-Robbie~
+Name        robin hood robbie kitten cat~
+Short       Robbie~
+Long
 Robbie the kitten is here, stretched out lazily on the bed.
 ~
+Descr
 Robbie (or Robin Hood) is a cute little tabby kitten.  He climbs to his
 feet as you enter, stretches casually, and curls up at your feet
 contentedly.  You can't help but smile down at him, and you feel a large
 temptation to just forget the world and just sleep on this comfortable
 bed with a faithful kitten beside you.
 ~
-67 25258 1000 S
-50 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 1
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis detect-hidden sanctuary infrared protect-evil~
+Alignment   1000
+Level       50
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #1230
-Tara black cat~
-Tara the black cat~
+Name        Tara black cat~
+Short       Tara the black cat~
+Long
 A large black cat is curled up in a ball here.
 ~
+Descr
 Tara looks at you cautiously.  She purrs loudly and pays no attention to you.
 For some reason you think that you best not taunt this happy cat.
 ~
-71 700 1000 S
-30 20 20 1d1+4 8d8+15
-0 0
-0 Animal~ 2
+Act         sentinel scavenger stay_area~
+AffectBy    detect-evil detect-invis detect-magic detect-hidden sanctuary infrared~
+Alignment   1000
+Level       30
+Gold        0
+Race        Animal
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #1231
-Rex armadilio~
-Rex the armadilio~
+Name        Rex armadilio~
+Short       Rex the armadilio~
+Long
 A ferocious looking armadilio sits on his haunches glaring at you.
 ~
+Descr
 Rex snarls and seems to not like your presence in his master's chambers.
 I'd not provoke him if I was you...
 ~
-71 700 1000 S
-35 20 20 1d1+5 8d9+20
-0 0
-0 Animal~ 1
+Act         sentinel scavenger stay_area~
+AffectBy    detect-evil detect-invis detect-magic detect-hidden sanctuary infrared~
+Alignment   1000
+Level       35
+Gold        0
+Race        Animal
+Sex         male~
+Spec        spec_poison
+End
+
 #1232
-Lady Jessica Quechard~
-Lady Jessica Quechard~
+Name        Lady Jessica Quechard~
+Short       Lady Jessica Quechard~
+Long
 Lady Jessica Quechard sits here patiently awaiting her husband's return.
 ~
+Descr
 Lady Jessica is dressed in the finest emerald silk gown.  Her soft delicate
 features show compassion and love.  Her deep green eyes convey experience and
 strength.  Your heart skips a beat as you gaze upon the wife of Lord Wyrmclaw.
 ~
-65 8320 1000 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         stay_area~
+AffectBy    sanctuary protect-evil~
+Alignment   1000
+Level       25
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #1200
-bed~
-a large bed~
+Name        bed~
+Short       a large bed~
+Descr
 A fluffy bed with a white comforter and bedspread is here.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-1000 0 0
-E
-bed~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1000
+Cost        0
+ExtraDescr  bed~
 A big queen size bed stands in the room. It looks very comfortable to
 relax and rest on.
 ~
+End
+
 #1201
-bed mattress boxspring full twin~
-a boxspring & mattress bed~
+Name        bed mattress boxspring full twin~
+Short       a boxspring & mattress bed~
+Descr
 A bed, just a boxspring and mattress really, rests in the far corner.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-1000 0 0
-E
-boxspring~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1000
+Cost        0
+ExtraDescr  boxspring~
 The boxspring is just sitting on the floor, so the whole bed is at a 
 comfortable distance to the ground, no danger of falling and hurting
 yourself here eh?
 ~
-E
-mattress~
+ExtraDescr  mattress~
 It's soft, but not too soft, and it's just big enough for two, but not too
 big for just one, so there is no lonely empty half...
 ~
-E
-bed~
+ExtraDescr  bed~
 It sure looks comfortable, as a matter of fact, you might just take a nap...
 ~
+End
+
 #1202
-stereo hi fi cd player tuner tape deck~
-a stereo~
+Name        stereo hi fi cd player tuner tape deck~
+Short       a stereo~
+Descr
 A stereo spins through punk, industrial, and a few other random discs.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-1000 0 0
-E
-fm tuner receiver~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1000
+Cost        0
+ExtraDescr  fm tuner receiver~
 Tuned to the World Famous 106.7 FM KROQ Los Angeles...
 ~
-E
-amp~
+ExtraDescr  amp~
 Betcha this thing gets *real* loud...
 ~
-E
-equalizer~
+ExtraDescr  equalizer~
 Hmm, spiffy, but I wouldn't mess it up if I were you...
 ~
-E
-dual cassette~
+ExtraDescr  dual cassette~
 You know, there are a few really cool tapes which never made it to compact
 discs. Besides, this way, you can dub all those cool CDs!  ;)
 ~
-E
-500 disc changer cd~
+ExtraDescr  500 disc changer cd~
 Wow! This thing could play for days without repeating a single song!
 ~
-E
-stereo~
+ExtraDescr  stereo~
 It's your standard 500 disc changer, dual cassette, 7 band graphic equalizer,
 300 watt amp, FM stereo with surround sound, and why the hell not? I wrote
 the damn thing, it _should_ be bad ass  ;)
 ~
+End
+
 #1203
-computer CPU mac macintosh quadra av 990 990/av~
-a Macintosh Quadra 990/AV~
+Name        computer CPU mac macintosh quadra av 990 990/av~
+Short       a Macintosh Quadra 990/AV~
+Descr
 A Huge Macintosh Quadra 990/AV with all the neat-o stuff sits in a corner.~
-~
-12 0 0
-0~ 0~ 0~ 0~ 0~
-1000 0 0
-E
-screen saver~
+Type        furniture~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1000
+Cost        0
+ExtraDescr  screen saver~
 Ahh, it's the USCreen Saver (tm). It shifts through old photos and bits of
 school history. FIGHT ON FOR OLD SC!
 ~
-E
-modem~
+ExtraDescr  modem~
 58.8K baud fax/modem wired into it's own dedicated phone line, so it doesn't
 interfere with incoming calls. Neat-o.
 ~
-E
-cd-rom drive~
+ExtraDescr  cd-rom drive~
 It's a x3 speed CD-ROM drive for the Mac. It's hooked into the SCSI chain at
 the back of the Macintosh.
 ~
-E
-speakers~
+ExtraDescr  speakers~
 Pretty loud for as small as they are... hmmm
 ~
-E
-camcorder~
+ExtraDescr  camcorder~
 It's a little palm-held 8mm tape camcorder. It has RCA cables leading from it
 to the back of the Macintosh.
 ~
-E
-color display~
+ExtraDescr  color display~
 Boy this screen is *huge* 54 inches! On the swivel base there is an adb port,
 a sound input port, and a stereo sound output port. On the bottom of the
 screen are contrast, brightness, and power buttons.
 ~
-E
-computer CPU mac macintosh quadra av 990 990/av~
+ExtraDescr  computer CPU mac macintosh quadra av 990 990/av~
 Big 56" millions of color display, a camcorder plugged into the back, 
 multi-media stereo speakers, CD-ROM Drive, fat hard drive, tons of
 RAM & Software, a real fast modem, and of course a COOL Screen Saver.
 ~
+End
+
 #1204
-kenwood big boomer~
-kenwood Stereo Unit~
+Name        kenwood big boomer~
+Short       kenwood Stereo Unit~
+Descr
 It's a beautiful Kenwood system complete with surround sound...~
-~
-15 2 8192
-5~ 1~ 6~ 11~ 0~
-5 0 0
+Type        container~
+Extra       hum~
+Wear        wield~
+Values      5~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+End
+
 #1205
-computer~
-mephi's computer~
+Name        computer~
+Short       mephi's computer~
+Descr
 Mephi's pride and joy (& only contact with the world)~
-~
-12 3 8193
-0~ 1~ 6~ 11~ 0~
-5 0 0
+Type        furniture~
+Extra       glow hum~
+Wear        take wield~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+End
+
 #1206
-Tag~
-a Gund Tag~
+Name        Tag~
+Short       a Gund Tag~
+Descr
 Tobie's GUND tag lays here, waiting to be worn~
-~
-9 64 5
-0~ 1~ 6~ 11~ 0~
-5 0 0
-A
-1 0 0
-A
-19 10 0
-A
-18 5 0
+Type        armor~
+Extra       magic~
+Wear        take neck~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+Affect      strength~ 0 ~
+Affect      damroll~ 10 ~
+Affect      hitroll~ 5 ~
+End
+
 #1207
-Toilet~
-a Toilet~
+Name        Toilet~
+Short       a Toilet~
+Descr
 It's spiffy clean, and it had better stay that way!~
-~
-25 2 8193
-0~ 1~ 6~ 11~ 0~
-5 0 0
+Type        fountain~
+Extra       hum~
+Wear        take wield~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+End
+
 #1208
-Shoes~
-a worn pair of Nike shoes~
+Name        Shoes~
+Short       a worn pair of Nike shoes~
+Descr
 Oh the stench of these overworn and grungy basketball shoes that 
 Mephi wears everyday.~
-~
-9 0 65
-0~ 1~ 6~ 11~ 0~
-5 0 0
+Type        armor~
+Extra       ~
+Wear        take feet~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+End
+
 #1209
-Rush shirt~
-an AKPsi Rush T-shirt~
+Name        Rush shirt~
+Short       an AKPsi Rush T-shirt~
+Descr
 Overwhelmed with a plethora of AKPsi t-shirts, Mephi's comfy rush
 shirt lies here.~
-~
-9 0 1025
-0~ 1~ 6~ 11~ 0~
-5 0 0
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+End
+
 #1210
-cap~
-a Farm Bureau cap~
+Name        cap~
+Short       a Farm Bureau cap~
+Descr
 A cap worn with use is lying here discarded.~
-~
-9 0 17
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #1211
-overalls jeans~
-a pair of overalls~
+Name        overalls jeans~
+Short       a pair of overalls~
+Descr
 An enormous pair of blue overalls are piled on the floor.~
-~
-9 0 9
-0~ 0~ 0~ 0~ 0~
-15 0 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        0
+End
+
 #1212
-dress~
-a Sunday dress~
+Name        dress~
+Short       a Sunday dress~
+Descr
 A dress of plain, but pretty fashion is hanging on a hook.~
-~
-9 0 9
-0~ 0~ 0~ 0~ 0~
-10 0 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+End
+
 #1213
-log~
-a partially burnt log~
+Name        log~
+Short       a partially burnt log~
+Descr
 A piece of wood lies here glowing with heat.~
-~
-12 0 1
-0~ 0~ 0~ 0~ 0~
-70 0 0
+Type        furniture~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      70
+Cost        0
+End
+
 #1214
-heater~
-a heater~
+Name        heater~
+Short       a heater~
+Descr
 A sturdy iron heater warms the room.~
-~
-15 4096 0
-1000~ 1~ 0~ 0~ 0~
-500 0 0
-E
-heater iron~
+Type        container~
+Extra       noremove~
+Wear        ~
+Values      1000~ 1~ 0~ 0~ 0~
+Weight      500
+Cost        0
+ExtraDescr  heater iron~
 The heater is made of very sturdy iron.  It is about two thirds of a meter 
 high and one meter in length and stands on short legs which raise it above
 the floor a safe distance.  A small door on the front of heater allows one to 
 put more wood in it during a cold spell.
 ~
+End
+
 #1215
-frig fridge refrigerator~
-a refrigerator~
+Name        frig fridge refrigerator~
+Short       a refrigerator~
+Descr
 A large white refrigerator stands against the wall.~
-~
-15 4096 0
-10000~ 1~ 0~ 0~ 0~
-500 0 0
+Type        container~
+Extra       noremove~
+Wear        ~
+Values      10000~ 1~ 0~ 0~ 0~
+Weight      500
+Cost        0
+End
+
 #1216
-can coke~
-a can of Coke~
+Name        can coke~
+Short       a can of Coke~
+Descr
 A can of Coke has been left out.~
-~
-17 0 1
-15~ 15~ 15~ 0~ 0~
-2 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      15~ 15~ 15~ 0~ 0~
+Weight      2
+Cost        0
+End
+
 #1217
-pie pecan~
-a pecan pie~
+Name        pie pecan~
+Short       a pecan pie~
+Descr
 A small dessert made of pecans is here.~
-~
-19 0 1
-4~ 0~ 0~ 0~ 0~
-4 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        0
+End
+
 #1220
-collar~
-a collar~
+Name        collar~
+Short       a collar~
+Descr
 Snoopy's collar lies here.~
-~
-9 1024 5
-0~ 0~ 0~ 0~ 0~
-1 9561 0
-A
-2 1 0
-A
-8 47 0
+Type        armor~
+Extra       anti-evil~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        9561
+Affect      dexterity~ 1 ~
+Affect      level~ 47 ~
+End
+
 #1221
-leg band~
-a leg band~
+Name        leg band~
+Short       a leg band~
+Descr
 Angel's leg band lies here.~
-~
-9 1 33
-0~ 0~ 0~ 0~ 0~
-10 3457 0
-A
-3 2 0
+Type        armor~
+Extra       glow~
+Wear        take legs~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        3457
+Affect      intelligence~ 2 ~
+End
+
 #1222
-keyboard board key~
-keyboard~
+Name        keyboard board key~
+Short       keyboard~
+Descr
 James' keyboard lies here.~
-~
-9 513 16385
-0~ 0~ 0~ 0~ 0~
-10 0 0
-A
-5 3 0
-A
-6 1 0
+Type        armor~
+Extra       glow anti-good~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+Affect      constitution~ 3 ~
+Affect      sex~ 1 ~
+End
+
 #1223
-throne sapphire~
-the Sapphire Throne~
+Name        throne sapphire~
+Short       the Sapphire Throne~
+Descr
 The Sapphire Throne is here, gleaming in the light of Horizon.~
-~
-12 1 0
-0~ 1~ 6~ 11~ 0~
-5 0 0
-E
-throne sapphire~
+Type        furniture~
+Extra       glow~
+Wear        ~
+Values      0~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+ExtraDescr  throne sapphire~
 The Sapphire Throne is the only object marring the desolate perfectness
 of Horizon.  It is constructed if pure sapphire, and gleams softly in the
 lonely light of this strange and wondrous place.~
+End
+
 #1224
-sapphire sword~
-the Sapphire Sword~
+Name        sapphire sword~
+Short       the Sapphire Sword~
+Descr
 There is a gleaming sword here, made of brilliant sapphire.~
-~
-5 1 8193
-0~ 20~ 35~ 3~ 0~
-5 0 0
-A
-14 100 0
-A
-13 100 0
-A
-12 100 0
-E
-sapphire sword~
+Type        weapon~
+Extra       glow~
+Wear        take wield~
+Values      0~ 20~ 35~ 3~ 0~
+Weight      5
+Cost        0
+Affect      move~ 100 ~
+Affect      hp~ 100 ~
+Affect      mana~ 100 ~
+ExtraDescr  sapphire sword~
 This is the symbol of the Guardian of Twilight.  It looks sharp.~
+End
+
 #1225
-cloak swirling blue~
-a swirling, dark blue cloak~
+Name        cloak swirling blue~
+Short       a swirling, dark blue cloak~
+Descr
 There is a swirling, blue cloak lying here.~
-~
-9 64 5
-20~ 1~ 6~ 11~ 0~
-5 0 0
-A
-17 -20 0
-E
-blue cloak~
+Type        armor~
+Extra       magic~
+Wear        take neck~
+Values      20~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+Affect      ac~ -20 ~
+ExtraDescr  blue cloak~
 Looking closely, you can see stars depicted on the dark blue cloth.~
+End
+
 #1226
-pillow fluffy blue~
-a big, blue, fluffy PILLOW!~
+Name        pillow fluffy blue~
+Short       a big, blue, fluffy PILLOW!~
+Descr
 There is a big, blue, fluffy pillow here.~
-~
-3 0 16385
-50~ 10~ 10~  ~ 0~
-5 0 0
-A
-17 -5 0
-E
-pillow big blue fluffy~
+Type        wand~
+Extra       ~
+Wear        take hold~
+Values      50~ 10~ 10~  ~ 0~
+Weight      5
+Cost        0
+Affect      ac~ -5 ~
+ExtraDescr  pillow big blue fluffy~
 Its big and blue and scary.  But its a friendly pillow too!  PILLOW FIGHT!!!!~
+End
+
 #1227
-pillow big red fluffy~
-a big, red, fluffy PILLOW!~
+Name        pillow big red fluffy~
+Short       a big, red, fluffy PILLOW!~
+Descr
 There is a big, red, fluffy pillow here.~
-~
-3 0 16385
-50~ 10~ 10~  ~ 0~
-5 0 0
-A
-17 -5 0
-E
-red fluffy pillow big~
+Type        wand~
+Extra       ~
+Wear        take hold~
+Values      50~ 10~ 10~  ~ 0~
+Weight      5
+Cost        0
+Affect      ac~ -5 ~
+ExtraDescr  red fluffy pillow big~
 OH NO!  ITS A BIG FLUFFY PILLOW!!!~
+End
+
 #1228
-blanket warm cozy green~
-a warm blanket~
+Name        blanket warm cozy green~
+Short       a warm blanket~
+Descr
 There is a warm, cozy-looking blanket here.~
-~
-9 0 1025
-10~ 1~ 6~ 11~ 0~
-5 0 0
-A
-17 -5 0
-E
-cozy warm blanket~
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      10~ 1~ 6~ 11~ 0~
+Weight      5
+Cost        0
+Affect      ac~ -5 ~
+ExtraDescr  cozy warm blanket~
 It looks very comfortable.  I wonder if its almost bedtime?  Heck with it.
 Time for a nap.~
+End
+
 #1230
-collar diamond~
-a sparkling diamond collar~
+Name        collar diamond~
+Short       a sparkling diamond collar~
+Descr
 A sparkling diamond collar lies here abandoned.~
-~
-9 66 5
-0~ 0~ 0~ 0~ 0~
-1 5000 0
-A
-19 2 0
-A
-12 10 0
+Type        armor~
+Extra       hum magic~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        5000
+Affect      damroll~ 2 ~
+Affect      mana~ 10 ~
+End
+
 #1231
-fountain~
-a sparkling clear fountain~
+Name        fountain~
+Short       a sparkling clear fountain~
+Descr
 A sparkling clear fountain silently bubbles here.~
-~
-25 3 0
-50~ 50~ 0~ 0~ 0~
-50000 0 0
+Type        fountain~
+Extra       glow hum~
+Wear        ~
+Values      50~ 50~ 0~ 0~ 0~
+Weight      50000
+Cost        0
+End
+
 #1232
-Crystal Rose~
-a Crystal Rose~
+Name        Crystal Rose~
+Short       a Crystal Rose~
+Descr
 The Crystal Rose lies here quietly waiting to be picked up.~
-~
-1 257 16385
-0~ 0~ -1~ 0~ 0~
-5 0 0
-A
-12 5 0
-A
-3 1 0
+Type        light~
+Extra       glow bless~
+Wear        take hold~
+Values      0~ 0~ -1~ 0~ 0~
+Weight      5
+Cost        0
+Affect      mana~ 5 ~
+Affect      intelligence~ 1 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #1200
-The Chat Room~
+Name        The Chat Room~
+Descr
 You are lounging in a quiet cozy parlor, warmed by a gentle magical fire      
 which twinkles happily in a warm fireplace.  There are no doors out.  Clearly  
 the owner of this room needs none.                                             
 ~
-0 524 0
-S
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+End
+
 #1201
-The HotTub~
+Name        The HotTub~
+Descr
 The warmth and relaxation of a soothing hot bath greet your aching body
 as you lie in a most luxious tub. Around you are all the necessities of 
 life; a TV, a radio, your favorite book, and pictures of your loved ones.
 Steam rises from the tub escaping into the sky above.  Stars twinkle as
 they shine upon you providing a soft white light.
 ~
-0 524 0
-S
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+End
+
 #1202
-A Small Clearing~
+Name        A Small Clearing~
+Descr
 Warm sunshine and the smell of the forest greet your senses. In the middle
 of a small clearing stands a little white church with a raised steeple on
 the roof and a heavy wooden door in front.  The grounds are well kept and
 chairs and benches are neatly arranged with an aisle inbetween.  You are
 amazed at the tranquility of this wedding day.
 ~
-0 12 0
-S
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+End
+
 #1203
-Ben's Room~
+Name        Ben's Room~
+Descr
 Well, you've done it now, gotten a glipse of the reality behind the mud.
 Somehow you've ended up in a room with a HUGE NIN Banner, a T2 poster,
 a stolen streetsign saying "SIDEWALK CLOSED, USE STREET," an Arkham 
 Asylum poster, a Jyhad poster, two out of control plants, and of course,
 equal parts of clothes and books, scattered on the floor.
 ~
-0 2572 0
-E
-books~
+Flags       indoors private solitary~
+Sector      inside~
+Regen       100 100
+ExtraDescr  books~
 Books are the food for the soul, or at least who ever left all of em all
 over the floor thought so...
 ~
-E
-clothes~
+ExtraDescr  clothes~
 Hmmm, dirty, clean, wrinkled, who can tell?
 ~
-E
-plants plant~
+ExtraDescr  plants plant~
 Geez! these plants are taking over the whole room!
 ~
-E
-jyhad~
+ExtraDescr  jyhad~
 Jyhad: The Eternal Struggle, by Wizards of the Coast and White Wolf Studios
 ~
-E
-batman arkham asylum~
+ExtraDescr  batman arkham asylum~
 Damn this is some cool art, ol' long ears against his ultimate foe: the Joker
 A Serious Place on Serious Earth...
 ~
-E
-t2 terminator 2 arnold~
+ExtraDescr  t2 terminator 2 arnold~
 It's Arnold, and he says "I'M BACK!" with the bad harley, shot-gun toting look
 ~
-E
-poster~
+ExtraDescr  poster~
 Which One? There are three you know...
 ~
-E
-sign~
+ExtraDescr  sign~
 "SIDEWALK CLOSED, USE STREET" boy, that's your tax dollars at work there...
 ~
-E
-nin banner~
+ExtraDescr  nin banner~
 Trent & Crew, hanging out against a wrought iron fence.
 ~
-S
+Reset       M 1201 1 100
+Reset       M 1202 1 100
+Reset       O 1201 0 100
+Reset       O 1202 0 100
+Reset       O 1203 0 100
+End
+
 #1204
-Mephisto's Pad~
+Name        Mephisto's Pad~
+Descr
 Disseminating through the air is the stench of too many woks of fried rice
 and chow mein. Maybe some day, you will be able to taste the delights of
 Master Chef Mephi. In this awe-inspiring apartment, you find yourself amazed
@@ -678,27 +907,41 @@ the middle of the room is a hand-me-down sofa-bed from Mephi's older sister,
 Rochelle. Have a seat, turn on the radio, flip on the T.V., and just relax...
 you'll have to wait a while before Mephi gets back!
 ~
-0 4 0
-D4
+Flags       no_mob~
+Sector      inside~
+Regen       100 100
+Reset       M 1203 1 100
+Reset       E 1209 12 100
+Reset       E 1208 8 100
+Reset       M 1204 1 100
+Reset       E 1206 3 100
+Reset       O 1204 0 100
+Reset       O 1205 0 100
+Door        up~ door~ -1 1205
 ~
 ~
-1 -1 1205
-S
+End
+
 #1205
-The Bathroom~
+Name        The Bathroom~
+Descr
 Caught up in the excitement of seeing Mephi's Pad, you must relieve yourself
 in his illustrious bathroom. A dissheveled heap of cologne, toothpaste, and
 other wares fills the countertop. But at least you can see the toilet. You
 had better remember to put the seat back down when you're done.
 ~
-0 0 0
-D5
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       O 1207 0 100
+Door        down~ door~ -1 1204
 ~
 ~
-1 -1 1204
-S
+End
+
 #1210
-The Porch~
+Name        The Porch~
+Descr
 A gentle breeze stirs the air with the smell of fresh dew on the grass.  It
 is late at night and various insects can be heard buzzing and chirping, but 
 a small light allows you to see the details of this place.  You are on a 
@@ -707,42 +950,40 @@ and enjoy nature during the peak of Summer.  A swing gently sways in the
 breeze.  Rose bushes can be seen through the screen wire stretched between 
 boards which form window-like squares on three sides of the room.
 ~
-0 520 0
-E
-arm name writing~
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+ExtraDescr  arm name writing~
 Area for Immortals of EnvyMUD written by Picard
 ~
-E
-swing~
+ExtraDescr  swing~
 This is a swing suspended from the ceiling by two hooks and a pair of chains.
 On the arm of the swing you see someone has carved a name.  As the swing 
 rocks, the steady creak of the chains can be heard.
 ~
-E
-rose bushes bush flower~
+ExtraDescr  rose bushes bush flower~
 These flowers provide a pleasant scent as one sits on the porch, and their
 color resembles that of dark red as they sway with the breeze in partial
 shadow.
 ~
-E
-light~
+ExtraDescr  light~
 It is a small light bulb without a cover fastened to the south wall of the
 porch.  A few insects circle and are occasionally caught in a spider's
 web and promptly feasted upon.
 ~
-D2
+Door        south~ door closed~ 0 1211
 You see a solid wooden door leading into the house.
 ~
 door wooden~
-3 0 1211
-D4
+Door        up~ door closed~ 0 1213
 You see a small concealed door leading up.
 ~
 door~
-3 0 1213
-S
+End
+
 #1211
-The Living Room~
+Name        The Living Room~
+Descr
 This room is fairly small, but very comfortable.  In the middle of the east
 wall an iron wood heater juts out into the room.  On each side of it there is
 a chair, and a couch is in front of it on the west wall.  A television is
@@ -750,75 +991,89 @@ against the south wall.  You can smell the strong scent of food being
 prepared in the kitchen which lies through the door on the southern half of
 the west wall.
 ~
-0 8 0
-E
-television tv~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  television tv~
 Looking at the television, you see a basketball game is playing pitting
 rivals UNC, the University of North Carolina, and NCSU, North Carolina State
 University. They have just shown a score, and it appears NCSU is winning 
 the game!
 ~
-E
-couch~
+ExtraDescr  couch~
 The couch is long enough to accommodate even fairly large men should they 
 decide to lay down for an afternoon's nap.
 ~
-E
-chair chairs~
+ExtraDescr  chair chairs~
 Each chair is comfortable, but certainly not posh, and neither matches
 the other, but both fit nicely into their setting.
 ~
-D0
+Reset       O 1214 0 100
+Reset       P 1213 1214 100
+Reset       M 1210 1 100
+Reset       E 1210 6 100
+Reset       E 1211 5 100
+Door        north~ door closed~ 0 1210
 You see a solid wooden door leading onto the porch.
 ~
 door wooden~
-3 0 1210
-D3
+Door        west~ ~ 0 1212
 You see the entrance to the kitchen.
 ~
 ~
-0 0 1212
-S
+End
+
 #1212
-The Kitchen~
+Name        The Kitchen~
+Descr
 This room is fairly large, though the round table against the east wall 
 tends to take up quite a bit of space.  Against the southern wall there
 is a stove and oven while on the west wall there is window just above
 the sink and counter top. 
 ~
-0 8 0
-E
-stove oven~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  stove oven~
 It is sort of an older model, but still it works quite well in preparing
 food.
 ~
-E
-table~
+ExtraDescr  table~
 A round wooden table able to seat maybe 6 people at a time.
 ~
-D1
+Reset       O 1215 0 100
+Reset       P 1216 1215 100
+Reset       P 1217 1215 100
+Reset       M 1211 1 100
+Reset       E 1212 5 100
+Door        east~ ~ 0 1211
 You can see the living room.
 ~
 ~
-0 0 1211
-S
+End
+
 #1213
-Picard's Hideaway~
+Name        Picard's Hideaway~
+Descr
 Here is where Picard goes to get away from it all when the rest of the
 world seems to have gone berserk. A fluffy queen size bed rests near the
 middle of the room with it's back to the wall. A table on one side
 of the bed holds a small lamp, and a telephone. The lamp provides a 
 soft warm glow in the room.
 ~
-0 520 0
-D5
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Reset       O 1200 0 100
+Door        down~ door closed~ 0 1210
 A small door leads down.
 ~
 door~
-3 0 1210
-S
+End
+
 #1215
-Katrina's Playpen~
+Name        Katrina's Playpen~
+Descr
 This is a cylindrical room, about 20 feet across and 10 feet high.  The
 floor, the walls, even the ceiling are covered in a very soft, tan
 carpeting.  Woven into the carpeting on the walls are murals depicting
@@ -827,47 +1082,55 @@ bubbling merrily, and directly opposite it is a circular depression filled
 with colorful, bouncy pillows.  The room is lit by a warm glow that doesn't
 seem to have a source.  There is a small alcove to the west.
 ~
-0 8204 0
-E
-jacuzzi~
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+ExtraDescr  jacuzzi~
 The merrily bubbling jacuzzi looks warm and wonderful.
 ~
-D3
+Door        west~ ~ 0 1216
 It's a small alcove.  Big surprise. :)
 ~
 ~
-0 0 1216
-S
+End
+
 #1216
-An Alcove~
+Name        An Alcove~
+Descr
 This is a small alcove leading off from Katrina's Playpen.  You can see the
 happy atmosphere of the playpen back to the east, and a glowing circle of
 light on the ceiling.
 ~
-0 8204 0
-D1
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 1215
 The Playpen is back to the east.
 ~
 ~
-0 0 1215
-D4
+Door        up~ ~ 0 3001
 The circle of light pulses eerily.
 ~
 ~
-0 0 3001
-S
+End
+
 #1217
-The Abyss~
+Name        The Abyss~
+Descr
 You are deafened by the screams of the insane tortured souls who are utterly
 condemned to suffer eternally due to their displeasing of the Gods.  Chaos is
 the only predictable feature in the Abyss.  You hope and pray that you can
 escape this nightmare.  You look frantically for an exit and find....
 THERE ARE NONE! YOU ARE UTTERLY DAMNED!
 ~
-0 8716 0
-S
+Flags       indoors private no_recall~
+Sector      inside~
+Regen       100 100
+End
+
 #1220
-Smoof's bedroom~
+Name        Smoof's bedroom~
+Descr
 This is a large room with two beds in it. You see Snoopy, 
 Smoof's dog, standing on the bed staring at you. Smoof's bird, 
 Angel, is chirping at you. You see his Pentium 75 Mhz sitting 
@@ -876,45 +1139,59 @@ corner.
 
 You can leave north through the door into the bathroom.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1220 1 100
+Reset       E 1220 3 100
+Reset       M 1221 1 100
+Reset       E 1221 7 100
+Door        north~ door closed~ -1 1221
 This door looks like it leads to the bathroom.
 ~
 door~
-3 -1 1221
-D1
+Door        east~ door~ -1 1222
 This door looks like it leads to another bedroom.
 ~
 door~
-1 -1 1222
-S
+End
+
 #1221
-Smoof's bathroom~
+Name        Smoof's bathroom~
+Descr
 This is a somewhat small room with a sink in it and tiled 
 floor.
 ~
-0 520 0
-D2
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Door        south~ door closed~ -1 1220
 A door leads to the bedroom.
 ~
 door~
-3 -1 1220
-S
+End
+
 #1222
-James' bedroom~
+Name        James' bedroom~
+Descr
 This is the ugliest place you've ever seen in your life. 
 Half eaten food is everywhere, you see James sitting on a 
 chair at his computer.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1222 1 100
+Reset       E 1222 17 100
+Door        west~ door~ -1 1220
 A door leads back to Smoof's room.
 ~
 door~
-1 -1 1220
-S
+End
+
 #1223
-Horizon~
+Name        Horizon~
+Descr
 White clouds speed past, in the air above, and a wind is constantly
 blowing.  The endless sky stretches into infinity, with nothing marking
 the dark plain below it except a lone, solitary throne that mars its
@@ -923,14 +1200,21 @@ as you gaze into the forever sunset; the pale orb sits, unmoving,  a
 finger's width above the west horizon - and you get the impression that
 time itself has slowed to a stop.
 ~
-0 8 9
-D5
+Flags       indoors~
+Sector      air~
+Regen       100 100
+Reset       O 1223 0 100
+Reset       M 1223 1 100
+Reset       E 1225 3 100
+Reset       E 1224 16 100
+Door        down~ door closed pickproof~ -1 1224
 ~
 ~
-35 -1 1224
-S
+End
+
 #1224
-The Hideout~
+Name        The Hideout~
+Descr
 You are in a small, circular room.  There is no floor, only a 
 wall-to-wall bed that feels VERY comfortable.  Pillows are scattered
 around on the bed in varying sizes and shapes; for pillow fights,
@@ -941,9 +1225,10 @@ There is a control panel attached to the ceiling, and an exit
 hatchway up there too.
    What a hideout!
 ~
-0 520 0
-E
-control panel controls ~
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+ExtraDescr  control panel controls ~
 This is the controller of everything that this room can do.  There are
 rows of buttons for you to push!  Whee!  Some of the buttons you pick
 out immediately are labeled : view of central square, slay character,
@@ -955,20 +1240,17 @@ devoted to the running of quests (with such commands as, execute quest,
 load quest item, etc....) and the distribution of justice.  You 
 accidentally push the 'self destruct' button... 
 tick.  tick.  tick.  tick.  UH OH. ~
-E
-adventurers list people~
+ExtraDescr  adventurers list people~
 There are a lot of adventurers in the world right now, but each has his
 updated stats and eq listed on this viewscreen.  Aren't they lucky.  You
 pick out your own and gasp when you realize that you have something you
 didn't know you had!~
-E
-readout shopkeepers purchases sells~
+ExtraDescr  readout shopkeepers purchases sells~
 Apparently the weaponsmith just sold a Sun Sword, and bought a standard
 issue mace in the last 5 minutes.  The armourer apparently hasn't had
 any business recently.  Igor in New Thalos hasn't has a new buy in
 several days, and Elvira isn't MAKING ANY PROFIT!~
-E
-screen wall view display viewscreen~
+ExtraDescr  screen wall view display viewscreen~
 Right now there are several different images on the screen : One is of
 the temple altar, where people are sleeping and putting things in the
 pit (boring)...  An other shows a sleeping dragon, and a foolish
@@ -982,21 +1264,22 @@ idly...  Near the top of the screen is a computer readout listing the
 purchases/sells of various shopkeepers, and a perpetually updating list
 of adventurers now present in the world.  You wonder how to change the
 pretty pictures...  ~
-E
-bed floor~
+ExtraDescr  bed floor~
 BOING!  Wheeeee!  The bed is so comfortable, and its great for jumping
 up and down on!  Can't wait to have a pillow fight on it!  It must be
 fun sleeping here.
 :)
 ~
-D4
+Reset       M 1224 1 100
+Door        up~ door closed pickproof~ -1 1223
 A secure hatchway that reminds you of an airlock door in a submarine,
 or from one of those sci-fi movies!  AUGH!  ~
 hatchway up~
-35 -1 1223
-S
+End
+
 #1230
-Alexander's private enclave~
+Name        Alexander's private enclave~
+Descr
 You are standing in a large room, the top of a tower or castle keep you'd
 assume.  However, you know not how you got here, other then that you must
 have had an appointment or a reason to speak to lord Alexander.  There are
@@ -1004,35 +1287,43 @@ luxurious chairs surrounding a huge fireplace, be careful not to upset Tara
 the wonder cat.  There is a doorway leading south into the private sleeping
 chambers, and to the west lies a laboratory of sorts.
 ~
-0 8200 0
-D2
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 1230 1 100
+Reset       E 1230 3 100
+Reset       O 1231 0 100
+Door        south~ ~ -1 1231
 Through the archway lies the bedroom of lord Alexander.
 ~
 ~
-0 -1 1231
-D3
+Door        west~ ~ -1 1232
 You see the laboratory.
 ~
 ~
-0 -1 1232
-S
+End
+
 #1231
-Alexander's sleeping chamber~
+Name        Alexander's sleeping chamber~
+Descr
 You see before you a small bed, neatly made, so neat in fact, it looks as
 if it hasn't been slept in recently.  Near the bed is a large shelf full of
 books of all sorts.  Dusty tomes line the walls, glowing softly as the eerie
 firelight dances among the shadows.
 The only exit leads back to the main chamber.
 ~
-0 8200 0
-D0
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 1230
 Through the archway you see the main chamber.
 ~
 ~
-0 -1 1230
-S
+End
+
 #1232
-Alexander's laboratory~
+Name        Alexander's laboratory~
+Descr
 You are standing in a large lab, lining the walls are large vats and
 various bottles of reagents.  In the center of the room is a large marble
 table.  The table currently houses various tomes and beakers.  It appears
@@ -1040,15 +1331,19 @@ that our Lord is experimenting with some sort of matter.  I wouldn't touch
 it if I was you...
 The only exit is back to the east.
 ~
-0 8200 0
-D1
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 1231 1 100
+Door        east~ ~ -1 1230
 Therein, is the main chamber.
 ~
 ~
-0 -1 1230
-S
+End
+
 #1233
-Wyrmclaw's Council of War Room~
+Name        Wyrmclaw's Council of War Room~
+Descr
 You find yourself in the massive hall of a great stone castle.  In the 
 center of the room is a large round oak table surrounded by noble lords dressed
 in armor.  There is much discussion about a possible invasion and war.  At the
@@ -1059,29 +1354,36 @@ loving wife, Lady Jessica Quechard.
 
 There is only one exit from this room, the door you came in through.
 ~
-0 8 0
-E
-table~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  table~
 On the large oaken table has been carved an intricate rose pattern.  It is
 the symbol of Lord Wyrmclaw's order of knights.  It inspires you with the 
 thought of maybe one day becoming a knight.
 ~
-D2
+Reset       M 1232 1 100
+Door        south~ door closed~ -1 1200
 The door  you entered is the only exit from this room.
 ~
 door~
-3 -1 1200
-S
+End
+
 #1244
-Zelda's Zany Zoo~
+Name        Zelda's Zany Zoo~
+Descr
 A room filled with stuffed animals.  A bunny named wish and a bear named
 Yaz sit on a large bed.  You smell the odor of roses and honeysuckle and
 a nice breeze blows thru the window.
 ~
-0 8204 0
-S
-#1275
-The Burning Shrine~
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+End
+
+#4475
+Name        The Burning Shrine~
+Descr
 You are standing in a very dark room, only lit by the light of a darkly
 burning altar. Everything except the gleaming black marble floor seems to
 be made from searing flames. Somehow, even though  the room is filled
@@ -1090,71 +1392,13 @@ that it  might not have been such a good idea to come here.
 
 The Dark Flame burns here mysteriously.
 ~
-0 12 0
-S
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+End
+
 #0
 
-
-#SPECIALS
-M 1220 spec_poison
-M 1221 spec_poison
-M 1222 spec_breath_any
-M 1223 spec_cast_mage
-M 1230 spec_cast_mage
-M 1231 spec_poison
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 1201 1 1203
-M 0 1202 1 1203
-O 0 1201 0 1203
-O 0 1202 0 1203
-O 0 1203 0 1203
-M 0 1203 1 1204
-E 0 1209 0 12
-E 0 1208 0 8
-M 0 1204 1 1204
-E 0 1206 0 3
-O 0 1204 0 1204
-O 0 1205 0 1204
-O 0 1207 0 1205
-O 0 1214 0 1211
-P 0 1213 0 1214
-M 0 1210 1 1211
-E 0 1210 0 6
-E 0 1211 0 5
-O 0 1215 0 1212
-P 0 1216 0 1215
-P 0 1217 0 1215
-M 0 1211 1 1212
-E 0 1212 0 5
-O 0 1200 0 1213
-M 0 1220 1 1220
-E 0 1220 0 3
-M 0 1221 1 1220
-E 0 1221 0 7
-M 0 1222 1 1222
-E 0 1222 0 17
-O 0 1223 0 1223
-M 0 1223 1 1223
-E 0 1225 0 3
-E 0 1224 0 16
-M 0 1224 1 1224
-M 0 1230 1 1230
-E 0 1230 0 3
-O 0 1231 0 1230
-M 0 1231 1 1232
-M 0 1232 1 1233
-S
-
-
-#SHOPS
-0
 
 
 #$

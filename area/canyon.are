@@ -4,826 +4,1262 @@ Author      Raff~
 Levels      5 30
 Security    1
 VNUMs       9201 9260
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #9201
-mountain climber mountainclimber~
-the mountain climber~
+Name        mountain climber mountainclimber~
+Short       the mountain climber~
+Long
 A mountain climber is making the same trek that you are.
 ~
+Descr
 He wants to see what's on the other side of the mountain too.
 ~
-69 0 500 S
-3 16 8 10d5+15 1d6+1
-100 0
-0 Human~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   500
+Level       3
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #9202
-cyclops~
-the cyclops~
+Name        cyclops~
+Short       the cyclops~
+Long
 A hungry cyclops snarls at you!
 ~
+Descr
 He looks like he's about to have dinner (maybe it's you?).
 ~
-99 128 -700 S
-22 0 -5 1d4+1100 1d4+25
-1000 0
-0 Giant~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    sanctuary~
+Alignment   -700
+Level       22
+Gold        1000
+Race        Giant
+Sex         neutral~
+Spec        spec_cast_cleric
+End
+
 #9203
-tiny elemental~
-a tiny elemental~
+Name        tiny elemental~
+Short       a tiny elemental~
+Long
 A tiny elemental form wanders about.
 ~
+Descr
 Rather small for an elemental form, looks like a reject.
 ~
-65 0 0 S
-1 20 9 1d20+0 1d3+1
-11 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        11
+Race        Elemental
+Sex         neutral~
+End
+
 #9204
-elemental guardian~
-the elemental guardian~
+Name        elemental guardian~
+Short       the elemental guardian~
+Long
 The elemental guardian of the canyon.
 ~
+Descr
 You can't tell which kind of elemental it is, maybe it's a bit o' all of them?
 ~
-3 0 0 S
-20 5 -5 0d0+1000 4d4+5
-10000 0
-0 Elemental~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       20
+Gold        10000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_any
+End
+
 #9205
-small elemental~
-a small elemental~
+Name        small elemental~
+Short       a small elemental~
+Long
 A small, rather non-descript elemental.
 ~
+Descr
 A small elemental, a resident of the canyon.
 ~
-67 0 0 S
-5 16 5 0d0+60 2d4+0
-250 0
-0 Elemental~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        250
+Race        Elemental
+Sex         neutral~
+End
+
 #9206
-medium elemental~
-a medium elemental~
+Name        medium elemental~
+Short       a medium elemental~
+Long
 A medium-sized elemental.
 ~
+Descr
 A medium elemental, a resident of the canyon.
 ~
-67 0 10 S
-10 11 2 10d10+125 2d6+1
-750 0
-0 Elemental~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   10
+Level       10
+Gold        750
+Race        Elemental
+Sex         neutral~
+End
+
 #9207
-large elemental~
-a large elemental~
+Name        large elemental~
+Short       a large elemental~
+Long
 A large elemental.
 ~
+Descr
 A large elemental, a resident of the canyon.~
-67 0 20 S
-15 6 0 10d10+190 2d8+2
-2000 0
-0 Elemental~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   20
+Level       15
+Gold        2000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_any
+End
+
 #9208
-earth elemental ruler~
-the Earth Ruler~
+Name        earth elemental ruler~
+Short       the Earth Ruler~
+Long
 The Ruler of the earth elementals.
 ~
+Descr
 He looks as old as the earth itself.  He seems to know all the 
 secrets and knowledge of the Earth.  You can't really tell where 
 he begins and the rock wall ends.
 ~
-3 128 0 S
-30 -2 -13 30d30+1000 2d6+25
-100000 0
-0 Elemental~ 0
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   0
+Level       30
+Gold        100000
+Race        Elemental
+Sex         neutral~
+Spec        spec_cast_cleric
+End
+
 #9209
-fire elemental ruler~
-the Fire Ruler~
+Name        fire elemental ruler~
+Short       the Fire Ruler~
+Long
 The Ruler of the fire elementals.
 ~
+Descr
 As you look at him he seems to blend in with the fire in his throne.
 ~
-3 128 0 S
-30 -5 -10 30d30+1000 4d5+5
-100000 0
-0 Elemental~ 0
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   0
+Level       30
+Gold        100000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_fire
+End
+
 #9210
-air elemental ruler~
-The Air Ruler~
+Name        air elemental ruler~
+Short       The Air Ruler~
+Long
 The Ruler of the air elementals.
 ~
+Descr
 As you peer at him you seem to be looking at the sky itself.
 ~
-3 128 0 S
-30 0 -10 30d30+1000 9d3+9
-100000 0
-0 Elemental~ 0
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   0
+Level       30
+Gold        100000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_gas
+End
+
 #9211
-lightning elemental ruler~
-The Lightning Ruler~
+Name        lightning elemental ruler~
+Short       The Lightning Ruler~
+Long
 The Ruler of the lightning elementals.
 ~
+Descr
 As you examine him there is a blinding flash of light and a deafening boom!
 You rub your eyes and look and the ruler is there grinning at you.
 ~
-3 128 0 S
-30 0 -6 30d30+1000 4d6+15
-100000 0
-0 Elemental~ 0
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   0
+Level       30
+Gold        100000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_lightning
+End
+
 #9212
-water elemental ruler~
-The Water Ruler~
+Name        water elemental ruler~
+Short       The Water Ruler~
+Long
 The Ruler of the water elementals.
 ~
+Descr
 As you look at him he changes to mist, which swirls around you.  Just
 as you get scared, it reforms in elemental form.
 ~
-3 128 0 S
-30 0 -10 30d30+1000 7d3+5
-100000 0
-0 Elemental~ 0
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   0
+Level       30
+Gold        100000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_acid
+End
+
 #9214
-water puddle elemental~
-a puddle~
+Name        water puddle elemental~
+Short       a puddle~
+Long
 A small puddle of water elemental.
 ~
+Descr
 It trickles along the ground and gets your feet wet.
 ~
-65 0 0 S
-8 13 3 10d10+200 2d5+1
-225 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       8
+Gold        225
+Race        Elemental
+Sex         neutral~
+End
+
 #9215
-fire flame elemental~
-a flame~
+Name        fire flame elemental~
+Short       a flame~
+Long
 A small flickering flame elemental.
 ~
+Descr
 It smolders along the grass aimlessly.
 ~
-65 0 0 S
-4 17 6 5d10+0 2d4+0
-150 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        150
+Race        Elemental
+Sex         neutral~
+End
+
 #9216
-snowflake snow flake ice elemental~
-a small snowflake~
+Name        snowflake snow flake ice elemental~
+Short       a small snowflake~
+Long
 A frozen snowflake water elemental.
 ~
+Descr
 It looks a little blue.
 ~
-65 0 520 S
-3 19 8 1d5+30 1d5+0
-0 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   520
+Level       3
+Gold        0
+Race        Elemental
+Sex         neutral~
+End
+
 #9217
-pebble rock earth stone elemental~
-a small rock~
+Name        pebble rock earth stone elemental~
+Short       a small rock~
+Long
 A small rock.
 ~
+Descr
 It seems to be a small living pebble!
 ~
-65 0 0 S
-3 18 6 4d10+5 1d6+1
-98 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        98
+Race        Elemental
+Sex         neutral~
+End
+
 #9218
-spark lightning energy elemental~
-a small spark~
+Name        spark lightning energy elemental~
+Short       a small spark~
+Long
 A small spark of electricity fizzles here.
 ~
+Descr
 Zipping from place to place at the speed of light is tough work.
 ~
-65 0 0 S
-4 16 6 10d5+0 1d8+1
-150 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        150
+Race        Elemental
+Sex         neutral~
+End
+
 #9219
-acid blob elemental~
-a small blob of acid~
+Name        acid blob elemental~
+Short       a small blob of acid~
+Long
 A small blob of acid eats away at the stone aimlessly.
 ~
+Descr
 The magical blob of acid is a cross between lightning and water.
 ~
-65 0 0 S
-9 11 2 1d10+120 5d2+2
-1000 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       9
+Gold        1000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_acid
+End
+
 #9220
-lava elemental~
-a lava beast~
+Name        lava elemental~
+Short       a lava beast~
+Long
 A lava beast spews from place to place.
 ~
+Descr
 The magical lava beast is a cross between fire and earth.
 ~
-65 0 0 S
-8 13 3 1d10+120 5d2+2
-313 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       8
+Gold        313
+Race        Elemental
+Sex         neutral~
+End
+
 #9221
-mud elemental~
-a mud monster~
+Name        mud elemental~
+Short       a mud monster~
+Long
 A mud monster slops around.
 ~
+Descr
 The magical mud monster is a cross between water and earth.
 ~
-65 0 0 S
-7 14 4 1d12+86 2d4+1
-400 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       7
+Gold        400
+Race        Elemental
+Sex         neutral~
+End
+
 #9222
-mist elemental~
-an elemental mist~
+Name        mist elemental~
+Short       an elemental mist~
+Long
 The air is magically misty here.
 ~
+Descr
 The magical mist is a cross between water and air.
 ~
-65 0 0 S
-6 16 50 6d10+20 1d8+0
-300 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        300
+Race        Elemental
+Sex         neutral~
+End
+
 #9223
-particle elemental~
-a particle~
+Name        particle elemental~
+Short       a particle~
+Long
 A sub-atomic particle is too small for you to see.
 ~
+Descr
 The magical manifestation of energy.
 ~
-65 0 0 S
-5 16 6 5d4+70 1d5+5
-10 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        10
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_lightning
+End
+
 #9224
-dust elemental~
-a dust cloud~
+Name        dust elemental~
+Short       a dust cloud~
+Long
 A dust cloud blowing by makes you sneeze.
 ~
+Descr
 The magical dust cloud is a cross between air and earth.
 ~
-65 0 0 S
-6 15 4 9d9+4 1d8+1
-100 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        100
+Race        Elemental
+Sex         neutral~
+Spec        spec_thief
+End
+
 #9225
-eddie elemental~
-an eddie~
+Name        eddie elemental~
+Short       an eddie~
+Long
 A small eddie current swirls junk around here.
 ~
+Descr
 The magical eddie current is a manifestation of an air elemental.
 ~
-65 0 0 S
-2 19 8 5d5+0 1d6+0
-30 0
-0 Elemental~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       2
+Gold        30
+Race        Elemental
+Sex         neutral~
+Spec        spec_thief
+End
+
 #9226
-blue flame~
-the Blue Flame~
+Name        blue flame~
+Short       the Blue Flame~
+Long
 The Blue Flame burns mysteriously here.
 ~
+Descr
 As you look you see what seems to be a face and almost a 
 humanoid figure somehow trapped in the fire.
 ~
-67 0 -100 S
-26 -3 -4 1d100+550 6d3+12
-25000 0
-0 Human~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -100
+Level       26
+Gold        25000
+Race        Human
+Sex         neutral~
+Spec        spec_breath_fire
+End
+
 #9227
-magneto~
-the Magneto~
+Name        magneto~
+Short       the Magneto~
+Long
 The Magneto considers zapping you for the heck of it.
 ~
+Descr
 A humanoid figure seems to be trapped in the field of the Magneto.
 ~
-67 0 -150 S
-22 0 -8 3d10+350 3d8+5
-10000 0
-0 Human~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -150
+Level       22
+Gold        10000
+Race        Human
+Sex         neutral~
+Spec        spec_breath_lightning
+End
+
 #9228
-ice bandit~
-the Ice Bandit~
+Name        ice bandit~
+Short       the Ice Bandit~
+Long
 The Ice Bandit strikes cold fear in your heart.
 ~
+Descr
 A humanoid figure encased in ice but still apparently alive.
 ~
-195 32768 -250 S
-24 -2 -9 2d10+480 2d8+13
-30000 0
-0 Human~ 0
+Act         sentinel stay_area wimpy~
+AffectBy    sneak~
+Alignment   -250
+Level       24
+Gold        30000
+Race        Human
+Sex         neutral~
+Spec        spec_breath_frost
+End
+
 #9229
-rock monster~
-the Rock Monster~
+Name        rock monster~
+Short       the Rock Monster~
+Long
 The Rock Monster considers you in stoney silence.
 ~
+Descr
 A humanoid figure trapped in stone seems alive.
 ~
-67 0 -310 S
-23 0 -6 40d10+550 3d8+4
-19000 0
-0 Human~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -310
+Level       23
+Gold        19000
+Race        Human
+Sex         neutral~
+End
+
 #9230
-hurricane~
-the Hurricane~
+Name        hurricane~
+Short       the Hurricane~
+Long
 A Hurricane rages across the sky.
 ~
+Descr
 A humanoid figure is trapped in the rushing wind.
 ~
-67 32768 -10 S
-28 -4 -7 0d0+700 4d6+6
-41082 0
-0 Human~ 0
+Act         sentinel stay_area~
+AffectBy    sneak~
+Alignment   -10
+Level       28
+Gold        41082
+Race        Human
+Sex         neutral~
+Spec        spec_breath_gas
+End
+
 #9231
-magician~
-an elemental magician~
+Name        magician~
+Short       an elemental magician~
+Long
 An elemental magician seeks magical stones for a spell.
 ~
+Descr
 The elemental magician has come here in search of the fabled
 Stone of Surrender which can be used to render opponents senseless.
 ~
-67 2 -50 S
-17 6 2 1d11+200 3d5+3
-8000 0
-0 Elemental~ 0
+Act         sentinel stay_area~
+AffectBy    invisible~
+Alignment   -50
+Level       17
+Gold        8000
+Race        Elemental
+Sex         neutral~
+Spec        spec_cast_mage
+End
+
 #9232
-rainbow warrior~
-a rainbow warrior~
+Name        rainbow warrior~
+Short       a rainbow warrior~
+Long
 A warrior of the Rainbow Cult swears his loyalty.
 ~
+Descr
 The Rainbow Cult has received special powers for their service to 
 the elemental forces.
 ~
-65 0 150 S
-18 1 0 0d0+340 3d6+4
-8000 0
-0 Human~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   150
+Level       18
+Gold        8000
+Race        Human
+Sex         neutral~
+Spec        spec_cast_cleric
+End
+
 #9233
-illusionist~
-an illusionist~
+Name        illusionist~
+Short       an illusionist~
+Long
 The illusionist seeks the aid of the elemental forces.
 ~
+Descr
 He seeks their aid for a powerful new spell of deception.
 
 <wielded>            The Sword of Illusions
 ~
-67 0 -50 S
-12 10 3 10d6+150 2d7+0
-1900 0
-0 Human~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -50
+Level       12
+Gold        1900
+Race        Human
+Sex         neutral~
+Spec        spec_cast_mage
+End
+
 #9234
-alchemist~
-an alchemist~
+Name        alchemist~
+Short       an alchemist~
+Long
 An alchemist wanders by in search of magical herbs.
 ~
+Descr
 Rare herbs are rumored to grow only in the canyon.
 ~
-65 0 -50 S
-13 8 1 1d2+270 2d7+1
-1900 0
-0 Human~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   -50
+Level       13
+Gold        1900
+Race        Human
+Sex         neutral~
+Spec        spec_thief
+End
+
 #9235
-baby rainbow dragon~
-a baby rainbow dragon~
+Name        baby rainbow dragon~
+Short       a baby rainbow dragon~
+Long
 A baby rainbow dragon plays among the elements here.
 ~
+Descr
 It's only a baby by dragon standards.
 ~
-67 40 0 S
-16 4 -1 0d0+400 1d16+6
-10000 0
-0 Dragon~ 0
+Act         sentinel stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   0
+Level       16
+Gold        10000
+Race        Dragon
+Sex         neutral~
+Spec        spec_breath_any
+End
+
 #9236
-imp~
-a little imp~
+Name        imp~
+Short       a little imp~
+Long
 A little imp runs along being annoying.
 ~
+Descr
 The little bugger steals stuff and is generally obnoxious.
 ~
-197 98304 -500 S
-5 15 1 1d10+100 1d4+3
-1 0
-0 Kobold~ 0
+Act         scavenger stay_area wimpy~
+AffectBy    sneak hide~
+Alignment   -500
+Level       5
+Gold        1
+Race        Kobold
+Sex         neutral~
+End
+
 #9237
-HUGE elemental~
-a HUGE elemental~
+Name        HUGE elemental~
+Short       a HUGE elemental~
+Long
 A HUGE elemental form stands here.
 ~
+Descr
 HUGE, need i say more?
 ~
-67 0 30 S
-20 1 0 0d0+750 3d6+4
-10000 0
-0 Elemental~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   30
+Level       20
+Gold        10000
+Race        Elemental
+Sex         neutral~
+Spec        spec_breath_any
+End
+
 #9238
-vendor~
-the elixir vendor~
+Name        vendor~
+Short       the elixir vendor~
+Long
 A vendor is willing to sell you elixirs.
 ~
+Descr
 I WOULD NOT suggest you attack me ...!
 ~
-83 0 900 S
-30 -20 -10 0d0+10000 0d0+300
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   900
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_mage
+Shop        ~ ~ ~ ~ ~ 105 15 0 23
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #9201
-ring earth~
-the earth ring~
+Name        ring earth~
+Short       the earth ring~
+Descr
 A dark ring which seems to absorb all the light around it lies here.~
-~
-12 256 3
-0~ 0~ 0~ 0~ 0~
-5 100000 0
-A
-4 1 0
-A
-3 1 0
+Type        furniture~
+Extra       bless~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        100000
+Affect      wisdom~ 1 ~
+Affect      intelligence~ 1 ~
+End
+
 #9202
-breastplate stoney breast plate~
-a stoney breastplate~
+Name        breastplate stoney breast plate~
+Short       a stoney breastplate~
+Descr
 A breastplate made of the stone from deep within the earth lies here.~
-~
-9 0 9
-10~ 0~ 0~ 0~ 0~
-70 200000 0
-A
-5 1 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      70
+Cost        200000
+Affect      constitution~ 1 ~
+End
+
 #9203
-dagger fiery~
-a fiery dagger~
+Name        dagger fiery~
+Short       a fiery dagger~
+Descr
 A dagger made of fire crackles mysteriously here.~
-~
-5 1 8193
-0~ 4~ 4~ 11~ 0~
-2 100000 0
-A
-19 4 0
+Type        weapon~
+Extra       glow~
+Wear        take wield~
+Values      0~ 4~ 4~ 11~ 0~
+Weight      2
+Cost        100000
+Affect      damroll~ 4 ~
+End
+
 #9204
-cape flame flaming red~
-a flame red cape~
+Name        cape flame flaming red~
+Short       a flame red cape~
+Descr
 A cape made of ethereal red fiber lies neatly folded on the ground here.~
-~
-9 1 5
-11~ 0~ 0~ 0~ 0~
-3 100000 0
-A
-19 1 0
+Type        armor~
+Extra       glow~
+Wear        take neck~
+Values      11~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        100000
+Affect      damroll~ 1 ~
+End
+
 #9205
-boots wind~
-the wind boots~
+Name        boots wind~
+Short       the wind boots~
+Descr
 A pair of boots that look fast standing still are here.~
-~
-9 64 65
-10~ 0~ 0~ 0~ 0~
-1 100000 0
-A
-2 2 0
+Type        armor~
+Extra       magic~
+Wear        take feet~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        100000
+Affect      dexterity~ 2 ~
+End
+
 #9206
-helmet hurricane~
-a humming hurricane helmet~
+Name        helmet hurricane~
+Short       a humming hurricane helmet~
+Descr
 A helmet that looks like it has weathered many storms has been set here.~
-~
-9 2 17
-9~ 0~ 0~ 0~ 0~
-4 200000 0
-A
-23 -4 0
+Type        armor~
+Extra       hum~
+Wear        take head~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        200000
+Affect      saving-breath~ -4 ~
+End
+
 #9207
-sword lightning bolt~
-a sparking lightning sword~
+Name        sword lightning bolt~
+Short       a sparking lightning sword~
+Descr
 A lightning bolt fashioned into a sword spits sparks here.~
-~
-5 3 8193
-0~ 6~ 3~ 3~ 0~
-10 100000 0
-A
-19 2 0
-A
-18 3 0
+Type        weapon~
+Extra       glow hum~
+Wear        take wield~
+Values      0~ 6~ 3~ 3~ 0~
+Weight      10
+Cost        100000
+Affect      damroll~ 2 ~
+Affect      hitroll~ 3 ~
+End
+
 #9208
-shield electric~
-an electric shield~
+Name        shield electric~
+Short       an electric shield~
+Descr
 A shield made entirely of energy buzzes here.~
-~
-9 2 513
-11~ 0~ 0~ 0~ 0~
-8 1000000 0
-A
-5 1 0
-A
-1 -1 0
+Type        armor~
+Extra       hum~
+Wear        take shield~
+Values      11~ 0~ 0~ 0~ 0~
+Weight      8
+Cost        1000000
+Affect      constitution~ 1 ~
+Affect      strength~ -1 ~
+End
+
 #9209
-girth icy~
-an icy girth~
+Name        girth icy~
+Short       an icy girth~
+Descr
 A girth made of magical ice has been left here.~
-~
-9 0 2049
-10~ 0~ 0~ 0~ 0~
-10 100000 0
-A
-5 -2 0
+Type        armor~
+Extra       ~
+Wear        take waist~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        100000
+Affect      constitution~ -2 ~
+End
+
 #9210
-cloak waterfall~
-a waterfall cloak~
+Name        cloak waterfall~
+Short       a waterfall cloak~
+Descr
 A cloak fashioned from a small magical waterfall is here.~
-~
-9 0 1025
-10~ 0~ 0~ 0~ 0~
-6 100000 0
-A
-18 -2 0
-A
-12 25 0
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        100000
+Affect      hitroll~ -2 ~
+Affect      mana~ 25 ~
+End
+
 #9211
-amulet elemental~
-an elemental amulet~
+Name        amulet elemental~
+Short       an elemental amulet~
+Descr
 An amulet depicting fire, water, lightning, earth, and air lies here.~
-~
-9 1 5
-7~ 0~ 0~ 0~ 0~
-1 100000 0
-A
-23 -5 0
+Type        armor~
+Extra       glow~
+Wear        take neck~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        100000
+Affect      saving-breath~ -5 ~
+End
+
 #9212
-bracelet elemental~
-an elemental bracelet~
+Name        bracelet elemental~
+Short       an elemental bracelet~
+Descr
 A bracelet made of elemental magic lies here.~
-~
-9 0 4097
-4~ 0~ 0~ 0~ 0~
-4 100000 0
-A
-13 25 0
+Type        armor~
+Extra       ~
+Wear        take wrist~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        100000
+Affect      hp~ 25 ~
+End
+
 #9213
-armbands platinum bands~
-some platinum arm bands~
+Name        armbands platinum bands~
+Short       some platinum arm bands~
+Descr
 A pair of platinum arm bands, once worn by the Cyclops, lie here.~
-~
-9 0 257
-9~ 0~ 0~ 0~ 0~
-4 10000 0
-A
-1 1 0
+Type        armor~
+Extra       ~
+Wear        take arms~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        10000
+Affect      strength~ 1 ~
+End
+
 #9214
-legbands platinum bands~
-some platinum leg bands~
+Name        legbands platinum bands~
+Short       some platinum leg bands~
+Descr
 A pair of platinum leg bands, once worn by the Cyclops, lie here.~
-~
-9 0 33
-9~ 0~ 0~ 0~ 0~
-4 10000 0
-A
-2 1 0
+Type        armor~
+Extra       ~
+Wear        take legs~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        10000
+Affect      dexterity~ 1 ~
+End
+
 #9215
-wand~
-elemental wand of fire~
+Name        wand~
+Short       elemental wand of fire~
+Descr
 A fire wand lies forgotten on the ground.~
-~
-3 1 16385
-15~ 3~ 3~ fireball~ 0~
-7 1900 0
+Type        wand~
+Extra       glow~
+Wear        take hold~
+Values      15~ 3~ 3~ fireball~ 0~
+Weight      7
+Cost        1900
+End
+
 #9216
-staff ice~
-an ice staff~
+Name        staff ice~
+Short       an ice staff~
+Descr
 A ice staff lies forgotten on the ground.~
-~
-4 1 16385
-21~ 3~ 3~ frost breath~ 0~
-7 1900 0
+Type        staff~
+Extra       glow~
+Wear        take hold~
+Values      21~ 3~ 3~ frost breath~ 0~
+Weight      7
+Cost        1900
+End
+
 #9217
-staff earthquake~
-elemental staff of earthquake~
+Name        staff earthquake~
+Short       elemental staff of earthquake~
+Descr
 A earthquake staff lies forgotten on the ground.~
-~
-4 1 16385
-7~ 3~ 3~ earthquake~ 0~
-7 1900 0
+Type        staff~
+Extra       glow~
+Wear        take hold~
+Values      7~ 3~ 3~ earthquake~ 0~
+Weight      7
+Cost        1900
+End
+
 #9218
-wand air wind~
-elemental wand of wind and air~
+Name        wand air wind~
+Short       elemental wand of wind and air~
+Descr
 An air wand lies forgotten on the ground.~
-~
-3 1 16385
-11~ 1~ 1~ gas breath~ 0~
-7 1900 0
+Type        wand~
+Extra       glow~
+Wear        take hold~
+Values      11~ 1~ 1~ gas breath~ 0~
+Weight      7
+Cost        1900
+End
+
 #9219
-wand~
-elemental wand of lightning~
+Name        wand~
+Short       elemental wand of lightning~
+Descr
 A lightning wand lies forgotten on the ground.~
-~
-3 1 16385
-9~ 1~ 1~ lightning bolt~ 0~
-7 1900 0
+Type        wand~
+Extra       glow~
+Wear        take hold~
+Values      9~ 1~ 1~ lightning bolt~ 0~
+Weight      7
+Cost        1900
+End
+
 #9220
-stone club~
-a stone club~
+Name        stone club~
+Short       a stone club~
+Descr
 A large stone club lies on the ground.~
-~
-5 0 8193
-0~ 1~ 12~ 7~ 0~
-16 1000 0
-A
-19 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 1~ 12~ 7~ 0~
+Weight      16
+Cost        1000
+Affect      damroll~ 3 ~
+End
+
 #9221
-lode load lodestone loadstone stone~
-a lodestone~
+Name        lode load lodestone loadstone stone~
+Short       a lodestone~
+Descr
 A dull red rock lies here amid the weeds.~
-~
-3 0 16385
-19~ 2~ 2~ harm~ 0~
-2 5000 0
+Type        wand~
+Extra       ~
+Wear        take hold~
+Values      19~ 2~ 2~ harm~ 0~
+Weight      2
+Cost        5000
+End
+
 #9222
-lava lamp~
-a lava lamp~
+Name        lava lamp~
+Short       a lava lamp~
+Descr
 A lantern which glows with a red glowing light has been dumped.~
-~
-1 1 1
-0~ 0~ 1000~ 0~ 0~
-4 500 0
+Type        light~
+Extra       glow~
+Wear        take~
+Values      0~ 0~ 1000~ 0~ 0~
+Weight      4
+Cost        500
+End
+
 #9223
-energy scroll~
-an energy scroll~
+Name        energy scroll~
+Short       an energy scroll~
+Descr
 A scroll of energy replacement lies here.~
-~
-2 2 1
-19~ cure critical~ refresh~  ~  ~
-1 2100 0
+Type        scroll~
+Extra       hum~
+Wear        take~
+Values      19~ cure critical~ refresh~  ~  ~
+Weight      1
+Cost        2100
+End
+
 #9224
-water jug~
-a water jug~
+Name        water jug~
+Short       a water jug~
+Descr
 A large but surprisingly light jug of water stands here.~
-~
-17 0 1
-150~ 150~ 0~ 0~ 0~
-5 100 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      150~ 150~ 0~ 0~ 0~
+Weight      5
+Cost        100
+End
+
 #9225
-dust~
-magic dust~
+Name        dust~
+Short       magic dust~
+Descr
 A pile of dust of appearance has gathered here.~
-~
-26 0 1
-20~ detect invis~  ~  ~  ~
-1 100 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      20~ detect invis~  ~  ~  ~
+Weight      1
+Cost        100
+End
+
 #9226
-flame lance~
-a flame lance~
+Name        flame lance~
+Short       a flame lance~
+Descr
 A lance of blue flame burns the ground around it.~
-~
-5 1 8193
-0~ 2~ 15~ 3~ 0~
-14 5000 0
-A
-18 2 0
-A
-13 -20 0
+Type        weapon~
+Extra       glow~
+Wear        take wield~
+Values      0~ 2~ 15~ 3~ 0~
+Weight      14
+Cost        5000
+Affect      hitroll~ 2 ~
+Affect      hp~ -20 ~
+End
+
 #9227
-icicle dagger ice~
-an icicle~
+Name        icicle dagger ice~
+Short       an icicle~
+Descr
 A glowing icicle dagger lies here amid a patch of frost.~
-~
-5 1 8193
-0~ 7~ 3~ 11~ 0~
-1 19000 0
-A
-1 -1 0
-A
-19 2 0
+Type        weapon~
+Extra       glow~
+Wear        take wield~
+Values      0~ 7~ 3~ 11~ 0~
+Weight      1
+Cost        19000
+Affect      strength~ -1 ~
+Affect      damroll~ 2 ~
+End
+
 #9228
-avalanche~
-the Avalanche~
+Name        avalanche~
+Short       the Avalanche~
+Descr
 An avalanche is about to crush you!~
-~
-5 0 8193
-0~ 1~ 30~ 6~ 0~
-16 20100 0
-A
-18 -1 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 1~ 30~ 6~ 0~
+Weight      16
+Cost        20100
+Affect      hitroll~ -1 ~
+End
+
 #9229
-star morning~
-the Morning Star~
+Name        star morning~
+Short       the Morning Star~
+Descr
 A chain with a star on the end lies here.~
-~
-5 1 8193
-0~ 6~ 3~ 11~ 0~
-11 8200 0
-A
-17 -3 0
-A
-23 -5 0
+Type        weapon~
+Extra       glow~
+Wear        take wield~
+Values      0~ 6~ 3~ 11~ 0~
+Weight      11
+Cost        8200
+Affect      ac~ -3 ~
+Affect      saving-breath~ -5 ~
+End
+
 #9230
-shock whip~
-the Shock Whip~
+Name        shock whip~
+Short       the Shock Whip~
+Descr
 A whip hums innocently to itself.~
-~
-5 2 8193
-0~ 4~ 4~ 2~ 0~
-10 10000 0
-A
-1 -2 0
-A
-19 3 0
+Type        weapon~
+Extra       hum~
+Wear        take wield~
+Values      0~ 4~ 4~ 2~ 0~
+Weight      10
+Cost        10000
+Affect      strength~ -2 ~
+Affect      damroll~ 3 ~
+End
+
 #9231
-elixir anti~
-anti-cyclops elixir~
+Name        elixir anti~
+Short       anti-cyclops elixir~
+Descr
 An elixir to ward off cyclopi has been bought then left behind here.~
-~
-10 0 16385
-15~ invis~  ~  ~  ~
-1 100 0
+Type        potion~
+Extra       ~
+Wear        take hold~
+Values      15~ invis~  ~  ~  ~
+Weight      1
+Cost        100
+End
+
 #9232
-lightning bolt~
-a bolt of lightning~
+Name        lightning bolt~
+Short       a bolt of lightning~
+Descr
 A bolt of lightning whizzes about the room!~
-~
-5 64 8193
-0~ 5~ 5~ 6~ 0~
-8 100 0
-A
-18 5 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 5~ 5~ 6~ 0~
+Weight      8
+Cost        100
+Affect      hitroll~ 5 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #9201
-A Mountain Path~
+Name        A Mountain Path~
+Descr
 You are on a mountain path which ascends a steep mountainside.  The trail
 curves around the mountain so that you cannot really see what lies ahead.
 You do sense great power though coming from the area behind the mountain.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 9201 3 100
+Door        north~ ~ -1 5267
 ~
 ~
-0 -1 5267
-D4
+Door        up~ ~ -1 9202
 ~
 ~
-0 -1 9202
-S
+End
+
 #9202
-A Mountain Path~
+Name        A Mountain Path~
+Descr
 You are on a rocky mountain path leading up and around a steep mountainside.
 You sense a glow from the area beyond the mountain, which you cannot see yet.
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 9201 3 100
+Reset       E 9231 -1 100
+Reset       M 9236 7 100
+Door        up~ ~ -1 9203
 ~
 ~
-0 -1 9203
-D5
+Door        down~ ~ -1 9201
 ~
 ~
-0 -1 9201
-S
+End
+
 #9203
-Mountainside Tombs~
+Name        Mountainside Tombs~
+Descr
 There are a few stone heaps here and there, the tombs of those who did not
 last the arduous journey up the mountain.  Curiously you notice a few
 uncovered bodies which don't seem to have died of exhaustion.  The path curves
 east around the mountain.
 ~
-0 0 5
-E
-bodies body dead~
+Flags       ~
+Sector      mountain~
+Regen       100 100
+ExtraDescr  bodies body dead~
 They look as if their necks have been broken and their flesh, chewed.
 ~
-E
-heaps stones tombs~
+ExtraDescr  heaps stones tombs~
 You are sure glad that YOU aren't under one of those piles!
 Many of the tombstones have the same name on them, 'Raff'.  He must come
 here a lot.
 ~
-D4
+Reset       M 9201 3 100
+Reset       M 9238 1 100
+Reset       E 9231 -1 100
+Door        up~ ~ -1 9204
 ~
 ~
-0 -1 9204
-D5
+Door        down~ ~ -1 9202
 ~
 ~
-0 -1 9202
-S
+End
+
 #9204
-A Blind Curve on the Mountain Path.~
+Name        A Blind Curve on the Mountain Path.~
+Descr
 This looks like a normal mountain path, but it is NOT!  This section of the
 path is habitated by a huge (and of course, man-eating) Cyclops.  The path
 makes its final ascent to an overlook.
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 9202 1 100
+Reset       E 9213 10 100
+Reset       E 9214 7 100
+Door        up~ ~ -1 9205
 ~
 ~
-0 -1 9205
-D5
+Door        down~ ~ -1 9203
 ~
 ~
-0 -1 9203
-S
+End
+
 #9205
-Vista~
+Name        Vista~
+Descr
 This is a stunning vista overlooking a canyon.  There is a sign here that says:
 
 	BEHOLD -- ELEMENTAL CANYON
@@ -835,68 +1271,81 @@ river flowing through the canyon.  Also to the east you spy a cave entrance
 leading into the canyon wall.  The path descends to the north to another
 overlook.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        north~ ~ -1 9206
 ~
 ~
-0 -1 9206
-D5
+Door        down~ ~ -1 9204
 ~
 ~
-0 -1 9204
-S
+End
+
 #9206
-The Overlook~
+Name        The Overlook~
+Descr
 You see various elemental servants wandering around the canyon.  The noise of
 humming coming from the canyon gets louder.  The path makes a steep descent
 into the canyon here.
 ~
-0 0 5
-D2
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        south~ ~ -1 9205
 ~
 ~
-0 -1 9205
-D5
+Door        down~ ~ -1 9207
 ~
 ~
-0 -1 9207
-S
+End
+
 #9207
-Entrance to Elemental Canyon~
+Name        Entrance to Elemental Canyon~
+Descr
 You are awed by the sounds and sights of great powers at works here.
 Elemental servants bustle back and forth doing the biddings of the elemental
 rulers.  You see a sort of cross roads to the north, and you can climb up to
 the overlook here.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9205 1 100
+Reset       M 9236 7 100
+Door        north~ ~ -1 9209
 ~
 ~
-0 -1 9209
-D4
+Door        up~ ~ -1 9206
 ~
 ~
-0 -1 9206
-S
+End
+
 #9208
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at all.
 In general, it is calm, yet there is always a incessant buzz of things
 going on about.  The canyon continues north and east.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9203 8 100
+Reset       M 9232 4 100
+Reset       E 9232 16 100
+Door        north~ ~ -1 9211
 ~
 ~
-0 -1 9211
-D1
+Door        east~ ~ -1 9209
 ~
 ~
-0 -1 9209
-S
+End
+
 #9209
-Elemental Gateway~
+Name        Elemental Gateway~
+Descr
 To the west a path dips and winds among some flowing firepits.  To the
 northeast a path goes toward the river.  Beyond toward the northeast and
 northwest are outcrops which rise up from the canyon floor. To the east there
@@ -905,1100 +1354,1110 @@ leads up, away, and out of the canyon.  Various pure and cross-breeds of
 elemental forms wander the canyon floor, which extends in a wide swath
 northwards.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9204 1 100
+Reset       E 9211 3 100
+Reset       E 9212 14 100
+Reset       M 9205 1 100
+Reset       M 9207 1 100
+Reset       M 9232 4 100
+Reset       E 9220 16 100
+Door        north~ ~ -1 9212
 ~
 ~
-0 -1 9212
-D1
+Door        east~ ~ -1 9210
 ~
 ~
-0 -1 9210
-D2
+Door        south~ ~ -1 9207
 ~
 ~
-0 -1 9207
-D3
+Door        west~ ~ -1 9208
 ~
 ~
-0 -1 9208
-S
+End
+
 #9210
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always a incessant buzz of
 things going on about.  The canyon floor extends north and west.  There is a
 cave mouth set into the canyon wall to the east.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9203 8 100
+Reset       M 9223 4 100
+Reset       E 9221 17 100
+Door        north~ ~ -1 9213
 ~
 ~
-0 -1 9213
-D1
+Door        east~ ~ -1 9220
 ~
 ~
-0 -1 9220
-D3
+Door        west~ ~ -1 9209
 ~
 ~
-0 -1 9209
-S
+End
+
 #9211
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The canyon floor extends off to the north, east,
 and south.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9231 1 100
+Reset       E 9215 17 100
+Door        north~ ~ -1 9214
 ~
 ~
-0 -1 9214
-D1
+Door        east~ ~ -1 9212
 ~
 ~
-0 -1 9212
-D2
+Door        south~ ~ -1 9208
 ~
 ~
-0 -1 9208
-S
+End
+
 #9212
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The canyon floor extends in all directions.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9206 1 100
+Reset       E 9221 17 100
+Reset       M 9216 4 100
+Door        north~ ~ -1 9215
 ~
 ~
-0 -1 9215
-D1
+Door        east~ ~ -1 9213
 ~
 ~
-0 -1 9213
-D2
+Door        south~ ~ -1 9209
 ~
 ~
-0 -1 9209
-D3
+Door        west~ ~ -1 9211
 ~
 ~
-0 -1 9211
-S
+End
+
 #9213
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The canyon floor extends north, south, and west.
 A path follows a stream to the east.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9222 4 100
+Door        north~ ~ -1 9216
 ~
 ~
-0 -1 9216
-D1
+Door        east~ ~ -1 9228
 ~
 ~
-0 -1 9228
-D2
+Door        south~ ~ -1 9210
 ~
 ~
-0 -1 9210
-D3
+Door        west~ ~ -1 9212
 ~
 ~
-0 -1 9212
-S
+End
+
 #9214
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about. The canyon floor extends north, east, and south.
 To the west a garden is on fire.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 9217
 ~
 ~
-0 -1 9217
-D1
+Door        east~ ~ -1 9215
 ~
 ~
-0 -1 9215
-D2
+Door        south~ ~ -1 9211
 ~
 ~
-0 -1 9211
-D3
+Door        west~ ~ -1 9237
 ~
 ~
-0 -1 9237
-S
+End
+
 #9215
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The canyon floor extends in all directions.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9203 8 100
+Reset       M 9203 8 100
+Door        north~ ~ -1 9218
 ~
 ~
-0 -1 9218
-D1
+Door        east~ ~ -1 9216
 ~
 ~
-0 -1 9216
-D2
+Door        south~ ~ -1 9212
 ~
 ~
-0 -1 9212
-D3
+Door        west~ ~ -1 9214
 ~
 ~
-0 -1 9214
-S
+End
+
 #9216
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The Canyon floor extends north, south and west.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9231 1 100
+Reset       E 9215 17 100
+Door        north~ ~ -1 9219
 ~
 ~
-0 -1 9219
-D2
+Door        south~ ~ -1 9213
 ~
 ~
-0 -1 9213
-D3
+Door        west~ ~ -1 9215
 ~
 ~
-0 -1 9215
-S
+End
+
 #9217
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about. The canyon floor extends east and south.  You can
 climb a rise in the canyon floor to the north.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9203 8 100
+Door        north~ ~ -1 9253
 ~
 ~
-0 -1 9253
-D1
+Door        east~ ~ -1 9218
 ~
 ~
-0 -1 9218
-D2
+Door        south~ ~ -1 9214
 ~
 ~
-0 -1 9214
-S
+End
+
 #9218
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The canyon floor extends east, south, and west.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9203 8 100
+Reset       M 9205 8 100
+Reset       M 9207 1 100
+Reset       M 9207 1 100
+Reset       E 9223 17 100
+Reset       M 9233 1 100
+Door        east~ ~ -1 9219
 ~
 ~
-0 -1 9219
-D2
+Door        south~ ~ -1 9215
 ~
 ~
-0 -1 9215
-D3
+Door        west~ ~ -1 9217
 ~
 ~
-0 -1 9217
-S
+End
+
 #9219
-The Floor of the Canyon~
+Name        The Floor of the Canyon~
+Descr
 Various elemental forms wander the floor of the canyon.  Some seem to be
 going about their business, while others seem to have no business at
 all.  In general, it is calm, yet there is always an incessant buzz of
 things going on about.  The canyon floor extends south and west.  You can
 climb a rise in the canyon floor to the north.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9203 8 100
+Reset       E 9225 17 100
+Door        north~ ~ -1 9254
 ~
 ~
-0 -1 9254
-D2
+Door        south~ ~ -1 9216
 ~
 ~
-0 -1 9216
-D3
+Door        west~ ~ -1 9218
 ~
 ~
-0 -1 9218
-S
+End
+
 #9220
-Dark Cave~
+Name        Dark Cave~
+Descr
 You notice a path winding east among some huge boulders.  You feel a powerful
 source of energy from that direction.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9236 7 100
+Reset       M 9220 4 100
+Reset       E 9222 17 100
+Door        east~ ~ -1 9221
 ~
 ~
-0 -1 9221
-D3
+Door        west~ ~ -1 9210
 ~
 ~
-0 -1 9210
-S
+End
+
 #9221
-Darker Caves~
+Name        Darker Caves~
+Descr
 You can barely see your way even with a light source.  The rocks of the cave
 are even darker than the darkness.  You hear a powerful humming all around
 you.  Cave paths go south and east roughly, its hard to tell exactly when you
 can't see where you are going.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9217 8 100
+Reset       M 9220 4 100
+Reset       M 9223 4 100
+Door        east~ ~ -1 9222
 ~
 ~
-0 -1 9222
-D2
+Door        south~ ~ -1 9223
 ~
 ~
-0 -1 9223
-D3
+Door        west~ ~ -1 9220
 ~
 ~
-0 -1 9220
-S
+End
+
 #9222
-Darker Caves~
+Name        Darker Caves~
+Descr
 You can barely see your way even with a light source.  The rocks of the cave
 are even darker than the darkness.  You hear a powerful humming all around
 you.  Cave paths go south and west roughly; it's hard to tell exactly when you
 can't see where you are going.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9205 1 100
+Reset       E 9224 17 100
+Reset       M 9217 8 100
+Reset       M 9221 4 100
+Reset       M 9221 4 100
+Reset       M 9224 4 100
+Reset       E 9225 5 100
+Door        south~ ~ -1 9224
 ~
 ~
-0 -1 9224
-D3
+Door        west~ ~ -1 9221
 ~
 ~
-0 -1 9221
-S
+End
+
 #9223
-Darker Caves~
+Name        Darker Caves~
+Descr
 You can barely see your way even with a light source.  The rocks of the cave
 are even darker than the darkness.  You hear a powerful humming all around you.
 Cave paths go north, south and east roughly; it's hard to tell exactly when
 you can't see where you are going.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9217 8 100
+Reset       E 9217 17 100
+Door        north~ ~ -1 9221
 ~
 ~
-0 -1 9221
-D1
+Door        east~ ~ -1 9224
 ~
 ~
-0 -1 9224
-D2
+Door        south~ ~ -1 9225
 ~
 ~
-0 -1 9225
-S
+End
+
 #9224
-Darker Caves~
+Name        Darker Caves~
+Descr
 You can barely see your way even with a light source.  The rocks of the cave
 are even darker than the darkness.  You hear a powerful humming all around you.
 Cave paths go north, south and west roughly, it's hard to tell exactly when you
 can't see where you are going.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9217 8 100
+Door        north~ ~ -1 9222
 ~
 ~
-0 -1 9222
-D2
+Door        south~ ~ -1 9226
 ~
 ~
-0 -1 9226
-D3
+Door        west~ ~ -1 9223
 ~
 ~
-0 -1 9223
-S
+End
+
 #9225
-Darkest Caves~
+Name        Darkest Caves~
+Descr
 Your light doesn't even seem to work here.  Even magical light sources seem
 only to illuminate about a foot ahead of you.  You suddenly realize that the
 path has descended quite a bit but you didn't notice before because of the
 darkness.  You sense a great presence off to the east aways.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9206 1 100
+Reset       E 9219 17 100
+Reset       M 9217 8 100
+Reset       M 9216 4 100
+Door        north~ ~ -1 9223
 ~
 ~
-0 -1 9223
-D1
+Door        east~ ~ -1 9226
 ~
 ~
-0 -1 9226
-S
+End
+
 #9226
-Darkest Caves~
+Name        Darkest Caves~
+Descr
 Your light doesn't even seem to work here.  Even magical light sources seem
 only to illuminate about a foot ahead of you.  You suddenly realize that the
 path has descended quite a bit but you didn't notice before because of the
 darkness.  You sense a great presence directly to the east.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 9217 8 100
+Door        north~ ~ -1 9224
 ~
 ~
-0 -1 9224
-D1
+Door        east~ ~ -1 9227
 ~
 ~
-0 -1 9227
-D3
+Door        west~ ~ -1 9225
 ~
 ~
-0 -1 9225
-S
+End
+
 #9227
-Earth Chamber~
+Name        Earth Chamber~
+Descr
 This is the abode of the Earth Ruler.  He decides about earthquakes,
 landslides, and avalanches.  The Earth Ruler sits upon a huge marble throne
 carved into the wall.
 ~
-0 9 3
-E
-marble throne~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  marble throne~
 The ruler notices your stare, and doesn't like it one bit!  The whole
 earth seems to shake with his emotion.
 ~
-D3
+Reset       M 9208 1 100
+Reset       E 9201 1 100
+Reset       E 9202 5 100
+Reset       M 9217 8 100
+Reset       E 9220 16 100
+Reset       M 9217 8 100
+Reset       M 9224 4 100
+Door        west~ ~ -1 9226
 ~
 ~
-0 -1 9226
-S
+End
+
 #9228
-By the River~
+Name        By the River~
+Descr
 The water in the river seems to bubble and froth with magic.  Though it
 splashes playfully on you, it does not seem wet.  The path leads north closer
 to the water. To the west you see a T-intersection.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9236 7 100
+Reset       M 9219 4 100
+Door        north~ ~ -1 9229
 ~
 ~
-0 -1 9229
-D3
+Door        west~ ~ -1 9213
 ~
 ~
-0 -1 9213
-S
+End
+
 #9229
-In the River~
+Name        In the River~
+Descr
 To continue you had to walk right in the river.  Though you walk along in
 water up to your knees, you do not seem to get wet.  A bay stretches out to
 the north and the river goes south.
 ~
-0 0 6
-D0
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9219 4 100
+Door        north~ ~ -1 9230
 ~
 ~
-0 -1 9230
-D2
+Door        south~ ~ -1 9228
 ~
 ~
-0 -1 9228
-S
+End
+
 #9230
-Elemental Bay~
+Name        Elemental Bay~
+Descr
 The water is crystal clear here and you can see the bottom of the bay 30 feet
 below you.  Then you realize you are walking on the water itself.  Truly
 magical water indeed.  Though you splash through the bay you do not get wet.
 ~
-0 0 6
-D0
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9234 6 100
+Reset       E 9218 16 100
+Reset       M 9214 8 100
+Door        north~ ~ -1 9233
 ~
 ~
-0 -1 9233
-D1
+Door        east~ ~ -1 9231
 ~
 ~
-0 -1 9231
-D2
+Door        south~ ~ -1 9229
 ~
 ~
-0 -1 9229
-S
+End
+
 #9231
-Elemental Bay~
+Name        Elemental Bay~
+Descr
 The water is crystal clear here and you can see the bottom of the bay 30 feet
 below you.  Then you realize you are walking on the water itself.  Truly
 magical water indeed.  Though you splash through the bay you do not get wet.
 ~
-0 0 6
-D0
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9214 8 100
+Reset       M 9221 4 100
+Reset       M 9221 4 100
+Door        north~ ~ -1 9234
 ~
 ~
-0 -1 9234
-D1
+Door        east~ ~ -1 9232
 ~
 ~
-0 -1 9232
-D3
+Door        west~ ~ -1 9230
 ~
 ~
-0 -1 9230
-S
+End
+
 #9232
-Elemental Bay~
+Name        Elemental Bay~
+Descr
 The water is crystal clear here and you can see the bottom of the bay 30 feet
 below you.  Then you realize you are walking on the water itself.  Truly
 magical water indeed.  Though you splash through the bay you do not get wet.
 ~
-0 0 6
-D0
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9214 8 100
+Reset       M 9216 4 100
+Reset       M 9216 4 100
+Reset       M 9222 4 100
+Door        north~ ~ -1 9235
 ~
 ~
-0 -1 9235
-D3
+Door        west~ ~ -1 9231
 ~
 ~
-0 -1 9231
-S
+End
+
 #9233
-Elemental Bay~
+Name        Elemental Bay~
+Descr
 The water is crystal clear here and you can see the bottom of the bay 30 feet
 below you.  Then you realize you are walking on the water itself.  Truly
 magical water indeed.  Though you splash through the bay you do not get wet.
 ~
-0 0 6
-D1
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9214 8 100
+Reset       E 9216 17 100
+Door        east~ ~ -1 9234
 ~
 ~
-0 -1 9234
-D2
+Door        south~ ~ -1 9230
 ~
 ~
-0 -1 9230
-S
+End
+
 #9234
-Elemental Bay~
+Name        Elemental Bay~
+Descr
 The water is crystal clear here and you can see the bottom of the bay 30 feet
 below you.  Then you realize you are walking on the water itself.  Truly
 magical water indeed.  Though you splash through the bay you do not get wet.
 ~
-0 0 6
-D1
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9205 1 100
+Reset       M 9214 8 100
+Door        east~ ~ -1 9235
 ~
 ~
-0 -1 9235
-D2
+Door        south~ ~ -1 9231
 ~
 ~
-0 -1 9231
-D3
+Door        west~ ~ -1 9233
 ~
 ~
-0 -1 9233
-S
+End
+
 #9235
-Elemental Bay~
+Name        Elemental Bay~
+Descr
 The water is crystal clear here and you can see the bottom of the bay 30 feet
 below you.  Then you realize you are walking on the water itself.  Truly
 magical water indeed.  Though you splash through the bay you do not get wet.
 ~
-0 0 6
-D2
+Flags       ~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9214 8 100
+Reset       E 9224 17 100
+Door        south~ ~ -1 9232
 ~
 ~
-0 -1 9232
-D3
+Door        west~ ~ -1 9234
 ~
 ~
-0 -1 9234
-D5
+Door        down~ ~ -1 9236
 ~
 ~
-0 -1 9236
-S
+End
+
 #9236
-Water Chamber~
+Name        Water Chamber~
+Descr
 This chamber was magically created here on the floor of the bay.  It looks
 like it's been here for a long, long time.  Though you are 'under water' there
 is no difficulty breathing normally, and oddly you do not feel the pressure of
 the water above you.
 ~
-0 8 6
-D4
+Flags       indoors~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9212 1 100
+Reset       E 9209 13 100
+Reset       E 9210 12 100
+Reset       M 9214 8 100
+Reset       M 9214 8 100
+Door        up~ ~ -1 9235
 ~
 ~
-0 -1 9235
-S
+End
+
 #9237
-A Fiery Pathway~
+Name        A Fiery Pathway~
+Descr
 You tread carefully along a path which dips and turns among geysers of fire.
 Miniature volcanoes spew lava in rivers.  The fire is hot but not altogether
 dangerous.  The path extends east and south.
 ~
-0 0 5
-D1
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 9236 7 100
+Door        east~ ~ -1 9214
 ~
 ~
-0 -1 9214
-D2
+Door        south~ ~ -1 9238
 ~
 ~
-0 -1 9238
-S
+End
+
 #9238
-A Fiery Pathway~
+Name        A Fiery Pathway~
+Descr
 You tread carefully along a path which dips and turns among pits of fire and
 beds of coals.  A garden to the west glows with an everlasting fire.
 ~
-0 0 5
-D0
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 9226 1 100
+Reset       E 9226 16 100
+Reset       M 9227 1 100
+Reset       E 9230 16 100
+Reset       M 9234 6 100
+Reset       E 9217 16 100
+Reset       M 9219 4 100
+Reset       M 9220 4 100
+Door        north~ ~ -1 9237
 ~
 ~
-0 -1 9237
-D3
+Door        west~ ~ -1 9242
 ~
 ~
-0 -1 9242
-S
+End
+
 #9242
-The Burning Gardens~
+Name        The Burning Gardens~
+Descr
 Everywhere around you the landscape is afire; the rocks, the shrubs and even
 the air seems to be aflame.  Curiously, the magical fire does not seem to
 consume its hosts.  A path leads east among some fire pits.
 ~
-0 0 5
-D1
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Reset       M 9207 1 100
+Reset       M 9228 1 100
+Reset       E 9227 16 100
+Reset       M 9229 1 100
+Reset       E 9228 16 100
+Reset       M 9230 1 100
+Reset       E 9229 16 100
+Reset       M 9215 6 100
+Reset       M 9215 6 100
+Reset       E 9215 17 100
+Reset       M 9215 6 100
+Reset       M 9220 4 100
+Door        east~ ~ -1 9238
 ~
 ~
-0 -1 9238
-D3
+Door        west~ ~ -1 9245
 ~
 ~
-0 -1 9245
-S
+End
+
 #9245
-The Fire Chamber~
+Name        The Fire Chamber~
+Descr
 The fire ruler sits upon a throne made of blue flame.  Little flickers of
 flame dance to and fro for the entertainment of the ruler.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9209 1 100
+Reset       E 9203 16 100
+Reset       E 9204 3 100
+Reset       M 9215 6 100
+Reset       E 9215 17 100
+Reset       M 9215 6 100
+Reset       M 9215 6 100
+Door        east~ ~ -1 9242
 ~
 ~
-0 -1 9242
-S
+End
+
 #9246
-Electric Pathway~
+Name        Electric Pathway~
+Descr
 The pathway glows and hums because of the electricity pulsing through it.
 It seems almost soothing to your weary feet.  To the north there is a
 sunken-in area.  A path leads east also.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 9206 1 100
+Reset       M 9236 7 100
+Reset       M 9218 8 100
+Reset       M 9219 4 100
+Door        north~ ~ -1 9248
 ~
 ~
-0 -1 9248
-D1
+Door        east~ ~ -1 9253
 ~
 ~
-0 -1 9253
-S
+End
+
 #9247
-The Electric Playground~
+Name        The Electric Playground~
+Descr
 Though there is a seemingly carefree atmosphere here, you sense that
 something much more important takes place near by.  The electric playground
 extends north and east.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9218 8 100
+Door        north~ ~ -1 9249
 ~
 ~
-0 -1 9249
-D1
+Door        east~ ~ -1 9248
 ~
 ~
-0 -1 9248
-S
+End
+
 #9248
-The Electric Playground~
+Name        The Electric Playground~
+Descr
 Though there is a seemingly carefree atmosphere here, you sense that
 something much more important takes place near by.  There is an electric
 path heading away south.  The playground extends north and west.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9218 8 100
+Reset       M 9223 4 100
+Door        north~ ~ -1 9250
 ~
 ~
-0 -1 9250
-D2
+Door        south~ ~ -1 9246
 ~
 ~
-0 -1 9246
-D3
+Door        west~ ~ -1 9247
 ~
 ~
-0 -1 9247
-S
+End
+
 #9249
-The Electric Playground~
+Name        The Electric Playground~
+Descr
 Though there is a seemingly carefree atmosphere here, you sense that
 something much more important takes place near by.  The playground continues
 south and east.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9235 1 100
+Reset       M 9218 8 100
+Door        east~ ~ -1 9250
 ~
 ~
-0 -1 9250
-D2
+Door        south~ ~ -1 9247
 ~
 ~
-0 -1 9247
-S
+End
+
 #9250
-The Electric Playground~
+Name        The Electric Playground~
+Descr
 Though there is a seemingly carefree atmosphere here, you sense that
 something much more important takes place near by.  The playground is
 south and west.  Something more important catches your eye to the east.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9205 1 100
+Reset       M 9218 8 100
+Reset       E 9219 17 100
+Door        east~ ~ -1 9251
 ~
 ~
-0 -1 9251
-D2
+Door        south~ ~ -1 9248
 ~
 ~
-0 -1 9248
-D3
+Door        west~ ~ -1 9249
 ~
 ~
-0 -1 9249
-S
+End
+
 #9251
-Lightning Causeway~
+Name        Lightning Causeway~
+Descr
 Up a set of stairs carved into the hill you see intermittent flashes of
 lightning.  A continuous hum also comes form that direction.  To the west
 is the electric playground.
 ~
-0 0 4
-D3
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9218 8 100
+Door        west~ ~ -1 9250
 ~
 ~
-0 -1 9250
-D4
+Door        up~ ~ -1 9252
 ~
 ~
-0 -1 9252
-S
+End
+
 #9252
-Lightning Chamber~
+Name        Lightning Chamber~
+Descr
 There is some sort of control panel here. Apparently the Lightning Ruler
 observes and controls electric forces from here.  A set of steps carved into
 the hill lead down to a causeway.
 ~
-0 8 6
-D5
+Flags       indoors~
+Sector      water_swim~
+Regen       100 100
+Reset       M 9211 1 100
+Reset       E 9207 16 100
+Reset       E 9208 11 100
+Reset       M 9218 8 100
+Reset       E 9218 17 100
+Reset       M 9218 8 100
+Door        down~ ~ -1 9251
 ~
 ~
-0 -1 9251
-S
+End
+
 #9253
-Mesa West~
+Name        Mesa West~
+Descr
 An electric path starts to the west.  The mesa continues to the east.
 Or you can climb down to the canyon floor to the south.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9233 1 100
+Reset       M 9223 4 100
+Door        east~ ~ -1 9254
 ~
 ~
-0 -1 9254
-D2
+Door        south~ ~ -1 9217
 ~
 ~
-0 -1 9217
-D3
+Door        west~ ~ -1 9246
 ~
 ~
-0 -1 9246
-S
+End
+
 #9254
-Mesa East~
+Name        Mesa East~
+Descr
 A path starts to the north.  The mesa continues to the west.
 Or you can climb down to the canyon floor to the south.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9206 1 100
+Reset       M 9222 4 100
+Door        north~ ~ -1 9255
 ~
 ~
-0 -1 9255
-D2
+Door        south~ ~ -1 9219
 ~
 ~
-0 -1 9219
-D3
+Door        west~ ~ -1 9253
 ~
 ~
-0 -1 9253
-S
+End
+
 #9255
-Floating in Air~
+Name        Floating in Air~
+Descr
 Last you knew, you were walking on the mesa.  Abruptly the path dropped
 from beneath your feet much to quick for you to recover.  Instead of
 plunging to your death, you seemingly miss the ground and begin walking
 on air.  The space to the north and east seems just thin air, but you can
 walk there.  The pathway you came from is to the south.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9233 1 100
+Reset       M 9236 7 100
+Reset       M 9225 8 100
+Reset       E 9218 17 100
+Reset       M 9225 8 100
+Reset       E 9225 17 100
+Reset       M 9222 4 100
+Door        north~ ~ -1 9257
 ~
 ~
-0 -1 9257
-D1
+Door        east~ ~ -1 9256
 ~
 ~
-0 -1 9256
-D2
+Door        south~ ~ -1 9254
 ~
 ~
-0 -1 9254
-S
+End
+
 #9256
-Floating in Air~
+Name        Floating in Air~
+Descr
 You look down and see the ground 100 feet below you.  The wind whispering
 in your ear seems to reassure you that this is fine.  To the north aways
 you spy a portal of sorts.  To the west is more thin air.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9225 8 100
+Door        north~ ~ -1 9258
 ~
 ~
-0 -1 9258
-D3
+Door        west~ ~ -1 9255
 ~
 ~
-0 -1 9255
-S
+End
+
 #9257
-Floating in Air~
+Name        Floating in Air~
+Descr
 You look down and see the ground 100 feet below you.  The wind whispering
 in your ear seems to reassure you that this is fine.  To the east aways
 you spy a portal of sorts.  To the south is more thin air.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 9235 1 100
+Reset       E 9216 16 100
+Reset       M 9225 8 100
+Reset       M 9224 4 100
+Door        east~ ~ -1 9258
 ~
 ~
-0 -1 9258
-D2
+Door        south~ ~ -1 9255
 ~
 ~
-0 -1 9255
-S
+End
+
 #9258
-Floating in Air~
+Name        Floating in Air~
+Descr
 You look down and see the ground 100 feet below you.  The wind whispering
 in your ear seems to reassure you that this is fine. There is a portal
 hanging in midair here. It is to the east.  You can float south or west
 if you'd like.
 ~
-0 0 4
-E
-portal~
+Flags       ~
+Sector      hills~
+Regen       100 100
+ExtraDescr  portal~
 Through the portal you see a tunnel.
 ~
-D1
+Reset       M 9225 8 100
+Door        east~ ~ -1 9259
 ~
 ~
-0 -1 9259
-D2
+Door        south~ ~ -1 9256
 ~
 ~
-0 -1 9256
-D3
+Door        west~ ~ -1 9257
 ~
 ~
-0 -1 9257
-S
+End
+
 #9259
-Windy Tunnel~
+Name        Windy Tunnel~
+Descr
 A tunnel leads east.  To the west you can enter a portal. The wind in
 this tunnel is quite fierce, it seems as if it's forced.  
 ~
-0 0 4
-E
-portal~
+Flags       ~
+Sector      hills~
+Regen       100 100
+ExtraDescr  portal~
 Through the portal you see nothing but sky.
 ~
-D1
+Reset       M 9225 8 100
+Reset       M 9224 4 100
+Door        east~ ~ -1 9260
 ~
 ~
-0 -1 9260
-D3
+Door        west~ ~ -1 9258
 ~
 ~
-0 -1 9258
-S
+End
+
 #9260
-Air Chamber~
+Name        Air Chamber~
+Descr
 Tiny tornadoes come and go and dance along the ground here.  At the back
 of the chamber you notice a huge throne made of swirling clouds.
 A tunnel leads west.
 ~
-0 8 6
-E
-throne clouds~
+Flags       indoors~
+Sector      water_swim~
+Regen       100 100
+ExtraDescr  throne clouds~
 Although the cloud throne appears solid enough to sit on, I wouldn't try
 it if I were you!
 ~
-D3
+Reset       M 9210 1 100
+Reset       E 9205 8 100
+Reset       E 9206 6 100
+Reset       M 9207 1 100
+Reset       E 9220 16 100
+Reset       M 9225 8 100
+Reset       M 9225 8 100
+Door        west~ ~ -1 9259
 ~
 ~
-0 -1 9259
-S
+End
+
 #0
 
-
-#SPECIALS
-M 9202 spec_cast_cleric
-M 9204 spec_breath_any
-M 9207 spec_breath_any
-M 9208 spec_cast_cleric
-M 9209 spec_breath_fire
-M 9210 spec_breath_gas
-M 9211 spec_breath_lightning
-M 9212 spec_breath_acid
-M 9219 spec_breath_acid
-M 9223 spec_breath_lightning
-M 9224 spec_thief
-M 9225 spec_thief
-M 9226 spec_breath_fire
-M 9227 spec_breath_lightning
-M 9228 spec_breath_frost
-M 9230 spec_breath_gas
-M 9231 spec_cast_mage
-M 9232 spec_cast_cleric
-M 9233 spec_cast_mage
-M 9234 spec_thief
-M 9235 spec_breath_any
-M 9237 spec_breath_any
-M 9238 spec_cast_mage
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 9201 3 9201
-M 0 9201 3 9202
-G 0 9231 0
-M 0 9236 7 9202
-M 0 9201 3 9203
-M 0 9238 1 9203
-G 0 9231 0
-M 0 9202 1 9204
-E 0 9213 0 10
-E 0 9214 0 7
-M 0 9205 1 9207
-M 0 9236 7 9207
-M 0 9203 8 9208
-M 0 9232 4 9208
-E 0 9232 0 16
-M 0 9204 1 9209
-E 0 9211 0 3
-E 0 9212 0 14
-M 0 9205 1 9209
-M 0 9207 1 9209
-M 0 9232 4 9209
-E 0 9220 0 16
-M 0 9203 8 9210
-M 0 9223 4 9210
-E 0 9221 0 17
-M 0 9231 1 9211
-E 0 9215 0 17
-M 0 9206 1 9212
-E 0 9221 0 17
-M 0 9216 4 9212
-M 0 9222 4 9213
-M 0 9203 8 9215
-M 0 9203 8 9215
-M 0 9231 1 9216
-E 0 9215 0 17
-M 0 9203 8 9217
-M 0 9203 8 9218
-M 0 9205 8 9218
-M 0 9207 1 9218
-M 0 9207 1 9218
-E 0 9223 0 17
-M 0 9233 1 9218
-M 0 9203 8 9219
-E 0 9225 0 17
-M 0 9236 7 9220
-M 0 9220 4 9220
-E 0 9222 0 17
-M 0 9217 8 9221
-M 0 9220 4 9221
-M 0 9223 4 9221
-M 0 9205 1 9222
-E 0 9224 0 17
-M 0 9217 8 9222
-M 0 9221 4 9222
-M 0 9221 4 9222
-M 0 9224 4 9222
-E 0 9225 0 5
-M 0 9217 8 9223
-E 0 9217 0 17
-M 0 9217 8 9224
-M 0 9206 1 9225
-E 0 9219 0 17
-M 0 9217 8 9225
-M 0 9216 4 9225
-M 0 9217 8 9226
-M 0 9208 1 9227
-E 0 9201 0 1
-E 0 9202 0 5
-M 0 9217 8 9227
-E 0 9220 0 16
-M 0 9217 8 9227
-M 0 9224 4 9227
-M 0 9236 7 9228
-M 0 9219 4 9228
-M 0 9219 4 9229
-M 0 9234 6 9230
-E 0 9218 0 16
-M 0 9214 8 9230
-M 0 9214 8 9231
-M 0 9221 4 9231
-M 0 9221 4 9231
-M 0 9214 8 9232
-M 0 9216 4 9232
-M 0 9216 4 9232
-M 0 9222 4 9232
-M 0 9214 8 9233
-E 0 9216 0 17
-M 0 9205 1 9234
-M 0 9214 8 9234
-M 0 9214 8 9235
-E 0 9224 0 17
-M 0 9212 1 9236
-E 0 9209 0 13
-E 0 9210 0 12
-M 0 9214 8 9236
-M 0 9214 8 9236
-M 0 9236 7 9237
-M 0 9226 1 9238
-E 0 9226 0 16
-M 0 9227 1 9238
-E 0 9230 0 16
-M 0 9234 6 9238
-E 0 9217 0 16
-M 0 9219 4 9238
-M 0 9220 4 9238
-M 0 9207 1 9242
-M 0 9228 1 9242
-E 0 9227 0 16
-M 0 9229 1 9242
-E 0 9228 0 16
-M 0 9230 1 9242
-E 0 9229 0 16
-M 0 9215 6 9242
-M 0 9215 6 9242
-E 0 9215 0 17
-M 0 9215 6 9242
-M 0 9220 4 9242
-M 0 9209 1 9245
-E 0 9203 0 16
-E 0 9204 0 3
-M 0 9215 6 9245
-E 0 9215 0 17
-M 0 9215 6 9245
-M 0 9215 6 9245
-M 0 9206 1 9246
-M 0 9236 7 9246
-M 0 9218 8 9246
-M 0 9219 4 9246
-M 0 9218 8 9247
-M 0 9218 8 9248
-M 0 9223 4 9248
-M 0 9235 1 9249
-M 0 9218 8 9249
-M 0 9205 1 9250
-M 0 9218 8 9250
-E 0 9219 0 17
-M 0 9218 8 9251
-M 0 9211 1 9252
-E 0 9207 0 16
-E 0 9208 0 11
-M 0 9218 8 9252
-E 0 9218 0 17
-M 0 9218 8 9252
-M 0 9233 1 9253
-M 0 9223 4 9253
-M 0 9206 1 9254
-M 0 9222 4 9254
-M 0 9233 1 9255
-M 0 9236 7 9255
-M 0 9225 8 9255
-E 0 9218 0 17
-M 0 9225 8 9255
-E 0 9225 0 17
-M 0 9222 4 9255
-M 0 9225 8 9256
-M 0 9235 1 9257
-E 0 9216 0 16
-M 0 9225 8 9257
-M 0 9224 4 9257
-M 0 9225 8 9258
-M 0 9225 8 9259
-M 0 9224 4 9259
-M 0 9210 1 9260
-E 0 9205 0 8
-E 0 9206 0 6
-M 0 9207 1 9260
-E 0 9220 0 16
-M 0 9225 8 9260
-M 0 9225 8 9260
-S
-
-
-#SHOPS
-9238 0 0 0 0 0 105 15 0 23
-0
 
 
 #$

@@ -12,4 +12,4 @@ This file gies a brief description of the files in the clans directory.
 CLANS.LST	- Contains a list of all clans to be loaded into the server.
                 The clans are loaded in top-down order.
 
-*.clan		- An individual clan file.
+*.cln		- An individual clan file.

@@ -4,318 +4,505 @@ Author      Mort~
 Levels      15 31
 Security    1
 VNUMs       8200 8296
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #8200
-villager insane~
-the Insane Villager~
+Name        villager insane~
+Short       the Insane Villager~
+Long
 An insane villager rages at the gods. 
 ~
+Descr
 The villager appears to be healthy except that his hands 
 are burned from prying apart smouldering buildings.
 ~
-65 25166336 100 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    infrared mute gills~
+Alignment   100
+Level       12
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8201
-villager wounded~
-the wounded villager~
+Name        villager wounded~
+Short       the wounded villager~
+Long
 A wounded villager waves his sword at you and screams, 
 		   'BEWARE !!!'
 ~
+Descr
 You must BEWARE !!!!   The Dark Knights have besieged 
 Castle Reinhold. They will kill you as they have killed 
 my friends and family!  
 
 Do not go forward unless you are mighty!!!
 ~
-3 520 20 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-invis infrared~
+Alignment   20
+Level       12
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8202
-dark knight~
-the Dark Knight~
+Name        dark knight~
+Short       the Dark Knight~
+Long
 The Dark Knight sneers at you.
 ~
+Descr
 Armored in dull black plate with a red sword emblazoned on
 his shield, the Dark Knight appears ready to take you on.  
 You and your entire nation!
 ~
-97 25166368 -500 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         aggressive stay_area~
+AffectBy    detect-hidden infrared mute gills~
+Alignment   -500
+Level       15
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_breath_acid
+End
+
 #8203
-captain vader~
-Captain Vader~
+Name        captain vader~
+Short       Captain Vader~
+Long
 Captain Vader exudes evil.
 ~
+Descr
 Captain Vader has a horned death skull helmet on that would 
 scare even you if you werent already afraid.  The air around 
 his sword shimmers like a summer day.
 ~
-3 25190944 -1000 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 1
+Act         sentinel~
+AffectBy    detect-hidden infrared protect-evil mute gills~
+Alignment   -1000
+Level       28
+Gold        0
+Race        Undead
+Sex         male~
+Spec        spec_breath_fire
+End
+
 #8204
-soldier dark~
-the Dark Soldier~
+Name        soldier dark~
+Short       the Dark Soldier~
+Long
 A Dark Soldier bars your way.  He  ** ATTACKS YOU **
 ~
+Descr
 The Dark Soldier has many scars and momentoes of war.  
 Hanging from the silken blonde hair of one of his victims 
 are the finger bones of dozens of humans.
 ~
-35 25166368 -300 S
-20 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel aggressive~
+AffectBy    detect-hidden infrared mute gills~
+Alignment   -300
+Level       20
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #8205
-villager~
-the Villager~
+Name        villager~
+Short       the Villager~
+Long
 A Villager stands before you.
 ~
+Descr
 Everything that the villagers own is on them.  A few of 
 the villagers carry their possessions on their backs. Others 
 use wheel barrows, while the rest have sacks of goods.
 ~
-3 512 10 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 0
+Act         sentinel~
+AffectBy    infrared~
+Alignment   10
+Level       12
+Gold        0
+Race        Human
+Sex         neutral~
+End
+
 #8206
-guard ducal~
-the Ducal Guard~
+Name        guard ducal~
+Short       the Ducal Guard~
+Long
 A Ducal Guard stands ready to repel Evil.
 ~
+Descr
 The Ducal Guard is dressed in white with purple trim.  
 The Falcon Shield that he holds is Duke Reinhold's family crest.
 ~
-65 16777728 100 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    infrared gills~
+Alignment   100
+Level       15
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #8207
-baker Joe~
-Joe the Baker~
+Name        baker Joe~
+Short       Joe the Baker~
+Long
 Joe the Baker bakes away.
 ~
+Descr
 The Baker has been working hard all morning to bake the 
 breads that the castle eats. His talents are evident as the 
 smells of pastries and loafs are overpowering you.
 ~
-3 16785920 200 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Halfdwarf~ 1
+Act         sentinel~
+AffectBy    infrared protect-evil gills~
+Alignment   200
+Level       28
+Gold        0
+Race        Halfdwarf
+Sex         male~
+Shop        food~ ~ ~ ~ ~ 40 100 0 23
+End
+
 #8208
-armorer jack captain~
-Captain Jack~
+Name        armorer jack captain~
+Short       Captain Jack~
+Long
 Captain Jack looks at you.
 ~
+Descr
 Many years ago Captain Jack retired to lead a more peaceful life.  
 His skills as a merchant and his knowledge of armor has made him 
 a very successful man.
 ~
-3 16785920 500 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Halfelf~ 1
+Act         sentinel~
+AffectBy    infrared protect-evil gills~
+Alignment   500
+Level       30
+Gold        0
+Race        Halfelf
+Sex         male~
+Shop        armor~ ~ ~ ~ ~ 90 100 0 23
+End
+
 #8209
-Armon~
-Armon the weaponsmith~
+Name        Armon~
+Short       Armon the weaponsmith~
+Long
 Armon the weaponsmith sharpening tools of the trade.
 ~
+Descr
 As you look closely at Armon you notice that he has many wounds about 
 his body.   He is surely a strong fighter.  Don't mess with him!
 ~
-3 16777728 0 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Dwarf~ 0
+Act         sentinel~
+AffectBy    infrared gills~
+Alignment   0
+Level       30
+Gold        0
+Race        Dwarf
+Sex         neutral~
+Shop        weapon~ staff~ wand~ ~ ~ 80 110 0 23
+End
+
 #8210
-stella merchant~
-Stella the Merchant~
+Name        stella merchant~
+Short       Stella the Merchant~
+Long
 The Merchant Stella looks you over with a practiced eye.
 ~
+Descr
 This tiny little lady has the eyes and wits of a barracuda.  
 Mess with her and meet your doom.
 ~
-3 16785920 1000 S
-32 0 0 0d0+0 0d0+0
-0 0
-0 Gnome~ 2
+Act         sentinel~
+AffectBy    infrared protect-evil gills~
+Alignment   1000
+Level       32
+Gold        0
+Race        Gnome
+Sex         female~
+Shop        furniture~ container~ treasure~ ~ ~ 80 110 0 2
+End
+
 #8211
-warlord~
-the Warlord~
+Name        warlord~
+Short       the Warlord~
+Long
 The Warlord stands ready to instruct.
 ~
+Descr
 As a warrior, the Warlord knows no equals.  As a teacher of 
 warrior skills he tries to passes his knowledge and experience 
 on to those who wish to follow the way of war.
 ~
-1539 544 0 S
-32 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel train practice~
+AffectBy    detect-hidden infrared~
+Alignment   0
+Level       32
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8212
-sergeant ducal~
-the Ducal Sergeant~
+Name        sergeant ducal~
+Short       the Ducal Sergeant~
+Long
 The Ducal Sergeant is watching you.
 ~
+Descr
 Many criminals and evil doers have wished harm upon the 
 Ducal Sergeants of Castle Reinhold.  The only weakness 
 they have been able to find is the Sergeant's lack of 
 defense versus magics.
 ~
-65 8712 500 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    detect-invis infrared protect-evil~
+Alignment   500
+Level       25
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #8213
-captain ducal~
-the Ducal Captain~
+Name        captain ducal~
+Short       the Ducal Captain~
+Long
 The Ducal Captain says 'Hello stranger. GOOD shall prevail !! '
 ~
+Descr
 The Captain has a small tattoo on his left forearm.  
 It simply says, "GOOD will triumph".
 ~
-65 16786088 500 S
-27 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    detect-invis detect-hidden sanctuary infrared protect-evil gills~
+Alignment   500
+Level       27
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #8214
-guards armory~
-the  Armory Guards~
+Name        guards armory~
+Short       the  Armory Guards~
+Long
 The Armory Guards seem very bored.
 ~
+Descr
 The Armory Guards are ASLEEP !!!  Can you believe it ?
 ~
-3 16777728 100 S
-17 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    infrared gills~
+Alignment   100
+Level       17
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8215
-cadet young~
-the young Cadet~
+Name        cadet young~
+Short       the young Cadet~
+Long
 The Cadet pushes past you.
 ~
+Descr
 The Cadet sneers at you because he is joining an elite 
 fighting order and you are not!
 ~
-65 512 100 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    infrared~
+Alignment   100
+Level       15
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8216
-cleric john paul~
-John Paul the cleric~
+Name        cleric john paul~
+Short       John Paul the cleric~
+Long
 The God of Light's Cleric greets you.
 ~
+Descr
 Underneath the glow and the sanctity you see a hardened adventurer.  
 John Paul was a powerful adventurer during his glory days...preaching 
 the benefits of GOOD and defeating the vile creatures of evil.
 ~
-3 16786088 800 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-invis detect-hidden sanctuary infrared protect-evil gills~
+Alignment   800
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_adept
+End
+
 #8217
-guard alert~
-an Alert Guard~
+Name        guard alert~
+Short       an Alert Guard~
+Long
 The Alert Guard **  ATTACKS ** You !!!!
 ~
+Descr
 The Alert Guard seems wired on some type of drug.  His eyes are 
 wide and bloodshot.
 ~
-3 16777768 50 S
-18 0 0 0d0+0 0d0+0
-0 0
-0 Giant~ 1
+Act         sentinel~
+AffectBy    detect-invis detect-hidden infrared gills~
+Alignment   50
+Level       18
+Gold        0
+Race        Giant
+Sex         male~
+Spec        spec_guard
+End
+
 #8218
-servant~
-a servant~
+Name        servant~
+Short       a servant~
+Long
 A servant appears to be looking for something to do.
 ~
+Descr
 Underneath that dusty uniform is the beating heart of a human being.
 ~
-69 0 50 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   50
+Level       12
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #8219
-cook fat~
-the fat cook~
+Name        cook fat~
+Short       the fat cook~
+Long
 The cook is busy.  Leave him alone.
 ~
+Descr
 Thanks to a quick hand, the cook has been able to hide some 
 food inside his pants.
 ~
-3 0 25 S
-20 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   25
+Level       20
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8220
-courtier~
-the Courtier~
+Name        courtier~
+Short       the Courtier~
+Long
 The Courtier bows to you.
 ~
+Descr
 Hidden under his silk outfit is a leather jerkin.  He also 
 seems to be armed.
 ~
-65 0 10 S
-22 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   10
+Level       22
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8221
-attendant~
-the toilet attendant~
+Name        attendant~
+Short       the toilet attendant~
+Long
 The attendant is ready to serve you.
 ~
+Descr
 Long hours at this duty has driven the attendant mad.
 ~
-3 0 500 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   500
+Level       12
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8222
-reinhold duke~
-Duke Reinhold~
+Name        reinhold duke~
+Short       Duke Reinhold~
+Long
 Duke Reinhold calmly looks you up and down.
 ~
+Descr
 The Duke is a tall handsome man.  His hair is graying but his 
 stature is still that of a young military man.  Without a doubt 
 he knows how to handle himself.  Be careful!
 ~
-3 8872 800 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-invis detect-hidden sanctuary infrared protect-evil~
+Alignment   800
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_guard
+End
+
 #8223
-reinhold duchess~
-the Duchess Reinhold~
+Name        reinhold duchess~
+Short       the Duchess Reinhold~
+Long
 The Duchess yawns with boredom.
 ~
+Descr
 Like her courtiers, the Duchess hides a set of armor beneath her 
 beautiful gown.
 ~
-3 8872 500 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    detect-invis detect-hidden sanctuary infrared protect-evil~
+Alignment   500
+Level       28
+Gold        0
+Race        Human
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #8224
-wizard royal~
-the Royal Wizard~
+Name        wizard royal~
+Short       the Royal Wizard~
+Long
 A tall Elven wizard stands before you.
 ~
+Descr
 Balrod, the Elven Wizard, has a crackling aura of power around him.  
 On each hand is a powerful gauntlet...glowing with power.
 At his feet are statues of the many races.  As you watch, Balrod lifts 
@@ -323,663 +510,980 @@ his foot and brings it down upon the Goblinoid figure.
 With the power I am gathering I shall destroy all Goblinoids upon this 
 continent. You should leave...before you make me angry.
 ~
-3 8744 0 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 0
+Act         sentinel~
+AffectBy    detect-invis detect-hidden infrared protect-evil~
+Alignment   0
+Level       28
+Gold        0
+Race        Elf
+Sex         neutral~
+Spec        spec_cast_mage
+End
+
 #8225
-ed apprentice loyal~
-the loyal apprentice~
+Name        ed apprentice loyal~
+Short       the loyal apprentice~
+Long
 Ed the Apprentice is here.
 ~
+Descr
 Without a doubt, this apprentice is the most beautiful woman you have 
 ever seen. Too bad she crackles with magical energies.
 ~
-3 8744 200 S
-18 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 2
+Act         sentinel~
+AffectBy    detect-invis detect-hidden infrared protect-evil~
+Alignment   200
+Level       18
+Gold        0
+Race        Elf
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #8226
-guardian tower~
-the tower guardian~
+Name        guardian tower~
+Short       the tower guardian~
+Long
 You see nothing!! Yet something attacks you!   FLEE  !!!!! 
 ~
+Descr
 The Tower Guardian is 3'2" tall and 4" wide.  It has a huge mouth, 
 warts over most of it's body and it wears no clothes.
 
 It has talons four inches long.  Good Luck...because if you can 
 read this..you're too close!!
 ~
-35 66090 0 S
-29 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 0
+Act         sentinel aggressive~
+AffectBy    invisible detect-invis detect-hidden infrared hide~
+Alignment   0
+Level       29
+Gold        0
+Race        Object
+Sex         neutral~
+Spec        spec_breath_any
+End
+
 #8227
-librarian~
-the Librarian~
+Name        librarian~
+Short       the Librarian~
+Long
 The Librarian holds two books within the depths of his robe.
 ~
+Descr
 This elder has very wise eyes...however, he seems quite angry with you.  
 SSSHHHHHH !!!!!!
 ~
-3 552 100 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Halfelf~ 1
+Act         sentinel~
+AffectBy    detect-invis detect-hidden infrared~
+Alignment   100
+Level       25
+Gold        0
+Race        Halfelf
+Sex         male~
+End
+
 #8228
-wench cleaning~
-the cleaning wench~
+Name        wench cleaning~
+Short       the cleaning wench~
+Long
 This buxom cleaning wench has many fine attributes.
 ~
+Descr
 Very professional.  That's what you think of when you look at her.
 ~
-69 0 20 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   20
+Level       12
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #8229
-boy pot chamber~
-the chamber pot boy~
+Name        boy pot chamber~
+Short       the chamber pot boy~
+Long
 WATCH OUT!!!  It's the chamber pot boy.
 ~
+Descr
 Dirty..dirty..dirty.  Have you ever seen so much filth?
 ~
-69 0 0 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   0
+Level       12
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8230
-nonderon grey~
-the Grey Nonderon~
+Name        nonderon grey~
+Short       the Grey Nonderon~
+Long
 The Grey Nonderon attacks you with sharp claws!
 ~
+Descr
 Standing 6' tall, the Nonderon has an exoskeleton of super hard bone.
 ~
-35 16938 -200 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 God~ 0
+Act         sentinel aggressive~
+AffectBy    invisible detect-invis detect-hidden infrared~
+Alignment   -200
+Level       25
+Gold        0
+Race        God
+Sex         neutral~
+Spec        spec_breath_lightning
+End
+
 #8231
-amoeba black~
-the Black Amoeba~
+Name        amoeba black~
+Short       the Black Amoeba~
+Long
 A blackness engulfs you as the Black Amoeba attacks!!!
 ~
+Descr
 Within the Black Amoeba are the remains of it's previous victims.
 ~
-39 17064 -550 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Worm~ 0
+Act         sentinel scavenger aggressive~
+AffectBy    detect-invis detect-hidden sanctuary infrared~
+Alignment   -550
+Level       30
+Gold        0
+Race        Worm
+Sex         neutral~
+Spec        spec_cast_mage
+End
+
 #8232
-harpy~
-the dirty harpy~
+Name        harpy~
+Short       the dirty harpy~
+Long
 A dirty Harpy flies at you.
 ~
+Descr
 The harpy has a terrible face..and her wings are filthy..and 
 her claws are disgusting, but, she's got one heck of a body!
 ~
-39 16936 -500 S
-23 0 0 0d0+0 0d0+0
-0 0
-0 Harpy~ 2
+Act         sentinel scavenger aggressive~
+AffectBy    detect-invis detect-hidden infrared~
+Alignment   -500
+Level       23
+Gold        0
+Race        Harpy
+Sex         female~
+Spec        spec_breath_gas
+End
+
 #8233
-wyvern~
-the dark wyvern~
+Name        wyvern~
+Short       the dark wyvern~
+Long
 The Dark Wyvern attacks you!
 ~
+Descr
 Many an adventurer has lost their lives to the dark wyvern.  
 Their bones litter the floor.
 ~
-35 16904 -700 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Dragon~ 1
+Act         sentinel aggressive~
+AffectBy    detect-invis infrared~
+Alignment   -700
+Level       28
+Gold        0
+Race        Dragon
+Sex         male~
+Spec        spec_breath_acid
+End
+
 #8234
-torturer~
-the Ducal torturer~
+Name        torturer~
+Short       the Ducal torturer~
+Long
 The Ducal Torturer stands here.
 ~
+Descr
 Without a doubt this man loves his job.  You can hear him humming 
 a ditti under his breath.
 ~
-3 520 500 S
-20 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-invis infrared~
+Alignment   500
+Level       20
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #8235
-snakes river~
-the river snake~
+Name        snakes river~
+Short       the river snake~
+Long
 The river snake is big...I mean REALLY BIG!   WATCH OUT !!!!
 ~
+Descr
 The mob looks back at you!
 ~
-225 512 0 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Snake~ 1
+Act         aggressive stay_area wimpy~
+AffectBy    infrared~
+Alignment   0
+Level       12
+Gold        0
+Race        Snake
+Sex         male~
+Spec        spec_poison
+End
+
 #8236
-character shady~
-the shady character~
+Name        character shady~
+Short       the shady character~
+Long
 The shady character tries to get your attention.
 ~
+Descr
 This shady character has several documents that you may 
 want to purchase.
 ~
-65 512 0 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Drow~ 2
+Act         stay_area~
+AffectBy    infrared~
+Alignment   0
+Level       25
+Gold        0
+Race        Drow
+Sex         female~
+Shop        treasure~ ~ ~ ~ ~ 40 110 0 23
+End
+
 #8237
-snake deadly~
-a deadly snake~
+Name        snake deadly~
+Short       a deadly snake~
+Long
 A greenish snake attacks you!!!
 ~
+Descr
 The snake has two small arms coming out of  it's abdomen.
 ~
-35 552 -230 S
-17 0 0 0d0+0 0d0+0
-0 0
-0 Snake~ 0
+Act         sentinel aggressive~
+AffectBy    detect-invis detect-hidden infrared~
+Alignment   -230
+Level       17
+Gold        0
+Race        Snake
+Sex         neutral~
+Spec        spec_poison
+End
+
 #8238
-lizardman~
-the lizardman~
+Name        lizardman~
+Short       the lizardman~
+Long
 A huge lizardman bares his fangs. 
 ~
+Descr
 Standing 6' 8" tall, the Lizardman is very impressive.  He bares 
 his fangs at you !!
 ~
-35 552 -500 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Lizard~ 1
+Act         sentinel aggressive~
+AffectBy    detect-invis detect-hidden infrared~
+Alignment   -500
+Level       15
+Gold        0
+Race        Lizard
+Sex         male~
+Spec        spec_poison
+End
+
 #8239
-dragon albino~
-the Albino Dragon~
+Name        dragon albino~
+Short       the Albino Dragon~
+Long
 A Albino dragon with red eyes stares at you!
 ~
+Descr
 The Albino Dragon has claws like mother of pearl.  Her head 
 skeletal, her fangs wicked.
 ~
-35 552 -1000 S
-26 0 0 0d0+0 0d0+0
-0 0
-0 Dragon~ 2
+Act         sentinel aggressive~
+AffectBy    detect-invis detect-hidden infrared~
+Alignment   -1000
+Level       26
+Gold        0
+Race        Dragon
+Sex         female~
+Spec        spec_breath_any
+End
+
 #8240
-abyss monster~
-the ABYSS Monster~
+Name        abyss monster~
+Short       the ABYSS Monster~
+Long
 The ABYSS Monster **** DEMOLISHES **** you.
 ~
+Descr
 The ABYSS Monster is void of reflective surfaces...thus you cannot see it.
 ~
-99 25128 0 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    detect-invis detect-hidden infrared protect-evil~
+Alignment   0
+Level       28
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_poison
+End
+
 #8241
-horror~
-the Horror~
+Name        horror~
+Short       the Horror~
+Long
 The HORROR attacks you!
 ~
+Descr
 The Horror has Demon armor and a TERRIBLE attitude.
 ~
-99 25128 -1000 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 1
+Act         sentinel aggressive stay_area~
+AffectBy    detect-invis detect-hidden infrared protect-evil~
+Alignment   -1000
+Level       28
+Gold        0
+Race        Undead
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #8200
-ration rations field~
-a field ration~
+Name        ration rations field~
+Short       a field ration~
+Descr
 Field rations on the ground.~
-~
-19 0 1
-4~ 0~ 0~ 0~ 0~
-5 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8201
-chain black armor~
-a Black Chain armor~
+Name        chain black armor~
+Short       a Black Chain armor~
+Descr
 The Black Chain armor lies on the ground.~
-~
-9 528 9
-0~ 0~ 0~ 0~ 0~
-10 0 0
-A
-13 10 0
+Type        armor~
+Extra       evil anti-good~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+Affect      hp~ 10 ~
+End
+
 #8202
-helmet horned~
-a black Horned Helmet~
+Name        helmet horned~
+Short       a black Horned Helmet~
+Descr
 A black horned helmet lies here.~
-~
-9 2640 17
-0~ 0~ 0~ 0~ 0~
-20 0 0
-A
-13 10 0
-A
-19 2 0
+Type        armor~
+Extra       evil magic anti-good anti-neutral~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        0
+Affect      hp~ 10 ~
+Affect      damroll~ 2 ~
+End
+
 #8203
-sword bastard~
-a Bastard Sword~
+Name        sword bastard~
+Short       a Bastard Sword~
+Descr
 A black Bastard Sword is stuck into the ground here.~
-~
-5 528 8193
-0~ 0~ 0~ 1~ 0~
-10 0 0
-A
-24 2 0
-A
-19 3 0
-A
-13 2 0
+Type        weapon~
+Extra       evil anti-good~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      10
+Cost        0
+Affect      saving-spell~ 2 ~
+Affect      damroll~ 3 ~
+Affect      hp~ 2 ~
+End
+
 #8204
-sack~
-a sack~
+Name        sack~
+Short       a sack~
+Descr
 A sack has been dropped.~
-~
-15 0 1
-8~ 0~ 0~ 0~ 0~
-3 0 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        0
+End
+
 #8205
-shield falcon~
-a Falcon Shield~
+Name        shield falcon~
+Short       a Falcon Shield~
+Descr
 A Falcon Shield has been dropped here.~
-~
-9 1024 513
-0~ 0~ 0~ 0~ 0~
-10 0 0
-A
-23 2 0
-A
-13 10 0
+Type        armor~
+Extra       anti-evil~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+Affect      saving-breath~ 2 ~
+Affect      hp~ 10 ~
+End
+
 #8206
-armor plate~
-a set of Plate Armor~
+Name        armor plate~
+Short       a set of Plate Armor~
+Descr
 The Plate Armor has a falcon design upon it.~
-~
-9 1088 9
-0~ 0~ 0~ 0~ 0~
-12 0 0
-A
-2 2 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      12
+Cost        0
+Affect      dexterity~ 2 ~
+End
+
 #8207
-guard shin~
-a set of shin guards~
+Name        guard shin~
+Short       a set of shin guards~
+Descr
 A set of shin guards rest here.~
-~
-9 1024 33
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-13 10 0
+Type        armor~
+Extra       anti-evil~
+Wear        take legs~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hp~ 10 ~
+End
+
 #8208
-sword long~
-a long sword~
+Name        sword long~
+Short       a long sword~
+Descr
 An etched long sword has been thrown to the floor.~
-~
-5 1025 8193
-0~ 0~ 0~ 3~ 0~
-8 0 0
-A
-18 3 0
+Type        weapon~
+Extra       glow anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      8
+Cost        0
+Affect      hitroll~ 3 ~
+End
+
 #8209
-wagon wooden~
-a wooden wagon~
+Name        wagon wooden~
+Short       a wooden wagon~
+Descr
 A wooden wagon sits here.~
-~
-15 0 16385
-100~ 0~ 0~ 0~ 0~
-30 0 0
-A
-17 -10 0
-A
-14 -80 0
+Type        container~
+Extra       ~
+Wear        take hold~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        0
+Affect      ac~ -10 ~
+Affect      move~ -80 ~
+End
+
 #8210
-ring ducal~
-a Ducal Ring~
+Name        ring ducal~
+Short       a Ducal Ring~
+Descr
 The Ducal guards wear this Falcon engraved ring.~
-~
-8 1024 3
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-3 1 0
-A
-4 1 0
-A
-17 5 0
+Type        treasure~
+Extra       anti-evil~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      intelligence~ 1 ~
+Affect      wisdom~ 1 ~
+Affect      ac~ 5 ~
+End
+
 #8211
-club patrol~
-a Ducal Patrol Club~
+Name        club patrol~
+Short       a Ducal Patrol Club~
+Descr
 The Ducal Sergeant's Patrol Club rests here.~
-~
-5 1024 8193
-0~ 0~ 0~ 8~ 0~
-5 0 0
-A
-19 2 0
-A
-18 1 0
-A
-13 10 0
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 2 ~
+Affect      hitroll~ 1 ~
+Affect      hp~ 10 ~
+End
+
 #8212
-sword short dual~
-a dual pair of short swords~
+Name        sword short dual~
+Short       a dual pair of short swords~
+Descr
 The Ducal Captain's dual short swords rests here.~
-~
-5 1088 8193
-0~ 0~ 0~ 3~ 0~
-5 0 0
-A
-1 1 0
-A
-5 2 0
+Type        weapon~
+Extra       magic anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      5
+Cost        0
+Affect      strength~ 1 ~
+Affect      constitution~ 2 ~
+End
+
 #8213
-halberd~
-a Large Halberd~
+Name        halberd~
+Short       a Large Halberd~
+Descr
 The Ducal armory guard's Halberd rests here.~
-~
-5 0 8193
-0~ 0~ 0~ 2~ 0~
-8 0 0
-A
-18 -2 0
-A
-19 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 2~ 0~
+Weight      8
+Cost        0
+Affect      hitroll~ -2 ~
+Affect      damroll~ 3 ~
+End
+
 #8214
-ballista siege~
-a siege ballista~
+Name        ballista siege~
+Short       a siege ballista~
+Descr
 A siege ballista stands here.~
-~
-5 0 8193
-0~ 0~ 0~ 11~ 0~
-20 0 0
-A
-19 5 0
-A
-14 -20 0
-A
-13 -4 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      20
+Cost        0
+Affect      damroll~ 5 ~
+Affect      move~ -20 ~
+Affect      hp~ -4 ~
+End
+
 #8215
-mask skull~
-a Skull Mask~
+Name        mask skull~
+Short       a Skull Mask~
+Descr
 An evil Skull Mask rests here.~
-~
-9 528 17
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-24 3 0
-A
-23 3 0
+Type        armor~
+Extra       evil anti-good~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      saving-spell~ 3 ~
+Affect      saving-breath~ 3 ~
+End
+
 #8216
-well old~
-an old well~
+Name        well old~
+Short       an old well~
+Descr
 The old well is covered in ivy.~
-~
-25 0 0
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        fountain~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8217
-pans pots~
-a set of pots and pans~
+Name        pans pots~
+Short       a set of pots and pans~
+Descr
 Someone has thrown a set of pots and pans on the ground.~
-~
-13 0 8193
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        trash~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8218
-silverware~
-a set of silverware~
+Name        silverware~
+Short       a set of silverware~
+Descr
 Someone tried to hide a set of silverware here.~
-~
-13 0 16385
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        trash~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8219
-painting~
-a magnificient painting~
+Name        painting~
+Short       a magnificient painting~
+Descr
 You see a painting of the Giant Warrior Kiki.~
-~
-13 0 16385
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        trash~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8220
-rug~
-a Persian Rug~
+Name        rug~
+Short       a Persian Rug~
+Descr
 A fine example of a Persian Rug.~
-~
-9 0 1025
-0~ 0~ 0~ 0~ 0~
-15 0 0
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        0
+End
+
 #8221
-china~
-a set of blue China~
+Name        china~
+Short       a set of blue China~
+Descr
 Stacked neatly in a pile is a set of blue China.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8222
-plates silver~
-a set of silver plates~
+Name        plates silver~
+Short       a set of silver plates~
+Descr
 Someone has stacked a set of silver plates here.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8223
-album family~
-a Family Album~
+Name        album family~
+Short       a Family Album~
+Descr
 A Family Album has accidently been dropped here.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8224
-coins gold ~
-some gold coins~
+Name        coins gold ~
+Short       some gold coins~
+Descr
 A pile of gold coins has been dropped here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8225
-jewels red~
-a blazing red jewel~
+Name        jewels red~
+Short       a blazing red jewel~
+Descr
 A blazing red jewel lies here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #8226
-pearls black~
-a Black Pearl~
+Name        pearls black~
+Short       a Black Pearl~
+Descr
 A sailor must have dropped this rare black pearl.~
-~
-8 0 16385
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        treasure~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8227
-garnet fire~
-a Fire Garnet~
+Name        garnet fire~
+Short       a Fire Garnet~
+Descr
 A wizard must have lost this Fire Garnet.~
-~
-8 0 16385
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        treasure~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8228
-moonstone~
-a Moonstone~
+Name        moonstone~
+Short       a Moonstone~
+Descr
 A glowing Moonstone was dropped by a god!~
-~
-8 1 16385
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        treasure~
+Extra       glow~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8229
-coins platinum~
-platinum coins~
+Name        coins platinum~
+Short       platinum coins~
+Descr
 Metal coins of great worth are here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8230
-finger small~
-mort's small finger~
+Name        finger small~
+Short       mort's small finger~
+Descr
 The God of Light has dropped his small finger to earth.~
-~
-3 3137 16385
-28~ 20~ 20~ dispel evil~ 0~
-1 0 0
-A
-12 15 0
-A
-18 3 0
+Type        wand~
+Extra       glow magic anti-evil anti-neutral~
+Wear        take hold~
+Values      28~ 20~ 20~ dispel evil~ 0~
+Weight      1
+Cost        0
+Affect      mana~ 15 ~
+Affect      hitroll~ 3 ~
+End
+
 #8231
-crowbar~
-a Crowbar~
+Name        crowbar~
+Short       a Crowbar~
+Descr
 A glowing Crowbar has been dropped here.~
-~
-5 1027 8193
-0~ 0~ 0~ 8~ 0~
-8 0 0
-A
-19 3 0
-A
-18 -1 0
+Type        weapon~
+Extra       glow hum anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      8
+Cost        0
+Affect      damroll~ 3 ~
+Affect      hitroll~ -1 ~
+End
+
 #8232
-claw harpy~
-a harpy claw~
+Name        claw harpy~
+Short       a harpy claw~
+Descr
 A harpy claw has been dropped here.~
-~
-5 64 8193
-0~ 0~ 0~ 5~ 0~
-2 0 0
-A
-24 2 0
-A
-2 2 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 0~ 0~ 5~ 0~
+Weight      2
+Cost        0
+Affect      saving-spell~ 2 ~
+Affect      dexterity~ 2 ~
+End
+
 #8233
-key large~
-the large key~
+Name        key large~
+Short       the large key~
+Descr
 The Large Key looks very important.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #8234
-candle~
-a candle~
+Name        candle~
+Short       a candle~
+Descr
 A lit candle sits here.~
-~
-1 1 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        light~
+Extra       glow~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #8235
-banishing staff~
-the Staff of Banishing~
+Name        banishing staff~
+Short       the Staff of Banishing~
+Descr
 A magical staff lies here.~
-~
-4 67 16385
-25~ 20~ 20~ acid blast~ 0~
-2 0 0
+Type        staff~
+Extra       glow hum magic~
+Wear        take hold~
+Values      25~ 20~ 20~ acid blast~ 0~
+Weight      2
+Cost        0
+End
+
 #8236
-hat~
-a Wizard's Hat~
+Name        hat~
+Short       a Wizard's Hat~
+Descr
 A dark blue hat has been thrown on the ground.~
-~
-9 0 17
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-12 10 0
-A
-4 2 0
-A
-3 2 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      mana~ 10 ~
+Affect      wisdom~ 2 ~
+Affect      intelligence~ 2 ~
+End
+
 #8237
-potion green~
-a green potion~
+Name        potion green~
+Short       a green potion~
+Descr
 A green potion bubbles while you watch.~
-~
-10 64 16385
-20~ gas breath~ poison~  ~  ~
-2 0 0
+Type        potion~
+Extra       magic~
+Wear        take hold~
+Values      20~ gas breath~ poison~  ~  ~
+Weight      2
+Cost        0
+End
+
 #8238
-pouch purple~
-a purple pouch~
+Name        pouch purple~
+Short       a purple pouch~
+Descr
 A pouch rests on the ground.~
-~
-15 0 2049
-40~ 0~ 0~ 0~ 0~
-2 0 0
-A
-2 2 0
-A
-1 1 0
+Type        container~
+Extra       ~
+Wear        take waist~
+Values      40~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+Affect      dexterity~ 2 ~
+Affect      strength~ 1 ~
+End
+
 #8239
-necklace~
-the Necklace of Power~
+Name        necklace~
+Short       the Necklace of Power~
+Descr
 A powerful magical necklace has been discarded here.~
-~
-9 64 5
-0~ 0~ 0~ 0~ 0~
-2 0 0
-A
-24 4 0
-A
-12 15 0
+Type        armor~
+Extra       magic~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+Affect      saving-spell~ 4 ~
+Affect      mana~ 15 ~
+End
+
 #8240
-book~
-a Book~
+Name        book~
+Short       a Book~
+Descr
 A good book can open mysteries.~
-~
-18 0 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #8241
-gauntlets~
-a set of Power Gauntlets~
+Name        gauntlets~
+Short       a set of Power Gauntlets~
+Descr
 A set of wizard gauntlets have been discarded here.~
-~
-9 65 129
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-19 2 0
-A
-12 10 0
-A
-2 1 0
+Type        armor~
+Extra       glow magic~
+Wear        take hands~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      damroll~ 2 ~
+Affect      mana~ 10 ~
+Affect      dexterity~ 1 ~
+End
+
 #8242
-pile coins~
-a pile of coins~
+Name        pile coins~
+Short       a pile of coins~
+Descr
 A pile of coins have been hidden here.~
-~
-20 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8243
-bed~
-a feather bed~
+Name        bed~
+Short       a feather bed~
+Descr
 A feather bed calls your name!  Come sleep on me it says.~
-~
-12 0 1
-0~ 0~ 0~ 0~ 0~
-10 0 0
+Type        furniture~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+End
+
 #8244
-portrait~
-a portrait~
+Name        portrait~
+Short       a portrait~
+Descr
 A portrait of Mort, the God of LIGHT has been hidden here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
-E
-portrait~
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  portrait~
 The portrait is of a young man with an innocent quality about 
 him.  Hidden by black eyes his soul crys out to the world 
 imploring everyone to stop and evaluate themselves.  His
@@ -987,420 +1491,568 @@ shoulders are bowed from the weight of sin he is carrying for
 his worshippers. 
 His torso is highlighted by the glow of GOODNESS, 
 which seems to be generated by him.~
+End
+
 #8245
-dresser~
-a cedar dresser~
+Name        dresser~
+Short       a cedar dresser~
+Descr
 The cedar dresser is well built by royal carpenters.~
-~
-15 0 1
-100~ 0~ 0~ 0~ 0~
-15 0 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        0
+End
+
 #8246
-bowl~
-a bowl~
+Name        bowl~
+Short       a bowl~
+Descr
 A water bowl has been left here for you.~
-~
-17 640 1
-5~ 1~ 0~ 0~ 0~
-1 0 0
-A
-13 -20 0
-A
-12 -60 0
-A
-2 -10 0
-A
-1 -10 0
+Type        drink_con~
+Extra       nodrop anti-good~
+Wear        take~
+Values      5~ 1~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      hp~ -20 ~
+Affect      mana~ -60 ~
+Affect      dexterity~ -10 ~
+Affect      strength~ -10 ~
+End
+
 #8247
-wyvern mount~
-a wyvern mount~
+Name        wyvern mount~
+Short       a wyvern mount~
+Descr
 The wyvern mount is equipped with a saddle.~
-~
-4 0 16385
-0~ 50~ 50~ fly~ 0~
-30 0 0
-A
-14 100 0
-E
-saddle~
+Type        staff~
+Extra       ~
+Wear        take hold~
+Values      0~ 50~ 50~ fly~ 0~
+Weight      30
+Cost        0
+Affect      move~ 100 ~
+ExtraDescr  saddle~
 The instructions on the saddle say to hold the Wyvern and then 
 Brandish the reins.~
+End
+
 #8248
-word~
-a magical word~
+Name        word~
+Short       a magical word~
+Descr
 Someone has written a magical word and left it here.~
-~
-18 64 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       magic~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8249
-rumor treasure~
-a treasure rumor~
+Name        rumor treasure~
+Short       a treasure rumor~
+Descr
 A rumor of treasure has been dropped here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-treasure~
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  treasure~
 The bad wind riders possess riches untold.
 Find their lair and live and you will be rich
 beyond your dreams.  The lair cannot be found
 high above the ground.~
+End
+
 #8250
-rumor trap~
-a trap rumor~
+Name        rumor trap~
+Short       a trap rumor~
+Descr
 A trap rumor has been written down and then mislaid here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
-E
-trap~
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  trap~
 The middle ring is as dangerous as the last ring.  
 Step into it and you'll regret your actions.
 Beware the tower!!   BEEEWWWAAARRRREEE~
+End
+
 #8251
-rumor item~
-an item rumor~
+Name        rumor item~
+Short       an item rumor~
+Descr
 A rumor has been written down and dropped here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-item~
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  item~
 When freedom is gone.  Beware of gifts.
 The evil which dwells amoungst us can be locked
 away and tortured, can even be cursed. Beware!~
+End
+
 #8252
-meal~
-a full meal~
+Name        meal~
+Short       a full meal~
+Descr
 A full three course meal has been put here.~
-~
-19 0 1
-50~ 0~ 0~ 0~ 0~
-2 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+End
+
 #8253
-angelfood cake~
-an Angelfood cake~
+Name        angelfood cake~
+Short       an Angelfood cake~
+Descr
 An Angelfood cake has been left here.~
-~
-19 0 1
-5~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #8254
-cookie~
-a cookie~
+Name        cookie~
+Short       a cookie~
+Descr
 A delicious cookie has been dropped here.~
-~
-19 0 1
-4~ 0~ 0~ 0~ 0~
-5 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #8255
-cake birthday~
-a birthday cake~
+Name        cake birthday~
+Short       a birthday cake~
+Descr
 A birthday cake awaits someone special.~
-~
-19 0 1
-6~ 0~ 0~ 0~ 0~
-2 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+End
+
 #8256
-chain scarlet~
-a Scarlet Chainmail~
+Name        chain scarlet~
+Short       a Scarlet Chainmail~
+Descr
 A suit of Scarlet Chainmail has been left here.~
-~
-9 0 9
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-9 -5 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      age~ -5 ~
+End
+
 #8257
-helmet scarlet~
-a Scarlet Helmet~
+Name        helmet scarlet~
+Short       a Scarlet Helmet~
+Descr
 A Scarlet Helmet has been left here.~
-~
-9 0 17
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-9 -5 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      age~ -5 ~
+End
+
 #8258
-cape scarlet~
-a Scarlet Cape~
+Name        cape scarlet~
+Short       a Scarlet Cape~
+Descr
 A Scarlet Cape with silk lining has been left here.~
-~
-9 0 1025
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-23 3 0
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      saving-breath~ 3 ~
+End
+
 #8259
-leggings scarlet~
-a Scarlet Leggings~
+Name        leggings scarlet~
+Short       a Scarlet Leggings~
+Descr
 A set of Scarlet Leggings has been left here.~
-~
-9 64 33
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-4 2 0
+Type        armor~
+Extra       magic~
+Wear        take legs~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      wisdom~ 2 ~
+End
+
 #8260
-boots scarlet~
-a pair of Scarlet Boots~
+Name        boots scarlet~
+Short       a pair of Scarlet Boots~
+Descr
 A pair of Scarlet Boots has been left here.~
-~
-9 64 65
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-14 30 0
+Type        armor~
+Extra       magic~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      move~ 30 ~
+End
+
 #8261
-gloves scarlet~
-a pair of Scarlet Gloves~
+Name        gloves scarlet~
+Short       a pair of Scarlet Gloves~
+Descr
 A pair of Scarlet Gloves have been left here.~
-~
-9 64 129
-0~ 0~ 0~ 0~ 0~
-3 0 0
-A
-1 1 0
+Type        armor~
+Extra       magic~
+Wear        take hands~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        0
+Affect      strength~ 1 ~
+End
+
 #8262
-sword razor~
-a Razor Sword~
+Name        sword razor~
+Short       a Razor Sword~
+Descr
 A Razor Sword is so sharp you can shave with it.~
-~
-5 64 8193
-0~ 0~ 0~ 1~ 0~
-8 0 0
-A
-19 3 0
-A
-18 2 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      8
+Cost        0
+Affect      damroll~ 3 ~
+Affect      hitroll~ 2 ~
+End
+
 #8263
-club mineral~
-a mineral club~
+Name        club mineral~
+Short       a mineral club~
+Descr
 A mineral club, glistening, sits here.~
-~
-5 0 8193
-0~ 0~ 0~ 8~ 0~
-10 0 0
-A
-19 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      10
+Cost        0
+Affect      damroll~ 3 ~
+End
+
 #8264
-ring fishbone~
-a fishbone ring~
+Name        ring fishbone~
+Short       a fishbone ring~
+Descr
 A fishbone ring has been dropped here.~
-~
-22 64 3
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-2 2 0
-A
-12 10 0
+Type        boat~
+Extra       magic~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      dexterity~ 2 ~
+Affect      mana~ 10 ~
+End
+
 #8265
-claw dragon~
-an Albino Dragon Claw~
+Name        claw dragon~
+Short       an Albino Dragon Claw~
+Descr
 An Albino Dragon Claw sits here.~
-~
-5 80 8193
-0~ 0~ 0~ 5~ 0~
-8 0 0
-A
-23 2 0
-A
-19 4 0
-A
-18 3 0
+Type        weapon~
+Extra       evil magic~
+Wear        take wield~
+Values      0~ 0~ 0~ 5~ 0~
+Weight      8
+Cost        0
+Affect      saving-breath~ 2 ~
+Affect      damroll~ 4 ~
+Affect      hitroll~ 3 ~
+End
+
 #8266
-skull dragon~
-an Albino Dragon Skull~
+Name        skull dragon~
+Short       an Albino Dragon Skull~
+Descr
 An Albino Dragon Skull helmet has been left here.~
-~
-9 80 17
-0~ 0~ 0~ 0~ 0~
-8 0 0
-A
-5 2 0
-A
-4 2 0
-A
-3 2 0
+Type        armor~
+Extra       evil magic~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      8
+Cost        0
+Affect      constitution~ 2 ~
+Affect      wisdom~ 2 ~
+Affect      intelligence~ 2 ~
+End
+
 #8267
-armor dragon~
-an Albino Dragon Armor~
+Name        armor dragon~
+Short       an Albino Dragon Armor~
+Descr
 An Albino Dragon Armor is resting here.~
-~
-9 80 9
-0~ 0~ 0~ 0~ 0~
-10 0 0
-A
-23 4 0
-A
-24 2 0
+Type        armor~
+Extra       evil magic~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+Affect      saving-breath~ 4 ~
+Affect      saving-spell~ 2 ~
+End
+
 #8268
-abyss helm~
-an Abyss Helm~
+Name        abyss helm~
+Short       an Abyss Helm~
+Descr
 An Abyss Helm floats here.~
-~
-9 576 17
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-4 2 0
-A
-3 2 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      wisdom~ 2 ~
+Affect      intelligence~ 2 ~
+End
+
 #8269
-abyss ring~
-an Abyss Ring~
+Name        abyss ring~
+Short       an Abyss Ring~
+Descr
 An Abyss Ring floats here.~
-~
-9 576 3
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-19 2 0
-A
-14 20 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 2 ~
+Affect      move~ 20 ~
+End
+
 #8270
-abyss amulet~
-an Abyss Amulet~
+Name        abyss amulet~
+Short       an Abyss Amulet~
+Descr
 An Abyss Amulet floats here.~
-~
-9 576 5
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-5 1 0
-A
-12 10 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      constitution~ 1 ~
+Affect      mana~ 10 ~
+End
+
 #8271
-abyss leather jerkin~
-an Abyss leather jerkin~
+Name        abyss leather jerkin~
+Short       an Abyss leather jerkin~
+Descr
 An Abyss leather jerkin floats here.~
-~
-9 576 9
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-13 15 0
-A
-2 1 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hp~ 15 ~
+Affect      dexterity~ 1 ~
+End
+
 #8272
-abyss leg guards~
-abyss leg guards~
+Name        abyss leg guards~
+Short       abyss leg guards~
+Descr
 A set of Abyss leg guards have been left here.~
-~
-9 576 33
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-23 2 0
-A
-24 2 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take legs~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      saving-breath~ 2 ~
+Affect      saving-spell~ 2 ~
+End
+
 #8273
-abyss boots~
-abyss boots~
+Name        abyss boots~
+Short       abyss boots~
+Descr
 A pair of Abyss boots float here.~
-~
-9 576 65
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-17 10 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      ac~ 10 ~
+End
+
 #8274
-abyss gloves~
-abyss gloves~
+Name        abyss gloves~
+Short       abyss gloves~
+Descr
 A pair of Abyss gloves float here.~
-~
-9 576 129
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-1 2 0
-A
-13 2 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take hands~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      strength~ 2 ~
+Affect      hp~ 2 ~
+End
+
 #8275
-abyss sleeves~
-abyss sleeves~
+Name        abyss sleeves~
+Short       abyss sleeves~
+Descr
 A set of Abyss sleeves floats here.~
-~
-9 576 257
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-13 5 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take arms~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hp~ 5 ~
+End
+
 #8276
-abyss shield~
-an Abyss shield~
+Name        abyss shield~
+Short       an Abyss shield~
+Descr
 An Abyss shield floats here.~
-~
-9 576 513
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-9 -15 0
-A
-12 15 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      age~ -15 ~
+Affect      mana~ 15 ~
+End
+
 #8277
-abyss bracers~
-an Abyss bracer~
+Name        abyss bracers~
+Short       an Abyss bracer~
+Descr
 An Abyss bracer floats here.~
-~
-9 576 4097
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-18 2 0
-A
-19 2 0
+Type        armor~
+Extra       magic anti-good~
+Wear        take wrist~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hitroll~ 2 ~
+Affect      damroll~ 2 ~
+End
+
 #8278
-abyss potion~
-an Abyss potion~
+Name        abyss potion~
+Short       an Abyss potion~
+Descr
 An Abyss potion floats here.~
-~
-10 576 1
-0~  ~  ~ shield~  ~
-5 0 0
+Type        potion~
+Extra       magic anti-good~
+Wear        take~
+Values      0~  ~  ~ shield~  ~
+Weight      5
+Cost        0
+End
+
 #8279
-strange potion~
-a strange potion~
+Name        strange potion~
+Short       a strange potion~
+Descr
 A strange potion sits here.~
-~
-10 576 1
-0~ teleport~ curse~ blindness~  ~
-5 0 0
+Type        potion~
+Extra       magic anti-good~
+Wear        take~
+Values      0~ teleport~ curse~ blindness~  ~
+Weight      5
+Cost        0
+End
+
 #8280
-ring magic~
-a magic ring~
+Name        ring magic~
+Short       a magic ring~
+Descr
 A magic ring rests here.~
-~
-8 1024 3
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        treasure~
+Extra       anti-evil~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #8281
-armor chain~
-a set of Chain Armor~
+Name        armor chain~
+Short       a set of Chain Armor~
+Descr
 The Chain Armor is here~
-~
-9 1088 9
-0~ 0~ 0~ 0~ 0~
-12 0 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      12
+Cost        0
+End
+
 #8282
-shield white~
-a White Shield~
+Name        shield white~
+Short       a White Shield~
+Descr
 A White Shield sits here~
-~
-9 1024 513
-0~ 0~ 0~ 0~ 0~
-10 0 0
+Type        armor~
+Extra       anti-evil~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #8200
-Field of Death~
+Name        Field of Death~
+Descr
 The stench of death nearly overpowers you when you enter 
 this area. There must be 200 dead farm animal carcasses 
 scattered about the land. Arrows and spears rise from 
@@ -1411,9 +2063,10 @@ and horses lead South, and a path leads east.
 A scrap of paper is stuck on a stick...it flaps in the breeze.
 
 ~
-0 4 2
-E
-paper~
+Flags       no_mob~
+Sector      field~
+Regen       100 100
+ExtraDescr  paper~
 The scrap of paper reads:
 		======================
 		=    B E W A R E     =
@@ -1426,92 +2079,104 @@ The scrap of paper reads:
 		=       WARNED       =
 		======================
 ~
-D1
+Door        east~ ~ 0 3585
 ~
 ~
-0 0 3585
-D2
+Door        south~ ~ -1 8201
 ~
 ~
-0 -1 8201
-S
+End
+
 #8201
-Burnt Village~
+Name        Burnt Village~
+Descr
 Rising streamers of smoke spiral into the air from the smoldering 
 ruins of a poor village. Of the twelve buildings only one wall is 
 higher than three feet.  This village has been brutally taken apart 
 and the only sign of life that you can detect  is a large buzzard 
 still digging at the corpse of a villager.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 8205 1 100
+Reset       E 8224 -1 100
+Reset       M 8200 1 100
+Reset       E 8200 -1 100
+Reset       E 8204 -1 100
+Door        north~ ~ -1 8200
 ~
 ~
-0 -1 8200
-D2
+Door        south~ ~ -1 8202
 ~
 ~
-0 -1 8202
-S
+End
+
 #8202
-Road to Castle~
+Name        Road to Castle~
+Descr
 With the village disappearing behind you the road to Castle Reinhold 
 begins to climb upward.  In the distance, past the small stands of 
 trees mixed with the farmlands, you see the castle.  It sits upon a 
 high hill overlooking the Rhein River, commanding a strategic position 
 over the river.  Many an army has beat itself to death upon the Castle.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 8201
 ~
 ~
-0 -1 8201
-D2
+Door        south~ ~ -1 8203
 ~
 ~
-0 -1 8203
-S
+End
+
 #8203
-Bridge over Rhein River~
+Name        Bridge over Rhein River~
+Descr
 This granite bridge is a masterpiece of workmanship.  It spans a chasm 
 three hundred feet deep.  Five foot high granite walls border the entire 
 length of the fifty foot long bridge. On the other side of the bridge 
 you see a cobblestone road leading uphill towards the castle .
 ~
-0 4 4
-D0
+Flags       no_mob~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ -1 8202
 ~
 ~
-0 -1 8202
-D1
+Door        east~ ~ -1 8204
 ~
 ~
-0 -1 8204
-D2
+Door        south~ ~ -1 8206
 ~
 ~
-0 -1 8206
-S
+End
+
 #8204
-A path along the river.~
+Name        A path along the river.~
+Descr
 This path is actually large enough for wagons.  As a matter of fact, 
 you see many signs that wagons have passed this way. If you listen 
 very hard you will detect, over the sound of the rushing river, sounds 
 of wood chopping.  Looking ahead you see tiny strands of smoke rising 
 into the air.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ -1 8205
 ~
 ~
-0 -1 8205
-D3
+Door        west~ ~ -1 8203
 ~
 ~
-0 -1 8203
-S
+End
+
 #8205
-Logging Camp~
+Name        Logging Camp~
+Descr
 You have walked into the middle of a rough logging camp.  Trees are 
 falling in the distance, and axe carrying men are moving about the camp.
 Unlike most camps, this one has women and children.  How strange this is.  
@@ -1519,18 +2184,29 @@ Unlike most camps, this one has women and children.  How strange this is.
 walked into part of the besieging army's camp.  The loggers are cutting 
 trees for siege engines.
 ~
-0 0 3
-D3
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 8202 1 100
+Reset       E 8201 12 100
+Reset       E 8215 6 100
+Reset       E 8200 -1 100
+Reset       M 8204 1 100
+Reset       O 8209 0 100
+Reset       O 8214 0 100
+Reset       O 8214 0 100
+Reset       M 8204 1 100
+Door        west~ ~ -1 8204
 ~
 ~
-0 -1 8204
-D5
+Door        down~ ~ -1 8208
 ~
 ~
-0 -1 8208
-S
+End
+
 #8206
-Cobblestone Road~
+Name        Cobblestone Road~
+Descr
 After crossing the granite bridge, you feel some relief to be back 
 on solid ground. The Cobblestones were obviously quarried from the 
 area and with great skill the craftsmen of the Castle fitted them 
@@ -1539,18 +2215,20 @@ You wonder if humans did the work or if Dwarven craftsmen did it.
 Hhmmmm. Ahead of you...drifting on the slight breeze from the chasm, 
 you detect the sound of a loud voice.  Someone ahead is shouting.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 8203
 ~
 ~
-0 -1 8203
-D2
+Door        south~ ~ -1 8207
 ~
 ~
-0 -1 8207
-S
+End
+
 #8207
-Scenic Overlook~
+Name        Scenic Overlook~
+Descr
 AAAAAaaahhhhhhhh.  The view from this narrow curving road is tremendous.
 Far below you the Rhein River winds its way through the mountains.  
 It's green color matching the  few plants along its banks. 
@@ -1559,85 +2237,95 @@ it are fifty feet tall.  Armament crowds every available surface.
 Three towers rise high into the sky like the points of a crown.  
 Truly this city has never been conquerqued.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 8201 1 100
+Door        north~ ~ -1 8206
 ~
 ~
-0 -1 8206
-D2
+Door        south~ ~ -1 8224
 ~
 ~
-0 -1 8224
-S
+End
+
 #8208
-Rope Ladder~
+Name        Rope Ladder~
+Descr
 You had better be careful!   This rope ladder is at least one hundred 
 feet long.  It is damp and woven of horse and female hair.  
 With luck you may make it to the bridge below.
 ~
-0 0 5
-D4
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        up~ ~ -1 8205
 ~
 ~
-0 -1 8205
-D5
+Door        down~ ~ -1 8209
 ~
 ~
-0 -1 8209
-S
+End
+
 #8209
-Tree Bridge~
+Name        Tree Bridge~
+Descr
 You are now standing on a gigantic tree which has wedged itself 
 into a narrowing of the chasm.  The far end has buried itself into 
 the wall of the cliff.  The other end is protruding into a cave.   
 Better hurry!!!   There's no telling when this thing may collapse!
 ~
-0 512 5
-D2
+Flags       private~
+Sector      mountain~
+Regen       100 100
+Door        south~ ~ -1 8210
 ~
 ~
-0 -1 8210
-D4
+Door        up~ ~ -1 8208
 ~
 ~
-0 -1 8208
-S
+End
+
 #8210
-The Cave Entrance~
+Name        The Cave Entrance~
+Descr
 That's a relief!!!   The log bridge was a little too unstable.
 The cave you are in now was carved by the river thousands of years 
 ago.  You can smell  water from inside the cave and from the river below.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8209
 ~
 ~
-0 -1 8209
-D1
+Door        east~ ~ -1 8211
 ~
 ~
-0 -1 8211
-D2
+Door        south~ ~ -1 8214
 ~
 ~
-0 -1 8214
-S
+End
+
 #8211
-A tiny tunnel~
+Name        A tiny tunnel~
+Descr
 The tunnel is PITCH BLACK!  You had better have a light!
 ~
-0 520 0
-D1
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8212
 ~
 ~
-0 -1 8212
-D3
+Door        west~ ~ -1 8210
 ~
 ~
-0 -1 8210
-S
+End
+
 #8212
-Crystal Cavern~
+Name        Crystal Cavern~
+Descr
 If it weren't for the bats hanging from the roof, this cavern 
 would be the most beautiful place you have ever seen.
 The corners are pitch black still, but you detect the faint 
@@ -1646,100 +2334,116 @@ Huge stalamites and other formations combine in a successful
 effort to create a wonderland.  The soft sound of dropping water 
 sends echoes throughout the cavern and tunnels.
 ~
-0 8200 0
-D1
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 8238 1 100
+Reset       E 8263 16 100
+Door        east~ ~ -1 8213
 ~
 ~
-0 -1 8213
-D3
+Door        west~ ~ -1 8211
 ~
 ~
-0 -1 8211
-S
+End
+
 #8213
-Too Dark to tell.  Scary huh.~
+Name        Too Dark to tell.  Scary huh.~
+Descr
 You have walked into a cavern with a ...FFFAAALLLLLLIIIINNNNNNGGGG   <thump!>
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ -1 8287
 ~
 ~
-0 -1 8287
-D3
+Door        west~ ~ -1 8212
 ~
 ~
-0 -1 8212
-S
+End
+
 #8214
-An underground River~
+Name        An underground River~
+Descr
 Lucky you had a boat....otherwise you would not be very cold, 
 wet, and deep into the mountain.
 ~
-0 13 7
-D0
+Flags       dark no_mob indoors~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 8235 3 100
+Door        north~ ~ -1 8210
 ~
 ~
-0 -1 8210
-D1
+Door        east~ ~ -1 8215
 ~
 ~
-0 -1 8215
-S
+End
+
 #8215
-River ride.~
+Name        River ride.~
+Descr
 You are on the river.  The water that splashes over the edge of 
 your boat is very very cold indeed.
 ~
-0 9 7
-D1
+Flags       dark indoors~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 8235 4 100
+Door        east~ ~ -1 8216
 ~
 ~
-0 -1 8216
-D3
+Door        west~ ~ -1 8214
 ~
 ~
-0 -1 8214
-S
+End
+
 #8216
-Dark cold river.~
+Name        Dark cold river.~
+Descr
 You begin to wonder where this river is taking you.  You have 
 finally noticed that you are not paddling your craft.  The river 
 current has you and you are moving very fast through this underground river.
 ~
-0 9 7
-D1
+Flags       dark indoors~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 8235 5 100
+Door        east~ ~ -1 8289
 ~
 ~
-0 -1 8289
-D2
+Door        south~ ~ -1 8217
 ~
 ~
-0 -1 8217
-D3
+Door        west~ ~ -1 8215
 ~
 ~
-0 -1 8215
-S
+End
+
 #8217
-Inside the mountain.~
+Name        Inside the mountain.~
+Descr
 You have finally discovered a place to land.  The river thunders 
 by you and falls into a deep hole just a little beyond this landing.
 You are almost blinded by a flash of daylight coming from above.  
 Straining your eyesight you note that there are metal bars inside 
 the circular tunnel above your head.
 ~
-0 12 0
-D0
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8216
 ~
 ~
-0 -1 8216
-D4
+Door        up~ ~ -1 8218
 ~
 ~
-0 -1 8218
-S
+End
+
 #8218
-Plaza Well~
+Name        Plaza Well~
+Descr
 You are standing at the top of a deep well made of a white marble.  
 
 The rope and bucket are together, waiting for someone who needs 
@@ -1749,81 +2453,93 @@ but are allowed to wander around.
 After taking in the sites and smells of the Plaza, some of the 
 citizens go East to visit the healer.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       O 8216 0 100
+Door        east~ ~ -1 8223
 ~
 ~
-0 -1 8223
-D2
+Door        south~ ~ -1 8236
 ~
 ~
-0 -1 8236
-D3
+Door        west~ ~ -1 8219
 ~
 ~
-0 -1 8219
-D5
+Door        down~ ~ -1 8217
 ~
 ~
-0 -1 8217
-S
+End
+
 #8219
-Western Plaza~
+Name        Western Plaza~
+Descr
 The entrance to the Plaza area has always been a crowd favorite.  
 Anyone of importance who enters the Plaza must pass through this 
 narrow tunnel opening to get to the Plaza.
 For many citizens, it will be the closest they will ever come to 
 royalty or other people of importance.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 8205 1 100
+Reset       E 8217 -1 100
+Door        east~ ~ -1 8218
 ~
 ~
-0 -1 8218
-D2
+Door        south~ ~ -1 8221
 ~
 ~
-0 -1 8221
-D3
+Door        west~ ~ -1 8220
 ~
 ~
-0 -1 8220
-S
+End
+
 #8220
-Small Tunnel~
+Name        Small Tunnel~
+Descr
 This small tunnel is very easy to defend.  Arrow slots have been 
 cut into the walls and steel grills are ready to crash down and 
 capture anyone in the tunnel without permission.
 ~
-0 520 1
-D1
+Flags       indoors private~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 8219
 ~
 ~
-0 -1 8219
-D3
+Door        west~ ~ -1 8222
 ~
 ~
-0 -1 8222
-S
+End
+
 #8221
-The Armorer~
+Name        The Armorer~
+Descr
 Sounds of a hammer tapping on metal greets your ears as you step 
 into the best armor shoppe in the city.
 Thanks to nearly a lifetime of adventuring, the armorer has collected 
 a fine collection protective armor.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8208 1 100
+Reset       E 8280 -1 100
+Reset       E 8281 -1 100
+Reset       E 8282 -1 100
+Door        north~ ~ -1 8219
 ~
 ~
-0 -1 8219
-D2
+Door        south~ ~ -1 8235
 ~
 ~
-0 -1 8235
-S
+End
+
 #8222
-A Small Tunnel~
+Name        A Small Tunnel~
+Descr
 The city planners designed this tunnel as a secure means of access 
 to the Plaza and heart of the castle.  
 
@@ -1831,22 +2547,23 @@ With arrow slits, oil vats, and swing steel grates they did their
 best to anticipate all situations...be it direct assault or the siege 
 presently going on.
 ~
-0 520 1
-D0
+Flags       indoors private~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 8288
 ~
 ~
-0 -1 8288
-D1
+Door        east~ ~ -1 8220
 ~
 ~
-0 -1 8220
-D3
+Door        west~ ~ -1 8233
 ~
 ~
-0 -1 8233
-S
+End
+
 #8223
-Eastern Plaza~
+Name        Eastern Plaza~
+Descr
 There used to be a beautiful herb garden here.  Flowers grew at 
 the corners and with the fountain nearby...a romantic situation 
 was easily created.
@@ -1854,18 +2571,21 @@ However, one of the civilians goats got loose and ate the herbs.
 It died shortly afterwards from missing it's herbs, but the loss 
 of the garden still hits the Healer badly.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 8205 1 100
+Door        south~ ~ -1 8238
 ~
 ~
-0 -1 8238
-D3
+Door        west~ ~ -1 8218
 ~
 ~
-0 -1 8218
-S
+End
+
 #8224
-Preamble to evil.~
+Name        Preamble to evil.~
+Descr
 The Castle is very very close now.  It's shadow covers the 
 cobblestone road you are now on.  The stench of blood fills your 
 nostrils and you notice riverlets of it streaming down the 
@@ -1873,18 +2593,20 @@ cobblestone road.
 
 You can hear the sounds of combat nearby.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 8207
 ~
 ~
-0 -1 8207
-D1
+Door        east~ ~ -1 8225
 ~
 ~
-0 -1 8225
-S
+End
+
 #8225
-Downward Slope~
+Name        Downward Slope~
+Descr
 At last.  Castle Reinhold shines with the light of GOODNESS.  
 Below you, in the small valley before the gates of the castle, 
 rests an army. A black standard flies from hundreds of spears 
@@ -1893,18 +2615,21 @@ Death hangs over the valley and needs little help from the
 smoking ruins of civilian homes to darken the sun and spirits 
 of Good warriors.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 8204 1 100
+Door        south~ ~ -1 8226
 ~
 ~
-0 -1 8226
-D3
+Door        west~ ~ -1 8224
 ~
 ~
-0 -1 8224
-S
+End
+
 #8226
-Battle Zone~
+Name        Battle Zone~
+Descr
 Without drawing the attention of the perimeter guards you have 
 walked into the center of the dark camp. You notice for the first 
 time the abscence of camp followers and of beast of burdon.   
@@ -1917,37 +2642,61 @@ hanging over a low fire.  You look inside. ***   GASP  ***
 Floating inside the pot are body parts of a small girl.  
 You now realize that you are in the presence of pure evil.
 ~
-0 8192 2
-D0
+Flags       no_recall~
+Sector      field~
+Regen       100 100
+Reset       M 8202 1 100
+Reset       E 8215 6 100
+Reset       E 8201 5 100
+Reset       E 8215 6 100
+Reset       E 8200 -1 100
+Reset       M 8202 4 100
+Reset       E 8201 5 100
+Reset       E 8215 6 100
+Reset       E 8200 -1 100
+Reset       M 8204 1 100
+Reset       M 8204 1 100
+Door        north~ ~ -1 8225
 ~
 ~
-0 -1 8225
-D2
+Door        south~ ~ -1 8227
 ~
 ~
-0 -1 8227
-S
+End
+
 #8227
-Before the Gates~
+Name        Before the Gates~
+Descr
 Castle Reinhold looms high over your head.   
 It's dark shadow passes across the valley and you feel no comfort 
 from it's strength.  Not now.  
 For you are in the presence of the Dark Captain himself.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 8203 1 100
+Reset       E 8201 5 100
+Reset       E 8202 6 100
+Reset       E 8203 16 100
+Reset       E 8200 -1 100
+Reset       M 8202 4 100
+Reset       E 8201 5 100
+Reset       E 8215 6 100
+Reset       M 8204 1 100
+Door        north~ ~ -1 8226
 ~
 ~
-0 -1 8226
-D2
+Door        south~ door closed~ 0 8228
 The Castle Gates are tremendous!  They are burned, scarred
 and show signs of great abuse...but they are still standing.
 ~
 gate~
-3 0 8228
-S
+End
+
 #8228
-Castle Entrance~
+Name        Castle Entrance~
+Descr
 You have made it into the castle.  Blood drips from your body onto the floor.  
 Ducal guards are watching you closely...and have been watching you for 
 some time.   They thought at first you were a spy, now they know you are one.  
@@ -1955,19 +2704,21 @@ For only a spy could get past the Dark Captain.
 			
 			You are not welcome here spy.
 ~
-0 12 1
-D0
+Flags       no_mob indoors~
+Sector      city~
+Regen       100 100
+Door        north~ door closed~ 0 8227
 The Castle Gates are almost ready to collapse.
 ~
 gate~
-3 0 8227
-D2
+Door        south~ ~ -1 8229
 ~
 ~
-0 -1 8229
-S
+End
+
 #8229
-Palace Road~
+Name        Palace Road~
+Descr
 This ancient road has the oldest stonework in the city.  
 The rest of the castle was built off this road, and you can tell by 
 looking around that this is also the most defensive section of the city.
@@ -1975,26 +2726,36 @@ Ducal Guards are everywhere.
 You hear the ** CLANKING ** of their armor and of their boots.  
 Somewhere to the West you hear the shrill screaming of woman and kids.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 8206 4 100
+Reset       E 8207 7 100
+Reset       E 8205 11 100
+Reset       E 8208 16 100
+Reset       M 8206 4 100
+Reset       M 8212 1 100
+Reset       E 8210 1 100
+Reset       E 8206 5 100
+Reset       E 8211 16 100
+Reset       M 8206 4 100
+Door        north~ ~ -1 8228
 ~
 ~
-0 -1 8228
-D1
+Door        east~ ~ -1 8233
 ~
 ~
-0 -1 8233
-D2
+Door        south~ ~ -1 8232
 ~
 ~
-0 -1 8232
-D3
+Door        west~ ~ -1 8230
 ~
 ~
-0 -1 8230
-S
+End
+
 #8230
-Park Avenue~
+Name        Park Avenue~
+Descr
 If the civilians weren't here, you would discover a park beyond 
 measure in beauty. However,  the civilians have turned this park 
 into a pig sty.  Trash and possessions are everywhere.   
@@ -2002,77 +2763,105 @@ Sanitation facilities are overrun.  Men and women, with children
 running rampant, have let their fear of the evil outside the walls 
 to turn them into animals. The sight makes you sick to your stomach.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 8205 1 100
+Reset       E 8219 -1 100
+Reset       M 8205 2 100
+Reset       E 8227 17 100
+Reset       M 8205 1 100
+Door        east~ ~ -1 8229
 ~
 ~
-0 -1 8229
-D2
+Door        south~ ~ -1 8231
 ~
 ~
-0 -1 8231
-S
+End
+
 #8231
-South End of Park~
+Name        South End of Park~
+Descr
 Here was once a beautiful pond.  Swans graced it's surface with 
 beauty, and brought smiles to the faces of small children.
 Today, it is the parents who smile.  They who have full bellies 
 for the first time in many weeks.  Yes, they even smile as they 
 beat their clothes clean in the green oily water of the pond.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 8205 1 100
+Reset       E 8220 -1 100
+Reset       M 8205 1 100
+Door        north~ ~ -1 8230
 ~
 ~
-0 -1 8230
-S
+End
+
 #8232
-Palace Entrance~
+Name        Palace Entrance~
+Descr
 The entrance to the royal palace has been barricaded with 
 iron grills.  Much thought and planning went into the effort as 
 not even the best thief in the world could open the doors.   
 There must be another entrance to the palace.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 8206 4 100
+Reset       E 8210 1 100
+Reset       E 8200 -1 100
+Door        north~ ~ -1 8229
 ~
 ~
-0 -1 8229
-S
+End
+
 #8233
-Grendel Avenue~
+Name        Grendel Avenue~
+Descr
 This magnificient Avenue has been dedicated to Grendel, the Giant Warrior.  
 His exploits have become legend and the citizens of Castle Reinhold have 
 attempted to show him how much they care for him.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 8222
 ~
 ~
-0 -1 8222
-D2
+Door        south~ ~ -1 8234
 ~
 ~
-0 -1 8234
-D3
+Door        west~ ~ -1 8229
 ~
 ~
-0 -1 8229
-S
+End
+
 #8234
-The Bakery~
+Name        The Bakery~
+Descr
 Even during time of war...the smell of a bakery can put a smile 
 on someones face. And judging from the terrific aroma floating 
 on the breeze, the baker is hard at work.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8207 1 100
+Reset       E 8200 -1 100
+Reset       E 8253 -1 100
+Reset       E 8254 -1 100
+Reset       E 8255 -1 100
+Door        north~ ~ -1 8233
 ~
 ~
-0 -1 8233
-S
+End
+
 #8235
-The Weaponsmith~
+Name        The Weaponsmith~
+Descr
 The ** SCRAPING ** noise that you hear is the sound of a craftsman 
 honing the blade of a fine weapon.
 
@@ -2083,79 +2872,93 @@ Large wooden barrels hold dozens of spears and arrows, while unstrung
 bows hang from hooks on the wall.  
 Cases and bookshelves hold hundreds of swords and knives.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8209 1 100
+Reset       E 8231 -1 100
+Reset       E 8213 -1 100
+Door        north~ ~ -1 8221
 ~
 ~
-0 -1 8221
-D1
+Door        east~ ~ -1 8237
 ~
 ~
-0 -1 8237
-S
+End
+
 #8236
-Southern Plaza~
+Name        Southern Plaza~
+Descr
 The Southern Plaza has always been an open air market.  That is, 
 until the siege.
 Today the Plaza is empty.  Not a vendor in sight.
 The Southern Plaza is grey cobblestone with green ivy growing on 
 nearby buildings.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8205 1 100
+Reset       M 8215 4 100
+Door        north~ ~ -1 8218
 ~
 ~
-0 -1 8218
-D2
+Door        south~ ~ -1 8237
 ~
 ~
-0 -1 8237
-S
+End
+
 #8237
-Parade Grounds~
+Name        Parade Grounds~
+Descr
 This large dirt lot is void of all grass due to the marching feet 
 of trainees learning close order drill.  
 The Ducal Guard has always claimed this area as it's own.
 Cadets learn teamwork and other group skills here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8211 1 100
+Reset       M 8215 4 100
+Reset       M 8215 4 100
+Door        north~ ~ -1 8236
 ~
 ~
-0 -1 8236
-D1
+Door        east~ ~ -1 8240
 ~
 ~
-0 -1 8240
-D2
+Door        south~ ~ -1 8241
 ~
 ~
-0 -1 8241
-D3
+Door        west~ ~ -1 8235
 ~
 ~
-0 -1 8235
-S
+End
+
 #8238
-Dark Tunnel~
+Name        Dark Tunnel~
+Descr
 The plaza is behind you and darkness is with you.  Like the heart of 
 the earth, this tunnel, this path, must lead to something better.  
 This path through darkness smothers your soul.
 
 Ahead...at the end of the tunnel you see a light.
 ~
-0 12 0
-D0
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8223
 ~
 ~
-0 -1 8223
-D2
+Door        south~ ~ -1 8239
 ~
 ~
-0 -1 8239
-S
+End
+
 #8239
-The LIGHT~
+Name        The LIGHT~
+Descr
 You have entered a sanctuary to the God of Light !  
 
 High above your head are thousands of balls of light, eternally 
@@ -2163,40 +2966,46 @@ lighting this room. To the West is an exit and to the East is one
 of the God's clerics blessing a group of villagers and Ducal guards.
 Perhaps he has time to see you as well.
 ~
-0 9224 0
-D0
+Flags       indoors safe no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 8216 1 100
+Door        north~ ~ -1 8238
 ~
 ~
-0 -1 8238
-D2
+Door        south~ ~ -1 8240
 ~
 ~
-0 -1 8240
-S
+End
+
 #8240
-Peace Garden~
+Name        Peace Garden~
+Descr
 Although this garden is close to the Parade Grounds, it is still 
 one of the most peaceful places within the Castle.
 A white gravel path meanders amoungst six foot tall hedges.  
 Small statues dot the landscape and a fountain or two provides 
 many birds a source of refreshment. Ivy covered walls complete the scene.
 ~
-0 4 1
-D0
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+Reset       M 8205 1 100
+Reset       E 8227 17 100
+Door        north~ ~ -1 8239
 ~
 ~
-0 -1 8239
-D2
+Door        south~ ~ -1 8244
 ~
 ~
-0 -1 8244
-D3
+Door        west~ ~ -1 8237
 ~
 ~
-0 -1 8237
-S
+End
+
 #8241
-First Floor Barracks~
+Name        First Floor Barracks~
+Descr
 Uh oh.  You have entered the Ducal Guard Barracks.
 A few tables and chairs are currently occupied, but there seems 
 to be a free one near the fireplace.
@@ -2205,18 +3014,22 @@ As you sit, your eyes adjust to the dim light and you see several
 cadets fixing their armor, while others are practicing their hand 
 to hand communication skills.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 8206 4 100
+Reset       M 8215 3 100
+Door        north~ ~ -1 8237
 ~
 ~
-0 -1 8237
-D4
+Door        up~ ~ -1 8242
 ~
 ~
-0 -1 8242
-S
+End
+
 #8242
-The Second Floor~
+Name        The Second Floor~
+Descr
 This narrow hallway leads to several individual rooms and at the end 
 of the corridor is a staircase leading upwards to the third floor.
 Along the length of the corridor are rooms.  
@@ -2225,19 +3038,22 @@ Several Cadets sleep in the same room.
 The Cadet rooms are bare except for a sleeping mat, a chamber pot, 
 and a weapons rack.
 ~
-0 8 0
-D4
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8215 3 100
+Door        up~ door closed~ 0 8243
 The Armory Door looks like a vault.
 ~
 door~
-3 0 8243
-D5
+Door        down~ ~ -1 8241
 ~
 ~
-0 -1 8241
-S
+End
+
 #8243
-The Armory~
+Name        The Armory~
+Descr
 A thick, reinforced door is open about a foot.  Inside you see racks 
 and racks of weapons and bins of armor.
 
@@ -2245,51 +3061,75 @@ The door is obviously not supposed to be open.  Many of the weapons
 appear to be home made...perhaps from the militia.  The other items 
 are very very good.
 ~
-0 8 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8214 2 100
+Reset       E 8206 5 100
+Reset       E 8213 16 100
+Reset       M 8214 2 100
+Reset       E 8206 5 100
+Reset       E 8213 16 100
+Reset       O 8231 0 100
+Reset       O 8208 0 100
+Door        down~ door closed~ 0 8242
 The Armory door looks like a vault.
 ~
 door~
-3 0 8242
-S
+End
+
 #8244
-Crowbar Street~
+Name        Crowbar Street~
+Descr
 Crowbar Street has been dedicated to a valient warrior spirit.  
 A spirit without fear or regret, without remorse.  A spirit whose foes
 dread meeting..knowing that they will die.  Maybe not this time, 
 but soon.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 8217 1 100
+Reset       E 8232 16 100
+Reset       M 8236 1 100
+Reset       E 8249 -1 100
+Reset       E 8250 -1 100
+Reset       E 8251 -1 100
+Door        north~ ~ -1 8240
 ~
 ~
-0 -1 8240
-D2
+Door        south~ ~ -1 8245
 ~
 ~
-0 -1 8245
-S
+End
+
 #8245
-Kiki Street~
+Name        Kiki Street~
+Descr
 Large stones from a nearby quarry have been used to create a primal, 
 raw, artistic expression.  In tribute to the great warrior woman Kiki, 
 the Duke had his best craftsman work for many weeks to blend the energy 
 of nature with the control and power of an irresistable woman.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 8217 1 100
+Reset       E 8231 16 100
+Reset       E 8233 -1 100
+Door        north~ ~ -1 8244
 ~
 ~
-0 -1 8244
-D2
+Door        south~ door closed locked~ 8233 8246
 This large, reinforced door has been beaten on, burned, and attacked with
 magic....and it still stands.
 ~
 door~
-7 8233 8246
-S
+End
+
 #8246
-Keep Entrance~
+Name        Keep Entrance~
+Descr
 Castle Reinhold is heavily fortified from without, with three major 
 walls and several defensive towers.
 
@@ -2298,62 +3138,79 @@ grills at every entrance this Keep is the goal of every invader.
 Built to withstand an extended direct assault, the Keep has been 
 stocked with supplies to last two years.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8206 4 100
+Reset       E 8213 16 100
+Reset       M 8212 2 100
+Reset       E 8210 1 100
+Reset       E 8210 2 100
+Reset       E 8206 5 100
+Reset       E 8207 7 100
+Reset       E 8205 11 100
+Reset       E 8211 16 100
+Reset       E 8228 17 100
+Reset       M 8217 1 100
+Door        north~ door closed locked~ 8233 8245
 This door has been beaten on, burned, and attacked by magic.  
 It still stands.
 ~
 door~
-7 8233 8245
-D2
+Door        south~ ~ -1 8247
 ~
 ~
-0 -1 8247
-S
+End
+
 #8247
-Main Hall~
+Name        Main Hall~
+Descr
 This is the Main Hall of the Keep.   
 Shields hang from the walls and banners hang from the ceiling.  
 Suits of armor are spaced along the length of the room.
 ~
-0 8204 0
-D0
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8246
 ~
 ~
-0 -1 8246
-D2
+Door        south~ ~ -1 8257
 ~
 ~
-0 -1 8257
-D3
+Door        west~ ~ -1 8248
 ~
 ~
-0 -1 8248
-S
+End
+
 #8248
-Forest Hall~
+Name        Forest Hall~
+Descr
 Aaaaahhhh.  Indoor plants abound in this room.  Tall trees scrape 
 the glass ceiling twenty feet up while a riotous blend of flora swells 
 from the corners to a centerpiece statue.
 The statue is of Duke Reinhold.  Large, armored in his favorite platemail, 
 with sword drawn he presents an impressive figure.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8220 1 100
+Reset       M 8228 1 100
+Door        east~ ~ -1 8247
 ~
 ~
-0 -1 8247
-D2
+Door        south~ ~ -1 8253
 ~
 ~
-0 -1 8253
-D3
+Door        west~ ~ -1 8249
 ~
 ~
-0 -1 8249
-S
+End
+
 #8249
-Dining Hall~
+Name        Dining Hall~
+Descr
 Three HUGE fireplaces light and warm this gathering place.  
 In the center of the room is a table made from half of a giant 
 redwood.  Deeply polished and beautifully emblazoned this table 
@@ -2363,22 +3220,25 @@ Silver candlesticks are scattered about, and on the walls, amoungst
 the shields, banners and other trophies of war, you see chains for 
 securing prisoners to the wall.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8218 2 100
+Reset       M 8218 3 100
+Door        east~ ~ -1 8248
 ~
 ~
-0 -1 8248
-D2
+Door        south~ ~ -1 8252
 ~
 ~
-0 -1 8252
-D3
+Door        west~ ~ -1 8251
 ~
 ~
-0 -1 8251
-S
+End
+
 #8250
-Ceptic Tank~
+Name        Ceptic Tank~
+Descr
 You IDIOT!  You have stepped into a very deep ceptic tank.  
 
 		       You FAALLLLLLLLL!!!
@@ -2387,27 +3247,34 @@ You land in a pile of ofal three feet thick.  Liquids quickly seep
 into every crevice of your armor and SOMETHING scitters across the 
 filth and rubs against your leg before it slithers into the darkness.
 ~
-0 524 0
-S
+Flags       no_mob indoors private~
+Sector      inside~
+Regen       100 100
+End
+
 #8251
-The Indoor Toilets~
+Name        The Indoor Toilets~
+Descr
 Who would have thought it??  Indoor toilets!  The world will always 
 be able to amaze you.
 The attendant has obviously spent a lot of time on the seats...
 they virtually GLOW!
 ~
-0 520 0
-D1
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Reset       M 8221 1 100
+Door        east~ ~ -1 8249
 ~
 ~
-0 -1 8249
-D5
+Door        down~ ~ -1 8250
 ~
 ~
-0 -1 8250
-S
+End
+
 #8252
-The Kitchen~
+Name        The Kitchen~
+Descr
 The HEAT from the two fireplaces has this room as hot as the sun...
 or so it seems.
 
@@ -2417,14 +3284,18 @@ A set of burnished copper pots hang from the ceiling.  Some very sharp
 knives are stuck into a wooden target off to the side of the largest 
 preparation table.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8219 1 100
+Door        north~ ~ -1 8249
 ~
 ~
-0 -1 8249
-S
+End
+
 #8253
-Flight of stairs~
+Name        Flight of stairs~
+Descr
 As you walk into this room you hear a sound like a distance gong 
 being struck.
 At the rear of the room, a spiral staircase goes upward into the 
@@ -2434,18 +3305,21 @@ and dust.
 Brush marks indicate that someone has attempted to sweep the trash 
 but as far as you can see to little success.
 ~
-0 520 0
-D0
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Reset       M 8225 1 100
+Door        north~ ~ -1 8248
 ~
 ~
-0 -1 8248
-D4
+Door        up~ ~ -1 8254
 ~
 ~
-0 -1 8254
-S
+End
+
 #8254
-The First Ring ~
+Name        The First Ring ~
+Descr
 The First Ring of the tower is devoted to the trappings of a mage.  
 With tapestries of blackness hanging from the walls the room is 
 dark indeed.
@@ -2455,18 +3329,21 @@ Bookcases line the walls and bins of scrolls are stacked in the corners.
 If you were a sage you could spend twenty years just catagorizing 
 this treasure trove of information.
 ~
-0 8 0
-D4
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8226 1 100
+Door        up~ ~ -1 8255
 ~
 ~
-0 -1 8255
-D5
+Door        down~ ~ -1 8253
 ~
 ~
-0 -1 8253
-S
+End
+
 #8255
-The Second Ring~
+Name        The Second Ring~
+Descr
 In the center of this room is a silver summoning circle.  
 The circle is actually imbedded into the ground...and appears to be 
 very thick.
@@ -2478,23 +3355,25 @@ The third head of the four headed beast turns to you and says,
 When you become a Demigod, return here and I will open the gate for you 
 to another place."  The monster then dissapears.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8226 1 100
+Door        east~ door closed locked~ 8248 8286
 A shimmering ward.
 ~
 Ward~
-7 8248 8286
-D4
+Door        up~ ~ -1 8256
 ~
 ~
-0 -1 8256
-D5
+Door        down~ ~ -1 8254
 ~
 ~
-0 -1 8254
-S
+End
+
 #8256
-Third Ring~
+Name        Third Ring~
+Descr
 This last level is high above the castle proper.  Open to the air 
 with no railing, it is a dangerous place.
 
@@ -2504,214 +3383,289 @@ inspiring workmanship.
 Wards of power hang glowing in the air..inches from your face.  
 There is a shimmering field of power glowing just off the edge of the level.
 ~
-0 8704 0
-D5
+Flags       private no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 8224 1 100
+Reset       E 8239 3 100
+Reset       E 8236 6 100
+Reset       E 8238 13 100
+Reset       E 8235 17 100
+Reset       E 8241 9 100
+Reset       E 8237 -1 100
+Reset       E 8237 -1 100
+Reset       E 8248 -1 100
+Door        down~ ~ -1 8255
 ~
 ~
-0 -1 8255
-S
+End
+
 #8257
-Red Hall~
+Name        Red Hall~
+Descr
 This beautifully decorated room also contains some of the strangest 
 trophies you have ever seen.  
 Battle tophies occupy the majority of the wall space, however, there 
 are also some hunting trophies intermixed with the shields, banners, 
 and weapons of long vanquished enemies.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8220 2 100
+Reset       M 8218 2 100
+Reset       M 8206 5 100
+Door        north~ ~ -1 8247
 ~
 ~
-0 -1 8247
-D2
+Door        south~ ~ -1 8258
 ~
 ~
-0 -1 8258
-S
+End
+
 #8258
-Grand Hall~
+Name        Grand Hall~
+Descr
 With magically glowing banners and balls of light, this room is lit 
 with daylight.
 A feeling of confidence overwhelms your senses as you realize that 
 Duke Reinhold has the situation well under control.
 His near presence has almost driven every other thought out of your head.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8206 6 100
+Reset       M 8212 3 100
+Reset       E 8206 5 100
+Reset       E 8211 16 100
+Door        north~ ~ -1 8257
 ~
 ~
-0 -1 8257
-D2
+Door        south~ ~ -1 8259
 ~
 ~
-0 -1 8259
-S
+End
+
 #8259
-Audience Chamber~
+Name        Audience Chamber~
+Descr
 In the middle of the room is a gigantic throne.  It is shaped 
 like a peacock with the feathers embedded with jewels and gems 
 from around the world.
 Tall candles illuminate this area with a soft light that is very 
 soothing and calming.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8206 7 100
+Reset       M 8222 1 100
+Reset       E 8210 1 100
+Reset       E 8210 2 100
+Reset       E 8256 5 100
+Reset       E 8257 6 100
+Reset       E 8259 7 100
+Reset       E 8260 8 100
+Reset       E 8261 9 100
+Reset       E 8205 11 100
+Reset       E 8258 12 100
+Reset       E 8262 16 100
+Reset       M 8223 1 100
+Reset       M 8206 8 100
+Reset       M 8220 4 100
+Reset       M 8218 2 100
+Door        north~ ~ -1 8258
 ~
 ~
-0 -1 8258
-D2
+Door        south~ ~ -1 8260
 ~
 ~
-0 -1 8260
-S
+End
+
 #8260
-Grand Staircase~
+Name        Grand Staircase~
+Descr
 The Grand Staircase is a miracle of architecture.  There are no 
 visible means of support for this circular staircase.   
 It's wonderful glow is all natural <not magically enhanced>.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8259
 ~
 ~
-0 -1 8259
-D2
+Door        south~ ~ -1 8269
 ~
 ~
-0 -1 8269
-D3
+Door        west~ ~ -1 8261
 ~
 ~
-0 -1 8261
-S
+End
+
 #8261
-Great Hall~
+Name        Great Hall~
+Descr
 The Great Hall is the pride and joy of Duchess Reinhold.  
 She has directed the activities of the architects and artisans for 
 the last five years and has finally given her seal of approval.
 The Great Hall has been painted with the exploits of popular myth 
 and with Duke Reinhold's own adventures.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8260
 ~
 ~
-0 -1 8260
-D2
+Door        south~ ~ -1 8268
 ~
 ~
-0 -1 8268
-D3
+Door        west~ ~ -1 8262
 ~
 ~
-0 -1 8262
-S
+End
+
 #8262
-The Great Hall~
+Name        The Great Hall~
+Descr
 Wonderful paintings decorate the ceiling of this hallway.  Tremendous 
 efforts have gone into making this an example for all visiting 
 dignitaries to take back to their homes.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8261
 ~
 ~
-0 -1 8261
-D2
+Door        south~ ~ -1 8267
 ~
 ~
-0 -1 8267
-D3
+Door        west~ ~ -1 8263
 ~
 ~
-0 -1 8263
-S
+End
+
 #8263
-Middle Hall~
+Name        Middle Hall~
+Descr
 This section of hallway is currently under construction.  
 Upon completion, it should rival the Great Hall.
 If you look closely you will see the beginnings of a large mosaic.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8262
 ~
 ~
-0 -1 8262
-D2
+Door        south~ ~ -1 8266
 ~
 ~
-0 -1 8266
-D3
+Door        west~ ~ -1 8264
 ~
 ~
-0 -1 8264
-S
+End
+
 #8264
-End of the Hall~
+Name        End of the Hall~
+Descr
 BE CAREFUL!  This end of the hall is extremely unstable.  Large 
 loose blocks of masonry have fallen before and could fall again.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8229 1 100
+Reset       M 8228 1 100
+Door        east~ ~ -1 8263
 ~
 ~
-0 -1 8263
-D2
+Door        south~ ~ -1 8265
 ~
 ~
-0 -1 8265
-S
+End
+
 #8265
-Large Bedroom~
+Name        Large Bedroom~
+Descr
 You have entered the large bedroom set aside for guests.  
 At this moment the workers have all of their equipment stored here.  
 Not a pretty sight I assure you.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8264
 ~
 ~
-0 -1 8264
-S
+End
+
 #8266
-Visitor's Room~
+Name        Visitor's Room~
+Descr
 This room has also been set aside for visitors.  Many a dignitary 
 has stayed here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8229 1 100
+Reset       M 8229 1 100
+Reset       M 8228 1 100
+Door        north~ ~ -1 8263
 ~
 ~
-0 -1 8263
-S
+End
+
 #8267
-Master Bedroom~
+Name        Master Bedroom~
+Descr
 This bedroom belongs to the Duke and Duchess.  It is magnificient.  
 Very opulant and with every modern gadget you can imagine.
 Their bed is a huge canopy bed with red ruffles.  Silk sheets and 
 pillows accessorize the royal love nest.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8228 1 100
+Reset       M 8229 1 100
+Reset       M 8217 1 100
+Reset       O 8243 0 100
+Reset       O 8245 0 100
+Door        north~ ~ -1 8262
 ~
 ~
-0 -1 8262
-S
+End
+
 #8268
-Mistress Bedroom~
+Name        Mistress Bedroom~
+Descr
 Duchess Reinhold has her own bedroom for those special nights that 
 the Duke stays out drinking with his war buddies.
 She has many of her personal items here as well as her jewelry collection.
 Pink is the dominant color.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8229 1 100
+Reset       M 8228 1 100
+Reset       M 8217 1 100
+Reset       O 8243 0 100
+Reset       O 8245 0 100
+Reset       O 8244 0 100
+Door        north~ ~ -1 8261
 ~
 ~
-0 -1 8261
-S
+End
+
 #8269
-Great Library~
+Name        Great Library~
+Descr
 Aaaahhhh. The Great Library is the centerpiece of the continent and 
 the free world.
 There are thousands upon thousands of hard bound books within this library.
@@ -2720,138 +3674,157 @@ You need a ladder to reach the upper shelves.
 There are two very comfortable chairs in the center of the room.  
 An oil lamp rests on the table nearby.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8227 1 100
+Reset       E 8240 -1 100
+Door        north~ ~ -1 8260
 ~
 ~
-0 -1 8260
-D2
+Door        south~ door closed locked pickproof~ 8240 8270
 The bookshelf appears to be well made, with some type of roller system
 attached to the upper and lowers ends.
 With a slight pressure, the bookshelf will swing open.
 ~
 door~
-39 8240 8270
-S
+End
+
 #8270
-A Bookshelf~
+Name        A Bookshelf~
+Descr
 After stepping through the bookshelf you entered a secret passageway.
 There appears to be no one around.
 ~
-0 12 0
-D0
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked~ 8240 8269
 The bookshelf appears to be well made, with some type of roller system
 attached to the upper and lowers ends.
 With a slight pressure, the bookshelf will swing open.
 ~
 door~
-7 8240 8269
-D2
+Door        south~ ~ -1 8271
 ~
 ~
-0 -1 8271
-S
+End
+
 #8271
-Dirty passageway~
+Name        Dirty passageway~
+Descr
 This passageway has become very small all of a sudden.  SSSSShhhhhhhhh!!
 Quiet!  I think that I hear something...or someone.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8270
 ~
 ~
-0 -1 8270
-D2
+Door        south~ ~ -1 8274
 ~
 ~
-0 -1 8274
-D3
+Door        west~ ~ -1 8272
 ~
 ~
-0 -1 8272
-S
+End
+
 #8272
-A narrow passageway~
+Name        A narrow passageway~
+Descr
 Bending over double you move forward.
 ~
-0 520 0
-D1
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Reset       M 8217 1 100
+Door        east~ ~ -1 8271
 ~
 ~
-0 -1 8271
-D5
+Door        down~ ~ -1 8273
 ~
 ~
-0 -1 8273
-S
+End
+
 #8273
-Shaky stairway~
+Name        Shaky stairway~
+Descr
 This stairway is extremely small and not well built.  At the bottom 
 of the stairs you hear metal hitting against metal.
 ~
-0 520 0
-D3
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ -1 8282
 ~
 ~
-0 -1 8282
-D4
+Door        up~ ~ -1 8272
 ~
 ~
-0 -1 8272
-S
+End
+
 #8274
-Natural Cave~
+Name        Natural Cave~
+Descr
 The manmade tunnel that you were following has become a natural cave.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8230 1 100
+Door        north~ ~ -1 8271
 ~
 ~
-0 -1 8271
-D2
+Door        south~ ~ -1 8275
 ~
 ~
-0 -1 8275
-S
+End
+
 #8275
-The Dead Cavern~
+Name        The Dead Cavern~
+Descr
 Long ago this cavern was carved by a river or stream.  A river long dead.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8231 1 100
+Reset       M 8231 1 100
+Door        north~ ~ -1 8274
 ~
 ~
-0 -1 8274
-D2
+Door        south~ ~ -1 8276
 ~
 ~
-0 -1 8276
-D3
+Door        west~ ~ -1 8281
 ~
 ~
-0 -1 8281
-S
+End
+
 #8276
-Small cave~
+Name        Small cave~
+Descr
 Fresh air streams through a small opening in the cave wall to the East.  
 The opening is approximately three feet wide and is coated in bat droppings.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8275
 ~
 ~
-0 -1 8275
-D2
+Door        south~ ~ -1 8277
 ~
 ~
-0 -1 8277
-D3
+Door        west~ ~ -1 8279
 ~
 ~
-0 -1 8279
-S
+End
+
 #8277
-Overlook cave~
+Name        Overlook cave~
+Descr
 The outer wall of this cave has been caved in by someone or something, 
 creating a nine foot wide entrance.
 
@@ -2860,48 +3833,60 @@ the Rhein River.
 
 To your West you detect a terrible smell.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8232 1 100
+Door        north~ ~ -1 8276
 ~
 ~
-0 -1 8276
-D3
+Door        west~ ~ -1 8278
 ~
 ~
-0 -1 8278
-D5
+Door        down~ ~ -1 8204
 ~
 ~
-0 -1 8204
-S
+End
+
 #8278
-The Lair~
+Name        The Lair~
+Descr
 Unfortunately for you..this cavern is occupied!  BETTER FLEE !!!!
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8232 2 100
+Reset       O 8218 0 100
+Reset       O 8214 0 100
+Reset       O 8232 0 100
+Door        east~ ~ -1 8277
 ~
 ~
-0 -1 8277
-S
+End
+
 #8279
-A dark dangerous cavern~
+Name        A dark dangerous cavern~
+Descr
 You are standing in the presence of several wild wyverns.  
 		       
 		       They *** ATTACK *** You.
 ~
-0 8200 0
-D1
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 8233 1 100
+Door        east~ ~ -1 8276
 ~
 ~
-0 -1 8276
-D4
+Door        up~ ~ -1 8280
 ~
 ~
-0 -1 8280
-S
+End
+
 #8280
-Treasure Room~
+Name        Treasure Room~
+Descr
 This tiny cave is too small for the wyverns to enter, however, it 
 has not stopped them from hiding their items here.
 Uh oh!  Perhaps I spoke too soon.  It appears that at least one 
@@ -2909,43 +3894,64 @@ wyvern has made it into the room.
 
 Perhaps if you help it get out it will serve you for a few years.
 ~
-0 8204 0
-D5
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 8233 2 100
+Reset       M 8233 2 100
+Reset       M 8232 1 100
+Reset       O 8219 0 100
+Reset       O 8220 0 100
+Reset       O 8224 0 100
+Reset       O 8229 0 100
+Reset       O 8238 0 100
+Reset       O 8242 0 100
+Reset       O 8213 0 100
+Reset       O 8203 0 100
+Reset       O 8247 0 100
+Reset       M 8230 1 100
+Door        down~ ~ -1 8279
 ~
 ~
-0 -1 8279
-S
+End
+
 #8281
-Side cavern~
+Name        Side cavern~
+Descr
 You are standing in a tiny side cavern compared to others you 
 have seen. This cavern seems peaceful enough.  Perhaps you can 
 rest a moment.  ZZZZZzzzzz.
 ~
-0 8204 0
-D1
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8275
 ~
 ~
-0 -1 8275
-S
+End
+
 #8282
-The Torturer's Pit~
+Name        The Torturer's Pit~
+Descr
 After surviving the ancient stairs you come to the entrance of 
 Duke Reinhold's dungeon.
 
 Screams of pure agony can be faintly heard.
 ~
-0 8204 0
-D1
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8273
 ~
 ~
-0 -1 8273
-D3
+Door        west~ ~ -1 8283
 ~
 ~
-0 -1 8283
-S
+End
+
 #8283
-Torture Chamber~
+Name        Torture Chamber~
+Descr
 Uuhhhgg.  This room reeks of death and torture.  In the center of 
 the room is the fire pit.  Inside which three irons are constantly 
 being heated.
@@ -2957,18 +3963,21 @@ Chains are imbedded deeply in society but we will never know.
 The Torturer is humming a special song as he works.  
 "I love you, you love me, " etc..
 ~
-0 8204 0
-D1
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Reset       M 8234 1 100
+Door        east~ ~ -1 8282
 ~
 ~
-0 -1 8282
-D3
+Door        west~ ~ -1 8285
 ~
 ~
-0 -1 8285
-S
+End
+
 #8284
-Dungeon Cell~
+Name        Dungeon Cell~
+Descr
 The cell you are in has been approved by the GOOD Alliance Board 
 of Regents.
 
@@ -2978,37 +3987,41 @@ trying to remind evil followers that they are hurting real people.
 
 There appears to be writing on the wall.
 ~
-0 524 0
-E
-writing~
+Flags       no_mob indoors private~
+Sector      inside~
+Regen       100 100
+ExtraDescr  writing~
 The Duk suxs!  His wife is a whore!  His children are pigs!
 ~
-S
+Reset       O 8246 0 100
+End
+
 #8285
-The Last Mile~
+Name        The Last Mile~
+Descr
 Many of the evil inmates have cried for mercy as they are taken down 
 this tunnel.
 ~
-0 8204 0
-D0
+Flags       no_mob indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8284
 ~
 ~
-0 -1 8284
-D1
+Door        east~ ~ -1 8283
 ~
 ~
-0 -1 8283
-D2
+Door        south~ ~ -1 8284
 ~
 ~
-0 -1 8284
-D3
+Door        west~ ~ -1 8284
 ~
 ~
-0 -1 8284
-S
+End
+
 #8286
-Inside the Summoning Ring~
+Name        Inside the Summoning Ring~
+Descr
 You are completely surrounded by a ring of magic and silver.  
 If you try to touch the sides you receive a massive shock and you 
 are thrown backwards.
@@ -3017,90 +4030,103 @@ The ring maintains links to them and if you look closely you can
 see lines of power feeding them.
 Travel along the lines and you will magically arrive at the beasts.
 ~
-0 8716 0
-D1
+Flags       no_mob indoors private no_recall~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 8296
 ~
 ~
-0 -1 8296
-D2
+Door        south~ ~ -1 8205
 ~
 ~
-0 -1 8205
-D3
+Door        west~ door closed locked~ 8248 8255
 The shimmering ward.
 ~
 Ward~
-7 8248 8255
-D4
+Door        up~ ~ -1 8295
 ~
 ~
-0 -1 8295
-S
+End
+
 #8287
-The Way Out~
+Name        The Way Out~
+Descr
 Lucky you.  Now, be careful next time.  This cave leads to safety.
 To the East is a swirling magical vortex....step into it and you'll be safe.
 ~
-0 8200 0
-D0
+Flags       indoors no_recall~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8213
 ~
 ~
-0 -1 8213
-D1
+Door        east~ ~ 8248 8200
 ~
 ~
-0 8248 8200
-S
+End
+
 #8288
-Mercantile~
+Name        Mercantile~
+Descr
 The building you are standing in has a quaint atmosphere about it.  
 There are many adventuring items hanging from hooks and thrown on 
 shelves.  A huge counter, piled high with odds and ends, attracts 
 your attention.  You step up to the counter.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8210 1 100
+Reset       E 8200 -1 100
+Reset       E 8209 -1 100
+Reset       E 8217 -1 100
+Door        south~ ~ -1 8222
 ~
 ~
-0 -1 8222
-S
+End
+
 #8289
-A Dangerous Fall~
+Name        A Dangerous Fall~
+Descr
 The river is becoming violent as it dives into a huge hole in the 
 ground.  The underground  river goes underground.
 
 Are you really sure that you want to continue?
 ~
-0 8 7
-D3
+Flags       indoors~
+Sector      water_noswim~
+Regen       100 100
+Door        west~ ~ -1 8216
 ~
 ~
-0 -1 8216
-D5
+Door        down~ ~ -1 8290
 ~
 ~
-0 -1 8290
-S
+End
+
 #8290
-No exit blackness~
+Name        No exit blackness~
+Descr
 Doomed Doomed Doomed Doomed Doomed Doomed Doomed.
 
 The river beats a rythem upon the rocks.  As the river hits the rocks 
 it splashes towards the walls of the cavern, creating interesting 
 designs and crevices.
 ~
-0 8 7
-D3
+Flags       indoors~
+Sector      water_noswim~
+Regen       100 100
+Door        west~ ~ -1 8291
 ~
 ~
-0 -1 8291
-D4
+Door        up~ ~ -1 8289
 ~
 ~
-0 -1 8289
-S
+End
+
 #8291
-Under the waterfall~
+Name        Under the waterfall~
+Descr
 Under the waterfall is a beautiful cavern, glistening wet from the 
 spray of the water.
 You see a florescent moss growing on the walls of the cavern, 
@@ -3108,366 +4134,132 @@ illuminated a tunnel leading deeper into the mountain.
 The floor of this cave has been many wet trails leading from the 
 waterfall's pool to the tunnel before you.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 8292
 ~
 ~
-0 -1 8292
-D1
+Door        east~ ~ -1 8290
 ~
 ~
-0 -1 8290
-S
+End
+
 #8292
-The waterfall tunnel~
+Name        The waterfall tunnel~
+Descr
 This tunnel goes DEEP into the mountain.  The further you go 
 the chiller the air becomes until you are able to see your breath.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8237 3 100
+Reset       M 8235 4 100
+Door        south~ ~ -1 8291
 ~
 ~
-0 -1 8291
-D3
+Door        west~ ~ -1 8293
 ~
 ~
-0 -1 8293
-S
+End
+
 #8293
-A Large underground cavern~
+Name        A Large underground cavern~
+Descr
 You have entered another world.  There is a large reptillian presence here.
 Many small mud dens rise like igloos from the damp floor of the cavern.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8238 1 100
+Reset       E 8264 1 100
+Reset       E 8263 16 100
+Reset       M 8237 3 100
+Reset       M 8238 1 100
+Door        east~ ~ -1 8292
 ~
 ~
-0 -1 8292
-D4
+Door        up~ ~ -1 8294
 ~
 ~
-0 -1 8294
-S
+End
+
 #8294
-God's Room~
+Name        God's Room~
+Descr
 The room you are in has many elements of the underwater world.  
 Deep in the back recesses of the cavern is a massive bulk.
 It appears that the lizardmen have been feeding and worshipping 
 a small dragon!
 ~
-0 8 0
-D5
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 8239 1 100
+Reset       E 8267 5 100
+Reset       E 8266 6 100
+Reset       E 8265 16 100
+Door        down~ ~ -1 8293
 ~
 ~
-0 -1 8293
-S
+End
+
 #8295
-Hall of Horrors~
+Name        Hall of Horrors~
+Descr
 You have entered the Hall of Horrors.  Terrible SOUNDS can be heard...the 
 screaming of thousands of souls SCREAMING their last cries into the 
 darkness.  On the walls of this Hall are thousands upon thousands of 
 flayed skin tapestries.  All races are represented.
 ~
-0 520 0
-D5
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Reset       M 8241 1 100
+Reset       E 8279 -1 100
+Reset       E 8279 -1 100
+Door        down~ ~ -1 8286
 ~
 ~
-0 -1 8286
-S
+End
+
 #8296
-The Dark Abyss~
+Name        The Dark Abyss~
+Descr
 You are standing upon a tiny, 2 foot square piece of rock....  floating 
 in the blackest abyss.  As you look around, you see the door and the rock 
 you are standing on....and that is all.  The blackness is so complete it 
 is oppressive.  The weight of the world beats down upon your head.
 ~
-0 520 0
-D3
+Flags       indoors private~
+Sector      inside~
+Regen       100 100
+Reset       M 8240 1 100
+Reset       E 8269 1 100
+Reset       E 8269 2 100
+Reset       E 8270 3 100
+Reset       E 8270 4 100
+Reset       E 8271 5 100
+Reset       E 8268 6 100
+Reset       E 8272 7 100
+Reset       E 8273 8 100
+Reset       E 8274 9 100
+Reset       E 8275 10 100
+Reset       E 8276 11 100
+Reset       E 8277 14 100
+Reset       E 8277 15 100
+Reset       E 8278 -1 100
+Reset       E 8278 -1 100
+Reset       E 8278 -1 100
+Door        west~ ~ -1 8286
 ~
 ~
-0 -1 8286
-S
+End
+
 #0
 
-
-#SPECIALS
-M 8202 spec_breath_acid
-M 8203 spec_breath_fire
-M 8204 spec_guard
-M 8206 spec_guard
-M 8212 spec_guard
-M 8213 spec_guard
-M 8216 spec_cast_adept
-M 8217 spec_guard
-M 8222 spec_guard
-M 8223 spec_cast_mage
-M 8224 spec_cast_mage
-M 8225 spec_cast_mage
-M 8226 spec_breath_any
-M 8230 spec_breath_lightning
-M 8231 spec_cast_mage
-M 8232 spec_breath_gas
-M 8233 spec_breath_acid
-M 8235 spec_poison
-M 8237 spec_poison
-M 8238 spec_poison
-M 8239 spec_breath_any
-M 8240 spec_poison
-M 8241 spec_cast_mage
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 8205 1 8201
-G 0 8224 0
-M 0 8200 1 8201
-G 0 8200 0
-G 0 8204 0
-M 0 8202 1 8205
-E 0 8201 0 12
-E 0 8215 0 6
-G 0 8200 0
-M 0 8204 1 8205
-O 0 8209 0 8205
-O 0 8214 0 8205
-O 0 8214 0 8205
-M 0 8204 1 8205
-M 0 8201 1 8207
-M 0 8238 1 8212
-E 0 8263 0 16
-M 0 8235 3 8214
-M 0 8235 4 8215
-M 0 8235 5 8216
-O 0 8216 0 8218
-M 0 8205 1 8219
-G 0 8217 0
-M 0 8208 1 8221
-G 0 8280 0
-G 0 8281 0
-G 0 8282 0
-M 0 8205 1 8223
-M 0 8204 1 8225
-M 0 8202 1 8226
-E 0 8215 0 6
-E 0 8201 0 5
-E 0 8215 0 6
-G 0 8200 0
-M 0 8202 4 8226
-E 0 8201 0 5
-E 0 8215 0 6
-G 0 8200 0
-M 0 8204 1 8226
-M 0 8204 1 8226
-M 0 8203 1 8227
-E 0 8201 0 5
-E 0 8202 0 6
-E 0 8203 0 16
-G 0 8200 0
-M 0 8202 4 8227
-E 0 8201 0 5
-E 0 8215 0 6
-M 0 8204 1 8227
-M 0 8206 4 8229
-E 0 8207 0 7
-E 0 8205 0 11
-E 0 8208 0 16
-M 0 8206 4 8229
-M 0 8212 1 8229
-E 0 8210 0 1
-E 0 8206 0 5
-E 0 8211 0 16
-M 0 8206 4 8229
-M 0 8205 1 8230
-G 0 8219 0
-M 0 8205 2 8230
-E 0 8227 0 17
-M 0 8205 1 8230
-M 0 8205 1 8231
-G 0 8220 0
-M 0 8205 1 8231
-M 0 8206 4 8232
-E 0 8210 0 1
-G 0 8200 0
-M 0 8207 1 8234
-G 0 8200 0
-G 0 8253 0
-G 0 8254 0
-G 0 8255 0
-M 0 8209 1 8235
-G 0 8231 0
-G 0 8213 0
-M 0 8205 1 8236
-M 0 8215 4 8236
-M 0 8211 1 8237
-M 0 8215 4 8237
-M 0 8215 4 8237
-M 0 8216 1 8239
-M 0 8205 1 8240
-E 0 8227 0 17
-M 0 8206 4 8241
-M 0 8215 3 8241
-M 0 8215 3 8242
-M 0 8214 2 8243
-E 0 8206 0 5
-E 0 8213 0 16
-M 0 8214 2 8243
-E 0 8206 0 5
-E 0 8213 0 16
-O 0 8231 0 8243
-O 0 8208 0 8243
-M 0 8217 1 8244
-E 0 8232 0 16
-M 0 8236 1 8244
-G 0 8249 0
-G 0 8250 0
-G 0 8251 0
-M 0 8217 1 8245
-E 0 8231 0 16
-G 0 8233 0
-M 0 8206 4 8246
-E 0 8213 0 16
-M 0 8212 2 8246
-E 0 8210 0 1
-E 0 8210 0 2
-E 0 8206 0 5
-E 0 8207 0 7
-E 0 8205 0 11
-E 0 8211 0 16
-E 0 8228 0 17
-M 0 8217 1 8246
-M 0 8220 1 8248
-M 0 8228 1 8248
-M 0 8218 2 8249
-M 0 8218 3 8249
-M 0 8221 1 8251
-M 0 8219 1 8252
-M 0 8225 1 8253
-M 0 8226 1 8254
-M 0 8226 1 8255
-M 0 8224 1 8256
-E 0 8239 0 3
-E 0 8236 0 6
-E 0 8238 0 13
-E 0 8235 0 17
-E 0 8241 0 9
-G 0 8237 0
-G 0 8237 0
-G 0 8248 0
-M 0 8220 2 8257
-M 0 8218 2 8257
-M 0 8206 5 8257
-M 0 8206 6 8258
-M 0 8212 3 8258
-E 0 8206 0 5
-E 0 8211 0 16
-M 0 8206 7 8259
-M 0 8222 1 8259
-E 0 8210 0 1
-E 0 8210 0 2
-E 0 8256 0 5
-E 0 8257 0 6
-E 0 8259 0 7
-E 0 8260 0 8
-E 0 8261 0 9
-E 0 8205 0 11
-E 0 8258 0 12
-E 0 8262 0 16
-M 0 8223 1 8259
-M 0 8206 8 8259
-M 0 8220 4 8259
-M 0 8218 2 8259
-M 0 8229 1 8264
-M 0 8228 1 8264
-M 0 8229 1 8266
-M 0 8229 1 8266
-M 0 8228 1 8266
-M 0 8228 1 8267
-M 0 8229 1 8267
-M 0 8217 1 8267
-O 0 8243 0 8267
-O 0 8245 0 8267
-M 0 8229 1 8268
-M 0 8228 1 8268
-M 0 8217 1 8268
-O 0 8243 0 8268
-O 0 8245 0 8268
-O 0 8244 0 8268
-M 0 8227 1 8269
-G 0 8240 0
-M 0 8217 1 8272
-M 0 8230 1 8274
-M 0 8231 1 8275
-M 0 8231 1 8275
-M 0 8232 1 8277
-M 0 8232 2 8278
-O 0 8218 0 8278
-O 0 8214 0 8278
-O 0 8232 0 8278
-M 0 8233 1 8279
-M 0 8233 2 8280
-M 0 8233 2 8280
-M 0 8232 1 8280
-O 0 8219 0 8280
-O 0 8220 0 8280
-O 0 8224 0 8280
-O 0 8229 0 8280
-O 0 8238 0 8280
-O 0 8242 0 8280
-O 0 8213 0 8280
-O 0 8203 0 8280
-O 0 8247 0 8280
-M 0 8230 1 8280
-M 0 8234 1 8283
-O 0 8246 0 8284
-M 0 8210 1 8288
-G 0 8200 0
-G 0 8209 0
-G 0 8217 0
-M 0 8237 3 8292
-M 0 8235 4 8292
-M 0 8238 1 8293
-E 0 8264 0 1
-E 0 8263 0 16
-M 0 8237 3 8293
-M 0 8238 1 8293
-M 0 8239 1 8294
-E 0 8267 0 5
-E 0 8266 0 6
-E 0 8265 0 16
-M 0 8241 1 8295
-G 0 8279 0
-G 0 8279 0
-M 0 8240 1 8296
-E 0 8269 0 1
-E 0 8269 0 2
-E 0 8270 0 3
-E 0 8270 0 4
-E 0 8271 0 5
-E 0 8268 0 6
-E 0 8272 0 7
-E 0 8273 0 8
-E 0 8274 0 9
-E 0 8275 0 10
-E 0 8276 0 11
-E 0 8277 0 14
-E 0 8277 0 15
-G 0 8278 0
-G 0 8278 0
-G 0 8278 0
-S
-
-
-#SHOPS
-8207 19 0 0 0 0 40 100 0 23
-8208 9 0 0 0 0 90 100 0 23
-8209 5 4 3 0 0 80 110 0 23
-8210 12 15 8 0 0 80 110 0 2
-8236 8 0 0 0 0 40 110 0 23
-0
 
 
 #$

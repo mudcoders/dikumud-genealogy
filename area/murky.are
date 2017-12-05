@@ -4,10 +4,13 @@ Author      Hatchet~
 Levels      3 50
 Security    1
 VNUMs       10700 10791
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
+
 
 
 #HELPS
@@ -22,938 +25,1460 @@ They, in turn, create minions, named shades.
 
 0 $~
 
-#MOBILES
+
+
+#MOBDB
 #10700
-cashier~
-a bored cashier~
+Name        cashier~
+Short       a bored cashier~
+Long
 A bored cashier sits in the booth, collecting dough from you.
 ~
+Descr
 The Cashier looks bored, and you think he really is.  Of course, he cares 
 nothing about what you think, and he wishes you share the same sentiments with 
 him, too.
 ~
-67 40 -100 S
-20 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -100
+Level       20
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_judge
+Shop        ~ ~ ~ ~ ~ 100 100 0 23
+End
+
 #10701
-greeter bouncer person~
-the Greeter/Bouncer~
+Name        greeter bouncer person~
+Short       the Greeter/Bouncer~
+Long
 A big, hulky, smiling person is here, greeting you.
 ~
+Descr
 You can tell that he's not enjoying his job.  Although his job is supposed to
 greet you and smile witlessly, you can tell that his smile is very 
 artificial.  Also, just from the look of him you can bet that he has a night 
 job as a bouncer.  You wonder if he's guarding something here.
 ~
-67 40 -300 S
-20 0 0 0d0+0 0d0+0
-0 0
-0 Troll~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -300
+Level       20
+Gold        0
+Race        Troll
+Sex         male~
+Spec        spec_repairman
+End
+
 #10702
-hatchling~
-a Hatchling~
+Name        hatchling~
+Short       a Hatchling~
+Long
 A Hatchling sits here, playing 'doctor' with Iccy.
 ~
+Descr
 This Hatchling is little more than a modified toy soldier with limited
 intelligence.  He smiles at you briefly and then resumes his fun with 
 Iccy.
 ~
-67 8320 750 S
-6 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    sanctuary protect-evil~
+Alignment   750
+Level       6
+Gold        0
+Race        Object
+Sex         male~
+End
+
 #10703
-iccy~
-Iccy~
+Name        iccy~
+Short       Iccy~
+Long
 Iccy sits here with the Hatchling, playing 'doctor'
 ~
+Descr
 Iccy is nothing more than a modified mud monster with limited intelligence.
 She smiles at you briefly and quickly resumes playing with the Hatchling.
 ~
-67 8320 750 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 2
+Act         sentinel stay_area~
+AffectBy    sanctuary protect-evil~
+Alignment   750
+Level       5
+Gold        0
+Race        Object
+Sex         female~
+End
+
 #10704
-kahno~
-KahnO, predecesser of KahnI~
+Name        kahno~
+Short       KahnO, predecesser of KahnI~
+Long
 About 500 KahnO's reflect off every mirror.
 ~
+Descr
 Every reflection of KahnO is grinning at you.  You wonder why you see much
 more reflections of him than you do of yourself.  However, you DO notice 
 that KahnO is nothing more than a modified troll with limited intelligence.
 ~
-67 98434 500 S
-6 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    invisible sanctuary sneak hide~
+Alignment   500
+Level       6
+Gold        0
+Race        Object
+Sex         male~
+Spec        spec_thief
+End
+
 #10705
-fraggie spider~
-Fraggie~
+Name        fraggie spider~
+Short       Fraggie~
+Long
 Fraggie sits on the web, staring at you.
 ~
+Descr
 You notice that Fraggie is just a modified young spider.  He licks his lips
 and grins at you.
 ~
-67 128 -400 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    sanctuary~
+Alignment   -400
+Level       5
+Gold        0
+Race        Object
+Sex         male~
+Spec        spec_poison
+End
+
 #10706
-cook~
-the cook~
+Name        cook~
+Short       the cook~
+Long
 The cook stands over bubbling pots.
 ~
+Descr
 The cook looks at you momentarily, yells 'Hey, you ain't supposed to be 
 here!', but quickly loses her train of thought and ignores you after that.
 ~
-195 0 -50 S
-10 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   -50
+Level       10
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #10707
-person counter counterperson~
-the cafeteria counterperson~
+Name        person counter counterperson~
+Short       the cafeteria counterperson~
+Long
 The cafeteria counterperson unenthusiastically sells junk to kids.
 ~
+Descr
 The counterperson looks at everyone with a tired, uncaring scowl.  Upon
 noticing you, though, he smiles his evil grin.  "Try the candy cane.", he 
 whispers to you with a grin.  He quickly reverts back to his degenerate
 self.
 ~
-67 0 -200 S
-13 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -200
+Level       13
+Gold        0
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 100 100 0 23
+End
+
 #10708
-demon unspawned~
-an unspawned demon~
+Name        demon unspawned~
+Short       an unspawned demon~
+Long
 An unspawned demon rises out of the ashes.
 ~
+Descr
 This unspawned demon is trying to materialize.  You wonder if you should 
 perhaps leave it alone.
 ~
-67 0 -352 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -352
+Level       4
+Gold        0
+Race        Object
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10709
-morph blob~
-a morphing blob~
+Name        morph blob~
+Short       a morphing blob~
+Long
 A small blob is trying to morph into a useable shape.
 ~
+Descr
 This small blob is trying to morph into an evil, powerful creature.  It's
 also crawling toward you, trying to consume you!
 ~
-67 0 -400 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -400
+Level       4
+Gold        0
+Race        Object
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #10710
-blinky blinking shape~
-Blinky~
+Name        blinky blinking shape~
+Short       Blinky~
+Long
 A small blinking shape runs around the kitchen, running everything.
 ~
+Descr
 This small blinking shape is too fast for you to see any details.
 ~
-67 0 0 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        0
+Race        Object
+Sex         male~
+Spec        spec_thief
+End
+
 #10711
-atom~
-the unmixed Atom~
+Name        atom~
+Short       the unmixed Atom~
+Long
 A small Atom bounds around the infinite walls of this galaxy infinitely fast!
 ~
+Descr
 You have no idea how this Atom looks like, it's never at the same place 
 twice.  You wonder how much chaos will result if this atom was ever
 turned around.
 ~
-67 128 0 S
-6 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 0
+Act         sentinel stay_area~
+AffectBy    sanctuary~
+Alignment   0
+Level       6
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #10712
-little dave monk~
-Little Dave, the evil Monk~
+Name        little dave monk~
+Short       Little Dave, the evil Monk~
+Long
 Little Dave, an evil monk, tries to sell you cult-like drugs.
 ~
+Descr
 Little Dave makes a lot of money off his wares, not to mention a huge
 following.
 ~
-67 0 -200 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -200
+Level       4
+Gold        0
+Race        Object
+Sex         male~
+Spec        spec_cast_psionicist
+Shop        ~ ~ ~ ~ ~ 100 100 0 23
+End
+
 #10713
-little boy~
-a little boy~
+Name        little boy~
+Short       a little boy~
+Long
 A little boy sits here, playing with razors.
 ~
+Descr
 The little boy sits here, bleeding from many small cuts.  He smiles at you 
 and offers a bloody razor.
 ~
-67 0 0 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        0
+Race        Object
+Sex         male~
+End
+
 #10714
-little girl~
-a little girl~
+Name        little girl~
+Short       a little girl~
+Long
 A little girl is sitting here, playing with matches and Kerosene!
 ~
+Descr
 The little girl smirks at you, and splashes some Kerosene at you!  She 
 then lights a match and stares at it in wonder.
 ~
-195 0 -400 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 2
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   -400
+Level       4
+Gold        0
+Race        Object
+Sex         female~
+End
+
 #10715
-big bruiser~
-a big bruiser~
+Name        big bruiser~
+Short       a big bruiser~
+Long
 A big bruiser stands here, guarding against 'unwanted visitors', like you!
 ~
+Descr
 This big bruiser doesn't like you being here,and knows of only one way to
 get rid of you, and that's by killing you!
 ~
-103 40 -600 S
-10 0 0 0d0+0 0d0+0
-0 0
-0 Troll~ 1
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -600
+Level       10
+Gold        0
+Race        Troll
+Sex         male~
+End
+
 #10716
-mad man madman~
-a madman~
+Name        mad man madman~
+Short       a madman~
+Long
 A madman makes a stand here, thinking you want to kill him!
 ~
+Descr
 He's dressed in rags, and shouts 'Don't come any closer!' 'Hey, I saw you 
 move!'  He immediately attacks you!
 ~
-103 0 -100 S
-9 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -100
+Level       9
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10717
-rooms keeper roomskeeper~
-the roomskeeper~
+Name        rooms keeper roomskeeper~
+Short       the roomskeeper~
+Long
 The roomskeeper sits behind the counter, waiting for you to pay him money.
 ~
+Descr
 The roomskeeper looks bored.  He says to you 'Hi.  Rooms D and G are taken.
 If you want a whore, rent room F'.  He then goes back to his introversion.
 ~
-67 0 -500 S
-17 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -500
+Level       17
+Gold        0
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 1000 100 0 23
+End
+
 #10718
-kid \/\/ildrunner wildrunner~
-the little \/\/ildrunner~
+Name        kid \/\/ildrunner wildrunner~
+Short       the little \/\/ildrunner~
+Long
 A little kid is here, running around \/\/ildly.
 ~
+Descr
 This little kid zips around you, between your legs, over your heads.  You
 can't believe the energy this little dude has!
 ~
-65 0 0 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        0
+Race        Object
+Sex         male~
+Spec        spec_thief
+End
+
 #10719
-whore prostitute~
-the hermophroditic prostitute~
+Name        whore prostitute~
+Short       the hermophroditic prostitute~
+Long
 A herymophroditic prostitute lounges on the bed here.
 ~
+Descr
 This strange creature has four sets of boobs and 2 penises.  You recoil from
 this monstrosity in disgust!  Better get out of here, quick!
 ~
-67 0 -50 S
-8 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -50
+Level       8
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #10720
-man weasel~
-a weaslly-looking man~
+Name        man weasel~
+Short       a weaslly-looking man~
+Long
 A weaselly-looking man sits behind the desk, grinning at you.
 ~
+Descr
 This short man grins evilly at you.  He waves you closer to the desk, and 
 whispers to you, "I have some information you may wish to buy.  I found 
 some journals and letters that are probably of interest to you.  Are you
 willing to pay my price?"
 (type list to see what he has to sell)
 ~
-67 0 -200 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   -200
+Level       12
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_mage
+Shop        ~ ~ ~ ~ ~ 1000 100 0 23
+End
+
 #10721
-serving wench~
-a serving wench~
+Name        serving wench~
+Short       a serving wench~
+Long
 A serving wench is here, taking orders and serving food, while dodging patrons.
 ~
+Descr
 The serving wench may be pretty, but her hair covers most of her face, such
 that you can see little of her.  She hastily reads out what's available for
 today, then runs by to help another customer.
 ~
-67 0 23 S
-8 0 0 0d0+0 0d0+0
-0 0
-0 Halfdwarf~ 2
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   23
+Level       8
+Gold        0
+Race        Halfdwarf
+Sex         female~
+Shop        ~ ~ ~ ~ ~ 110 100 0 23
+End
+
 #10722
-warrior~
-a gruff warrior~
+Name        warrior~
+Short       a gruff warrior~
+Long
 A gruff warrior is sitting at the table, eating messily.
 ~
+Descr
 The warrior looks to be quite barbaric.  He ignores you completely.
 ~
-67 0 0 S
-16 0 0 0d0+0 0d0+0
-0 0
-0 Dwarf~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       16
+Gold        0
+Race        Dwarf
+Sex         male~
+End
+
 #10723
-lady bartender~
-the lady bartender~
+Name        lady bartender~
+Short       the lady bartender~
+Long
 The lady bartender serves up drinks and mops up the counter robotically.
 ~
+Descr
 You can tell she's had days like this many times before.
 ~
-67 0 0 S
-8 0 0 0d0+0 0d0+0
-0 0
-0 Halfelf~ 2
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       8
+Gold        0
+Race        Halfelf
+Sex         female~
+Shop        ~ ~ ~ ~ ~ 110 100 0 23
+End
+
 #10724
-shade shadow~
-a shade~
+Name        shade shadow~
+Short       a shade~
+Long
 A dark shadow looms over you.
 ~
+Descr
 You see a dark silhouette of a human sized creature.
 ~
-225 1146922 -700 S
-19 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         aggressive stay_area wimpy~
+AffectBy    invisible detect-invis detect-hidden sneak hide pass-door~
+Alignment   -700
+Level       19
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10725
-shade shadow sentry~
-a shade sentry~
+Name        shade shadow sentry~
+Short       a shade sentry~
+Long
 A dark shadow looms over you.
 ~
+Descr
 You see a silhouette of a human-sized creature.
 ~
-99 1146922 -700 S
-19 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide pass-door~
+Alignment   -700
+Level       19
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10726
-little brat~
-a little brat~
+Name        little brat~
+Short       a little brat~
+Long
 A little brat is here, showing everyone what he found.
 ~
+Descr
 This little brat sees you, and waves a skeleton key at you, boasting, "Look
 what I found!  Ha Ha!"  He won't give up this little treasure to you, but
 he MAY be convinced to sell it to you for neato shiny coins!
 ~
-193 0 0 S
-1 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        0
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 1000 100 0 23
+End
+
 #10727
-mage old man~
-an old man~
+Name        mage old man~
+Short       an old man~
+Long
 An old man is here, nursing his glass of wine.
 ~
+Descr
 Upon a closer look, this old man looks ageless.  He doesn't look too feeble,
 either.  Better leave him alone.
 ~
-67 40 -200 S
-17 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -200
+Level       17
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #10728
-lady mercenary~
-a lady mercenary~
+Name        lady mercenary~
+Short       a lady mercenary~
+Long
 A lady mercenary sits here, downing many shots of vodka.
 ~
+Descr
 Any luck at trying to get her drunk enough to take advantage of her are
 dashed when you realize she's not affected by the drinks at all.  You
 consider approaching her, but only for a brief moment and quickly 
 reconsider that idea.
 ~
-67 0 100 S
-21 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 2
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   100
+Level       21
+Gold        0
+Race        Elf
+Sex         female~
+End
+
 #10729
-employee~
-an employee~
+Name        employee~
+Short       an employee~
+Long
 An employee is searching the ground for something.
 ~
+Descr
 The employee looks up at you and says, "I'm looking for this important
 skeleton key.  If you find it, PLEASE return it to me!!!!"  He goes back
 to his search.
 ~
-195 0 -200 S
-6 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   -200
+Level       6
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10730
-tied victim bundle~
-a tied victim~
+Name        tied victim bundle~
+Short       a tied victim~
+Long
 A bundle is wriggling beneath you.
 ~
+Descr
 The bundle is a tied victim!  He squirms, trying to get out!
 ~
-67 0 0 S
-1 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10731
-employee~
-an employee~
+Name        employee~
+Short       an employee~
+Long
 An employee is here, discussing with a shade.
 ~
+Descr
 The employee spots you, and attacks!
 ~
-99 0 -400 S
-17 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         sentinel aggressive stay_area~
+AffectBy    ~
+Alignment   -400
+Level       17
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #10732
-shade shadow~
-a shade~
+Name        shade shadow~
+Short       a shade~
+Long
 A dark shadow looms over you.
 ~
+Descr
 The shade is not happy that you have intruded upon it's discussion and
 decides to attack you.
 ~
-99 1146922 -700 S
-19 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide pass-door~
+Alignment   -700
+Level       19
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10733
-shadow warrior~
-a shadow warrior~
+Name        shadow warrior~
+Short       a shadow warrior~
+Long
 A dark shadow looms over you, and attacks!
 ~
+Descr
 The shadow warrior is so insubstantial, even its weapons and armor are
 mere silhouettes!
 ~
-99 1146922 -750 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide pass-door~
+Alignment   -750
+Level       25
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10734
-shadow dragon beast~
-Shadow Dragon~
+Name        shadow dragon beast~
+Short       Shadow Dragon~
+Long
 A big hulking beast hovers over you.
 ~
+Descr
 You watch with dread as the shadow dragon claws and breathes at you!
 ~
-99 1671210 -999 S
-35 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide flying pass-door~
+Alignment   -999
+Level       35
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_breath_acid
+End
+
 #10735
-shadow librarian~
-the shadow librarian~
+Name        shadow librarian~
+Short       the shadow librarian~
+Long
 A shadow leans over the scrolls.
 ~
+Descr
 The shadow librarian ignores you completely, engrossed in its scrolls.
 ~
-67 98346 -800 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide~
+Alignment   -800
+Level       28
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_judge
+End
+
 #10736
-shadow conjurer~
-the shadow conjurer~
+Name        shadow conjurer~
+Short       the shadow conjurer~
+Long
 A shadow looms over the many potions and solutions.
 ~
+Descr
 The shadow conjurer ignores you completely, engrossed in its potions and
 other concoctions.
 ~
-67 98346 -800 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide~
+Alignment   -800
+Level       28
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_cleric
+End
+
 #10737
-shadow scriber~
-the shadow scriber~
+Name        shadow scriber~
+Short       the shadow scriber~
+Long
 A shadow leans over the scrolls.
 ~
+Descr
 The shadow scriber ignores you compeletely, engrossed in its scrolls.
 ~
-67 98346 -800 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide~
+Alignment   -800
+Level       28
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_psionicist
+End
+
 #10738
-shadow enchanter~
-the shadow enchanter~
+Name        shadow enchanter~
+Short       the shadow enchanter~
+Long
 A shadow looms over the weapons.
 ~
+Descr
 The shadow enchanter ignores you completely, engrossed with its weapons.
 ~
-67 98346 -800 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area~
+AffectBy    invisible detect-invis detect-hidden sneak hide~
+Alignment   -800
+Level       28
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_mage
+End
+
 #10739
-sacrifice victim sacrificial~
-the sacrificial victim~
+Name        sacrifice victim sacrificial~
+Short       the sacrificial victim~
+Long
 A victim is here, being sacrificed.
 ~
+Descr
 The victim is beyond salvation, horribly scarred physically, mentally, and
 spiritually for life.
 ~
-195 0 0 S
-1 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #10740
-torturer shadow~
-the torturer~
+Name        torturer shadow~
+Short       the torturer~
+Long
 A shadow is here, turturing its victim with acid.
 ~
+Descr
 You can bet this turturer likes its job!
 ~
-195 0 -750 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   -750
+Level       15
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10741
-torturer shadow~
-the torturer~
+Name        torturer shadow~
+Short       the torturer~
+Long
 A shadow is here, torturing its victim by stabbing it repeatedly.
 ~
+Descr
 You can bet this torturer likes its job!
 ~
-195 0 -750 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   -750
+Level       15
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10742
-torturer shadow~
-the torturer~
+Name        torturer shadow~
+Short       the torturer~
+Long
 A shadow is here, torturing its victim with fire.
 ~
+Descr
 You can bet this torturer loves its job!
 ~
-195 0 -750 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area wimpy~
+AffectBy    ~
+Alignment   -750
+Level       15
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10743
-khyrhamokhdon~
-the Shadow Demon~
+Name        khyrhamokhdon~
+Short       the Shadow Demon~
+Long
 A deep shadow envelops you.
 ~
+Descr
 The Shadow Demon KhyrhaMokhdon is a large, powerful beast.  Right hand of the
 Shadow Lord himself, KhyrhaMokhdon hates humanity and loves to watch them
 burn from acid, which he calls unholy fire.  KhyrhaMokhdon serves the 
 Shadow Lord without reserve.
 ~
-195 1147562 -1000 S
-37 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area wimpy~
+AffectBy    invisible detect-invis detect-hidden sanctuary infrared sneak hide pass-door~
+Alignment   -1000
+Level       37
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10744
-khyrhashohan~
-the Shadow Demon~
+Name        khyrhashohan~
+Short       the Shadow Demon~
+Long
 A deep shadow envelops you.
 ~
+Descr
 The Shadow Demon KhyrhaShohan is a large, powerful beast.  Left hand of the
 Shadow Lord himself, KhyrhaShohan hates humanity and loves scarring them to
 oblivion.  KhyrhaShohan serves the Shadow Lord without reserve, although
 it envies the other Khyrha for being first before itself.
 ~
-195 1147562 -1000 S
-36 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         sentinel stay_area wimpy~
+AffectBy    invisible detect-invis detect-hidden sanctuary infrared sneak hide pass-door~
+Alignment   -1000
+Level       36
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #10745
-khyrhazenin~
-the Shadow Lord~
+Name        khyrhazenin~
+Short       the Shadow Lord~
+Long
 A deep shadow envelops you and enters your heart.
 ~
+Descr
 The Lord of Shadow, Lord of Despair, Lord of Darkness, KhyrhaZenin hates
 anything to do with the Light and God, who has forsaken him and cast him
 to his death.  He lives off his hatred of God, and spends every moment of 
 his unlife destroying humanity.  His singular purpose leaves him very 
 predictable, but also very, very powerful.
 ~
-195 1147562 -1000 S
-43 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 1
+Act         sentinel stay_area wimpy~
+AffectBy    invisible detect-invis detect-hidden sanctuary infrared sneak hide pass-door~
+Alignment   -1000
+Level       43
+Gold        0
+Race        Undead
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #10700
-ticket~
-a ticket to Murky Land~
+Name        ticket~
+Short       a ticket to Murky Land~
+Descr
 A small scrap of paper litters the ground.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10701
-cudgel~
-a heavy cudgel~
+Name        cudgel~
+Short       a heavy cudgel~
+Descr
 A heavy cudgel rests here.~
-~
-5 32 8193
-0~ 0~ 0~ 7~ 0~
-9 0 0
+Type        weapon~
+Extra       invis~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      9
+Cost        0
+End
+
 #10702
-hatchet~
-a small hatchet~
+Name        hatchet~
+Short       a small hatchet~
+Descr
 A small hatchet is on the floor.~
-~
-5 1026 8193
-0~ 0~ 0~ 13~ 0~
-5 0 0
-A
-2 -1 0
-A
-5 1 0
-A
-1 1 0
+Type        weapon~
+Extra       hum anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 13~ 0~
+Weight      5
+Cost        0
+Affect      dexterity~ -1 ~
+Affect      constitution~ 1 ~
+Affect      strength~ 1 ~
+End
+
 #10703
-ice pick icepick~
-a small icepick~
+Name        ice pick icepick~
+Short       a small icepick~
+Descr
 A small icepick is sticking out of the ground.~
-~
-5 2 8193
-0~ 0~ 0~ 11~ 0~
-5 0 0
-A
-2 1 0
+Type        weapon~
+Extra       hum~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      5
+Cost        0
+Affect      dexterity~ 1 ~
+End
+
 #10704
-engagement ring gold~
-a simple engagement ring~
+Name        engagement ring gold~
+Short       a simple engagement ring~
+Descr
 A simple ring of gold is on the floor.~
-~
-9 4160 3
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-3 1 0
-A
-4 -1 0
-A
-2 1 0
+Type        armor~
+Extra       magic noremove~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      intelligence~ 1 ~
+Affect      wisdom~ -1 ~
+Affect      dexterity~ 1 ~
+End
+
 #10705
-black tooth blacktooth dirk~
-blacktooth~
+Name        black tooth blacktooth dirk~
+Short       blacktooth~
+Descr
 A dark dirk is on the floor.~
-~
-5 2 8193
-0~ 0~ 0~ 11~ 0~
-5 0 0
+Type        weapon~
+Extra       hum~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      5
+Cost        0
+End
+
 #10706
-carapace spider~
-a hard spider carapace~
+Name        carapace spider~
+Short       a hard spider carapace~
+Descr
 A shell of a spider is here.~
-~
-9 528 9
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-14 -20 0
-A
-12 -10 0
-A
-5 2 0
+Type        armor~
+Extra       evil anti-good~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      move~ -20 ~
+Affect      mana~ -10 ~
+Affect      constitution~ 2 ~
+End
+
 #10707
-cooking spatula~
-a cooking spatula~
+Name        cooking spatula~
+Short       a cooking spatula~
+Descr
 A greasy cooking spatula is on the floor.  Yuck!~
-~
-5 0 8193
-0~ 0~ 0~ 13~ 0~
-5 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 13~ 0~
+Weight      5
+Cost        0
+End
+
 #10708
-apron~
-an apron~
+Name        apron~
+Short       an apron~
+Descr
 An apron hangs here.~
-~
-9 0 2049
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-24 -3 0
-A
-17 1 0
-E
-apron~
+Type        armor~
+Extra       ~
+Wear        take waist~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      saving-spell~ -3 ~
+Affect      ac~ 1 ~
+ExtraDescr  apron~
 You realize that this grease splattered apron offers great protection, not
 just from grease, but from sword strokes, fire, and magic spells, too!
 ~
+End
+
 #10709
-yellow popcorn~
-a bag of yellow popcorn~
+Name        yellow popcorn~
+Short       a bag of yellow popcorn~
+Descr
 A bag of yellow popcorn sits on the counter.~
-~
-19 0 1
-0~ -1~ -1~ -1~ 0~
-1 0 0
-E
-yellow popcorn~
+Type        food~
+Extra       ~
+Wear        take~
+Values      0~ -1~ -1~ -1~ 0~
+Weight      1
+Cost        0
+ExtraDescr  yellow popcorn~
 You notice that the yellowness of this popcorn has NOTHING to do with any
 seasoning.  You wonder how long this popcorn has been sitting in this bag,
 and wished you hadn't bought any of it.
 ~
+End
+
 #10710
-candy cane candycane~
-a candy cane~
+Name        candy cane candycane~
+Short       a candy cane~
+Descr
 A candy cane is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
-E
-candy cane candycane~
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  candy cane candycane~
 You notice that this candycane is harder than brass, and that you'll never
 be able to eat it.~
+End
+
 #10711
-cup cola~
-a plastic cup of cola~
+Name        cup cola~
+Short       a plastic cup of cola~
+Descr
 You see a plastic cup with liquid inside.~
-~
-17 0 1
-10~ 10~ 15~ 0~ 0~
-5 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      10~ 10~ 15~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10712
-cup lemonade~
-a plastic cup of lemonade~
+Name        cup lemonade~
+Short       a plastic cup of lemonade~
+Descr
 You see a cup with a yellowish liquid inside.~
-~
-17 0 8193
-10~ 10~ 6~ 0~ 0~
-5 0 0
+Type        drink_con~
+Extra       ~
+Wear        take wield~
+Values      10~ 10~ 6~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10713
-jerky rat~
-some type of jerky~
+Name        jerky rat~
+Short       some type of jerky~
+Descr
 Strips of meat are on the counter.~
-~
-19 0 1
-10~ 0~ 0~ 0~ 0~
-5 0 0
-E
-jerky rat~
+Type        food~
+Extra       ~
+Wear        take~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  jerky rat~
 You sniff, and to your horrow, realize that this jerky is Rat Jerky!!!!
 Yeck.  At least it's not poisoning your stomache ... yet.
 ~
+End
+
 #10714
-razor~
-a bloody razor~
+Name        razor~
+Short       a bloody razor~
+Descr
 A bloody razor is on the floor, ready to cut your feet.~
-~
-5 0 8193
-0~ 0~ 0~ 1~ 0~
-5 0 0
-A
-19 1 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 1 ~
+End
+
 #10715
-match~
-a lit match~
+Name        match~
+Short       a lit match~
+Descr
 A lit match is here, ready to start a fire!~
-~
-3 64 16385
-5~ 5~ 5~ burning hands~ 0~
-5 0 0
+Type        wand~
+Extra       magic~
+Wear        take hold~
+Values      5~ 5~ 5~ burning hands~ 0~
+Weight      5
+Cost        0
+End
+
 #10716
-pill green~
-a green pill~
+Name        pill green~
+Short       a green pill~
+Descr
 A green pill is on the floor.~
-~
-26 0 1
-2~ detect invis~ blindness~ detect hidden~  ~
-5 0 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      2~ detect invis~ blindness~ detect hidden~  ~
+Weight      5
+Cost        0
+End
+
 #10717
-pink pill~
-a pink pill~
+Name        pink pill~
+Short       a pink pill~
+Descr
 A pink pill is on the floor.~
-~
-26 0 1
-2~ cure light~ cure light~ cause serious~  ~
-5 0 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      2~ cure light~ cure light~ cause serious~  ~
+Weight      5
+Cost        0
+End
+
 #10718
-orange pill~
-an orange pill~
+Name        orange pill~
+Short       an orange pill~
+Descr
 An orange pill is on the floor.~
-~
-26 0 1
-2~ cure poison~ poison~ fly~  ~
-5 0 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      2~ cure poison~ poison~ fly~  ~
+Weight      5
+Cost        0
+End
+
 #10719
-red pill~
-a red pill~
+Name        red pill~
+Short       a red pill~
+Descr
 A red pill is on the floor.~
-~
-26 0 1
-2~ giant strength~ weaken~ levitation~  ~
-5 0 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      2~ giant strength~ weaken~ levitation~  ~
+Weight      5
+Cost        0
+End
+
 #10720
-silver pill~
-a silver pill~
+Name        silver pill~
+Short       a silver pill~
+Descr
 A silver pill is on the floor.~
-~
-26 0 1
-2~ sleep~ cure light~ faerie fire~  ~
-5 0 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      2~ sleep~ cure light~ faerie fire~  ~
+Weight      5
+Cost        0
+End
+
 #10721
-spiked cudgel~
-a spiked cudgel~
+Name        spiked cudgel~
+Short       a spiked cudgel~
+Descr
 A spiked cudgel is on the floor here.~
-~
-5 0 8193
-0~ 0~ 0~ 7~ 0~
-10 0 0
-A
-19 3 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      10
+Cost        0
+Affect      damroll~ 3 ~
+End
+
 #10722
-cape~
-a dark cape~
+Name        cape~
+Short       a dark cape~
+Descr
 A dark cape hangs here.~
-~
-9 64 1025
-0~ 0~ 0~ 0~ 0~
-4 0 0
-A
-2 1 0
+Type        armor~
+Extra       magic~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        0
+Affect      dexterity~ 1 ~
+End
+
 #10723
-key a~
-key A~
+Name        key a~
+Short       key A~
+Descr
 A small key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10724
-key b~
-key B~
+Name        key b~
+Short       key B~
+Descr
 A small key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10725
-key c~
-key C~
+Name        key c~
+Short       key C~
+Descr
 A key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10726
-key d~
-key D~
+Name        key d~
+Short       key D~
+Descr
 A small key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10727
-key e~
-key E~
+Name        key e~
+Short       key E~
+Descr
 A small key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10728
-key f~
-key F~
+Name        key f~
+Short       key F~
+Descr
 A small key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10729
-key g~
-key G~
+Name        key g~
+Short       key G~
+Descr
 A small key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10730
-bed~
-a smelly bed~
+Name        bed~
+Short       a smelly bed~
+Descr
 A smelly bed sits in this room.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10731
-chair~
-a chair~
+Name        chair~
+Short       a chair~
+Descr
 A chair is here.~
-~
-5 0 8193
-0~ 0~ 0~ 8~ 0~
-8 0 0
-A
-19 -2 0
-A
-18 -2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      8
+Cost        0
+Affect      damroll~ -2 ~
+Affect      hitroll~ -2 ~
+End
+
 #10732
-bed~
-a smelly bed~
+Name        bed~
+Short       a smelly bed~
+Descr
 A smelly bed sits in this room.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10733
-desk~
-a desk~
+Name        desk~
+Short       a desk~
+Descr
 A desk sits in this room.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10734
-shoes wildrunner \/\/ildrunner~
-\/\/ildrunner(tm) running shoes~
+Name        shoes wildrunner \/\/ildrunner~
+Short       \/\/ildrunner(tm) running shoes~
+Descr
 A pair of spiffy running shoes hover magically here.~
-~
-9 4163 65
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-5 -1 0
-A
-14 20 0
-A
-2 2 0
+Type        armor~
+Extra       glow hum magic noremove~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      constitution~ -1 ~
+Affect      move~ 20 ~
+Affect      dexterity~ 2 ~
+End
+
 #10735
-chair~
-a chair~
+Name        chair~
+Short       a chair~
+Descr
 A chair is here.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10736
-chair~
-a chair~
+Name        chair~
+Short       a chair~
+Descr
 A chair is here.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10737
-note scrap paper~
-a scrap of paper~
+Name        note scrap paper~
+Short       a scrap of paper~
+Descr
 A scrap of paper is stuck on the floor.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-note scrap paper~
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  note scrap paper~
 In a very sloppy script, this note reads,
 "This place is much more than you think it is.
 Just as Murky Land is a front for this illegal tavern,
@@ -961,40 +1486,50 @@ this illegal tavern is a front for something very very evil."
 
 					     - Ren the Sneak
 ~
+End
+
 #10738
-robe thin black~
-a thin black robe~
+Name        robe thin black~
+Short       a thin black robe~
+Descr
 A thin black robe lies on the floor here.~
-~
-9 592 1025
-0~ 0~ 0~ 0~ 0~
-3 0 0
-A
-12 10 0
-A
-1 -1 0
-A
-4 1 0
-A
-3 1 0
+Type        armor~
+Extra       evil magic anti-good~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        0
+Affect      mana~ 10 ~
+Affect      strength~ -1 ~
+Affect      wisdom~ 1 ~
+Affect      intelligence~ 1 ~
+End
+
 #10739
-black scroll~
-a black scroll~
+Name        black scroll~
+Short       a black scroll~
+Descr
 A black scroll is curled up here.~
-~
-2 64 1
-0~ magic missile~ magic missile~ magic missile~  ~
-1 0 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      0~ magic missile~ magic missile~ magic missile~  ~
+Weight      1
+Cost        0
+End
+
 #10740
-journal~
-portions of a journal~
+Name        journal~
+Short       portions of a journal~
+Descr
 Some loose pages are here.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-journal~
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  journal~
 3rd day of MIssion --
    It is incredible how much corruption is lurking underneath the seamingly
 friendly place called 'Murky Land'.  Whoever design such a friendly front
@@ -1012,16 +1547,20 @@ I'm sure it's merely the trick of the candlelight.  5 more bundles were
 hauled through the employee door today, and I'm sure they are bodies or
 victims.  
 ~
+End
+
 #10741
-scroll prophecy~
-portions of The Scroll of Prophecy~
+Name        scroll prophecy~
+Short       portions of The Scroll of Prophecy~
+Descr
 An old scroll is on the floor.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-scroll prophecy~
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  scroll prophecy~
 (places marked with XXXXX are places scratched out with a dark pen)
 
 And the God cast down KhXXXX from the Heavens, and spake, "Do not ever 
@@ -1034,430 +1573,590 @@ will be so named XXXXXX.
 
 as prophesized by XXXX XXXXXXXX of Thalos, in the year XXXXX XXXX
 ~
+End
+
 #10742
-scrap paper~
-a scrap of paper~
+Name        scrap paper~
+Short       a scrap of paper~
+Descr
 A scrap of paper is on the floor.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-scrap paper~
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  scrap paper~
 There are many myths regarding the shadowlord.  To hear more about it, type
 'help shadowlord'.
 ~
+End
+
 #10743
-roast chicken~
-a roast chicken~
+Name        roast chicken~
+Short       a roast chicken~
+Descr
 A roast chicken is on the table.~
-~
-19 0 1
-20~ 0~ 0~ 0~ 0~
-5 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      20~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10744
-baked bread~
-baked bread~
+Name        baked bread~
+Short       baked bread~
+Descr
 Some bread is on the table.~
-~
-19 0 1
-10~ 0~ 0~ 0~ 0~
-5 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10745
-slice lemon pie~
-a slice of lemon pie~
+Name        slice lemon pie~
+Short       a slice of lemon pie~
+Descr
 A slice of lemon pie is on the table.~
-~
-19 0 1
-6~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10746
-ale pitcher~
-a pitcher of ale~
+Name        ale pitcher~
+Short       a pitcher of ale~
+Descr
 A pitcher of ale is on the table.~
-~
-17 0 1
-30~ 30~ 3~ 0~ 0~
-5 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      30~ 30~ 3~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10747
-bowl soup~
-a bowl of soup~
+Name        bowl soup~
+Short       a bowl of soup~
+Descr
 A bowl of soup is on the table.~
-~
-17 0 1
-5~ 5~ 23~ 0~ 0~
-2 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      5~ 5~ 23~ 0~ 0~
+Weight      2
+Cost        0
+End
+
 #10748
-spear~
-a spear~
+Name        spear~
+Short       a spear~
+Descr
 A spear is leaning against the wall.~
-~
-5 0 8193
-0~ 0~ 0~ 2~ 0~
-7 0 0
-A
-18 4 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 2~ 0~
+Weight      7
+Cost        0
+Affect      hitroll~ 4 ~
+End
+
 #10749
-splintmail splint mail vest~
-splintmail vest~
+Name        splintmail splint mail vest~
+Short       splintmail vest~
+Descr
 A splintmail vest is bundled here.~
-~
-9 0 9
-0~ 0~ 0~ 0~ 0~
-12 0 0
-A
-5 1 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      12
+Cost        0
+Affect      constitution~ 1 ~
+End
+
 #10750
-shot vodka~
-a shot of vodka~
+Name        shot vodka~
+Short       a shot of vodka~
+Descr
 A shot of vodka is on the counter.~
-~
-17 0 1
-2~ 2~ 22~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      2~ 2~ 22~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10751
-shot rum~
-a shot of rum~
+Name        shot rum~
+Short       a shot of rum~
+Descr
 A shot of rum is on the counter~
-~
-17 0 1
-2~ 2~ 18~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      2~ 2~ 18~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10752
-shot whisky~
-a shot of whisky~
+Name        shot whisky~
+Short       a shot of whisky~
+Descr
 A shot of whisky is on the counter.~
-~
-17 0 1
-3~ 3~ 5~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      3~ 3~ 5~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10753
-glass wine~
-a glass of wine~
+Name        glass wine~
+Short       a glass of wine~
+Descr
 A glass of wine is on the counter.~
-~
-17 0 1
-5~ 5~ 2~ 0~ 0~
-2 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      5~ 5~ 2~ 0~ 0~
+Weight      2
+Cost        0
+End
+
 #10754
-mug beer~
-a mug of beer~
+Name        mug beer~
+Short       a mug of beer~
+Descr
 A mug of beer is on the counter.~
-~
-17 0 1
-6~ 6~ 1~ 0~ 0~
-2 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      6~ 6~ 1~ 0~ 0~
+Weight      2
+Cost        0
+End
+
 #10755
-shot firebreather~
-a shot of firebreather~
+Name        shot firebreather~
+Short       a shot of firebreather~
+Descr
 A shot of firebreather is here.~
-~
-17 0 1
-1~ 1~ 7~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      1~ 1~ 7~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10756
-shot local specialty~
-a shot of the local specialty~
+Name        shot local specialty~
+Short       a shot of the local specialty~
+Descr
 A shot of the local specialty is on the counter.~
-~
-17 0 1
-1~ 1~ 8~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      1~ 1~ 8~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10757
-dirk~
-a dirk~
+Name        dirk~
+Short       a dirk~
+Descr
 A thin dirk is on the floor.~
-~
-5 0 8193
-0~ 0~ 0~ 11~ 0~
-5 0 0
-A
-18 1 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      5
+Cost        0
+Affect      hitroll~ 1 ~
+End
+
 #10758
-key skeleton~
-a skeleton key~
+Name        key skeleton~
+Short       a skeleton key~
+Descr
 A skeleton key is on the floor.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10759
-sabre~
-a sabre~
+Name        sabre~
+Short       a sabre~
+Descr
 You see a sabre.~
-~
-5 64 8193
-0~ 0~ 0~ 1~ 0~
-5 0 0
-A
-1 2 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      5
+Cost        0
+Affect      strength~ 2 ~
+End
+
 #10760
-shield square~
-a square shield~
+Name        shield square~
+Short       a square shield~
+Descr
 A square shield is on the floor.~
-~
-9 64 513
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-5 2 0
+Type        armor~
+Extra       magic~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      constitution~ 2 ~
+End
+
 #10761
-hidden panel~
-a hidden panel~
+Name        hidden panel~
+Short       a hidden panel~
+Descr
 You see a desk here.~
-~
-15 0 0
-50~ 1~ 0~ 0~ 0~
-5 0 0
-E
-hidden panel~
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 1~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  hidden panel~
 Wow, you are so happy you took the extra time to inspect this desk, or you
 never would have found this hidden panel!
 ~
+End
+
 #10762
-bracelet ivory~
-an ivory bracelet~
+Name        bracelet ivory~
+Short       an ivory bracelet~
+Descr
 You see an ivory bracelet here.~
-~
-9 1088 4097
-0~ 0~ 0~ 0~ 0~
-2 0 0
-A
-3 1 0
-A
-12 10 0
+Type        armor~
+Extra       magic anti-evil~
+Wear        take wrist~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        0
+Affect      intelligence~ 1 ~
+Affect      mana~ 10 ~
+End
+
 #10763
-statuette eagle~
-an eagle statuette~
+Name        statuette eagle~
+Short       an eagle statuette~
+Descr
 An eagle statuette stands proudly here.~
-~
-15 0 0
-50~ 4~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 4~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10764
-statuette eagle~
-an eagle statuette~
+Name        statuette eagle~
+Short       an eagle statuette~
+Descr
 An eagle statuette stands proudly here.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10765
-statuette eagle~
-an eagle statuette~
+Name        statuette eagle~
+Short       an eagle statuette~
+Descr
 An eagle statuette stands proudly here.~
-~
-15 0 0
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        container~
+Extra       ~
+Wear        ~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #10766
-black key~
-a black key~
+Name        black key~
+Short       a black key~
+Descr
 You see a black key here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #10767
-shadow sword~
-a shadow sword~
+Name        shadow sword~
+Short       a shadow sword~
+Descr
 You see the silhouette of a sword here.~
-~
-5 4688 8193
-0~ 0~ 0~ 1~ 0~
-10 0 0
-A
-2 1 0
-A
-5 1 0
-A
-1 1 0
+Type        weapon~
+Extra       evil magic anti-good noremove~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      10
+Cost        0
+Affect      dexterity~ 1 ~
+Affect      constitution~ 1 ~
+Affect      strength~ 1 ~
+End
+
 #10768
-shadow vest~
-a shadow vest~
+Name        shadow vest~
+Short       a shadow vest~
+Descr
 You see a silhouette of a vest.~
-~
-9 4688 9
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-13 20 0
-A
-5 1 0
-A
-2 1 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hp~ 20 ~
+Affect      constitution~ 1 ~
+Affect      dexterity~ 1 ~
+End
+
 #10769
-shadow helm helmet~
-a shadow helm~
+Name        shadow helm helmet~
+Short       a shadow helm~
+Descr
 You see the silhouette of a helmet here.~
-~
-9 4688 17
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-12 10 0
-A
-3 1 0
-A
-4 1 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      mana~ 10 ~
+Affect      intelligence~ 1 ~
+Affect      wisdom~ 1 ~
+End
+
 #10770
-shadow leggings~
-shadow leggings~
+Name        shadow leggings~
+Short       shadow leggings~
+Descr
 You see the silhouette of leggings here.~
-~
-9 4688 33
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-5 1 0
-A
-2 1 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take legs~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      constitution~ 1 ~
+Affect      dexterity~ 1 ~
+End
+
 #10771
-shadow boots~
-shadow boots~
+Name        shadow boots~
+Short       shadow boots~
+Descr
 You see the silhouette of boots.~
-~
-9 4688 65
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-14 50 0
-A
-2 2 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      move~ 50 ~
+Affect      dexterity~ 2 ~
+End
+
 #10772
-shadow gauntlets~
-shadow gauntlets~
+Name        shadow gauntlets~
+Short       shadow gauntlets~
+Descr
 You see the silhouette of some gauntlets here.~
-~
-9 4688 129
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-18 2 0
-A
-2 1 0
-A
-1 1 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take hands~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hitroll~ 2 ~
+Affect      dexterity~ 1 ~
+Affect      strength~ 1 ~
+End
+
 #10773
-shadow sleeves~
-shadow sleeves~
+Name        shadow sleeves~
+Short       shadow sleeves~
+Descr
 You see the silhouette of some sleeves here.~
-~
-9 4688 257
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-13 10 0
-A
-5 1 0
-A
-1 1 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take arms~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hp~ 10 ~
+Affect      constitution~ 1 ~
+Affect      strength~ 1 ~
+End
+
 #10774
-a shadow shield~
-a shadow shield~
+Name        a shadow shield~
+Short       a shadow shield~
+Descr
 You see the silhouette of a shield here.~
-~
-9 4688 513
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-18 2 0
-A
-5 2 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      hitroll~ 2 ~
+Affect      constitution~ 2 ~
+End
+
 #10775
-black fang blackfang~
-blackfang~
+Name        black fang blackfang~
+Short       blackfang~
+Descr
 You see the silhouette of something sharp.~
-~
-5 21104 8193
-0~ 0~ 0~ 11~ 0~
-8 0 0
-A
-2 2 0
-A
-5 -10 0
-A
-19 7 0
-A
-18 7 0
-A
-1 2 0
+Type        weapon~
+Extra       evil invis magic anti-good noremove poisoned~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      8
+Cost        0
+Affect      dexterity~ 2 ~
+Affect      constitution~ -10 ~
+Affect      damroll~ 7 ~
+Affect      hitroll~ 7 ~
+Affect      strength~ 2 ~
+End
+
 #10776
-shadow orb~
-the Shadow Orb~
+Name        shadow orb~
+Short       the Shadow Orb~
+Descr
 You see the silhouette of a small globe.~
-~
-4 4688 16385
-0~ 20~ 20~ teleport~ 0~
-5 0 0
-A
-12 30 0
-A
-4 2 0
-A
-3 2 0
+Type        staff~
+Extra       evil magic anti-good noremove~
+Wear        take hold~
+Values      0~ 20~ 20~ teleport~ 0~
+Weight      5
+Cost        0
+Affect      mana~ 30 ~
+Affect      wisdom~ 2 ~
+Affect      intelligence~ 2 ~
+End
+
 #10777
-gold coins treasure~
-a large pile of coins~
+Name        gold coins treasure~
+Short       a large pile of coins~
+Descr
 A large pile of coins is on the floor.~
-~
-20 0 1
-30000~ 0~ 0~ 0~ 0~
-30 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      30000~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        0
+End
+
 #10778
-acid jar~
-a jar of acid~
+Name        acid jar~
+Short       a jar of acid~
+Descr
 A jar of acid is on the floor.~
-~
-3 64 16385
-0~ 5~ 5~ acid blast~ 0~
-5 0 0
+Type        wand~
+Extra       magic~
+Wear        take hold~
+Values      0~ 5~ 5~ acid blast~ 0~
+Weight      5
+Cost        0
+End
+
 #10779
-torch~
-a magical torch~
+Name        torch~
+Short       a magical torch~
+Descr
 An everburning torch is here.~
-~
-3 64 16385
-0~ 5~ 5~ fireball~ 0~
-5 0 0
+Type        wand~
+Extra       magic~
+Wear        take hold~
+Values      0~ 5~ 5~ fireball~ 0~
+Weight      5
+Cost        0
+End
+
 #10780
-staff despair~
-staff of Despair~
+Name        staff despair~
+Short       staff of Despair~
+Descr
 A dark staff is on the floor.~
-~
-5 21072 8193
-0~ 0~ 0~ 8~ 0~
-15 0 0
-A
-19 5 0
-A
-18 5 0
-A
-5 -8 0
-A
-1 2 0
+Type        weapon~
+Extra       evil magic anti-good noremove poisoned~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      15
+Cost        0
+Affect      damroll~ 5 ~
+Affect      hitroll~ 5 ~
+Affect      constitution~ -8 ~
+Affect      strength~ 2 ~
+End
+
 #10781
-cloak shadows~
-cloak of Shadows~
+Name        cloak shadows~
+Short       cloak of Shadows~
+Descr
 The silhouette of a cloak can be barely seen.~
-~
-9 4688 1025
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-17 -30 0
-A
-2 2 0
+Type        armor~
+Extra       evil magic anti-good noremove~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      ac~ -30 ~
+Affect      dexterity~ 2 ~
+End
+
 #10782
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll has been carelessly left here.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
-E
-scroll~
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+ExtraDescr  scroll~
 My subjects:
    I wish the following places destroyed so that traces of our origin will 
 not be found.
@@ -1471,16 +2170,20 @@ tarry in this deed.
 
 --The Shadow Lord
 ~
+End
+
 #10783
-scroll~
-a scroll~
+Name        scroll~
+Short       a scroll~
+Descr
 A scroll has been carelessly left here.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-5 0 0
-E
-scroll~
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  scroll~
 My Subjects:
    There exist certain people on this realm who know too much regarding
 the identity of myself and my Shadow Demons.  You are to find them and 
@@ -1494,115 +2197,156 @@ Please fulfill this deed swiftest.
 
 --The Shadow Lord
 ~
+End
+
 #10784
-bubbly red potion~
-a bubbly red potion~
+Name        bubbly red potion~
+Short       a bubbly red potion~
+Descr
 A bubbly red potion is on the table.~
-~
-10 64 1
-0~ stone skin~ shield~ combat mind~  ~
-2 0 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      0~ stone skin~ shield~ combat mind~  ~
+Weight      2
+Cost        0
+End
+
 #10785
-ice blue potion~
-an ice blue potion~
+Name        ice blue potion~
+Short       an ice blue potion~
+Descr
 An ice blue potion is on the table.~
-~
-10 64 1
-0~ intellect fortress~ thought shield~ flesh armor~  ~
-2 0 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      0~ intellect fortress~ thought shield~ flesh armor~  ~
+Weight      2
+Cost        0
+End
+
 #10786
-dark orange potion~
-a dark orange potion~
+Name        dark orange potion~
+Short       a dark orange potion~
+Descr
 A dark orange potion is on the table.~
-~
-10 64 1
-0~ enhanced strength~ ectoplasmic form~ refresh~  ~
-2 0 0
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      0~ enhanced strength~ ectoplasmic form~ refresh~  ~
+Weight      2
+Cost        0
+End
+
 #10787
-scroll rage~
-a scroll of rage~
+Name        scroll rage~
+Short       a scroll of rage~
+Descr
 A scroll is on the table here.~
-~
-2 64 1
-0~ blindness~ curse~ poison~  ~
-1 0 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      0~ blindness~ curse~ poison~  ~
+Weight      1
+Cost        0
+End
+
 #10788
-scroll fire~
-a scroll of fire~
+Name        scroll fire~
+Short       a scroll of fire~
+Descr
 A scroll is on the table.~
-~
-2 64 1
-0~ flamestrike~ fireball~ fire breath~  ~
-1 0 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      0~ flamestrike~ fireball~ fire breath~  ~
+Weight      1
+Cost        0
+End
+
 #10789
-scroll curing~
-a scroll of curing~
+Name        scroll curing~
+Short       a scroll of curing~
+Descr
 A scroll of curing is here.~
-~
-2 64 1
-0~ cure blindness~ remove curse~ cure poison~  ~
-1 0 0
+Type        scroll~
+Extra       magic~
+Wear        take~
+Values      0~ cure blindness~ remove curse~ cure poison~  ~
+Weight      1
+Cost        0
+End
+
 #10790
-shadow pike~
-a shadow pike~
+Name        shadow pike~
+Short       a shadow pike~
+Descr
 A long, slim shadow is against the wall.~
-~
-5 4688 8193
-0~ 0~ 0~ 2~ 0~
-5 0 0
-A
-19 12 0
-A
-18 -2 0
-A
-1 2 0
+Type        weapon~
+Extra       evil magic anti-good noremove~
+Wear        take wield~
+Values      0~ 0~ 0~ 2~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 12 ~
+Affect      hitroll~ -2 ~
+Affect      strength~ 2 ~
+End
+
 #10791
-shadow whip~
-a shadow whip~
+Name        shadow whip~
+Short       a shadow whip~
+Descr
 A shadow of some rope is on the floor.~
-~
-5 4688 8193
-0~ 0~ 0~ 4~ 0~
-5 0 0
-A
-19 5 0
-A
-18 5 0
+Type        weapon~
+Extra       evil magic anti-good noremove~
+Wear        take wield~
+Values      0~ 0~ 0~ 4~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 5 ~
+Affect      hitroll~ 5 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #10700
-Entrance to Murky Land~
+Name        Entrance to Murky Land~
+Descr
 You are standing at the entrance to Murky Land!  Brought to you by the 
 wonderful folks at Ofcol Private Development Corp, or ODP, this funland is for
 kids of all ages!  The main entrance is to the north, while a path leads back
 west.  There is a sign here.
 ~
-0 4 1
-E
-sign~
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign~
 The Ofcol Private Development Corp, or ODP, welcomes you to Murky Land!  This 
 theme park features creatures based on the very gods of early Merc and Envy!  
 We at ODP wish you'll enjoy your stay at Murky Land!
 ~
-D0
+Door        north~ ~ -1 10701
 ~
 ~
-0 -1 10701
-D3
+Door        west~ ~ -1 5552
 ~
 ~
-0 -1 5552
-S
+End
+
 #10701
-At the Cashier's Booth~
+Name        At the Cashier's Booth~
+Descr
 You stand at the cashier's booth.  There is a gate to the north and a path back
 to the city of Ofcol to the south.  You see a small plaque here.
 ~
-0 8 0
-E
-plaque~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 This area has been made for any Merc/Envy Mud, by Hatchet, 8/20/1995, using
 Slash's program, called Make Zones Fast.
 
@@ -1614,1490 +2358,1553 @@ your own immortals.
 					    Sincerely,
 					    Hatchet of Merc/Envy Muds
 ~
-D0
+Reset       M 10700 1 100
+Reset       E 10701 16 100
+Reset       E 10700 -1 100
+Door        north~ door closed locked~ 10700 10702
 ~
 gate~
-7 10700 10702
-D2
+Door        south~ ~ -1 10700
 ~
 ~
-0 -1 10700
-S
+End
+
 #10702
-Inside the Entrance to Murky Land~
+Name        Inside the Entrance to Murky Land~
+Descr
 You are inside the entrance to Murky Land.  Gaudy wallpaper covers all the 
 walls, and hay covers the floors.  A path leads north to the main grounds, and 
 a path south leads back to the entrance.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10701 1 100
+Reset       E 10701 16 100
+Door        north~ ~ -1 10703
 ~
 ~
-0 -1 10703
-D1
+Door        east~ door closed locked~ 10710 10722
 You find a hidden door!  The keyhole is quite circular, which is peculiar.
 ~
 door hidden~
-7 10710 10722
-D2
+Door        south~ door closed locked~ 10700 10701
 ~
 gate~
-7 10700 10701
-S
+End
+
 #10703
-A Room in Murky Land~
+Name        A Room in Murky Land~
+Descr
 You are standing in a room in Murky Land.  The same gaudy wallpaper and hay 
 make up the decorations of this place.  You get the feeling that the rest of 
 this place was designed with such a lack of taste.  The north leads you to the 
 murky creatures, the west leads you to the cafeteria, the east leads you to 
 the restrooms, and the south leads you out of this place.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10709
 ~
 ~
-0 -1 10709
-D1
+Door        east~ ~ -1 10704
 ~
 ~
-0 -1 10704
-D2
+Door        south~ ~ -1 10702
 ~
 ~
-0 -1 10702
-D3
+Door        west~ ~ -1 10707
 ~
 ~
-0 -1 10707
-S
+End
+
 #10704
-Restroom Hallway~
+Name        Restroom Hallway~
+Descr
 You are standing to the restroom hallway.  The little boys room is to the 
 north and the little girls room is to the south.  A doorway west leads you 
 back.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10724 3 100
+Door        north~ door~ -1 10705
 ~
 door~
-1 -1 10705
-D2
+Door        south~ door~ -1 10706
 ~
 door~
-1 -1 10706
-D3
+Door        west~ ~ -1 10703
 ~
 ~
-0 -1 10703
-S
+End
+
 #10705
-Little Boys Room~
+Name        Little Boys Room~
+Descr
 You are in the little boys room.  And, yes, you guessed it, it's very messy, 
 with yellow streams along the floors and garbage cans filled with paper.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ door~ -1 10704
 ~
 door~
-1 -1 10704
-S
+End
+
 #10706
-Little Girls Room~
+Name        Little Girls Room~
+Descr
 You are in the little girls room.  Luckily, it's empty.  An exit leads back 
 north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door~ -1 10704
 ~
 door~
-1 -1 10704
-S
+End
+
 #10707
-Cafeteria~
+Name        Cafeteria~
+Descr
 You are in the cafeteria.  Long tables and benches line this room.  The
 floors are littered with scraps of food and other undesirables.  The floors
 fare little better.  A door is to the north and an obvious exit leads back 
 east.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10707 1 100
+Reset       E 10708 13 100
+Reset       E 10701 16 100
+Reset       E 10709 -1 100
+Reset       E 10710 -1 100
+Reset       E 10711 -1 100
+Reset       E 10712 -1 100
+Reset       E 10713 -1 100
+Door        north~ ~ -1 10708
 ~
 door~
-0 -1 10708
-D1
+Door        east~ ~ -1 10703
 ~
 ~
-0 -1 10703
-S
+End
+
 #10708
-Kitchen~
+Name        Kitchen~
+Descr
 You are in the kitchen.  Boy, is this place messy!  You are happy you hadn't
 ordered any food while you were in the cafeteria.  Or, did you?  The door 
 leads back south.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 10706 1 100
+Reset       E 10708 13 100
+Reset       E 10707 16 100
+Door        south~ ~ -1 10707
 ~
 door~
-0 -1 10707
-S
+End
+
 #10709
-Along a Brick Path in Murky Land~
+Name        Along a Brick Path in Murky Land~
+Descr
 You are on a brick-layered path in Murky Land.  Poor attempts at decoration
 makes you regret having paid the dough to get into this place.  The path 
 continues north, with branches to the east and west.  The path south leads 
 you out of here.
 ~
-0 8 2
-D0
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10718
 ~
 ~
-0 -1 10718
-D1
+Door        east~ ~ -1 10714
 ~
 ~
-0 -1 10714
-D2
+Door        south~ ~ -1 10703
 ~
 ~
-0 -1 10703
-D3
+Door        west~ ~ -1 10710
 ~
 ~
-0 -1 10710
-S
+End
+
 #10710
-Along a Path in Murky Land~
+Name        Along a Path in Murky Land~
+Descr
 You are along a path in Murky Land.  To the north, you can see a small 
 playpen.  To the south, you can see a dark hovel.  To the west, you see a 
 shiny room.  The path leads back east.
 ~
-0 8 2
-D0
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Reset       M 10726 1 100
+Reset       E 10758 -1 100
+Door        north~ ~ -1 10711
 ~
 ~
-0 -1 10711
-D1
+Door        east~ ~ -1 10709
 ~
 ~
-0 -1 10709
-D2
+Door        south~ ~ -1 10712
 ~
 ~
-0 -1 10712
-D3
+Door        west~ ~ -1 10713
 ~
 ~
-0 -1 10713
-S
+End
+
 #10711
-Hatchling's and Iccy's Playpen~
+Name        Hatchling's and Iccy's Playpen~
+Descr
 You are standing in Hatchling's and Iccy's Playpen.  There are piles and 
 piles toys here.  The sound of a music box can be heard from the walls.  The
 exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10702 1 100
+Reset       E 10702 16 100
+Reset       E 10704 1 100
+Reset       M 10703 1 100
+Reset       E 10703 16 100
+Reset       E 10704 1 100
+Door        south~ ~ -1 10710
 ~
 ~
-0 -1 10710
-S
+End
+
 #10712
-Fraggie's Dark Hovel~
+Name        Fraggie's Dark Hovel~
+Descr
 You are standing in Fraggie's Dark Hovel.  You realize with revulsion that
 this is nothing more than a spider web.  The exit, you are happy to find, is 
 to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10705 1 100
+Reset       E 10706 5 100
+Door        north~ ~ -1 10710
 ~
 ~
-0 -1 10710
-S
+End
+
 #10713
-KahnO's Hall of Mirrors~
+Name        KahnO's Hall of Mirrors~
+Descr
 You are standing in KahnO's Hall of Mirrors.  Mirrors on every wall, floor,
 and ceiling reflect light, not to mention, bodies, all over the place.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10704 1 100
+Reset       E 10705 16 100
+Door        east~ ~ -1 10710
 ~
 ~
-0 -1 10710
-S
+End
+
 #10714
-Along a Path in Murky Land~
+Name        Along a Path in Murky Land~
+Descr
 You are along a path in Murky Land.  To the north, you see a dark, red room.
 To the south is a small kitchenette.  A path leads east to a starry room, and
 path leads back east to the main grounds.
 ~
-0 8 2
-D0
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 10715
 ~
 ~
-0 -1 10715
-D1
+Door        east~ ~ -1 10717
 ~
 ~
-0 -1 10717
-D2
+Door        south~ ~ -1 10716
 ~
 ~
-0 -1 10716
-D3
+Door        west~ ~ -1 10709
 ~
 ~
-0 -1 10709
-S
+End
+
 #10715
-A Small Hell~
+Name        A Small Hell~
+Descr
 You are in a Small Hell.  Smoke sizzles from red rocks, and coals char your
 feet as you walk by.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10708 1 100
+Reset       M 10709 1 100
+Door        south~ ~ -1 10714
 ~
 ~
-0 -1 10714
-S
+End
+
 #10716
-Blinky's Kitchenette~
+Name        Blinky's Kitchenette~
+Descr
 You are in Blinky's Kitchenette.  Miniature pots and pans boil over a
 miniature oven.  A small table is littered with small pieces of vegetables,
 spices, and mixing bowls.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10710 1 100
+Reset       E 10707 16 100
+Door        north~ ~ -1 10714
 ~
 ~
-0 -1 10714
-S
+End
+
 #10717
-Atom's Little Galaxy~
+Name        Atom's Little Galaxy~
+Descr
 You hover magically in Atom's little galaxy.  Miniature stars whiz by you
 and comets tickle you as they burrow into your shorts.  The exit is to the
 west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10711 1 100
+Door        west~ ~ -1 10714
 ~
 ~
-0 -1 10714
-S
+End
+
 #10718
-Along a Path in Murky Land~
+Name        Along a Path in Murky Land~
+Descr
 You are along a path in Murky Land.  You see a small temple to the north, a
 dump to the west, and an ash heap to the east.  The path leads back south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10718 1 100
+Reset       E 10734 8 100
+Door        north~ ~ -1 10719
 ~
 ~
-0 -1 10719
-D1
+Door        east~ ~ -1 10721
 ~
 ~
-0 -1 10721
-D2
+Door        south~ ~ -1 10709
 ~
 ~
-0 -1 10709
-D3
+Door        west~ ~ -1 10720
 ~
 ~
-0 -1 10720
-S
+End
+
 #10719
-A Monk's Temple/Crackhouse~
+Name        A Monk's Temple/Crackhouse~
+Descr
 You are in a temple of some sorts.  Urns filled with smelly substances line 
 walls, and you smell the unmistakeable smoke of burning hemp.  The only exit
 leads south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10712 1 100
+Reset       E 10716 -1 100
+Reset       E 10717 -1 100
+Reset       E 10718 -1 100
+Reset       E 10719 -1 100
+Reset       E 10720 -1 100
+Door        south~ ~ -1 10718
 ~
 ~
-0 -1 10718
-S
+End
+
 #10720
-A Junkyard~
+Name        A Junkyard~
+Descr
 You are in a junkyard, with sharp blades littering the floor.  The only exit 
 leads east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10713 1 100
+Reset       E 10714 16 100
+Door        east~ ~ -1 10718
 ~
 ~
-0 -1 10718
-S
+End
+
 #10721
-An Ash Heap~
+Name        An Ash Heap~
+Descr
 You are in an ash heap.  Fires are burning all over this room.  You quickly
 dodge back to the exit to the west.
 ~
-0 8 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10714 1 100
+Reset       E 10715 17 100
+Door        west~ ~ -1 10718
 ~
 ~
-0 -1 10718
-S
+End
+
 #10722
-Behind the Hidden Door~
+Name        Behind the Hidden Door~
+Descr
 Hah!  You knew this place was too good to be true.  A dump like this Murky
 Land must have some skeletons hiding in some closets.  You ponder if you
 should go look for any, though, and consider turning back.
 The door leads back west, and a dark stairway leads down.
 ~
-0 9 0
-D3
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10715 1 100
+Reset       E 10722 12 100
+Reset       E 10721 16 100
+Door        west~ door closed locked~ 10710 10702
 ~
 door hidden~
-7 10710 10702
-D5
+Door        down~ ~ -1 10723
 ~
 ~
-0 -1 10723
-S
+End
+
 #10723
-Beneath Murky Land~
+Name        Beneath Murky Land~
+Descr
 You are beneath Murky Land.  The walls here are all made of hardwood, with
 lighted torches spaced every ten feet.  To the north, you can hear the
 hustle and bustle of people!  A ladder leads back up.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10724 3 100
+Door        north~ ~ -1 10724
 ~
 ~
-0 -1 10724
-D4
+Door        up~ ~ -1 10722
 ~
 ~
-0 -1 10722
-S
+End
+
 #10724
-Inside a Tavern~
+Name        Inside a Tavern~
+Descr
 You are inside a tavern.  By the look of things and of the patrons, you 
 suspect that most of them aren't on the good side of the law.  Signs 
 point south to the exit, west to rented rooms, north to the bar, and east to
 the private employee rooms.  There is a large table with chairs in the center
 of this room.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10721 1 100
+Reset       E 10757 16 100
+Reset       E 10747 -1 100
+Reset       E 10746 -1 100
+Reset       E 10745 -1 100
+Reset       E 10744 -1 100
+Reset       E 10743 -1 100
+Reset       M 10722 1 100
+Reset       E 10749 5 100
+Reset       E 10748 16 100
+Reset       M 10729 1 100
+Reset       E 10757 16 100
+Door        north~ ~ -1 10736
 ~
 ~
-0 -1 10736
-D1
+Door        east~ door closed locked bashproof pickproof passproof~ 10758 10737
 ~
 door~
-119 10758 10737
-D2
+Door        south~ ~ -1 10723
 ~
 ~
-0 -1 10723
-D3
+Door        west~ ~ -1 10725
 ~
 ~
-0 -1 10725
-S
+End
+
 #10725
-The Shady Rooms Counter~
+Name        The Shady Rooms Counter~
+Descr
 You are at the counter for renting rooms.  A hallway leads west, and the main
 room of the tavern is to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10717 1 100
+Reset       E 10721 16 100
+Reset       E 10723 -1 100
+Reset       E 10724 -1 100
+Reset       E 10725 -1 100
+Reset       E 10727 -1 100
+Reset       E 10728 -1 100
+Door        east~ ~ -1 10724
 ~
 ~
-0 -1 10724
-D3
+Door        west~ ~ -1 10726
 ~
 ~
-0 -1 10726
-S
+End
+
 #10726
-A Hallway~
+Name        A Hallway~
+Descr
 You are in a hallway.  Room A is to the north, Room B is to the south, and 
 the hallways continues east and west.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked~ 10723 10727
 ~
 door~
-7 10723 10727
-D1
+Door        east~ ~ -1 10725
 ~
 ~
-0 -1 10725
-D2
+Door        south~ door closed locked~ 10724 10728
 ~
 door~
-7 10724 10728
-D3
+Door        west~ ~ -1 10729
 ~
 ~
-0 -1 10729
-S
+End
+
 #10727
-Room A~
+Name        Room A~
+Descr
 You are in a room.  You are NOT impressed with the feeble furnishings of a
 smelly bed and chair.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10730 0 100
+Reset       O 10731 0 100
+Door        south~ door closed locked~ 10723 10726
 ~
 door~
-7 10723 10726
-S
+End
+
 #10728
-Room B~
+Name        Room B~
+Descr
 You are in a room, sparsely furnished, like the rest, with a smelly bed and 
 a chair.  The exit is north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10730 0 100
+Reset       O 10731 0 100
+Door        north~ door closed locked~ 10724 10726
 ~
 door~
-7 10724 10726
-S
+End
+
 #10729
-A Hallway~
+Name        A Hallway~
+Descr
 You are in a hallway.  To the north is room C, and to the south is room D.
 The hallway continues east and west.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked~ 10725 10730
 ~
 door~
-7 10725 10730
-D1
+Door        east~ ~ -1 10726
 ~
 ~
-0 -1 10726
-D2
+Door        south~ door closed locked~ 10726 10731
 ~
 door~
-7 10726 10731
-D3
+Door        west~ ~ -1 10732
 ~
 ~
-0 -1 10732
-S
+End
+
 #10730
-Room C~
+Name        Room C~
+Descr
 You are in a room, sparsely furnished with a smelly bed and a chair.  The
 exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10735 0 100
+Reset       P 10729 10735 100
+Reset       O 10730 0 100
+Door        south~ door closed locked~ 10725 10729
 ~
 door~
-7 10725 10729
-S
+End
+
 #10731
-Room D~
+Name        Room D~
+Descr
 You are in a room.  The bed is set on it's side, and a chair lies shattered 
 against a wall.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10730 0 100
+Reset       M 10716 1 100
+Reset       E 10731 16 100
+Door        north~ door closed locked~ 10726 10729
 ~
 door~
-7 10726 10729
-S
+End
+
 #10732
-At the End of the Hallway~
+Name        At the End of the Hallway~
+Descr
 You are in a hallway.  North of you is room E, south is room F, and west
 is room G.  The hallway leads back west.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10724 3 100
+Door        north~ door closed locked~ 10727 10733
 ~
 door~
-7 10727 10733
-D1
+Door        east~ ~ -1 10729
 ~
 ~
-0 -1 10729
-D2
+Door        south~ door closed locked~ 10728 10734
 ~
 door~
-7 10728 10734
-D3
+Door        west~ door closed locked~ 10729 10735
 ~
 door~
-7 10729 10735
-S
+End
+
 #10733
-Room E~
+Name        Room E~
+Descr
 You are in a room.  There is a smelly bed and a chair in this room, nothing
 more.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10730 0 100
+Reset       O 10736 0 100
+Reset       P 10737 10736 100
+Door        south~ door closed locked~ 10727 10732
 ~
 door~
-7 10727 10732
-S
+End
+
 #10734
-Room F~
+Name        Room F~
+Descr
 You are in a messy room, furnished with a smelly bed and a chair.  The exit
 is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10732 0 100
+Reset       P 10726 10732 100
+Reset       M 10719 1 100
+Reset       O 10731 0 100
+Door        north~ door closed locked~ 10728 10732
 ~
 door~
-7 10728 10732
-S
+End
+
 #10735
-Room G~
+Name        Room G~
+Descr
 You are in a small room, furnished with a desk, a small bed, and a chair.
 The exit is to the east.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10730 0 100
+Reset       O 10731 0 100
+Reset       O 10733 0 100
+Reset       M 10720 1 100
+Reset       E 10738 12 100
+Reset       E 10742 -1 100
+Reset       E 10741 -1 100
+Reset       E 10740 -1 100
+Reset       E 10739 -1 100
+Door        east~ door closed locked~ 10729 10732
 ~
 door~
-7 10729 10732
-S
+End
+
 #10736
-The Bar~
+Name        The Bar~
+Descr
 You are at the bar.  Spilled beer and other liquids cover the chairs and 
 the floor.  At least the counter looks clean, but that's only because the
 lady bartender has so little to do.  The main room of the tavern is back
 south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10723 1 100
+Reset       E 10757 16 100
+Reset       E 10756 -1 100
+Reset       E 10755 -1 100
+Reset       E 10754 -1 100
+Reset       E 10753 -1 100
+Reset       E 10752 -1 100
+Reset       E 10751 -1 100
+Reset       E 10750 -1 100
+Reset       E 10746 -1 100
+Reset       M 10727 1 100
+Reset       E 10738 12 100
+Reset       E 10757 16 100
+Reset       E 10753 -1 100
+Reset       M 10728 1 100
+Reset       E 10749 5 100
+Reset       E 10760 11 100
+Reset       E 10759 16 100
+Reset       E 10750 -1 100
+Door        south~ ~ -1 10724
 ~
 ~
-0 -1 10724
-S
+End
+
 #10737
-Hallway~
+Name        Hallway~
+Descr
 You are on the employees only side of the tavern.  A hallway leads east, with
 rooms along the way.  There is a room north and south of here.  A door leads
 back west to the main room of the tavern.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10725 1 100
+Door        north~ door closed locked~ 10758 10738
 ~
 door~
-7 10758 10738
-D1
+Door        east~ ~ -1 10740
 ~
 ~
-0 -1 10740
-D2
+Door        south~ door closed locked~ 10758 10739
 ~
 door~
-7 10758 10739
-D3
+Door        west~ door closed locked bashproof pickproof passproof~ 10758 10724
 ~
 door~
-119 10758 10724
-S
+End
+
 #10738
-An Office~
+Name        An Office~
+Descr
 You are in an office.  The exit is to the south.
 ~
-0 8 0
-E
-wood grain pattern~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  wood grain pattern~
 Upon further inspection, you realize the peculiarity is that there is a
 hidden panel along the side of the desk!
 ~
-E
-desk~
+ExtraDescr  desk~
 The desk is quite old.  The wood grain pattern looks a bit peculiar, for
 some reason.
 ~
-D2
+Reset       O 10761 0 100
+Reset       P 10762 10761 100
+Door        south~ door closed locked~ 10758 10737
 ~
 door~
-7 10758 10737
-S
+End
+
 #10739
-A Holding Room~
+Name        A Holding Room~
+Descr
 You are in a holding room.  There isn't much here except some sacks, cords,
 and blindfolds.  You can smell the stink of fear.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked~ 10758 10737
 ~
 door~
-7 10758 10737
-S
+End
+
 #10740
-A Hallway~
+Name        A Hallway~
+Descr
 You are in a hallway, which leads east and west.  Rooms are to the north and
 south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked~ 10758 10741
 ~
 door~
-7 10758 10741
-D1
+Door        east~ ~ -1 10743
 ~
 ~
-0 -1 10743
-D2
+Door        south~ door closed locked~ 10758 10742
 ~
 door~
-7 10758 10742
-D3
+Door        west~ ~ -1 10737
 ~
 ~
-0 -1 10737
-S
+End
+
 #10741
-An Office~
+Name        An Office~
+Descr
 You are in an office.  The exit is to the south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10733 0 100
+Door        south~ door closed locked~ 10758 10740
 ~
 door~
-7 10758 10740
-S
+End
+
 #10742
-An Office~
+Name        An Office~
+Descr
 You are standing in an office.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10733 0 100
+Reset       M 10731 1 100
+Reset       E 10721 16 100
+Reset       M 10732 1 100
+Door        north~ door closed locked~ 10758 10740
 ~
 door~
-7 10758 10740
-S
+End
+
 #10743
-The End of the Hallway~
+Name        The End of the Hallway~
+Descr
 You are at the end of the hallway, which leads back west.  Doorways are to
 the north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed locked~ 10758 10745
 ~
 door~
-7 10758 10745
-D2
+Door        south~ door closed locked~ 10758 10744
 ~
 door~
-7 10758 10744
-D3
+Door        west~ ~ 0 10740
 ~
 ~
-0 0 10740
-S
+End
+
 #10744
-A Holding Room~
+Name        A Holding Room~
+Descr
 You are in a holding room.  The stench of fear and of body fluids assaults
 your nose.  The exit is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10730 5 100
+Door        north~ door closed locked~ 10758 10743
 ~
 door~
-7 10758 10743
-S
+End
+
 #10745
-An Empty Hallway~
+Name        An Empty Hallway~
+Descr
 You are standing in an empty hallway, which leads north.  There is a door
 to the south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10763 0 100
+Door        north~ ~ -1 10746
 ~
 ~
-0 -1 10746
-D2
+Door        south~ door closed locked~ 10758 10743
 ~
 door~
-7 10758 10743
-S
+End
+
 #10746
-Hallway~
+Name        Hallway~
+Descr
 You are in a hallway, which goes north and south.  Strangely, when you 
 step in this hallway, you hear a soft click and feel a slight twist.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10747
 ~
 ~
-0 -1 10747
-D2
+Door        south~ ~ -1 10748
 ~
 ~
-0 -1 10748
-S
+End
+
 #10747
-At the End of a Hallway~
+Name        At the End of a Hallway~
+Descr
 You are at the end of a hallway, which leads back south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10763 0 100
+Door        south~ ~ 10758 10746
 ~
 door~
-0 10758 10746
-S
+End
+
 #10748
-An Empty Hallway~
+Name        An Empty Hallway~
+Descr
 You are standing in an empty hallway, which leads north.  There is a door
 to the south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10764 0 100
+Door        north~ ~ -1 10749
 ~
 ~
-0 -1 10749
-D2
+Door        south~ door closed locked~ 10758 10743
 ~
 door~
-7 10758 10743
-S
+End
+
 #10749
-Hallway~
+Name        Hallway~
+Descr
 You are in a hallway, which goes north and south.  Strangely, when you 
 step in this hallway, you hear a soft click and feel a slight twist.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10750
 ~
 ~
-0 -1 10750
-D2
+Door        south~ ~ -1 10745
 ~
 ~
-0 -1 10745
-S
+End
+
 #10750
-At the End of a Hallway~
+Name        At the End of a Hallway~
+Descr
 You are at the end of a hallway, which leads back south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 10765 0 100
+Reset       P 10766 10765 100
+Door        north~ door closed locked bashproof pickproof passproof~ 10766 10751
 ~
 door secret~
-119 10766 10751
-D2
+Door        south~ ~ -1 10749
 ~
 ~
-0 -1 10749
-S
+End
+
 #10751
-A Dark Room~
+Name        A Dark Room~
+Descr
 You are in a Dark Room.  Very evidently, this is not part of the tavern.
 Stone steps lead down and a door leads back south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10733 1 100
+Reset       E 10768 5 100
+Reset       E 10769 6 100
+Reset       E 10770 7 100
+Reset       E 10773 10 100
+Reset       E 10767 16 100
+Door        south~ door closed locked bashproof pickproof passproof~ 10766 10750
 ~
 door secret~
-119 10766 10750
-D5
+Door        down~ ~ -1 10752
 ~
 ~
-0 -1 10752
-S
+End
+
 #10752
-Lower Chambers~
+Name        Lower Chambers~
+Descr
 You are at the lower chambers, below the tavern.  Stonework covers the walls,
 and dim torches light your way.  Exits lead in the cardinal directions and 
 back up.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10768
 ~
 ~
-0 -1 10768
-D1
+Door        east~ ~ -1 10756
 ~
 ~
-0 -1 10756
-D2
+Door        south~ ~ -1 10753
 ~
 ~
-0 -1 10753
-D3
+Door        west~ ~ -1 10761
 ~
 ~
-0 -1 10761
-D4
+Door        up~ ~ -1 10751
 ~
 ~
-0 -1 10751
-S
+End
+
 #10753
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway that leads north and south.  A dim light
 is to the north, while total darkness is to the south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10752
 ~
 ~
-0 -1 10752
-D2
+Door        south~ ~ -1 10754
 ~
 ~
-0 -1 10754
-S
+End
+
 #10754
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway.  A very dim light is to the north, and
 total darkness is to the south.  You can make out the outline of a vast 
 doorway to the south.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10733 2 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10772 9 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10767 16 100
+Reset       M 10733 1 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10771 8 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10767 16 100
+Door        north~ ~ -1 10753
 ~
 ~
-0 -1 10753
-D2
+Door        south~ ~ -1 10755
 ~
 ~
-0 -1 10755
-S
+End
+
 #10755
-Shadow Dragon's Lair~
+Name        Shadow Dragon's Lair~
+Descr
 You are in a big spacious room.  Darkest obsidian line the walls, and the 
 floors are black soot, pocked with many holes.  The only exit is south.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10734 1 100
+Reset       E 10776 17 100
+Reset       O 10777 0 100
+Door        north~ ~ -1 10754
 ~
 ~
-0 -1 10754
-S
+End
+
 #10756
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway, which leads east and west.  You can see
 a dim light to the west, and total darkness to the east.  There are doors to
 the north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed~ -1 10759
 ~
 door~
-3 -1 10759
-D1
+Door        east~ ~ -1 10757
 ~
 ~
-0 -1 10757
-D2
+Door        south~ door closed~ -1 10760
 ~
 door~
-3 -1 10760
-D3
+Door        west~ ~ -1 10752
 ~
 ~
-0 -1 10752
-S
+End
+
 #10757
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway.  You can see a very dim light to the west
 and total darkness to the east.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10733 1 100
+Reset       E 10768 5 100
+Reset       E 10769 6 100
+Reset       E 10770 7 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10767 16 100
+Door        east~ ~ -1 10758
 ~
 ~
-0 -1 10758
-D3
+Door        west~ ~ -1 10756
 ~
 ~
-0 -1 10756
-S
+End
+
 #10758
-The Altar of the Shadow Demon~
+Name        The Altar of the Shadow Demon~
+Descr
 You are standing at an altar.  A throne is at the end of the room, and a
 large vat of acid rises out of the center of the room.  The only exit is to
 the west.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10739 1 100
+Reset       M 10740 1 100
+Reset       E 10778 17 100
+Reset       M 10743 1 100
+Reset       E 10780 16 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10771 8 100
+Reset       E 10772 9 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10781 12 100
+Door        north~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D1
+Door        east~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D2
+Door        south~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D3
+Door        west~ ~ -1 10757
 ~
 ~
-0 -1 10757
-D4
+Door        up~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D5
+Door        down~ ~ -1 10766
 ~
 ~
-0 -1 10766
-S
+End
+
 #10759
-A Library~
+Name        A Library~
+Descr
 You are in a library of sorts.  Scrolls, mostly damaged, litter shelves and
 tables.  There is an exit south.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10735 1 100
+Reset       E 10781 12 100
+Reset       E 10741 -1 100
+Reset       E 10782 -1 100
+Reset       E 10783 -1 100
+Door        south~ door closed~ -1 10756
 ~
 door~
-3 -1 10756
-S
+End
+
 #10760
-A Laboratory~
+Name        A Laboratory~
+Descr
 You are in a dark laboratory.  Bubbling potions sit on lightless burners and 
 steam rises from a pot in the center of the room.  There is an exit north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10736 1 100
+Reset       E 10781 12 100
+Reset       E 10786 -1 100
+Reset       E 10785 -1 100
+Reset       E 10784 -1 100
+Door        north~ door closed~ -1 10756
 ~
 door~
-3 -1 10756
-S
+End
+
 #10761
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway.  A dim light is to the east and total
 darkness is to the west.  Doors lead north and south.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed~ -1 10764
 ~
 door~
-3 -1 10764
-D1
+Door        east~ ~ -1 10752
 ~
 ~
-0 -1 10752
-D2
+Door        south~ door closed~ -1 10765
 ~
 door~
-3 -1 10765
-D3
+Door        west~ ~ -1 10762
 ~
 ~
-0 -1 10762
-S
+End
+
 #10762
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway.  A very dim light can be seen to the
 east and total darkness is to the west.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10733 1 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10767 16 100
+Door        east~ ~ -1 10761
 ~
 ~
-0 -1 10761
-D3
+Door        west~ ~ -1 10763
 ~
 ~
-0 -1 10763
-S
+End
+
 #10763
-The Altar of the Shadow Demon~
+Name        The Altar of the Shadow Demon~
+Descr
 You are standing in an altar.  There is a throne at the far end of this room
 and a spiked table in the center of this altar.  The exit is to the east.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10739 1 100
+Reset       M 10741 1 100
+Reset       E 10757 16 100
+Reset       M 10744 1 100
+Reset       E 10780 16 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10771 8 100
+Reset       E 10772 9 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10781 12 100
+Door        north~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D1
+Door        east~ ~ -1 10762
 ~
 ~
-0 -1 10762
-D2
+Door        south~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D3
+Door        west~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D4
+Door        up~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D5
+Door        down~ ~ -1 10767
 ~
 ~
-0 -1 10767
-S
+End
+
 #10764
-A Scribing Room~
+Name        A Scribing Room~
+Descr
 You are in a room filled with papers.  A large table is against the far
 wall, with a large chair before it.  There is a door south.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10737 1 100
+Reset       E 10781 12 100
+Reset       E 10789 -1 100
+Reset       E 10788 -1 100
+Reset       E 10787 -1 100
+Door        south~ door closed~ -1 10761
 ~
 door~
-3 -1 10761
-S
+End
+
 #10765
-A Weapon Room~
+Name        A Weapon Room~
+Descr
 You are in a room filled with scattered weapons.  There is an exit north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10738 1 100
+Reset       E 10781 12 100
+Reset       E 10790 16 100
+Reset       E 10791 -1 100
+Reset       E 10767 -1 100
+Door        north~ door closed~ -1 10761
 ~
 door~
-3 -1 10761
-S
+End
+
 #10766
-A Nether Room~
+Name        A Nether Room~
+Descr
 You are floating in the Nether.  You are completely disoriented.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       R 6 0 0
+Door        north~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D1
+Door        east~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D2
+Door        south~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D3
+Door        west~ ~ -1 10758
 ~
 ~
-0 -1 10758
-D4
+Door        up~ ~ -1 10758
 ~
 ~
-0 -1 10758
-D5
+Door        down~ ~ -1 10771
 ~
 ~
-0 -1 10771
-S
+End
+
 #10767
-A Nether Room~
+Name        A Nether Room~
+Descr
 You are floating in the Nether.  You are completely disoriented.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       R 6 0 0
+Door        north~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D1
+Door        east~ ~ -1 10763
 ~
 ~
-0 -1 10763
-D2
+Door        south~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D3
+Door        west~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D4
+Door        up~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D5
+Door        down~ ~ -1 10763
 ~
 ~
-0 -1 10763
-S
+End
+
 #10768
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway.  A dim light can be seen to the south, 
 and total darkness is to the north.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 10769
 ~
 ~
-0 -1 10769
-D2
+Door        south~ ~ -1 10752
 ~
 ~
-0 -1 10752
-S
+End
+
 #10769
-A Dark Hallway~
+Name        A Dark Hallway~
+Descr
 You are standing in a dark hallway.  You can see a very dim light to the 
 south and total darkness to the north.  You can, however, make out a very
 ornate doorway to the north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10733 2 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10771 8 100
+Reset       E 10772 9 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10767 16 100
+Reset       M 10733 2 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10771 8 100
+Reset       E 10772 9 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10767 16 100
+Door        north~ ~ -1 10770
 ~
 ~
-0 -1 10770
-D2
+Door        south~ ~ -1 10768
 ~
 ~
-0 -1 10768
-S
+End
+
 #10770
-The Altar of the Shadow Lord~
+Name        The Altar of the Shadow Lord~
+Descr
 You are standing in a vast chamber.  An immense, dark throne towers over you
 and dark creatures move around the room.  The only obvious exit is to the
 south.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 10739 1 100
+Reset       M 10742 1 100
+Reset       E 10779 17 100
+Reset       M 10745 1 100
+Reset       E 10768 5 100
+Reset       E 10770 7 100
+Reset       E 10771 8 100
+Reset       E 10772 9 100
+Reset       E 10773 10 100
+Reset       E 10774 11 100
+Reset       E 10775 16 100
+Reset       E 10781 12 100
+Door        north~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D1
+Door        east~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D2
+Door        south~ ~ -1 10769
 ~
 ~
-0 -1 10769
-D3
+Door        west~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D4
+Door        up~ ~ -1 10771
 ~
 ~
-0 -1 10771
-D5
+Door        down~ ~ -1 10771
 ~
 ~
-0 -1 10771
-S
+End
+
 #10771
-A Nether Room~
+Name        A Nether Room~
+Descr
 You are floating in the Nether.  You are completely disoriented.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       R 6 0 0
+Door        north~ ~ -1 10770
 ~
 ~
-0 -1 10770
-D1
+Door        east~ ~ -1 10767
 ~
 ~
-0 -1 10767
-D2
+Door        south~ ~ -1 10770
 ~
 ~
-0 -1 10770
-D3
+Door        west~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D4
+Door        up~ ~ -1 10766
 ~
 ~
-0 -1 10766
-D5
+Door        down~ ~ -1 10767
 ~
 ~
-0 -1 10767
-S
+End
+
 #0
 
-
-#SPECIALS
-M 10700 spec_cast_judge
-M 10701 spec_repairman
-M 10704 spec_thief
-M 10705 spec_poison
-M 10708 spec_cast_undead
-M 10709 spec_cast_undead
-M 10710 spec_thief
-M 10712 spec_cast_psionicist
-M 10718 spec_thief
-M 10720 spec_cast_mage
-M 10724 spec_cast_undead
-M 10725 spec_cast_undead
-M 10727 spec_cast_mage
-M 10732 spec_cast_undead
-M 10733 spec_cast_undead
-M 10734 spec_breath_acid
-M 10735 spec_cast_judge
-M 10736 spec_cast_cleric
-M 10737 spec_cast_psionicist
-M 10738 spec_cast_mage
-M 10740 spec_cast_undead
-M 10741 spec_cast_undead
-M 10742 spec_cast_undead
-M 10743 spec_cast_undead
-M 10744 spec_cast_undead
-M 10745 spec_cast_undead
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 10700 1 10701
-E 0 10701 0 16
-G 0 10700 0
-M 0 10701 1 10702
-E 0 10701 0 16
-M 0 10724 3 10704
-M 0 10707 1 10707
-E 0 10708 0 13
-E 0 10701 0 16
-G 0 10709 0
-G 0 10710 0
-G 0 10711 0
-G 0 10712 0
-G 0 10713 0
-M 0 10706 1 10708
-E 0 10708 0 13
-E 0 10707 0 16
-M 0 10726 1 10710
-G 0 10758 0
-M 0 10702 1 10711
-E 0 10702 0 16
-E 0 10704 0 1
-M 0 10703 1 10711
-E 0 10703 0 16
-E 0 10704 0 1
-M 0 10705 1 10712
-E 0 10706 0 5
-M 0 10704 1 10713
-E 0 10705 0 16
-M 0 10708 1 10715
-M 0 10709 1 10715
-M 0 10710 1 10716
-E 0 10707 0 16
-M 0 10711 1 10717
-M 0 10718 1 10718
-E 0 10734 0 8
-M 0 10712 1 10719
-G 0 10716 0
-G 0 10717 0
-G 0 10718 0
-G 0 10719 0
-G 0 10720 0
-M 0 10713 1 10720
-E 0 10714 0 16
-M 0 10714 1 10721
-E 0 10715 0 17
-M 0 10715 1 10722
-E 0 10722 0 12
-E 0 10721 0 16
-M 0 10724 3 10723
-M 0 10721 1 10724
-E 0 10757 0 16
-G 0 10747 0
-G 0 10746 0
-G 0 10745 0
-G 0 10744 0
-G 0 10743 0
-M 0 10722 1 10724
-E 0 10749 0 5
-E 0 10748 0 16
-M 0 10729 1 10724
-E 0 10757 0 16
-M 0 10717 1 10725
-E 0 10721 0 16
-G 0 10723 0
-G 0 10724 0
-G 0 10725 0
-G 0 10727 0
-G 0 10728 0
-O 0 10730 0 10727
-O 0 10731 0 10727
-O 0 10730 0 10728
-O 0 10731 0 10728
-O 0 10735 0 10730
-P 0 10729 0 10735
-O 0 10730 0 10730
-O 0 10730 0 10731
-M 0 10716 1 10731
-E 0 10731 0 16
-M 0 10724 3 10732
-O 0 10730 0 10733
-O 0 10736 0 10733
-P 0 10737 0 10736
-O 0 10732 0 10734
-P 0 10726 0 10732
-M 0 10719 1 10734
-O 0 10731 0 10734
-O 0 10730 0 10735
-O 0 10731 0 10735
-O 0 10733 0 10735
-M 0 10720 1 10735
-E 0 10738 0 12
-G 0 10742 0
-G 0 10741 0
-G 0 10740 0
-G 0 10739 0
-M 0 10723 1 10736
-E 0 10757 0 16
-G 0 10756 0
-G 0 10755 0
-G 0 10754 0
-G 0 10753 0
-G 0 10752 0
-G 0 10751 0
-G 0 10750 0
-G 0 10746 0
-M 0 10727 1 10736
-E 0 10738 0 12
-E 0 10757 0 16
-G 0 10753 0
-M 0 10728 1 10736
-E 0 10749 0 5
-E 0 10760 0 11
-E 0 10759 0 16
-G 0 10750 0
-M 0 10725 1 10737
-O 0 10761 0 10738
-P 0 10762 0 10761
-O 0 10733 0 10741
-O 0 10733 0 10742
-M 0 10731 1 10742
-E 0 10721 0 16
-M 0 10732 1 10742
-M 0 10730 5 10744
-O 0 10763 0 10745
-O 0 10763 0 10747
-O 0 10764 0 10748
-O 0 10765 0 10750
-P 0 10766 0 10765
-M 0 10733 1 10751
-E 0 10768 0 5
-E 0 10769 0 6
-E 0 10770 0 7
-E 0 10773 0 10
-E 0 10767 0 16
-M 0 10733 2 10754
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10772 0 9
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10767 0 16
-M 0 10733 1 10754
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10771 0 8
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10767 0 16
-M 0 10734 1 10755
-E 0 10776 0 17
-O 0 10777 0 10755
-M 0 10733 1 10757
-E 0 10768 0 5
-E 0 10769 0 6
-E 0 10770 0 7
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10767 0 16
-M 0 10739 1 10758
-M 0 10740 1 10758
-E 0 10778 0 17
-M 0 10743 1 10758
-E 0 10780 0 16
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10771 0 8
-E 0 10772 0 9
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10781 0 12
-M 0 10735 1 10759
-E 0 10781 0 12
-G 0 10741 0
-G 0 10782 0
-G 0 10783 0
-M 0 10736 1 10760
-E 0 10781 0 12
-G 0 10786 0
-G 0 10785 0
-G 0 10784 0
-M 0 10733 1 10762
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10767 0 16
-M 0 10739 1 10763
-M 0 10741 1 10763
-E 0 10757 0 16
-M 0 10744 1 10763
-E 0 10780 0 16
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10771 0 8
-E 0 10772 0 9
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10781 0 12
-M 0 10737 1 10764
-E 0 10781 0 12
-G 0 10789 0
-G 0 10788 0
-G 0 10787 0
-M 0 10738 1 10765
-E 0 10781 0 12
-E 0 10790 0 16
-G 0 10791 0
-G 0 10767 0
-R 0 10766 6
-R 0 10767 6
-M 0 10733 2 10769
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10771 0 8
-E 0 10772 0 9
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10767 0 16
-M 0 10733 2 10769
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10771 0 8
-E 0 10772 0 9
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10767 0 16
-M 0 10739 1 10770
-M 0 10742 1 10770
-E 0 10779 0 17
-M 0 10745 1 10770
-E 0 10768 0 5
-E 0 10770 0 7
-E 0 10771 0 8
-E 0 10772 0 9
-E 0 10773 0 10
-E 0 10774 0 11
-E 0 10775 0 16
-E 0 10781 0 12
-R 0 10771 6
-S
-
-
-#SHOPS
-10700 0 0 0 0 0 100 100 0 23
-10707 0 0 0 0 0 100 100 0 23
-10712 0 0 0 0 0 100 100 0 23
-10717 0 0 0 0 0 1000 100 0 23
-10720 0 0 0 0 0 1000 100 0 23
-10721 0 0 0 0 0 110 100 0 23
-10723 0 0 0 0 0 110 100 0 23
-10726 0 0 0 0 0 1000 100 0 23
-0
 
 
 #$

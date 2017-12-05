@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -73,13 +75,13 @@ void advance_level( CHAR_DATA *ch )
     int  add_prac;
 
     sprintf( buf, "the %s",
-	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
+	ch->class[0]->title[ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
     set_title( ch, buf );
 
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
-		    class_table[ch->class]->hp_min,
-		    class_table[ch->class]->hp_max );
-    add_mana    = class_table[ch->class]->fMana
+		    ch->class[0]->hp_min,
+		    ch->class[0]->hp_max );
+    add_mana    = has_spells( ch )
         ? number_range(2, ( 2 * get_curr_int( ch ) + get_curr_wis( ch ) ) / 8 )
 	: 0;
     add_move    =
@@ -124,13 +126,13 @@ void demote_level( CHAR_DATA *ch )
         return;
 
     sprintf( buf, "the %s",
-	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
+	ch->class[0]->title[ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
     set_title( ch, buf );
 
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
-		    class_table[ch->class]->hp_min,
-		    class_table[ch->class]->hp_max );
-    add_mana    = class_table[ch->class]->fMana
+		    ch->class[0]->hp_min,
+		    ch->class[0]->hp_max );
+    add_mana    = has_spells( ch )
         ? number_range(2, ( 2 * get_curr_int( ch ) + get_curr_wis( ch ) ) / 8 )
 	: 0;
     add_move    =
@@ -178,7 +180,11 @@ void gain_exp( CHAR_DATA *ch, int gain )
 	advance_level( ch );
 	sprintf( buf, "%s has levelled and is now level %d.",
 		ch->name, ch->level );
-	wiznet( ch, WIZ_LEVELS, get_trust( ch ), buf );
+
+	if ( !IS_SET( sysdata.act, MUD_NONEWS ) )
+	    news_channel( ch, buf );
+
+	wiznet( ch, WIZ_LEVELS, L_JUN, buf );
     }
 
     return;
@@ -204,9 +210,14 @@ int hit_gain( CHAR_DATA *ch )
     {
 	gain = UMIN( 5, ch->level );
 
-	number = number_percent();
-	if (number < ch->pcdata->learned[gsn_fast_healing])
-	     gain += number * gain / 100;
+	number = number_percent( );
+	if ( number < ch->pcdata->learned[gsn_fast_healing] )
+	{
+	    gain += number * gain / 100;
+
+	    if ( ch->hit < ch->max_hit )
+		learn( ch, gsn_fast_healing, TRUE );
+	}
 
 	switch ( ch->position )
 	{
@@ -222,10 +233,12 @@ int hit_gain( CHAR_DATA *ch )
 
     }
 
-    gain += racehpgainextra;
+    gain *= ch->in_room->heal_rate / 100;
 
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
+
+    gain += racehpgainextra;
 
     return UMIN( gain, ch->max_hit - ch->hit );
 }
@@ -247,17 +260,20 @@ int mana_gain( CHAR_DATA *ch )
     {
 	gain = UMIN( 5, ch->level / 2 );
 
-	number = number_percent();
+	number = number_percent( );
+	if ( number < ch->pcdata->learned[gsn_meditate] )
+	{
+	    gain += number * gain / 100;
+
+	    if ( ch->mana < ch->max_mana )
+		learn( ch, gsn_meditate, TRUE );
+	}
 
 	switch ( ch->position )
 	{
 	case POS_SLEEPING: gain += get_curr_int( ch ) * 2;
-	                   if (number < ch->pcdata->learned[gsn_meditate])
-             		     gain += number * gain / 100;
   			   break;
 	case POS_RESTING:  gain += get_curr_int( ch );
-	                   if (number < ch->pcdata->learned[gsn_meditate])
-             		     gain += number * gain / 100;
   			   break;
 	}
 
@@ -268,6 +284,8 @@ int mana_gain( CHAR_DATA *ch )
 	    gain /= 2;
 
     }
+
+    gain *= ch->in_room->mana_rate / 100;
 
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
@@ -305,6 +323,8 @@ int move_gain( CHAR_DATA *ch )
 	if ( ch->pcdata->condition[COND_THIRST] == 0 )
 	    gain /= 2;
     }
+
+    gain *= ch->in_room->heal_rate / 100;
 
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
@@ -833,7 +853,7 @@ void char_update( void )
 
 	    if ( !af )
 	    {
-                REMOVE_BIT( ch->affected_by, AFF_PLAGUE );
+                remove_bit( ch->affected_by, AFF_PLAGUE );
                 continue;
 	    }
 
@@ -845,7 +865,10 @@ void char_update( void )
 	    plague.duration	= number_range( 1, 2 * plague.level );
 	    plague.location	= APPLY_STR;
 	    plague.modifier	= -5;
-	    plague.bitvector	= AFF_PLAGUE;
+
+	    vzero( plague.bitvector );
+	    set_bit( plague.bitvector, AFF_PLAGUE );
+
 	    save		= plague.level;
 
 	    for ( vch = ch->in_room->people; vch; vch = vch->next_in_room )
@@ -873,7 +896,8 @@ void char_update( void )
 
 	if ( ( time_info.hour > 5 && time_info.hour < 21 )
 	    && CHECK_SUS( ch, RIS_LIGHT )
-	    && !IS_SET( ch->in_room->room_flags, ROOM_DARK ) )
+	    && !IS_SET( ch->in_room->room_flags, ROOM_DARK )
+	    && !IS_SET( ch->in_room->room_flags, ROOM_UNDERGROUND ) )
 	{
 	    int dmg = 0;
 
@@ -1037,6 +1061,12 @@ void room_update( void )
               pRoomIndex;
               pRoomIndex  = pRoomIndex->next )
         {
+	    if ( pRoomIndex->spec_fun != 0 )
+	    {
+		if ( ( *pRoomIndex->spec_fun ) ( pRoomIndex ) )
+		    continue;
+	    }
+
 	    if ( pRoomIndex->sector_type != SECT_AIR
 		|| !pRoomIndex->exit[5]
 		|| !( new_room = pRoomIndex->exit[5]->to_room ) )
@@ -1419,184 +1449,161 @@ void time_update( void )
  */
 void list_update( void )
 {
-            CHAR_DATA   *ch;
-            CHAR_DATA   *ch_next;
-            OBJ_DATA    *obj;
-            OBJ_DATA    *obj_next;
-    extern  bool         delete_obj;
-    extern  bool         delete_char;
+            EXTRA_DESCR_DATA *ed;
+            EXTRA_DESCR_DATA *ed_next;
+            AFFECT_DATA      *paf;
+            AFFECT_DATA      *paf_next;
+            AFFECT_DATA      *paf_prev;
+            CHAR_DATA        *ch;
+            CHAR_DATA        *ch_next;
+            CHAR_DATA        *ch_prev;
+            OBJ_DATA         *obj;
+            OBJ_DATA         *obj_next;
+            OBJ_DATA         *obj_prev;
+    extern  bool              delete_obj;
+    extern  bool              delete_char;
 
     if ( delete_char )
-        for ( ch = char_list; ch; ch = ch_next )
-	  {
-	    AFFECT_DATA *paf;
-	    AFFECT_DATA *paf_next;
-	    
-	    for ( paf = ch->affected; paf; paf = paf_next )
-	      {
-		paf_next = paf->next;
-		
-		if ( paf->deleted || ch->deleted )
-		  {
-		    if ( ch->affected == paf )
-		      {
-			ch->affected = paf->next;
-		      }
-		    else
-		      {
-			AFFECT_DATA *prev;
-			
-			for ( prev = ch->affected; prev; prev = prev->next )
-			  {
-			    if ( prev->next == paf )
-			      {
-				prev->next = paf->next;
-				break;
-			      }
-			  }
-			
-			if ( !prev )
-			  {
-			    bug( "List_update: cannot find paf on ch.", 0 );
-			    continue;
-			  }
-		      }
-		    
-		    paf->next   = affect_free;
-		    affect_free = paf;
-		  }
-	      }
-
+	for ( ch = char_list, ch_prev = NULL; ch; ch = ch_next )
+	{
 	    ch_next = ch->next;
 	    
-	    if ( ch->deleted )
-	      {
-		if ( ch == char_list )
-		  {
-		    char_list = ch->next;
-		  }
-		else
-		  {
-		    CHAR_DATA *prev;
-
-		    for ( prev = char_list; prev; prev = prev->next )
-		      {
-			if ( prev->next == ch )
-			  {
-			    prev->next = ch->next;
-			    break;
-			  }
-		      }
-		    
-		    if ( !prev )
-		      {
-			char buf [ MAX_STRING_LENGTH ];
-			
-			sprintf( buf, "List_update: char %s not found.",
-				ch->name );
-			bug( buf, 0 );
-			continue;
-		      }
-		  }
+	    for ( paf = ch->affected, paf_prev = NULL; paf; paf = paf_next )
+	    {
+		paf_next = paf->next;
 		
-		free_char( ch );
-	      }
-	  }
+		if ( !paf->deleted && !ch->deleted )
+		{
+		    paf_prev = paf;
+		    continue;
+		}
+
+		if ( ch->affected == paf )
+		{
+		    ch->affected = paf->next;
+		}
+		else
+		{
+		    paf_prev->next = paf->next;
+			
+		    if ( !paf_prev )
+		    {
+			bug( "List_update: cannot find paf on ch.", 0 );
+			paf_prev = paf;
+			continue;
+		    }
+		}
+		    
+		paf->next   = affect_free;
+		affect_free = paf;
+	    }
+
+	    if ( !ch->deleted )
+	    {
+		ch_prev = ch;
+		continue;
+	    }
+
+	    if ( ch == char_list )
+	    {
+		char_list = ch->next;
+	    }
+	    else
+	    {
+		ch_prev->next = ch->next;
+
+		if ( !ch_prev )
+		{
+		    char buf [ MAX_STRING_LENGTH ];
+			
+		    sprintf( buf, "List_update: char %s not found.", ch->name );
+		    bug( buf, 0 );
+		    ch_prev = ch;
+		    continue;
+		}
+	    }
+		
+	    free_char( ch );
+	}
 
     if ( delete_obj )
-      for ( obj = object_list; obj; obj = obj_next )
+	for ( obj = object_list, obj_prev = NULL; obj; obj = obj_next )
 	{
-	  AFFECT_DATA      *paf;
-	  AFFECT_DATA      *paf_next;
-	  EXTRA_DESCR_DATA *ed;
-	  EXTRA_DESCR_DATA *ed_next;
+	    obj_next = obj->next;
 
-	  for ( ed = obj->extra_descr; ed; ed = ed_next )
+	    for ( ed = obj->extra_descr; ed; ed = ed_next )
 	    {
-	      ed_next = ed->next;
+		ed_next = ed->next;
 	      
-	      if ( obj->deleted )
-		{
-		  free_string( ed->description );
-		  free_string( ed->keyword     );
-		  ed->next         = extra_descr_free;
-		  extra_descr_free = ed;
-		}
+		if ( !obj->deleted )
+		    continue;
+
+		free_string( ed->description );
+		free_string( ed->keyword     );
+		ed->next         = extra_descr_free;
+		extra_descr_free = ed;
 	    }
 
-	  for ( paf = obj->affected; paf; paf = paf_next )
+	    for ( paf = obj->affected, paf_prev = NULL; paf; paf = paf_next )
 	    {
-	      paf_next = paf->next;
-	      
-	      if ( obj->deleted )
+		paf_next = paf->next;
+		
+		if ( !obj->deleted )
 		{
-		  if ( obj->affected == paf )
-		    {
-		      obj->affected = paf->next;
-		    }
-		  else
-		    {
-		      AFFECT_DATA *prev;
-		      
-		      for ( prev = obj->affected; prev; prev = prev->next )
-			{
-			  if ( prev->next == paf )
-			    {
-			      prev->next = paf->next;
-			      break;
-			    }
-			}
-
-		      if ( !prev )
-			{
-			  bug( "List_update: cannot find paf on obj.", 0 );
-			  continue;
-			}
-		    }
-		  
-		  paf->next   = affect_free;
-		  affect_free = paf;
+		    paf_prev = paf;
+		    continue;
 		}
+
+		if ( obj->affected == paf )
+		{
+		    obj->affected = paf->next;
+		}
+		else
+		{
+		    paf_prev->next = paf->next;
+			
+		    if ( !paf_prev )
+		    {
+			bug( "List_update: cannot find paf on obj.", 0 );
+			paf_prev = paf;
+			continue;
+		    }
+		}
+		    
+		paf->next   = affect_free;
+		affect_free = paf;
 	    }
 
-	  obj_next = obj->next;
-
-	  if ( obj->deleted )
+	    if ( !obj->deleted )
 	    {
-	      if ( obj == object_list )
-		{
-		  object_list = obj->next;
-		}
-	      else
-		{
-		  OBJ_DATA *prev;
-		  
-		  for ( prev = object_list; prev; prev = prev->next )
-		    {
-		      if ( prev->next == obj )
-			{
-			  prev->next = obj->next;
-			  break;
-			}
-		    }
-		  
-		  if ( !prev )
-		    {
-		      bug( "List_update: obj %d not found.",
-			  obj->pIndexData->vnum );
-		      continue;
-		    }
-		}
-
-
-	      free_string( obj->name        );
-	      free_string( obj->description );
-	      free_string( obj->short_descr );
-	      --obj->pIndexData->count;
-
-	      obj->next	= obj_free;
-	      obj_free	= obj;
+		obj_prev = obj;
+		continue;
 	    }
+
+	    if ( obj == object_list )
+	    {
+		object_list = obj->next;
+	    }
+	    else
+	    {
+		obj_prev->next = obj->next;
+
+		if ( !obj_prev )
+		{
+		    bug( "List_update: obj %d not found.",
+			obj->pIndexData->vnum );
+		    obj_prev = obj;
+		    continue;
+		}
+	    }
+
+	    free_string( obj->name        );
+	    free_string( obj->description );
+	    free_string( obj->short_descr );
+	    --obj->pIndexData->count;
+
+	    obj->next	= obj_free;
+	    obj_free	= obj;
 	}
 
     delete_obj		= FALSE;
@@ -1649,42 +1656,38 @@ void update_handler( void )
     static int pulse_point;
     static int pulse_db_dump = PULSE_DB_DUMP;
 
-    if ( IS_SET( sysdata.act, MUD_AUTOSAVE_DB ) )
+    if ( IS_SET( sysdata.act, MUD_AUTOSAVE_DB ) && --pulse_db_dump  <= 0 )
     {
-	if ( --pulse_db_dump  <= 0 )
-	{
-	    wiznet( NULL, WIZ_TICKS, L_DIR, "Dump Area pulse (OLC)" );
-	    pulse_db_dump   = PULSE_DB_DUMP;
-	    do_asave( NULL, "" );
-	}
-    }
+	wiznet( NULL, WIZ_TICKS, L_DIR, "Dump Area pulse [OLC]" );
 
-    /* Maniac, added this warning so it can be delayed on time... */
-    switch ( pulse_db_dump )
-    {
-    case   5: wiznet( NULL, WIZ_TICKS, L_JUN,
-		     "Dump Area pulse coming soon... beware of lag" );
-    case 100: wiznet( NULL, WIZ_TICKS, L_SEN,
-		     "Dump Area Pulse in 100 pulses..." );
+	pulse_db_dump   = PULSE_DB_DUMP;
+	do_asave( NULL, "" );
+
+	/* Maniac, added this warning so it can be delayed on time... */
+	switch ( pulse_db_dump )
+	{
+	case   5: wiznet( NULL, WIZ_TICKS, L_JUN,
+			 "Dump Area pulse coming soon... beware of lag" );
+	case 100: wiznet( NULL, WIZ_TICKS, L_SEN,
+			 "Dump Area Pulse in 100 pulses..." );
+	}
     }
 
     if ( --pulse_area     <= 0 )
     {
-	wiznet( NULL, WIZ_TICKS, L_APP, "Area update pulse" );
+	wiznet( NULL, WIZ_TICKS, L_JUN, "Area update pulse" );
 	pulse_area	= number_range( PULSE_AREA / 2, 3 * PULSE_AREA / 2 );
 	area_update	( );
     }
 
     if ( --pulse_violence <= 0 )
     {
-        wiznet( NULL, WIZ_TICKS, L_APP, "Violence update pulse" );
 	pulse_violence  = PULSE_VIOLENCE;
 	violence_update ( );
     }
 
     if ( --pulse_fast   <= 0 )
     {
-        wiznet( NULL, WIZ_TICKS, L_APP, "Fast pulse point" );
 	pulse_fast	= number_range( PULSE_FAST / 2, 3 * PULSE_FAST / 2 );
 	room_update     ( );
 	object_update   ( );
@@ -1693,7 +1696,8 @@ void update_handler( void )
 
     if ( --pulse_point    <= 0 )
     {
-        wiznet( NULL, WIZ_TICKS, LEVEL_HERO, "Pulse point" );
+        wiznet( NULL, WIZ_TICKS, L_JUN, "Pulse point" );
+
 	pulse_point	= number_range( PULSE_TICK / 2, 3 * PULSE_TICK / 2 );
 	weather_update  ( );
 	char_update     ( );
@@ -1703,6 +1707,6 @@ void update_handler( void )
 
     time_update( );
     aggr_update( );
-    tail_chain( );
+    tail_chain ( );
     return;
 }

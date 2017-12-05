@@ -1,0 +1,595 @@
+From ureaper@mcl.ucsb.edu Sun Apr 30 21:13:56 1995
+Received: from mcl.mcl.ucsb.edu (mcl.mcl.ucsb.edu [128.111.148.100]) by beauty.mcl.ucsb.edu (MCL.UCSB.EDU-HPUX-1.0-b) with ESMTP id SAA10548; Sun, 30 Apr 1995 18:12:08 -0700
+Received: by mcl.mcl.ucsb.edu (8.6.12) id SAA03945; Sun, 30 Apr 1995 18:12:13 -0700
+Date: Sun, 30 Apr 1995 18:12:13 -0700 (PDT)
+From: John Lin <ureaper@mcl.ucsb.edu>
+To: msmith
+Cc: John Lin <ureaper@mcl.ucsb.edu>
+Subject: Spells!!!
+Message-Id: <Pine.HPP.3.91.950430180711.2747A-100000@mcl.mcl.ucsb.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: RO
+
+Hiya Melvin.. 
+	The long awaited magic user spell list is finally here :) Look it
+over and tell me what u think. 
+
+John, aka. Coil
+
+- John Lin	University of California Santa Barbara
+		ureaper@mcl.mcl.ucsb.edu
+		coil@beauty.mcl.ucsb.edu 
+
+-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Name:	Armor
+Duration:	5 + (Caster Level) ticks
+Effect: 	AC apply -10
+Saving Throw: None
+Desc:
+	By means of this spell, the wizard creates a magical field of 
+force that servers as if it were an extra layer of armor.  This spell 
+does not hinder movement, adds no weight or encumbrance, nor does it 
+prevent spellcasting.  This spell can be cast on others as well.
+
+Name:  	Burning Hands
+Duration:	Instantaneous
+Effect:		1d3 + (2 times Caster level) damage
+Saving Throw:  Saves vs. spells for half damage
+Desc:  
+	When the wizard casts this spell, a jet of searing flame shoots 
+from his fingertips causing his foes much discomfort.  *This spell may 
+heal fire oriented creatures.
+
+Name:	Charm Person
+Duration:	See table
+Effect:		Charmed
+Saving Throw:  Save vs. Spell
+Desc:
+	This spell affects any single creature it's cast upon.  *Must be 
+somewhat intelligent.  This charm person will not obey any actions that 
+would be harmful to the charmed individual however will assist and attack 
+enemies of the caster.   The charmed creature may attack the caster after 
+the charm wears off.
+Table:	(Based on Intelligent and Wisdom of the target)
+	Under 10		30 ticks
+	Between 10-20	20 ticks
+	Between 20-30	10 ticks
+	Over 30		  5 ticks
+
+Name: 	Chill Touch
+Duration:	3 ticks + 1 tick / level 
+Effect:		lose 1 pt of strength / 3 levels of caster and does 1d4 
+points of damage until end of duration.
+Saving Throw:  Save vs. Spell
+Desc:
+	Upon casting of this spell, a blue glow encompasses the wizard's 
+hand.  This energy attacks the life force of any living creature upon 
+which the wizard chooses.  *This spell has a special effect on undead 
+creatures.  Undead touched by caster suffer no damage or strength loss, 
+but they *might* flee.
+
+Name:	Color Spray
+Duration:	Instantaneous
+Effect:		1d6 + Level of caster of damage
+Saving Throw:  Save vs. Spell for half damage
+Desc:
+	This wizard creates a vivid, fan-shaped spray of clashing colors 
+to spring forth from his hand.  Creature fails to make the save suffers 
+not only the damage also is blinded for 1d4 ticks.
+
+Name:	Detect Magic
+Duration:	2 ticks * level of caster
+Effect:		inform caster the presence of magic
+Saving Throw:  None
+Desc:
+	When this spell is cast, the wizard detects magical radiations in 
+the room that he's in.  This spell does not reveal the presence of good 
+or evil, or alignment.
+
+Name:	Detect Undead
+Duration:	Instantaneous
+Effect:		inform caster the presence of undead in his area
+Saving Throw: None
+Desc:
+	By conjuring this spell, the caster is informed by his magic 
+whether undeads roan the area or not.  This spell is especially useful 
+when exploring or for preparing the caster for encounters with the 
+creature from the darkside.
+
+Name:	Find Familiar
+Duration:	Special
+Effect:		A chance that the wizard will find a familiar
+Saving Throw: See table
+Desc:
+	This spell enables the wizard to attempt to summon a familiar, a 
+pet to act as his aide and companion.  These familiars are typically 
+small creatures, such as cats, frogs, ferrets, crows, hawks, snakes, or 
+even mice.  The familiar can benefit a wizard, conveying its sensory 
+powers to its master.  A wizard can have only 1 familiar at a time, 
+however, he has no control of what creature he might call upon, of if 
+they'll even show.  
+	The familiar aids the caster in many ways, first it helps the 
+wizardUs armor class by 5.  Then different familiar has special powers 
+that can aid to the caster.  The familiar also contributes it's hit 
+points to the caster, therefore it can add to the caster's hit points.  
+This familiar stays with the caster for as long as it stays alive.  In 
+the course of event if the familiar dies, the caster will lose his 
+special powers and lose 1 point of CON permanently.  Also the caster will 
+not be able to cast this spell until he has advance 5 more levels.
+	Deliberate mistreatment, failure to feed and care for the 
+familiar, or continuous unreasonable demands have adverse effects on the 
+familiar's relationship with it's master.  Purposely arranging the death 
+of one's own familiar incurs great disfavor from certain powerful entities.
+Table:  (by percentages - The familiar can substitute other small animal 
+in the area of the caster)
+	Chance		Familiar		Power
+	10%			Cat, black/white	Infravision
+	10%			Crow			Detect Magic
+	10%			Hawk			Detect Hidden
+	10%			Owl			Infravision
+	10%			Toad			Regenerate faster
+	10%			Weasel		Create food
+	50%			No Familiar Available for Caster.
+
+Name:	Identify
+Duration:	Instantaneous
+Effect:		Identify an object
+Saving throw:  None
+Desc:
+	When an identify spell is cast, magical items chosen by the 
+wizard can be identified.  This spell will show the object type, it's 
+level of usage, and special attributes.
+
+Name:	Light
+Duration:	Until caster leaves the room
+Effect:		Create Light
+Saving Throw:  None
+Desc:
+	This spell creates luminous glow, equal to a torchlight.  This 
+light fades after the caster leaves the room
+
+Name:	Magic Missile
+Duration:	Instantaneous
+Effect:		1d4+1 * level of Caster points of damage
+Saving Throw:  None
+Desc:
+	Use of this spell creates magical energy that darts forth from 
+the wizard's fingertip and unerringly strike their target.  This spell 
+will not work on inanimate objects (door, lock, chest, etc.)
+
+Name:	Mount
+Duration:	5 + Caster level Ticks
+Effect:		1 mount
+Saving Throw:  None
+Desc:
+	By means of this spell, the caster conjures a normal animal to 
+serve him as a mount.  The animal serves willingly and well, but at the 
+expiration of the spell duration it disappears. Here are some examples of 
+mounts:
+	Caster level		Mount
+	1-5			Pony
+	5-10			Donkey
+	11-15			Mule or Light Horse
+	16-20			Draft Horse or War Horse
+	21-23			Camel
+	24-27			Elephant
+	28 +			Griffin
+
+Name:  	Shield
+Duration:	5 ticks * level of Caster
+Effect:		-10 AC
+Saving Throw:  None
+Desc:
+	This spell creates an invisible barrier that comes into being in 
+front of the wizard.  This shield can be use together with the armor spell.
+
+Name:	Shocking Grasp
+Duration:	Instantaneous
+Effect:		1d8 + level of caster points of damage
+Saving Throw:  Save vs. spell for half damage
+Desc:
+	When the wizard casts this spell, he develops a powerful 
+electrical charge that gives a jolt to the creature touched.  
+
+Name:	Sleep
+Duration:	1 tick per level of caster
+Effect:		Victim falls asleep
+Saving Throw:  Save vs. spell 
+Desc:
+	This spell has a similar effect to going to a college lecture... 
+When a wizard casts a sleep spell, he causes a comatose slumber to come 
+upon his victim.  *If victim manage to make the saving throw, he will 
+immediately attack the caster.
+
+Name:	Ventriloquism
+Duration:	Instantaneous
+Effect:		Special
+Saving Throw:  None
+Desc:
+	syntax:  c 'vent' <person> | <speech>
+c 'vent' fido | Joe the fighter is a wusssy  = 
+Someone makes a sound like a fido and says, 'Joe the fighter is a wussy'
+
+Name:	Blindness
+Duration:	1d4 + level of caster ticks
+Effect:		Blind, - 5 to hit
+Saving Throw:  Save vs. Spell
+Desc:
+	This spell causes the victim to become blind, able to see only a 
+grayness before its eye.  Only a cure blindness, dispel magic, or heal 
+can negate this spell.
+
+Name:	Continual Light
+Duration:	Will not save with character
+Effect:		Creates light
+Saving Throw:  None
+Desc:
+	By casting this spell, the wizards conjures up a glowing aura 
+that is as bright as full daylight and lasts until it's saced (It does 
+not save with the character).  The character is able to hold this aura as 
+light to guide their way.
+
+Name:	Deafness
+Duration:	1d6 + level of caster
+Effect:		Deafness
+Saving Throw:  Save vs. Spell
+Desc:
+	This spell causes the recipient to become totally deaf and unable 
+to hear any sounds.  This means that the player will not be able to see 
+say, tell, whisper, chat.  However the player is able to see emote!  This 
+spell can be removed by a dispel magic, cure deafness, or Heal.
+
+Name:	Detect Evil
+Duration:	5 ticks * level caster
+Effect:		informs wizard of evil presence
+Saving Throw:  None
+Desc:
+	This spell discovers emanations of evil from any creature, 
+object, or area.
+
+Name:	Detect Good
+Duration:	5 ticks * level caster
+Effect:		informs wizard of good presence
+Saving Throw:  None
+Desc:
+	This spell discovers emanations of good from any creature, 
+object, or area.
+
+Name: 	Glitterdust
+Duration:	Instantaneous
+Effect:		Reveals any invisible creature
+Saving Throw:  Save vs. spell or be unnoticed
+Desc:
+	This spell creates a cloud of glittering golden particles within 
+the room.  This reveals invisible creatures in the room.
+
+Name:	Invisibility
+Duration:	5 ticks * level caster also see Desc!
+Effect:		invisibility
+Saving Throw:  None
+Desc:
+	This spell causes the creature touched to vanish from sight and 
+be undetectable by normal vision or even Infravision.  However the 
+invisible creature is not magically silenced or sneaking and certain 
+other conditions can make the creature detectable.  This spell remains 
+effect until it's magically broken or dispelled, until the recipient 
+attacks any creature, or until the duration runs out.  This spell adds 
+the recipient's AC by -10 however it's apply ceases when the spell is broken.
+
+Name:	Know Alignment
+Duration:	Instantaneous
+Effect:		Know alignment
+Saving Throw:  None
+Desc:
+	This spell enables the wizard to know the alignment of a creature 
+or an object.
+
+Name:	Locate Object
+Duration:	Instantaneous
+Effect:		locate object
+Saving Throw:  None
+Desc:
+	syntax :  c 'locate object' <object>
+	This spell enables the caster to locate a specific object in the 
+world.  *This spell may go haywire at times when the object you're 
+looking for is too common or too abundant in the world
+
+Name:	Locate Person
+Duration:	Instantaneous
+Effect:		locate person
+Saving Throw:  None (Unless nosummoned ON)
+Desc:
+	This spell will inform the caster the room title of the room 
+where the person's at.  This spell will not work properly if the person 
+has no summon on.  
+
+Name:	Magic Mouth
+Duration:	level of caster ticks
+Effect:		see Desc.
+Saving Throw:  None
+Desc:
+	This spell creates a magical mouth that informs you of intruder 
+when they're 4 squares away from you.  This spell can be extremely useful 
+if you're a Player Killer and is resting in a place that's not too safe!
+
+Name:	Acid Arrow
+Duration:	Instantaneous
+Effect:		2d4 + level of caster points of damage
+Saving Throw:  Save vs. spell for half
+Desc:
+	This spell creates a magical arrow filled with acid that speeds 
+to its target as if fired from the bow of a fighter.  *The acid might 
+damage the equipment on the target!
+
+Name:	Giant Strength
+Duration: 	5 ticks per 5 levels of caster
+Effect:		See table
+Saving Throw:  None
+Desc:
+	Upon the casting of this spell, the wizard can increase his 
+strength.  
+Table:		Level		Strength apply
+		1-5			1
+		6-10			2
+		11-15			3
+		16-20			4
+		20 +			5
+(Strength points counts as 10% if player strength is 18/XX)
+
+Name:	Dispel Magic
+Duration: 	Instantaneous
+Effect:		Dispel magic
+Saving Throw:  Save vs. Magic
+Desc:	
+	When a wizard cast this spell, it has a chance to neutralize or 
+negate magic it comes in contact with.  *This spell can remove magical 
+curses and effect from a player, and magical forces of objects in the 
+caster's inventory.
+
+Name:	Explosive Runes
+Duration:	Special
+Effect:		4d6 + 6 points of damage
+Saving Throw:  None
+Desc:
+	This spell creates a sign or scroll that can be left as a trap.  
+When read, the explosive runes detonates, the reader gets no saving 
+throw.  A great party trick!
+
+Name:	Fireball
+Duration:	Instantaneous
+Effect:		1d6 per 2 levels of caster
+Saving Throw:  Save vs. Magic for half
+Desc:
+	A fireball is an explosive burst of flame, which detonates with a 
+low roar and delivers damage proportional to the level of the wizard who 
+cast it.  Besides causing damage to creatures, the fireball ignites all 
+combustible materials within its burst radius, and the heat of the 
+fireball melts soft metals such as gold, cooper, silver, etc.   *If the 
+victim makes the saving throw, no items will burst.  If not...
+
+Name:	Flame Arrow
+Duration:	Instantaneous
+Effect:		4d6 points of damage
+Saving Throw:  Save vs. spell for half
+Desc:
+	Much like acid arrow, flame arrow spell creates a flaming arrow 
+that fires at unspeakable velocity towards the victim.
+
+Name:	Fly
+Duration:	1d6 + level of caster ticks
+Effect:		No movement deduction
+Saving Throw:  None
+Desc:
+	This spell enables the wizard to bestow the power of magical 
+flight, thus uses no movement points. *Also lives almost no tracks
+
+Name:	Haste
+Duration:	3 + (level of caster /5 ) ticks
+Effect:		See Desc.
+Saving Throw:  None
+Desc:
+	This spell enables the hasted creature to attack twice.  Once at 
+the beginning of the combat, once in the end, thus making it a great 
+offensive spell.  *This spell will use the hasted creature's movement in 
+combat and the spell will wear off when the movement reaches zero.  
+**This spell can be negated by a Slow spell
+
+Name:	Slow 
+Duration:	3 + (level of caster /5) ticks
+Effect: 	See Desc.
+Saving throw:  Save vs. spell
+Desc:
+	This spells will slow the target down so actions that usually 
+takes 1 tick to perform will now take 2.  *This spell can be negated by a 
+Haste spell
+
+Name:	Infravision
+Duration:	2 + level of caster ticks
+Effect:		Able to see in darkness
+Saving Throw:  None
+Desc:
+	This spells enables the recipient to see in normal darkness.  
+Invisible creates are NOT detected by this spell.  *Character with only 
+Infravision will not be able to examine objects, creatures more closely 
+since all that is seem is heat signals.
+
+Name:	Mass Invisibility
+Duration:	See Invisibility
+Effect:		See Invisibility
+Saving Throw:  None
+Desc:
+	This is a spell that will cause all creature in the same room as 
+caster to become invisible.
+
+Name:	Lightning Bolt
+Duration:	Instantaneous
+Effect:		1d6 per level of caster points of damage
+Saving throw:  Save vs. Spell for half damage
+Desc:
+	Upon the casting of this spell, the wizard conjures a bolt of 
+lightning to strike the victim.
+
+Name:	Protection from Evil
+Duration:	2 + level of caster ticks
+Effect:		reduced damage taken from evil creature
+Saving Throw:  None
+Desc:
+	This spell creates a globe of protection that protects the caster 
+from damage inflicted by evil creature. *The damage receive is 90% of 
+total damage.  This spell cannot be use at the same time as protection 
+from good.
+
+Name: 	Protection From Good
+Duration:	2 + level of caster ticks
+Effect:		reduced damage taken from god creature
+Saving Throw:  None
+Desc:	
+	This spell creates a globe of protection that protects the caster 
+from damage inflicted by good creature. *The damage receive is 90% of 
+total damage.  This spell cannot be use at the same time as protection 
+from evil.
+
+Name:	Sanctuary
+Duration:	3 ticks (mortal)  10 ticks (immortal)
+Effect:		reduce damage taken by 25%
+Saving Throw:  None
+Desc:
+	By casting this spell, the caster creates a magical protective 
+force that absorbs the impact of enemiesU blows, both magically and 
+physically.  *This spell can be dispel by a dispel magic spell.  The 
+chance of dispelling sanctuary is dependent on the level of caster of 
+sanctuary, level of caster of dispel, and victimUs saving throw.
+
+Name:	Vampiric Touch
+Duration:	Instantaneous
+Effect:		Drains 1d4 hit points per level of caster
+Saving Throw:  Save vs. spell or no effect
+Desc:
+	This spell uses the dark energy of the art, it literally sucks 
+the life out of the victim and gives it to the caster.  The hit points 
+gained by the caster is temporary.
+
+Name:	Enchante Weapon
+Duration:	Instantaneous
+Effect:		Enchantes a non-magical weapon 
+Saving Throw:  None
+Desc:
+	This spell enables the wizard to concentrate his art onto a 
+non-magical weapon.  A magical object will not work with this spell!  The 
+apply are as followed:
+	Level of caster		Hit	Dam
+	15-20				 2    	  2
+	21-25				 3            3
+	26-29				 3            4
+	30				 4            4
+
+Name:  	Fear
+Duration:	Instantaneous
+Effect:		Causes victim to flee
+Saving Throw:  Save vs. Spell of flee
+Desc:
+	This spell conjures up victim's deepest and darkest fears.  
+Victim fails to make the save versus the spell will flee.
+
+Name:	Stoneskin
+Duration:	5 + level caster ticks
+Effect:		-20 AC
+Saving Throw: None
+Desc:
+	This spell turns the wizard's skin into granite like substance.  
+*This spell cannot be cast on another creature.
+
+Name:	Animate Dead
+Duration:	Instantaneous
+Effect:		See Desc.
+Saving Throw:  None
+Desc:
+	This spell animates the corpse targeted in the room.  The corpse 
+turns into a zombie that follows the caster.  
+
+Name:	Teleport
+Duration:	Instantaneous
+Effect:		See Desc.
+Saving Throw:  Save vs. spell (None if cast on self)
+Desc:
+	This spell will *randomly* teleports the caster to a new room.  
+
+Name:	Chain Lightning
+Duration:	Instantaneous
+Effect:		see lightning bolt
+Saving Throw:  Save vs. spell for half damage
+Desc:
+	This spell creates a chain of lightning bolts that strikes the target!
+
+Name:	Legend Lore
+Duration: 	Instantaneous
+Effect:		see identify
+Saving Throw:  None
+Desc:
+	This is an advanced form of identify spell.  This spell will tell 
+you EVERYTHING there is to know about this item in your inventory. **It 
+is up to the builder to think of background for some specific items to 
+make this spell useful and fun**
+
+Name:	Word of Recall
+Duration:	Instantaneous
+Effect:		see Recall
+Saving Throw:  None
+Desc:
+	This spell enables to caster to recall without chances of failure 
+from any situation.  *A real lifesaver !
+
+Name:	Gate
+Duration:	Instantaneous
+Effect:		summons an undead creature
+Saving Throw:  See Charm creature
+Desc:
+	syntax: c 'gate' <undead name>
+This spell attempts to summon an undead of your choice to your square. 
+*there's a chance that the undead you summon will not listen to your 
+command.  In this case it will attack you!  
+Table:		Caster Level		Undead available
+		15-20			wraith
+		21-25			zombie
+		26-28			skeleton
+		29+			all of the above + vampire
+
+Name:	Demon Fire
+Duration:	Instantaneous
+Effect:		??
+Saving Throw: Save vs. spell for half damage
+Desc:
+	This is the most damaging offensive spells available for a mortal 
+wizard.  It brings the fire deep from the lower most levels of hell to 
+engulf the victim.  The amount of damage for this spell is unknown!!
+
+***(I was thinking a random number between 300 - 500 ) ***
+
+
+Name:	Wish
+Duration:	??
+Effect:		??
+Saving Throw: ??
+Desc:
+	This is by far the most powerful spell a mortal can possess.  It 
+calls for the powers of the immortals.  *only a very small chance that 
+this spell might work, also the effect of spell and the request of the 
+wish is interpreted by the immortal as he/she deems right.
+
+
+
+************************************************
+Alright.. that's all I have so far for the magic user spells. I've taken 
+some out from the spell list I sent you and I've add some in as well.. 
+The following are some ideas for Immortal skill!!
+************************************************
+
+Name: 	Permanency
+Effect:		This skill will save the player with all his/her spells 
+intact.  So whatever spells was casted on the player will become a 
+permanent skill the player can possess..
+
+Think that's all for now..
+
+

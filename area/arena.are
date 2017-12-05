@@ -4,722 +4,849 @@ Author      Zen~
 Levels      10 52
 Security    1
 VNUMs       11000 11031
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #11000
-sunbam magician~
-Sunbam~
+Name        sunbam magician~
+Short       Sunbam~
+Long
 Sunbam the magician stands here charming the dragon.
 ~
+Descr
 Sunbam the magician is VERY powerful. In fact he is so powerful he charmed the
 holy dragon Hatraxx so he could do his bidding and destroy all that is good.
 Don't be fooled by his frail appearance as he is highly dangerous!
 ~
-3 0 -1000 S
-50 0 0 0d0+0 0d0+0
-0 0
-0 God~ 1
->greet_prog 100~
-if isimmort($n)
-	bow $n
-else
-	look $n
-	say It shall not be you $n who will prevent me from destroying good!
-	muhaha
-	say I will send you to hell!
-	cast blindness $n
-	mpkill $n
-endif
-~
->fight_prog 20~
-cackle
-~
->death_prog 60~
-yell Damned you $n! I shall return and have my revenge!
-mpecho Sunbam's corpse fades away...
-mpgoto 2
-~
-|
+Act         sentinel~
+AffectBy    ~
+Alignment   -1000
+Level       50
+Gold        0
+Race        God
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #11001
-justak hero~
-Justak~
+Name        justak hero~
+Short       Justak~
+Long
 Justak the brave hero is here looking confused.
 ~
+Descr
 Justak looks radiant in his warrior clothes. He is the latest of a series of
 rather foolish men who have tried to put an end to the powerful evil wizard
 Sunbam. They have failed so far... No one has even found him and lived.
 ~
-193 8872 1000 S
-40 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
->greet_prog 50~
-look $n
-say When will i get out of this dump?
-sig
-~
-|
+Act         stay_area wimpy~
+AffectBy    detect-invis detect-hidden sanctuary infrared protect-evil~
+Alignment   1000
+Level       40
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_cleric
+Shop        food~ weapon~ light~ ~ ~ 100 100 12 14
+End
+
 #11002
-hatraxx dragon~
-Hatraxx~
+Name        hatraxx dragon~
+Short       Hatraxx~
+Long
 The powerful dragon Hatraxx is here.
 ~
+Descr
 The dragon looks back at you!
 His eyes penetrate deep into your soul, and you feel frozen by fear!
 ~
-3 8320 0 S
-52 0 0 0d0+0 0d0+0
-0 0
-0 Dragon~ 1
->greet_prog 100~
-if isimmort($n)
-	bow $n
-else
-	look $n
-	say I shall do your bidding master Sunbam!
-	mpkill $n
-endif
-~
-|
+Act         sentinel~
+AffectBy    sanctuary protect-evil~
+Alignment   0
+Level       52
+Gold        0
+Race        Dragon
+Sex         male~
+Spec        spec_breath_any
+End
+
 #11003
-psikotik~
-Psikotik~
+Name        psikotik~
+Short       Psikotik~
+Long
 The psionicist Psikotik is here. WATCH OUT!
 ~
+Descr
 Psikotik looks disturbed by your presence.
 ~
-3 8932 -750 S
-45 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
->greet_prog 100~
-if isimmort($n)
-	bow $n
-else
-	look $n
-	say So you are the one supposed to challenge me?
-	cackle
-	say I will squash you like an insect!
-	mpkill $n
-endif
-~
-|
+Act         sentinel~
+AffectBy    detect-evil detect-hidden hold sanctuary infrared protect-evil~
+Alignment   -750
+Level       45
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_psionicist
+End
+
 #11004
-brominol vampire lord~
-Brominol~
+Name        brominol vampire lord~
+Short       Brominol~
+Long
 The vampire lord Brominol stands here. He ATTACKS YOU!
 ~
+Descr
 Brominol's eyes are red of the blood of his victims. He looks at you and says:
 LUNCH TIME!
 ~
-39 0 -1000 S
-35 0 0 0d0+0 0d0+0
-0 0
-0 Vampire~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       35
+Gold        0
+Race        Vampire
+Sex         male~
+End
+
 #11005
-zachilu vampire serf~
-Zachilu~
+Name        zachilu vampire serf~
+Short       Zachilu~
+Long
 The vampire serf Zachilu stands here. He ATTACKS YOU!
 ~
+Descr
 He looks VERY mean!
 ~
-39 0 -1000 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Vampire~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       30
+Gold        0
+Race        Vampire
+Sex         male~
+End
+
 #11006
-chogitarr~
-Chogitarr~
+Name        chogitarr~
+Short       Chogitarr~
+Long
 The great evil psionicist Chogitarr stands here.
 ~
+Descr
 He looks very old and wise! Very evil too! But he will train you to enhance
 your abilities if you wish. For a price of course!
 ~
-1571 8812 -1000 S
-36 0 0 0d0+0 0d0+0
-0 0
-0 Hobbit~ 1
+Act         sentinel aggressive train practice~
+AffectBy    detect-evil detect-invis detect-hidden hold infrared protect-evil~
+Alignment   -1000
+Level       36
+Gold        0
+Race        Hobbit
+Sex         male~
+Spec        spec_cast_judge
+End
+
 #11007
-mentax~
-Mentax~
+Name        mentax~
+Short       Mentax~
+Long
 The evil psionicist Mentax is here. He ATTACKS YOU!
 ~
+Descr
 Mentax looks at you!
 He is the newest of Chogitarr's pupils and some say the greatest. He can do
 some serious damage thanks to his special offensive abilities.
 ~
-225 40970 -600 S
-35 0 0 0d0+0 0d0+0
-0 0
-0 Hobbit~ 1
+Act         aggressive stay_area wimpy~
+AffectBy    invisible detect-invis protect-evil sneak~
+Alignment   -600
+Level       35
+Gold        0
+Race        Hobbit
+Sex         male~
+Spec        spec_cast_judge
+End
+
 #11008
-piranha fish~
-the piranha~
+Name        piranha fish~
+Short       the piranha~
+Long
 A mean looking piranha is here. She ATTACKS YOU!
 ~
+Descr
 The piranha looks at you and says:
 HUUUM! BREAKFAST!
 ~
-97 544 -1000 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Fish~ 0
+Act         aggressive stay_area~
+AffectBy    detect-hidden infrared~
+Alignment   -1000
+Level       12
+Gold        0
+Race        Fish
+Sex         neutral~
+End
+
 #11009
-snake~
-the snake~
+Name        snake~
+Short       the snake~
+Long
 There is a poisonous snake here. WATCH OUT!
 ~
+Descr
 The snake looks at you puzzled.
 ~
-97 33312 -1000 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Snake~ 1
+Act         aggressive stay_area~
+AffectBy    detect-hidden infrared sneak~
+Alignment   -1000
+Level       12
+Gold        0
+Race        Snake
+Sex         male~
+Spec        spec_poison
+End
+
 #11010
-rat~
-the rat~
+Name        rat~
+Short       the rat~
+Long
 The big rat is here looking for food.
 ~
+Descr
 The rat is here looking for a piece of food.
 ~
-69 0 -1000 S
-10 0 0 0d0+0 0d0+0
-0 0
-0 Rat~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   -1000
+Level       10
+Gold        0
+Race        Rat
+Sex         male~
+End
+
 #11011
-krusher giant~
-Krusher~
+Name        krusher giant~
+Short       Krusher~
+Long
 Krusher is here looking for someone to maim today!
 ~
+Descr
 Krusher is big, and when i say big i mean BIG!
 He is full of muscle but hasn't much of a brain.
 ~
-65 8736 -1000 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Giant~ 1
->greet_prog 50~
-if isnpc($n)
-        break
-endif
-if isgood($n)
-	look $n
-	say So... A Mr. Nice Guy huh? Let's see how much you like my hammer!
-	cackle
-	say You fool! You should have stayed home!
-	mpkill $n
-endif
-~
-|
+Act         stay_area~
+AffectBy    detect-hidden infrared protect-evil~
+Alignment   -1000
+Level       25
+Gold        0
+Race        Giant
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #11012
-autoexec bat~
-AutoExec~
+Name        autoexec bat~
+Short       AutoExec~
+Long
 AutoExec Bat is here looking for victims.
 ~
+Descr
 AutoExec Bat wants to kill someone today. And that someone is YOU!
 ~
-97 8232 -1000 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Bat~ 1
+Act         aggressive stay_area~
+AffectBy    detect-invis detect-hidden protect-evil~
+Alignment   -1000
+Level       25
+Gold        0
+Race        Bat
+Sex         male~
+Spec        spec_executioner
+End
+
 #11013
-shurg guardian~
-Shurg~
+Name        shurg guardian~
+Short       Shurg~
+Long
 The guardian of the gate stands here. He ATTACKS YOU!
 ~
+Descr
 He looks like he could break your back with only two fingers!
 ~
-3 8746 -1000 S
-42 0 0 0d0+0 0d0+0
-0 0
-0 Minotaur~ 1
->greet_prog 100~
-if isimmort($n)
-	bow $n
-else
-	look $n
-	say NO ONE SHALL PASS! ESPECIALLY YOU $n!
-	mpkill $n
-endif
-~
-|
+Act         sentinel~
+AffectBy    invisible detect-invis detect-hidden infrared protect-evil~
+Alignment   -1000
+Level       42
+Gold        0
+Race        Minotaur
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #11014
-trurg guardian~
-Trurg~
+Name        trurg guardian~
+Short       Trurg~
+Long
 The guardian of the gate Trurg stands here. He ATTACKS YOU!
 ~
+Descr
 Trurg looks at you and says:
 NO TRESPASSERS ALLOWED! BANZAI!!!!
 ~
-3 556 -1000 S
-44 0 0 0d0+0 0d0+0
-0 0
-0 Minotaur~ 1
->greet_prog 100~
-if isimmort($n)
-	bow $n
-else
-	if isgood($n)
-		look $n
-		say GOOD SHALL NOT ENTER THIS DOMAIN!
-		grin $n
-		mpkill $n
-	endif
-endif
-~
-|
+Act         sentinel~
+AffectBy    detect-evil detect-invis detect-hidden infrared~
+Alignment   -1000
+Level       44
+Gold        0
+Race        Minotaur
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #11015
-thing~
-the Thing~
+Name        thing~
+Short       the Thing~
+Long
 There is something in here... You can't figure out what! LOOK OUT!
 ~
+Descr
 The thing looks back at you!
 ~
-37 16818696 0 S
-38 0 0 0d0+0 0d0+0
-0 0
-0 Hydra~ 1
+Act         scavenger aggressive~
+AffectBy    detect-invis infrared protect-evil sneak gills~
+Alignment   0
+Level       38
+Gold        0
+Race        Hydra
+Sex         male~
+Spec        spec_poison
+End
+
 #11016
-vendor~
-The food vendor~
+Name        vendor~
+Short       The food vendor~
+Long
 The food vendor is here selling his stuff.
 ~
+Descr
 The food vendor is an old man. He has grey hair and could be your grandfather.
 Has he notices you are looking at him he looks at you and shouts:
 HEY! ARE YOU GOING TO BUY SOMETHING OR WHAT!
 ~
-3 8704 -250 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
->greet_prog 50~
-look $n
-say HEY! YOU SONNY! ARE YOU GOING TO BUY SOMETHING OR NOT!
-endif
-~
-|
+Act         sentinel~
+AffectBy    infrared protect-evil~
+Alignment   -250
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+Shop        ~ ~ ~ ~ ~ 100 100 0 23
+End
+
 #11017
-gladiator~
-The gladiator~
+Name        gladiator~
+Short       The gladiator~
+Long
 The gladiator stands here showing his bulging muscles.
 ~
+Descr
 The gladiator has tremendous muscles. But you wonder if he is really that
 strong has he claims to... Better rough him up a little to find out... NOT!
 ~
-65 8224 -150 S
-38 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    detect-hidden protect-evil~
+Alignment   -150
+Level       38
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #11018
-werewolf~
-The werewolf~
+Name        werewolf~
+Short       The werewolf~
+Long
 A hungry werewolf stands here. He growls at your presence.
 ~
+Descr
 The hungry werewolf looks at you and says:
 FEEDING TIME!
 ~
-1 8744 -500 S
-38 0 0 0d0+0 0d0+0
-0 0
-0 Werewolf~ 1
+Act         ~
+AffectBy    detect-invis detect-hidden infrared protect-evil~
+Alignment   -500
+Level       38
+Gold        0
+Race        Werewolf
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #11019
-lion~
-The Lion~
+Name        lion~
+Short       The Lion~
+Long
 A hungry lion is here. He is sleeping...
 ~
+Descr
 The lion is sleeping peacefully he couldn't hurt a fly could he? Of course he
 could and eat you in one full swoop too!
 ~
-1 139816 -100 S
-20 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 1
+Act         ~
+AffectBy    detect-invis detect-hidden infrared protect-evil sleep~
+Alignment   -100
+Level       20
+Gold        0
+Race        Animal
+Sex         male~
+Spec        spec_fido
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #11000
-red leather armor~
-a Red leather armor~
+Name        red leather armor~
+Short       a Red leather armor~
+Descr
 A powerful armor lies here.~
-~
-9 1089 9
-0~ 0~ 0~ 0~ 0~
-20 1000 0
-A
-19 5 0
-A
-23 -5 0
-A
-13 50 0
-A
-5 2 0
-E
-armor~
+Type        armor~
+Extra       glow magic anti-evil~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        1000
+Affect      damroll~ 5 ~
+Affect      saving-breath~ -5 ~
+Affect      hp~ 50 ~
+Affect      constitution~ 2 ~
+ExtraDescr  armor~
 As you look closer you notice this is no ordinary armor, it must have been made
 by means of magic.
 ~
+End
+
 #11001
-sword thunderblade~
-the holy ThunderBlade~
+Name        sword thunderblade~
+Short       the holy ThunderBlade~
+Descr
 A huge sword rests here.~
-~
-5 3137 8193
-0~ 0~ 0~ 3~ 0~
-8 1000 0
-A
-1 2 0
-A
-19 8 0
-A
-18 8 0
-E
-sword thunderblade~
+Type        weapon~
+Extra       glow magic anti-evil anti-neutral~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      8
+Cost        1000
+Affect      strength~ 2 ~
+Affect      damroll~ 8 ~
+Affect      hitroll~ 8 ~
+ExtraDescr  sword thunderblade~
 The holy ThunderBlade was made by the Gods to aid Heimmdall in his quest. He
 agreed to lend this sword to Justak to help him fight the magician. Now it's
 yours!
 ~
+End
+
 #11002
-ring honor~
-the ring of Honor~
+Name        ring honor~
+Short       the ring of Honor~
+Descr
 A magic ring is floating here.~
-~
-15 3137 3
-100~ 0~ 0~ 0~ 0~
-5 1000 0
-A
-17 -10 0
-A
-19 6 0
-A
-13 20 0
-E
-ring honor~
+Type        container~
+Extra       glow magic anti-evil anti-neutral~
+Wear        take finger~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        1000
+Affect      ac~ -10 ~
+Affect      damroll~ 6 ~
+Affect      hp~ 20 ~
+ExtraDescr  ring honor~
 The ring of honor is a gift of the Gods to those who have a high sense of
 honor.
 ~
+End
+
 #11003
-red scarf~
-a red scarf~
+Name        red scarf~
+Short       a red scarf~
+Descr
 A bloody scarf lies here.~
-~
-9 2641 5
-0~ 0~ 0~ 0~ 0~
-5 1000 0
-A
-3 1 0
-A
-17 -20 0
-A
-18 2 0
+Type        armor~
+Extra       glow evil magic anti-good anti-neutral~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        1000
+Affect      intelligence~ 1 ~
+Affect      ac~ -20 ~
+Affect      hitroll~ 2 ~
+End
+
 #11004
-scroll doom~
-the scroll of Doom~
+Name        scroll doom~
+Short       the scroll of Doom~
+Descr
 A rune scroll lies here.~
-~
-2 592 16385
-40~  ~ acid blast~ weaken~  ~
-1 1000 0
+Type        scroll~
+Extra       evil magic anti-good~
+Wear        take hold~
+Values      40~  ~ acid blast~ weaken~  ~
+Weight      1
+Cost        1000
+End
+
 #11005
-black potion~
-a Black Potion~
+Name        black potion~
+Short       a Black Potion~
+Descr
 A vial with a dark fluid lies here.~
-~
-10 82 16385
-45~ sanctuary~ heal~ flaming shield~  ~
-1 1000 0
+Type        potion~
+Extra       hum evil magic~
+Wear        take hold~
+Values      45~ sanctuary~ heal~ flaming shield~  ~
+Weight      1
+Cost        1000
+End
+
 #11006
-black robes~
-the Black Robes~
+Name        black robes~
+Short       the Black Robes~
+Descr
 Some robes lies here sucking the light of this room.~
-~
-9 2640 1025
-0~ 0~ 0~ 0~ 0~
-6 1000 0
-A
-4 3 0
-A
-24 -10 0
-A
-12 50 0
-E
-black robes~
+Type        armor~
+Extra       evil magic anti-good anti-neutral~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        1000
+Affect      wisdom~ 3 ~
+Affect      saving-spell~ -10 ~
+Affect      mana~ 50 ~
+ExtraDescr  black robes~
 These are the mythical robes of the Lord of the Night himself.
 ~
+End
+
 #11007
-wand pain~
-the Wand of Pain~
+Name        wand pain~
+Short       the Wand of Pain~
+Descr
 A strange looking wand lies here.~
-~
-3 4721 16385
-40~ 50~ 50~ energy drain~ 0~
-1 1000 0
-A
-2 2 0
-A
-19 2 0
-A
-17 -10 0
-A
-18 2 0
+Type        wand~
+Extra       glow evil invis magic anti-good noremove~
+Wear        take hold~
+Values      40~ 50~ 50~ energy drain~ 0~
+Weight      1
+Cost        1000
+Affect      dexterity~ 2 ~
+Affect      damroll~ 2 ~
+Affect      ac~ -10 ~
+Affect      hitroll~ 2 ~
+End
+
 #11008
-ring sorcery~
-a Ring of Sorcery~
+Name        ring sorcery~
+Short       a Ring of Sorcery~
+Descr
 A magical ring floats in the air.~
-~
-9 65 3
-0~ 0~ 0~ 0~ 0~
-1 1000 0
-A
-17 -20 0
-A
-3 2 0
-A
-18 5 0
-A
-12 50 0
+Type        armor~
+Extra       glow magic~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+Affect      ac~ -20 ~
+Affect      intelligence~ 2 ~
+Affect      hitroll~ 5 ~
+Affect      mana~ 50 ~
+End
+
 #11009
-blue field force~
-a Blue Force field~
+Name        blue field force~
+Short       a Blue Force field~
+Descr
 A strange blue light floats in the air.~
-~
-9 4193 513
-0~ 0~ 0~ 0~ 0~
-1 1000 0
-A
-24 -10 0
-A
-17 -40 0
-A
-2 4 0
+Type        armor~
+Extra       glow invis magic noremove~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+Affect      saving-spell~ -10 ~
+Affect      ac~ -40 ~
+Affect      dexterity~ 4 ~
+End
+
 #11010
-silver~
-a Silver Dagger~
+Name        silver~
+Short       a Silver Dagger~
+Descr
 A silver dagger lies here.~
-~
-5 65 8193
-0~ 0~ 0~ 2~ 0~
-5 1000 0
-A
-13 10 0
-A
-19 6 0
-A
-18 8 0
+Type        weapon~
+Extra       glow magic~
+Wear        take wield~
+Values      0~ 0~ 0~ 2~ 0~
+Weight      5
+Cost        1000
+Affect      hp~ 10 ~
+Affect      damroll~ 6 ~
+Affect      hitroll~ 8 ~
+End
+
 #11011
-gauntlets neutronium~
-a pair of neutronium gauntlets~
+Name        gauntlets neutronium~
+Short       a pair of neutronium gauntlets~
+Descr
 A pair of shiny gauntlets lies here.~
-~
-9 82 129
-0~ 0~ 0~ 0~ 0~
-5 1000 0
-A
-19 4 0
-A
-18 2 0
-A
-1 4 0
+Type        armor~
+Extra       hum evil magic~
+Wear        take hands~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        1000
+Affect      damroll~ 4 ~
+Affect      hitroll~ 2 ~
+Affect      strength~ 4 ~
+End
+
 #11012
-shield darkness~
-a Shield of Darkness~
+Name        shield darkness~
+Short       a Shield of Darkness~
+Descr
 A evil looking shield lies here.~
-~
-9 594 513
-0~ 0~ 0~ 0~ 0~
-8 1000 0
-A
-19 2 0
-A
-17 -5 0
-A
-23 -5 0
+Type        armor~
+Extra       hum evil magic anti-good~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      8
+Cost        1000
+Affect      damroll~ 2 ~
+Affect      ac~ -5 ~
+Affect      saving-breath~ -5 ~
+End
+
 #11013
-sword dragonslayer~
-a unholy DragonSlayer sword~
+Name        sword dragonslayer~
+Short       a unholy DragonSlayer sword~
+Descr
 A sword rests here.~
-~
-5 4690 8193
-0~ 0~ 0~ 3~ 0~
-10 1000 0
-A
-17 -10 0
-A
-13 20 0
-A
-19 6 0
-A
-18 6 0
+Type        weapon~
+Extra       hum evil magic anti-good noremove~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      10
+Cost        1000
+Affect      ac~ -10 ~
+Affect      hp~ 20 ~
+Affect      damroll~ 6 ~
+Affect      hitroll~ 6 ~
+End
+
 #11014
-armor unholy~
-a Unholy Armor~
+Name        armor unholy~
+Short       a Unholy Armor~
+Descr
 A strange looking armor lies here.~
-~
-9 6737 9
-0~ 0~ 0~ 0~ 0~
-15 1000 0
-A
-17 -5 0
-A
-19 5 0
-A
-18 5 0
+Type        armor~
+Extra       glow evil magic anti-good anti-neutral noremove~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        1000
+Affect      ac~ -5 ~
+Affect      damroll~ 5 ~
+Affect      hitroll~ 5 ~
+End
+
 #11015
-dark arm plates~
-some Dark Arm Plates~
+Name        dark arm plates~
+Short       some Dark Arm Plates~
+Descr
 Some plates lie here.~
-~
-9 4689 257
-0~ 0~ 0~ 0~ 0~
-7 1000 0
-A
-18 3 0
-A
-1 2 0
+Type        armor~
+Extra       glow evil magic anti-good noremove~
+Wear        take arms~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      7
+Cost        1000
+Affect      hitroll~ 3 ~
+Affect      strength~ 2 ~
+End
+
 #11016
-hammer steel~
-a huge steel hammer~
+Name        hammer steel~
+Short       a huge steel hammer~
+Descr
 A huge steel hammer lies here.~
-~
-5 593 8193
-0~ 0~ 0~ 8~ 0~
-5 1000 0
-A
-24 -5 0
-A
-17 -10 0
-A
-19 12 0
-A
-18 -6 0
+Type        weapon~
+Extra       glow evil magic anti-good~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      5
+Cost        1000
+Affect      saving-spell~ -5 ~
+Affect      ac~ -10 ~
+Affect      damroll~ 12 ~
+Affect      hitroll~ -6 ~
+End
+
 #11017
-flame darkness~
-a Flame of Darkness~
+Name        flame darkness~
+Short       a Flame of Darkness~
+Descr
 A flame made of pure evil floats in the air.~
-~
-1 2643 1
-0~ 0~ -1~ 0~ 0~
-1 1000 0
-A
-18 4 0
-A
-13 25 0
-A
-12 25 0
-A
-3 2 0
-A
-2 2 0
-A
-1 2 0
-A
-23 -5 0
-A
-24 -5 0
+Type        light~
+Extra       glow hum evil magic anti-good anti-neutral~
+Wear        take~
+Values      0~ 0~ -1~ 0~ 0~
+Weight      1
+Cost        1000
+Affect      hitroll~ 4 ~
+Affect      hp~ 25 ~
+Affect      mana~ 25 ~
+Affect      intelligence~ 2 ~
+Affect      dexterity~ 2 ~
+Affect      strength~ 2 ~
+Affect      saving-breath~ -5 ~
+Affect      saving-spell~ -5 ~
+End
+
 #11018
-silvery skull~
-a Silvery Skull~
+Name        silvery skull~
+Short       a Silvery Skull~
+Descr
 A skull made of some metal rests here.~
-~
-9 6737 17
-0~ 0~ 0~ 0~ 0~
-6 1000 0
-A
-12 50 0
-A
-19 2 0
-A
-13 50 0
-A
-5 3 0
-A
-3 3 0
-A
-4 3 0
+Type        armor~
+Extra       glow evil magic anti-good anti-neutral noremove~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        1000
+Affect      mana~ 50 ~
+Affect      damroll~ 2 ~
+Affect      hp~ 50 ~
+Affect      constitution~ 3 ~
+Affect      intelligence~ 3 ~
+Affect      wisdom~ 3 ~
+End
+
 #11019
-dark helm~
-a dark helm~
+Name        dark helm~
+Short       a dark helm~
+Descr
 A dark helm rests here.~
-~
-9 4626 17
-0~ 0~ 0~ 0~ 0~
-5 1000 0
-A
-19 4 0
-A
-18 4 0
-A
-3 -2 0
-A
-13 50 0
+Type        armor~
+Extra       hum evil anti-good noremove~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        1000
+Affect      damroll~ 4 ~
+Affect      hitroll~ 4 ~
+Affect      intelligence~ -2 ~
+Affect      hp~ 50 ~
+End
+
 #11020
-ring speed~
-a Ring of Speed~
+Name        ring speed~
+Short       a Ring of Speed~
+Descr
 A small ring rests here.~
-~
-22 4673 3
-0~ 0~ 0~ 0~ 0~
-2 1000 0
-A
-14 150 0
-A
-2 4 0
+Type        boat~
+Extra       glow magic anti-good noremove~
+Wear        take finger~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        1000
+Affect      move~ 150 ~
+Affect      dexterity~ 4 ~
+End
+
 #11021
-bones~
-some bones~
+Name        bones~
+Short       some bones~
+Descr
 Some bones lie in the floor.~
-~
-13 0 0
-0~ 0~ 0~ 0~ 0~
-1 1000 0
-E
-bones~
+Type        trash~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+ExtraDescr  bones~
 As you look at the bones, you hear a ghostly voice:
 "You will be next... MUHAHAHAHAHAHAHHA"
 ~
+End
+
 #11022
-key~
-a red key~
+Name        key~
+Short       a red key~
+Descr
 A red key lies here.~
-~
-18 16 1
-0~ 0~ 0~ 0~ 0~
-1 1000 0
+Type        key~
+Extra       evil~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+End
+
 #11023
-key~
-a golden key~
+Name        key~
+Short       a golden key~
+Descr
 A golden key lies here.~
-~
-18 1 1
-0~ 0~ 0~ 0~ 0~
-1 1000 0
+Type        key~
+Extra       glow~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1000
+End
+
 #11024
-bigmac food~
-a delicious BigMac~
+Name        bigmac food~
+Short       a delicious BigMac~
+Descr
 Some food lies here, wrapped in paper.~
-~
-19 0 1
-100~ 0~ 0~ 0~ 0~
-1 0 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #11025
-coke can~
-a can of Coke~
+Name        coke can~
+Short       a can of Coke~
+Descr
 A can of Coke lies here.~
-~
-17 0 1
-100~ 96~ 15~ 0~ 0~
-1 0 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      100~ 96~ 15~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #11000
-Entrance to the Steel Cage~
+Name        Entrance to the Steel Cage~
+Descr
 You stand at the entrance of the Steel Cage of the Arena Circus Maximus... You
 notice the skulls of several beings stuck on the top of spear ends. There is
 some person's skin here waving at the wind. This terrible sight makes you
@@ -728,9 +855,10 @@ very same thing shall happen to you. You take a deep breath and prepare to do
 battle with your foe in the steel cage. May the best one win. And may the best
 one be you of course. Good look adventurer the kill free zone is north.
 ~
-0 1044 0
-E
-writing~
+Flags       no_mob safe~
+Sector      inside~
+Regen       100 100
+ExtraDescr  writing~
 I am writing this on the skull in case i don't return to the surface. Having
 heard some strange rumors of a strange evil force around this place i found
 out this Arena to be more than it seems... I found a trap door in the floor of
@@ -738,332 +866,423 @@ this room. I will try to find what strange force lurks there...
 
                                                            Xangtoac the Priest
 ~
-E
-skull skulls~
+ExtraDescr  skull skulls~
 Has you look at the skull you can't help to feel sad for the poor creature's
 demise. After all it could well be you who got your skull onto a spear end.
 BRRRRR. Wait... You notice there is some writing in the skull!
 ~
-D0
+Door        north~ door closed~ -1 11020
 ~
 ~
-3 -1 11020
-D2
+Door        south~ ~ 0 11022
 ~
 ~
-0 0 11022
-D5
+Door        down~ door closed~ 0 11001
 ~
 ~
-3 0 11001
-S
+End
+
 #11001
-At the entrance of the catacombs.~
+Name        At the entrance of the catacombs.~
+Descr
 You just enter inside the catacombs and... SLAM! the door closes behind you!
 You do your best to try and open it, but no avail. You will have to hope you'll
 get out alive of this god forsaken place.
 ~
-0 17 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 11001 1 100
+Reset       E 11002 1 100
+Reset       E 11000 5 100
+Reset       E 11001 16 100
+Reset       E 11005 -1 100
+Door        east~ ~ -1 11013
 ~
 ~
-0 -1 11013
-D3
+Door        west~ ~ -1 11002
 ~
 ~
-0 -1 11002
-D4
+Door        up~ door closed~ 0 11000
 ~
 ~
-3 0 11000
-S
+End
+
 #11002
-In a dark damp room.~
+Name        In a dark damp room.~
+Descr
 You are in a dark damp room. The air is moldy and it's hard to breathe here.
 You start to feel sick. Better get out of here fast! Mold covers the walls and
 it's everywhere... everywhere... you release your last meal.
 ~
-0 17 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 11011 1 100
+Reset       E 11019 6 100
+Reset       E 11011 9 100
+Reset       E 11016 16 100
+Reset       M 11010 4 100
+Door        north~ ~ -1 11003
 ~
 ~
-0 -1 11003
-D1
+Door        east~ ~ -1 11001
 ~
 ~
-0 -1 11001
-S
+End
+
 #11003
-In a dark room.~
+Name        In a dark room.~
+Descr
 Still in a dark room of the catacombs of doom you notice the air is getting
 worser and worser all the time... If it keeps his way you'll be dead in no time.
 The decoration in the walls makes you sick as you realize it consists of human
 skin. The forces in this place are unholy and you feel disturbed.
 ~
-0 17 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       O 11021 0 100
+Reset       M 11007 1 100
+Reset       M 11009 4 100
+Door        north~ ~ -1 11004
 ~
 ~
-0 -1 11004
-D2
+Door        south~ ~ -1 11002
 ~
 ~
-0 -1 11002
-S
+End
+
 #11004
-Still in a dark room.~
+Name        Still in a dark room.~
+Descr
 You STILL are in a dark room. Its is starting to get boring and the air isn't
 getting any better you know. But wait... You sense something north.
 You notice there is a room to the west!
 ~
-0 21 0
-D0
+Flags       dark no_mob~
+Sector      inside~
+Regen       100 100
+Reset       O 11021 0 100
+Door        north~ door closed locked bashproof pickproof passproof~ 11023 11005
 ~
 door~
-119 11023 11005
-D2
+Door        south~ ~ -1 11003
 ~
 ~
-0 -1 11003
-D3
+Door        west~ ~ -1 11008
 ~
 ~
-0 -1 11008
-S
+End
+
 #11005
-In a moat.~
+Name        In a moat.~
+Descr
 You are in a moat! Ho-ho... it seems you aren't alone in here... You'd better 
 watch it. You wish you'd have learned how to swim when your mother wanted to.
 She also said "Why don't you study more? You spend your entire life mudding!"
 YOU HEARD SOMETHING MOVING! WATCH IT!
 ~
-0 17 6
-D0
+Flags       dark~
+Sector      water_swim~
+Regen       100 100
+Door        north~ ~ -1 11006
 ~
 ~
-0 -1 11006
-D2
+Door        south~ door closed locked bashproof pickproof passproof~ 11023 11004
 ~
 ~
-119 11023 11004
-S
+End
+
 #11006
-In a moat.~
+Name        In a moat.~
+Descr
 You are in a moat! Ho-ho... it seems you aren't alone in here... You'd better 
 watch it. You wish you'd have learned how to swim. Buaaaa you want your mommy!
 YOU SENSE SOMETHING MOVING!
 ~
-0 17 6
-D1
+Flags       dark~
+Sector      water_swim~
+Regen       100 100
+Reset       M 11008 16 100
+Reset       M 11008 16 100
+Door        east~ ~ -1 11007
 ~
 ~
-0 -1 11007
-D2
+Door        south~ ~ -1 11005
 ~
 ~
-0 -1 11005
-S
+End
+
 #11007
-Still in a moat.~
+Name        Still in a moat.~
+Descr
 You are in a moat! Ho-ho... it seems you aren't alone in here... You'd better 
 watch it. You wish you'd have learned how to swim. But no avail. If you don't
 take care you'll be piranha snack for their breakfast. *gulp*
 YOU FEEL SOMETHING MOVING! There is an exit to the north.
 ~
-0 17 6
-D0
+Flags       dark~
+Sector      water_swim~
+Regen       100 100
+Reset       M 11015 1 100
+Door        north~ ~ -1 11012
 ~
 ~
-0 -1 11012
-D1
+Door        east~ ~ -1 11018
 ~
 ~
-0 -1 11018
-D3
+Door        west~ ~ -1 11006
 ~
 ~
-0 -1 11006
-S
+End
+
 #11008
-In a moldy room.~
+Name        In a moldy room.~
+Descr
 Sheesh... These rooms are filthy. You wonder when the cleaning lady came here 
 last time? 1000 years ago? Naaaa... it's too messy to have been so little time.
 You pray to the holy god Hatchet to get out of here but no one answers your
 call. Here no one can hear you scream!
 ~
-0 17 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 11006 1 100
+Reset       E 11023 -1 100
+Door        east~ ~ -1 11004
 ~
 ~
-0 -1 11004
-S
+End
+
 #11009
-In the lair of the Dragon.~
+Name        In the lair of the Dragon.~
+Descr
 You have finally reached the lair of the Dragon!
 You thought you would never get here in this lifetime but you did it!
 The air is hot from the dragon's breath and surrounded from magic from the
 evil wizard. This is your final trial. Only a true hero can win.
 ~
-0 16 0
-D2
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 11002 1 100
+Reset       M 11000 1 100
+Reset       E 11017 0 100
+Reset       E 11008 1 100
+Reset       E 11014 5 100
+Reset       E 11018 6 100
+Reset       E 11009 11 100
+Reset       E 11006 12 100
+Reset       E 11010 16 100
+Reset       E 11007 17 100
+Reset       E 11011 9 100
+Reset       E 11004 -1 100
+Reset       E 11005 -1 100
+Door        south~ ~ -1 11010
 ~
 ~
-0 -1 11010
-S
+End
+
 #11010
-The room before the lair of the dragon.~
+Name        The room before the lair of the dragon.~
+Descr
 You are at a room just before the lair of the dragon. Just a little more effort
 and you'll be there. But before that you'll have to face the mad psionicist!
 ~
-0 16 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 11003 1 100
+Reset       E 11017 0 100
+Reset       E 11003 3 100
+Reset       E 11018 6 100
+Reset       E 11010 16 100
+Door        north~ ~ -1 11009
 ~
 ~
-0 -1 11009
-D2
+Door        south~ door closed~ -1 11011
 You see the door leading to the lair.
 ~
 door~
-3 -1 11011
-S
+End
+
 #11011
-Doorway to the lair of the dragon.~
+Name        Doorway to the lair of the dragon.~
+Descr
 Before you is the door to the lair of the dragon. It is huge and made of wood
 with big hinges. Carved in the wood are unholy symbols of death and evil.
 You notice some writing in old rune signs above the door which says:
 "BWROTEAE EAEFHMG" - I wonder what that could possibly mean?
 ~
-0 16 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 11013 1 100
+Reset       E 11019 6 100
+Reset       E 11011 9 100
+Reset       E 11013 16 100
+Reset       E 11014 5 100
+Reset       M 11014 1 100
+Reset       E 11014 5 100
+Reset       E 11019 6 100
+Reset       E 11011 9 100
+Reset       E 11013 16 100
+Door        north~ door closed~ -1 11010
 ~
 ~
-3 -1 11010
-D2
+Door        south~ ~ -1 11012
 ~
 ~
-0 -1 11012
-S
+End
+
 #11012
-In a moat just before the doorway.~
+Name        In a moat just before the doorway.~
+Descr
 You are reaching the end of the moat. You made it! Now awaits your biggest
 challenge yet. You have seen nothing until now! Get ready here to fight as this
 is a safe room. In fact the only safe place in this whole hellish place.
 ~
-0 21 6
-D0
+Flags       dark no_mob~
+Sector      water_swim~
+Regen       100 100
+Door        north~ ~ -1 11011
 ~
 ~
-0 -1 11011
-D2
+Door        south~ ~ -1 11007
 ~
 ~
-0 -1 11007
-S
+End
+
 #11013
-In a dark damp room.~
+Name        In a dark damp room.~
+Descr
 You are in a dark damp room. The air is moldy and it's hard to breathe here.
 You start to feel sick. Better get out of here fast! The walls pulsate as if
 the entire room is alive. You fear for your life, just one of these monsters
 is enough to send you back to hell!
 ~
-0 17 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 11012 1 100
+Reset       E 11020 1 100
+Reset       M 11010 4 100
+Door        north~ ~ -1 11014
 ~
 ~
-0 -1 11014
-D3
+Door        west~ ~ -1 11001
 ~
 ~
-0 -1 11001
-S
+End
+
 #11014
-In a dark room.~
+Name        In a dark room.~
+Descr
 Still in a dark room of the catacombs of doom you notice the air is getting
 worser and worser all the time... If it keeps his way you'll be dead in no
 time. I hope you are not alone but in a party, it is nicer to die together with
 other people surrounding you isn't it? *grin*
 ~
-0 17 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       O 11021 0 100
+Reset       M 11009 4 100
+Door        north~ ~ -1 11015
 ~
 ~
-0 -1 11015
-D2
+Door        south~ ~ -1 11013
 ~
 ~
-0 -1 11013
-S
+End
+
 #11015
-Still in a dark room.~
+Name        Still in a dark room.~
+Descr
 You STILL are in a dark room. Its is starting to get boring and the air isn't
 getting any better you know. But wait... You sense something north.
 You notice there is a room to the east!
 ~
-0 21 0
-D0
+Flags       dark no_mob~
+Sector      inside~
+Regen       100 100
+Reset       O 11021 0 100
+Door        north~ door closed locked bashproof pickproof passproof~ 11022 11017
 ~
 door~
-119 11022 11017
-D1
+Door        east~ ~ -1 11016
 ~
 ~
-0 -1 11016
-D2
+Door        south~ ~ -1 11014
 ~
 ~
-0 -1 11014
-S
+End
+
 #11016
-In a moldy room.~
+Name        In a moldy room.~
+Descr
 Sheesh... These rooms are filthy. You wonder when the cleaning lady came here 
 last time? 1000 years ago? Naaaa... it's too messy to be so little time.
 In this room the vampire Lord Brominol and his servant plot to end all
 humanity. They have gone all the way here to find a powerful allier to fulfill
 their evil deeds. You wonder who can be such a powerful being.
 ~
-0 17 0
-D3
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 11004 1 100
+Reset       E 11022 -1 100
+Reset       M 11005 1 100
+Door        west~ ~ -1 11015
 ~
 ~
-0 -1 11015
-S
+End
+
 #11017
-In a moat.~
+Name        In a moat.~
+Descr
 You are in a moat! Ho-ho... it seems you aren't alone in here... You'd better 
 watch it. You wish you'd have learned how to swim. You have water up to your
 neck, and something is pulling you down bellow, you shout for help but no one
 can help you now. You can only rely on yourself to leave this place.
 YOU SENSED SOMETHING MOVING!
 ~
-0 17 6
-D0
+Flags       dark~
+Sector      water_swim~
+Regen       100 100
+Reset       M 11008 16 100
+Reset       M 11008 16 100
+Door        north~ ~ -1 11018
 ~
 ~
-0 -1 11018
-D2
+Door        south~ door closed locked bashproof pickproof passproof~ 11022 11015
 ~
 ~
-119 11022 11015
-S
+End
+
 #11018
-In a moat.~
+Name        In a moat.~
+Descr
 You are in a moat! Ho-ho... it seems you aren't alone in here... You'd better 
 watch it. You wish you'd have learned how to swim properly. Well this is...
 yup in the moat cool huh? Don't you just love these mud baths? They do wonders.
 YOU HEARD SOMETHING MOVING!
 ~
-0 17 6
-D2
+Flags       dark~
+Sector      water_swim~
+Regen       100 100
+Door        south~ ~ -1 11017
 ~
 ~
-0 -1 11017
-D3
+Door        west~ ~ -1 11007
 ~
 ~
-0 -1 11007
-S
+End
+
 #11020
-Steel Cage Arena~
+Name        Steel Cage Arena~
+Descr
 You stand inside the steel cage arena. As you look upwards you notice the
 enormous size of it. It is made of several tons of elven steel and reflects
 the light which comes from a hole in the ceiling of the cavern's floor.
@@ -1071,22 +1290,23 @@ They must have taken years to build such an awesome cage inside this hidden
 site. In front of you there is a sign it says:
 This room is an Arena so you are free to KILL ANYONE!
 ~
-0 32784 0
-D1
+Flags       arena~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 11024
 ~
 ~
-0 0 11024
-D2
+Door        south~ ~ 0 11000
 ~
 ~
-0 0 11000
-D3
+Door        west~ ~ 0 11025
 ~
 ~
-0 0 11025
-S
+End
+
 #11022
-The Path to the Arena~
+Name        The Path to the Arena~
+Descr
 You are standing in the path to the Steel Cage Arena. North of here you see
 the big Cage itself dwarving everything in sight. Circus Maximus includes
 hungry lions, gladiators, werewolves and assorted freaks all in this
@@ -1094,43 +1314,48 @@ underground cavern. Some big cavern huh? There is a red carpet in the floor
 covering the path to the steel cage. To the east you notice some gladiators
 training and to the west you see the lions and beasts area.
 ~
-0 16 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 11000
 ~
 ~
-0 0 11000
-D1
+Door        east~ ~ 0 11028
 ~
 ~
-0 0 11028
-D2
+Door        south~ ~ 0 11023
 ~
 ~
-0 0 11023
-D3
+Door        west~ ~ 0 11027
 ~
 ~
-0 0 11027
-S
+End
+
 #11023
-The sales booth~
+Name        The sales booth~
+Descr
 Right here you can see a huge boot where they sell tickets and foodstuffs.
 The line ends here. You see a gate to the north leading to the arena. It is
 being guarded by two fearsome gladiators. Their armors shine and you feel
 terrified by their presence.
 ~
-0 20 0
-D0
+Flags       no_mob~
+Sector      inside~
+Regen       100 100
+Reset       M 11016 1 100
+Reset       E 11024 -1 100
+Reset       E 11025 -1 100
+Door        north~ ~ 0 11022
 ~
 ~
-0 0 11022
-D2
+Door        south~ ~ 0 11026
 ~
 ~
-0 0 11026
-S
+End
+
 #11024
-Steel Cage Arena~
+Name        Steel Cage Arena~
+Descr
 You stand inside the steel cage arena. As you look upwards you notice the
 enormous size of it. It is made of several tons of elven steel and reflects
 the light which comes from a hole in the ceiling of the cavern's floor.
@@ -1138,14 +1363,17 @@ They must have taken years to build such an awesome cage inside this hidden
 site. In front of you there is a sign it says:
 This room is an Arena so you are free to KILL ANYONE! DUELS ONLY!
 ~
-0 33296 0
-D3
+Flags       private arena~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ 0 11020
 ~
 ~
-0 0 11020
-S
+End
+
 #11025
-Steel Cage Arena~
+Name        Steel Cage Arena~
+Descr
 You stand inside the steel cage arena. As you look upwards you notice the
 enormous size of it. It is made of several tons of elven steel and reflects
 the light which comes from a hole in the ceiling of the cavern's floor.
@@ -1153,14 +1381,17 @@ They must have taken years to build such an awesome cage inside this hidden
 site. In front of you there is a sign it says:
 This room is an Arena so you are free to KILL ANYONE! NO SPELLS ALLOWED!
 ~
-0 49168 0
-D1
+Flags       cone_of_silence arena~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 11020
 ~
 ~
-0 0 11020
-S
+End
+
 #11026
-The line to the Arena~
+Name        The line to the Arena~
+Descr
 What the...? You thought this was an unexplored cavern but you realize that
 here is a huge line of people complaining about not having tickets...  What is
 happening here? What are all these people up to? You hear one of them claiming
@@ -1169,203 +1400,122 @@ that her cousin who lives in Midgaard told her about this place the Arena
 disapproved by the Mayor and they had to move here. She has gone all the way
 from Solace just to see the show.
 ~
-0 16 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 11023
 ~
 ~
-0 0 11023
-D1
+Door        east~ ~ 0 11029
 ~
 ~
-0 0 11029
-S
+End
+
 #11027
-The hungry beasts and freaks tent~
+Name        The hungry beasts and freaks tent~
+Descr
 The Lions and beasts area. Here you see a Lion and a Werewolf tied strongly to
 a chain. The animal keeper seems to hold them strongly enough for you to be
 safe. Hold on a minute... He doesn't have his left arm... What gives?
 The animals growl as they sense your presence...
 ~
-0 24 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 11019 3 100
+Reset       M 11018 2 100
+Reset       M 11019 6 100
+Door        east~ ~ 0 11022
 ~
 ~
-0 0 11022
-S
+End
+
 #11028
-The gladiators training room~
+Name        The gladiators training room~
+Descr
 You are inside the gladiators training room. Here the gladiator are rushing to
 prepare for battle. Amidst the noise of clanging shields and swords they
 train so one of them can become the great champion and win the gold coins
 prize. As they realize you entered the room they tell you to get out as this
 is no place for children.
 ~
-0 24 0
-D3
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 11017 6 100
+Reset       M 11017 6 100
+Door        west~ ~ 0 11022
 ~
 ~
-0 0 11022
-S
+End
+
 #11029
-On the underground cavern~
+Name        On the underground cavern~
+Descr
 You are standing at the entrance of an underground cavern. It is dark here and
 the air is humid and moldy. In fact it's so moldy you start feeling sick...
 Better hurry up and go forward, you did want to explore the cavern didn't you?
 ~
-0 21 0
-D1
+Flags       dark no_mob~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 11030
 ~
 ~
-0 0 11030
-D3
+Door        west~ ~ 0 11026
 ~
 ~
-0 0 11026
-S
+End
+
 #11030
-On a stone path~
+Name        On a stone path~
+Descr
 You are standing on a stone path.  You notice this path as been placed
 here a short time ago as the stones are still pearly white.  As you admire
 the wildlife of the small woods surrounding you everywhere you realize there
 is a gaping whole headed west of here...  You wonder what lurks inside?  A
 small sign is here.  
 ~
-0 0 1
-E
-sign~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign~
 Due to popular demand, after the mayor closed down the games boots in the
 circus we established a new casino to the north.  Come and play!  There are
 big money prizes to be won!  
 ~
-D0
+Door        north~ ~ 0 507
 ~
 ~
-0 0 507
-D1
+Door        east~ ~ 0 11031
 ~
 ~
-0 0 11031
-D3
+Door        west~ ~ 0 11029
 ~
 ~
-0 0 11029
-S
+End
+
 #11031
-On a stone path~
+Name        On a stone path~
+Descr
 You are standing on a stone path. You wonder where this path may lead you as
 you can't see what could possibly be the reason to put such a marvelous white
 marble path on a deserted wood. You guess the circus owner is too rich for his
 own good and also completely nuts!
 ~
-0 4 1
-D1
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 4415
 ~
 ~
-0 0 4415
-D3
+Door        west~ ~ 0 11030
 ~
 ~
-0 0 11030
-S
+End
+
 #0
 
-
-#SPECIALS
-M 11000 spec_cast_mage
-M 11001 spec_cast_cleric
-M 11002 spec_breath_any
-M 11003 spec_cast_psionicist
-M 11006 spec_cast_judge
-M 11007 spec_cast_judge
-M 11009 spec_poison
-M 11011 spec_cast_undead
-M 11012 spec_executioner
-M 11013 spec_cast_undead
-M 11014 spec_cast_undead
-M 11015 spec_poison
-M 11018 spec_cast_undead
-M 11019 spec_fido
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 11001 1 11001
-E 0 11002 0 1
-E 0 11000 0 5
-E 0 11001 0 16
-G 0 11005 0
-M 0 11011 1 11002
-E 0 11019 0 6
-E 0 11011 0 9
-E 0 11016 0 16
-M 0 11010 4 11002
-O 0 11021 0 11003
-M 0 11007 1 11003
-M 0 11009 4 11003
-O 0 11021 0 11004
-M 0 11008 16 11006
-M 0 11008 16 11006
-M 0 11015 1 11007
-M 0 11006 1 11008
-G 0 11023 0
-M 0 11002 1 11009
-M 0 11000 1 11009
-E 0 11017 0 0
-E 0 11008 0 1
-E 0 11014 0 5
-E 0 11018 0 6
-E 0 11009 0 11
-E 0 11006 0 12
-E 0 11010 0 16
-E 0 11007 0 17
-E 0 11011 0 9
-G 0 11004 0
-G 0 11005 0
-M 0 11003 1 11010
-E 0 11017 0 0
-E 0 11003 0 3
-E 0 11018 0 6
-E 0 11010 0 16
-M 0 11013 1 11011
-E 0 11019 0 6
-E 0 11011 0 9
-E 0 11013 0 16
-E 0 11014 0 5
-M 0 11014 1 11011
-E 0 11014 0 5
-E 0 11019 0 6
-E 0 11011 0 9
-E 0 11013 0 16
-M 0 11012 1 11013
-E 0 11020 0 1
-M 0 11010 4 11013
-O 0 11021 0 11014
-M 0 11009 4 11014
-O 0 11021 0 11015
-M 0 11004 1 11016
-G 0 11022 0
-M 0 11005 1 11016
-M 0 11008 16 11017
-M 0 11008 16 11017
-M 0 11016 1 11023
-G 0 11024 0
-G 0 11025 0
-M 0 11019 3 11027
-M 0 11018 2 11027
-M 0 11019 6 11027
-M 0 11017 6 11028
-M 0 11017 6 11028
-S
-
-
-#SHOPS
-11001 19 5 1 0 0 100 100 12 14
-11016 0 0 0 0 0 100 100 0 23
-0
 
 
 #$

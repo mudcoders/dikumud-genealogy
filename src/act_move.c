@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -78,7 +80,7 @@ void move_char( CHAR_DATA *ch, int door )
     ROOM_INDEX_DATA *to_room;
     int              moved = BV17; /* Matches ACT & PLR bits */
 
-    if ( door < 0 || door > 5 )
+    if ( door < 0 || door > MAX_DIR )
     {
 	bug( "Do_move: bad door %d.", door );
 	return;
@@ -115,16 +117,14 @@ void move_char( CHAR_DATA *ch, int door )
 	if ( ch->riding )
 	{
 	    if (   !IS_AFFECTED( ch->riding, AFF_PASS_DOOR )
-		&& !IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_PASSDOOR )
-		&& !IS_IMMORTAL ( ch->riding ) )
+		&& !IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_PASSDOOR ) )
 	    {
 		act( "The $d is closed so your mount is unable to pass.",
 		    ch, NULL, pexit->keyword, TO_CHAR );
 		return;
 	    }
 
-	    if ( IS_SET( pexit->exit_info, EX_PASSPROOF )
-		&& !IS_IMMORTAL( ch->riding ) )
+	    if ( IS_SET( pexit->exit_info, EX_PASSPROOF ) )
 	    {
 		act( "Your mount is unable to pass through the $d.  Ouch!",
 		    ch, NULL, pexit->keyword, TO_CHAR );
@@ -200,13 +200,13 @@ void move_char( CHAR_DATA *ch, int door )
 
     if ( !IS_NPC( ch ) )
     {
-	int iClass;
-	int move;
+	CLASS_TYPE *class;
+	int         move;
 
-	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
+	for ( class = class_first; class; class = class->next )
 	{
-	    if ( iClass != ch->class
-		&& to_room->vnum == class_table[iClass]->guild
+	    if ( !is_class( ch, class )
+		&& to_room->vnum == class->guild
 		&& ch->level < LEVEL_IMMORTAL )
 	    {
 		send_to_char( "You aren't allowed in there.\n\r", ch );
@@ -251,21 +251,28 @@ void move_char( CHAR_DATA *ch, int door )
 	    /*
 	     * Suggestion for flying above water by Sludge
 	     */
-	    if ( ch->riding
-		&& ( IS_AFFECTED( ch->riding, AFF_FLYING )
+	    if ( ch->riding )
+	    {
+		if ( IS_AFFECTED( ch->riding, AFF_FLYING )
 		    || IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_FLY )
 		    || IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_WATERWALK )
-		    || IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_SWIM )
-		    || ( !IS_NPC( ch->riding )
-			&& number_percent( ) <= ch->pcdata->learned[gsn_swim] ) ) )
-	        found = TRUE;
-
-	    if ( IS_AFFECTED( ch, AFF_FLYING )
-		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_FLY )
-		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_WATERWALK )
-		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM )
-		|| number_percent( ) <= ch->pcdata->learned[gsn_swim] )
-	        found = TRUE;
+		    || IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_SWIM ) )
+		    found = TRUE;
+	    }
+	    else
+	    {
+		if ( IS_AFFECTED( ch, AFF_FLYING )
+		    || IS_SET( race_table[ ch->race ].race_abilities, RACE_FLY )
+		    || IS_SET( race_table[ ch->race ].race_abilities, RACE_WATERWALK )
+		    || IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+		    found = TRUE;
+		else
+		    if ( number_percent( ) <= ch->pcdata->learned[gsn_swim] )
+		    {
+			learn( ch, gsn_swim, TRUE );
+			found = TRUE;
+		    }
+	    }
 
 	    for ( obj = ch->carrying; obj; obj = obj->next_content )
 	    {
@@ -286,9 +293,7 @@ void move_char( CHAR_DATA *ch, int door )
 	{
 	    if ( ( in_room->sector_type == SECT_UNDERWATER
 		|| to_room->sector_type == SECT_UNDERWATER )
-		&& !IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_SWIM )
-		&& ( !IS_NPC( ch->riding )
-		    && number_percent( ) > ch->pcdata->learned[gsn_swim] ) )
+		&& !IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_SWIM ) )
 	    {
 		send_to_char( "Your mount needs to be able to swim better to go there.\n\r", ch );
 		return;
@@ -946,6 +951,8 @@ void do_pick( CHAR_DATA *ch, char *argument )
 	|| ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) ) )
     {
 	send_to_char( "You failed.\n\r", ch);
+
+	learn( ch, gsn_pick_lock, FALSE );
 	return;
     }
 
@@ -1018,6 +1025,8 @@ void do_pick( CHAR_DATA *ch, char *argument )
 	act( "$n picks $p.", ch, obj, NULL, TO_ROOM );
 	return;
     }
+
+    learn( ch, gsn_pick_lock, TRUE );
 
     return;
 }
@@ -1146,8 +1155,7 @@ void do_sneak( CHAR_DATA *ch, char *argument )
 
     /* Don't allow charmed mobs to do this, check player's skill */
     if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
-	|| ( !IS_NPC( ch )
-	    && ch->level < skill_table[gsn_sneak].skill_level[ch->class] ) )
+	|| !can_use( ch, gsn_sneak ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
@@ -1168,9 +1176,16 @@ void do_sneak( CHAR_DATA *ch, char *argument )
 	af.duration  = ch->level;
 	af.location  = APPLY_NONE;
 	af.modifier  = 0;
-	af.bitvector = AFF_SNEAK;
+
+	vzero( af.bitvector );
+	set_bit( af.bitvector, AFF_SNEAK );
+
 	affect_to_char( ch, &af );
+
+	learn( ch, gsn_sneak, TRUE );
     }
+    else
+	learn( ch, gsn_sneak, FALSE );
 
     return;
 }
@@ -1181,8 +1196,7 @@ void do_hide( CHAR_DATA *ch, char *argument )
 {
     /* Dont allow charmed mobiles to do this, check player's skill */
     if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
-	|| ( !IS_NPC( ch )
-	    && ch->level < skill_table[gsn_hide].skill_level[ch->class] ) )
+	|| !can_use( ch, gsn_hide ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
@@ -1197,10 +1211,15 @@ void do_hide( CHAR_DATA *ch, char *argument )
     send_to_char( "You attempt to hide.\n\r", ch );
 
     if ( IS_AFFECTED( ch, AFF_HIDE ) )
-	REMOVE_BIT( ch->affected_by, AFF_HIDE );
+	remove_bit( ch->affected_by, AFF_HIDE );
 
     if ( IS_NPC( ch ) || number_percent( ) < ch->pcdata->learned[gsn_hide] )
-	SET_BIT( ch->affected_by, AFF_HIDE );
+    {
+        set_bit( ch->affected_by, AFF_HIDE );
+	learn( ch, gsn_hide, TRUE );
+    }
+    else
+	learn( ch, gsn_hide, FALSE );
 
     return;
 }
@@ -1216,9 +1235,9 @@ void do_visible( CHAR_DATA *ch, char *argument )
     affect_strip ( ch, gsn_mass_invis			);
     affect_strip ( ch, gsn_sneak			);
     affect_strip ( ch, gsn_shadow                       );
-    REMOVE_BIT   ( ch->affected_by, AFF_HIDE		);
-    REMOVE_BIT   ( ch->affected_by, AFF_INVISIBLE	);
-    REMOVE_BIT   ( ch->affected_by, AFF_SNEAK		);
+    remove_bit   ( ch->affected_by, AFF_HIDE		);
+    remove_bit   ( ch->affected_by, AFF_INVISIBLE	);
+    remove_bit   ( ch->affected_by, AFF_SNEAK		);
     send_to_char( "Ok.\n\r", ch );
     return;
 }
@@ -1325,7 +1344,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( argument, "str" ) )
     {
-	if ( class_table[ch->class]->attr_prime == APPLY_STR )
+	if ( ch->class[0]->attr_prime == APPLY_STR )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_str;
 	pOutput     = "strength";
@@ -1333,7 +1352,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "int" ) )
     {
-	if ( class_table[ch->class]->attr_prime == APPLY_INT )
+	if ( ch->class[0]->attr_prime == APPLY_INT )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_int;
 	pOutput     = "intelligence";
@@ -1341,7 +1360,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "wis" ) )
     {
-	if ( class_table[ch->class]->attr_prime == APPLY_WIS )
+	if ( ch->class[0]->attr_prime == APPLY_WIS )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_wis;
 	pOutput     = "wisdom";
@@ -1349,7 +1368,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "dex" ) )
     {
-	if ( class_table[ch->class]->attr_prime == APPLY_DEX )
+	if ( ch->class[0]->attr_prime == APPLY_DEX )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_dex;
 	pOutput     = "dexterity";
@@ -1357,7 +1376,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     else if ( !str_cmp( argument, "con" ) )
     {
-	if ( class_table[ch->class]->attr_prime == APPLY_CON )
+	if ( ch->class[0]->attr_prime == APPLY_CON )
 	    cost    = 3;
 	pAbility    = &ch->pcdata->perm_con;
 	pOutput     = "constitution";
@@ -1505,101 +1524,44 @@ void do_train( CHAR_DATA *ch, char *argument )
     return;
 }
 
+
 void do_chameleon ( CHAR_DATA *ch, char *argument )
 {
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_chameleon].skill_level[ch->class] )
+    /* Dont allow charmed mobiles to do this, check player's skill */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| !can_use( ch, gsn_chameleon ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
-    send_to_char( "You attempt to blend in with your surroundings.\n\r", ch);
+    if ( ch->riding )
+    {
+        send_to_char( "You can't do that while mounted.\n\r", ch );
+        return;
+    }
+
+    send_to_char( "You attempt to blend in with your surroundings.\n\r", ch );
 
     if ( IS_AFFECTED( ch, AFF_HIDE ) )
-        REMOVE_BIT( ch->affected_by, AFF_HIDE );
+        remove_bit( ch->affected_by, AFF_HIDE );
 
     if ( IS_NPC( ch ) || number_percent( ) < ch->pcdata->learned[gsn_chameleon] )
-        SET_BIT( ch->affected_by, AFF_HIDE );
+    {
+        set_bit( ch->affected_by, AFF_HIDE );
+	learn( ch, gsn_chameleon, TRUE );
+    }
+    else
+	learn( ch, gsn_chameleon, FALSE );
 
     return;
-}
-
-/*
-===========================================================================
-This snippet was written by Erwin S. Andreasen, erwin@pip.dknet.dk. You may 
-use this code freely, as long as you retain my name in all of the files. You
-also have to mail me telling that you are using it.
-
-All my snippets are publically available at: http://pip.dknet.dk/~pip1773/
-
-The classic SCAN command, shows the mobs surrounding the character.
-
-===========================================================================
-*/
-int scan_room( CHAR_DATA *ch, const ROOM_INDEX_DATA *room, char *buf )
-{
-    CHAR_DATA *target		= room->people;
-    int        number_found	= 0;
-
-    while ( target )
-    {
-        if ( can_see( ch, target ) )
-        {
-            strcat ( buf, " - " );
-            strcat ( buf, IS_NPC(target) ? target->short_descr : target->name );
-            strcat ( buf, "\n\r" );
-            number_found++;
-        }
-        target = target->next_in_room;
-    }
-    return number_found;
-}
-
-void do_scan( CHAR_DATA *ch, char *argument )
-{
-    EXIT_DATA       *pexit;
-    ROOM_INDEX_DATA *room;
-    extern char     *const dir_name[];
-    char             buf[ MAX_STRING_LENGTH ];
-    int              dir;
-    int              distance;
-
-    sprintf( buf, "Right here you see:\n\r" );
-    if ( scan_room( ch, ch->in_room, buf ) == 0 )
-        strcat( buf, "Noone\n\r" );
-    send_to_char( buf, ch );
-
-    for ( dir = 0; dir < MAX_DIR; dir++ )
-    {
-        room = ch->in_room;
-
-        for ( distance = 1 ; distance < 4; distance++ )
-        {
-            pexit = room->exit[dir];
-            if ( !pexit
-		|| !pexit->to_room
-		|| IS_SET( pexit->exit_info, EX_CLOSED ) )
-                break;
-
-            sprintf( buf, "%d %s from here you see:\n\r", distance,
-		    dir_name[dir] );
-            if ( scan_room( ch, pexit->to_room, buf ) )
-                send_to_char ( buf, ch );
-
-            room = pexit->to_room;
-        }
-    }
-    return;
-
 }
 
 void do_heighten ( CHAR_DATA *ch, char *argument )
 {
     AFFECT_DATA af;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_heighten].skill_level[ch->class] )
+    if ( !can_use( ch, gsn_heighten ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
@@ -1614,17 +1576,29 @@ void do_heighten ( CHAR_DATA *ch, char *argument )
 	af.duration  = 24;
 	af.modifier  = 0;
 	af.location  = APPLY_NONE;
-	af.bitvector = AFF_DETECT_INVIS;
+
+	vzero( af.bitvector );
+	set_bit( af.bitvector, AFF_DETECT_INVIS );
+
 	affect_to_char( ch, &af );
 
-	af.bitvector = AFF_DETECT_HIDDEN;
+	vzero( af.bitvector );
+	set_bit( af.bitvector, AFF_DETECT_HIDDEN );
+
 	affect_to_char( ch, &af );
 	
-	af.bitvector = AFF_INFRARED;
+	vzero( af.bitvector );
+	set_bit( af.bitvector, AFF_INFRARED );
+
 	affect_to_char( ch, &af );
 	
 	send_to_char( "Your senses are heightened.\n\r", ch );
+
+	learn( ch, gsn_heighten, TRUE );
     }
+    else
+	learn( ch, gsn_heighten, FALSE );
+
     return;
 
 }
@@ -1633,11 +1607,18 @@ void do_shadow ( CHAR_DATA *ch, char *argument )
 {
     AFFECT_DATA af;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_shadow].skill_level[ch->class] )
+    /* Don't allow charmed mobs to do this, check player's skill */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| !can_use( ch, gsn_shadow ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
+    }
+
+    if ( ch->riding )
+    {
+        send_to_char( "You can't do that while mounted.\n\r", ch );
+        return;
     }
 
     send_to_char( "You attempt to move in the shadows.\n\r", ch );
@@ -1649,9 +1630,17 @@ void do_shadow ( CHAR_DATA *ch, char *argument )
 	af.duration  = ch->level;
 	af.modifier  = APPLY_NONE;
 	af.location  = 0;
-	af.bitvector = AFF_SNEAK;
+
+	vzero( af.bitvector );
+	set_bit( af.bitvector, AFF_SNEAK );
+
 	affect_to_char( ch, &af );
+
+	learn( ch, gsn_shadow, TRUE );
     }
+    else
+	learn( ch, gsn_shadow, FALSE );
+
     return;
 
 }
@@ -1667,9 +1656,7 @@ void do_bash( CHAR_DATA *ch, char *argument )
     char       arg [ MAX_INPUT_LENGTH ];
     int        door;
 
-    if ( IS_NPC( ch ) || ( !IS_NPC( ch )
-			  && ch->level
-			  < skill_table[gsn_bash].skill_level[ch->class] ) )
+    if ( !can_use( ch, gsn_bash ) )
     {
 	send_to_char( "You're not enough of a warrior to bash doors!\n\r",
 		     ch );
@@ -1741,6 +1728,8 @@ void do_bash( CHAR_DATA *ch, char *argument )
 	    act( "$n bashes open the $d!",
 		ch, NULL, pexit->keyword, TO_ROOM );
 
+	    learn( ch, gsn_bash, TRUE );
+
 	    damage( ch, ch, ( ch->max_hit / 20 ), gsn_bash, WEAR_NONE, DAM_BASH );
 
 	    /* Bash through the other side */
@@ -1763,7 +1752,6 @@ void do_bash( CHAR_DATA *ch, char *argument )
 		    act( "The $d crashes open!",
 			rch, NULL, pexit_rev->keyword, TO_CHAR );
 		}
-
 	    }
 	}
 	else
@@ -1774,6 +1762,9 @@ void do_bash( CHAR_DATA *ch, char *argument )
 		ch, NULL, pexit->keyword, TO_CHAR );
 	    act( "$n bashes against the $d, but it holds strong.",
 		ch, NULL, pexit->keyword, TO_ROOM );
+
+	    learn( ch, gsn_bash, FALSE );
+
 	    damage( ch, ch, ( ch->max_hit / 10 ), gsn_bash, WEAR_NONE, DAM_BASH );
 	}
     }
@@ -1805,11 +1796,56 @@ void do_bash( CHAR_DATA *ch, char *argument )
 
 }
 
+/*
+ * Original code by Binky for EnvyMud
+ * Cleaned up by Zen
+ */
+void snare( CHAR_DATA *ch, CHAR_DATA *victim, int base )
+{
+    AFFECT_DATA  af;
+
+    /* Only appropriately skilled PCs and uncharmed mobs */
+    if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
+    	|| ( !IS_NPC( ch )
+    	    && number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
+    {	 
+    	affect_strip( victim, gsn_snare );  
+
+    	af.type      = gsn_snare;
+    	af.duration  = base + ( ( ch->level ) / 8 );
+    	af.location  = APPLY_NONE;
+    	af.modifier  = 0;
+
+    	vzero( af.bitvector );
+    	set_bit( af.bitvector, AFF_HOLD );
+
+    	affect_to_char( victim, &af );
+
+    	act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
+    	act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
+    	act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
+
+	learn( ch, gsn_snare, TRUE );
+    }
+    else
+    {
+    	act( "You failed to ensnare $M.  Uh oh!",
+    	    ch, NULL, victim, TO_CHAR	 );
+    	act( "$n tried to ensnare you!  Get $m!",
+    	    ch, NULL, victim, TO_VICT	 );
+    	act( "$n attempted to ensnare $N, but failed!",
+    	    ch, NULL, victim, TO_NOTVICT );
+
+	learn( ch, gsn_snare, FALSE );
+    }
+
+    return;
+}
+
 /* Snare skill by Binky for EnvyMud */
 void do_snare( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA   *victim;
-    AFFECT_DATA  af;
     char         arg [ MAX_INPUT_LENGTH ];
 
     one_argument( argument, arg );
@@ -1831,133 +1867,48 @@ void do_snare( CHAR_DATA *ch, char *argument )
 	/* No argument, but already fighting: valid use of snare */
 	WAIT_STATE( ch, skill_table[gsn_snare].beats );
 
-	/* Only appropriately skilled PCs and uncharmed mobs */
-	if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
-	    || ( !IS_NPC( ch )
-		&& number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
-	{    
-	    affect_strip( victim, gsn_snare );  
-
-	    af.type      = gsn_snare;
-	    af.duration  = 1 + ( ( ch->level ) / 8 );
-	    af.location  = APPLY_NONE;
-	    af.modifier  = 0;
-	    af.bitvector = AFF_HOLD;
-
-	    affect_to_char( victim, &af );
-
-	    act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
-	    act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
-	    act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
-	}
-	else
-	{
-	    act( "You failed to ensnare $M.  Uh oh!",
-		ch, NULL, victim, TO_CHAR    );
-	    act( "$n tried to ensnare you!  Get $m!",
-		ch, NULL, victim, TO_VICT    );
-	    act( "$n attempted to ensnare $N, but failed!",
-		ch, NULL, victim, TO_NOTVICT );
-	}
+	snare( ch, victim, 1 );
+	return;
     }
-    else				/* argument supplied */
+
+    if ( !( victim = get_char_room( ch, arg ) ) )
     {
-	if ( !( victim = get_char_room( ch, arg ) ) )
-	{
-	    send_to_char( "They aren't here.\n\r", ch );
-	    return;
-	}
+    	send_to_char( "They aren't here.\n\r", ch );
+    	return;
+    }
 
-	if ( !IS_NPC( ch ) && !IS_NPC( victim ) )
-	{
-	    send_to_char( "You can't ensnare another player.\n\r", ch );
-	    return;
-	}
+    if ( !IS_NPC( ch ) && !IS_NPC( victim ) )
+    {
+    	send_to_char( "You can't ensnare another player.\n\r", ch );
+    	return;
+    }
 
-	if ( victim != ch->fighting ) /* TRUE if not fighting, or fighting  */
-	{                             /* if person other than victim        */
-	    if ( ch->fighting )       /* TRUE if fighting other than vict.  */ 
-	    {		
-		send_to_char(
-		    "Take care of the person you are fighting first!\n\r",
-			     ch );
-		return;
-	    }                             
-	    WAIT_STATE( ch, skill_table[gsn_snare].beats );
+    if ( victim != ch->fighting ) /* TRUE if not fighting, or fighting  */
+    {				  /* if person other than victim	*/
+    	if ( ch->fighting )	  /* TRUE if fighting other than vict.  */ 
+    	{	    
+    	    send_to_char(
+    		"Take care of the person you are fighting first!\n\r",
+    			 ch );
+    	    return;
+    	}			      
+    	WAIT_STATE( ch, skill_table[gsn_snare].beats );
 
-	    /* here, arg supplied, ch not fighting */
-	    /* only appropriately skilled PCs and uncharmed mobs */
-	    if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
-		|| ( !IS_NPC( ch )
-		    && number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
-	    {
-		affect_strip( victim, gsn_snare );  
+    	/* here, arg supplied, ch not fighting */
+    	snare( ch, victim, 3 );
 
-		af.type      = gsn_snare;
-		af.duration  = 3 + ( (ch->level ) / 8 );
-		af.location  = APPLY_NONE;
-		af.modifier  = 0;
-		af.bitvector = AFF_HOLD;
+    	if ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+    	    /* go for the one who wanted to fight :) */
+    	    multi_hit( victim, ch->master, TYPE_UNDEFINED );
+    	else
+    	    multi_hit( victim, ch, TYPE_UNDEFINED );
+    }
+    else
+    {
+    	/* we are already fighting the intended victim */
+    	WAIT_STATE( ch, skill_table[gsn_snare].beats );
 
-		affect_to_char( victim, &af );
-
-		act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
-		act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
-		act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
-	    }
-	    else
-	    {
-		act( "You failed to ensnare $M.  Uh oh!",
-		    ch, NULL, victim, TO_CHAR    );
-		act( "$n tried to ensnare you!  Get $m!",
-		    ch, NULL, victim, TO_VICT    );
-		act( "$n attempted to ensnare $N, but failed!",
-		    ch, NULL, victim, TO_NOTVICT );
-	    }
-	    if ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
-	    {
-		/* go for the one who wanted to fight :) */
-		multi_hit( victim, ch->master, TYPE_UNDEFINED );
-	    }
-	    else
-	    {
-	        multi_hit( victim, ch, TYPE_UNDEFINED );
-	    }
-	}
-	else
-	{
-	    /* we are already fighting the intended victim */
-	    WAIT_STATE( ch, skill_table[gsn_snare].beats );
-
-	    /* charmed mobs not allowed to do this */
-	    if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
-		|| ( !IS_NPC( ch )
-		    && number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
-	    {
-		affect_strip( victim, gsn_snare );  
-
-		af.type      = gsn_snare;
-		af.duration  = 1 + ( ( ch->level ) / 8 );
-		af.location  = APPLY_NONE;
-		af.modifier  = 0;
-		af.bitvector = AFF_HOLD;
-
-		affect_to_char( victim, &af );
-
-		act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
-		act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
-		act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
-	    }
-	    else
-	    {
-		act( "You failed to ensnare $M.  Uh oh!",
-		    ch, NULL, victim, TO_CHAR    );
-		act( "$n tried to ensnare you!  Get $m!",
-		    ch, NULL, victim, TO_VICT    );
-		act( "$n attempted to ensnare $N, but failed!",
-		    ch, NULL, victim, TO_NOTVICT );
-	    }
-	}
+    	snare( ch, victim, 1 );
     }
 
     return;
@@ -1971,8 +1922,7 @@ void do_untangle( CHAR_DATA *ch, char *argument )
     CHAR_DATA   *victim;
     char         arg [ MAX_INPUT_LENGTH ];
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_untangle].skill_level[ch->class] )
+    if ( !can_use( ch, gsn_untangle ) )
     {
 	send_to_char( "You aren't nimble enough.\n\r", ch );
         return;
@@ -2002,6 +1952,7 @@ void do_untangle( CHAR_DATA *ch, char *argument )
 	    act( "You untangle $N.",  ch, NULL, victim, TO_CHAR    );
 	    act( "$n untangles you.", ch, NULL, victim, TO_VICT    );
 	    act( "$n untangles $n.",  ch, NULL, victim, TO_NOTVICT );
+
         }
 	else
         {
@@ -2009,8 +1960,114 @@ void do_untangle( CHAR_DATA *ch, char *argument )
 	    act( "$n untangles $mself.", ch, NULL, NULL, TO_ROOM );
         }
 
+	learn( ch, gsn_untangle, TRUE );
 	return;
     }
+
+    learn( ch, gsn_untangle, FALSE );
+    return;
+}
+
+
+/*
+===========================================================================
+This snippet was written by Erwin S. Andreasen, erwin@pip.dknet.dk. You may 
+use this code freely, as long as you retain my name in all of the files. You
+also have to mail me telling that you are using it.
+
+All my snippets are publically available at: http://www.abandoned.org/drylock/
+
+The classic SCAN command, shows the mobs surrounding the character.
+
+===========================================================================
+*/
+int scan_room( CHAR_DATA *ch, const ROOM_INDEX_DATA *room, char *buf )
+{
+    CHAR_DATA *target		= room->people;
+    int        number_found	= 0;
+    char      *ptr;
+
+    ptr = buf + strlen( buf );
+
+    while ( target )
+    {
+        if ( can_see( ch, target ) )
+        {
+            strcat ( buf, ", " );
+            strcat ( buf, IS_NPC(target) ? target->short_descr : target->name );
+            number_found++;
+        }
+        target = target->next_in_room;
+    }
+
+    *ptr = ' ';
+
+     strcat( buf, "." );
+
+    return number_found;
+}
+
+char *	const	distance_name	[ ]		=
+{
+    "right here you see:\n\r",
+    "nearby to the %s you see:\n\r",
+    "not far %s you see:\n\r",
+    "off in the distance %s you see:\n\r"
+};
+
+void do_scan( CHAR_DATA *ch, char *argument )
+{
+           EXIT_DATA       *pexit;
+           ROOM_INDEX_DATA *room;
+    extern char     *const  dir_name	[ ];
+           char             buf		[ MAX_STRING_LENGTH ];
+           int              dir;
+           int              dist;
+
+    if ( !can_use( ch, gsn_scan ) )
+    {
+	send_to_char( "You don't have enough feel for that.\n\r", ch );
+        return;
+    }
+
+    if ( !IS_NPC( ch )
+	&& number_percent( ) > ch->pcdata->learned[gsn_scan] )
+    {
+	send_to_char( "You failed.\n\r", ch );
+
+        learn( ch, gsn_scan, FALSE );
+        return;	
+    }
+
+    sprintf( buf, distance_name[0] );
+    if ( scan_room( ch, ch->in_room, buf ) == 0 )
+        strcat( buf, "Noone\n\r" );
+    act( buf, ch, NULL, NULL, TO_CHAR );
+
+    for ( dir = 0; dir < MAX_DIR; dir++ )
+    {
+        room = ch->in_room;
+
+        for ( dist = 1 ; dist < URANGE( 1, ch->level / 15, 4 ); dist++ )
+        {
+            pexit = room->exit[dir];
+            if ( !pexit
+		|| !pexit->to_room
+		|| IS_SET( pexit->exit_info, EX_CLOSED ) )
+                break;
+
+	    sprintf( buf, distance_name[dist], dir_name[dir] );
+
+            if ( scan_room( ch, pexit->to_room, buf ) )
+                act( buf, ch, NULL, NULL, TO_CHAR );
+
+            room = pexit->to_room;
+        }
+    }
+
+    learn( ch, gsn_scan, TRUE );
+    return;
+
 }
 
 
@@ -2024,7 +2081,7 @@ ROOM_INDEX_DATA  *get_random_room( )
 
     for ( ; ; )
     {
-        pRoomIndex = get_room_index( number_range( 0, 65535 ) );
+        pRoomIndex = get_room_index( number_range( 0, top_vnum_room ) );
         if ( pRoomIndex )
             if (   !IS_SET( pRoomIndex->room_flags, ROOM_PRIVATE  )
                 && !IS_SET( pRoomIndex->room_flags, ROOM_SOLITARY ) )
@@ -2033,7 +2090,6 @@ ROOM_INDEX_DATA  *get_random_room( )
 
     return pRoomIndex;
 }
-
 
 
 void do_enter( CHAR_DATA * ch, char *argument )
@@ -2083,12 +2139,12 @@ void do_enter( CHAR_DATA * ch, char *argument )
 
     if ( IS_SET( portal->value[3], PORTAL_RANDOM ) )
     {
-	location		= get_random_room();
+	location		= get_random_room( );
 	portal->value[4]	= location->vnum;
     }
 
     if ( IS_SET( portal->value[3], PORTAL_BUGGY ) && number_percent() < 5 )
-	location = get_random_room();
+	location = get_random_room( );
 
     if ( !location
 	|| location == original
@@ -2164,6 +2220,12 @@ void do_mount( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
 
+    if ( !can_use( ch, gsn_mount ) )
+    {
+	send_to_char( "I don't think that would be a good idea...\n\r", ch );
+	return;
+    }
+
     if ( ch->riding )
     {
 	send_to_char( "You're already mounted!\n\r", ch );
@@ -2209,6 +2271,7 @@ void do_mount( CHAR_DATA *ch, char *argument )
     }
 
     WAIT_STATE( ch, skill_table[gsn_mount].beats );
+
     if ( IS_NPC( ch )
 	|| number_percent( ) < ch->pcdata->learned[gsn_mount] )
     {
@@ -2217,13 +2280,18 @@ void do_mount( CHAR_DATA *ch, char *argument )
 	act( "You mount $N.", ch, NULL, victim, TO_CHAR );
 	act( "$n skillfully mounts $N.", ch, NULL, victim, TO_NOTVICT );
 	act( "$n mounts you.", ch, NULL, victim, TO_VICT );
+
+	learn( ch, gsn_mount, TRUE );
     }
     else
     {
 	act( "You unsuccessfully try to mount $N.", ch, NULL, victim, TO_CHAR );
 	act( "$n unsuccessfully attempts to mount $N.", ch, NULL, victim, TO_NOTVICT );
 	act( "$n tries to mount you.", ch, NULL, victim, TO_VICT );
+
+	learn( ch, gsn_mount, FALSE );
     }
+
     return;
 }
 
@@ -2258,6 +2326,7 @@ void do_dismount( CHAR_DATA *ch, char *argument )
 	victim->rider = NULL;
 	ch->riding    = NULL;
 	ch->position  = POS_RESTING;
+
 	damage( ch, ch, 1, TYPE_UNDEFINED, WEAR_NONE, DAM_BASH );
     }
     return;

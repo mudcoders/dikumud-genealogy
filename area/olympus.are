@@ -4,1502 +4,1894 @@ Author      Generic~
 Levels      15 50
 Security    1
 VNUMs       900 954
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #901
-zeus god~
-Zeus~
+Name        zeus god~
+Short       Zeus~
+Long
 Zeus sits here on a throne.
 ~
+Descr
 You see before you the greatest of the Olympians.  It seems as if he could
 destroy you with a thought.  Every glance penetrates deep into your soul.
 You now know what true fear is.
 ~
-7 532650 1000 S
-52 0 -10 35d35+1000 20d3+25
-100000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       52
+Gold        100000
+Race        God
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #902
-prometheus~
-Prometheus~
+Name        prometheus~
+Short       Prometheus~
+Long
 Prometheus is here, playing with a match.
 ~
+Descr
 This mortal risked the wrath of Zeus to give the gift of fire to humans.  He
 looks up at you and smiles.
 ~
-7 532650 1000 S
-41 0 -7 31d31+310 15d2+20
-40000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       41
+Gold        40000
+Race        God
+Sex         male~
+Spec        spec_breath_fire
+End
+
 #903
-hermes~
-Hermes~
+Name        hermes~
+Short       Hermes~
+Long
 Hermes is busy, delivering a message.
 ~
+Descr
 This is the messenger of the Gods.  He wears a winged helm and boots, and
 darts from place to place.  He looks very busy, and it seems as if he doesn't
 even notice your presence.
 ~
-5 565418 1000 S
-43 0 -7 33d33+330 20d2+20
-50000 0
-0 God~ 1
+Act         scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil sneak flying~
+Alignment   1000
+Level       43
+Gold        50000
+Race        God
+Sex         male~
+End
+
 #904
-poseidon~
-Poseidon~
+Name        poseidon~
+Short       Poseidon~
+Long
 Poseidon is dining here.
 ~
+Descr
 He is the brother of Zeus himself, chosen to rule the seas.  He must be
 visiting Mount Olympus.  He nods at you and motions for you to enter and
 have a seat.
 ~
-7 532650 1000 S
-48 0 -10 35d35+1000 20d3+25
-100000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       48
+Gold        100000
+Race        God
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #905
-apollo~
-Apollo~
+Name        apollo~
+Short       Apollo~
+Long
 Apollo is here, playing a tune.
 ~
+Descr
 This jovial God is strumming on a lyre.  He smiles at you and asks you to
 join him.  You notice a dangerous looking bow by his side, however, and think
 that he knows more than music.
 ~
-7 532650 1000 S
-44 0 -8 34d34+340 15d3+25
-40000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       44
+Gold        40000
+Race        God
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #906
-ares~
-Ares~
+Name        ares~
+Short       Ares~
+Long
 Ares is here, kicking your ass.
 ~
+Descr
 The God of War is here, studying some maps.  He scowls at you as you enter
 and says 'I am very busy.  What do you want?'
 ~
-39 524458 -1000 S
-45 0 -10 35d35+1500 10d2+25
-50000 0
-0 God~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    invisible detect-invis detect-hidden sanctuary flying~
+Alignment   -1000
+Level       45
+Gold        50000
+Race        God
+Sex         male~
+End
+
 #907
-athena~
-Athena~
+Name        athena~
+Short       Athena~
+Long
 Athena is relaxing here.
 ~
+Descr
 Zeus' favorite daughter is sitting on a couch eating grapes.  She smiles at
 you and invites you to join her.
 ~
-7 532650 1000 S
-43 0 -7 33d33+330 15d2+10
-60000 0
-0 God~ 2
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       43
+Gold        60000
+Race        God
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #908
-hephaestus smith~
-Hephaestus~
+Name        hephaestus smith~
+Short       Hephaestus~
+Long
 Hephaestus the Smith is here, crafting a fine weapon.
 ~
+Descr
 This God is the only one who is not physically perfect.  He is lame and very
 ugly.  You get the impression that he is kind, however, and would go out of his
 way to help you.  He is attended by three golden maidens.
 ~
-7 532650 1000 S
-38 0 -7 33d33+330 12d2+26
-60000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       38
+Gold        60000
+Race        God
+Sex         male~
+Spec        spec_breath_lightning
+End
+
 #909
-handmaid golden~
-A Golden Maiden~
+Name        handmaid golden~
+Short       A Golden Maiden~
+Long
 A Handmaid of gold is here, assisting the smith.
 ~
+Descr
 As you gaze upon this creation, you realize that she is made from solid
 gold.  She seems to be very lifelike as she assists the smith in his work.
 ~
-7 532650 0 S
-25 0 0 2d8+250 2d8+2
-1000 0
-0 Human~ 2
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   0
+Level       25
+Gold        1000
+Race        Human
+Sex         female~
+Spec        spec_guard
+End
+
 #910
-soldier~
-A Soldier~
+Name        soldier~
+Short       A Soldier~
+Long
 A soldier is here, assisting Ares.
 ~
+Descr
 This man is waiting on Ares.  Although he does not look very strong, you
 realize that Ares would not have any weaklings working for him.
 ~
-39 524458 0 S
-27 0 0 2d8+250 3d6+12
-5000 0
-0 Human~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    invisible detect-invis detect-hidden sanctuary flying~
+Alignment   0
+Level       27
+Gold        5000
+Race        Human
+Sex         male~
+End
+
 #911
-musician apprentice~
-an apprentice musician~
+Name        musician apprentice~
+Short       an apprentice musician~
+Long
 A musician is here, learning from Apollo.
 ~
+Descr
 This man has mastered his first profession, and is now studying music from the
 immortal Apollo.
 ~
-1031 524458 1000 S
-8 9 4 2d8+80 2d5+2
-2500 0
-0 Human~ 1
+Act         sentinel scavenger practice~
+AffectBy    invisible detect-invis detect-hidden sanctuary flying~
+Alignment   1000
+Level       8
+Gold        2500
+Race        Human
+Sex         male~
+End
+
 #912
-boy serving servant~
-A serving boy~
+Name        boy serving servant~
+Short       A serving boy~
+Long
 A servant is here, feeding Athena her grapes.
 ~
+Descr
 This boy is truly lucky to be able to serve Athena herself.
 ~
-7 524458 1000 S
-6 15 7 2d8+200 2d3+2
-500 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary flying~
+Alignment   1000
+Level       6
+Gold        500
+Race        Human
+Sex         male~
+End
+
 #913
-hound dog war~
-A hound of war~
+Name        hound dog war~
+Short       A hound of war~
+Long
 A large hound snarls at you.
 ~
+Descr
 This great beast can barely be called a dog.  It has been bred to cause fear
 on the battle field, and you have no doubt that it does its job well.
 ~
-39 524458 -600 S
-23 0 0 1d8+450 2d12+10
-0 0
-0 Animal~ 0
+Act         sentinel scavenger aggressive~
+AffectBy    invisible detect-invis detect-hidden sanctuary flying~
+Alignment   -600
+Level       23
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #914
-Odin~
-Odin~
+Name        Odin~
+Short       Odin~
+Long
 Odin is resting here.
 ~
+Descr
 As you gaze at Odin, you realize how insignificant you truly are.  He towers
 over you, and is so intent on his activities that he barely recognizes your
 presence.
 ~
-7 532650 1000 S
-49 0 -10 35d35+1000 10d2+25
-100000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       49
+Gold        100000
+Race        God
+Sex         male~
+Spec        spec_breath_any
+End
+
 #915
-grocer greengrocer julius~
-Julius the Green Grocer~
+Name        grocer greengrocer julius~
+Short       Julius the Green Grocer~
+Long
 Julius the Green Grocer stands here.
 ~
+Descr
 This jovial man has devoted his life to selling fruit and other foods to the
 inhabitants of this city.  Although he may seem like a wimp, it would be wise
 not to underestimate him.  He smiles warmly at you and shows you his selection
 of delicious looking foods.
 ~
-7 532650 1000 S
-37 0 -4 1d1+1999 3d10+10
-10000 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       37
+Gold        10000
+Race        Human
+Sex         male~
+Shop        light~ treasure~ trash~ container~ food~ 120 80 0 23
+End
+
 #916
-alchemist~
-the Alchemist~
+Name        alchemist~
+Short       the Alchemist~
+Long
 The ancient, wizened Alchemist stands here.
 ~
+Descr
 Skilled in all manner of magic, as well as the ancient art of alchemy, he
 stands ready to supply the citizens here (but not you) with all manner of
 arcane supplies.
 ~
-7 532650 1000 S
-39 0 -8 1d1+1999 25d2+50
-10000 0
-0 Troll~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       39
+Gold        10000
+Race        Troll
+Sex         male~
+End
+
 #917
-clive~
-Clive the Weapons Master~
+Name        clive~
+Short       Clive the Weapons Master~
+Long
 Clive the Weapons Master is practicing with his bow and axe.
 ~
+Descr
 Clive looks VERY big and VERY tough.  All those years in the army must have
 paid off.
 ~
-7 532650 1000 S
-40 0 -10 30d30+300 10d3+20
-40000 0
-0 Giant~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       40
+Gold        40000
+Race        Giant
+Sex         male~
+End
+
 #918
-armourer samuel~
-Samuel the Armourer~
+Name        armourer samuel~
+Short       Samuel the Armourer~
+Long
 Samuel the Armourer glares at you.
 ~
+Descr
 Samuel looks just like Clive the Weapons Master: VERY big and VERY tough.
 He doesn't like what you've been doing in his city.
 ~
-39 532650 1000 S
-30 0 -3 1d8+400 10d3+20
-10000 0
-0 Drow~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       30
+Gold        10000
+Race        Drow
+Sex         male~
+End
+
 #919
-ra sun god~
-Ra the Sun God~
+Name        ra sun god~
+Short       Ra the Sun God~
+Long
 Ra the Egyptian Sun God is resting here.
 ~
+Descr
 Ra is very bright!  It hurts your eyes to look at him, so you can tell little
 about his appearance.  What you can tell, however, suggests that he is no one
 to be trifled with.
 ~
-7 532650 1000 S
-46 0 -10 1d8+2500 25d2+25
-100000 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       46
+Gold        100000
+Race        God
+Sex         male~
+Spec        spec_breath_any
+End
+
 #920
-chimera~
-a chimera~
+Name        chimera~
+Short       a chimera~
+Long
 A chimera prowls the cell.
 ~
+Descr
 This bizarre creature has three heads - one of a goat, one of a lion, and one
 of a dragon.  It growls at you as you enter the cell, then suddenly attacks!
 ~
-39 524458 -1000 S
-20 0 -3 20d20+200 5d5+15
-1000 0
-0 Animal~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    invisible detect-invis detect-hidden sanctuary flying~
+Alignment   -1000
+Level       20
+Gold        1000
+Race        Animal
+Sex         male~
+Spec        spec_breath_fire
+End
+
 #921
-hera~
-Hera~
+Name        hera~
+Short       Hera~
+Long
 Hera is here.
 ~
+Descr
 Hera, the wife of Zeus is here.  She smiles at you as you enter and invites you
 to rest and sit for a while.
 ~
-7 532650 1000 S
-50 0 -10 1d8+1500 15d3+15
-100000 0
-0 God~ 2
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       50
+Gold        100000
+Race        God
+Sex         female~
+Spec        spec_cast_cleric
+End
+
 #922
-roc~
-a roc~
+Name        roc~
+Short       a roc~
+Long
 A roc is here.
 ~
+Descr
 This is a giant bird.  It looks at you quizzically, then makes a noise and
 looks away.
 ~
-5 532650 0 S
-15 0 0 1d8+400 3d8+6
-5000 0
-0 God~ 0
+Act         scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   0
+Level       15
+Gold        5000
+Race        God
+Sex         neutral~
+Spec        spec_poison
+End
+
 #923
-citizen resident~
-A citizen~
+Name        citizen resident~
+Short       A citizen~
+Long
 A citizen of this town is strolling down the street here.
 ~
+Descr
 He looks happy and carefree.  He smiles and tips his hat to you.
 ~
-5 532714 1000 S
-4 16 6 1d8+60 2d4+1
-69 0
-0 Ogre~ 1
+Act         scavenger~
+AffectBy    invisible detect-invis detect-hidden hold sanctuary protect-evil flying~
+Alignment   1000
+Level       4
+Gold        69
+Race        Ogre
+Sex         male~
+End
+
 #924
-pegasus horse~
-a pegasus~
+Name        pegasus horse~
+Short       a pegasus~
+Long
 A large horse with wings is here.
 ~
+Descr
 This horse is snow white with large wings.  Although it doesn't look very
 threatening, it seems as though it would be dangerous if provoked.
 ~
-5 532650 0 S
-8 12 4 1d8+110 2d5+3
-800 0
-0 Animal~ 0
+Act         scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   0
+Level       8
+Gold        800
+Race        Animal
+Sex         neutral~
+End
+
 #925
-cook~
-A Cook~
+Name        cook~
+Short       A Cook~
+Long
 A cook is here, hard at work.
 ~
+Descr
 This man looks as is he has been spending WAY too much time in the kitchen.
 ~
-7 532650 1000 S
-5 15 5 1d8+75 2d4+2
-100 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   1000
+Level       5
+Gold        100
+Race        Human
+Sex         male~
+End
+
 #926
-jailer~
-The Jailer~
+Name        jailer~
+Short       The Jailer~
+Long
 The jailer is here, watching for intruders.
 ~
+Descr
 He looks as though he has spent a lot of time underground, guarding the
 prisoners.
 ~
-7 532650 0 S
-13 8 2 1d8+620 2d6+1
-1000 0
-0 Human~ 1
+Act         sentinel scavenger~
+AffectBy    invisible detect-invis detect-hidden sanctuary protect-evil flying~
+Alignment   0
+Level       13
+Gold        1000
+Race        Human
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #900
-aegis plate~
-the Aegis~
+Name        aegis plate~
+Short       the Aegis~
+Descr
 A powerful breast plate has been left here.~
-~
-9 1120 9
-10~ 0~ 0~ 0~ 0~
-50 300000 0
-A
-1 3 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take body~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      50
+Cost        300000
+Affect      strength~ 3 ~
+End
+
 #901
-hammer thunder bolt thunderbolt~
-the Thunder Bolt~
+Name        hammer thunder bolt thunderbolt~
+Short       the Thunder Bolt~
+Descr
 A huge hammer has been carelessly dropped here.~
-~
-5 1120 8193
-0~ 6~ 5~ 8~ 0~
-24 200000 0
-A
-19 8 0
-A
-18 3 0
+Type        weapon~
+Extra       invis magic anti-evil~
+Wear        take wield~
+Values      0~ 6~ 5~ 8~ 0~
+Weight      24
+Cost        200000
+Affect      damroll~ 8 ~
+Affect      hitroll~ 3 ~
+End
+
 #902
-helmet winged~
-a Winged Helmet~
+Name        helmet winged~
+Short       a Winged Helmet~
+Descr
 A helmet with small wings lies here.~
-~
-9 1120 17
-10~ 0~ 0~ 0~ 0~
-5 150000 0
-A
-2 3 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take head~
+Values      10~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        150000
+Affect      dexterity~ 3 ~
+End
+
 #903
-spear ares~
-the Spear of Ares~
+Name        spear ares~
+Short       the Spear of Ares~
+Descr
 A wicked spear rests on the ground here.~
-~
-9 608 8193
-0~ 5~ 5~ 2~ 0~
-18 200000 0
-A
-19 6 0
-A
-18 2 0
+Type        armor~
+Extra       invis magic anti-good~
+Wear        take wield~
+Values      0~ 5~ 5~ 2~ 0~
+Weight      18
+Cost        200000
+Affect      damroll~ 6 ~
+Affect      hitroll~ 2 ~
+End
+
 #904
-sandals winged~
-a pair of winged sandals~
+Name        sandals winged~
+Short       a pair of winged sandals~
+Descr
 A pair of well made sandals lies here.~
-~
-9 1120 65
-8~ 0~ 0~ 0~ 0~
-5 100000 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take feet~
+Values      8~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        100000
+End
+
 #905
-staff ivory~
-an ivory staff~
+Name        staff ivory~
+Short       an ivory staff~
+Descr
 An ivory staff.~
-~
-4 1120 16385
-30~ 3~ 3~ sanctuary~ 0~
-8 70000 0
-A
-17 -10 0
+Type        staff~
+Extra       invis magic anti-evil~
+Wear        take hold~
+Values      30~ 3~ 3~ sanctuary~ 0~
+Weight      8
+Cost        70000
+Affect      ac~ -10 ~
+End
+
 #906
-trident poseidon~
-poseidon's Trident~
+Name        trident poseidon~
+Short       poseidon's Trident~
+Descr
 A huge three pronged spear lies here.~
-~
-5 1120 8193
-0~ 3~ 8~ 2~ 0~
-16 100000 0
-A
-18 5 0
-A
-4 2 0
+Type        weapon~
+Extra       invis magic anti-evil~
+Wear        take wield~
+Values      0~ 3~ 8~ 2~ 0~
+Weight      16
+Cost        100000
+Affect      hitroll~ 5 ~
+Affect      wisdom~ 2 ~
+End
+
 #907
-bow silver~
-a silver bow~
+Name        bow silver~
+Short       a silver bow~
+Descr
 A silver bow.~
-~
-5 1120 8193
-0~ 4~ 4~ 7~ 0~
-15 40000 0
-A
-19 3 0
-A
-18 3 0
+Type        weapon~
+Extra       invis magic anti-evil~
+Wear        take wield~
+Values      0~ 4~ 4~ 7~ 0~
+Weight      15
+Cost        40000
+Affect      damroll~ 3 ~
+Affect      hitroll~ 3 ~
+End
+
 #908
-gauntlets flaming~
-flaming gauntlets~
+Name        gauntlets flaming~
+Short       flaming gauntlets~
+Descr
 A pair of metal gauntlets flame here.~
-~
-9 1120 129
-7~ 0~ 0~ 0~ 0~
-6 60000 0
-A
-13 35 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take hands~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        60000
+Affect      hp~ 35 ~
+End
+
 #909
-vial potion ambrosia~
-ambrosia~
+Name        vial potion ambrosia~
+Short       ambrosia~
+Descr
 A vial of ambrosia lies here.~
-~
-26 1120 1
-30~ dispel evil~ heal~ heal~  ~
-1 20000 0
+Type        pill~
+Extra       invis magic anti-evil~
+Wear        take~
+Values      30~ dispel evil~ heal~ heal~  ~
+Weight      1
+Cost        20000
+End
+
 #910
-necklace glowing~
-a glowing necklace~
+Name        necklace glowing~
+Short       a glowing necklace~
+Descr
 A necklace with an inner glow lies here.~
-~
-9 1120 5
-4~ 0~ 0~ 0~ 0~
-2 10000 0
-A
-12 35 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take neck~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        10000
+Affect      mana~ 35 ~
+End
+
 #911
-ring sapphire~
-a sapphire ring~
+Name        ring sapphire~
+Short       a sapphire ring~
+Descr
 A sapphire ring lies here.~
-~
-9 1120 3
-5~ 0~ 0~ 0~ 0~
-1 40000 0
-A
-19 5 0
-A
-4 2 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take finger~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        40000
+Affect      damroll~ 5 ~
+Affect      wisdom~ 2 ~
+End
+
 #912
-shield glowing~
-a brightly glowing shield~
+Name        shield glowing~
+Short       a brightly glowing shield~
+Descr
 A shield lies here, filling the room with its aura.~
-~
-9 1120 513
-9~ 0~ 0~ 0~ 0~
-10 200000 0
-A
-4 3 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take shield~
+Values      9~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        200000
+Affect      wisdom~ 3 ~
+End
+
 #913
-axe notched~
-a notched axe~
+Name        axe notched~
+Short       a notched axe~
+Descr
 A notched axe.~
-~
-5 1120 8193
-0~ 4~ 4~ 1~ 0~
-12 10000 0
+Type        weapon~
+Extra       invis magic anti-evil~
+Wear        take wield~
+Values      0~ 4~ 4~ 1~ 0~
+Weight      12
+Cost        10000
+End
+
 #914
-grapes~
-a bunch of grapes~
+Name        grapes~
+Short       a bunch of grapes~
+Descr
 A bunch of grapes.~
-~
-19 0 1
-24~ 0~ 0~ 0~ 0~
-1 50 0
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        50
+End
+
 #915
-fan~
-a fan made of peacock feathers~
+Name        fan~
+Short       a fan made of peacock feathers~
+Descr
 A fan made of peacock feathers.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 1 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1
+End
+
 #916
-lute~
-a lute~
+Name        lute~
+Short       a lute~
+Descr
 A lute.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-1 1 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1
+End
+
 #917
-nugget gold~
-a gold nugget~
+Name        nugget gold~
+Short       a gold nugget~
+Descr
 A gold nugget lies gleaming here.~
-~
-8 0 1
-0~ 0~ 0~ 0~ 0~
-5 10000 0
+Type        treasure~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        10000
+End
+
 #918
-apple~
-an apple~
+Name        apple~
+Short       an apple~
+Descr
 An apple is here.~
-~
-26 0 1
-24~ cure light~  ~  ~  ~
-1 1000 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      24~ cure light~  ~  ~  ~
+Weight      1
+Cost        1000
+End
+
 #919
-pear~
-a pear~
+Name        pear~
+Short       a pear~
+Descr
 A pear is here.~
-~
-26 0 1
-24~ cure poison~  ~  ~  ~
-1 1000 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      24~ cure poison~  ~  ~  ~
+Weight      1
+Cost        1000
+End
+
 #920
-orange~
-a orange~
+Name        orange~
+Short       a orange~
+Descr
 A orange is here.~
-~
-26 0 1
-24~ armor~  ~  ~  ~
-1 1000 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      24~ armor~  ~  ~  ~
+Weight      1
+Cost        1000
+End
+
 #921
-kiwi~
-a kiwi~
+Name        kiwi~
+Short       a kiwi~
+Descr
 A kiwi is here.~
-~
-26 0 1
-24~ cure poison~  ~  ~  ~
-1 1000 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      24~ cure poison~  ~  ~  ~
+Weight      1
+Cost        1000
+End
+
 #922
-amulet~
-the Amulet of Ra~
+Name        amulet~
+Short       the Amulet of Ra~
+Descr
 A sun shaped medallion is lying here.~
-~
-9 1120 5
-2~ 0~ 0~ 0~ 0~
-1 10000 0
-A
-12 50 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take neck~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10000
+Affect      mana~ 50 ~
+End
+
 #923
-sun sword~
-the Sword of the Sun~
+Name        sun sword~
+Short       the Sword of the Sun~
+Descr
 A beautiful sword with the rising sun etched on the pommel is lying here.~
-~
-5 1120 8193
-0~ 6~ 5~ 3~ 0~
-20 1000000 0
-A
-19 9 0
+Type        weapon~
+Extra       invis magic anti-evil~
+Wear        take wield~
+Values      0~ 6~ 5~ 3~ 0~
+Weight      20
+Cost        1000000
+Affect      damroll~ 9 ~
+End
+
 #924
-robe blue~
-a blue robe~
+Name        robe blue~
+Short       a blue robe~
+Descr
 A deep blue robe is on the ground here.~
-~
-9 1120 1025
-6~ 0~ 0~ 0~ 0~
-10 50000 0
-A
-14 5 0
-A
-13 15 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take about~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        50000
+Affect      move~ 5 ~
+Affect      hp~ 15 ~
+End
+
 #925
-hat~
-a wide brimmed hat~
+Name        hat~
+Short       a wide brimmed hat~
+Descr
 A hat is lying here.~
-~
-9 1120 17
-4~ 0~ 0~ 0~ 0~
-5 5000 0
+Type        armor~
+Extra       invis magic anti-evil~
+Wear        take head~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        5000
+End
+
 #926
-nectar~
-nectar~
+Name        nectar~
+Short       nectar~
+Descr
 A vial of nectar is lying here.~
-~
-26 0 1
-12~ sanctuary~ giant strength~ armor~  ~
-1 80000 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      12~ sanctuary~ giant strength~ armor~  ~
+Weight      1
+Cost        80000
+End
+
 #927
-key cell~
-a Cell key~
+Name        key cell~
+Short       a Cell key~
+Descr
 A key has been left here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 100 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        100
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #901
-Mountain~
+Name        Mountain~
+Descr
 You are climbing a large mountain which towers over Ofcol.  The path
 continues up the mountain, but part of it is gone.  There is no way to
 continue by land.
 ~
-0 0 5
-D2
+Flags       ~
+Sector      mountain~
+Regen       100 100
+Door        south~ ~ -1 324
 ~
 ~
-0 -1 324
-D4
+Door        up~ ~ -1 902
 ~
 ~
-0 -1 902
-S
+End
+
 #902
-Mountain~
+Name        Mountain~
+Descr
 You are making your way up the mountain.  The rigorous climb has left you
 tired, and you are ready to take a break.
 ~
-0 0 9
-D4
+Flags       ~
+Sector      air~
+Regen       100 100
+Door        up~ ~ -1 903
 ~
 ~
-0 -1 903
-D5
+Door        down~ ~ -1 901
 ~
 ~
-0 -1 901
-S
+End
+
 #903
-Mountain~
+Name        Mountain~
+Descr
 You have finally reached the top of the mountain.  The air here is so thin
 that you must gasp for breath.  To the north, you see what seems to be the
 entrance to a city.
 ~
-0 0 9
-D0
+Flags       ~
+Sector      air~
+Regen       100 100
+Door        north~ ~ -1 904
 ~
 ~
-0 -1 904
-D5
+Door        down~ ~ -1 902
 ~
 ~
-0 -1 902
-S
+End
+
 #904
-Entrance~
+Name        Entrance~
+Descr
 You are at the entrance to a huge city.  As you look around, you realize
 that the inhabitants of this city must be very wealthy indeed - you have never
 seen a city with such beautiful buildings.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        north~ ~ -1 905
 ~
 ~
-0 -1 905
-D2
+Door        south~ ~ -1 903
 ~
 ~
-0 -1 903
-S
+End
+
 #905
-Zeus Street~
+Name        Zeus Street~
+Descr
 You are walking down a huge street.  You notice that there are not many
 people in this town.  On a corner, you see a sign marked 'Zeus Street'.
 To the west, you see a small store.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        north~ ~ -1 906
 The street continues.
 ~
 ~
-0 -1 906
-D2
+Door        south~ ~ -1 904
 ~
 ~
-0 -1 904
-D3
+Door        west~ ~ -1 924
 ~
 ~
-0 -1 924
-S
+End
+
 #906
-Zeus Street~
+Name        Zeus Street~
+Descr
 You are walking down what appears to be the main street of this city.
 You see large residences to the east and west, while the street continues
 to the north and south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        north~ ~ -1 907
 ~
 ~
-0 -1 907
-D1
+Door        east~ ~ -1 925
 ~
 ~
-0 -1 925
-D2
+Door        south~ ~ -1 905
 The street continues.
 ~
 ~
-0 -1 905
-D3
+Door        west~ ~ -1 926
 ~
 ~
-0 -1 926
-S
+End
+
 #907
-Zeus Street~
+Name        Zeus Street~
+Descr
 You are on the main street of this town, called Zeus street.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        north~ ~ -1 908
 ~
 ~
-0 -1 908
-D2
+Door        south~ ~ -1 906
 ~
 ~
-0 -1 906
-D3
+Door        west~ ~ -1 927
 ~
 ~
-0 -1 927
-S
+End
+
 #908
-Zeus Street~
+Name        Zeus Street~
+Descr
 You are still on the main thoroughfare of this town.  To the north, you see
 a large castle.  To the east there is a smaller road, while there is some sort
 of store to the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        north~ ~ -1 909
 ~
 ~
-0 -1 909
-D1
+Door        east~ ~ -1 928
 ~
 ~
-0 -1 928
-D2
+Door        south~ ~ -1 907
 ~
 ~
-0 -1 907
-S
+End
+
 #909
-Castle Entryway~
+Name        Castle Entryway~
+Descr
 You are in the entryway of a large castle.  It is very beautiful, with
 large paintings and a lovely carpet.  You hear jovial laughter to the north,
 while smaller corridors branch off to the east and west.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 910
 ~
 ~
-0 -1 910
-D1
+Door        east~ ~ -1 915
 ~
 ~
-0 -1 915
-D2
+Door        south~ ~ -1 908
 ~
 ~
-0 -1 908
-D3
+Door        west~ ~ -1 911
 ~
 ~
-0 -1 911
-S
+End
+
 #910
-Throne Room~
+Name        Throne Room~
+Descr
 You stop dead in your tracks as you enter this room.  Before you is Zeus,
 in all his glory, sitting on a huge golden throne.  You had thought him to be 
 just a myth, but here he is ... you wonder who else lives in this castle.
 ~
-0 8 1
-E
-throne~
+Flags       indoors~
+Sector      city~
+Regen       100 100
+ExtraDescr  throne~
 This huge golden throne looks as if it has been here for ages.  As you study it
 carefully, you notice that it is not firmly attached to the floor ... perhaps
 you could slide it?
 ~
-D0
+Reset       M 901 1 100
+Reset       E 900 5 100
+Reset       E 901 16 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Door        north~ ~ -1 923
 ~
 ~
-0 -1 923
-D2
+Door        south~ ~ -1 909
 ~
 ~
-0 -1 909
-D5
+Door        down~ door closed~ -1 918
 ~
 throne trapdoor~
-3 -1 918
-S
+End
+
 #911
-Western Wing~
+Name        Western Wing~
+Descr
 You are in the western wing of the castle.  You see the entrance to the
 east, while this hallway continues to the west.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 909
 ~
 ~
-0 -1 909
-D3
+Door        west~ ~ -1 912
 ~
 ~
-0 -1 912
-S
+End
+
 #912
-Western Wing~
+Name        Western Wing~
+Descr
 You are in the western wing of the castle.  The hallway continues to the
 north, while there are private rooms to the west and south.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 913
 ~
 ~
-0 -1 913
-D1
+Door        east~ ~ -1 911
 ~
 ~
-0 -1 911
-D2
+Door        south~ ~ -1 930
 ~
 ~
-0 -1 930
-D3
+Door        west~ ~ -1 929
 ~
 ~
-0 -1 929
-S
+End
+
 #913
-Western Wing~
+Name        Western Wing~
+Descr
 You are in the western wing of the castle.  This hallway continues to the
 south, and you hear pots and pans rattling to the north.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 914
 ~
 ~
-0 -1 914
-D2
+Door        south~ ~ -1 912
 ~
 ~
-0 -1 912
-S
+End
+
 #914
-Kitchen~
+Name        Kitchen~
+Descr
 You have entered the kitchen of this castle, and it is a hotbed of
 activity.  Servants are bustling about, preparing food for the Gods themselves.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 925 4 100
+Reset       M 925 4 100
+Door        south~ ~ -1 913
 ~
 ~
-0 -1 913
-S
+End
+
 #915
-Eastern Wing~
+Name        Eastern Wing~
+Descr
 You are in the eastern wing of the castle.  The hall continues to the
 east, while the entrance is back to the west.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 916
 ~
 ~
-0 -1 916
-D3
+Door        west~ ~ -1 909
 ~
 ~
-0 -1 909
-S
+End
+
 #916
-Eastern Wing~
+Name        Eastern Wing~
+Descr
 You are in the eastern wing of the castle.  The hall turns to the north
 here, while there are private rooms to the east and the south.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 917
 ~
 ~
-0 -1 917
-D1
+Door        east~ ~ -1 931
 ~
 ~
-0 -1 931
-D2
+Door        south~ ~ -1 932
 ~
 ~
-0 -1 932
-D3
+Door        west~ ~ -1 915
 ~
 ~
-0 -1 915
-S
+End
+
 #917
-Eastern Wing~
+Name        Eastern Wing~
+Descr
 You are in the eastern wing of the castle.  You hear animals to the north,
 while the hallway continues to the south.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 933
 ~
 ~
-0 -1 933
-D2
+Door        south~ ~ -1 916
 ~
 ~
-0 -1 916
-S
+End
+
 #918
-Dungeon~
+Name        Dungeon~
+Descr
 You are in Zeus's Dungeon.  You wonder what creatures are so terrible that
 even mighty Zeus fears them enough to imprison them.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 926 1 100
+Reset       E 927 -1 100
+Door        north~ ~ -1 919
 ~
 ~
-0 -1 919
-D4
+Door        up~ door~ -1 910
 ~
 trapdoor throne~
-1 -1 910
-S
+End
+
 #919
-Dungeon~
+Name        Dungeon~
+Descr
 You are in Zeus's Dungeon.  There are cells to the north, west, and east. 
 From the east and west, you hear guttural noises.  From the north, nothing ...
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Door        north~ door closed locked pickproof~ 927 920
 ~
 ~
-39 927 920
-D1
+Door        east~ door closed locked pickproof~ 927 922
 ~
 ~
-39 927 922
-D2
+Door        south~ ~ -1 918
 ~
 ~
-0 -1 918
-D3
+Door        west~ door closed locked pickproof~ 927 921
 ~
 ~
-39 927 921
-S
+End
+
 #920
-Cell~
+Name        Cell~
+Descr
 You are in a small, cramped, dirty cell.  It is a horrid place.
 ~
-0 9 1
-D2
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 902 1 100
+Reset       E 908 9 100
+Door        south~ door closed locked pickproof~ 927 919
 ~
 ~
-39 927 919
-S
+End
+
 #921
-Cell~
+Name        Cell~
+Descr
 You are in a small, cramped, dirty cell.  It is a horrid place.
 ~
-0 9 1
-D1
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 920 2 100
+Door        east~ door closed locked pickproof~ 927 919
 ~
 ~
-39 927 919
-S
+End
+
 #922
-Cell~
+Name        Cell~
+Descr
 You are in a small, cramped, dirty cell.  It is a horrid place.
 ~
-0 9 1
-D3
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 920 2 100
+Door        west~ door closed locked pickproof~ 927 919
 ~
 ~
-39 927 919
-S
+End
+
 #923
-Stairway~
+Name        Stairway~
+Descr
 You have come to a large stairway leading up.  To the south, you see the
 throne room of Zeus.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 910
 ~
 ~
-0 -1 910
-D4
+Door        up~ ~ -1 939
 ~
 ~
-0 -1 939
-S
+End
+
 #924
-Bakery~
+Name        Bakery~
+Descr
 You are in the small store which supplies the residents of this town with
 their food.  It smells wonderful in here!
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 915 1 100
+Reset       E 914 -1 100
+Reset       E 918 -1 100
+Reset       E 919 -1 100
+Reset       E 920 -1 100
+Reset       E 921 -1 100
+Door        east~ ~ -1 905
 ~
 ~
-0 -1 905
-S
+End
+
 #925
-Residence~
+Name        Residence~
+Descr
 You are in the residence of one of the inhabitants of this town.  She
 looks vaguely familiar, but you can't place her name ...
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 907 1 100
+Reset       E 910 3 100
+Reset       E 905 17 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Reset       M 912 4 100
+Reset       E 915 17 100
+Reset       E 914 -1 100
+Reset       M 912 4 100
+Reset       E 915 17 100
+Reset       E 914 -1 100
+Door        west~ ~ -1 906
 ~
 ~
-0 -1 906
-S
+End
+
 #926
-Residence~
+Name        Residence~
+Descr
 You are in the residence of one of the inhabitants of this town.  He looks
 vaguely familiar, but you can't place his name ...
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 905 1 100
+Reset       E 907 16 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Reset       M 911 4 100
+Reset       E 916 17 100
+Reset       E 921 -1 100
+Reset       M 911 4 100
+Reset       E 916 17 100
+Reset       E 921 -1 100
+Door        east~ ~ -1 906
 ~
 ~
-0 -1 906
-S
+End
+
 #927
-Mystic Shop~
+Name        Mystic Shop~
+Descr
 You are in the store which provides the citizens here with whichever
 arcane objects they may need.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 916 1 100
+Reset       E 905 -1 100
+Reset       E 909 -1 100
+Reset       E 910 -1 100
+Reset       E 926 -1 100
+Door        east~ ~ -1 907
 ~
 ~
-0 -1 907
-S
+End
+
 #928
-Ares Street~
+Name        Ares Street~
+Descr
 You are on a smaller road which branches off from the main street.  On a
 sign, you notice that the name of this road is Ares Street.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        east~ ~ -1 934
 ~
 ~
-0 -1 934
-D3
+Door        west~ ~ -1 908
 ~
 ~
-0 -1 908
-S
+End
+
 #929
-Guest Quarters~
+Name        Guest Quarters~
+Descr
 You have entered private quarters which are reserved for visitors to the
 castle.  You nearly faint as you recognize the occupant of this chamber as Odin
 himself, patron God of Midgaard.  He must be visiting Zeus.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 914 1 100
+Reset       E 924 12 100
+Reset       E 925 6 100
+Door        east~ ~ -1 912
 ~
 ~
-0 -1 912
-S
+End
+
 #930
-Storage Room~
+Name        Storage Room~
+Descr
 You are in a storage room of the castle.  There isn't much here, just a
 few boxes filled with old junk.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 912
 ~
 ~
-0 -1 912
-S
+End
+
 #931
-Guest Quarters~
+Name        Guest Quarters~
+Descr
 You have entered a room reserved for visitors to this castle.  You are
 amazed as you recognize the occupant - Ra, the Egyptian Sun God.  He must be
 visiting Zeus.
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 919 1 100
+Reset       E 922 3 100
+Reset       E 923 16 100
+Door        west~ ~ -1 916
 ~
 ~
-0 -1 916
-S
+End
+
 #932
-Storage Room~
+Name        Storage Room~
+Descr
 You are in a storage room of the castle.  There isn't much here, just a lot
 of dust.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 916
 ~
 ~
-0 -1 916
-S
+End
+
 #933
-Stable~
+Name        Stable~
+Descr
 You are in the stable of the castle.  Rather than the horses which you
 expected to find, it is filled with a wide variety of creatures which you
 thought were mythical.  Obviously, you were wrong.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 922 3 100
+Reset       M 922 3 100
+Reset       M 924 3 100
+Reset       M 924 3 100
+Door        south~ ~ -1 917
 ~
 ~
-0 -1 917
-S
+End
+
 #934
-Ares Street~
+Name        Ares Street~
+Descr
 You have reached the end of Ares Street.  To the south you see an armoury,
 while there is a weapons shop to the east.  To the north, you hear the sounds
 of a blacksmith.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 923 10 100
+Door        north~ ~ -1 937
 ~
 ~
-0 -1 937
-D1
+Door        east~ ~ -1 936
 ~
 ~
-0 -1 936
-D2
+Door        south~ ~ -1 935
 ~
 ~
-0 -1 935
-D3
+Door        west~ ~ -1 928
 ~
 ~
-0 -1 928
-S
+End
+
 #935
-Armoury~
+Name        Armoury~
+Descr
 This small store is almost empty.  It seems as if there is not much here,
 but the shopkeeper doesn't want to do business with you anyways.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 918 1 100
+Reset       E 904 -1 100
+Reset       E 908 -1 100
+Reset       E 911 -1 100
+Door        north~ ~ -1 934
 ~
 ~
-0 -1 934
-S
+End
+
 #936
-Weapon Shop~
+Name        Weapon Shop~
+Descr
 You have entered a small store with a modest selection of weapons.  You
 get the feeling that there is not a very wide selection here, but the
 shopkeeper doesn't want to do business with you anyways.
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 917 1 100
+Reset       E 907 -1 100
+Reset       E 913 -1 100
+Door        west~ ~ -1 934
 ~
 ~
-0 -1 934
-S
+End
+
 #937
-Smithy~
+Name        Smithy~
+Descr
 This large room is so noisy, you can barely hear yourself think.  All the
 occupants are hard at work, crafting high quality weapons and armor.  Something
 is strange about the west wall, although you can't quite tell what it is.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 908 1 100
+Reset       E 912 11 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Reset       M 909 4 100
+Reset       E 917 -1 100
+Reset       M 909 4 100
+Reset       E 917 -1 100
+Door        south~ ~ -1 934
 ~
 ~
-0 -1 934
-D3
+Door        west~ door closed~ -1 938
 You see a concealed door!
 ~
 door concealed~
-3 -1 938
-S
+End
+
 #938
-The Planning Room~
+Name        The Planning Room~
+Descr
 You have entered a large room dominated by a huge table with a large map
 on it.  Several men are gathered around the table, studying the map carefully.
 You hear the barking of dogs to the north.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 906 1 100
+Reset       E 903 16 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Reset       M 910 4 100
+Reset       E 913 16 100
+Reset       E 919 -1 100
+Reset       M 910 4 100
+Reset       E 913 16 100
+Reset       E 919 -1 100
+Door        north~ ~ -1 954
 ~
 ~
-0 -1 954
-D1
+Door        east~ ~ -1 937
 ~
 ~
-0 -1 937
-S
+End
+
 #939
-Second Floor~
+Name        Second Floor~
+Descr
 You are on the second floor of this castle.  You are numb from your
 discoveries on the first floor, and wonder what secrets the upper floor of this
 castle holds.  Hallways extend in all directions, and you see a small, closed 
 hatch above you.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 940
 ~
 ~
-0 -1 940
-D1
+Door        east~ ~ -1 943
 ~
 ~
-0 -1 943
-D2
+Door        south~ ~ -1 941
 ~
 ~
-0 -1 941
-D3
+Door        west~ ~ -1 942
 ~
 ~
-0 -1 942
-D4
+Door        up~ door closed~ -1 948
 You see a sign on the hatch.  It reads 'Private Property. No trespassing!'
 ~
 hatch~
-3 -1 948
-D5
+Door        down~ ~ -1 923
 ~
 ~
-0 -1 923
-S
+End
+
 #940
-Northern Hall~
+Name        Northern Hall~
+Descr
 You are in the northern hallway.  There is a private room to the north,
 and the stairs leading down are to the south.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 947
 ~
 ~
-0 -1 947
-D2
+Door        south~ ~ -1 939
 ~
 ~
-0 -1 939
-S
+End
+
 #941
-Southern Hall~
+Name        Southern Hall~
+Descr
 You are in the southern hallway.  There is a private room to the south,
 and the stairs leading down are to the north.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 939
 ~
 ~
-0 -1 939
-D2
+Door        south~ ~ -1 944
 ~
 ~
-0 -1 944
-S
+End
+
 #942
-Western Hall~
+Name        Western Hall~
+Descr
 You are in the western hallway.  There is a private room to the west, and
 the stairs leading down are to the east.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 939
 ~
 ~
-0 -1 939
-D3
+Door        west~ ~ -1 945
 ~
 ~
-0 -1 945
-S
+End
+
 #943
-Eastern Hall~
+Name        Eastern Hall~
+Descr
 You are in the eastern hallway.  There is a private room to the east, and
 the stairs leading down are to the west.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 946
 ~
 ~
-0 -1 946
-D3
+Door        west~ ~ -1 939
 ~
 ~
-0 -1 939
-S
+End
+
 #944
-Bed Room~
+Name        Bed Room~
+Descr
 You are in the bed room of a God!  This one seems to be empty.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 941
 ~
 ~
-0 -1 941
-S
+End
+
 #945
-Bed Room~
+Name        Bed Room~
+Descr
 You are in the bed room of a God!
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 921 1 100
+Reset       E 911 1 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Door        east~ ~ -1 942
 ~
 ~
-0 -1 942
-S
+End
+
 #946
-Bed Room~
+Name        Bed Room~
+Descr
 You are in the bed room of a God!
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 904 1 100
+Reset       E 906 16 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Door        west~ ~ -1 943
 ~
 ~
-0 -1 943
-S
+End
+
 #947
-Bed Room~
+Name        Bed Room~
+Descr
 You are in the bed room of a God!
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 903 1 100
+Reset       E 904 8 100
+Reset       E 902 6 100
+Reset       E 926 -1 100
+Reset       E 909 -1 100
+Door        south~ ~ -1 940
 ~
 ~
-0 -1 940
-S
+End
+
 #948
-Hall of Gods~
+Name        Hall of Gods~
+Descr
 You have entered the most sacred of places, the hall of true Gods.  If you
 are a mortal, it would probably be a good idea to leave NOW!  Exits leave in
 all directions.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 951
 ~
 ~
-0 -1 951
-D5
+Door        down~ ~ -1 939
 ~
 hatch~
-0 -1 939
-S
+End
+
 #951
-The Portal~
+Name        The Portal~
+Descr
 A sign reads: Beware of the unexpected and don't expect too much.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 948
 ~
 ~
-0 -1 948
-S
+End
+
 #954
-The Believer~
+Name        The Believer~
+Descr
 A voice whispers, 'before the time has passed, enjoy your life.'
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 913 5 100
+Reset       M 913 5 100
+Reset       M 913 5 100
+Door        south~ ~ -1 938
 ~
 ~
-0 -1 938
-S
+End
+
 #0
 
-
-#SPECIALS
-M 901 spec_cast_cleric
-M 902 spec_breath_fire
-M 904 spec_cast_mage
-M 905 spec_cast_mage
-M 907 spec_cast_mage
-M 908 spec_breath_lightning
-M 909 spec_guard
-M 914 spec_breath_any
-M 919 spec_breath_any
-M 920 spec_breath_fire
-M 921 spec_cast_cleric
-M 922 spec_poison
-M 926 spec_cast_mage
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 923 10 904
-M 0 923 10 905
-M 0 923 10 906
-M 0 923 10 907
-M 0 923 10 908
-M 0 901 1 910
-E 0 900 0 5
-E 0 901 0 16
-G 0 926 0
-G 0 909 0
-M 0 925 4 914
-M 0 925 4 914
-M 0 926 1 918
-G 0 927 0
-M 0 902 1 920
-E 0 908 0 9
-M 0 920 2 921
-M 0 920 2 922
-M 0 915 1 924
-G 0 914 0
-G 0 918 0
-G 0 919 0
-G 0 920 0
-G 0 921 0
-M 0 907 1 925
-E 0 910 0 3
-E 0 905 0 17
-G 0 926 0
-G 0 909 0
-M 0 912 4 925
-E 0 915 0 17
-G 0 914 0
-M 0 912 4 925
-E 0 915 0 17
-G 0 914 0
-M 0 905 1 926
-E 0 907 0 16
-G 0 926 0
-G 0 909 0
-M 0 911 4 926
-E 0 916 0 17
-G 0 921 0
-M 0 911 4 926
-E 0 916 0 17
-G 0 921 0
-M 0 916 1 927
-G 0 905 0
-G 0 909 0
-G 0 910 0
-G 0 926 0
-M 0 923 10 928
-M 0 914 1 929
-E 0 924 0 12
-E 0 925 0 6
-M 0 919 1 931
-E 0 922 0 3
-E 0 923 0 16
-M 0 922 3 933
-M 0 922 3 933
-M 0 924 3 933
-M 0 924 3 933
-M 0 923 10 934
-M 0 918 1 935
-G 0 904 0
-G 0 908 0
-G 0 911 0
-M 0 917 1 936
-G 0 907 0
-G 0 913 0
-M 0 908 1 937
-E 0 912 0 11
-G 0 926 0
-G 0 909 0
-M 0 909 4 937
-G 0 917 0
-M 0 909 4 937
-G 0 917 0
-M 0 906 1 938
-E 0 903 0 16
-G 0 926 0
-G 0 909 0
-M 0 910 4 938
-E 0 913 0 16
-G 0 919 0
-M 0 910 4 938
-E 0 913 0 16
-G 0 919 0
-M 0 921 1 945
-E 0 911 0 1
-G 0 926 0
-G 0 909 0
-M 0 904 1 946
-E 0 906 0 16
-G 0 926 0
-G 0 909 0
-M 0 903 1 947
-E 0 904 0 8
-E 0 902 0 6
-G 0 926 0
-G 0 909 0
-M 0 913 5 954
-M 0 913 5 954
-M 0 913 5 954
-S
-
-
-#SHOPS
-915 1 8 13 15 19 120 80 0 23
-0
 
 
 #$

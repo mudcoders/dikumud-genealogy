@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -92,7 +94,7 @@ int get_curr_str( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_STR )
+    if ( ch->class[0]->attr_prime == APPLY_STR )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -117,7 +119,7 @@ int get_max_str( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_STR )
+    if ( ch->class[0]->attr_prime == APPLY_STR )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -142,7 +144,7 @@ int get_curr_int( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_INT )
+    if ( ch->class[0]->attr_prime == APPLY_INT )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -167,7 +169,7 @@ int get_max_int( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_INT )
+    if ( ch->class[0]->attr_prime == APPLY_INT )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -192,7 +194,7 @@ int get_curr_wis( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_WIS )
+    if ( ch->class[0]->attr_prime == APPLY_WIS )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -217,7 +219,7 @@ int get_max_wis( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_WIS )
+    if ( ch->class[0]->attr_prime == APPLY_WIS )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -242,7 +244,7 @@ int get_curr_dex( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_DEX )
+    if ( ch->class[0]->attr_prime == APPLY_DEX )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -267,7 +269,7 @@ int get_max_dex( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_DEX )
+    if ( ch->class[0]->attr_prime == APPLY_DEX )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -292,7 +294,7 @@ int get_curr_con( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_CON )
+    if ( ch->class[0]->attr_prime == APPLY_CON )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -317,7 +319,7 @@ int get_max_con( CHAR_DATA *ch )
     if ( IS_NPC( ch ) )
 	return value;
 
-    if ( class_table[ch->class]->attr_prime == APPLY_CON )
+    if ( ch->class[0]->attr_prime == APPLY_CON )
 	max = UMIN( 25, 25 + mod );
     else
 	max = UMIN( 22 + mod, 25 );
@@ -483,16 +485,19 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     OBJ_DATA *wield2;
     char      buf [ MAX_STRING_LENGTH ];
     int       mod;
+    int       i;
 
     mod = paf->modifier;
 
     if ( fAdd )
     {
-	SET_BIT   ( ch->affected_by, paf->bitvector );
+        for ( i = 0; i < MAX_VECTOR; i++ )
+            SET_BIT   ( ch->affected_by[i], paf->bitvector[i] );
     }
     else
     {
-	REMOVE_BIT( ch->affected_by, paf->bitvector );
+        for ( i = 0; i < MAX_VECTOR; i++ )
+            REMOVE_BIT( ch->affected_by[i], paf->bitvector[i] );
 	switch ( paf->location )
 	{
 	case APPLY_RESISTANT:	REMOVE_BIT( ch->resistant, mod );	return;
@@ -1980,39 +1985,39 @@ char *affect_loc_name( int location )
 /*
  * Return ascii name of an affect bit vector.
  */
-char *affect_bit_name( int vector )
+char *affect_bit_name( u_intc *vector )
 {
     static char buf [ 512 ];
 
     buf[0] = '\0';
-    if ( vector & AFF_BLIND         ) strcat( buf, " blind"          );
-    if ( vector & AFF_INVISIBLE     ) strcat( buf, " invisible"      );
-    if ( vector & AFF_DETECT_EVIL   ) strcat( buf, " detect_evil"    );
-    if ( vector & AFF_DETECT_GOOD   ) strcat( buf, " detect_good"    );
-    if ( vector & AFF_DETECT_INVIS  ) strcat( buf, " detect_invis"   );
-    if ( vector & AFF_DETECT_MAGIC  ) strcat( buf, " detect_magic"   );
-    if ( vector & AFF_DETECT_HIDDEN ) strcat( buf, " detect_hidden"  );
-    if ( vector & AFF_HOLD          ) strcat( buf, " hold"           );
-    if ( vector & AFF_SANCTUARY     ) strcat( buf, " sanctuary"      );
-    if ( vector & AFF_FAERIE_FIRE   ) strcat( buf, " faerie_fire"    );
-    if ( vector & AFF_INFRARED      ) strcat( buf, " infrared"       );
-    if ( vector & AFF_CURSE         ) strcat( buf, " curse"          );
-    if ( vector & AFF_CHANGE_SEX    ) strcat( buf, " change_sex"     );
-    if ( vector & AFF_POISON        ) strcat( buf, " poison"         );
-    if ( vector & AFF_PROTECT_EVIL  ) strcat( buf, " protect_evil"   );
-    if ( vector & AFF_PROTECT_GOOD  ) strcat( buf, " protect_good"   );
-    if ( vector & AFF_POLYMORPH     ) strcat( buf, " polymorph"      );
-    if ( vector & AFF_SLEEP         ) strcat( buf, " sleep"          );
-    if ( vector & AFF_SNEAK         ) strcat( buf, " sneak"          );
-    if ( vector & AFF_HIDE          ) strcat( buf, " hide"           );
-    if ( vector & AFF_CHARM         ) strcat( buf, " charm"          );
-    if ( vector & AFF_FLYING        ) strcat( buf, " flying"         );
-    if ( vector & AFF_PASS_DOOR     ) strcat( buf, " pass_door"      );
-    if ( vector & AFF_MUTE          ) strcat( buf, " mute"           );
-    if ( vector & AFF_GILLS         ) strcat( buf, " gills"          );
-    if ( vector & AFF_VAMP_BITE     ) strcat( buf, " vampiric curse" );
-    if ( vector & AFF_GHOUL         ) strcat( buf, " ghoulic curse"  );
-    if ( vector & AFF_FLAMING       ) strcat( buf, " flaming shield" );
+    if ( is_set( vector, AFF_BLIND         ) ) strcat( buf, " blind"          );
+    if ( is_set( vector, AFF_INVISIBLE	   ) ) strcat( buf, " invisible"      );
+    if ( is_set( vector, AFF_DETECT_EVIL   ) ) strcat( buf, " detect_evil"    );
+    if ( is_set( vector, AFF_DETECT_GOOD   ) ) strcat( buf, " detect_good"    );
+    if ( is_set( vector, AFF_DETECT_INVIS  ) ) strcat( buf, " detect_invis"   );
+    if ( is_set( vector, AFF_DETECT_MAGIC  ) ) strcat( buf, " detect_magic"   );
+    if ( is_set( vector, AFF_DETECT_HIDDEN ) ) strcat( buf, " detect_hidden"  );
+    if ( is_set( vector, AFF_HOLD          ) ) strcat( buf, " hold"	      );
+    if ( is_set( vector, AFF_SANCTUARY	   ) ) strcat( buf, " sanctuary"      );
+    if ( is_set( vector, AFF_FAERIE_FIRE   ) ) strcat( buf, " faerie_fire"    );
+    if ( is_set( vector, AFF_INFRARED	   ) ) strcat( buf, " infrared"	      );
+    if ( is_set( vector, AFF_CURSE	   ) ) strcat( buf, " curse"	      );
+    if ( is_set( vector, AFF_CHANGE_SEX    ) ) strcat( buf, " change_sex"     );
+    if ( is_set( vector, AFF_POISON	   ) ) strcat( buf, " poison"	      );
+    if ( is_set( vector, AFF_PROTECT_EVIL  ) ) strcat( buf, " protect_evil"   );
+    if ( is_set( vector, AFF_PROTECT_GOOD  ) ) strcat( buf, " protect_good"   );
+    if ( is_set( vector, AFF_POLYMORPH	   ) ) strcat( buf, " polymorph"      );
+    if ( is_set( vector, AFF_SLEEP	   ) ) strcat( buf, " sleep"	      );
+    if ( is_set( vector, AFF_SNEAK	   ) ) strcat( buf, " sneak"	      );
+    if ( is_set( vector, AFF_HIDE	   ) ) strcat( buf, " hide"	      );
+    if ( is_set( vector, AFF_CHARM	   ) ) strcat( buf, " charm"	      );
+    if ( is_set( vector, AFF_FLYING	   ) ) strcat( buf, " flying"	      );
+    if ( is_set( vector, AFF_PASS_DOOR	   ) ) strcat( buf, " pass_door"      );
+    if ( is_set( vector, AFF_MUTE	   ) ) strcat( buf, " mute"	      );
+    if ( is_set( vector, AFF_GILLS	   ) ) strcat( buf, " gills"	      );
+    if ( is_set( vector, AFF_VAMP_BITE	   ) ) strcat( buf, " vampiric curse" );
+    if ( is_set( vector, AFF_GHOUL	   ) ) strcat( buf, " ghoulic curse"  );
+    if ( is_set( vector, AFF_FLAMING	   ) ) strcat( buf, " flaming shield" );
 
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
@@ -2256,6 +2261,8 @@ CLAN_DATA *clan_lookup( const char *name )
   the pointer to buffer stuff is not really necessary, but originally I
   modified the buffer, so I had to make a copy of it. What the hell, it
   works :) (read: it seems to work :)
+  
+  Erwin S.A.
 */
 int advatoi( const char *s )
 {
@@ -2378,4 +2385,264 @@ int check_ris( CHAR_DATA *ch, int dam_type )
         return def;
     else
         return ris;
+}
+
+
+void learn( CHAR_DATA *ch, int sn, bool success )
+{
+    CLASS_TYPE *class;
+    char        buf    [ MAX_STRING_LENGTH ];
+    int         chance;
+    int         gain;
+
+    if ( IS_NPC( ch ) )
+	return;
+
+    if ( !( class = skill_class( ch, sn ) )
+	|| ch->level < class->skill_level[sn]
+	|| class->skill_rating[sn] == 0
+	|| ch->pcdata->learned[sn] == 0
+	|| ch->pcdata->learned[sn] >= class->skill_adept[sn] )
+	return;
+
+    chance  = int_app[get_curr_int( ch )].learn;
+    chance += class->skill_rating[sn] * 3;
+    chance += ch->level / 2;
+
+    chance *= number_range( 2, 6 );
+
+    if ( number_range( 1, 1000 ) > chance )
+	return;
+
+    if ( success )
+    {
+	chance = URANGE( 5, 100 - ch->pcdata->learned[sn], 95 );
+
+	if ( number_percent( ) > chance )
+	    return;
+
+	ch->pcdata->learned[sn]++;
+
+	gain = 2 * class->skill_rating[sn];
+
+	if ( ch->pcdata->learned[sn] == class->skill_adept[sn] )
+	{
+	    gain *= 2;
+
+	    sprintf( buf, "{oYou are now an adept of %s!\n\r",
+	    	    skill_table[sn].name );
+	    send_to_char( buf, ch );
+	    sprintf( buf, "{oYou gain %d bonus experience!{x\n\r", gain );
+	    send_to_char( buf, ch );
+
+	    gain_exp( ch, gain );
+	    return;
+	}
+
+	sprintf( buf, "{oYou have become better at %s!\n\r",
+		skill_table[sn].name );
+	send_to_char( buf, ch );
+	sprintf( buf, "{oYou gain %d experience points from your sucess!{x\n\r",
+		gain );
+	send_to_char( buf, ch );
+
+	gain_exp( ch, gain );
+	return;
+    }
+
+    chance = URANGE( 5, ch->pcdata->learned[sn] / 2, 30 );
+
+    if ( number_percent( ) > chance )
+	return;
+
+    sprintf( buf,
+	    "You learn from your mistakes, and you improve at %s.\n\r",
+	    skill_table[sn].name );
+    send_to_char( buf, ch );
+
+    ch->pcdata->learned[sn] += number_fuzzy( 2 );
+    ch->pcdata->learned[sn]  = UMIN( ch->pcdata->learned[sn],
+    				      class->skill_adept[sn] );
+    return;
+}
+
+
+
+/*
+ * Bitvector utility functions.
+ */
+u_intc *vzero( u_intc *vector )
+{
+    register int i;
+
+    for ( i = 0; i < MAX_VECTOR; i++ )
+	vector[i] = 0;
+
+    return vector;
+}
+
+
+u_intc *vcopy( u_intc *dest, const u_intc *src )
+{
+    register int i;
+
+    for ( i = 0; i < MAX_VECTOR; i++ )
+	dest[i] = src[i];
+
+    return dest;
+}
+
+
+
+/*
+ * Multiclass support functions.
+ */
+bool can_use( CHAR_DATA *ch, int sn )
+{
+    CLASS_TYPE *class;
+
+    if ( IS_NPC( ch ) )
+	return TRUE;
+
+    if ( !( class = skill_class( ch, sn ) ) )
+	return FALSE;
+    
+    return ( ch->level >= class->skill_level[sn] );
+}
+
+
+CLASS_TYPE *skill_class( CHAR_DATA *ch, int sn )
+{
+    int iClass;
+
+    if ( IS_NPC( ch ) )
+	return NULL;
+
+    for ( iClass = 0; ch->class[iClass] && iClass < MAX_MULTICLASS; iClass++ )
+    {
+	if ( ch->class[iClass]->skill_level[sn] <= LEVEL_HERO )
+	    return ch->class[iClass];
+    }
+
+    return NULL;
+}
+
+
+bool can_prac( CHAR_DATA *ch, int sn )
+{
+    CLASS_TYPE *class;
+
+    if ( IS_NPC( ch ) )
+	return FALSE;
+
+    if ( !( class = skill_class( ch, sn ) ) )
+	return FALSE;
+    
+    return ( ch->level >= class->skill_level[sn] );
+}
+
+
+bool has_spells( CHAR_DATA *ch )
+{
+    int iClass;
+
+    if ( IS_NPC( ch ) )
+	return FALSE;
+
+    for ( iClass = 0; ch->class[iClass] && iClass < MAX_MULTICLASS; iClass++ )
+    {
+	if ( ch->class[iClass]->fMana )
+	    return TRUE;
+    }
+
+    return FALSE;
+}
+
+
+bool is_class( CHAR_DATA *ch, CLASS_TYPE *class )
+{
+    int iClass; 
+
+    if ( IS_NPC( ch ) )
+	return FALSE;
+
+    for ( iClass = 0; ch->class[iClass] && iClass < MAX_MULTICLASS; iClass++ )
+    {
+	if ( ch->class[iClass] == class )
+	    return TRUE;
+    }
+
+    return FALSE;
+}
+
+
+int number_classes( CHAR_DATA *ch )
+{
+    int iClass;
+
+    if ( IS_NPC( ch ) )
+	return 0;
+
+    for ( iClass = 0; ch->class[iClass] && iClass < MAX_MULTICLASS; iClass++ )
+	;
+
+    return iClass;
+}
+
+
+char *class_long( CHAR_DATA *ch )
+{
+    static char buf [ MAX_STRING_LENGTH ];
+           int  iClass;
+
+    if ( IS_NPC( ch ) )
+	return "Mobile";
+
+    buf[0] = '\0';
+    for ( iClass = 0; ch->class[iClass] && iClass < MAX_MULTICLASS; iClass++ )
+    {
+	strcat( buf, "/" );
+	strcat( buf, ch->class[iClass]->name );
+    }
+
+    return buf+1;
+}
+
+
+char *class_short( CHAR_DATA *ch )
+{
+    static char buf [ MAX_STRING_LENGTH ];
+    int         iClass;
+
+    if ( IS_NPC( ch ) )
+	return "Mob";
+
+    buf[0] = '\0';
+    for ( iClass = 0; ch->class[iClass] && iClass < MAX_MULTICLASS; iClass++ )
+    {
+	strcat( buf, "/" );
+	strcat( buf, ch->class[iClass]->who_name );
+    }
+
+    return buf+1;
+}
+
+
+/*
+ * Lookup a class by name.
+ */
+CLASS_TYPE *class_lookup( const char *name )
+{
+    CLASS_TYPE *class;
+
+    for ( class = class_first; class; class = class->next )
+    {
+	if ( !class->name )
+            break;
+	if ( LOWER( name[0] ) == LOWER( class->name[0] )
+            && !str_prefix( name, class->name ) )
+            return class;
+    }
+
+    return NULL;
 }

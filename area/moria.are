@@ -4,10 +4,13 @@ Author      Alfa~
 Levels      5 15
 Security    1
 VNUMs       3900 4172
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
+
 
 
 #HELPS
@@ -46,773 +49,1094 @@ intelligence.
 
 0 $~
 
-#MOBILES
+
+
+#MOBDB
 #4000
-python snake~
-the huge python~
+Name        python snake~
+Short       the huge python~
+Long
 The huge python rears its head and hisses at you. 
 ~
+Descr
 It sways back and forth contemplating whether or not to eat you.
 ~
-35 8 -200 S
-11 7 3 11d11+110 3d6+0
-0 0
-0 Snake~ 1
+Act         sentinel aggressive~
+AffectBy    detect-invis~
+Alignment   -200
+Level       11
+Gold        0
+Race        Snake
+Sex         male~
+Spec        spec_poison
+End
+
 #4001
-garter snake~
-the garter snake~
+Name        garter snake~
+Short       the garter snake~
+Long
 A small green garter snake slithers along the floor.
 ~
+Descr
 It looks harmless enough.  Or is it?
 ~
-3 0 -100 S
-7 12 4 7d7+70 2d6+1
-0 0
-0 Snake~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        0
+Race        Snake
+Sex         neutral~
+Spec        spec_poison
+End
+
 #4002
-centipede~
-the centipede~
+Name        centipede~
+Short       the centipede~
+Long
 A small centipede here is looking for vegetation.
 ~
+Descr
 It looks completely harmless but who knows for sure?
 ~
-3 0 100 S
-3 20 6 3d3+30 1d6+0
-0 0
-0 Worm~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        0
+Race        Worm
+Sex         neutral~
+End
+
 #4003
-kobold~
-the kobold~
+Name        kobold~
+Short       the kobold~
+Long
 An ugly kobold mumbles something under its breath.
 ~
+Descr
 It looks ugly enough to scare its own mother.
 ~
-69 0 -100 S
-4 16 5 4d4+40 1d8+1
-50 0
-0 Kobold~ 0
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   -100
+Level       4
+Gold        50
+Race        Kobold
+Sex         neutral~
+End
+
 #4004
-orc~
-the orc~
+Name        orc~
+Short       the orc~
+Long
 This orc is frothing around the mouth.  Better stay away.
 ~
+Descr
 You notice a slight tinge of madness in his eyes.
 ~
-101 0 -400 S
-5 15 5 5d5+50 2d4+0
-100 0
-0 Orc~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -400
+Level       5
+Gold        100
+Race        Orc
+Sex         male~
+End
+
 #4005
-orc~
-the large orc~
+Name        orc~
+Short       the large orc~
+Long
 This large orc is looking for someone small to pick on.
 ~
+Descr
 The orc says, "Whatcha look'n at?"
 ~
-69 0 -500 S
-7 11 2 7d7+70 2d6+2
-200 0
-0 Orc~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   -500
+Level       7
+Gold        200
+Race        Orc
+Sex         male~
+End
+
 #4050
-warrior~
-the warrior~
+Name        warrior~
+Short       the warrior~
+Long
 This tall warrior has more scars than even you!
 ~
+Descr
 He's surely a strong, brainless fighter.  Like you.
 ~
-103 0 -300 S
-12 8 -1 12d12+120 2d8+1
-1000 0
-0 Giant~ 1
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -300
+Level       12
+Gold        1000
+Race        Giant
+Sex         male~
+End
+
 #4051
-warrior~
-the warrior~
+Name        warrior~
+Short       the warrior~
+Long
 This veteran warrior could even be your father.
 ~
+Descr
 He seems to know his way with weapons.  And he wants
 to show you what he can do!
 ~
-101 0 -400 S
-7 13 3 7d7+70 2d5+0
-200 0
-0 Giant~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -400
+Level       7
+Gold        200
+Race        Giant
+Sex         male~
+End
+
 #4052
-hobgoblin~
-the hobgoblin~
+Name        hobgoblin~
+Short       the hobgoblin~
+Long
 A small beat-up hobgoblin cringes in the corner.
 ~
+Descr
 Looking into the eyes of this poor soul makes you feel
 sad as you see the terror and fear in its eyes.  Why
 don't you put it out of its misery?
 ~
-69 0 -300 S
-6 12 6 6d6+60 2d4+0
-100 0
-0 Hobgoblin~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   -300
+Level       6
+Gold        100
+Race        Hobgoblin
+Sex         male~
+End
+
 #4053
-snake~
-the snake~
+Name        snake~
+Short       the snake~
+Long
 A sickly brown snake watches you with caution.
 ~
+Descr
 A closer look reveals a hungry demeanor.  Don't get too close!
 ~
-35 0 -600 S
-10 10 4 10d10+100 3d5+1
-0 0
-0 Snake~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -600
+Level       10
+Gold        0
+Race        Snake
+Sex         neutral~
+Spec        spec_poison
+End
+
 #4054
-centipede~
-the centipede~
+Name        centipede~
+Short       the centipede~
+Long
 A white centipede crawls along the cave floors randomly.
 ~
+Descr
 The centipede doesn't really seem to notice you.
 ~
-3 0 -100 S
-5 17 5 5d5+50 1d7+0
-0 0
-0 Worm~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   -100
+Level       5
+Gold        0
+Race        Worm
+Sex         neutral~
+End
+
 #4055
-hobgoblin~
-the large hobgoblin~
+Name        hobgoblin~
+Short       the large hobgoblin~
+Long
 A large hobgoblin is here wondering if he should tear you apart.
 ~
+Descr
 Red, bloodshot eyes and drool dripping from its mouth makes you
 wonder just how far away you should be.
 ~
-69 0 -500 S
-10 11 2 1d10+120 2d6+1
-300 0
-0 Hobgoblin~ 1
+Act         scavenger stay_area~
+AffectBy    ~
+Alignment   -500
+Level       10
+Gold        300
+Race        Hobgoblin
+Sex         male~
+End
+
 #4056
-orc~
-the orc~
+Name        orc~
+Short       the orc~
+Long
 An orc is here, looking for something (or perhaps someone) to eat.
 ~
+Descr
 As you already know, orcs have quite a ravenous appetite.  
 Care to be dinner?
 ~
-101 0 -800 S
-8 13 2 3d10+100 2d5+2
-150 0
-0 Orc~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -800
+Level       8
+Gold        150
+Race        Orc
+Sex         male~
+End
+
 #4057
-lion mountain~
-the mountain lion~
+Name        lion mountain~
+Short       the mountain lion~
+Long
 A mountain lion bears its teeth at the sight of more food.
 ~
+Descr
 Huge claws and big teeth make quite a fearsome opponent for
 the weary.  Are you next?
 ~
-97 0 -100 S
-5 16 5 1d10+60 2d4+0
-0 0
-0 Animal~ 1
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -100
+Level       5
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #4058
-giant hill~
-the hill giant~
+Name        giant hill~
+Short       the hill giant~
+Long
 A hill giant is here tossing rocks around.  Marbles perhaps?
 ~
+Descr
 The hill giant looks like he's about 9 feet tall. By his actions you
 come to the conclusion that he's not very intelligent.  A perfect
 playmate for you.
 ~
-65 0 0 S
-13 8 2 1d10+160 2d10+0
-1000 0
-0 Giant~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       13
+Gold        1000
+Race        Giant
+Sex         male~
+End
+
 #4100
-mage~
-the Mage~
+Name        mage~
+Short       the Mage~
+Long
 A small intelligent looking mage is standing here. It looks like he
 knows his way with magic. 
 ~
+Descr
 This guy can ace the SAT with his frontal lobe tied behind his back.
 ~
-39 8 -100 S
-13 10 2 13d13+130 2d6+0
-1500 0
-0 Elf~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    detect-invis~
+Alignment   -100
+Level       13
+Gold        1500
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #4101
-troll~
-the troll~
+Name        troll~
+Short       the troll~
+Long
 This large mean-looking troll wants to take a closer look at you.
 ~
+Descr
 Whilst you look at this troll, you realize he is trying to
 figure just how tender you are.
 ~
-39 0 -800 S
-12 8 1 2d10+100 2d7+1
-500 0
-0 Troll~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -800
+Level       12
+Gold        500
+Race        Troll
+Sex         male~
+End
+
 #4102
-guardian snake~
-the guardian snake~
+Name        guardian snake~
+Short       the guardian snake~
+Long
 A large green snake is guardian for something.
 ~
+Descr
 You take a closer look at this large snake while it tries to
 bite your head off!
 ~
-39 0 -700 S
-10 8 5 10d10+100 2d5+2
-0 0
-0 Snake~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -700
+Level       10
+Gold        0
+Race        Snake
+Sex         male~
+Spec        spec_poison
+End
+
 #4104
-orc~
-the orc~
+Name        orc~
+Short       the orc~
+Long
 An ugly orc is standing here waiting for someone to practice on.
 ~
+Descr
 Yrkk..  He belches in your face!
 ~
-229 0 -200 S
-7 14 4 1d5+90 2d4+1
-200 0
-0 Orc~ 1
+Act         scavenger aggressive stay_area wimpy~
+AffectBy    ~
+Alignment   -200
+Level       7
+Gold        200
+Race        Orc
+Sex         male~
+End
+
 #4105
-centipede~
-a centipede~
+Name        centipede~
+Short       a centipede~
+Long
 A small harmless centipede is here looking for some vegetation to eat.
 ~
+Descr
 It doesn't seem to pay any attention towards you.  You are probably
 not important.
 ~
-3 0 300 S
-6 15 4 3d10+50 1d8+1
-0 0
-0 Worm~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   300
+Level       6
+Gold        0
+Race        Worm
+Sex         neutral~
+End
+
 #4106
-warrior~
-the Warrior~
+Name        warrior~
+Short       the Warrior~
+Long
 A human warrior grins an evil grin in your face.
 ~
+Descr
 He doesn't look friendly at all...  He is no Mr. Rogers!
 ~
-101 0 -300 S
-9 10 3 3d10+100 2d6+1
-500 0
-0 Giant~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -300
+Level       9
+Gold        500
+Race        Giant
+Sex         male~
+End
+
 #4107
-kobold~
-the green kobold~
+Name        kobold~
+Short       the green kobold~
+Long
 A green kobold hobbles along the cave walls puking periodically.
 ~
+Descr
 It looks a little sick.  Something he ate maybe?
 ~
-101 0 -100 S
-7 14 4 2d10+20 1d10+0
-20 0
-0 Kobold~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        20
+Race        Kobold
+Sex         male~
+End
+
 #4150
-bat blue~
-the blue bat~
+Name        bat blue~
+Short       the blue bat~
+Long
 A blue bat flies in circles while electrical charges arc here and there.
 ~
+Descr
 Bzzzt.  Zap.  Crackle.  Speak about static electricity!
 ~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 0
-0 Bat~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        0
+Race        Bat
+Sex         neutral~
+Spec        spec_breath_lightning
+End
+
 #4151
-bat red~
-the red bat~
+Name        bat red~
+Short       the red bat~
+Long
 A red bat hangs upside down from the ceiling, glowing.
 ~
+Descr
 You can definitely feel some heat from this thing.  A fever perhaps?
 ~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 0
-0 Bat~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        0
+Race        Bat
+Sex         neutral~
+Spec        spec_breath_fire
+End
+
 #4152
-bat green~
-the green bat~
+Name        bat green~
+Short       the green bat~
+Long
 A green bat flies from wall to wall leaving an awful smell.
 ~
+Descr
 Whew!  What a stinker!
 ~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 0
-0 Bat~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        0
+Race        Bat
+Sex         neutral~
+Spec        spec_breath_gas
+End
+
 #4153
-bat white~
-the white bat~
+Name        bat white~
+Short       the white bat~
+Long
 A white bat rests on the ceiling.  You wonder where the cold is coming from.
 ~
+Descr
 Brrr!  You almost can't distinguish this bat from an ice cube.
 ~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 0
-0 Bat~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        0
+Race        Bat
+Sex         neutral~
+Spec        spec_breath_frost
+End
+
 #4154
-bat black~
-the black bat~
+Name        bat black~
+Short       the black bat~
+Long
 A black bat flies from wall to wall leaving something hissing behind.
 ~
+Descr
 Amazing!  This bat is grooming itself with acid!
 ~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 0
-0 Bat~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -100
+Level       7
+Gold        0
+Race        Bat
+Sex         neutral~
+Spec        spec_breath_acid
+End
+
 #4155
-thief~
-the thief~
+Name        thief~
+Short       the thief~
+Long
 A sneaky thief appears and disappears within the shadows.
 ~
+Descr
 He definitely knows what he's doing.  Trust him.
 ~
-69 32770 400 S
-12 7 1 3d20+130 2d7+1
-2000 0
-0 Human~ 1
+Act         scavenger stay_area~
+AffectBy    invisible sneak~
+Alignment   400
+Level       12
+Gold        2000
+Race        Human
+Sex         male~
+Spec        spec_thief
+End
+
 #4156
-troll~
-the troll~
+Name        troll~
+Short       the troll~
+Long
 A large ugly troll is here mumbling something.
 ~
+Descr
 He looks quite mean.  Don't mess with him.
 ~
-39 0 -700 S
-14 8 1 8d20+140 2d7+1
-3000 0
-0 Troll~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -700
+Level       14
+Gold        3000
+Race        Troll
+Sex         male~
+End
+
 #4157
-mage~
-the Mage~
+Name        mage~
+Short       the Mage~
+Long
 A small man is here researching magical incantations.
 ~
+Descr
 His little head is buried into his magic books.  He'd be very
 angry should you bother his studies.
 ~
-101 0 -200 S
-11 10 2 4d10+80 2d5+1
-800 0
-0 Elf~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -200
+Level       11
+Gold        800
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #4158
-snake~
-the snake~
+Name        snake~
+Short       the snake~
+Long
 A brown snake hisses at you.
 ~
+Descr
 Sickly brown as it is, you know what it really wants is you
 for dinner.
 ~
-35 0 200 S
-9 12 3 1d10+110 2d5+1
-0 0
-0 Snake~ 1
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   200
+Level       9
+Gold        0
+Race        Snake
+Sex         male~
+Spec        spec_poison
+End
+
 #4159
-troll~
-the small troll~
+Name        troll~
+Short       the small troll~
+Long
 A small troll is here happily dancing.  Trala-la-la.  La-la.
 ~
+Descr
 He is so happy, you are disgusted.  Kill him now!
 ~
-101 0 -300 S
-8 13 3 3d10+80 2d5+2
-500 0
-0 Troll~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -300
+Level       8
+Gold        500
+Race        Troll
+Sex         male~
+End
+
 #4160
-orc~
-the orc~
+Name        orc~
+Short       the orc~
+Long
 A large orc growls in your face.
 ~
+Descr
 He is just looking for a fight isn't he?
 ~
-101 0 -200 S
-9 12 3 1d20+100 2d5+1
-500 0
-0 Orc~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -200
+Level       9
+Gold        500
+Race        Orc
+Sex         male~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #4000
-ring yellow green~
-a yellow and green ring~
+Name        ring yellow green~
+Short       a yellow and green ring~
+Descr
 A ring, with yellow and green ornamentation. It looks very old.~
-~
-9 0 16387
-0~ 0~ 0~ 0~ 0~
-1 50 0
-A
-5 1 0
-A
-1 -2 0
-E
-ring~
+Type        armor~
+Extra       ~
+Wear        take finger hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        50
+Affect      constitution~ 1 ~
+Affect      strength~ -2 ~
+ExtraDescr  ring~
 It feels VERY heavy.
 ~
+End
+
 #4001
-corpse~
-a corpse~
+Name        corpse~
+Short       a corpse~
+Descr
 A halfway decayed corpse of a goblin.~
-~
-15 0 1
-1~ 0~ -1~ 0~ 0~
-10 0 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      1~ 0~ -1~ 0~ 0~
+Weight      10
+Cost        0
+End
+
 #4002
-coins~
-some coins~
+Name        coins~
+Short       some coins~
+Descr
 A small pile of coins.~
-~
-20 0 1
-500~ 0~ 0~ 0~ 0~
-0 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      500~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+End
+
 #4050
-potion purple~
-a purple potion~
+Name        potion purple~
+Short       a purple potion~
+Descr
 A purple potion is here.~
-~
-10 0 16385
-17~ cure blindness~ sanctuary~  ~  ~
-1 500 0
-E
-potion purple~
+Type        potion~
+Extra       ~
+Wear        take hold~
+Values      17~ cure blindness~ sanctuary~  ~  ~
+Weight      1
+Cost        500
+ExtraDescr  potion purple~
 It looks rather strange!
 ~
+End
+
 #4051
-helmet metal~
-a metal helmet~
+Name        helmet metal~
+Short       a metal helmet~
+Descr
 A metal helmet is here.~
-~
-9 0 16401
-3~ 0~ 0~ 0~ 0~
-4 3000 0
-A
-23 -2 0
-A
-24 -2 0
+Type        armor~
+Extra       ~
+Wear        take head hold~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        3000
+Affect      saving-breath~ -2 ~
+Affect      saving-spell~ -2 ~
+End
+
 #4052
-mushroom~
-a mushroom~
+Name        mushroom~
+Short       a mushroom~
+Descr
 A small mushroom is here.~
-~
-19 0 16385
-2~ 0~ 0~ 1~ 0~
-1 9 0
-E
-mushroom~
+Type        food~
+Extra       ~
+Wear        take hold~
+Values      2~ 0~ 0~ 1~ 0~
+Weight      1
+Cost        9
+ExtraDescr  mushroom~
 Let's put it this way - I wouldn't eat it !
 ~
+End
+
 #4053
-dirk~
-a thieves dirk~
+Name        dirk~
+Short       a thieves dirk~
+Descr
 A beautifully crafted dirk is lying here.~
-~
-5 0 8193
-0~ 2~ 6~ 11~ 0~
-2 850 0
-A
-19 2 0
-A
-18 1 0
-E
-dirk~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 6~ 11~ 0~
+Weight      2
+Cost        850
+Affect      damroll~ 2 ~
+Affect      hitroll~ 1 ~
+ExtraDescr  dirk~
 It's a medium sized, beautifully crafted dirk made from grey alloy.
 Its blade is double-edged and very thin ... this looks like a good
 thieves weapon.
 ~
+End
+
 #4100
-blade black demon~
-a black demon blade~
+Name        blade black demon~
+Short       a black demon blade~
+Descr
 An evil black demon blade is here.~
-~
-5 2560 8193
-0~ 3~ 4~ 11~ 0~
-8 10000 0
-E
-blade~
+Type        weapon~
+Extra       anti-good anti-neutral~
+Wear        take wield~
+Values      0~ 3~ 4~ 11~ 0~
+Weight      8
+Cost        10000
+ExtraDescr  blade~
 You'll become as evil as the weapon, if you use it!
 ~
+End
+
 #4101
-gloves~
-swordsman's gloves~
+Name        gloves~
+Short       swordsman's gloves~
+Descr
 Some gloves are here.  They look like the right equipment for fighting.~
-~
-9 512 129
-2~ 0~ 0~ 0~ 0~
-1 1500 0
-A
-19 1 0
-A
-18 2 0
+Type        armor~
+Extra       anti-good~
+Wear        take hands~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1500
+Affect      damroll~ 1 ~
+Affect      hitroll~ 2 ~
+End
+
 #4102
-scroll ysafg~
-a scroll which reads "ysafg"~
+Name        scroll ysafg~
+Short       a scroll which reads "ysafg"~
+Descr
 A scroll which reads "ysafg", it looks very fragile and quite old.~
-~
-2 0 1
-1~ identify~  ~  ~  ~
-1 1500 0
-E
-scroll~
+Type        scroll~
+Extra       ~
+Wear        take~
+Values      1~ identify~  ~  ~  ~
+Weight      1
+Cost        1500
+ExtraDescr  scroll~
 It looks informative.
 ~
+End
+
 #4103
-slime mold~
-a green slime mold~
+Name        slime mold~
+Short       a green slime mold~
+Descr
 A green slime mold is here. Stinks like sh**.~
-~
-19 0 1
-24~ 0~ 0~ 0~ 0~
-1 20 0
-E
-slime mold~
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        20
+ExtraDescr  slime mold~
 It wasn't meant to be food - certainly not for humans.
 ~
+End
+
 #4104
-slime mold~
-a green slime mold~
+Name        slime mold~
+Short       a green slime mold~
+Descr
 A green slime mold is here. Stinks like sh**.~
-~
-19 0 1
-24~ 0~ 0~ 1~ 0~
-1 20 0
-E
-slime mold~
+Type        food~
+Extra       ~
+Wear        take~
+Values      24~ 0~ 0~ 1~ 0~
+Weight      1
+Cost        20
+ExtraDescr  slime mold~
 It wasn't meant to be food - certainly not for humans.
 ~
+End
+
 #4150
-black potion~
-a black potion~
+Name        black potion~
+Short       a black potion~
+Descr
 A thick black potion is here.~
-~
-10 0 1
-15~ cure critical~  ~  ~  ~
-1 100 0
-E
-potion black~
+Type        potion~
+Extra       ~
+Wear        take~
+Values      15~ cure critical~  ~  ~  ~
+Weight      1
+Cost        100
+ExtraDescr  potion black~
 It looks healthy.
 ~
+End
+
 #4151
-staff oak~
-a heavy oak staff~
+Name        staff oak~
+Short       a heavy oak staff~
+Descr
 A ancient heavy oak staff is here.~
-~
-4 512 16385
-15~ 4~ 2~ harm~ 0~
-10 3000 0
-E
-runes~
+Type        staff~
+Extra       anti-good~
+Wear        take hold~
+Values      15~ 4~ 2~ harm~ 0~
+Weight      10
+Cost        3000
+ExtraDescr  runes~
 The runes says : Funthark.
 ~
-E
-staff oak~
+ExtraDescr  staff oak~
 You see it has some sort of runes on it.
 ~
+End
+
 #4152
-dagger light silver~
-a light silver dagger~
+Name        dagger light silver~
+Short       a light silver dagger~
+Descr
 A light silver dagger is here.~
-~
-5 1024 8193
-0~ 2~ 5~ 11~ 0~
-4 6000 0
-E
-dagger light silver~
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 2~ 5~ 11~ 0~
+Weight      4
+Cost        6000
+ExtraDescr  dagger light silver~
 It looks like an excellent weapon for thieves.
 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #3900
-West trail around Midgaard~
+Name        West trail around Midgaard~
+Descr
 You are on a dusty trail following the outside wall of Midgaard.
 To the east the wall towers over you and to the west you see the
 forest of Haon-Dor. The trail leads north and south along the wall. 
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 3901
 The dusty trail winds north closely to the wall.
 ~
 ~
-0 -1 3901
-D2
+Door        south~ ~ -1 3052
 The dusty trail leads to outside the west gate of Midgaard.
 ~
 ~
-0 -1 3052
-S
+End
+
 #3901
-West trail around Midgaard~
+Name        West trail around Midgaard~
+Descr
 You are on a dusty trail following the outside wall of Midgaard.
 To the east the wall towers over you and to the west you see the
 forest of Haon-Dor. The trail leads north and south along the wall. 
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 3902
 To the north you notice the path makes a turn, following the City wall. 
 ~
 ~
-0 -1 3902
-D2
+Door        south~ ~ -1 3900
 The dusty trail continues towards the south.
 ~
 ~
-0 -1 3900
-S
+End
+
 #3902
-Northwest corner of dusty trail.~
+Name        Northwest corner of dusty trail.~
+Descr
 You are standing outside the northwestern corner of the city wall.
 The trail leads east following the north wall and south towards the gate.  
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 3903
 The dusty trail winds close up to the north wall of Midgaard.
 ~
 ~
-0 -1 3903
-D2
+Door        south~ ~ -1 3901
 The dusty trail leads south towards the gate.
 ~
 ~
-0 -1 3901
-S
+End
+
 #3903
-Dusty trail along north wall.~
+Name        Dusty trail along north wall.~
+Descr
 You are walking on the trail following the outside of Midgaard's
 northern wall.  
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 3904
 The dusty trail is winding along the north wall of Midgaard.
 ~
 ~
-0 -1 3904
-D3
+Door        west~ ~ -1 3902
 The dusty trail turns left around the corner of the wall, behind it Haon-Dor. 
 ~
 ~
-0 -1 3902
-S
+End
+
 #3904
-The long dusty trail following the north wall.~
+Name        The long dusty trail following the north wall.~
+Descr
 You are walking along the north wall. This is the rear of the Temple.
 It is not as pompous and impressive from this side. To the north the plains
 extend towards the horizon.
 You notice some markings on the wall here.
 ~
-0 0 2
-E
-wall markings writing~
+Flags       ~
+Sector      field~
+Regen       100 100
+ExtraDescr  wall markings writing~
 The markings are made with the hand of a child.
 They read : Tear down the Wall   -Pink Floyd
 ~
-D0
+Door        north~ ~ -1 300
 A small path extends into the plains.
 ~
 ~
-0 -1 300
-D1
+Door        east~ ~ -1 3905
 The dusty trail is winding along the north wall of Midgaard. 
 ~
 ~
-0 -1 3905
-D3
+Door        west~ ~ -1 3903
 The dusty trail is winding along the north wall of Midgaard.
 ~
 ~
-0 -1 3903
-S
+End
+
 #3905
-Dusty trail along north wall.~
+Name        Dusty trail along north wall.~
+Descr
 You are walking on the trail following the outside of Midgaard's
 northern wall.  
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 3906
 The dusty trail turns right around the corner of the wall. 
 You notice some mountains in the distance.
 ~
 ~
-0 -1 3906
-D3
+Door        west~ ~ -1 3904
 The dusty trail is winding along the north wall of Midgaard.
 ~
 ~
-0 -1 3904
-S
+End
+
 #3906
-Northeast corner of dusty trail.~
+Name        Northeast corner of dusty trail.~
+Descr
 You are standing outside the northeastern corner of the city wall.
 The trail leads west following the north wall and south towards the gate.  
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ -1 3907
 The dusty trail leads south towards the gate.
 ~
 ~
-0 -1 3907
-D3
+Door        west~ ~ -1 3905
 The dusty trail winds close up to the north wall of Midgaard.
 ~
 ~
-0 -1 3905
-S
+End
+
 #3907
-East trail around Midgaard~
+Name        East trail around Midgaard~
+Descr
 You are on a dusty trail following the outside wall of Midgaard.
 To the west the wall towers over you and far to the east you see
 some mountains. The trail leads north and south along the wall. 
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 3906
 To the north you notice the path makes a turn, following the City wall. 
 ~
 ~
-0 -1 3906
-D2
+Door        south~ ~ -1 3908
 The dusty trail continues towards the south.
 ~
 ~
-0 -1 3908
-S
+End
+
 #3908
-East trail around Midgaard~
+Name        East trail around Midgaard~
+Descr
 You are on a dusty trail following the outside wall of Midgaard.
 To the west the wall towers over you and far to the east you see
 some mountains. The trail leads north and south along the wall. 
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 3907
 The dusty trail winds north closely to the wall.
 ~
 ~
-0 -1 3907
-D2
+Door        south~ ~ -1 3053
 The dusty trail leads to outside the east gate of Midgaard.
 ~
 ~
-0 -1 3053
-S
+End
+
 #4000
-The hills~
+Name        The hills~
+Descr
 You are on a small bewildered path winding its way between the hills in
 lack of better things to do. To the south you have a splendid view over the
 flat, vast, desolate plains. To the north the hills grow steadily darker and
 foreboding. This is the cause of no sunset, it is rather the power of evil
 penetrating these quiet hills. Glancing around you notice only a single bird.
 ~
-0 4 4
-D0
+Flags       no_mob~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ 0 4001
 ~
 ~
-0 0 4001
-D1
+Door        east~ ~ 0 4785
 You see some less desolate hills east.
 ~
 ~
-0 0 4785
-D2
+Door        south~ ~ 0 3500
 ~
 ~
-0 0 3500
-S
+End
+
 #4001
-The hills~
+Name        The hills~
+Descr
 You are surrounded by dark and sinister hills. Although they seemed fairly
 small from a distance you now get the feeling that they're closing in on you,
 towering over you, overwhelming you ...  The small path seems to have second
@@ -821,18 +1145,20 @@ several times around itself.  To the south the hills have a lighter hue of
 dark. To the north however, the hills have become nightblack holes in the
 distant mountains.
 ~
-0 4 4
-D0
+Flags       no_mob~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ 0 4002
 ~
 ~
-0 0 4002
-D2
+Door        south~ ~ 0 4000
 ~
 ~
-0 0 4000
-S
+End
+
 #4002
-End of the path~
+Name        End of the path~
+Descr
 At this point the path has had enough. With a terrified shudder it cowers
 to the ground, only staying here because you're standing on it. with a slight
 feeling of unease you look around noticing only a few bushes and a large sign
@@ -840,9 +1166,10 @@ carved into the mountain.  You feel you can hear the cry of help from a
 thousand silent voices all coming from an even darker hole in the mountain to
 the north marking the entrance to a cave (or a grave :-).
 ~
-0 4 4
-E
-sign~
+Flags       no_mob~
+Sector      hills~
+Regen       100 100
+ExtraDescr  sign~
 The sign says:
 
         /---------------------\
@@ -859,21 +1186,20 @@ The sign says:
                  | |
                  | |
 ~
-E
-bushes~
+ExtraDescr  bushes~
 Small crippled bushes desperately trying to grow south.
 ~
-D0
+Door        north~ ~ 0 4010
 ~
 ~
-0 0 4010
-D2
+Door        south~ ~ 0 4001
 ~
 ~
-0 0 4001
-S
+End
+
 #4010
-The cave~
+Name        The cave~
+Descr
 You are in a large cave. The ceiling is lost somewhere above the reach of
 your light. The floor, however, is highly illuminated, your light flickering
 over several tombstones. Only one is whole, the rest have been shattered by
@@ -883,1505 +1209,1751 @@ good breath, it may be your last mouthful of air in a long, long time that
 others haven't breathed before you.
 To the north a small tunnel continues into the mountain.
 ~
-0 9 2
-E
-tombstone~
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+ExtraDescr  tombstone~
 The stone is inscribed with the unfortunate player's famous last words:
 
   "What are you worrying about, it is just a small harmless snake"
 ~
-D0
+Door        north~ ~ 0 4011
 ~
 ~
-0 0 4011
-D2
+Door        south~ ~ 0 4002
 ~
 ~
-0 0 4002
-S
+End
+
 #4011
-The tunnel~
+Name        The tunnel~
+Descr
 You squeeze your way through a small, narrow tunnel. The sharp-edged rocks
 protruding from the walls threaten to scratch and cut you. 
 To the south you sense a freshness in the air which is rather unusual in these
 damp, stuffy tunnels. To the north the tunnel continues.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4014
 ~
 ~
-0 0 4014
-D2
+Door        south~ ~ 0 4010
 ~
 ~
-0 0 4010
-S
+End
+
 #4012
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a part of the tunnel that looks uncannily like the rest except
 that it goes in a east-north direction. To the north the tunnel widens into
 a cave.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4016
 ~
 ~
-0 0 4016
-D1
+Door        east~ ~ 0 4013
 ~
 ~
-0 0 4013
-S
+End
+
 #4013
-The tunnel~
+Name        The tunnel~
+Descr
 This tunnel, leading east-west, seems seldom used.  A thick layer of dust
 covers the floor, making the air stuffy and dry. 
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4003 6 100
+Reset       M 4003 6 100
+Door        east~ ~ 0 4014
 ~
 ~
-0 0 4014
-D3
+Door        west~ ~ 0 4012
 ~
 ~
-0 0 4012
-S
+End
+
 #4014
-The tunnel~
+Name        The tunnel~
+Descr
 You are walking in a narrow tunnel. The walls are only roughly shaped,
 sharp rocks protruding everywhere, even from the floor making you stumble in
 the flickering light. To the south the tunnel narrows even more making it
 almost impossible to pass. To the north it slowly widens into a cave. There
 is a branch of the tunnel going west.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4018
 ~
 ~
-0 0 4018
-D1
+Door        east~ ~ 0 4015
 ~
 ~
-0 0 4015
-D2
+Door        south~ ~ 0 4011
 ~
 ~
-0 0 4011
-D3
+Door        west~ ~ 0 4013
 ~
 ~
-0 0 4013
-S
+End
+
 #4015
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a corner tunnel leading west and north.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4001 2 100
+Reset       M 4004 3 100
+Door        north~ ~ 0 4019
 ~
 ~
-0 0 4019
-D3
+Door        west~ ~ 0 4014
 ~
 ~
-0 0 4014
-S
+End
+
 #4016
-The large cave~
+Name        The large cave~
+Descr
 You are in a large cave, the cave continues east and west, to the south
 you notice a small tunnel.
 ~
-0 9 2
-D1
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4017
 ~
 ~
-0 0 4017
-D2
+Door        south~ ~ 0 4012
 ~
 ~
-0 0 4012
-D3
+Door        west~ ~ 0 4023
 ~
 ~
-0 0 4023
-S
+End
+
 #4017
-The large cave~
+Name        The large cave~
+Descr
 You are in the east end of the large cave.
 ~
-0 9 2
-D3
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4002 3 100
+Door        west~ ~ 0 4016
 ~
 ~
-0 0 4016
-S
+End
+
 #4018
-The cave~
+Name        The cave~
+Descr
 You are in the south end of a cave, to the south you see a tunnel. You
 notice a large pile of bones in the corner.
 ~
-0 9 2
-E
-pile bones~
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+ExtraDescr  pile bones~
 Some of the bones are human!
 ~
-D0
+Door        north~ ~ 0 4025
 ~
 ~
-0 0 4025
-D2
+Door        south~ ~ 0 4014
 ~
 ~
-0 0 4014
-S
+End
+
 #4019
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a north-south leading tunnel.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4026
 ~
 ~
-0 0 4026
-D2
+Door        south~ ~ 0 4015
 ~
 ~
-0 0 4015
-S
+End
+
 #4020
-The hole~
+Name        The hole~
+Descr
 You are by a hole in the floor, you can leave down, or north.
 ~
-0 13 3
-D0
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4002 3 100
+Door        north~ ~ 0 4027
 ~
 ~
-0 0 4027
-D5
+Door        down~ ~ 0 4064
 ~
 ~
-0 0 4064
-S
+End
+
 #4021
-The hole~
+Name        The hole~
+Descr
 A hole in the floor leads down here.
 ~
-0 13 3
-D1
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4003 6 100
+Reset       M 4003 6 100
+Door        east~ ~ 0 4022
 ~
 ~
-0 0 4022
-D5
+Door        down~ ~ 0 4115
 ~
 ~
-0 0 4115
-S
+End
+
 #4022
-The damp tunnel~
+Name        The damp tunnel~
+Descr
 You are in a damp tunnel.  Your clothes feel wet.  The tunnel continues
 to the north; to the west you see a hole in the floor; and to the east
 there is a large cave.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4005 1 100
+Reset       E 4000 1 100
+Door        north~ ~ 0 4023
 ~
 ~
-0 0 4023
-D1
+Door        east~ ~ 0 4024
 ~
 ~
-0 0 4024
-D3
+Door        west~ ~ 0 4021
 ~
 ~
-0 0 4021
-S
+End
+
 #4023
-The large cave~
+Name        The large cave~
+Descr
 You are in the western part of the large cave, to the south you see
 a damp tunnel.
 ~
-0 9 2
-D1
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4002 3 100
+Door        east~ ~ 0 4016
 ~
 ~
-0 0 4016
-D2
+Door        south~ ~ 0 4022
 ~
 ~
-0 0 4022
-S
+End
+
 #4024
-The damp tunnel~
+Name        The damp tunnel~
+Descr
 You are in a corner of a damp tunnel.  You can go west or south.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 4059
 ~
 ~
-0 0 4059
-D3
+Door        west~ ~ 0 4022
 ~
 ~
-0 0 4022
-S
+End
+
 #4025
-The cave~
+Name        The cave~
+Descr
 You are in the north end of a cave.  To the east you see many tunnels.
 ~
-0 9 2
-D1
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4001 2 100
+Door        east~ ~ 0 4026
 ~
 ~
-0 0 4026
-D2
+Door        south~ ~ 0 4018
 ~
 ~
-0 0 4018
-S
+End
+
 #4026
-The many tunnels~
+Name        The many tunnels~
+Descr
 You are at the intersection of many tunnels.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4028
 ~
 ~
-0 0 4028
-D1
+Door        east~ ~ 0 4027
 ~
 ~
-0 0 4027
-D2
+Door        south~ ~ 0 4019
 ~
 ~
-0 0 4019
-D3
+Door        west~ ~ 0 4025
 ~
 ~
-0 0 4025
-S
+End
+
 #4027
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a north-south leading tunnel, you also notice a tunnel to
 the west. From the north you sense the fresh air!
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4003 6 100
+Reset       M 4003 6 100
+Door        north~ ~ 0 4029
 ~
 ~
-0 0 4029
-D2
+Door        south~ ~ 0 4020
 ~
 ~
-0 0 4020
-D3
+Door        west~ ~ 0 4026
 ~
 ~
-0 0 4026
-S
+End
+
 #4028
-The smelly tunnel~
+Name        The smelly tunnel~
+Descr
 You are in a north-south leading tunnel, you see a small light
 to the north. You notice a strange smell from the north..
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4004 3 100
+Reset       M 4004 3 100
+Door        north~ ~ 0 4030
 ~
 ~
-0 0 4030
-D2
+Door        south~ ~ 0 4026
 ~
 ~
-0 0 4026
-S
+End
+
 #4029
-The cave~
+Name        The cave~
+Descr
 You are in a cave that is filled with fresh air, you sense the
 wind blowing from the north. To the south you see a small tunnel
 continue into the mountain.
 ~
-0 9 2
-D0
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4031
 ~
 ~
-0 0 4031
-D2
+Door        south~ ~ 0 4027
 ~
 ~
-0 0 4027
-S
+End
+
 #4030
-The light cave~
+Name        The light cave~
+Descr
 You are in a light cave, through a hole large above you, you see 
 the sky. A small tunnel to the south is the only way out.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 4000 1 100
+Reset       E 4001 -1 100
+Reset       P 4002 4001 100
+Door        south~ ~ 0 4028
 ~
 ~
-0 0 4028
-S
+End
+
 #4031
-The valley~
+Name        The valley~
+Descr
 You are in a small valley, surrounded by hills and a mountain to 
 the south. In the mountain there is a cave.
 ~
-0 0 2
-E
-cave~
+Flags       ~
+Sector      field~
+Regen       100 100
+ExtraDescr  cave~
 Well it doesn't look nice, but it's the only way out.
 ~
-D0
+Door        north~ ~ 0 4032
 ~
 ~
-0 0 4032
-D2
+Door        south~ ~ 0 4029
 ~
 ~
-0 0 4029
-S
+End
+
 #4032
-The foothills~
+Name        The foothills~
+Descr
 You are on a winding path that leads through the foothills on the
 other side of the mountain.  The path continues north.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4033
 ~
 ~
-0 0 4033
-D2
+Door        south~ ~ 0 4031
 ~
 ~
-0 0 4031
-S
+End
+
 #4033
-The intersection in the foothills~
+Name        The intersection in the foothills~
+Descr
 The small path you are following splits here.  The path continues
 north and south or you can follow a trail east into the mountains.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4034
 ~
 ~
-0 0 4034
-D1
+Door        east~ ~ 0 4037
 ~
 ~
-0 0 4037
-D2
+Door        south~ ~ 0 4032
 ~
 ~
-0 0 4032
-S
+End
+
 #4034
-The grassy area of the foothills~
+Name        The grassy area of the foothills~
+Descr
 The grass here is unusually high.  You notice several areas where
 someone or something large has crush spots of the down.  Several very
 large rocks litter this area.  You can go north, west or south.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4035
 ~
 ~
-0 0 4035
-D2
+Door        south~ ~ 0 4033
 ~
 ~
-0 0 4033
-D3
+Door        west~ ~ 0 4042
 ~
 ~
-0 0 4042
-S
+End
+
 #4035
-The foothills end~
+Name        The foothills end~
+Descr
 At this point you are leaving the foothills.  Below you, you see a
 very foggy valley.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 4034
 ~
 ~
-0 0 4034
-D5
+Door        down~ ~ 0 4036
 ~
 ~
-0 0 4036
-S
+End
+
 #4036
-The path to the valley~
+Name        The path to the valley~
+Descr
 You are on the path toward the fog-shrouded valley.
 ~
-0 0 2
-D4
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        up~ ~ 0 4035
 ~
 ~
-0 0 4035
-D5
+Door        down~ ~ 0 11500
 ~
 ~
-0 0 11500
-S
+End
+
 #4037
-The foothills path~
+Name        The foothills path~
+Descr
 Exits are east and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4038
 ~
 ~
-0 0 4038
-D3
+Door        west~ ~ 0 4033
 ~
 ~
-0 0 4033
-S
+End
+
 #4038
-Base of the mountain~
+Name        Base of the mountain~
+Descr
 Exits are east and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4039
 ~
 ~
-0 0 4039
-D3
+Door        west~ ~ 0 4037
 ~
 ~
-0 0 4037
-S
+End
+
 #4039
-A trail up the mountain~
+Name        A trail up the mountain~
+Descr
 Exits are east and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4040
 ~
 ~
-0 0 4040
-D3
+Door        west~ ~ 0 4038
 ~
 ~
-0 0 4038
-S
+End
+
 #4040
-The mountain top.~
+Name        The mountain top.~
+Descr
 Exits are north, east, and west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4041
 ~
 ~
-0 0 4041
-D1
+Door        east~ ~ 0 7114
 It doesn't look safe this way.
 ~
 ~
-0 0 7114
-D3
+Door        west~ ~ 0 4039
 ~
 ~
-0 0 4039
-S
+End
+
 #4041
-The lion's den~
+Name        The lion's den~
+Descr
 Exits are south.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ 0 4040
 ~
 ~
-0 0 4040
-S
+End
+
 #4042
-The level foothills~
+Name        The level foothills~
+Descr
 Exits are east and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4034
 ~
 ~
-0 0 4034
-D3
+Door        west~ ~ 0 4043
 ~
 ~
-0 0 4043
-S
+End
+
 #4043
-The cave entrance~
+Name        The cave entrance~
+Descr
 Exits are east and west.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4042
 ~
 ~
-0 0 4042
-D3
+Door        west~ ~ 0 4044
 ~
 ~
-0 0 4044
-S
+End
+
 #4044
-The hill giant cave~
+Name        The hill giant cave~
+Descr
 Exits are east.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4043
 ~
 ~
-0 0 4043
-S
+End
+
 #4050
-The tunnel~
+Name        The tunnel~
+Descr
 The tunnel turns here, continuing to the east and south.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4051 4 100
+Door        east~ ~ 0 4051
 ~
 ~
-0 0 4051
-D2
+Door        south~ ~ 0 4053
 ~
 ~
-0 0 4053
-S
+End
+
 #4051
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a narrow east-west tunnel.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4052
 ~
 ~
-0 0 4052
-D3
+Door        west~ ~ 0 4050
 ~
 ~
-0 0 4050
-S
+End
+
 #4052
-The tunnel~
+Name        The tunnel~
+Descr
 You are at a turn, the tunnel continues south and west.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4054 3 100
+Door        south~ ~ 0 4100
 ~
 ~
-0 0 4100
-D3
+Door        west~ ~ 0 4051
 ~
 ~
-0 0 4051
-S
+End
+
 #4053
-The tunnel~
+Name        The tunnel~
+Descr
 You are at a turn, the tunnel continues north and east.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4054 3 100
+Door        north~ ~ 0 4050
 ~
 ~
-0 0 4050
-D1
+Door        east~ ~ 0 4054
 ~
 ~
-0 0 4054
-S
+End
+
 #4054
-The light cave~
+Name        The light cave~
+Descr
 You are in a cave, to south from you there is a large fire that lights
 the entire cave, to the east and west tunnels leads off.
 ~
-0 8 2
-D1
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 4055
 ~
 ~
-0 0 4055
-D2
+Door        south~ ~ 0 4056
 ~
 ~
-0 0 4056
-D3
+Door        west~ ~ 0 4053
 ~
 ~
-0 0 4053
-S
+End
+
 #4055
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.  The only exit is west.
 ~
-0 9 3
-D3
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4051 4 100
+Door        west~ ~ 0 4054
 ~
 ~
-0 0 4054
-S
+End
+
 #4056
-The light cave~
+Name        The light cave~
+Descr
 You are in a light cave, a large fire in front of you lights the room.
 The cave continues to the north and south.
 ~
-0 8 2
-D0
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4052 3 100
+Door        north~ ~ 0 4054
 ~
 ~
-0 0 4054
-D2
+Door        south~ ~ 0 4061
 ~
 ~
-0 0 4061
-S
+End
+
 #4057
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4056 2 100
+Door        east~ ~ 0 4058
 ~
 ~
-0 0 4058
-D2
+Door        south~ ~ 0 4062
 ~
 ~
-0 0 4062
-S
+End
+
 #4058
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4053 2 100
+Door        south~ ~ 0 4063
 ~
 ~
-0 0 4063
-D3
+Door        west~ ~ 0 4057
 ~
 ~
-0 0 4057
-S
+End
+
 #4059
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a tunnel, only exit is to the east. You sense that the
 tunnel leads slightly down.
 ~
-0 13 3
-D0
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4052 3 100
+Door        north~ ~ 0 4024
 ~
 ~
-0 0 4024
-D1
+Door        east~ ~ 0 4060
 ~
 ~
-0 0 4060
-S
+End
+
 #4060
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a small tunnel, to the west the tunnel continues and 
 to the east you see some light.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4054 3 100
+Door        east~ ~ 0 4061
 ~
 ~
-0 0 4061
-D3
+Door        west~ ~ 0 4059
 ~
 ~
-0 0 4059
-S
+End
+
 #4061
-The light cave~
+Name        The light cave~
+Descr
 You are in the south end of a light cave.
 ~
-0 8 2
-D0
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 4056
 ~
 ~
-0 0 4056
-D3
+Door        west~ ~ 0 4060
 ~
 ~
-0 0 4060
-S
+End
+
 #4062
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4050 1 100
+Reset       E 4051 -1 100
+Door        north~ ~ 0 4057
 ~
 ~
-0 0 4057
-D1
+Door        east~ ~ 0 4065
 ~
 ~
-0 0 4065
-S
+End
+
 #4063
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4058
 ~
 ~
-0 0 4058
-D1
+Door        east~ ~ 0 4064
 ~
 ~
-0 0 4064
-S
+End
+
 #4064
-The tunnel~
+Name        The tunnel~
+Descr
 You are at the eastern end of a tunnel.
 ~
-0 9 3
-D3
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4055 2 100
+Reset       E 4050 -1 100
+Door        west~ ~ 0 4063
 ~
 ~
-0 0 4063
-D4
+Door        up~ ~ 0 4020
 ~
 ~
-0 0 4020
-S
+End
+
 #4065
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4052 3 100
+Door        east~ ~ 0 4066
 ~
 ~
-0 0 4066
-D3
+Door        west~ ~ 0 4062
 ~
 ~
-0 0 4062
-S
+End
+
 #4066
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4067
 ~
 ~
-0 0 4067
-D2
+Door        south~ ~ 0 4069
 ~
 ~
-0 0 4069
-D3
+Door        west~ ~ 0 4065
 ~
 ~
-0 0 4065
-S
+End
+
 #4067
-The maze~
+Name        The maze~
+Descr
 You are in a maze of small damp tunnels.
 ~
-0 9 3
-D3
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4056 2 100
+Door        west~ ~ 0 4066
 ~
 ~
-0 0 4066
-S
+End
+
 #4068
-The large cave~
+Name        The large cave~
+Descr
 You are in the northwest end of a large cave.
 ~
-0 9 2
-D1
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4053 2 100
+Reset       O 4052 0 100
+Door        east~ ~ 0 4069
 ~
 ~
-0 0 4069
-D2
+Door        south~ ~ 0 4070
 ~
 ~
-0 0 4070
-S
+End
+
 #4069
-The large cave~
+Name        The large cave~
+Descr
 You are in the northeast end of a large cave. To the north the
 is a small damp tunnel.
 ~
-0 9 2
-D0
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       O 4052 0 100
+Door        north~ ~ 0 4066
 ~
 ~
-0 0 4066
-D2
+Door        south~ ~ 0 4071
 ~
 ~
-0 0 4071
-D3
+Door        west~ ~ 0 4068
 ~
 ~
-0 0 4068
-S
+End
+
 #4070
-The large cave~
+Name        The large cave~
+Descr
 You are in the southwest end of a large cave.
 ~
-0 9 2
-D0
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4051 4 100
+Reset       O 4052 0 100
+Door        north~ ~ 0 4068
 ~
 ~
-0 0 4068
-D1
+Door        east~ ~ 0 4071
 ~
 ~
-0 0 4071
-S
+End
+
 #4071
-The large cave~
+Name        The large cave~
+Descr
 You are in the southeast end of a large cave. To the east you
 notice a small tunnel.
 ~
-0 9 2
-D0
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Reset       M 4055 2 100
+Reset       E 4050 -1 100
+Reset       O 4052 0 100
+Door        north~ ~ 0 4069
 ~
 ~
-0 0 4069
-D1
+Door        east~ ~ 0 4072
 ~
 ~
-0 0 4072
-D3
+Door        west~ ~ 0 4070
 ~
 ~
-0 0 4070
-S
+End
+
 #4072
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a narrow tunnel, which leads both to the east and the
 south. There is also an exit towards the west, where you see a large
 cave.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4073
 ~
 ~
-0 0 4073
-D2
+Door        south~ ~ 0 4074
 ~
 ~
-0 0 4074
-D3
+Door        west~ ~ 0 4071
 ~
 ~
-0 0 4071
-S
+End
+
 #4073
-End of tunnel~
+Name        End of tunnel~
+Descr
 The tunnel stops here.
 ~
-0 9 3
-D3
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4051 4 100
+Door        west~ ~ 0 4072
 ~
 ~
-0 0 4072
-S
+End
+
 #4074
-The hole~
+Name        The hole~
+Descr
 You are at a small hole in the floor, you can either leave north
 or try your luck and leave down into the unknown!
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4072
 ~
 ~
-0 0 4072
-D5
+Door        down~ ~ 0 4171
 ~
 ~
-0 0 4171
-S
+End
+
 #4100
-The tunnel~
+Name        The tunnel~
+Descr
 Suddenly you feel that the tunnel leads slightly down.
 ~
-0 13 3
-D0
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4052
 ~
 ~
-0 0 4052
-D3
+Door        west~ ~ 0 4101
 ~
 ~
-0 0 4101
-S
+End
+
 #4101
-The long tunnel~
+Name        The long tunnel~
+Descr
 You are in a long east-west leading tunnel. The tunnel is quite
 wide at this point.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4100
 ~
 ~
-0 0 4100
-D3
+Door        west~ ~ 0 4102
 ~
 ~
-0 0 4102
-S
+End
+
 #4102
-The long tunnel~
+Name        The long tunnel~
+Descr
 You are in a long east-west leading tunnel. The tunnel becomes
 narrow to the west.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4101
 ~
 ~
-0 0 4101
-D3
+Door        west~ ~ 0 4103
 ~
 ~
-0 0 4103
-S
+End
+
 #4103
-The long tunnel~
+Name        The long tunnel~
+Descr
 You are in a long east-west leading tunnel. The tunnel is quite
 narrow at this point. You notice a small hole leading south.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4102 3 100
+Reset       E 4103 -1 100
+Reset       E 4104 -1 100
+Reset       M 3005 5 100
+Door        east~ ~ 0 4102
 ~
 ~
-0 0 4102
-D2
+Door        south~ ~ 0 4106
 ~
 ~
-0 0 4106
-D3
+Door        west~ ~ 0 4104
 ~
 ~
-0 0 4104
-S
+End
+
 #4104
-The long tunnel~
+Name        The long tunnel~
+Descr
 You are in a long east-west leading tunnel. The tunnel starts sloping
 down towards the west.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4103
 ~
 ~
-0 0 4103
-D3
+Door        west~ ~ 0 4152
 ~
 ~
-0 0 4152
-S
+End
+
 #4105
-The golden cave~
+Name        The golden cave~
+Descr
 You are in a giant cave, all the walls are shining with a soft golden
 light. The cave continues to the south and west.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ 0 4108
 ~
 ~
-0 0 4108
-D3
+Door        west~ ~ 0 4106
 ~
 ~
-0 0 4106
-S
+End
+
 #4106
-The golden cave~
+Name        The golden cave~
+Descr
 You are in a giant cave, all the walls are shining with a soft golden
 light. The cave continues to the south and east, to the north is a narrow
 tunnel.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 4103
 ~
 ~
-0 0 4103
-D1
+Door        east~ ~ 0 4105
 ~
 ~
-0 0 4105
-D2
+Door        south~ ~ 0 4109
 ~
 ~
-0 0 4109
-S
+End
+
 #4107
-The passage~
+Name        The passage~
+Descr
 You are in a small passage, it leads south, to the west is a golden
 cave.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 4113
 ~
 ~
-0 0 4113
-D3
+Door        west~ ~ 0 4108
 ~
 ~
-0 0 4108
-S
+End
+
 #4108
-The golden cave~
+Name        The golden cave~
+Descr
 You are in a giant cave, all the walls are shining with a soft golden
 light. The cave continues to the north and west, east from you there is
 a small passage.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4105 3 100
+Door        north~ ~ 0 4105
 ~
 ~
-0 0 4105
-D1
+Door        east~ ~ 0 4107
 ~
 ~
-0 0 4107
-D3
+Door        west~ ~ 0 4109
 ~
 ~
-0 0 4109
-S
+End
+
 #4109
-The golden cave~
+Name        The golden cave~
+Descr
 You are in a giant cave, all the walls are shining with a soft golden
 light. The cave continues to the south, east and north.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 4106
 ~
 ~
-0 0 4106
-D1
+Door        east~ ~ 0 4108
 ~
 ~
-0 0 4108
-D2
+Door        south~ ~ 0 4114
 ~
 ~
-0 0 4114
-S
+End
+
 #4110
-The tunnel~
+Name        The tunnel~
+Descr
 You are at the end of the tunnel.
 ~
-0 13 3
-D3
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Door        west~ ~ 0 4111
 ~
 ~
-0 0 4111
-S
+End
+
 #4111
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a small tunnel, it leads from east to the west.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4102 2 100
+Reset       E 4103 -1 100
+Reset       M 4102 2 100
+Reset       E 4104 -1 100
+Door        east~ ~ 0 4110
 ~
 ~
-0 0 4110
-D3
+Door        west~ ~ 0 4112
 ~
 ~
-0 0 4112
-S
+End
+
 #4112
-The tunnel~
+Name        The tunnel~
+Descr
 You are in a larger tunnel, it leads from west to east.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4111
 ~
 ~
-0 0 4111
-D3
+Door        west~ ~ 0 4113
 ~
 ~
-0 0 4113
-S
+End
+
 #4113
-The passage~
+Name        The passage~
+Descr
 You are in a passage that leads towards the south. To the east 
 you see a tunnel.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4106 2 100
+Reset       E 4101 -1 100
+Door        north~ ~ 0 4107
 ~
 ~
-0 0 4107
-D1
+Door        east~ ~ 0 4112
 ~
 ~
-0 0 4112
-D2
+Door        south~ ~ 0 4116
 ~
 ~
-0 0 4116
-S
+End
+
 #4114
-The golden cave~
+Name        The golden cave~
+Descr
 You are in a giant cave, all the walls are shining with a soft golden
 light. The cave continues to the north, to the west you see a dark 
 passage.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4100 1 100
+Reset       E 4102 -1 100
+Door        north~ ~ 0 4109
 ~
 ~
-0 0 4109
-D3
+Door        west~ ~ 0 4115
 ~
 ~
-0 0 4115
-S
+End
+
 #4115
-The dark passage.~
+Name        The dark passage.~
+Descr
 You are in a dark passage, that leads east. In the ceiling you notice
 a small hole, just big enough to pass through.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4114
 ~
 ~
-0 0 4114
-D4
+Door        up~ ~ 0 4021
 ~
 ~
-0 0 4021
-S
+End
+
 #4116
-The passage~
+Name        The passage~
+Descr
 You are in a passage that leads north-south. You notice a small
 light to the south.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4113
 ~
 ~
-0 0 4113
-D2
+Door        south~ ~ 0 4120
 ~
 ~
-0 0 4120
-S
+End
+
 #4117
-The secret chamber~
+Name        The secret chamber~
+Descr
 You are in a secret chamber.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 4122
 ~
 ~
-0 0 4122
-S
+End
+
 #4118
-The cave~
+Name        The cave~
+Descr
 You are in a light cave, from torches several feet above your
 head fire lights the room. The cave continues to the west and south.
 To the north a small hole leads to a tunnel.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ 0 4123
 ~
 ~
-0 0 4123
-D3
+Door        west~ ~ 0 4119
 ~
 ~
-0 0 4119
-S
+End
+
 #4119
-The cave~
+Name        The cave~
+Descr
 You are in a light cave, from torches several feet above your
 head fire lights the room. The cave continues to the east and south.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4107 1 100
+Reset       E 4104 -1 100
+Door        east~ ~ 0 4118
 ~
 ~
-0 0 4118
-D2
+Door        south~ ~ 0 4124
 ~
 ~
-0 0 4124
-D3
+Door        west~ ~ 0 4121
 ~
 ~
-0 0 4121
-S
+End
+
 #4120
-The passage~
+Name        The passage~
+Descr
 You are in a north-south leading passage. To the south you see light.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4116
 ~
 ~
-0 0 4116
-D2
+Door        south~ ~ 0 4125
 ~
 ~
-0 0 4125
-S
+End
+
 #4121
-The secret tunnel~
+Name        The secret tunnel~
+Descr
 You are in a secret tunnel that leads west, you feel evilness
 approaching you as you continue west.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4119
 ~
 ~
-0 0 4119
-D3
+Door        west~ ~ 0 4122
 ~
 ~
-0 0 4122
-S
+End
+
 #4122
-The secret chamber~
+Name        The secret chamber~
+Descr
 You are in a secret chamber, the room is filled with an evil
 feeling.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4101 1 100
+Reset       E 4100 -1 100
+Door        north~ ~ 0 4117
 ~
 ~
-0 0 4117
-D1
+Door        east~ ~ 0 4121
 ~
 ~
-0 0 4121
-S
+End
+
 #4123
-The cave~
+Name        The cave~
+Descr
 You are in a light cave, from torches several feet above your
 head fire lights the room. The cave continues to the north and west.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 4118
 ~
 ~
-0 0 4118
-D3
+Door        west~ ~ 0 4124
 ~
 ~
-0 0 4124
-S
+End
+
 #4124
-The cave~
+Name        The cave~
+Descr
 You are in a light cave, from torches several feet above your
 head fire lights the room. The cave continues to the east and north.
 To the west a passage leads north.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 4104 3 100
+Reset       E 4104 -1 100
+Door        north~ ~ 0 4119
 ~
 ~
-0 0 4119
-D1
+Door        east~ ~ 0 4123
 ~
 ~
-0 0 4123
-D3
+Door        west~ ~ 0 4125
 ~
 ~
-0 0 4125
-S
+End
+
 #4125
-The passage~
+Name        The passage~
+Descr
 You are in a passage, to the east you see a cave. Light from the
 cave lights up the passage. To the north the passage leads into
 the darkness.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4120
 ~
 ~
-0 0 4120
-D1
+Door        east~ ~ 0 4124
 ~
 ~
-0 0 4124
-S
+End
+
 #4150
-The dark hole~
+Name        The dark hole~
+Descr
 You are standing at a hole, a small passage leads south. You see
 some inscriptions on the wall, most of 'em the usual stuff, like:
 'Super Snude was here' and 'Why does the mayor likes secretaries with
 small hands?' - But one inscription gets your attention, it says:
 The Balrog is ALIVE ...
 ~
-0 13 3
-D2
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ 0 4151
 ~
 ~
-0 0 4151
-S
+End
+
 #4151
-The small passage~
+Name        The small passage~
+Descr
 You are in a small passage, to the north you see a hole, and to
 the south you see a large tunnel. The air is damp in this area.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4156 1 100
+Door        north~ ~ 0 4150
 ~
 ~
-0 0 4150
-D2
+Door        south~ ~ 0 4156
 ~
 ~
-0 0 4156
-D3
+Door        west~ ~ 0 4155
 ~
 ~
-0 0 4155
-S
+End
+
 #4152
-The tunnel~
+Name        The tunnel~
+Descr
 You suddenly feel that the tunnel leads down.
 ~
-0 13 3
-D1
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4104
 ~
 ~
-0 0 4104
-D2
+Door        south~ ~ 0 4153
 ~
 ~
-0 0 4153
-S
+End
+
 #4153
-The large tunnel~
+Name        The large tunnel~
+Descr
 You are in a large tunnel leading from the south to the east. The
 air is damp in the area.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4159 2 100
+Door        north~ ~ 0 4152
 ~
 ~
-0 0 4152
-D1
+Door        east~ ~ 0 4154
 ~
 ~
-0 0 4154
-D2
+Door        south~ ~ 0 4157
 ~
 ~
-0 0 4157
-S
+End
+
 #4154
-The large tunnel~
+Name        The large tunnel~
+Descr
 You are in a large east-west leading tunnel, the air is damp and
 the floor is wet.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 4155
 ~
 ~
-0 0 4155
-D3
+Door        west~ ~ 0 4153
 ~
 ~
-0 0 4153
-S
+End
+
 #4155
-The large tunnel~
+Name        The large tunnel~
+Descr
 You are in a large tunnel, the tunnel leads west, and to the east
 you notice a long tunnel. The air is damp in this area.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4150 2 100
+Reset       M 4152 2 100
+Door        east~ ~ 0 4151
 ~
 ~
-0 0 4151
-D3
+Door        west~ ~ 0 4154
 ~
 ~
-0 0 4154
-S
+End
+
 #4156
-The long tunnel~
+Name        The long tunnel~
+Descr
 You are standing in a long north-south tunnel.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4151
 ~
 ~
-0 0 4151
-D2
+Door        south~ ~ 0 4160
 ~
 ~
-0 0 4160
-S
+End
+
 #4157
-The wet tunnel~
+Name        The wet tunnel~
+Descr
 You are in a wet, north-south leading tunnel, the floor is
 partly covered by water.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4151 2 100
+Reset       M 4154 2 100
+Door        north~ ~ 0 4153
 ~
 ~
-0 0 4153
-D1
+Door        east~ ~ 0 4158
 ~
 ~
-0 0 4158
-D2
+Door        south~ ~ 0 4161
 ~
 ~
-0 0 4161
-S
+End
+
 #4158
-The small maze~
+Name        The small maze~
+Descr
 You are in a small maze, exits leads off to the east,  south
 and west. The floor is partly covered by water.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4155 1 100
+Reset       E 4152 16 100
+Door        east~ ~ 0 4159
 ~
 ~
-0 0 4159
-D2
+Door        south~ ~ 0 4162
 ~
 ~
-0 0 4162
-D3
+Door        west~ ~ 0 4157
 ~
 ~
-0 0 4157
-S
+End
+
 #4159
-The small maze~
+Name        The small maze~
+Descr
 You are in a small maze, exits leads off only to the south
 and west. The air is damp in this maze.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4151 2 100
+Reset       M 4152 2 100
+Door        south~ ~ 0 4163
 ~
 ~
-0 0 4163
-D3
+Door        west~ ~ 0 4158
 ~
 ~
-0 0 4158
-S
+End
+
 #4160
-In the tunnel at the inscription~
+Name        In the tunnel at the inscription~
+Descr
 You are in a north-south leading tunnel, the air is damp. On
 the wall there is an inscription.
 ~
-0 9 3
-E
-inscription~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  inscription~
 It says:
 
     Year 631 after the destruction of the dwarven realm.
@@ -2392,326 +2964,244 @@ dragon breathed poison gas; we are also going to die soon.
 
        Trather and Oralane
 ~
-D0
+Reset       M 4160 2 100
+Reset       E 4150 -1 100
+Door        north~ ~ 0 4156
 ~
 ~
-0 0 4156
-D2
+Door        south~ ~ 0 4164
 ~
 ~
-0 0 4164
-S
+End
+
 #4161
-The wet tunnel~
+Name        The wet tunnel~
+Descr
 You are in a north-south leading tunnel.  The floor is fully
 covered by water.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4160 2 100
+Door        north~ ~ 0 4157
 ~
 ~
-0 0 4157
-D2
+Door        south~ ~ 0 4165
 ~
 ~
-0 0 4165
-S
+End
+
 #4162
-The small maze~
+Name        The small maze~
+Descr
 You are in a small maze. The floor is mainly covered by
 water, exits leads north, east and south.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4158 2 100
+Door        north~ ~ 0 4158
 ~
 ~
-0 0 4158
-D1
+Door        east~ ~ 0 4163
 ~
 ~
-0 0 4163
-D2
+Door        south~ ~ 0 4166
 ~
 ~
-0 0 4166
-S
+End
+
 #4163
-The small maze~
+Name        The small maze~
+Descr
 You are in a small maze, where the air is damp. Exits
 leads to the north and east.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4159
 ~
 ~
-0 0 4159
-D1
+Door        east~ ~ 0 4164
 ~
 ~
-0 0 4164
-D3
+Door        west~ ~ 0 4162
 ~
 ~
-0 0 4162
-S
+End
+
 #4164
-The entrance to the small maze~
+Name        The entrance to the small maze~
+Descr
 You are in a north-south leading tunnel, and the air is damp.
 To the west you see a small maze.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4153 2 100
+Reset       M 4154 2 100
+Door        north~ ~ 0 4160
 ~
 ~
-0 0 4160
-D2
+Door        south~ ~ 0 4168
 ~
 ~
-0 0 4168
-D3
+Door        west~ ~ 0 4163
 ~
 ~
-0 0 4163
-S
+End
+
 #4165
-In the water~
+Name        In the water~
+Descr
 You are standing in water, the tunnel continues both to the
 north and south.
 ~
-0 9 6
-D0
+Flags       dark indoors~
+Sector      water_swim~
+Regen       100 100
+Door        north~ ~ 0 4161
 ~
 ~
-0 0 4161
-D2
+Door        south~ ~ 0 4169
 ~
 ~
-0 0 4169
-S
+End
+
 #4166
-The wet maze~
+Name        The wet maze~
+Descr
 You are in a part of the maze where the floor is fully covered
 by water. The maze continues to the north, east and south.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4162
 ~
 ~
-0 0 4162
-D1
+Door        east~ ~ 0 4167
 ~
 ~
-0 0 4167
-D2
+Door        south~ ~ 0 4170
 ~
 ~
-0 0 4170
-S
+End
+
 #4167
-The wet maze~
+Name        The wet maze~
+Descr
 You are in a small maze, the floor is covered by water, the
 maze continues east, west and south.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4157 2 100
+Reset       M 4157 2 100
+Reset       E 4151 -1 100
+Door        east~ ~ 0 4168
 ~
 ~
-0 0 4168
-D2
+Door        south~ ~ 0 4171
 ~
 ~
-0 0 4171
-D3
+Door        west~ ~ 0 4166
 ~
 ~
-0 0 4166
-S
+End
+
 #4168
-A Tunnel~
+Name        A Tunnel~
+Descr
 The air is damp here.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 4159 2 100
+Door        north~ ~ 0 4164
 ~
 ~
-0 0 4164
-D3
+Door        west~ ~ 0 4167
 ~
 ~
-0 0 4167
-S
+End
+
 #4169
-In the water~
+Name        In the water~
+Descr
 You are standing in the water, exits leads both north and east.
 ~
-0 9 6
-D0
+Flags       dark indoors~
+Sector      water_swim~
+Regen       100 100
+Reset       M 4158 2 100
+Door        north~ ~ 0 4165
 ~
 ~
-0 0 4165
-D1
+Door        east~ ~ 0 4170
 ~
 ~
-0 0 4170
-S
+End
+
 #4170
-In the water~
+Name        In the water~
+Descr
 You are standing in the water, it continues east and west.
 ~
-0 9 6
-D0
+Flags       dark indoors~
+Sector      water_swim~
+Regen       100 100
+Reset       M 4150 2 100
+Reset       M 4153 2 100
+Door        north~ ~ 0 4166
 ~
 ~
-0 0 4166
-D1
+Door        east~ ~ 0 4172
 ~
 ~
-0 0 4172
-D3
+Door        west~ ~ 0 4169
 ~
 ~
-0 0 4169
-S
+End
+
 #4171
-End of maze~
+Name        End of maze~
+Descr
 You are at the end of the small maze which continues north.
 Above you a hole leads up.
 ~
-0 13 3
-D0
+Flags       dark no_mob indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 4167
 ~
 ~
-0 0 4167
-D4
+Door        up~ ~ 0 4074
 ~
 ~
-0 0 4074
-S
+End
+
 #4172
-At the sand bar~
+Name        At the sand bar~
+Descr
 You are on a little sand bar in the water.
 ~
-0 9 3
-D3
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        west~ ~ 0 4170
 ~
 ~
-0 0 4170
-S
+End
+
 #0
 
-
-#SPECIALS
-M 4000 spec_poison
-M 4001 spec_poison
-M 4053 spec_poison
-M 4100 spec_cast_mage
-M 4102 spec_poison
-M 4150 spec_breath_lightning
-M 4151 spec_breath_fire
-M 4152 spec_breath_gas
-M 4153 spec_breath_frost
-M 4154 spec_breath_acid
-M 4155 spec_thief
-M 4157 spec_cast_mage
-M 4158 spec_poison
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 4003 6 4013
-M 0 4003 6 4013
-M 0 4001 2 4015
-M 0 4004 3 4015
-M 0 4002 3 4017
-M 0 4002 3 4020
-M 0 4003 6 4021
-M 0 4003 6 4021
-M 0 4005 1 4022
-E 0 4000 0 1
-M 0 4002 3 4023
-M 0 4001 2 4025
-M 0 4003 6 4027
-M 0 4003 6 4027
-M 0 4004 3 4028
-M 0 4004 3 4028
-M 0 4000 1 4030
-G 0 4001 0
-P 0 4002 0 4001
-M 0 4051 4 4050
-M 0 4054 3 4052
-M 0 4054 3 4053
-M 0 4051 4 4055
-M 0 4052 3 4056
-M 0 4056 2 4057
-M 0 4053 2 4058
-M 0 4052 3 4059
-M 0 4054 3 4060
-M 0 4050 1 4062
-G 0 4051 0
-M 0 4055 2 4064
-G 0 4050 0
-M 0 4052 3 4065
-M 0 4056 2 4067
-M 0 4053 2 4068
-O 0 4052 0 4068
-O 0 4052 0 4069
-M 0 4051 4 4070
-O 0 4052 0 4070
-M 0 4055 2 4071
-G 0 4050 0
-O 0 4052 0 4071
-M 0 4051 4 4073
-M 0 4102 3 4103
-G 0 4103 0
-G 0 4104 0
-M 0 3005 5 4103
-M 0 4105 3 4108
-M 0 4102 2 4111
-G 0 4103 0
-M 0 4102 2 4111
-G 0 4104 0
-M 0 4106 2 4113
-G 0 4101 0
-M 0 4100 1 4114
-G 0 4102 0
-M 0 4107 1 4119
-G 0 4104 0
-M 0 4101 1 4122
-G 0 4100 0
-M 0 4104 3 4124
-G 0 4104 0
-M 0 4156 1 4151
-M 0 4159 2 4153
-M 0 4150 2 4155
-M 0 4152 2 4155
-M 0 4151 2 4157
-M 0 4154 2 4157
-M 0 4155 1 4158
-E 0 4152 0 16
-M 0 4151 2 4159
-M 0 4152 2 4159
-M 0 4160 2 4160
-G 0 4150 0
-M 0 4160 2 4161
-M 0 4158 2 4162
-M 0 4153 2 4164
-M 0 4154 2 4164
-M 0 4157 2 4167
-M 0 4157 2 4167
-G 0 4151 0
-M 0 4159 2 4168
-M 0 4158 2 4169
-M 0 4150 2 4170
-M 0 4153 2 4170
-S
-
-
-#SHOPS
-0
 
 
 #$

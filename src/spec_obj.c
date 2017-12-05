@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -31,14 +33,6 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
-
-
-
-/*
- * The following special functions are available for objects.
- */
-DECLARE_OBJ_FUN(	spec_giggle		);
-DECLARE_OBJ_FUN(	spec_soul_moan		);
 
 
 

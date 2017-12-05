@@ -4,865 +4,1039 @@ Author      Generic~
 Levels      1 10
 Security    1
 VNUMs       100 129
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #101
-smurf~
-a smurf~
+Name        smurf~
+Short       a smurf~
+Long
 A smurf is singing and walking along.
 ~
+Descr
 A cute little blue smurf with a white hat and white boots.  You have a sudden
 urge to crush him.
 ~
-193 0 100 S
-1 19 8 10d2+2 1d2+1
-20 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       1
+Gold        20
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #102
-smurf~
-a smurf~
+Name        smurf~
+Short       a smurf~
+Long
 A smurf is here, picking berries.
 ~
+Descr
 A small smurf is quietly picking berries.  He seems to hardly notice you.
 ~
-131 0 100 S
-1 19 8 2d5+20 1d2+1
-20 0
-0 Animal~ 1
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   100
+Level       1
+Gold        20
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #103
-brainy smurf~
-Brainy Smurf~
+Name        brainy smurf~
+Short       Brainy Smurf~
+Long
 Brainy Smurf is here, mumbling something to himself.
 ~
+Descr
 Brainy Smurf has on his usual glasses.  Brainy Smurf isn't liked much by the
 other smurfs.  They fear his knowledge.  Knowledge is power!
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #104
-handy smurf~
-Handy Smurf~
+Name        handy smurf~
+Short       Handy Smurf~
+Long
 Handy Smurf is building something here.
 ~
+Descr
 Handy is always building something.  He never takes a break.  Why don't you
 give him a break, like all of his bones.
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #105
-sleepy smurf~
-Sleepy Smurf~
+Name        sleepy smurf~
+Short       Sleepy Smurf~
+Long
 Sleepy Smurf is sleep walking here.
 ~
+Descr
 Sleepy never gets enough sleep.  You would think he goes to college.  I wonder
 if he has ever stayed up a whole night without sleeping.
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #106
-hefty smurf~
-Hefty Smurf~
+Name        hefty smurf~
+Short       Hefty Smurf~
+Long
 Hefty Smurf is lifting weights here.
 ~
+Descr
 Hefty is a total health nut.  He lifts weights, eats right, and exercises all
 the time.  Won't do him much good when he's DEAD.
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #107
-grumpy smurf~
-Grumpy Smurf~
+Name        grumpy smurf~
+Short       Grumpy Smurf~
+Long
 Grumpy Smurf is here, swearing.
 ~
+Descr
 Grumpy has never been happy in his whole life.  So why don't you just end it?
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #108
-jokey smurf~
-Jokey Smurf~
+Name        jokey smurf~
+Short       Jokey Smurf~
+Long
 Jokey Smurf is here, holding a present.
 ~
+Descr
 Jokey loves to give people presents.  Too bad the present explodes when opened.
 Oh well, to each his own.
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         male~
+Spec        spec_thief
+End
+
 #109
-smurfette smurf~
-Smurfette~
+Name        smurfette smurf~
+Short       Smurfette~
+Long
 Smurfette is here, looking beautiful.
 ~
+Descr
 Smurfette is the cutest little smurf you've ever seen.  If only she were your
 size.  I wonder how much she charges the other smurfs.
 ~
-193 0 100 S
-3 18 7 3d10+1 1d4+1
-30 0
-0 Animal~ 2
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       3
+Gold        30
+Race        Animal
+Sex         female~
+Spec        spec_thief
+End
+
 #110
-papa smurf~
-Papa Smurf~
+Name        papa smurf~
+Short       Papa Smurf~
+Long
 Papa Smurf is practicing magic here.
 ~
+Descr
 Yep, its Papa Smurf all right.  Red hat and boots and the funny little white
 beard.  Papa Smurf treats his fellow smurfs with dignity and respect.  That
 is why Papa Smurf is so popular among the ladies.
 ~
-193 0 100 S
-10 10 0 10d10+50 2d2+12
-50 0
-0 Animal~ 1
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       10
+Gold        50
+Race        Animal
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #111
-gargamel~
-Gargamel~
+Name        gargamel~
+Short       Gargamel~
+Long
 Gargamel is here, cursing out the smurfs.
 ~
+Descr
 Gargamel has never done anything right in his life.  He has caught smurfs
 before but always lets them escape.  He brings true meaning to the word moron.
 ~
-131 0 -100 S
-10 10 0 10d10+50 2d2+12
-50 0
-0 Human~ 1
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   -100
+Level       10
+Gold        50
+Race        Human
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #112
-azreal cat~
-Azreal~
+Name        azreal cat~
+Short       Azreal~
+Long
 Azreal is here, licking himself.
 ~
+Descr
 Gargamel's worthless cat.  He is just about as dumb as Gargamel.  He should
 just grab a smurf in his teeth and chew away.
 ~
-131 0 -100 S
-8 12 2 8d8+80 1d4+5
-20 0
-0 Animal~ 1
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   -100
+Level       8
+Gold        20
+Race        Animal
+Sex         male~
+Spec        spec_poison
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #100
-bunch berries smurfberries~
-a bunch of smurfberries~
+Name        bunch berries smurfberries~
+Short       a bunch of smurfberries~
+Descr
 A bunch of delicious looking smurfberries lie here.~
-~
-26 0 1
-8~ change sex~  ~  ~  ~
-2 50 0
+Type        pill~
+Extra       ~
+Wear        take~
+Values      8~ change sex~  ~  ~  ~
+Weight      2
+Cost        50
+End
+
 #101
-glasses~
-a pair of glasses~
+Name        glasses~
+Short       a pair of glasses~
+Descr
 An odd pair of glasses has been left here.~
-~
-9 1 17
-1~ 0~ 0~ 0~ 0~
-2 500 0
-A
-4 1 0
+Type        armor~
+Extra       glow~
+Wear        take head~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        500
+Affect      wisdom~ 1 ~
+End
+
 #102
-smurf hat~
-a smurf hat~
+Name        smurf hat~
+Short       a smurf hat~
+Descr
 A smurf hat has been left here.~
-~
-9 0 17
-3~ 0~ 0~ 0~ 0~
-2 50 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        50
+End
+
 #103
-axe small~
-a small axe~
+Name        axe small~
+Short       a small axe~
+Descr
 A small axe has been dropped here.~
-~
-5 0 8193
-0~ 2~ 5~ 3~ 0~
-2 2000 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 5~ 3~ 0~
+Weight      2
+Cost        2000
+End
+
 #104
-necklace~
-a small necklace~
+Name        necklace~
+Short       a small necklace~
+Descr
 A small necklace is lying on the ground.~
-~
-9 1 5
-1~ 0~ 0~ 0~ 0~
-2 500 0
-A
-3 1 0
+Type        armor~
+Extra       glow~
+Wear        take neck~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        500
+Affect      intelligence~ 1 ~
+End
+
 #105
-pink potion~
-a pink potion~
+Name        pink potion~
+Short       a pink potion~
+Descr
 A pink potion is barely visible on the ground.~
-~
-10 0 1
-6~ armor~ cure blindness~  ~  ~
-2 500 0
+Type        potion~
+Extra       ~
+Wear        take~
+Values      6~ armor~ cure blindness~  ~  ~
+Weight      2
+Cost        500
+End
+
 #106
-wand~
-a small wand~
+Name        wand~
+Short       a small wand~
+Descr
 A small wand lies on the ground.~
-~
-3 0 16385
-5~ 1~ 1~ burning hands~ 0~
-2 500 0
+Type        wand~
+Extra       ~
+Wear        take hold~
+Values      5~ 1~ 1~ burning hands~ 0~
+Weight      2
+Cost        500
+End
+
 #107
-key~
-a tiny key~
+Name        key~
+Short       a tiny key~
+Descr
 A tiny key is lying on the ground.~
-~
-18 0 1
-2~ 0~ 0~ 0~ 0~
-2 50 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        50
+End
+
 #108
-well~
-a smurf well~
+Name        well~
+Short       a smurf well~
+Descr
 A small smurfy well is here.~
-~
-25 0 0
-50~ 50~ 0~ 0~ 0~
-500 3000 0
+Type        fountain~
+Extra       ~
+Wear        ~
+Values      50~ 50~ 0~ 0~ 0~
+Weight      500
+Cost        3000
+End
+
 #109
-key~
-a small key~
+Name        key~
+Short       a small key~
+Descr
 A key to Gargamel's door lies here.~
-~
-18 0 1
-2~ 0~ 0~ 0~ 0~
-2 50 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        50
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #101
-Dimly Lit Path~
+Name        Dimly Lit Path~
+Descr
 This path is made of crushed granite with curious blue streaks in it.
 The path continues north to a village, or south to the west gate.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 102
 The path continues toward the village.
 ~
 ~
-0 -1 102
-D2
+Door        south~ ~ -1 3040
 The path back toward the forest.
 ~
 ~
-0 -1 3040
-S
+End
+
 #102
-Dimly Lit Path~
+Name        Dimly Lit Path~
+Descr
 This section of the road is badly worn and frequently traversed.  There is
 faint singing to the north.  The road back to the forest lies to the south.
 ~
-0 4 3
-D0
+Flags       no_mob~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 103
 The path continues toward the village.
 ~
 ~
-0 -1 103
-D2
+Door        south~ ~ -1 101
 The dimly lit path.
 ~
 ~
-0 -1 101
-S
+End
+
 #103
-Dimly Lit Path~
+Name        Dimly Lit Path~
+Descr
 This section of the road is badly worn and frequently traversed.  Singing is
 getting stronger to the north.  The road back to the forest lies to the south.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 104
 The entrance to smurf village.
 ~
 ~
-0 -1 104
-D2
+Door        south~ ~ -1 102
 The dimly lit path.
 ~
 ~
-0 -1 102
-S
+End
+
 #104
-Entrance to Smurf Village~
+Name        Entrance to Smurf Village~
+Descr
 You stand at the entrance to a tiny village.  You can see across the whole
 village easily.  Little blue creatures with white hats and boots and little 
 fluffy tails scamper about.  They sing continuously.  The singing is getting
 on your nerves and you have the urge to squash them.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 101 3 100
+Reset       E 102 -1 100
+Door        north~ ~ -1 105
 Smurfy Road
 ~
 ~
-0 -1 105
-D2
+Door        south~ ~ -1 103
 Dimly Lit Path
 ~
 ~
-0 -1 103
-S
+End
+
 #105
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 You are way too big to be using this road.  But who cares.  Who's gonna stop
 you?  These little blue smurfs?  The singing is growing intense.  Your ears
 are starting to ring.  Smurfy Road continues to the north, west, and east.
 There is still time to turn back and go south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 101 3 100
+Door        north~ ~ -1 106
 Smurfy Road
 ~
 ~
-0 -1 106
-D1
+Door        east~ ~ -1 110
 Smurfy Road
 ~
 ~
-0 -1 110
-D2
+Door        south~ ~ -1 104
 Entrance to smurf village
 ~
 ~
-0 -1 104
-D3
+Door        west~ ~ -1 111
 Smurfy Road
 ~
 ~
-0 -1 111
-S
+End
+
 #106
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 You continue to travel down Smurfy Road.  Isn't it just smurfy?  Smurfy road
 continues its smurfy path to the smurfy north, smurfy west, and smurfy south.
 A smurfy home lies to the smurfy east.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 107
 Smurfy Road
 ~
 ~
-0 -1 107
-D1
+Door        east~ ~ -1 120
 Smurfy Home
 ~
 ~
-0 -1 120
-D2
+Door        south~ ~ -1 105
 Smurfy Road
 ~
 ~
-0 -1 105
-D3
+Door        west~ ~ -1 112
 Smurfy Road
 ~
 ~
-0 -1 112
-S
+End
+
 #107
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 Oh boy, another smurfy road!  Smurfy Road goes north and south here.  There
 is a smurfy, mushroom home to the west.  A beautiful smurfberry patch is to
 the east.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 101 3 100
+Door        north~ ~ -1 108
 Smurfy Road
 ~
 ~
-0 -1 108
-D1
+Door        east~ ~ -1 116
 Smurfberry Patch
 ~
 ~
-0 -1 116
-D2
+Door        south~ ~ -1 106
 Smurfy Road
 ~
 ~
-0 -1 106
-D3
+Door        west~ ~ -1 129
 A Smurfy Home
 ~
 ~
-0 -1 129
-S
+End
+
 #108
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 Smurfy Road continues to smurf here.  It smurfs to the south and smurfs to
 an end to the north.  A smurfberry patch is to the east.  A stone path lies
 to the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 101 3 100
+Reset       E 102 -1 100
+Door        north~ ~ -1 109
 Smurfy Road
 ~
 ~
-0 -1 109
-D1
+Door        east~ ~ -1 117
 Smurfberry patch
 ~
 ~
-0 -1 117
-D2
+Door        south~ ~ -1 107
 Smurfy Road
 ~
 ~
-0 -1 107
-D3
+Door        west~ ~ -1 113
 A stone path
 ~
 ~
-0 -1 113
-S
+End
+
 #109
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 A smurfy well lies here in the middle of Smurfy Road.  A fence separates
 the smurfs from harm to the north.  A berry patch is to the east.  Smurfy
 Road continues to to the south and west.
 ~
-0 0 1
-E
-smurfy well~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  smurfy well~
 A small well is here.  Just the right size if you're a smurf.  But big
 enough for you to get some water from.  I'm sure the smurfs wont mind.
 ~
-D1
+Reset       O 108 0 100
+Reset       M 101 3 100
+Door        east~ ~ -1 118
 Smurfberry Patch
 ~
 ~
-0 -1 118
-D2
+Door        south~ ~ -1 108
 Smurfy Road
 ~
 ~
-0 -1 108
-D3
+Door        west~ ~ -1 114
 Smurfy Road
 ~
 ~
-0 -1 114
-S
+End
+
 #110
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 A corner of smurfy road is where you stand.  A smurfy fence blocks passage
 to the east or south.  A smurfy home is to the north.  Smurfy Road goes back
 to the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 101 3 100
+Reset       E 102 -1 100
+Door        north~ ~ -1 119
 Smurfy Home
 ~
 ~
-0 -1 119
-D3
+Door        west~ ~ -1 105
 Smurfy Road
 ~
 ~
-0 -1 105
-S
+End
+
 #111
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 Western corner of Smurfy Road.  You can continue to smurf down the road
 to the east and north.  You can also smurf into a smurfy home to the south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 101 3 100
+Door        north~ ~ -1 112
 Smurfy Road
 ~
 ~
-0 -1 112
-D1
+Door        east~ ~ -1 105
 Smurfy Road
 ~
 ~
-0 -1 105
-D2
+Door        south~ ~ -1 121
 Smurfy Home
 ~
 ~
-0 -1 121
-S
+End
+
 #112
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 There's no place like smurf.  There's no place like smurf.  Sorry wrong
 movie.  A smurfy home is to the west.  Papa Smurf's backyard is to the
 north but you can't go there.  Smurfy Road continues to the south and
 east.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 101 3 100
+Reset       E 102 -1 100
+Door        east~ ~ -1 106
 Smurfy Road
 ~
 ~
-0 -1 106
-D2
+Door        south~ ~ -1 111
 Smurfy Road
 ~
 ~
-0 -1 111
-D3
+Door        west~ ~ -1 122
 Smurfy Home
 ~
 ~
-0 -1 122
-S
+End
+
 #113
-Stone Path~
+Name        Stone Path~
+Descr
 You are walking along a cute little stone path.  To the south lies Papa
 Smurf's house.  A Smurfy house is to the west.  Smurfy road is to the east.
 Everything is so peaceful here.  You could stay forever.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 110 1 100
+Reset       E 105 -1 100
+Reset       E 109 -1 100
+Door        east~ ~ -1 108
 Smurfy Road
 ~
 ~
-0 -1 108
-D2
+Door        south~ door closed locked~ 107 125
 Papa Smurf's House
 ~
 door~
-7 107 125
-D3
+Door        west~ ~ -1 123
 Smurfy House
 ~
 ~
-0 -1 123
-S
+End
+
 #114
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 Yet another part of Smurfy Road.  Hey if you go west its the last
 section of Smurfy Road.  You can go back to the smurfy well to the east.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 109
 Smurfy Road
 ~
 ~
-0 -1 109
-D3
+Door        west~ ~ -1 115
 Smurfy Road
 ~
 ~
-0 -1 115
-S
+End
+
 #115
-Smurfy Road~
+Name        Smurfy Road~
+Descr
 The last piece of Smurfy Road.  You can go back to Smurfy Road to the east.
 A nice, beautiful, smurfy, mushroom home is to the south.  In the distance to
 the north you can see Gargamel's Castle.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 126
 Path to Gargamel's Castle
 ~
 ~
-0 -1 126
-D1
+Door        east~ ~ -1 114
 Smurfy Road
 ~
 ~
-0 -1 114
-D2
+Door        south~ ~ -1 124
 Smurfy Home
 ~
 ~
-0 -1 124
-S
+End
+
 #116
-Smurfberry Patch~
+Name        Smurfberry Patch~
+Descr
 Delicious smurfberries grow here.  You could probably eat a year's worth of
 smurfberries in one sitting.  Smurfy Road is back to the west.  Another
 smurfberry patch is to the north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 102 3 100
+Reset       E 100 -1 100
+Door        north~ ~ -1 117
 Smurfberry Patch
 ~
 ~
-0 -1 117
-D3
+Door        west~ ~ -1 107
 Smurfy Road
 ~
 ~
-0 -1 107
-S
+End
+
 #117
-Smurfberry Patch~
+Name        Smurfberry Patch~
+Descr
 Another patch of smurfberries is growing here.  The smell is driving your
 nostrils crazy.  It almost, ALMOST, makes you forget all the singing going
 on.  Smurfy Road is to the west, while smurfberry patches are to the north
 and south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 102 3 100
+Reset       E 100 -1 100
+Door        north~ ~ -1 118
 Smurfberry Patch
 ~
 ~
-0 -1 118
-D2
+Door        south~ ~ -1 116
 Smurfberry Patch
 ~
 ~
-0 -1 116
-D3
+Door        west~ ~ -1 108
 Smurfy Road
 ~
 ~
-0 -1 108
-S
+End
+
 #118
-Smurfberry Patch~
+Name        Smurfberry Patch~
+Descr
 The northernmost of the smurfberry patches grows here.  It looks just
 as scrumptious as all the rest.  Just take a few; they'll never know.  Smurfy
 Road is to the west.  A smurfberry patch is to the south.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 102 3 100
+Reset       E 100 -1 100
+Door        south~ ~ -1 117
 Smurfberry Patch
 ~
 ~
-0 -1 117
-D3
+Door        west~ ~ -1 109
 Smurfy Road
 ~
 ~
-0 -1 109
-S
+End
+
 #119
-Brainy Smurf's Home~
+Name        Brainy Smurf's Home~
+Descr
 You rip the roof of the home to get a good look inside.  You see
 many smurfy books.  The print is so small you couldn't even read it
 with a magnifying glass.  I wonder if Brainy Smurf minds if you
 destroy his home?  Smurfy Road is back to the south.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 103 1 100
+Reset       E 101 6 100
+Door        south~ ~ -1 110
 Smurfy Road
 ~
 ~
-0 -1 110
-S
+End
+
 #120
-Handy Smurf's Home~
+Name        Handy Smurf's Home~
+Descr
 This home was well built.  Of course, until you rip it apart you big meany
 you.  Tools are all over the place.  Too small for you to use.  Smurfy Road is
 back to the west.
 ~
-0 0 1
-D3
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 104 1 100
+Reset       E 103 16 100
+Door        west~ ~ -1 106
 Smurfy Road
 ~
 ~
-0 -1 106
-S
+End
+
 #121
-Hefty Smurf's Home~
+Name        Hefty Smurf's Home~
+Descr
 Hefty is anything but wimpy.  So is his house.  It actually took you a 
 couple of minutes to destroy his house.  Better watch out -- he might be
 a little mad at you.  Smurfy Road is back to the north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 106 1 100
+Reset       E 103 16 100
+Door        north~ ~ -1 111
 Smurfy Road
 ~
 ~
-0 -1 111
-S
+End
+
 #122
-Sleepy Smurf's Home~
+Name        Sleepy Smurf's Home~
+Descr
 Be vewy vewy quiet.  Sleepy Smurf is probably sleeping.  You see so many
 beds you can't even tell if he is here.  Maybe you should quietly go back to
 Smurfy Road to the east.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 105 1 100
+Door        east~ ~ -1 112
 Smurfy Road
 ~
 ~
-0 -1 112
-S
+End
+
 #123
-Grumpy Smurf's Home~
+Name        Grumpy Smurf's Home~
+Descr
 This is Grumpy Smurf's home.  He is pissed at you.  Of course, he is pissed
 at everyone.  So don't take it bad.  Maybe you'd better leave before he really
 gets mad.  Smurfy Road to the east is your only salvation.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 107 1 100
+Door        east~ ~ -1 113
 Smurfy Road
 ~
 ~
-0 -1 113
-S
+End
+
 #124
-Jokey Smurf's Home~
+Name        Jokey Smurf's Home~
+Descr
 You pull the top of his house and it explodes in your face.  That Jokey
 Smurf, what a kidder.  You can hear his laughter as you wipe the ashes off
 your face.  You better get even.  Smurfy Road is to the north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 108 1 100
+Door        north~ ~ -1 115
 Smurfy Road
 ~
 ~
-0 -1 115
-S
+End
+
 #125
-Papa Smurf's Home~
+Name        Papa Smurf's Home~
+Descr
 It's the home of the leader of the smurfs.  Papa Smurf has a nicely decorated
 home.  He takes pride in his work.  You could get to know him or just squash
 him.  If Papa Smurf is not here he is probably at Smurfette's putting the
 moves on her.  A stone path lies to the north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ door closed locked~ 107 113
 Stone Path
 ~
 door~
-7 107 113
-S
+End
+
 #126
-Path to Gargamel's Castle~
+Name        Path to Gargamel's Castle~
+Descr
 You are walking along a path to Gargamel's Castle to the North.
 Smurfy Road lies to the south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 127
 Outside Gargamel's Castle
 ~
 ~
-0 -1 127
-D2
+Door        south~ ~ -1 115
 Smurfy Road
 ~
 ~
-0 -1 115
-S
+End
+
 #127
-Outside Gargamel's Castle~
+Name        Outside Gargamel's Castle~
+Descr
 You are standing outside Gargamel's Castle.  You can hear him screaming at
 Azreal from inside.  You can also hear him cursing out those wretched smurfs.
 His Castle is to the north while Smurfy Road is to the south.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ door closed locked~ 109 128
 Gargamel's Castle
 ~
 door~
-7 109 128
-D2
+Door        south~ ~ -1 126
 Path to Gargamel's Castle
 ~
 ~
-0 -1 126
-S
+End
+
 #128
-Gargamel's Castle~
+Name        Gargamel's Castle~
+Descr
 This is Gargamel's Castle.  His big black kettle is in the middle of the room.
 Where else would he put it?  The place has only one room.
 ~
-0 0 1
-D2
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 111 1 100
+Reset       E 106 17 100
+Reset       M 112 1 100
+Door        south~ door closed locked~ 109 127
 Outside Gargamel's Castle
 ~
 door~
-7 109 127
-S
+End
+
 #129
-Smurfette's House~
+Name        Smurfette's House~
+Descr
 This house is conveniently next to Papa Smurfs.  Makes it easier for Papa
 Smurf to sneak over at night.  I hope he uses protection.  I would hate to
 have little smurfs running around.  The only exit is to the east.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 109 1 100
+Reset       E 104 3 100
+Reset       E 107 -1 100
+Door        east~ ~ -1 107
 Smurfy Road
 ~
 ~
-0 -1 107
-S
+End
+
 #0
 
-
-#SPECIALS
-M 101 spec_thief
-M 102 spec_thief
-M 103 spec_thief
-M 104 spec_thief
-M 105 spec_thief
-M 106 spec_thief
-M 107 spec_thief
-M 108 spec_thief
-M 109 spec_thief
-M 110 spec_cast_mage
-M 111 spec_cast_cleric
-M 112 spec_poison
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 101 3 104
-G 0 102 0
-M 0 101 3 105
-M 0 101 3 107
-M 0 101 3 108
-G 0 102 0
-O 0 108 0 109
-M 0 101 3 109
-M 0 101 3 110
-G 0 102 0
-M 0 101 3 111
-M 0 101 3 112
-G 0 102 0
-M 0 110 1 113
-G 0 105 0
-G 0 109 0
-M 0 102 3 116
-G 0 100 0
-M 0 102 3 117
-G 0 100 0
-M 0 102 3 118
-G 0 100 0
-M 0 103 1 119
-E 0 101 0 6
-M 0 104 1 120
-E 0 103 0 16
-M 0 106 1 121
-E 0 103 0 16
-M 0 105 1 122
-M 0 107 1 123
-M 0 108 1 124
-M 0 111 1 128
-E 0 106 0 17
-M 0 112 1 128
-M 0 109 1 129
-E 0 104 0 3
-G 0 107 0
-S
-
-
-#SHOPS
-0
 
 
 #$

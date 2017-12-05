@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -174,13 +176,14 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "emote",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { ",",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "gtell",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
-    { ";",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "=",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
     { "music",		do_music,	POS_SLEEPING,	 3,  LOG_NORMAL, 1 },
     { "note",		do_note,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "pose",		do_pose,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "question",	do_question,	POS_SLEEPING,	 3,  LOG_NORMAL, 1 },
     { "reply",		do_reply,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "say",		do_say,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "speak",		do_speak,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "'",		do_say,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
     { "shout",		do_shout,	POS_RESTING,	 3,  LOG_NORMAL, 1 },
     { "yell",		do_yell,	POS_RESTING,	 3,  LOG_NORMAL, 1 },
@@ -277,6 +280,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "noemote",	do_noemote,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "notell",		do_notell,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "numlock",	do_numlock,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
+    { "oclone",		do_oclone,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "oload",		do_oload,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "oset",		do_oset,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "pardon",		do_pardon,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
@@ -301,6 +305,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "astat",		do_astat,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "echo",		do_echo,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "memory",		do_memory,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
+    { "mclone",		do_mclone,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "mload",		do_mload,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "mfind",		do_mfind,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "mstat",		do_mstat,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
@@ -314,7 +319,10 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "return",		do_return,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "rset",		do_rset,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "rstat",		do_rstat,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
-    { "clookup",	do_clookup,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "cinfo",		do_cinfo,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "cpose",		do_cpose,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "cslist",		do_cslist,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "ctitle",		do_ctitle,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "slookup",	do_slookup,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "sober",		do_sober,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "snoop",		do_snoop,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
@@ -375,6 +383,8 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "alist",          do_alist,       POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
     { "resets",         do_resets,      POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
     { "mpedit",         do_mpedit,      POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "qhelp",		do_qhelp,	POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
+    { "?",		do_qhelp,	POS_DEAD,    L_SEN,  LOG_NORMAL, 1 },
 
     /*
      * End of list.
@@ -407,7 +417,7 @@ void interpret( CHAR_DATA *ch, char *argument )
     /*
      * No hiding and remove AFK
      */
-    REMOVE_BIT( ch->affected_by, AFF_HIDE );
+    remove_bit( ch->affected_by, AFF_HIDE );
     if ( !IS_NPC( ch ) )
         REMOVE_BIT( ch->act, PLR_AFK );
 
@@ -784,8 +794,8 @@ void do_history( CHAR_DATA *ch, char *argument )
     for ( history = ch->desc->infirst, num = 0; history;
 	 history = history->next, num++ )
     {
-	sprintf( buf, " {o{y%4d:{x %s\n\r", num, history->comm );
-	send_to_char( buf, ch );
+	sprintf( buf, " %4d: %s\n\r", num, history->comm );
+	send_to_char_bw( buf, ch );
     }
 
     return;
@@ -803,24 +813,24 @@ void do_history( CHAR_DATA *ch, char *argument )
 
 /* 
  * strexg - copies a string, making some replacements
- * strexg( <to>, <from>, <what>, <for what> )
+ * strexg( <dest>, <src>, <what>, <for what> )
  */
-void strexg( char *target, char *source, char c, char *t )
+void strexg( char *target, char *source, char *c, char *t )
 {
     int   i = 0;
     char *temp;
 
     while ( *source && i < MAX_INPUT_LENGTH )
     {
-	if ( *source == c )
+	if ( !strncmp( source, c, strlen( c ) ) )
 	{
 	    if ( !t )
 	    {
-		source++;
+		source += strlen( c );
 		continue;
 	    }
 	    temp = t;
-	    source++;
+	    source += strlen( c );
 	    while ( *temp )
 	    {
 		i++;
@@ -834,48 +844,6 @@ void strexg( char *target, char *source, char c, char *t )
 	}
     }
     *target = '\0';
-
-    return;
-}
-
-
-void substitute_alias( DESCRIPTOR_DATA *d )
-{
-    ALIAS_DATA *alias;
-    CHAR_DATA  *ch;
-    char       *arg;
-    char        cmd [ MAX_INPUT_LENGTH ];
-    char        buf [ MAX_INPUT_LENGTH ];
-
-    ch = ( d->original ? d->original : d->character );
-
-    arg = d->incomm;
-    arg = one_argument( arg, cmd );
-
-    for( alias = ch->pcdata->alias_list; alias; alias = alias->next )
-    	    if ( !str_cmp( cmd, alias->cmd ) ) break;
-
-    if ( !alias )
-	return;
-
-    if ( strchr( alias->subst, '%' ) )
-	strexg( buf, alias->subst, '%', arg );
-    else
-	strexg( buf, alias->subst, '$', arg );
-
-    if ( !strchr( buf, ';' ) )
-	return;
-
-    strcpy( d->flusher, buf );
-    *d->incomm = '\0';
-
-    d->flush_point = strchr( d->flusher, ';' );
-
-    if ( d->flush_point )
-    {
-	*d->flush_point = '\0';
-	d->flush_point++;
-    }
 
     return;
 }
@@ -919,14 +887,14 @@ void do_alias( CHAR_DATA *ch, char *argument )
 
 	buf1[0] = '\0';
 
-	strcat( buf1, "{o{cYour current aliases are:{x\n\r" );
+	strcat( buf1, "Your current aliases are:\n\r" );
 	for ( ; alias; alias = alias->next )
 	{
-	    sprintf( buf, "{o{y%s = %s{x\n\r", alias->cmd, alias->subst );
+	    sprintf( buf, "%s = %s\n\r", alias->cmd, alias->subst );
 	    strcat( buf1, buf );
 	}
 
-	send_to_char( buf1, ch );
+	send_to_char_bw( buf1, ch );
 	return;
     }
 
@@ -967,13 +935,13 @@ void do_alias( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    strcpy( buf, argument );
+    strexg( argument, buf, "{;", ";" );
+    
     /*
      * Add alias to alias_list.
      */
     alias = alloc_mem( sizeof( ALIAS_DATA ) );
-
-    if ( argument[ strlen( argument )-1 ] != ';' )
-	strcat( argument, ";" );   /* Every alias MUST end with an ';' */
 
     alias->next            = ch->pcdata->alias_list;
     alias->cmd             = str_dup( name );
@@ -981,7 +949,7 @@ void do_alias( CHAR_DATA *ch, char *argument )
     ch->pcdata->alias_list = alias;
 
     sprintf( buf, "'%s' is now aliased to '%s'.\n\r", name, argument );
-    send_to_char( buf, ch );
+    send_to_char_bw( buf, ch );
     return;
 }
 

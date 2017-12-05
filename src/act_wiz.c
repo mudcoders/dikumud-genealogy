@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -670,10 +672,13 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 
     buf1[0] = '\0';
 
-    sprintf( buf, "{cName: '{x%s{c'.{x\n\r{cArea: [%5d] '{x%s{c'.{x\n\r",
-	    location->name,
-	    location->area->vnum,
-	    location->area->name );
+    sprintf( buf, "{cArea: {x%s{c.  |{x%d{c|{x\n\r",
+	    location->area ? location->area->name : "(no area)",
+	    location->area ? location->area->vnum : -1 );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cName: {x%s{c.{x\n\r",
+	    location->name );
     strcat( buf1, buf );
 
     sprintf( buf,
@@ -681,6 +686,12 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	    location->vnum,
 	    location->light,
 	    flag_string( sector_flags, location->sector_type ) );
+    strcat( buf1, buf );
+
+    sprintf( buf,
+	    "{cHealing: {x%d%%{c.  Mana: {x%d%%{c.{x\n\r",
+	    location->heal_rate,
+	    location->mana_rate );
     strcat( buf1, buf );
 
     sprintf( buf,
@@ -731,7 +742,7 @@ void do_rstat( CHAR_DATA *ch, char *argument )
     }
     strcat( buf1, "{c.{x\n\r" );
 
-    for ( door = 0; door <= 5; door++ )
+    for ( door = 0; door < MAX_DIR; door++ )
     {
 	EXIT_DATA *pexit;
 
@@ -800,6 +811,13 @@ void do_ostat( CHAR_DATA *ch, char *argument )
     sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong description: {x%s\n\r",
 	    obj->short_descr, obj->description );
     strcat( buf1, buf );
+
+    if ( obj->spec_fun != 0 )
+    {
+	sprintf( buf, "{cObject has {x%s{c.{x\n\r",
+		spec_obj_string( obj->spec_fun ) );
+        strcat( buf1, buf );
+    }
 
     sprintf( buf, "{cWear bits: {x%d{c.  Extra bits: {x%s{c.{x\n\r",
 	    obj->wear_flags, extra_bit_name( obj->extra_flags ) );
@@ -912,6 +930,11 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    parts_bit_name( race_table[victim->race].parts ) );
     strcat( buf1, buf );
 
+    sprintf( buf, "{cSpeaks: {x%s{c.  Speaking: {x%s{c.{x\n\r",
+	    lang_bit_name( victim->speaks ),
+	    lang_table[victim->speaking].name );
+    strcat( buf1, buf );
+
     sprintf( buf, "{cVnum: {x%d{c.  Sex: {x%s{c.  Room: {x%d{c.{x\n\r",
 	    IS_NPC( victim ) ? victim->pIndexData->vnum : 0,
 	    victim->sex == SEX_MALE    ? "male"   :
@@ -935,17 +958,16 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     strcat( buf1, buf );
 	
     sprintf( buf,
-	"{cLv: {x%d{c.  Class: {x%d{c.  Align: {x%d{c.  AC: {x%d{c.  Gold: {x%d{c.  Exp: {x%d{c.{x\n\r",
-	    victim->level,       victim->class,        victim->alignment,
-	    GET_AC( victim ),    victim->gold,         victim->exp );
+	"{cLv: {x%d{c.  Class: {x%s{c.  Align: {x%d{c.  AC: {x%d{c.  Gold: {x%d{c.  Exp: {x%d{c.{x\n\r",
+	    victim->level,       class_short( victim ), victim->alignment,
+	    GET_AC( victim ),    victim->gold,          victim->exp );
     strcat( buf1, buf );
 
     sprintf( buf, "{cPosition: {x%d{c.  Wimpy: {x%d{c.{x\n\r",
             victim->position,    victim->wimpy );
     strcat( buf1, buf );
 
-    if ( IS_NPC( victim )
-        || victim->level >= skill_table[gsn_dual].skill_level[victim->class] )
+    if ( can_use( victim, gsn_dual ) )
 	strcat ( buf1, "{cPrimary Weapon {x" );
     sprintf( buf, "{cHitroll: {x%d{c  Damroll: {x%d{c.{x\n\r",
             get_hitroll( victim, WEAR_WIELD ),
@@ -1031,7 +1053,6 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     sprintf( buf, "{cAffected by: {x%s{c.{x\n\r",
 	    affect_bit_name( victim->affected_by ) );
     strcat( buf1, buf );
-
 
     if ( !IS_NPC( victim ) )
     {
@@ -1810,14 +1831,17 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	victim->mana     = victim->max_mana;
 	victim->move     = victim->max_move;
 	advance_level( victim );
+
 	sprintf( buf, "%s has been demoted to level %d by %s", victim->name,
 		level, ch->name );
+
 	wiznet( victim, WIZ_LEVELS, get_trust( rch ), buf );
     }
     else
     {
 	send_to_char( "Raising a player's level!\n\r", ch );
 	send_to_char( "**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim );
+
 	sprintf( buf, "%s has been advanced to level %d by %s", victim->name,
 		level, ch->name );
 	wiznet( victim, WIZ_LEVELS, get_trust( rch ), buf );
@@ -2458,7 +2482,7 @@ void do_slookup( CHAR_DATA *ch, char *argument )
 	    }
 	}
 
-        if ( ( sn = skill_lookup( arg ) ) < 0 )
+        if ( ( sn = skill_lookup( arg ) ) == -1 )
 	{
 	    send_to_char( "No such skill or spell.\n\r", ch );
 	    return;
@@ -2523,7 +2547,7 @@ void do_sset( CHAR_DATA *ch, char *argument )
 
     fAll = !str_cmp( arg2, "all" );
     sn   = 0;
-    if ( !fAll && ( sn = skill_lookup( arg2 ) ) < 0 )
+    if ( !fAll && ( sn = skill_lookup( arg2 ) ) == -1 )
     {
 	send_to_char( "No such skill or spell.\n\r", ch );
 	return;
@@ -2554,6 +2578,7 @@ void do_sset( CHAR_DATA *ch, char *argument )
 	}
 	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
+/* GREED
 	    if ( skill_table[sn].name )
 		if ( skill_table[sn].skill_level[victim->class] <= LEVEL_HERO
 		    || IS_IMMORTAL( victim ) )
@@ -2562,7 +2587,7 @@ void do_sset( CHAR_DATA *ch, char *argument )
 		if ( skill_table[sn].skill_level[victim->class]
 		    <= get_trust( victim ) )
 		    victim->pcdata->learned[sn] = 1;
-
+*/
 	}
     }
     else
@@ -2633,7 +2658,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class]->attr_prime == APPLY_STR )
+	if ( ch->class[0]->attr_prime == APPLY_STR )
 	    max = 25;
 	else
 	    max = 18;
@@ -2657,7 +2682,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class]->attr_prime == APPLY_INT )
+	if ( ch->class[0]->attr_prime == APPLY_INT )
 	    max = 25;
 	else
 	    max = 18;
@@ -2681,7 +2706,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class]->attr_prime == APPLY_WIS )
+	if ( ch->class[0]->attr_prime == APPLY_WIS )
 	    max = 25;
 	else
 	    max = 18;
@@ -2705,7 +2730,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class]->attr_prime == APPLY_DEX )
+	if ( ch->class[0]->attr_prime == APPLY_DEX )
 	    max = 25;
 	else
 	    max = 18;
@@ -2729,7 +2754,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( class_table[ch->class]->attr_prime == APPLY_CON )
+	if ( ch->class[0]->attr_prime == APPLY_CON )
 	    max = 25;
 	else
 	    max = 18;
@@ -2747,15 +2772,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( arg2, "class" ) )
     {
-	if ( value < 0 || value >= MAX_CLASS )
-	{
-	    char buf [ MAX_STRING_LENGTH ];
+	CLASS_TYPE *class;
 
-	    sprintf( buf, "Class range is 0 to %d.\n", MAX_CLASS-1 );
-	    send_to_char( buf, ch );
-	    return;
-	}
-	victim->class = value;
+	if ( ( class = class_lookup( arg3 ) ) )
+	    victim->class[0] = class_lookup( arg3 );
+	else
+	    send_to_char( "No such class available.\n\r", ch );
+
 	return;
     }
 
@@ -3434,11 +3457,13 @@ void do_users( CHAR_DATA *ch, char *argument )
 	if ( d->character && can_see( ch, d->character ) )
 	{
 	    count++;
-	    sprintf( buf + strlen( buf ), "[%3d %2d] %s@%s\n\r",
+
+	    sprintf( buf + strlen( buf ), "[%3d %25s] %s:  %s@%s\n\r",
 		    d->descriptor,
-		    d->connected,
+		    flag_string( connected_flags, d->connected ),
 		    d->original  ? d->original->name  :
 		    d->character ? d->character->name : "(none)",
+		    d->user,
 		    d->host );
 	}
     }
@@ -3978,7 +4003,7 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 		    if (   cmd_table[cmd].level <= get_trust( victim )
 			&& cmd_table[cmd].level >= LEVEL_HERO
 			&& str_infix( cmd_table[cmd].name,
-				     "delet reboo sla shutdow :" ) )
+				     "delet reboo sla shutdow : ?" ) )
 		    {
 			strcat( buf, cmd_table[cmd].name );
 			strcat( buf, " " );
@@ -3994,7 +4019,7 @@ void do_imtlset( CHAR_DATA *ch, char *argument )
 	    if ( !fAll )
 	    {
 		if (   cmd_table[cmd].name[0] == '\0'
-		    || is_name( argument, "delet reboo sla shutdow :" ) )
+		    || is_name( argument, "delet reboo sla shutdow : ?" ) )
 		{
 		    send_to_char( "That is not an immskill.\n\r", ch );
 		    return;
@@ -4152,28 +4177,21 @@ void do_delete( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-
 /* 
  * Simple function to let any imm make any player instantly sober.
- * Saw no need for level restrictions on this.
  * Written by Narn, Apr/96 
  */
 void do_sober( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA       *rch;
     CHAR_DATA       *victim;
-    char             arg [ MAX_INPUT_LENGTH ];
 
     rch = get_char( ch );
 
     if ( !authorized( rch, "sober" ) )
 	return;
 
-    smash_tilde( argument );
-    argument = one_argument( argument, arg );
-
-    if ( !( victim = get_char_room( ch, arg ) ) )
+    if ( !( victim = get_char_room( ch, argument ) ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
@@ -4195,84 +4213,23 @@ void do_sober( CHAR_DATA *ch, char *argument )
 }
 
 
-
-void do_clookup( CHAR_DATA *ch, char *argument )
+void do_ctitle( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA         *rch;
-    char               buf  [ MAX_STRING_LENGTH * 2 ];
-    char               buf1 [ MAX_STRING_LENGTH * 6 ];
-    int                num;
+    char               buf  [ MAX_STRING_LENGTH     ];
+    char               buf1 [ MAX_STRING_LENGTH * 2 ];
+    CLASS_TYPE        *class;
     int                level;
-    int                sn;
-    int                col;
-    int                nNumber;
-    int                iLevelLower;
-    int                iLevelUpper;
-    bool               pSpell;
-    struct class_type *class;
 
     rch = get_char( ch );
-    num = rch->class;
 
-    if ( !authorized( rch, "clookup" ) )
+    if ( !authorized( rch, "ctitle" ) )
         return;
 
-    /*
-     * Set default arguments.
-     */
-    iLevelLower    = 0;
-    iLevelUpper    = MAX_LEVEL;
-    class          = class_table[rch->class];
+    class = ch->class[0];
 
-    /*
-     * Parse arguments.
-     */
-    nNumber = 0;
-    for ( ;; )
-    {
-	char arg [ MAX_STRING_LENGTH ];
-
-	argument = one_argument( argument, arg );
-	if ( arg[0] == '\0' )
-	    break;
-
-	if ( is_number( arg ) )
-	{
-	    switch ( ++nNumber )
-	    {
-	    case 1: iLevelLower = atoi( arg ); break;
-	    case 2: iLevelUpper = atoi( arg ); break;
-	    default:
-		send_to_char( "Only two level numbers allowed.\n\r", ch );
-		return;
-	    }
-	}
-	else
-	{
-	    int iClass;
-
-	    if ( strlen( arg ) < 3 )
-	    {
-		send_to_char( "Classes must be longer than that.\n\r", ch );
-		return;
-	    }
-
-	    /*
-	     * Look for classes to turn on.
-	     */
-	    arg[3]    = '\0';
-
-	    for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
-	    {
-		if ( !str_cmp( arg, class_table[iClass]->who_name ) )
-		{
-		    num = iClass;
-		    class = class_table[iClass];
-		    break;
-		}
-	    }
-	}
-    }
+    if ( argument[0] != '\0' )
+	class = class_lookup( argument );
 
     if ( !class )
     {
@@ -4282,81 +4239,172 @@ void do_clookup( CHAR_DATA *ch, char *argument )
 
     buf1[0] = '\0';
 
-    if ( iLevelLower < 0 || iLevelUpper < 0 )
-	return;
+    sprintf( buf, "{o{b[{w={b]{x  Titles for %s class  {o{b[{w={b]{x\n\r\n\r",
+	    class->name );
+    strcat( buf1, buf );
+
+    for ( level = 0; level <= MAX_LEVEL; level++ )
+    {
+	sprintf( buf, "{w%2d{b:{x {oMan{x: %-30s {oFemale{x: %-30s\n\r",
+		level, class->title[level][0], class->title[level][1] );
+	strcat( buf1, buf );
+    }
+
+    send_to_char( buf1, ch );
+    return;
+}
+
+void do_cpose( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA         *rch;
+    char               buf  [ MAX_STRING_LENGTH     ];
+    char               buf1 [ MAX_STRING_LENGTH * 2 ];
+    CLASS_TYPE        *class;
+    int                level;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "cpose" ) )
+        return;
+
+    class = ch->class[0];
+
+    if ( argument[0] != '\0' )
+	class = class_lookup( argument );
+
+    if ( !class )
+    {
+        send_to_char( "No such class.\n\r", ch );
+        return;
+    }
+
+    buf1[0] = '\0';
+
+    sprintf( buf, "{o{b[{w={b]{x  Poses for %s class  {o{b[{w={b]{x\n\r\n\r",
+	    class->name );
+    strcat( buf1, buf );
+
+    for ( level = 0; level < MAX_POSE; level++ )
+    {
+	sprintf( buf, "{o{b[>{x '%s'\n\r   '%s'\n\r",
+		class->pose[level][0], class->pose[level][1] );
+	strcat( buf1, buf );
+    }
+
+    send_to_char( buf1, ch );
+    return;
+}
+
+void do_cinfo( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA         *rch;
+    char               buf  [ MAX_STRING_LENGTH     ];
+    char               buf1 [ MAX_STRING_LENGTH * 2 ];
+    CLASS_TYPE        *class;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "cinfo" ) )
+        return;
+
+    class = ch->class[0];
+
+    if ( argument[0] != '\0' )
+	class = class_lookup( argument );
+
+    if ( !class )
+    {
+        send_to_char( "No such class.\n\r", ch );
+        return;
+    }
+
+    buf1[0] = '\0';
 
     sprintf( buf, "{rClass: %s (%s){x\n\r",
 	    class->name, class->who_name );
     strcat( buf1, buf );
 
     sprintf( buf, "Prime Attribute: %-14s  Weapon: %-5d\n\r",
-	    affect_loc_name( class->attr_prime ), class->weapon );
+	    affect_loc_name( class->attr_prime ),
+	    class->weapon );
     strcat( buf1, buf );
 
     sprintf( buf, "Max Skill Adept: %-3d  Thac0: %-5d  Thac47: %d\n\r",
-    	    class->skill_adept, class->thac0_00, class->thac0_47 );
+    	    class->max_adept,
+	    class->thac0_00,
+	    class->thac0_47 );
     strcat( buf1, buf );
 
-    sprintf( buf, "Hp Min/Hp Max: %d/%-2d  Mana: %s\n\r\n\r",
-    	    class->hp_min, class->hp_max, class->fMana ? "yes" : "no" );
+    sprintf( buf, "Hp Min/Hp Max: %d/%-2d  Mana: %s\n\r",
+    	    class->hp_min,
+	    class->hp_max,
+	    class->fMana ? "yes" : "no" );
     strcat( buf1, buf );
 
-    strcat ( buf1, "{mALL Titles available for this class.{x\n\r\n\r" );
+    send_to_char( buf1, ch );
+    return;
+}
 
-    for ( level = iLevelLower; level <= iLevelUpper; level++ )
+void do_cslist( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA         *rch;
+    char               buf  [ MAX_STRING_LENGTH     ];
+    char               buf1 [ MAX_STRING_LENGTH * 2 ];
+    CLASS_TYPE        *class;
+    int                sn;
+    int                col;
+    int                level;
+    bool               pSpell;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "cslist" ) )
+        return;
+
+    class = ch->class[0];
+
+    if ( argument[0] != '\0' )
+	class = class_lookup( argument );
+
+    if ( !class )
     {
-	sprintf( buf, "{r%2d: {mMale:{b %-30s {mFemale:{b %-30s{x\n\r",
-		level, title_table[num][level][0], title_table[num][level][1] );
-	strcat( buf1, buf );
+        send_to_char( "No such class.\n\r", ch );
+        return;
     }
 
-    strcat ( buf1, "\n\r{mALL Abilities available for this class.{x\n\r\n\r" );
-    strcat ( buf1, "{rLv          Abilities{x\n\r\n\r" );
+    buf1[0] = '\0';
 
-    if ( iLevelUpper >= LEVEL_IMMORTAL )
-	iLevelUpper = LEVEL_HERO;
-
-    for ( level = iLevelLower; level <= iLevelUpper; level++ )
+    for ( level = 1; level <= LEVEL_HERO; level++ )
     {
       col = 0;
       pSpell = TRUE;
 
       for ( sn = 0; sn < MAX_SKILL; sn++ )
       {
-        if ( !skill_table[sn].name )
-          break;
-        if ( skill_table[sn].skill_level[num] != level )
-          continue;
+	if ( !skill_table[sn].name )
+	  break;
 
-        if ( pSpell )
-        {
-          sprintf ( buf, "{r%2d:{x", level );
-          strcat ( buf1, buf );
-          pSpell = FALSE;
-        }
+	if ( class->skill_level[sn] != level )
+	  continue;
 
-        /* format fix by Koala */ 
-        if ( ++col % 4 == 0 )
-          strcat ( buf1, "   " );
+	if ( pSpell )
+	{
+	  sprintf( buf, "Level {o{w%d{b:{x\n\r", level );
+	  strcat( buf1, buf );
+	  pSpell = FALSE;
+	}
 
-        sprintf ( buf, "{b%18s{x", skill_table[sn].name );
-        strcat ( buf1, buf );
-
-        if ( col % 4 == 0 )
-          strcat ( buf1, "\n\r" );
-
+	sprintf( buf, "%7s{o{b:{x %20.20s \t {o{wMax{b:{x {o{w%3d{x%%\n\r",
+		 (skill_table[sn].spell_fun != spell_null) ? "Spell" : "Skill",
+		 skill_table[sn].name,
+		 class->skill_adept[sn] );
+	strcat( buf1, buf );
       }
-
-      if ( col % 4 != 0 )
-        strcat ( buf1, "\n\r" );
-
     }
 
-    send_to_char( buf1, rch );
+    send_to_char( buf1, ch );
     return;
 }
-
-
 
 void do_setclan( CHAR_DATA *ch, char *argument )
 {
@@ -4521,7 +4569,7 @@ void do_setclan( CHAR_DATA *ch, char *argument )
     }
     if ( !str_cmp( arg2, "class" ) )
     {
-        clan->class = atoi( argument );
+	clan->class = class_lookup( argument );
         send_to_char( "Done.\n\r", ch );
         save_clan( clan );
         return;
@@ -4664,6 +4712,21 @@ void do_mudconfig( CHAR_DATA *ch, char *argument )
 	    : "[-autosavedb ] The mud doesn't autosave the world.\n\r"
 	    , ch );
 
+	send_to_char(  IS_SET( sysdata.act, MUD_NONEWS       )
+            ? "[+NONEWS     ] The mud doesn't send any news.\n\r"
+	    : "[-nonews     ] The mud sends news to all players.\n\r"
+	    , ch );
+
+	send_to_char(  IS_SET( sysdata.act, MUD_VERBOSE_LOGS )
+            ? "[+VLOGS      ] The mud logs are verbose.\n\r"
+	    : "[-vlogs      ] The mud logs aren't verbose.\n\r"
+	    , ch );
+
+	send_to_char(  IS_SET( sysdata.act, MUD_AUTOPARDON   )
+            ? "[+AUTOPARDON ] KILLERs & THIEFs are pardoned on death.\n\r"
+	    : "[-autopardon ] KILLERs & THIEFs aren't pardoned on death.\n\r"
+	    , ch );
+
     }
     else
     {
@@ -4689,16 +4752,34 @@ void do_mudconfig( CHAR_DATA *ch, char *argument )
 		minutes = PULSE_DB_DUMP / 60 / PULSE_PER_SECOND;
 		seconds = PULSE_DB_DUMP - minutes * 60 * PULSE_PER_SECOND;
 
-		printf_to_char( ch, "{o{cPlayers: {r%5d{c  MaxPlayers : {r%5d{x\n\r",
+		send_to_char( "{o{b __________________________________________________________________________{x\n\r",   ch );
+		send_to_char( "{o{b/                                                                          \\{x\n\r", ch );
+
+		sprintf( buf, "{o{b               {o{b[{w={b]{x  GREED SERVER, compiled at %s  {o{b[{w={b]{x\n\r", __DATE__ );
+		send_to_char( buf, ch );
+
+		send_to_char( "\n\r", ch );
+
+		sprintf( buf, "        {o{b[>{x Players {o{w'%d'{x, MaxPlayers {o{w'%d'{x\n\r",
 				num_descriptors, sysdata.max_players );
-		printf_to_char( ch, "{o{cMaxEver: {r%5d{c  Recorded at: {r%s{x\n\r",
+		send_to_char( buf, ch );
+		sprintf( buf, "        {o{b[>{x MaxEver {o{w'%d'{x, recorded at {o{w'%s'{x\n\r",
 				sysdata.all_time_max, sysdata.time_of_max );
+		send_to_char( buf, ch );
+
+		send_to_char( "\n\r", ch );
 
 		if ( IS_SET( sysdata.act, MUD_AUTOSAVE_DB ) )
-		    printf_to_char( ch, "{o{cThe server autosaves the db every %d minutes, %d seconds.{x\n\r",
-				    minutes, seconds );
+		{
+		    sprintf( buf, "        {o{b[>{x The server autosaves the DB every %d minutes, %d seconds.\n\r",
+			    minutes, seconds );
+		    send_to_char( buf, ch );
+		}
 		else
-		    send_to_char( "{o{cThe mud database isn't being autosaved.{x\n\r", ch );
+		    send_to_char( "        {o{b[>{x The mud database isn't being autosaved.\n\r", ch );
+
+		send_to_char( "{o{b\\__________________________________________________________________________/{x\n\r", ch );
+
 		return;
 	    }
 
@@ -4709,6 +4790,9 @@ void do_mudconfig( CHAR_DATA *ch, char *argument )
 	}
 
 	     if ( !str_cmp( arg+1, "autosavedb"	) ) bit = MUD_AUTOSAVE_DB;
+	else if ( !str_cmp( arg+1, "nonews"	) ) bit = MUD_NONEWS;
+	else if ( !str_cmp( arg+1, "vlogs"	) ) bit = MUD_VERBOSE_LOGS;
+	else if ( !str_cmp( arg+1, "autopardon"	) ) bit = MUD_AUTOPARDON;
 	else
 	{
 	    send_to_char( "Mudconfig which option?\n\r", ch );
@@ -4734,3 +4818,300 @@ void do_mudconfig( CHAR_DATA *ch, char *argument )
 
     return;
 }
+
+/*
+ * Clone exactly an object, except contents.
+ */
+OBJ_DATA *clone_obj( OBJ_DATA *obj )
+{
+    OBJ_DATA *clone;
+
+    if ( !obj )
+        return NULL;
+
+    clone		= new_object();
+
+    clone->pIndexData	= obj->pIndexData;
+    clone->level	= obj->level;
+    clone->wear_loc	= -1;
+
+    clone->name		= str_dup( obj->name        );
+    clone->short_descr	= str_dup( obj->short_descr );
+    clone->description	= str_dup( obj->description );
+    clone->spec_fun	= obj->spec_fun;
+    clone->item_type	= obj->item_type;
+    clone->extra_flags	= obj->extra_flags;
+    clone->wear_flags	= obj->wear_flags;
+    clone->value[0]	= obj->value[0];
+    clone->value[1]	= obj->value[1];
+    clone->value[2]	= obj->value[2];
+    clone->value[3]	= obj->value[3];
+    clone->value[4]	= obj->value[4];
+    clone->weight	= obj->weight;
+    clone->cost		= obj->cost;
+    clone->timer	= obj->timer;
+    clone->deleted	= obj->deleted;
+    clone->item_type	= obj->item_type;
+
+    /*
+     * Insert in list.
+     */
+    clone->next		= object_list;
+    object_list		= clone;
+
+    clone->pIndexData->count++;
+
+    return clone;
+}
+
+
+/*
+ * Clone exactly a char, except inventory.
+ */
+CHAR_DATA *clone_char( CHAR_DATA *ch )
+{
+    AFFECT_DATA *paf;
+    CHAR_DATA   *clone;
+
+    if ( !ch )
+        return NULL;
+
+    clone		   = new_character( FALSE );
+
+    if ( IS_NPC( ch ) )
+	clone->pIndexData  = ch->pIndexData;
+    else
+	clone->pIndexData  = get_mob_index( MOB_VNUM_CLONE );
+
+
+    clone->name		   = str_dup( ch->name        );
+
+    if ( IS_NPC( ch ) )
+	clone->short_descr = str_dup( ch->short_descr );
+    else
+	clone->short_descr = str_dup( ch->name        );
+
+    clone->long_descr	   = str_dup( ch->long_descr  );
+    clone->description	   = str_dup( ch->description );
+    clone->spec_fun	   = ch->spec_fun;
+    clone->level	   = ch->level;
+
+    if ( IS_NPC( ch ) )
+	clone->act	   = ch->act;
+    else
+	clone->act	   = ACT_IS_NPC;
+
+    vcopy( clone->affected_by, ch->affected_by );
+
+    clone->alignment	   = ch->alignment;
+    clone->sex		   = ch->sex;
+    clone->race		   = ch->race;
+    clone->resistant	   = ch->resistant;
+    clone->immune	   = ch->immune;
+    clone->susceptible	   = ch->susceptible;
+    clone->gold		   = ch->gold;
+    clone->armor	   = ch->armor;
+
+    clone->max_hit	   = ch->max_hit;
+    clone->hit		   = ch->hit;
+
+    clone->timer	   = ch->timer;
+    clone->wait		   = ch->wait;
+
+    clone->master	   = ch->master;
+    clone->leader	   = ch->leader;
+
+    clone->position	   = ch->position;
+    clone->hitroll	   = ch->hitroll;
+    clone->damroll	   = ch->damroll;
+    clone->saving_throw	   = ch->saving_throw;
+    clone->deaf   	   = ch->deaf;
+    clone->wimpy	   = ch->wimpy;
+
+    if ( ch->hating  )
+	start_hating ( clone, ch->hating->who  );
+
+    if ( ch->hunting )
+	start_hunting( clone, ch->hunting->who );
+
+    if ( ch->fearing )
+	start_fearing( clone, ch->fearing->who );
+
+    for( paf = ch->affected; paf; paf = paf->next )
+	affect_to_char( clone, paf );
+
+    /*
+     * Insert in list.
+     */
+    clone->next		= char_list;
+    char_list		= clone;
+
+    clone->pIndexData->count++;
+
+    return clone;
+}
+
+void recursive_oclone( OBJ_DATA *obj, OBJ_DATA *clone )
+{
+    OBJ_DATA *c_obj, *t_obj;
+
+    for( c_obj = obj->contains; c_obj; c_obj = c_obj->next_content )
+    {
+        t_obj = clone_obj( c_obj );
+
+        obj_to_obj       ( t_obj, clone );
+        recursive_oclone ( c_obj, t_obj );
+    }
+}
+
+void do_mclone( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    CHAR_DATA *victim;
+    CHAR_DATA *clone;
+    OBJ_DATA  *obj;
+    OBJ_DATA  *obj_clone;
+    char       arg1  [ MAX_INPUT_LENGTH ];
+    char       arg2  [ MAX_INPUT_LENGTH ];
+    int        amount;
+    int        num;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "mclone" ) )
+        return;
+
+    argument = one_argument( argument, arg1 );
+    one_argument( argument, arg2 );
+
+    if ( arg1[0] == '\0' )
+    {
+	send_to_char( "Syntax: mclone <victim> <amount>\n\r",		ch );
+	send_to_char( "or:     mclone <victim>\n\r",			ch );
+	return;
+    }
+
+    if ( arg2[0] != '\0' && is_number( arg2 ) )
+	amount = atoi( arg2 );
+    else
+	amount = 1;
+
+    if ( amount < 1 )
+    {
+	send_to_char( "Clone how many?  Number must be more than 0.\n\r", ch );
+	return;
+    }
+
+    if ( !( victim = get_char_world( ch, arg1 ) ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    for ( num = 0; num < amount; num++ )
+    {
+	clone = clone_char( victim );
+
+        for( obj = victim->carrying; obj; obj = obj->next_content )
+        {
+            obj_clone           = clone_obj( obj );
+
+            recursive_oclone( obj, obj_clone );
+
+            obj_to_char( obj_clone, clone );
+            obj_clone->wear_loc = obj->wear_loc;
+        }
+
+	char_to_room( clone, ch->in_room );
+    }
+
+    if ( amount == 1 )
+    {
+	act( "$n cloned $N.", ch, NULL, clone, TO_ROOM );
+	act( "You clone $N.", ch, NULL, clone, TO_CHAR );
+    }
+    else
+    {
+	char buf [ MAX_STRING_LENGTH ];
+
+	sprintf( buf, "$n cloned %d * $N.", amount );
+	act( buf, ch, NULL, clone, TO_ROOM );
+	sprintf( buf, "You clone %d * $N.", amount );
+	act( buf, ch, NULL, clone, TO_CHAR );
+    }
+
+    return;
+}
+
+void do_oclone( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *rch;
+    OBJ_DATA  *clone;
+    OBJ_DATA  *obj;
+    char       arg1  [ MAX_INPUT_LENGTH ];
+    char       arg2  [ MAX_INPUT_LENGTH ];
+    int        amount;
+    int        num;
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "oclone" ) )
+        return;
+
+    argument = one_argument( argument, arg1 );
+    one_argument( argument, arg2 );
+
+    if ( arg1[0] == '\0' )
+    {
+	send_to_char( "Syntax: oclone <victim> <amount>\n\r",		ch );
+	send_to_char( "or:     oclone <victim>\n\r",			ch );
+	return;
+    }
+
+    if ( arg2[0] != '\0' && is_number( arg2 ) )
+	amount = atoi( arg2 );
+    else
+	amount = 1;
+
+    if ( amount < 1 )
+    {
+	send_to_char( "Clone how many?  Number must be more than 0.\n\r", ch );
+	return;
+    }
+
+    if ( !( obj = get_obj_world( ch, arg1 ) ) )
+    {
+	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
+	return;
+    }
+
+    for ( num = 0; num < amount; num++ )
+    {
+	clone = clone_obj( obj );
+
+	if ( CAN_WEAR( clone, ITEM_TAKE ) )
+	    obj_to_char( clone, ch );
+	else
+	    obj_to_room( clone, ch->in_room );
+
+	recursive_oclone( obj, clone );
+    }
+
+    if ( amount == 1 )
+    {
+	act( "$n cloned $P.", ch, NULL, clone, TO_ROOM );
+	act( "You clone $P.", ch, NULL, clone, TO_CHAR );
+    }
+    else
+    {
+	char buf [ MAX_STRING_LENGTH ];
+
+	sprintf( buf, "$n cloned %d * $P.", amount );
+	act( buf, ch, NULL, clone, TO_ROOM );
+	sprintf( buf, "You clone %d * $P.", amount );
+	act( buf, ch, NULL, clone, TO_CHAR );
+    }
+
+    return;
+}
+

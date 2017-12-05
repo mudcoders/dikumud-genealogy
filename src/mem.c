@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -52,17 +54,11 @@ OBJ_INDEX_DATA *	obj_index_free;
 SHOP_DATA *		shop_free;
 GAME_DATA *		game_free;
 MOB_INDEX_DATA *	mob_index_free;
+HHF_DATA *		hhf_free;
 RESET_DATA *		reset_free;
 HELP_DATA *		help_free;
 
 HELP_DATA *		help_last;
-
-
-extern	int		top_reset;
-extern	int		top_area;
-extern	int		top_exit;
-extern	int		top_ed;
-extern	int		top_room;
 
 
 
@@ -82,16 +78,17 @@ RESET_DATA *new_reset_data( void )
     }
 
     pReset->next	= NULL;
+    pReset->prev	= NULL;
     pReset->command	= 'X';
-    pReset->arg1	= 0;
-    pReset->arg2	= 0;
-    pReset->arg3	= 0;
+    pReset->rs_vnum 	= 0;
+    pReset->loc 	= 0;
+    pReset->percent	= 100;
 
     return pReset;
 }
 
 
-void free_reset_data( RESET_DATA * pReset )
+void free_reset_data( RESET_DATA *pReset )
 {
     pReset->next	= reset_free;
     reset_free		= pReset;
@@ -134,7 +131,7 @@ AREA_DATA *new_area( void )
 }
 
 
-void free_area( AREA_DATA * pArea )
+void free_area( AREA_DATA *pArea )
 {
     free_string( pArea->name );
     free_string( pArea->filename );
@@ -174,7 +171,7 @@ EXIT_DATA *new_exit( void )
 }
 
 
-void free_exit( EXIT_DATA * pExit )
+void free_exit( EXIT_DATA *pExit )
 {
     free_string( pExit->keyword );
     free_string( pExit->description );
@@ -185,7 +182,7 @@ void free_exit( EXIT_DATA * pExit )
 }
 
 
-void free_extra_descr( EXTRA_DESCR_DATA * pExtra )
+void free_extra_descr( EXTRA_DESCR_DATA *pExtra )
 {
     free_string( pExtra->keyword );
     free_string( pExtra->description );
@@ -232,7 +229,7 @@ ROOM_INDEX_DATA *new_room_index( void )
 }
 
 
-void free_room_index( ROOM_INDEX_DATA * pRoom )
+void free_room_index( ROOM_INDEX_DATA *pRoom )
 {
     EXTRA_DESCR_DATA *pExtra;
     RESET_DATA       *pReset;
@@ -257,7 +254,7 @@ void free_room_index( ROOM_INDEX_DATA * pRoom )
 }
 
 
-void free_affect( AFFECT_DATA * pAf )
+void free_affect( AFFECT_DATA *pAf )
 {
     pAf->next	= affect_free;
     affect_free	= pAf;
@@ -296,7 +293,7 @@ SHOP_DATA *new_shop( void )
 }
 
 
-void free_shop( SHOP_DATA * pShop )
+void free_shop( SHOP_DATA *pShop )
 {
     pShop->next	= shop_free;
     shop_free	= pShop;
@@ -330,7 +327,7 @@ GAME_DATA *new_game( void )
 }
 
 
-void free_game( GAME_DATA * pGame )
+void free_game( GAME_DATA *pGame )
 {
     pGame->next	= game_free;
     game_free	= pGame;
@@ -355,6 +352,7 @@ OBJ_INDEX_DATA *new_obj_index( void )
     }
 
     pObj->next		= NULL;
+    pObj->spec_fun	= NULL;
     pObj->extra_descr	= NULL;
     pObj->affected	= NULL;
     pObj->area		= NULL;
@@ -376,7 +374,7 @@ OBJ_INDEX_DATA *new_obj_index( void )
 }
 
 
-void free_obj_index( OBJ_INDEX_DATA * pObj )
+void free_obj_index( OBJ_INDEX_DATA *pObj )
 {
     EXTRA_DESCR_DATA *pExtra;
     AFFECT_DATA      *pAf;
@@ -426,7 +424,9 @@ MOB_INDEX_DATA *new_mob_index( void )
     pMob->sex		= 0;
     pMob->level		= 0;
     pMob->act		= ACT_IS_NPC;
-    pMob->affected_by	= 0;
+
+    vzero( pMob->affected_by );
+
     pMob->alignment	= 0;
     pMob->hitroll	= 0;
     pMob->ac		= 0;
@@ -442,7 +442,7 @@ MOB_INDEX_DATA *new_mob_index( void )
 }
 
 
-void free_mob_index( MOB_INDEX_DATA * pMob )
+void free_mob_index( MOB_INDEX_DATA *pMob )
 {
     free_string( pMob->player_name );
     free_string( pMob->short_descr );
@@ -453,5 +453,38 @@ void free_mob_index( MOB_INDEX_DATA * pMob )
 
     pMob->next		= mob_index_free;
     mob_index_free	= pMob;
+    return;
+}
+
+
+HHF_DATA *new_hhf_data( void )
+{
+    HHF_DATA *pHhf;
+
+    if ( !hhf_free )
+    {
+	pHhf = alloc_perm( sizeof( *pHhf ) );
+	top_hhf++;
+    }
+    else
+    {
+	pHhf		= hhf_free;
+	hhf_free	= hhf_free->next;
+    }
+
+    pHhf->next		= NULL;
+    pHhf->name		= NULL;
+    pHhf->who		= NULL;
+
+    return pHhf;
+}
+
+
+void free_hhf_data( HHF_DATA *pHhf )
+{
+    free_string( pHhf->name );
+
+    pHhf->next		= hhf_free;
+    hhf_free		= pHhf;
     return;
 }

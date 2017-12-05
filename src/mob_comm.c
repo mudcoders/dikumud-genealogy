@@ -5,6 +5,8 @@
  *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
  *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Merc Diku Mud, you must comply with   *
  *  both the original Diku license in 'license.doc' as well the Merc       *
  *  license in 'license.txt'.  In particular, you may not remove either of *
@@ -115,9 +117,9 @@ void do_mpstat( CHAR_DATA *ch, char *argument )
     send_to_char( buf, ch );
 
     sprintf( buf,
-	"{cLv: {x%d{c.  Class: {x%d{c.  Align: {x%d{c.  AC: {x%d{c.  Gold: {x%d{c.  Exp: {x%d{c.{x\n\r",
-	victim->level,       victim->class,        victim->alignment,
-	GET_AC( victim ),    victim->gold,         victim->exp );
+	"{cLv: {x%d{c.  Class: {x%s{c.  Align: {x%d{c.  AC: {x%d{c.  Gold: {x%d{c.  Exp: {x%d{c.{x\n\r",
+	victim->level,       class_short( victim ), victim->alignment,
+	GET_AC( victim ),    victim->gold,          victim->exp );
     send_to_char( buf, ch );
 
     for ( mprg = victim->pIndexData->mobprogs; mprg != NULL;

@@ -4,1188 +4,1604 @@ Author      Tyrst~
 Levels      5 30
 Security    1
 VNUMs       1601 1720
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #1601
-killer frog~
-a killer frog~
+Name        killer frog~
+Short       a killer frog~
+Long
 A killer frog rises up out of the water.
 ~
+Descr
 The killer frog looks ravenous.
 ~
-99 0 -300 S
-5 16 6 5d5+55 1d5+4
-20 0
-0 Animal~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    ~
+Alignment   -300
+Level       5
+Gold        20
+Race        Animal
+Sex         neutral~
+End
+
 #1602
-stone gargoyle~
-the stone gargoyle~
+Name        stone gargoyle~
+Short       the stone gargoyle~
+Long
 A stone gargoyle looms over you.
 ~
+Descr
 As you look, the figure seems to shift and move ...
 ~
-227 0 -400 S
-9 13 1 9d9+90 4d3+2
-400 0
-0 God~ 1
+Act         sentinel aggressive stay_area wimpy~
+AffectBy    ~
+Alignment   -400
+Level       9
+Gold        400
+Race        God
+Sex         male~
+End
+
 #1603
-angry gargoyle~
-an angry gargoyle~
+Name        angry gargoyle~
+Short       an angry gargoyle~
+Long
 An angry gargoyle glares at you.
 ~
+Descr
 He looks ready to attack!
 ~
-101 0 -600 S
-10 12 1 10d10+100 4d3+3
-500 0
-0 God~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -600
+Level       10
+Gold        500
+Race        God
+Sex         male~
+End
+
 #1604
-elite gargoyle~
-the elite gargoyle~
+Name        elite gargoyle~
+Short       the elite gargoyle~
+Long
 An elite gargoyle guards this room against intrusion.
 ~
+Descr
 He snarls at you and says LEAVE OR DIE!
 ~
-7 0 -600 S
-12 10 0 12d12+120 6d2+4
-800 0
-0 God~ 1
+Act         sentinel scavenger~
+AffectBy    ~
+Alignment   -600
+Level       12
+Gold        800
+Race        God
+Sex         male~
+End
+
 #1605
-gargoyle shaman~
-the gargoyle shaman~
+Name        gargoyle shaman~
+Short       the gargoyle shaman~
+Long
 The gargoyle shaman is here, preparing to do battle.
 ~
+Descr
 She says 'I can SEE you! I have been waiting ...'.
 ~
-71 40 -900 S
-13 8 -1 13d13+130 6d3+4
-3000 0
-0 God~ 2
+Act         sentinel scavenger stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -900
+Level       13
+Gold        3000
+Race        God
+Sex         female~
+Spec        spec_cast_cleric
+End
+
 #1606
-carnivorous plant~
-a carnivorous plant~
+Name        carnivorous plant~
+Short       a carnivorous plant~
+Long
 Amidst the jungle here, a huge Carnivorous plant reaches out to grab you!
 ~
+Descr
 The plant looks something like a Venus fly-trap, only MUCH larger.
 ~
-99 0 0 S
-9 12 3 9d9+90 3d3+3
-16 0
-0 Plant~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    ~
+Alignment   0
+Level       9
+Gold        16
+Race        Plant
+Sex         neutral~
+End
+
 #1607
-gruesome ogre~
-a gruesome ogre~
+Name        gruesome ogre~
+Short       a gruesome ogre~
+Long
 A huge, gruesome ogre is sprawled here, gnawing some strange meat.
 ~
+Descr
 It thinks that perhaps you would make a better meal.
 ~
-103 0 -200 S
-10 12 2 10d10+100 4d2+4
-1200 0
-0 Ogre~ 0
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -200
+Level       10
+Gold        1200
+Race        Ogre
+Sex         neutral~
+End
+
 #1608
-shadow~
-a shadow~
+Name        shadow~
+Short       a shadow~
+Long
 A dark shadow moves about the room.
 ~
+Descr
 The Shadow is vaguely humanoid. Two glowing pinpoints look at you.
 ~
-101 42 -1000 S
-10 12 0 10d10+100 4d3+4
-900 0
-0 Human~ 0
+Act         scavenger aggressive stay_area~
+AffectBy    invisible detect-invis detect-hidden~
+Alignment   -1000
+Level       10
+Gold        900
+Race        Human
+Sex         neutral~
+End
+
 #1609
-evil wight~
-an evil wight~
+Name        evil wight~
+Short       an evil wight~
+Long
 An evil wight lurks in the shadows!
 ~
+Descr
 He glares at you savagely and charges!
 ~
-103 40 -1000 S
-12 10 -2 12d12+120 6d2+3
-2200 0
-0 Undead~ 1
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -1000
+Level       12
+Gold        2200
+Race        Undead
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #1610
-burly minotaur~
-A burly minotaur~
+Name        burly minotaur~
+Short       A burly minotaur~
+Long
 A burly minotaur watches you solemnly.
 ~
+Descr
 This powerful creature wonders whether to kill you or not ...
 ~
-69 8 -600 S
-14 9 0 14d14+140 5d3+4
-1500 0
-0 Minotaur~ 1
+Act         scavenger stay_area~
+AffectBy    detect-invis~
+Alignment   -600
+Level       14
+Gold        1500
+Race        Minotaur
+Sex         male~
+End
+
 #1612
-savage minotaur~
-the savage minotaur~
+Name        savage minotaur~
+Short       the savage minotaur~
+Long
 A bloodthirsty minotaur slowly counts his loot
 ~
+Descr
 He looks up at you and screams 'SO! Coming to steal my hoard!'
 ~
-103 8 -600 S
-15 8 0 15d15+150 5d3+5
-0 0
-0 Minotaur~ 1
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    detect-invis~
+Alignment   -600
+Level       15
+Gold        0
+Race        Minotaur
+Sex         male~
+End
+
 #1613
-minotaur captain~
-the captain~
+Name        minotaur captain~
+Short       the captain~
+Long
 Sitting here in this room is the Minotaur Captain.
 ~
+Descr
 He looks at you, and a sinister grin slowly spreads on his face ...
 ~
-103 8 -900 S
-17 5 -3 17d17+170 5d3+6
-0 0
-0 Minotaur~ 1
+Act         sentinel scavenger aggressive stay_area~
+AffectBy    detect-invis~
+Alignment   -900
+Level       17
+Gold        0
+Race        Minotaur
+Sex         male~
+End
+
 #1614
-black pudding~
-the black pudding~
+Name        black pudding~
+Short       the black pudding~
+Long
 A huge black pudding fills the center of the room!!
 ~
+Descr
 It is a huge black blob that oozes about the room. Its heading toward YOU!
 ~
-101 0 -1000 S
-15 9 0 15d15+150 8d2+5
-0 0
-0 Object~ 0
+Act         scavenger aggressive stay_area~
+AffectBy    ~
+Alignment   -1000
+Level       15
+Gold        0
+Race        Object
+Sex         neutral~
+Spec        spec_breath_acid
+End
+
 #1615
-lesser golem~
-a lesser golem~
+Name        lesser golem~
+Short       a lesser golem~
+Long
 A lesser Golem stands guarding the entrance.
 ~
+Descr
 The golem appears to be made of some kind of clay, enchanted to come to life!
 ~
-67 8 0 S
-16 8 -2 16d16+160 8d2+7
-0 0
-0 God~ 0
+Act         sentinel stay_area~
+AffectBy    detect-invis~
+Alignment   0
+Level       16
+Gold        0
+Race        God
+Sex         neutral~
+End
+
 #1616
-ancient wyvern~
-the ancient wyvern~
+Name        ancient wyvern~
+Short       the ancient wyvern~
+Long
 An enormous, ancient wyvern stares down at your tiny form...
 ~
+Descr
 It thunders loudly 'I must protect my Master's wealth!'
 ~
-101 40 -1000 S
-18 5 -2 18d18+180 10d2+8
-0 0
-0 Mist~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    detect-invis detect-hidden~
+Alignment   -1000
+Level       18
+Gold        0
+Race        Mist
+Sex         male~
+Spec        spec_breath_any
+End
+
 #1617
-spectre~
-the spectre~
+Name        spectre~
+Short       the spectre~
+Long
 A spectre has begun to materialize in front of you!
 ~
+Descr
 Terror fills your heart as you view this master of the undead.
 ~
-101 138 -1000 S
-19 2 -8 19d19+190 8d3+7
-0 0
-0 Undead~ 1
+Act         scavenger aggressive stay_area~
+AffectBy    invisible detect-invis sanctuary~
+Alignment   -1000
+Level       19
+Gold        0
+Race        Undead
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #1702
-trapper~
-a trapper~
+Name        trapper~
+Short       a trapper~
+Long
 A trapper stands here, bartering his pelts.
 ~
+Descr
 The trapper is clad mostly in the fur of various animals he's caught.
 ~
-5 0 0 S
-6 15 4 6d6+60 2d4+1
-120 0
-0 Gnome~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   0
+Level       6
+Gold        120
+Race        Gnome
+Sex         male~
+End
+
 #1704
-hunter~
-a hunter~
+Name        hunter~
+Short       a hunter~
+Long
 A hunter rests in here, carrying a fresh kill.
 ~
+Descr
 The hunter is rugged and sturdy from his occupation.
 ~
-5 0 0 S
-8 13 3 8d8+80 2d4+2
-120 0
-0 Human~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   0
+Level       8
+Gold        120
+Race        Human
+Sex         male~
+End
+
 #1706
-ranger~
-a ranger~
+Name        ranger~
+Short       a ranger~
+Long
 A grim ranger reclines at a table.
 ~
+Descr
 The years of wanderings have left the ranger hardened and strong.
 ~
-69 8 200 S
-12 11 0 12d12+120 3d4+3
-0 0
-0 Giant~ 1
+Act         scavenger stay_area~
+AffectBy    detect-invis~
+Alignment   200
+Level       12
+Gold        0
+Race        Giant
+Sex         male~
+End
+
 #1707
-ranger leader~
-a ranger leader~
+Name        ranger leader~
+Short       a ranger leader~
+Long
 A leader of the Rangers is watching you solemnly.
 ~
+Descr
 This individual has quite a reputation at the local trading posts!
 ~
-7 8 300 S
-15 7 -3 15d15+150 4d4+4
-0 0
-0 Giant~ 1
+Act         sentinel scavenger~
+AffectBy    detect-invis~
+Alignment   300
+Level       15
+Gold        0
+Race        Giant
+Sex         male~
+End
+
 #1708
-ranger lord~
-the Lord of the Rangers~
+Name        ranger lord~
+Short       the Lord of the Rangers~
+Long
 The Lord of the Rangers catches your eye.
 ~
+Descr
 ~
-7 8 400 S
-20 1 -9 20d20+200 6d4+5
-0 0
-0 Giant~ 1
+Act         sentinel scavenger~
+AffectBy    detect-invis~
+Alignment   400
+Level       20
+Gold        0
+Race        Giant
+Sex         male~
+End
+
 #1710
-male centaur~
-a centaur~
+Name        male centaur~
+Short       a centaur~
+Long
 A male centaur wanders about this area.
 ~
+Descr
 The centaur has the upper torso of a man and lower body of a horse.
 ~
-5 0 200 S
-7 14 4 7d7+70 2d4+1
-120 0
-0 Animal~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   200
+Level       7
+Gold        120
+Race        Animal
+Sex         male~
+End
+
 #1711
-female centaur~
-a centaur~
+Name        female centaur~
+Short       a centaur~
+Long
 A female centaur wanders about this area.
 ~
+Descr
 The centaur has the upper torso of a woman and lower body of a horse.
 ~
-5 0 200 S
-7 14 4 7d7+70 2d4+1
-110 0
-0 Animal~ 2
+Act         scavenger~
+AffectBy    ~
+Alignment   200
+Level       7
+Gold        110
+Race        Animal
+Sex         female~
+End
+
 #1712
-old centaur~
-an old centaur~
+Name        old centaur~
+Short       an old centaur~
+Long
 An old centaur is resting in a corner.
 ~
+Descr
 This centaur has lived a full life.
 ~
-5 0 200 S
-6 15 5 6d6+60 2d4+0
-110 0
-0 Animal~ 1
+Act         scavenger~
+AffectBy    ~
+Alignment   200
+Level       6
+Gold        110
+Race        Animal
+Sex         male~
+End
+
 #1714
-centaur elder~
-an elder centaur~
+Name        centaur elder~
+Short       an elder centaur~
+Long
 One of the centaur elders is here, watching you.
 ~
+Descr
 The elders act as counselors and advisors to the chief.
 ~
-7 2 200 S
-9 13 2 9d9+90 2d4+2
-0 0
-0 Animal~ 1
+Act         sentinel scavenger~
+AffectBy    invisible~
+Alignment   200
+Level       9
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #1715
-centaur guard~
-a centaur guard~
+Name        centaur guard~
+Short       a centaur guard~
+Long
 A strong centaur is standing guard here.
 ~
+Descr
 He appears to be blocking entrance to the next room.
 ~
-3 2 200 S
-10 12 1 10d10+100 2d4+3
-0 0
-0 Animal~ 1
+Act         sentinel~
+AffectBy    invisible~
+Alignment   200
+Level       10
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #1716
-centaur chief~
-the centaur chief~
+Name        centaur chief~
+Short       the centaur chief~
+Long
 The chief of the centaur villagers reclines here.
 ~
+Descr
 He has been the leader of this tribe for many years, and has acquired much
 wisdom.
 ~
-7 2 200 S
-12 11 1 12d12+120 2d4+3
-0 0
-0 Animal~ 1
+Act         sentinel scavenger~
+AffectBy    invisible~
+Alignment   200
+Level       12
+Gold        0
+Race        Animal
+Sex         male~
+Spec        spec_cast_undead
+End
+
 #1720
-displacer beast~
-a displacer beast~
+Name        displacer beast~
+Short       a displacer beast~
+Long
 A displacer beast is grazing nearby.
 ~
+Descr
 As you watch this strange creature, its position seems to flicker and shift.
 ~
-129 0 0 S
-10 11 -3 10d10+100 4d3+2
-0 0
-0 Animal~ 0
+Act         wimpy~
+AffectBy    ~
+Alignment   0
+Level       10
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #1601
-rusty cleaver~
-a rusty cleaver~
+Name        rusty cleaver~
+Short       a rusty cleaver~
+Descr
 A rusty cleaver lies on a counter top.~
-~
-5 0 8193
-0~ 1~ 6~ 3~ 0~
-2 5 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 1~ 6~ 3~ 0~
+Weight      2
+Cost        5
+End
+
 #1602
-fine mace~
-the fine mace~
+Name        fine mace~
+Short       the fine mace~
+Descr
 There is a large mace of fine quality here.~
-~
-5 64 8193
-0~ 2~ 5~ 7~ 0~
-11 900 0
-A
-18 1 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 2~ 5~ 7~ 0~
+Weight      11
+Cost        900
+Affect      hitroll~ 1 ~
+End
+
 #1603
-elven dagger~
-a long elven dagger~
+Name        elven dagger~
+Short       a long elven dagger~
+Descr
 A long elven dagger made of adamantite is here.~
-~
-5 65 8193
-0~ 2~ 5~ 11~ 0~
-2 1000 0
-A
-18 2 0
+Type        weapon~
+Extra       glow magic~
+Wear        take wield~
+Values      0~ 2~ 5~ 11~ 0~
+Weight      2
+Cost        1000
+Affect      hitroll~ 2 ~
+End
+
 #1604
-steel broad sword~
-a steel broad sword~
+Name        steel broad sword~
+Short       a steel broad sword~
+Descr
 A fine steel broad sword is lying on the ground.~
-~
-5 65 8193
-0~ 2~ 6~ 3~ 0~
-12 1200 0
-A
-19 1 0
-A
-18 1 0
+Type        weapon~
+Extra       glow magic~
+Wear        take wield~
+Values      0~ 2~ 6~ 3~ 0~
+Weight      12
+Cost        1200
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+End
+
 #1606
-rod might~
-the rod of might~
+Name        rod might~
+Short       the rod of might~
+Descr
 A Rod of Might is lying here.~
-~
-5 66 8193
-0~ 2~ 7~ 6~ 0~
-13 4000 0
-A
-1 1 0
-A
-18 2 0
+Type        weapon~
+Extra       hum magic~
+Wear        take wield~
+Values      0~ 2~ 7~ 6~ 0~
+Weight      13
+Cost        4000
+Affect      strength~ 1 ~
+Affect      hitroll~ 2 ~
+End
+
 #1612
-black kite shield~
-a black kite shield~
+Name        black kite shield~
+Short       a black kite shield~
+Descr
 There is a large black kite shield lying here.~
-~
-9 65 513
-6~ 0~ 0~ 0~ 0~
-6 1000 0
-A
-24 1 0
+Type        armor~
+Extra       glow magic~
+Wear        take shield~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        1000
+Affect      saving-spell~ 1 ~
+End
+
 #1614
-helm~
-a commander's helm~
+Name        helm~
+Short       a commander's helm~
+Descr
 A commander's helm rests on a table here.~
-~
-9 65 17
-7~ 0~ 0~ 0~ 0~
-4 2000 0
-A
-4 1 0
-E
-helm~
+Type        armor~
+Extra       glow magic~
+Wear        take head~
+Values      7~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        2000
+Affect      wisdom~ 1 ~
+ExtraDescr  helm~
 This elegant helm is plated in mithril and silver.~
+End
+
 #1615
-bracer~
-a mithril bracer~
+Name        bracer~
+Short       a mithril bracer~
+Descr
 A magical bracer made from mithril lies on the ground!~
-~
-9 66 257
-6~ 0~ 0~ 0~ 0~
-2 6500 0
-A
-1 1 0
+Type        armor~
+Extra       hum magic~
+Wear        take arms~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        6500
+Affect      strength~ 1 ~
+End
+
 #1616
-dark blue cloak~
-a dark blue cloak~
+Name        dark blue cloak~
+Short       a dark blue cloak~
+Descr
 A valuable cloak of dark blue cloth lies on the floor.~
-~
-9 65 5
-1~ 0~ 0~ 0~ 0~
-2 1600 0
-A
-12 5 0
-A
-17 -6 0
+Type        armor~
+Extra       glow magic~
+Wear        take neck~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        1600
+Affect      mana~ 5 ~
+Affect      ac~ -6 ~
+End
+
 #1621
-dark red potion~
-a dark red potion~
+Name        dark red potion~
+Short       a dark red potion~
+Descr
 A dark red potion rests on the ground.~
-~
-10 65 16385
-9~ cure blindness~ cure critical~  ~  ~
-1 450 0
+Type        potion~
+Extra       glow magic~
+Wear        take hold~
+Values      9~ cure blindness~ cure critical~  ~  ~
+Weight      1
+Cost        450
+End
+
 #1651
-bronze chest~
-a bronze chest~
+Name        bronze chest~
+Short       a bronze chest~
+Descr
 There is a sturdy bronze chest in the corner.~
-~
-15 0 1
-30~ 5~ -1~ 0~ 0~
-10 500 0
+Type        container~
+Extra       ~
+Wear        take~
+Values      30~ 5~ -1~ 0~ 0~
+Weight      10
+Cost        500
+End
+
 #1652
-ale barrel~
-a barrel of ale~
+Name        ale barrel~
+Short       a barrel of ale~
+Descr
 There is a small barrel in one corner.~
-~
-17 0 1
-5~ 2~ 3~ 0~ 0~
-8 10 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      5~ 2~ 3~ 0~ 0~
+Weight      8
+Cost        10
+End
+
 #1691
-key twin towers~
-the twin towers key~
+Name        key twin towers~
+Short       the twin towers key~
+Descr
 There is a shiny skeleton key on the ground here.~
-~
-18 0 1
-1~ 0~ 0~ 0~ 0~
-1 400 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        400
+End
+
 #1692
-strange key~
-a strange key~
+Name        strange key~
+Short       a strange key~
+Descr
 There is a very strange-looking key on the ground here.~
-~
-18 65 16385
-2~ 0~ 0~ 0~ 0~
-1 1200 0
-A
-17 -5 0
-E
-strange key~
+Type        key~
+Extra       glow magic~
+Wear        take hold~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        1200
+Affect      ac~ -5 ~
+ExtraDescr  strange key~
 This key is of an unusual shape ... must go to an unusual lock!~
+End
+
 #1701
-short bow~
-a short bow~
+Name        short bow~
+Short       a short bow~
+Descr
 A short bow has been carelessly left here.~
-~
-5 0 8193
-0~ 2~ 4~ 11~ 0~
-5 150 0
-E
-short bow~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 4~ 11~ 0~
+Weight      5
+Cost        150
+ExtraDescr  short bow~
 It looks like the bows used by rustin hunters.
 ~
+End
+
 #1702
-long bow~
-a long bow~
+Name        long bow~
+Short       a long bow~
+Descr
 A long bow has been foolishly abandoned here.~
-~
-5 65 8193
-0~ 2~ 6~ 11~ 0~
-8 500 0
-A
-18 1 0
-E
-long bow~
+Type        weapon~
+Extra       glow magic~
+Wear        take wield~
+Values      0~ 2~ 6~ 11~ 0~
+Weight      8
+Cost        500
+Affect      hitroll~ 1 ~
+ExtraDescr  long bow~
 It looks like the bows used by rustin hunters.
 ~
+End
+
 #1703
-gnarled staff~
-a gnarled staff~
+Name        gnarled staff~
+Short       a gnarled staff~
+Descr
 A gnarled looking staff lies on the ground.~
-~
-5 65 8193
-0~ 2~ 6~ 7~ 0~
-7 800 0
-A
-13 5 0
+Type        weapon~
+Extra       glow magic~
+Wear        take wield~
+Values      0~ 2~ 6~ 7~ 0~
+Weight      7
+Cost        800
+Affect      hp~ 5 ~
+End
+
 #1704
-ancient sword~
-an ancient long sword~
+Name        ancient sword~
+Short       an ancient long sword~
+Descr
 An ancient long sword has been left here.~
-~
-5 66 8193
-0~ 2~ 8~ 3~ 0~
-10 10000 0
-A
-19 3 0
-A
-18 3 0
+Type        weapon~
+Extra       hum magic~
+Wear        take wield~
+Values      0~ 2~ 8~ 3~ 0~
+Weight      10
+Cost        10000
+Affect      damroll~ 3 ~
+Affect      hitroll~ 3 ~
+End
+
 #1711
-fur cap~
-a fur cap~
+Name        fur cap~
+Short       a fur cap~
+Descr
 A fur cap lies here on the ground.~
-~
-9 0 17
-2~ 0~ 0~ 0~ 0~
-1 50 0
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        50
+End
+
 #1712
-travelling boots~
-a pair of travelling boots~
+Name        travelling boots~
+Short       a pair of travelling boots~
+Descr
 A sturdy pair of travelling boots lies here.~
-~
-9 64 65
-5~ 0~ 0~ 0~ 0~
-2 3500 0
-A
-14 10 0
+Type        armor~
+Extra       magic~
+Wear        take feet~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        3500
+Affect      move~ 10 ~
+End
+
 #1713
-bronze ring~
-a bronze ring~
+Name        bronze ring~
+Short       a bronze ring~
+Descr
 A ring of etched bronze gleams dimly on the ground.~
-~
-9 64 3
-3~ 0~ 0~ 0~ 0~
-1 2000 0
-A
-12 5 0
+Type        armor~
+Extra       magic~
+Wear        take finger~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        2000
+Affect      mana~ 5 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #1601
-Rough East-West Path~
+Name        Rough East-West Path~
+Descr
 You are on a very rough and overgrown path heading east-west over rugged
 terrain.  To the east the path passes between low hills.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ 0 1602
 The road heads into low hills this way.
 ~
 ~
-0 0 1602
-D3
+Door        west~ ~ 0 1702
 The cross-roads and a trading post lie in this direction.
 ~
 ~
-0 0 1702
-S
+End
+
 #1602
-Rough Path Between the Hills~
+Name        Rough Path Between the Hills~
+Descr
 Here the path passes between low hills. The going is very rough, but
 to the east the ground is smoother. In that direction a pair of tower
 looms above the hills.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        east~ ~ 0 1603
 You see a pair of tall towers in the distance.
 ~
 ~
-0 0 1603
-D3
+Door        west~ ~ 0 1601
 The road continues.
 ~
 ~
-0 0 1601
-S
+End
+
 #1603
-Path through an Open Area~
+Name        Path through an Open Area~
+Descr
 You are on a path through an open area. East of here loom two tall towers,
 joined by a barbican and surrounded by a murky moat. West the path passes
 between low hills.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 1604
 Two fantastic towers surrounded by a moat rise before you.
 ~
 ~
-0 0 1604
-D3
+Door        west~ ~ 0 1602
 The road continues.
 ~
 ~
-0 0 1602
-S
+End
+
 #1604
-West Side of Moat~
+Name        West Side of Moat~
+Descr
 You stand on the west side of a moat that encircles two towers, each
 over 50 feet high. You will need a boat to go east across the moat. A
 rugged path heads west, and another one heads north to a cluster of low 
 buildings.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 1605
 A worn path leads to a cluster of low buildings.
 ~
 ~
-0 0 1605
-D1
+Door        east~ ~ 0 1620
 The Towers loom directly over you, just beyond the moat.
 ~
 ~
-0 0 1620
-D3
+Door        west~ ~ 0 1603
 An old ill-kept roads leads away to the west.
 ~
 ~
-0 0 1603
-S
+End
+
 #1605
-Path North of Moat~
+Name        Path North of Moat~
+Descr
 You walk on a faint path heading south toward the west side of the moat,
 and north to three small buildings.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ 0 1606
 Several low buildings lie this way.
 ~
 ~
-0 0 1606
-D2
+Door        south~ ~ 0 1604
 The path ends west of the moat.
 ~
 ~
-0 0 1604
-S
+End
+
 #1606
-Cluster of Buildings~
+Name        Cluster of Buildings~
+Descr
 You are in the middle of a cluster of small buildings. There is a building
 to the north, east, and west.  A sign over the eastern building says
 'House of Pancakes'.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ 0 1609
 There is an entrance to a building.
 ~
 ~
-0 0 1609
-D1
+Door        east~ ~ 0 1607
 A sign over the door reads 'House of Pancakes'.
 ~
 ~
-0 0 1607
-D2
+Door        south~ ~ 0 1605
 A path heads south toward the west side of the towers.
 ~
 ~
-0 0 1605
-D3
+Door        west~ ~ 0 1608
 There is an entrance to a building here.
 ~
 ~
-0 0 1608
-S
+End
+
 #1607
-House of Pancakes~
+Name        House of Pancakes~
+Descr
 The moment you enter this room, the ceiling descends and crushes you
 into a pancake.  Don't you hate it when that happens?
 ~
-0 2 0
-S
+Flags       ~
+Sector      inside~
+Regen       100 100
+End
+
 #1608
-Old Store Room~
+Name        Old Store Room~
+Descr
 You have entered what appears to be an old storeroom. Most of the items
 that were in here appear to have been ruined long ago.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 1652 0 100
+Door        east~ ~ 0 1606
 ~
 ~
-0 0 1606
-S
+End
+
 #1609
-Empty Room~
+Name        Empty Room~
+Descr
 This room appears to be completely empty. The only exit seems to be the
 way you came.  There are some scratches around the floor.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ 0 1606
 ~
 ~
-0 0 1606
-D5
+Door        down~ ~ 0 1610
 You see a concealed opening leading down.
 ~
 ~
-0 0 1610
-S
+End
+
 #1610
-Minotaur's Room~
+Name        Minotaur's Room~
+Descr
 You have entered a secret chamber under the empty room. In this room is
 the worn but cared-for gear and trappings of some large humanoid.
 ~
-0 13 0
-D4
+Flags       dark no_mob indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1612 1 100
+Reset       E 1604 16 100
+Reset       E 1612 11 100
+Door        up~ ~ 0 1609
 ~
 ~
-0 0 1609
-S
+End
+
 #1620
-Western Moat~
+Name        Western Moat~
+Descr
 You are in the middle of the moat, on the west side of the tower.  There is a
 landing on both sides of the moat.  Deep throated 'ribbids' come from the
 water all around you.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 1601 2 100
+Reset       M 1601 2 100
+Door        north~ ~ 0 1621
 ~
 ~
-0 0 1621
-D1
+Door        east~ ~ 0 1623
 ~
 ~
-0 0 1623
-D2
+Door        south~ ~ 0 1622
 ~
 ~
-0 0 1622
-D3
+Door        west~ ~ 0 1604
 ~
 ~
-0 0 1604
-S
+End
+
 #1621
-Northern Moat~
+Name        Northern Moat~
+Descr
 You are in the middle of the moat, on the north side of the tower.  There is
 no place to land here.  Deep throated 'ribbids' come from the water all
 around you.
 ~
-0 0 7
-D2
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 1601 3 100
+Door        south~ ~ 0 1620
 ~
 ~
-0 0 1620
-S
+End
+
 #1622
-Southern Moat~
+Name        Southern Moat~
+Descr
 You are in the middle of the moat, on the south side of the tower.  There is
 no place to land here.  Deep throated 'ribbids' come from the water all
 around you.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 1601 3 100
+Door        north~ ~ 0 1620
 ~
 ~
-0 0 1620
-S
+End
+
 #1623
-Tower Foyer~
+Name        Tower Foyer~
+Descr
 You are on a foyer on the west side of the structure. The moat is west of 
 here. There is also a large door eastward into the structure.  You notice that
 the walls are ornately decorated with very life-like stone gargoyles.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1602 2 100
+Reset       M 1602 2 100
+Door        east~ ~ 0 1624
 ~
 ~
-0 0 1624
-D3
+Door        west~ ~ 0 1620
 ~
 ~
-0 0 1620
-S
+End
+
 #1624
-The Grand Lobby~
+Name        The Grand Lobby~
+Descr
 You have entered a vast lobby. This lobby appears to have once been very
 ornately furnished, but now everything is decayed and moldering.  A highly
 ornate balcony surrounds the lobby. To the east, below the balcony, is an
 opening. The door leading out is west.  You notice that the balcony is
 covered in highly ornate and life-like stone gargoyles.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1602 4 100
+Reset       M 1602 4 100
+Door        east~ ~ 0 1625
 ~
 ~
-0 0 1625
-D3
+Door        west~ ~ 0 1623
 ~
 ~
-0 0 1623
-S
+End
+
 #1625
-Base of the Western Tower~
+Name        Base of the Western Tower~
+Descr
 You stand in the center of the Western tower's base. Torch brackets occupy
 the four corners of this huge room. Above each torch is a lifelike ornate
 stone gargoyle.  There are doors north and south, and passages east and west.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1602 5 100
+Door        north~ ~ 0 1627
 ~
 ~
-0 0 1627
-D1
+Door        east~ ~ 0 1626
 ~
 ~
-0 0 1626
-D2
+Door        south~ ~ 0 1628
 ~
 ~
-0 0 1628
-D3
+Door        west~ ~ 0 1624
 ~
 ~
-0 0 1624
-S
+End
+
 #1626
-The Musty Corridor~
+Name        The Musty Corridor~
+Descr
 You are walking along a musty east-west corridor joining the two towers.
 There are room on each side of the corridor, and openings at each end.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 1629
 ~
 ~
-0 0 1629
-D1
+Door        east~ ~ 0 1631
 ~
 ~
-0 0 1631
-D2
+Door        south~ ~ 0 1630
 ~
 ~
-0 0 1630
-D3
+Door        west~ ~ 0 1625
 ~
 ~
-0 0 1625
-S
+End
+
 #1627
-Kitchen~
+Name        Kitchen~
+Descr
 You have entered what must once have been a kitchen. The rusting remains of
 various utensils lie on countertops. There is also an old wash basin and a
 pot-belly stove.  There is a door south, and a serving hatch east.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 1601 0 100
+Door        south~ ~ 0 1625
 ~
 ~
-0 0 1625
-S
+End
+
 #1628
-Conservatory~
+Name        Conservatory~
+Descr
 You are in the tower's private conservatory. However, through years of neglect,
 the plants have grown into a hideous jungle.  The only exit is north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1606 1 100
+Door        north~ ~ 0 1625
 ~
 ~
-0 0 1625
-S
+End
+
 #1629
-The Dining Hall~
+Name        The Dining Hall~
+Descr
 You have entered a fabulous dining hall.  The wrecked remains of a long table
 dominate the room. A horrible odor pervades the room, like some foul-smelling
 beast has been eating and shitting in here.  There is a serving hatch west and
 a door south.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1607 1 100
+Door        south~ ~ 0 1626
 ~
 ~
-0 0 1626
-S
+End
+
 #1630
-Art Gallery~
+Name        Art Gallery~
+Descr
 You are in the ruined remains of an art gallery. Everything appears to
 have been stolen long ago, however.  The only exit is north.
 ~
-0 9 1
-D0
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 1603 1 100
+Door        north~ ~ 0 1626
 ~
 ~
-0 0 1626
-S
+End
+
 #1631
-Base of the Eastern Tower~
+Name        Base of the Eastern Tower~
+Descr
 You stand in the center of the Eastern tower's base. Torch brackets occupy the
 four corners of this huge room.  Above each torch is a lifelike ornate stone
 gargoyle.  There are are open doors to the north and south, and passages east
 and west.  In addition, a spiral staircase leads up to the next level of this
 tower.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 1602 6 100
+Door        north~ ~ 0 1632
 ~
 ~
-0 0 1632
-D2
+Door        south~ ~ 0 1633
 ~
 ~
-0 0 1633
-D3
+Door        west~ ~ 0 1626
 ~
 ~
-0 0 1626
-D4
+Door        up~ ~ 0 1635
 You see a spiral staircase leading up.
 ~
 ~
-0 0 1635
-S
+End
+
 #1632
-The Common Room~
+Name        The Common Room~
+Descr
 You are in what must once have been a common room for all residents of the
 tower. There is a huge fire pit with a chimney in the center, and the smashed
 remains of a great many table and chairs.  The exit is south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1603 2 100
+Door        south~ ~ 0 1631
 ~
 ~
-0 0 1631
-D5
+Door        down~ door~ -1 1634
 You notice a grate in the bottom of the fire pit.  Maybe it's an opening ...
 ~
 ~
-1 -1 1634
-S
+End
+
 #1633
-Servant's Quarters~
+Name        Servant's Quarters~
+Descr
 You are in what once was the servant's quarters, as evidenced by the shabby
 belongings and decor. What little remains is rotting and of little value
 anyway.  The only exit is north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 1631
 ~
 ~
-0 0 1631
-S
+End
+
 #1634
-A Large Murky Cellar~
+Name        A Large Murky Cellar~
+Descr
 You are in a large, murky cellar. An almost tangible air of horror pervades
 the room.  A thin layer of nitre covers the walls and ceiling.  Rotting
 furniture looms obliquely about the room.
 ~
-0 9 1
-D4
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 1609 1 100
+Reset       E 1692 17 100
+Door        up~ door~ -1 1632
 ~
 ~
-1 -1 1632
-S
+End
+
 #1635
-On the First Staircase~
+Name        On the First Staircase~
+Descr
 You are on a Spiral staircase connecting the first and second levels of
 the eastern tower. You can go up or down.
 ~
-0 9 2
-D4
+Flags       dark indoors~
+Sector      field~
+Regen       100 100
+Door        up~ ~ 0 1636
 ~
 ~
-0 0 1636
-D5
+Door        down~ ~ 0 1631
 ~
 ~
-0 0 1631
-S
+End
+
 #1636
-Second Level of the Eastern Tower~
+Name        Second Level of the Eastern Tower~
+Descr
 You are in the center of the second level of the Eastern tower. This large
 room appears quite empty, except for the candle abras firmly fixed to the
 walls.  An opening leads westward, and a spiral staircase leads down.
 ~
-0 9 1
-D3
+Flags       dark indoors~
+Sector      city~
+Regen       100 100
+Reset       M 1604 2 100
+Reset       E 1604 16 100
+Reset       M 1604 2 100
+Reset       E 1604 16 100
+Door        west~ ~ 0 1637
 ~
 ~
-0 0 1637
-D5
+Door        down~ ~ 0 1635
 ~
 ~
-0 0 1635
-S
+End
+
 #1637
-The Elegant Hall~
+Name        The Elegant Hall~
+Descr
 You are in what was once a elegant hall, although everything is moldering now.
 The rotted remains of a plush carpet covers the floor, while several moldy
 tapestries adorn the each side of the hall.  There are door north and south,
 and openings east and west.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1603 3 100
+Door        north~ ~ 0 1638
 ~
 ~
-0 0 1638
-D1
+Door        east~ ~ 0 1636
 ~
 ~
-0 0 1636
-D2
+Door        south~ ~ 0 1639
 ~
 ~
-0 0 1639
-D3
+Door        west~ ~ 0 1640
 ~
 ~
-0 0 1640
-S
+End
+
 #1638
-The Shaman's Room~
+Name        The Shaman's Room~
+Descr
 You have entered an elegantly furnished room that looks to be still in use!
 Costly paintings and pieces of furniture are tastefully situated.  On the
 north wall is an altar to Knar, the ghastly patron of Gargoyles.  The only
 exit is south.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1605 1 100
+Reset       E 1602 16 100
+Reset       E 1621 13 100
+Door        south~ ~ 0 1637
 ~
 ~
-0 0 1637
-S
+End
+
 #1639
-The Library~
+Name        The Library~
+Descr
 This room appears to have been a library.  Empty book shelves line each wall.
 The only exit is north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1604 2 100
+Reset       M 1604 2 100
+Door        north~ ~ 0 1637
 ~
 ~
-0 0 1637
-S
+End
+
 #1640
-Second Level of the Western Tower~
+Name        Second Level of the Western Tower~
+Descr
 You are in the center of the western tower's second floor.  A large spiral 
 staircase of 29 steps connects this level with the third.  There are doors
 to the east and west.  Except for a torch bracket in each corner, the 
 room is barren.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        east~ ~ 0 1637
 ~
 ~
-0 0 1637
-D3
+Door        west~ ~ 0 1641
 ~
 ~
-0 0 1641
-D4
+Door        up~ ~ 0 1642
 You see the spiral staircase leading up.
 ~
 ~
-0 0 1642
-S
+End
+
 #1641
-On the Balcony~
+Name        On the Balcony~
+Descr
 You are on the balcony overlooking the Grand lobby.  You have a fabulous
 view of the entire room.  The only exit is the way you came in.
 ~
-0 8 2
-D1
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Door        east~ ~ 0 1640
 ~
 ~
-0 0 1640
-S
+End
+
 #1642
-The Spiral Stairs~
+Name        The Spiral Stairs~
+Descr
 You are on a large spiral staircase of 29 steps, leading between the 
 second and third floors.  You can go up or down.
 ~
-0 8 2
-D4
+Flags       indoors~
+Sector      field~
+Regen       100 100
+Door        up~ ~ 0 1643
 ~
 ~
-0 0 1643
-D5
+Door        down~ ~ 0 1640
 ~
 ~
-0 0 1640
-S
+End
+
 #1643
-Third Level of Western Tower~
+Name        Third Level of Western Tower~
+Descr
 You stand in the center of the western tower's third floor.  This large room
 glows mysteriously with a strange light all its own.  From a door to the east
 comes a strange inky blackness.  A spiral staircase leads down.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 1614 1 100
+Door        east~ door~ -1 1644
 ~
 ~
-1 -1 1644
-D5
+Door        down~ ~ 0 1642
 ~
 ~
-0 0 1642
-S
+End
+
 #1644
-It's too dark to see anything!~
+Name        It's too dark to see anything!~
+Descr
 It's too dark to see anything!
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       R 0 0 0
+Reset       M 1608 4 100
+Door        north~ door~ -1 1645
 ~
 ~
-1 -1 1645
-D1
+Door        east~ door~ -1 1647
 ~
 ~
-1 -1 1647
-D2
+Door        south~ door~ -1 1646
 ~
 ~
-1 -1 1646
-D3
+Door        west~ door~ -1 1643
 ~
 ~
-1 -1 1643
-S
+End
+
 #1645
-The Armory~
+Name        The Armory~
+Descr
 In this room, which has somehow evaded the ravages of time, are neatly stored
 racks of common weapons.  They appear to be quite ordinary; however, a chest
 in one corner catches your eye.  The only exit is the way you came in.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       O 1651 0 100
+Reset       P 1603 1651 100
+Reset       M 1610 2 100
+Reset       M 1610 2 100
+Door        south~ door~ -1 1644
 ~
 ~
-1 -1 1644
-S
+End
+
 #1646
-The Officer's Quarters~
+Name        The Officer's Quarters~
+Descr
 You have entered a lavish but functional room decked out in a military style.
 Murals on the wall show battle scenes in gargoyles, minotaurs, and huge,
 flying snake-like reptiles with poisonous tails fight humans and dwarves.
 Various objects in the room give evidence that it is occupied by individuals
 of authority.  The only door is north.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1613 1 100
+Reset       E 1604 16 100
+Reset       E 1614 6 100
+Door        north~ door~ -1 1644
 ~
 ~
-1 -1 1644
-S
+End
+
 #1647
-Third Level of Eastern Tower~
+Name        Third Level of Eastern Tower~
+Descr
 You are in the center of the Eastern Tower's third floor.  The room you are in
 glows with a mysterious light that has no source.  In the center of the room a
 ladder climbs up to a hatchway in the ceiling.  The hatchway is a strange
 looking keyhole.  There is also a door to the west.
 ~
-0 8 1
-D3
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 1615 2 100
+Reset       E 1606 16 100
+Door        west~ door~ -1 1644
 ~
 ~
-1 -1 1644
-D4
+Door        up~ door~ -1 1648
 The hatchway appears securely fastened.  In it is a strange keyhole.
 ~
 ~
-1 -1 1648
-S
+End
+
 #1648
-Turret of the Eastern Tower~
+Name        Turret of the Eastern Tower~
+Descr
 You stand in the turret of the eastern tower.  A huge hole has been
 made in the roof by some enormous beast, letting the daylight (or moonlight)
 in.  There is a hatchway in the floor, and an opening to the west leading out
 onto a catwalk.
 ~
-0 0 1
-D3
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 1616 1 100
+Reset       E 1615 17 100
+Reset       E 1621 -1 100
+Door        west~ ~ 0 1649
 There is a small opening this way.
 ~
 ~
-0 0 1649
-D5
+Door        down~ door~ -1 1647
 ~
 ~
-1 -1 1647
-S
+End
+
 #1649
-On the Catwalk~
+Name        On the Catwalk~
+Descr
 You are outdoors on a catwalk between the turrets of the eastern and 
 western towers.  There is a 40 foot drop to the north and south.  You have
 a fabulous view of the surrounding countryside, which consists of a bleak
@@ -1193,484 +1609,461 @@ wilderness.  At the east end of the catwalk is a small opening leading
 inside the eastern turret.  At the western end, a strange mirror-like portal
 leads into the western turret.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 1648
 ~
 ~
-0 0 1648
-D3
+Door        west~ ~ 0 1650
 A mirror-like portal glimmers, allowing entry into the western turret.
 ~
 ~
-0 0 1650
-S
+End
+
 #1650
-Turret of the Western Tower~
+Name        Turret of the Western Tower~
+Descr
 You are in the turret of the western tower.  You feel very strange here.
 Scattered about this room are a great many coins and valuable articles.
 Yet you can't get rid of a feeling of dread!  A mirror-like portal is in the
 western wall.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1617 1 100
+Reset       E 1616 3 100
+Door        east~ ~ 0 1649
 ~
 ~
-0 0 1649
-D3
+Door        west~ ~ 0 1651
 A mirror-like portal glimmers in this wall.
 ~
 ~
-0 0 1651
-S
+End
+
 #1651
-On the Other Side~
+Name        On the Other Side~
+Descr
 You are outdoors on a catwalk between the turrets of the Eastern and Western
 towers.  There is no opening into the western tower of any kind.  You have a
 fabulous view of your surroundings, a murky city partially obscured by strange
 smoke that creeps along the ground instead of rising. The city stretches as far
 as the eye can see under the conditions.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 1650
 ~
 ~
-0 0 1650
-D3
+Door        west~ ~ 0 1652
 ~
 ~
-0 0 1652
-S
+End
+
 #1652
-The Chamber~
+Name        The Chamber~
+Descr
 You are in a small carpeted chamber. The chamber is empty except for a single
 chair facing a mirror on the wall.
 ~
-0 0 0
-D1
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 1651
 ~
 ~
-0 0 1651
-S
+End
+
 #1701
-Main Eastern Road~
+Name        Main Eastern Road~
+Descr
 You are on the old Eastern Road.  The crossroads to the east joins ANOTHER
 northern route to this road, which continues east.  South of the crossroads is
 an old building.  The area around here is lightly timbered.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ 0 1702
 You see a cross roads and an old building.
 ~
 ~
-0 0 1702
-D3
+Door        west~ ~ 0 5267
 ~
 ~
-0 0 5267
-S
+End
+
 #1702
-Crossroads to the Wilderness~
+Name        Crossroads to the Wilderness~
+Descr
 You are at a crossroads to the wilderness areas east and north of here,
 and the more civilized areas to the west. The main road is west, an
 older road continues east, and a simple trail heads north.  To the south,
 an old ram-shackle building is being used as a trading post for the
 surrounding wilderness. 
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 1704
 You see a trail leading north.
 ~
 ~
-0 0 1704
-D1
+Door        east~ ~ 0 1601
 The old Eastern road continues this way.
 ~
 ~
-0 0 1601
-D2
+Door        south~ ~ 0 1703
 An old, ram-shackle building serves as a trading post here.
 ~
 ~
-0 0 1703
-D3
+Door        west~ ~ 0 1701
 ~
 ~
-0 0 1701
-S
+End
+
 #1703
-Trading Post~
+Name        Trading Post~
+Descr
 You are in a trading post just south of the crossroads, where rangers,
 trappers and hunters from the surrounding area come to buy, sell, and
 barter goods.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1702 2 100
+Reset       E 1711 6 100
+Reset       M 1702 2 100
+Reset       E 1711 6 100
+Reset       M 1704 2 100
+Reset       M 1704 2 100
+Reset       E 1701 16 100
+Reset       M 1706 1 100
+Reset       E 1702 16 100
+Reset       E 1621 -1 100
+Door        north~ ~ 0 1702
 The door opens out on the crossroads.
 ~
 ~
-0 0 1702
-S
+End
+
 #1704
-Trail north of crossroads~
+Name        Trail north of crossroads~
+Descr
 You are on a primitive north-south trail. South of here is a major cross-
 roads and an old building. To the north the trail continues toward a
 deep, dark forest.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 1710 1 100
+Reset       E 1701 16 100
+Door        north~ ~ 0 1705
 The trail continues toward a deep, dark, forest.
 ~
 ~
-0 0 1705
-D2
+Door        south~ ~ 0 1702
 A major crossroads and a building lie in this direction.
 ~
 ~
-0 0 1702
-S
+End
+
 #1705
-Trail south of forest~
+Name        Trail south of forest~
+Descr
 You are on a primitive north-south trail.  Just north of here looms the
 entrance to a deep, dark forest. To the south the trail continues.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ 0 1706
 The trail enters a dark forest of thick oaks this way.
 ~
 ~
-0 0 1706
-D2
+Door        south~ ~ 0 1704
 The trail continues.
 ~
 ~
-0 0 1704
-S
+End
+
 #1706
-Entrance to the forest~
+Name        Entrance to the forest~
+Descr
 You are at the entrance to dark forest comprised mostly of huge black oak
 and towering firs.  A trail from the south continues north on into the
 woods at this point.
 ~
-0 0 3
-D0
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 1711 1 100
+Door        north~ ~ 0 1707
 You see the trail continuing into the forest.
 ~
 ~
-0 0 1707
-D2
+Door        south~ ~ 0 1705
 You see the trail head back on south.
 ~
 ~
-0 0 1705
-S
+End
+
 #1707
-Trail in Dark Oak Forest~
+Name        Trail in Dark Oak Forest~
+Descr
 The trail here passes through groves of closely knit Black Oak. Some of
 these trees are of enormous size.  Rustling and other low noises come
 from the forest on either side of the trail.  The trail continues on north
 and south.
 ~
-0 0 4
-D0
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        north~ ~ 0 1708
 You see the trail continue into thick, dark forest.
 ~
 ~
-0 0 1708
-D2
+Door        south~ ~ 0 1706
 The edge of the forest is visible in this direction.
 ~
 ~
-0 0 1706
-S
+End
+
 #1708
-Junction in Dark Forest~
+Name        Junction in Dark Forest~
+Descr
 You are in the midst of a deep dark forest of huge oak trees.  There is a
 junction of trails here, with paths leading south, west and east.
 ~
-0 0 4
-D1
+Flags       ~
+Sector      hills~
+Regen       100 100
+Reset       M 1710 2 100
+Reset       E 1701 16 100
+Door        east~ ~ 0 1720
 A path disappears into thick forest.
 ~
 ~
-0 0 1720
-D2
+Door        south~ ~ 0 1707
 A path disappears into thick forest.
 ~
 ~
-0 0 1707
-D3
+Door        west~ ~ 0 1709
 You see the path to the Centaur village.
 ~
 ~
-0 0 1709
-S
+End
+
 #1709
-Path to Centaur Village~
+Name        Path to Centaur Village~
+Descr
 You are on an east-west path in the forest.  Here the forest is mostly
 towering firs, not quite as dense as the oak groves that can be seen eastward.
 Westward, the trail heads toward a small clearing.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 1711 2 100
+Door        east~ ~ 0 1708
 A path disappears into thick forest.
 ~
 ~
-0 0 1708
-D3
+Door        west~ ~ 0 1710
 There is a small clearing in this direction.
 ~
 ~
-0 0 1710
-S
+End
+
 #1710
-The East side of the Centaur Clearing~
+Name        The East side of the Centaur Clearing~
+Descr
 You are on the east side of a clearing.  Small primitive huts are scattered
 about the edges of this clearing.  Beyond these on all sides are towering
 fir trees.  A path leads east out of the clearing. The clearing continues to
 the west.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1710 3 100
+Reset       M 1712 1 100
+Door        north~ ~ 0 1712
 There is a hut here.
 ~
 ~
-0 0 1712
-D1
+Door        east~ ~ 0 1709
 A path leads away through the forest.
 ~
 ~
-0 0 1709
-D2
+Door        south~ ~ 0 1713
 There is a hut here.
 ~
 ~
-0 0 1713
-D3
+Door        west~ ~ 0 1711
 You see the west side of the clearing.
 ~
 ~
-0 0 1711
-S
+End
+
 #1711
-West side of the Centaur Clearing~
+Name        West side of the Centaur Clearing~
+Descr
 You are on the west side of the clearing in the center of the Centaur village.
 Huts surround the clearing on all sides, and beyond are towering firs.  The
 clearing continues to the east.  To the west is a very large hut.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 1714 1 100
+Door        north~ ~ 0 1714
 There is a hut here.
 ~
 ~
-0 0 1714
-D1
+Door        east~ ~ 0 1710
 You see the east side of the clearing.
 ~
 ~
-0 0 1710
-D2
+Door        south~ ~ 0 1715
 There is a hut here.
 ~
 ~
-0 0 1715
-D3
+Door        west~ ~ 0 1716
 There is a hut here.
 ~
 ~
-0 0 1716
-S
+End
+
 #1712
-A Centaur's Hut~
+Name        A Centaur's Hut~
+Descr
 You are inside a smallish hut, the home of a family of Centaurs.  The hut
 is sparsely furnished, mostly the trappings of survival.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1712 2 100
+Door        south~ ~ 0 1710
 The opening leads out onto the clearing.
 ~
 ~
-0 0 1710
-S
+End
+
 #1713
-A Centaur's Hut~
+Name        A Centaur's Hut~
+Descr
 You are inside a smallish hut, the home of a family of Centaurs.  The hut
 is sparsely furnished, mostly the trappings of survival.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1712 3 100
+Door        north~ ~ 0 1710
 The opening leads out onto the clearing.
 ~
 ~
-0 0 1710
-S
+End
+
 #1714
-A Centaur's Hut~
+Name        A Centaur's Hut~
+Descr
 You are inside a smallish hut, the home of a family of Centaurs.  The hut
 is sparsely furnished, mostly the trappings of survival.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1714 2 100
+Door        south~ ~ 0 1711
 The opening leads out onto the clearing.
 ~
 ~
-0 0 1711
-S
+End
+
 #1715
-A Centaur's Hut~
+Name        A Centaur's Hut~
+Descr
 You are inside a smallish hut, the home of a family of Centaurs.  The hut
 is sparsely furnished, mostly the trappings of survival.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1714 3 100
+Door        north~ ~ 0 1711
 The opening leads out onto the clearing.
 ~
 ~
-0 0 1711
-S
+End
+
 #1716
-Entrance to a Large Hut~
+Name        Entrance to a Large Hut~
+Descr
 You are in the entry foyer of a large hut.  A curtain separates this section
 of the hut from the next section to the west.  To the east is an opening out
 onto the clearing.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1715 2 100
+Reset       E 1604 16 100
+Reset       M 1715 2 100
+Reset       E 1604 16 100
+Door        east~ ~ 0 1711
 The opening leads out onto the clearing.
 ~
 ~
-0 0 1711
-D3
+Door        west~ ~ 0 1717
 There is a curtain here separating this section from the next.
 ~
 ~
-0 0 1717
-S
+End
+
 #1717
-Back of a Large Hut~
+Name        Back of a Large Hut~
+Descr
 You are in the back of a large hut.  A curtain separates this section from
 the front of the hut to the east.  This room is finely decorated, if
 somewhat primitive.  The decor suggests someone of authority lives here.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 1716 1 100
+Reset       E 1713 2 100
+Door        east~ ~ 0 1716
 There is a curtain here separating this room from the front of the hut.
 ~
 ~
-0 0 1716
-S
+End
+
 #1720
-Eastern Path in Dark Forest~
+Name        Eastern Path in Dark Forest~
+Descr
 You are on an east-west path through extremely old growths of oak.  The path
 is fairly faint here.  Undergrowth closes in so closely that little can
 be seen in any direction.
 ~
-0 0 4
-D3
+Flags       ~
+Sector      hills~
+Regen       100 100
+Door        west~ ~ 0 1708
 The path continues west through thick forest.
 ~
 ~
-0 0 1708
-S
+End
+
 #0
 
-
-#SPECIALS
-M 1605 spec_cast_cleric
-M 1609 spec_cast_undead
-M 1614 spec_breath_acid
-M 1616 spec_breath_any
-M 1617 spec_cast_undead
-M 1716 spec_cast_undead
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-O 0 1652 0 1608
-M 0 1612 1 1610
-E 0 1604 0 16
-E 0 1612 0 11
-M 0 1601 2 1620
-M 0 1601 2 1620
-M 0 1601 3 1621
-M 0 1601 3 1622
-M 0 1602 2 1623
-M 0 1602 2 1623
-M 0 1602 4 1624
-M 0 1602 4 1624
-M 0 1602 5 1625
-O 0 1601 0 1627
-M 0 1606 1 1628
-M 0 1607 1 1629
-M 0 1603 1 1630
-M 0 1602 6 1631
-M 0 1603 2 1632
-M 0 1609 1 1634
-E 0 1692 0 17
-M 0 1604 2 1636
-E 0 1604 0 16
-M 0 1604 2 1636
-E 0 1604 0 16
-M 0 1603 3 1637
-M 0 1605 1 1638
-E 0 1602 0 16
-E 0 1621 0 13
-M 0 1604 2 1639
-M 0 1604 2 1639
-M 0 1614 1 1643
-R 0 1644 0
-M 0 1608 4 1644
-O 0 1651 0 1645
-P 0 1603 0 1651
-M 0 1610 2 1645
-M 0 1610 2 1645
-M 0 1613 1 1646
-E 0 1604 0 16
-E 0 1614 0 6
-M 0 1615 2 1647
-E 0 1606 0 16
-M 0 1616 1 1648
-E 0 1615 0 17
-G 0 1621 0
-M 0 1617 1 1650
-E 0 1616 0 3
-M 0 1702 2 1703
-E 0 1711 0 6
-M 0 1702 2 1703
-E 0 1711 0 6
-M 0 1704 2 1703
-M 0 1704 2 1703
-E 0 1701 0 16
-M 0 1706 1 1703
-E 0 1702 0 16
-G 0 1621 0
-M 0 1710 1 1704
-E 0 1701 0 16
-M 0 1711 1 1706
-M 0 1710 2 1708
-E 0 1701 0 16
-M 0 1711 2 1709
-M 0 1710 3 1710
-M 0 1712 1 1710
-M 0 1714 1 1711
-M 0 1712 2 1712
-M 0 1712 3 1713
-M 0 1714 2 1714
-M 0 1714 3 1715
-M 0 1715 2 1716
-E 0 1604 0 16
-M 0 1715 2 1716
-E 0 1604 0 16
-M 0 1716 1 1717
-E 0 1713 0 2
-S
-
-
-#SHOPS
-0
 
 
 #$

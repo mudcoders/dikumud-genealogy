@@ -4,520 +4,730 @@ Author      Hatchet~
 Levels      1 5
 Security    1
 VNUMs       3700 3760
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #3700
-acolyte cleric~
-the acolyte of Frag~
+Name        acolyte cleric~
+Short       the acolyte of Frag~
+Long
 An acolyte of Overlord Frag is here, grinning at you.
 ~
+Descr
 He is big and bad.  Don't mess with him.
 ~
-67 136 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis sanctuary~
+Alignment   1000
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #3701
-blob~
-the blob~
+Name        blob~
+Short       the blob~
+Long
 The blob is here, waiting to eat you up.
 ~
+Descr
 He is big, he is bad.  You don't want to fight him when he isn't chained up.
 Perhaps now would be a good time to flee from him!!!  If you don't flee, you
 would really suffer the consequences.
 ~
-67 8 0 S
-5 20 -99 1d1+50 1d1+0
-0 0
-0 Object~ 0
+Act         sentinel stay_area~
+AffectBy    detect-invis~
+Alignment   0
+Level       5
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #3702
-monster~
-the monster~
+Name        monster~
+Short       the monster~
+Long
 There is a monster leashed here.
 ~
+Descr
 He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
-3 0 0 S
-1 20 10 1d1+10 1d3+0
-100 0
-0 Animal~ 0
+Act         sentinel~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        100
+Race        Animal
+Sex         neutral~
+End
+
 #3703
-monster wimpy~
-the wimpy monster~
+Name        monster wimpy~
+Short       the wimpy monster~
+Long
 There is a wimpy monster leashed here.
 ~
+Descr
 He looks wimpy.  You feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
-131 0 0 S
-1 20 10 1d1+10 1d3+0
-100 0
-0 Animal~ 0
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        100
+Race        Animal
+Sex         neutral~
+End
+
 #3704
-monster aggressive~
-the aggressive monster~
+Name        monster aggressive~
+Short       the aggressive monster~
+Long
 There is an aggressive monster leashed here.
 ~
+Descr
 He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
-35 0 0 S
-1 20 10 1d1+10 1d3+0
-100 0
-0 Bear~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        100
+Race        Bear
+Sex         neutral~
+End
+
 #3705
-monster wimpy aggressive~
-the wimpy aggressive monster~
+Name        monster wimpy aggressive~
+Short       the wimpy aggressive monster~
+Long
 There is a wimpy aggressive monster leashed here.
 ~
+Descr
 He looks mean, but you feel comfortable that you can kill him, especially since
 he is leashed up, and you are not.
 ~
-163 0 0 S
-1 20 10 1d1+10 1d3+0
-100 0
-0 Bear~ 0
+Act         sentinel aggressive wimpy~
+AffectBy    ~
+Alignment   0
+Level       1
+Gold        100
+Race        Bear
+Sex         neutral~
+End
+
 #3706
-big creature~
-the big creature~
+Name        big creature~
+Short       the big creature~
+Long
 There is a big creature hulking over your form.
 ~
+Descr
 He looks mean, and you just might have a small problem killing him, but he
 looks like a great prize!!!
 ~
-3 512 0 S
-1 19 9 2d2+20 1d4+1
-200 0
-0 Animal~ 0
+Act         sentinel~
+AffectBy    infrared~
+Alignment   0
+Level       1
+Gold        200
+Race        Animal
+Sex         neutral~
+End
+
 #3707
-adept cleric~
-the adept of Kahn~
+Name        adept cleric~
+Short       the adept of Kahn~
+Long
 An adept of Overlord Kahn is here, contemplating your progress.
 ~
+Descr
 He is big and bad.  Don't mess with him.
 ~
-67 136 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis sanctuary~
+Alignment   1000
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_adept
+End
+
 #3709
-rabbit~
-the rabbit~
+Name        rabbit~
+Short       the rabbit~
+Long
 A rabbit is bouncing around here.
 ~
+Descr
 The rabbit smiles at you, completely harmless!
 ~
-193 0 100 S
-1 20 10 1d1+10 1d3+0
-10 0
-0 Animal~ 0
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       1
+Gold        10
+Race        Animal
+Sex         neutral~
+End
+
 #3710
-lizard~
-the lizard~
+Name        lizard~
+Short       the lizard~
+Long
 A lizard slithers up to you.
 ~
+Descr
 It smiles at you, and tries to eat your leg.
 ~
-65 0 -100 S
-2 19 9 2d2+20 1d4+1
-10 0
-0 Snake~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   -100
+Level       2
+Gold        10
+Race        Snake
+Sex         neutral~
+End
+
 #3711
-boar~
-the boar~
+Name        boar~
+Short       the boar~
+Long
 A boar tries to run you over.
 ~
+Descr
 It grunts at you.
 ~
-65 0 0 S
-3 18 8 3d3+30 1d6+1
-10 0
-0 Animal~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       3
+Gold        10
+Race        Animal
+Sex         neutral~
+End
+
 #3712
-fox~
-the fox~
+Name        fox~
+Short       the fox~
+Long
 A fox is here staring at you.
 ~
+Descr
 His fur might be worth money.
 ~
-193 0 100 S
-1 20 10 1d1+10 1d3+0
-10 0
-0 Animal~ 0
+Act         stay_area wimpy~
+AffectBy    ~
+Alignment   100
+Level       1
+Gold        10
+Race        Animal
+Sex         neutral~
+End
+
 #3713
-snail~
-the snail~
+Name        snail~
+Short       the snail~
+Long
 A snail is trying to get out of your way.
 ~
+Descr
 You don't see much but slime about it.
 ~
-65 0 0 S
-0 21 10 1d1+0 1d1+0
-2 0
-0 Worm~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       0
+Gold        2
+Race        Worm
+Sex         neutral~
+End
+
 #3714
-beast~
-the beast~
+Name        beast~
+Short       the beast~
+Long
 A beast tries to feed off of you.
 ~
+Descr
 It looks mean.  You'd better run.
 ~
-97 0 0 S
-5 16 6 5d5+55 1d6+3
-50 0
-0 Bear~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   0
+Level       5
+Gold        50
+Race        Bear
+Sex         neutral~
+Spec        spec_fido
+End
+
 #3715
-bear~
-the bear~
+Name        bear~
+Short       the bear~
+Long
 A bear is here growling at you.
 ~
+Descr
 The bear must be bigger than you!  It wants to rip your head off.
 ~
-65 0 0 S
-4 17 7 4d4+44 1d6+2
-40 0
-0 Bear~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        40
+Race        Bear
+Sex         neutral~
+End
+
 #3716
-wolf~
-the wolf~
+Name        wolf~
+Short       the wolf~
+Long
 A wolf is here snarling at you.
 ~
+Descr
 The wolf doesn't want to be bothered.
 ~
-65 0 0 S
-4 17 7 4d4+44 1d6+2
-40 0
-0 Animal~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   0
+Level       4
+Gold        40
+Race        Animal
+Sex         neutral~
+End
+
 #3717
-adept cleric~
-the adept of Frag~
+Name        adept cleric~
+Short       the adept of Frag~
+Long
 An adept of Frag is here, grinning and selling you things.
 ~
+Descr
 He is big and bad.  Don't mess with him.
 ~
-67 136 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 0
-0 Human~ 1
+Act         sentinel stay_area~
+AffectBy    detect-invis sanctuary~
+Alignment   1000
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+Shop        light~ container~ drink_con~ food~ ~ 100 100 0 23
+End
+
 #3718
-adept cleric~
-the adept of Furey~
+Name        adept cleric~
+Short       the adept of Furey~
+Long
 An adept of Furey is here, training young students.
 ~
+Descr
 He is big and bad.  Don't mess with him.
 ~
-579 136 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 0
-0 Human~ 1
+Act         sentinel stay_area train~
+AffectBy    detect-invis sanctuary~
+Alignment   1000
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #3719
-priest cleric~
-the priest of Hatchet~
+Name        priest cleric~
+Short       the priest of Hatchet~
+Long
 The priest of Hatchet is ready to help you practice.
 ~
+Descr
 He is big and bad.  Don't mess with him.
 ~
-1091 136 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 0
-0 Human~ 1
+Act         sentinel stay_area practice~
+AffectBy    detect-invis sanctuary~
+Alignment   1000
+Level       30
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #3720
-beast~
-the diploma beast~
+Name        beast~
+Short       the diploma beast~
+Long
 The hideous diploma beast is here, holding your graduation present!
 ~
+Descr
 This horrible creature is your final test for mud school.  Kill him, and the
 diploma is yours.
 ~
-3 512 0 S
-1 18 8 2d4+30 1d6+1
-300 0
-0 Bear~ 0
+Act         sentinel~
+AffectBy    infrared~
+Alignment   0
+Level       1
+Gold        300
+Race        Bear
+Sex         neutral~
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #3700
-sub mace~
-a sub issue mace~
+Name        sub mace~
+Short       a sub issue mace~
+Descr
 You see a sub issue mace here.~
-~
-5 64 8193
-0~ 2~ 3~ 7~ 0~
-5 0 0
-A
-19 1 0
-A
-18 1 0
-E
-sub mace~
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 2~ 3~ 7~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+ExtraDescr  sub mace~
 You see a mace of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3701
-sub dagger~
-a sub issue dagger~
+Name        sub dagger~
+Short       a sub issue dagger~
+Descr
 You see a sub issue dagger here.~
-~
-5 64 8193
-0~ 2~ 3~ 11~ 0~
-5 0 0
-A
-19 1 0
-A
-18 1 0
-E
-sub dagger~
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 2~ 3~ 11~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+ExtraDescr  sub dagger~
 You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3702
-sub sword~
-a sub issue sword~
+Name        sub sword~
+Short       a sub issue sword~
+Descr
 You see a sub issue sword here.~
-~
-5 64 8193
-0~ 2~ 3~ 3~ 0~
-5 0 0
-A
-19 1 0
-A
-18 1 0
-E
-sub sword~
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 2~ 3~ 3~ 0~
+Weight      5
+Cost        0
+Affect      damroll~ 1 ~
+Affect      hitroll~ 1 ~
+ExtraDescr  sub sword~
 You see a sword of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3703
-sub vest~
-a sub issue vest~
+Name        sub vest~
+Short       a sub issue vest~
+Descr
 You see a sub issue vest here.~
-~
-9 0 9
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub vest~
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub vest~
 You see a vest of great but cheap craftsmanship.  Stamped on the side is:
 Merc Industries
 ~
+End
+
 #3704
-sub shield~
-a sub issue shield~
+Name        sub shield~
+Short       a sub issue shield~
+Descr
 You see a sub issue shield here.~
-~
-9 0 513
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub shield~
+Type        armor~
+Extra       ~
+Wear        take shield~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub shield~
 You see a shield of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3705
-sub cloak~
-a sub issue cloak~
+Name        sub cloak~
+Short       a sub issue cloak~
+Descr
 You see a sub issue cloak here.~
-~
-9 0 5
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub cloak~
+Type        armor~
+Extra       ~
+Wear        take neck~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub cloak~
 You see a cloak of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3706
-sub helmet~
-a sub issue helmet~
+Name        sub helmet~
+Short       a sub issue helmet~
+Descr
 You see a sub issue helmet here.~
-~
-9 0 17
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub helmet~
+Type        armor~
+Extra       ~
+Wear        take head~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub helmet~
 You see a helmet of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3707
-sub leggings~
-a pair of sub issue leggings~
+Name        sub leggings~
+Short       a pair of sub issue leggings~
+Descr
 You see a pair of sub issue leggings here.~
-~
-9 0 33
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub leggings~
+Type        armor~
+Extra       ~
+Wear        take legs~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub leggings~
 You see leggings of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3708
-sub boots~
-a pair of sub issue boots~
+Name        sub boots~
+Short       a pair of sub issue boots~
+Descr
 You see a pair of sub issue boots here.~
-~
-9 0 65
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub boots~
+Type        armor~
+Extra       ~
+Wear        take feet~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub boots~
 You see boots of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3709
-sub gloves~
-a pair of sub issue gloves~
+Name        sub gloves~
+Short       a pair of sub issue gloves~
+Descr
 You see a pair of sub issue gloves here.~
-~
-9 0 129
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub gloves~
+Type        armor~
+Extra       ~
+Wear        take hands~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub gloves~
 You see gloves of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3710
-sub sleeves~
-a pair of sub issue sleeves~
+Name        sub sleeves~
+Short       a pair of sub issue sleeves~
+Descr
 You see a pair of sub issue sleeves here.~
-~
-9 0 257
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub sleeves~
+Type        armor~
+Extra       ~
+Wear        take arms~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub sleeves~
 You see sleeves of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3711
-sub cape~
-a sub issue cape~
+Name        sub cape~
+Short       a sub issue cape~
+Descr
 You see a sub issue cape here.~
-~
-9 0 1025
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub cape~
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub cape~
 You see a cape of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3712
-sub belt~
-a sub issue belt~
+Name        sub belt~
+Short       a sub issue belt~
+Descr
 You see a sub issue belt here.~
-~
-9 0 2049
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub belt~
+Type        armor~
+Extra       ~
+Wear        take waist~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub belt~
 You see a belt of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3713
-sub bracer~
-a sub issue bracer~
+Name        sub bracer~
+Short       a sub issue bracer~
+Descr
 You see a sub issue bracer here.~
-~
-9 0 4097
-2~ 0~ 0~ 0~ 0~
-5 0 0
-E
-sub bracer~
+Type        armor~
+Extra       ~
+Wear        take wrist~
+Values      2~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  sub bracer~
 You see a bracer of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
+End
+
 #3714
-key~
-a key~
+Name        key~
+Short       a key~
+Descr
 You see a very important key here!~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #3715
-diploma~
-a mud school diploma~
+Name        diploma~
+Short       a mud school diploma~
+Descr
 You see a mud school diploma here.~
-~
-8 64 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-4 1 0
-A
-5 1 0
-E
-diploma~
+Type        treasure~
+Extra       magic~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      wisdom~ 1 ~
+Affect      constitution~ 1 ~
+ExtraDescr  diploma~
 This document shows that you have graduated from Mud School.
 It also has magical effects on your abilities if you hold it!
 
 Hatchet the Silver Knight
 Merc Industries
 ~
+End
+
 #3716
-banner~
-a war banner~
+Name        banner~
+Short       a war banner~
+Descr
 A war banner is on the floor here.~
-~
-1 65 1
-0~ 0~ -1~ 0~ 0~
-1 0 0
-A
-17 -1 0
-A
-24 -1 0
-E
-banner~
+Type        light~
+Extra       glow magic~
+Wear        take~
+Values      0~ 0~ -1~ 0~ 0~
+Weight      1
+Cost        0
+Affect      ac~ -1 ~
+Affect      saving-spell~ -1 ~
+ExtraDescr  banner~
 This is the official Merc war banner to see you through the darkest realm!
 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #3700
-Entrance to Mud School~
+Name        Entrance to Mud School~
+Descr
 This is the entrance to the Merc Mud School.  Go north to go through mud
 school.  If you have been here before and want to go directly to the arena,
 go south.
 ~
-0 12 0
-D0
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3757
 You see the doorway into the Mud School Building.
 ~
 ~
-0 0 3757
-D2
+Door        south~ door closed~ -1 3744
 You see the one way door into the Arena of Mud School.
 ~
 door~
-3 -1 3744
-D5
+Door        down~ ~ 0 3001
 You see the Temple of Midgaard.
 ~
 ~
-0 0 3001
-S
+End
+
 #3701
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  The exits are west and south.  A small plaque is on the
 wall.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right
 now, you have just a vest, a shield, and a weapon.  As you go through Mud
 School you will acquire a complete set of equipment.
@@ -532,31 +742,32 @@ Finally, to see the items in your inventory, type 'INVENTORY'.
 
 When you are ready to continue, go west.
 ~
-E
-plaque~
+ExtraDescr  plaque~
 This zone (Mud School) is created by Hatchet for any Merc Mud.
 Copyright 1992, 1993.
 ~
-D2
+Reset       M 3700 1 100
+Door        south~ ~ -1 3757
 You see a path into another room.
 ~
 ~
-0 -1 3757
-D3
+Door        west~ ~ -1 3702
 You see a path into another room.
 ~
 ~
-0 -1 3702
-S
+End
+
 #3702
-The Center Room~
+Name        The Center Room~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  Exits lead in ALL directions.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 This is the direction practicing room.  The directions you can go in any
 room are: north, south, east, west, up, or down.  Of course, not all rooms
 have all exits available.
@@ -569,138 +780,144 @@ if you bump into a door.
 
 Try going into each direction from here.  When you are done, go NORTH.
 ~
-D0
+Door        north~ ~ 0 3703
 You see the room north that will lead you to the next section.
 ~
 ~
-0 0 3703
-D1
+Door        east~ ~ 0 3701
 You see a room.
 ~
 ~
-0 0 3701
-D2
+Door        south~ ~ 0 3705
 You see a room.
 ~
 ~
-0 0 3705
-D3
+Door        west~ ~ 0 3704
 You see a room.
 ~
 ~
-0 0 3704
-D4
+Door        up~ ~ 0 3708
 You see a room.
 ~
 ~
-0 0 3708
-D5
+Door        down~ ~ 0 3707
 You see a room.
 ~
 ~
-0 0 3707
-S
+End
+
 #3703
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  Exits lead north and south.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Since you are here, let us have another lesson.  You can see the statistics on
 yourself by typing 'SCORE'.  Do that right now.  At higher levels, 'SCORE'
 gives you more information.
 ~
-D0
+Door        north~ ~ -1 3709
 You see the next station ahead.
 ~
 ~
-0 -1 3709
-D2
+Door        south~ ~ 0 3702
 You see the central room.
 ~
 ~
-0 0 3702
-S
+End
+
 #3704
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  The only exit is east.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Just go east to the central room.
 ~
-D1
+Door        east~ ~ 0 3702
 You see the central room.
 ~
 ~
-0 0 3702
-S
+End
+
 #3705
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  The only exit is north.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Just go north to the central room.
 ~
-D0
+Door        north~ ~ 0 3702
 You see the central room.
 ~
 ~
-0 0 3702
-S
+End
+
 #3707
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  The only exit is up.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Just go up to the central room.
 ~
-D4
+Door        up~ ~ 0 3702
 You see the central room.
 ~
 ~
-0 0 3702
-S
+End
+
 #3708
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  The only exit is down.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Just go down to the central room.
 ~
-D5
+Door        down~ ~ 0 3702
 You see the central room.
 ~
 ~
-0 0 3702
-S
+End
+
 #3709
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  Exits reach west and down.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Welcome to combat training.
 
 The first lesson is knowing whom to fight.  Use the command 'CONSIDER' to
@@ -718,67 +935,72 @@ Type 'HELP WIMPY' to find out more about 'WIMPY'.
 After you flee, you will be back in this room.  When you are ready to go on
 to the next station, go 'WEST'.
 ~
-D3
+Door        west~ ~ -1 3711
 You see the next station of Mud School.
 ~
 ~
-0 -1 3711
-D5
+Door        down~ ~ 0 3710
 You see a cage.
 ~
 ~
-0 0 3710
-S
+End
+
 #3710
-The Blob Cage~
+Name        The Blob Cage~
+Descr
 You are in a smelly cage.  Strangely, the walls are still clean!
 You see a sign here.  The only exit is up.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Remember, don't fight the blob to the finish!  Just type 'KILL BLOB', then
 when you are fighting, type 'FLEE', until you flee and are out of here.
 ~
-D4
+Reset       M 3701 1 100
+Door        up~ ~ 0 3709
 You see a safe room up.
 ~
 ~
-0 0 3709
-S
+End
+
 #3711
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Welcome to the next station.  Here, you will actually fight real monsters,
 without fleeing!  Kill every mob, since they hold some equipment you need.
 To start, go down.
 ~
-D1
+Door        east~ ~ 0 3709
 You see the next station of Mud School.
 ~
 ~
-0 0 3709
-D5
+Door        down~ ~ 0 3712
 You see the combat hall.
 ~
 ~
-0 0 3712
-S
+End
+
 #3712
-The Cage Room~
+Name        The Cage Room~
+Descr
 You are in the cage room.  All around are 4 cages.  Light fluoresces off the
 ceiling in soft white tones.  Of course, there is a big sign on the wall.
 Exits lead into the cardinal directions plus down.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 Welcome to the cage room.  The adepts of mud school have captured some
 monsters for you to kill.  In the four cages are four monsters of various
 types.  Kill them all!
@@ -795,109 +1017,128 @@ You can 'REST' to regenerate hit points, or you can 'SLEEP'.  'SLEEP' will
 refresh you faster than 'REST', but you will be less aware of your
 surroundings.
 ~
-D0
+Reset       M 3707 1 100
+Door        north~ ~ -1 3713
 You see the aggressive monster inside!
 ~
 ~
-0 -1 3713
-D1
+Door        east~ ~ -1 3716
 You see the unmodified monster inside!
 ~
 ~
-0 -1 3716
-D2
+Door        south~ ~ -1 3715
 You see the wimpy monster inside!
 ~
 ~
-0 -1 3715
-D3
+Door        west~ ~ -1 3714
 You see the aggressive wimpy monster inside!
 ~
 ~
-0 -1 3714
-D5
+Door        down~ ~ -1 3717
 You see the next station below.
 ~
 ~
-0 -1 3717
-S
+End
+
 #3713
-A Cage~
+Name        A Cage~
+Descr
 You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
 in the upkeep here!  There is a sign on the wall.  The only exit is south.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 There is an aggressive monster in this room.  Kill him and get out of here
 fast!  Remember to loot and sacrifice the corpse.
 ~
-D2
+Reset       M 3704 1 100
+Reset       E 3707 7 100
+Reset       E 3712 13 100
+Door        south~ ~ -1 3712
 You see the Cage Room.
 ~
 ~
-0 -1 3712
-S
+End
+
 #3714
-A Cage~
+Name        A Cage~
+Descr
 You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
 in the upkeep here!  There is a sign on the wall.  The only exit is east.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 There is a wimpy, aggressive monster in this room.  Kill him and get out of
 here fast!  Remember to loot and sacrifice the corpse.
 ~
-D1
+Reset       M 3705 1 100
+Reset       E 3708 8 100
+Reset       E 3713 14 100
+Door        east~ ~ -1 3712
 You see the Cage Room.
 ~
 ~
-0 -1 3712
-S
+End
+
 #3715
-A Cage~
+Name        A Cage~
+Descr
 You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
 in the upkeep here!  There is a sign on the wall.  The only exit is north.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 There is a wimpy monster in this room.  Kill him and get out of here fast!
 Remember to loot and sacrifice the corpse.
 ~
-D0
+Reset       M 3703 1 100
+Reset       E 3706 6 100
+Reset       E 3711 12 100
+Door        north~ ~ -1 3712
 You see the Cage Room.
 ~
 ~
-0 -1 3712
-S
+End
+
 #3716
-A Cage~
+Name        A Cage~
+Descr
 You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
 in the upkeep here!  There is a sign on the wall.  The only exit is west.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 There is a monster in this room.  Kill him and get out of here fast!
 Remember to loot and sacrifice the corpse.
 ~
-D3
+Reset       M 3702 1 100
+Reset       E 3705 3 100
+Reset       E 3705 4 100
+Door        west~ ~ -1 3712
 You see the Cage Room.
 ~
 ~
-0 -1 3712
-S
+End
+
 #3717
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  Find your own exit here.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 By now, you must be hungry and thirsty.  Time to buy groceries!
 To the south is a store.  Inside the store, you can use these commands:
 
@@ -908,31 +1149,31 @@ After buying some food and drink, you can 'EAT' and 'DRINK' it.
 
 After that, find the next exit yourself.
 ~
-D1
+Door        east~ door closed~ -1 3719
 You see the next station of Mud School.
 ~
 door~
-3 -1 3719
-D2
+Door        south~ ~ 0 3718
 You see the Shop.
 ~
 ~
-0 0 3718
-D4
+Door        up~ ~ -1 3712
 You see the Cage room.
 ~
 ~
-0 -1 3712
-S
+End
+
 #3718
-The Store in Mud School~
+Name        The Store in Mud School~
+Descr
 You are in a cramped room.  Stacked neatly on shelves everywhere are items
 and packages.  Light fluoresces off the ceiling in soft white tones.  Of
 course, there is a sign on the wall.  The only exit is north.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 The sign reads:
 
    Buy   - Buy something from the storekeeper.
@@ -941,21 +1182,26 @@ The sign reads:
            that item.
    Sell  - Sell that item to the storekeeper.
 ~
-D0
+Reset       M 3717 1 100
+Reset       E 3138 -1 100
+Reset       E 3031 -1 100
+Door        north~ ~ 0 3717
 You see the only exit out of here.
 ~
 ~
-0 0 3717
-S
+End
+
 #3719
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
 sign on the wall.  The exits are north and west, with a door to the east.
 ~
-0 12 0
-E
-sign~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 North of you is a dark room.  I hope you still have the lantern!  If not,
 you have to back to the store and buy one.
 
@@ -963,45 +1209,53 @@ In the room is a monster with a key that you need.  After killing the
 monster and getting the key, come back here, UNLOCK EAST, OPEN EAST,
 and continue east.
 ~
-D0
+Door        north~ ~ 0 3720
 You see a darkened room inside.
 ~
 ~
-0 0 3720
-D1
+Door        east~ door closed locked pickproof~ 3714 3721
 You see the next station of Mud School.
 ~
 door~
-39 3714 3721
-D3
+Door        west~ door closed~ -1 3717
 You see the room you just came from.
 ~
 door~
-3 -1 3717
-S
+End
+
 #3720
-The Darkened Room~
+Name        The Darkened Room~
+Descr
 This room was purposefully darkened so that you would need to hold on to a
 light source to go through.  The walls are, of course, blank, and white.
 The only exit is south.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3706 1 100
+Reset       E 3709 9 100
+Reset       E 3710 10 100
+Reset       E 3714 17 100
+Reset       E 3713 14 100
+Door        south~ ~ 0 3719
 You see the room that you have come from.
 ~
 ~
-0 0 3719
-S
+End
+
 #3721
-The End of Mud School!~
+Name        The End of Mud School!~
+Descr
 This is a very bright room, with a marble pedestal in the center.  Behind
 the pedestal stands a person cloaked in Silver.  Tapestries flow from every
 wall, and you feel very happy to be here right now.  There is a big sign here.
 The only exit is on the other side of the gate north of you.
 ~
-0 8 0
-E
-sign~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign~
 You have graduated from Mud School!  Get your diploma.  Go 'NORTH' from here
 to visit our arena.  There are plenty of low-level monsters, but DON'T attack
 other players.
@@ -1016,868 +1270,884 @@ wrong or have comments, use 'BUG', 'IDEA', or 'TYPO' to report them.
 
 May your visit here be ... mercenary.
 ~
-D0
+Reset       M 3720 1 100
+Reset       E 3715 17 100
+Door        north~ door closed~ -1 3722
 You see the Arena ahead.
 ~
 gate~
-3 -1 3722
-S
+End
+
 #3722
-South Wall of Arena~
+Name        South Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3729
 ~
 ~
-0 0 3729
-D1
+Door        east~ ~ 0 3725
 ~
 ~
-0 0 3725
-D3
+Door        west~ ~ 0 3723
 ~
 ~
-0 0 3723
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3723
-South Wall of Arena~
+Name        South Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3728
 ~
 ~
-0 0 3728
-D1
+Door        east~ ~ 0 3722
 ~
 ~
-0 0 3722
-D3
+Door        west~ ~ 0 3724
 ~
 ~
-0 0 3724
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3724
-South West Corner of Arena~
+Name        South West Corner of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3713 5 100
+Door        north~ ~ 0 3727
 ~
 ~
-0 0 3727
-D1
+Door        east~ ~ 0 3723
 ~
 ~
-0 0 3723
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3725
-South Wall of Arena~
+Name        South Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3730
 ~
 ~
-0 0 3730
-D1
+Door        east~ ~ 0 3726
 ~
 ~
-0 0 3726
-D3
+Door        west~ ~ 0 3722
 ~
 ~
-0 0 3722
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3726
-South East Corner of Arena~
+Name        South East Corner of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3712 3 100
+Door        north~ ~ 0 3731
 ~
 ~
-0 0 3731
-D3
+Door        west~ ~ 0 3725
 ~
 ~
-0 0 3725
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3727
-West Wall of Arena~
+Name        West Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3732
 ~
 ~
-0 0 3732
-D1
+Door        east~ ~ 0 3728
 ~
 ~
-0 0 3728
-D2
+Door        south~ ~ 0 3724
 ~
 ~
-0 0 3724
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3728
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3733
 ~
 ~
-0 0 3733
-D1
+Door        east~ ~ 0 3729
 ~
 ~
-0 0 3729
-D2
+Door        south~ ~ 0 3723
 ~
 ~
-0 0 3723
-D3
+Door        west~ ~ 0 3727
 ~
 ~
-0 0 3727
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3729
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3734
 ~
 ~
-0 0 3734
-D1
+Door        east~ ~ 0 3730
 ~
 ~
-0 0 3730
-D2
+Door        south~ ~ 0 3722
 ~
 ~
-0 0 3722
-D3
+Door        west~ ~ 0 3728
 ~
 ~
-0 0 3728
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3730
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3735
 ~
 ~
-0 0 3735
-D1
+Door        east~ ~ 0 3731
 ~
 ~
-0 0 3731
-D2
+Door        south~ ~ 0 3725
 ~
 ~
-0 0 3725
-D3
+Door        west~ ~ 0 3729
 ~
 ~
-0 0 3729
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3731
-East Wall of Arena~
+Name        East Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3736
 ~
 ~
-0 0 3736
-D2
+Door        south~ ~ 0 3726
 ~
 ~
-0 0 3726
-D3
+Door        west~ ~ 0 3730
 ~
 ~
-0 0 3730
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3732
-West Wall of Arena~
+Name        West Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3737
 ~
 ~
-0 0 3737
-D1
+Door        east~ ~ 0 3733
 ~
 ~
-0 0 3733
-D2
+Door        south~ ~ 0 3727
 ~
 ~
-0 0 3727
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3733
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3738
 ~
 ~
-0 0 3738
-D1
+Door        east~ ~ 0 3734
 ~
 ~
-0 0 3734
-D2
+Door        south~ ~ 0 3728
 ~
 ~
-0 0 3728
-D3
+Door        west~ ~ 0 3732
 ~
 ~
-0 0 3732
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3734
-Center of Arena~
+Name        Center of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.  There is a BIG SIGN here.
 ~
-0 8 0
-E
-sign big~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  sign big~
 Those with high bravery or low senses of cautiousness might wish to go below
 to the Dungeon.  However, know that there are aggressive monsters down there,
 and there is no quick escape back out of here when you are in the dungeon.
 ~
-D0
+Reset       M 3709 4 100
+Door        north~ ~ 0 3739
 ~
 ~
-0 0 3739
-D1
+Door        east~ ~ 0 3735
 ~
 ~
-0 0 3735
-D2
+Door        south~ ~ 0 3729
 ~
 ~
-0 0 3729
-D3
+Door        west~ ~ 0 3733
 ~
 ~
-0 0 3733
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-D5
+Door        down~ door closed~ -1 3748
 You see a dark murky dungeon below.
 ~
 grate~
-3 -1 3748
-S
+End
+
 #3735
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3740
 ~
 ~
-0 0 3740
-D1
+Door        east~ ~ 0 3736
 ~
 ~
-0 0 3736
-D2
+Door        south~ ~ 0 3730
 ~
 ~
-0 0 3730
-D3
+Door        west~ ~ 0 3734
 ~
 ~
-0 0 3734
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3736
-East Wall of Arena~
+Name        East Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3741
 ~
 ~
-0 0 3741
-D2
+Door        south~ ~ 0 3731
 ~
 ~
-0 0 3731
-D3
+Door        west~ ~ 0 3735
 ~
 ~
-0 0 3735
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3737
-West Wall of Arena~
+Name        West Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3742
 ~
 ~
-0 0 3742
-D1
+Door        east~ ~ 0 3738
 ~
 ~
-0 0 3738
-D2
+Door        south~ ~ 0 3732
 ~
 ~
-0 0 3732
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3738
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3743
 ~
 ~
-0 0 3743
-D1
+Door        east~ ~ 0 3739
 ~
 ~
-0 0 3739
-D2
+Door        south~ ~ 0 3733
 ~
 ~
-0 0 3733
-D3
+Door        west~ ~ 0 3737
 ~
 ~
-0 0 3737
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3739
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3744
 ~
 ~
-0 0 3744
-D1
+Door        east~ ~ 0 3740
 ~
 ~
-0 0 3740
-D2
+Door        south~ ~ 0 3734
 ~
 ~
-0 0 3734
-D3
+Door        west~ ~ 0 3738
 ~
 ~
-0 0 3738
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3740
-Arena~
+Name        Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3745
 ~
 ~
-0 0 3745
-D1
+Door        east~ ~ 0 3741
 ~
 ~
-0 0 3741
-D2
+Door        south~ ~ 0 3735
 ~
 ~
-0 0 3735
-D3
+Door        west~ ~ 0 3739
 ~
 ~
-0 0 3739
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3741
-East Wall of Arena~
+Name        East Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3746
 ~
 ~
-0 0 3746
-D2
+Door        south~ ~ 0 3736
 ~
 ~
-0 0 3736
-D3
+Door        west~ ~ 0 3740
 ~
 ~
-0 0 3740
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3742
-North West Corner of Arena~
+Name        North West Corner of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3710 3 100
+Door        east~ ~ 0 3743
 ~
 ~
-0 0 3743
-D2
+Door        south~ ~ 0 3737
 ~
 ~
-0 0 3737
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3743
-North Wall of Arena~
+Name        North Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  You can barely see the ceiling.  You feel as if you are being watched
 by some divine being.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 3744
 ~
 ~
-0 0 3744
-D2
+Door        south~ ~ 0 3738
 ~
 ~
-0 0 3738
-D3
+Door        west~ ~ 0 3742
 ~
 ~
-0 0 3742
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3744
-North Wall of Arena~
+Name        North Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 3745
 ~
 ~
-0 0 3745
-D2
+Door        south~ ~ 0 3739
 ~
 ~
-0 0 3739
-D3
+Door        west~ ~ 0 3743
 ~
 ~
-0 0 3743
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3745
-North Wall of Arena~
+Name        North Wall of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 3746
 ~
 ~
-0 0 3746
-D2
+Door        south~ ~ 0 3740
 ~
 ~
-0 0 3740
-D3
+Door        west~ ~ 0 3744
 ~
 ~
-0 0 3744
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3746
-North East Corner of Arena~
+Name        North East Corner of Arena~
+Descr
 You are in the Arena.  Remember, if you wish to get out of this Arena, just
 go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
 being watched by some divine being.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3711 3 100
+Door        south~ ~ 0 3741
 ~
 ~
-0 0 3741
-D3
+Door        west~ ~ 0 3745
 ~
 ~
-0 0 3745
-D4
+Door        up~ ~ 0 3760
 You see the EXIT.
 ~
 ~
-0 0 3760
-S
+End
+
 #3748
-The Center of the Dungeon~
+Name        The Center of the Dungeon~
+Descr
 You are in the center of a large room.  A faint light from above shows that
 the floors are all covered with slime.  A feeling of dread comes over you as
 you notice that this is NOT a great place to go.  Exits go in all directions.
 Of special note is the one that brings you back up!!!
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3750
 You see the north wall.
 ~
 ~
-0 0 3750
-D1
+Door        east~ ~ 0 3753
 You see the east wall.
 ~
 ~
-0 0 3753
-D2
+Door        south~ ~ 0 3755
 You see the south wall.
 ~
 ~
-0 0 3755
-D3
+Door        west~ ~ 0 3752
 You see the west wall.
 ~
 ~
-0 0 3752
-D4
+Door        up~ door closed~ -1 3734
 You see safety!
 ~
 grate~
-3 -1 3734
-S
+End
+
 #3749
-The North West Corner of the Dungeon~
+Name        The North West Corner of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3714 1 100
+Door        east~ ~ 0 3750
 You see the north wall.
 ~
 ~
-0 0 3750
-D2
+Door        south~ ~ 0 3752
 You see the south wall.
 ~
 ~
-0 0 3752
-S
+End
+
 #3750
-The North Wall of the Dungeon~
+Name        The North Wall of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ 0 3751
 You see the north east corner.
 ~
 ~
-0 0 3751
-D2
+Door        south~ ~ 0 3748
 You see the center of the dungeon.
 ~
 ~
-0 0 3748
-D3
+Door        west~ ~ 0 3749
 You see the north west corner.
 ~
 ~
-0 0 3749
-S
+End
+
 #3751
-The North East Corner of the Dungeon~
+Name        The North East Corner of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3715 2 100
+Door        south~ ~ 0 3753
 You see the east wall.
 ~
 ~
-0 0 3753
-D3
+Door        west~ ~ 0 3750
 You see the north wall.
 ~
 ~
-0 0 3750
-S
+End
+
 #3752
-The West Wall of the Dungeon~
+Name        The West Wall of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3749
 You see the north west corner.
 ~
 ~
-0 0 3749
-D1
+Door        east~ ~ 0 3748
 You see the center of the dungeon.
 ~
 ~
-0 0 3748
-D2
+Door        south~ ~ 0 3754
 You see the south west corner.
 ~
 ~
-0 0 3754
-S
+End
+
 #3753
-The East Wall of the Dungeon~
+Name        The East Wall of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3751
 You see the north east corner.
 ~
 ~
-0 0 3751
-D2
+Door        south~ ~ 0 3756
 You see the south east corner.
 ~
 ~
-0 0 3756
-D3
+Door        west~ ~ 0 3748
 You see the center of the dungeon.
 ~
 ~
-0 0 3748
-S
+End
+
 #3754
-The South West Corner of the Dungeon~
+Name        The South West Corner of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 3716 2 100
+Door        north~ ~ 0 3752
 You see the north wall.
 ~
 ~
-0 0 3752
-D1
+Door        east~ ~ 0 3755
 You see the south wall.
 ~
 ~
-0 0 3755
-S
+End
+
 #3755
-The South Wall of the Dungeon~
+Name        The South Wall of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3748
 You see the center of the dungeon.
 ~
 ~
-0 0 3748
-D1
+Door        east~ ~ 0 3756
 You see the south east corner.
 ~
 ~
-0 0 3756
-D3
+Door        west~ ~ 0 3754
 You see the south west corner.
 ~
 ~
-0 0 3754
-S
+End
+
 #3756
-The South East Corner of the Dungeon~
+Name        The South East Corner of the Dungeon~
+Descr
 You are against a wall in the dungeon.  It is quite dark here.  The lack of
 any windows in the area explains the smell around you.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ 0 3753
 You see the east wall.
 ~
 ~
-0 0 3753
-D3
+Door        west~ ~ 0 3755
 You see the south wall.
 ~
 ~
-0 0 3755
-S
+End
+
 #3757
-A Room in Mud School~
+Name        A Room in Mud School~
+Descr
 You are in a room in Mud School.  Pastels cover these walls, due to Hatchet's
 mood for the day.  To the west is Furey's Training Room, and to the east is
 Hatchet's Guild Room.  North of you is the next Station of Mud School.
 There is a sign on the wall (type 'LOOK SIGN' to read it).
 ~
-0 0 1
-E
-sign~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign~
 To find out your attributes, type 'score'.  You can improve your attributes
 in Furey's Training Room to the west.  You can practice your skills and spells
 in Hatchet's Guild Room to the east.  You can continue through mud school by
@@ -1886,57 +2156,59 @@ going north.
 If you are a new character, you should go 'WEST' from here, train your
 abilities, and then come back here and go 'NORTH'.
 ~
-D0
+Door        north~ ~ 0 3701
 You see the next station of Mud School.
 ~
 ~
-0 0 3701
-D1
+Door        east~ ~ 0 3759
 You see Hatchet's Guild Room.  Go there to practice your skills.
 ~
 ~
-0 0 3759
-D2
+Door        south~ ~ 0 3700
 You see the entrance to Mud School.
 ~
 ~
-0 0 3700
-D3
+Door        west~ ~ 0 3758
 You see Furey's Training Room.  Go there to train your attributes.
 ~
 ~
-0 0 3758
-S
+End
+
 #3758
-Furey's Training Room~
+Name        Furey's Training Room~
+Descr
 You are in Furey's Training Room.  Around you are all sorts of physical
 and mental training tools.  The whole room is filled with magic, holiness, 
 and sweat.  There is a sign on the wall.
 ~
-0 0 1
-E
-sign~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign~
 Welcome to Furey's Training Room.  Here you can train your attributes.  To 
 train an attribute, you need enough practices.  To find out how many practice
 sessions you have, type 'train' while you are in this room.  To train for a 
 specific attribute, type 'train <attr>' where attr is the first 3 letters of
 the attribute you want increased.  Type 'help train' for more information.
 ~
-D1
+Reset       M 3718 1 100
+Door        east~ ~ 0 3757
 You see the room you came from, and the room you should go to.
 ~
 ~
-0 0 3757
-S
+End
+
 #3759
-Hatchet's Guild Room~
+Name        Hatchet's Guild Room~
+Descr
 You are in a room filled with weapons, books, and many combat dummies, some
 cut and stabbed many times, others burnt to a crisp.  The room is filled with
 sweat and an aura of magic.  There is a sign on the wall.
 ~
-0 0 1
-E
-sign~
+Flags       ~
+Sector      city~
+Regen       100 100
+ExtraDescr  sign~
 Welcome to Hatchet's Guild Room.  Here you will learn your skills and spells.
 To find out what skills and spells you can practice and how many practice
 sessions you have, type 'practice'.  To practice the specific skill, type
@@ -1944,79 +2216,30 @@ sessions you have, type 'practice'.  To practice the specific skill, type
 Practicing increases the amount you know of that skill or spell, up to a
 certain maximum.  When you have practiced all you wish to practice, go west.
 ~
-D3
+Reset       M 3719 1 100
+Door        west~ ~ 0 3757
 You see the room you came from and the room you should go to.
 ~
 ~
-0 0 3757
-S
+End
+
 #3760
-A Safe Room~
+Name        A Safe Room~
+Descr
 You are in a safe room, away from all the mean rabbits and snails of the Arena.
 You can rest here, and go up to go back to the Temple of Midgaard.
 ~
-0 12 0
-D4
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        up~ ~ 0 3001
 You see the Temple of Midgaard.
 ~
 ~
-0 0 3001
-S
+End
+
 #0
 
-
-#SPECIALS
-M 3707 spec_cast_adept
-M 3714 spec_fido
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 3700 1 3701
-M 0 3701 1 3710
-M 0 3707 1 3712
-M 0 3704 1 3713
-E 0 3707 0 7
-E 0 3712 0 13
-M 0 3705 1 3714
-E 0 3708 0 8
-E 0 3713 0 14
-M 0 3703 1 3715
-E 0 3706 0 6
-E 0 3711 0 12
-M 0 3702 1 3716
-E 0 3705 0 3
-E 0 3705 0 4
-M 0 3717 1 3718
-G 0 3138 0
-G 0 3031 0
-M 0 3706 1 3720
-E 0 3709 0 9
-E 0 3710 0 10
-E 0 3714 0 17
-E 0 3713 0 14
-M 0 3720 1 3721
-E 0 3715 0 17
-M 0 3713 5 3724
-M 0 3712 3 3726
-M 0 3709 4 3734
-M 0 3710 3 3742
-M 0 3711 3 3746
-M 0 3714 1 3749
-M 0 3715 2 3751
-M 0 3716 2 3754
-M 0 3718 1 3758
-M 0 3719 1 3759
-S
-
-
-#SHOPS
-3717 1 15 17 19 0 100 100 0 23
-0
 
 
 #$

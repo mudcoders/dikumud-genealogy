@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -132,7 +134,7 @@ void do_initiate( CHAR_DATA *ch, char *argument )
         return;
     }
 
-    if ( clan->clan_type == CLAN_GUILD && clan->class != victim->class )
+    if ( clan->clan_type == CLAN_GUILD && clan->class != victim->class[0] )
 	send_to_char( "You may only initiate those of your class.\n\r", ch );
 
     victim->pcdata->clan      = clan;
@@ -456,7 +458,6 @@ void do_demote( CHAR_DATA *ch, char *argument )
 	    ch->name,
 	    victim->name,
 	    flag_string( rank_flags, newrank ) );
-
     send_to_char( buf, victim );
 
     act( "You have demoted $N to $t.",
@@ -839,39 +840,52 @@ void do_claninfo( CHAR_DATA *ch, char *argument )
 
     buf1[0] = '\0';
 
-    sprintf( buf, "{o{c%s{x\n\r", clan->name );
+    strcat( buf1, "{o{r __________________________________________________________________________{x\n\r" );
+    strcat( buf1, "{o{r/                                                                          \\{x\n\r" );
+
+    sprintf( buf, "                         {o{r[{y={r]{x  %s  {o{r[{y={r]{x\n\r",
+	    clan->name );
     strcat( buf1, buf );
 
-    sprintf( buf, "{o{cMotto: \"%s\"{x\n\r", clan->motto );
+    sprintf( buf, "\n\r {o{w\"{x%s{o{w\"{x\n\r",
+	    clan->motto );
     strcat( buf1, buf );
 
-    strcat( buf1, "{o{c-----------------------------------------------------------------------------{x\n\r" );
-
-    sprintf( buf, "{o{c%s{x\n\r", clan->description );
-    strcat( buf1, buf );
-    
-    sprintf( buf, "{o{cOVERLORD : %s{x\n\r",
+    sprintf( buf, "\n\r {o{r[>{x Overlord {o{w'%s'{x\n\r",
 	    clan->overlord );
     strcat( buf1, buf );
 
-    sprintf( buf, "{o{cCHIEFTAIN: %s  %s{x\n\r",
-	    clan->chieftain,
-	    ( clan->members > 9 && clan->chieftain[0] == '\0' )
-	    ? "Promote someone to Chieftain!" : "" );
-    strcat( buf1, buf );
+    if ( clan->members > 9 )
+    {
+	sprintf( buf, " {o{r[>{x Chieftain {o{w'%s'{x\n\r",
+	    clan->chieftain );
+	strcat( buf1, buf );
+    }
 
-    sprintf( buf, "{o{cSubchiefs: %5.5d  Max Subchiefs: %5.5d{x\n\r",
+    sprintf( buf, "\n\r {o{r[>{x {o{w%d{x subchiefs, maximum {o{w%d{x.\n\r",
 	    clan->subchiefs, clan->members / 6 );
     strcat( buf1, buf );
 
-    sprintf( buf, "{o{cClanheros: %5.5d  Max Clanheros: %5.5d{x\n\r",
+    sprintf( buf, " {o{r[>{x {o{w%d{x clanheros, maximum {o{w%d{x.\n\r",
 	    clan->clanheros, clan->members / 3 );
     strcat( buf1, buf );
 
-    sprintf( buf, "{o{cMembers  : %5.5d  SCORE        : %5.5d{x\n\r",
-	    clan->members, clan->score );
+    sprintf( buf, " {o{r[>{x {o{w%d{x members.\n\r",
+	    clan->members );
     strcat( buf1, buf );
 
+    sprintf( buf, "\n\r {o{r[>{x {o{w%d{x score.\n\r\n\r",
+	    clan->score );
+    strcat( buf1, buf );
+
+    strcat( buf1, "{o{r\\__________________________________________________________________________/{x\n\r" );
+    strcat( buf1, "{o{r/                                                                          \\{x\n\r" );
+
+    sprintf( buf, " ... %s ...{x\n\r",
+	    clan->description );
+    strcat( buf1, buf );
+
+    strcat( buf1, "{o{r\\__________________________________________________________________________/{x\n\r" );
     send_to_char( buf1, ch );
 
     return;

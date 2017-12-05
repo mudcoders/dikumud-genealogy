@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -429,7 +431,7 @@ void do_mpedit( CHAR_DATA * ch, char *argument )
 }
 
 
-void display_resets( CHAR_DATA * ch )
+void display_resets( CHAR_DATA *ch )
 {
     ROOM_INDEX_DATA *pRoom;
     MOB_INDEX_DATA  *pMob = NULL;
@@ -451,7 +453,6 @@ void display_resets( CHAR_DATA * ch )
 	MOB_INDEX_DATA  *pMobIndex;
 	OBJ_INDEX_DATA  *pObjIndex;
 	OBJ_INDEX_DATA  *pObjToIndex;
-	ROOM_INDEX_DATA *pRoomIndex;
 
 	final[0] = '\0';
 	sprintf( final, "{o{c%2d: {x", ++iReset );
@@ -464,31 +465,26 @@ void display_resets( CHAR_DATA * ch )
 		break;
 
 	    case 'M':
-		if ( !( pMobIndex = get_mob_index( pReset->arg1 ) ) )
+		if ( !( pMobIndex = get_mob_index( pReset->rs_vnum ) ) )
 		{
-		    sprintf( buf, "Load mobile - bad mob %d.\n\r", pReset->arg1 );
-		    strcat( final, buf );
-		    continue;
-		}
-
-		if ( !( pRoomIndex = get_room_index( pReset->arg3 ) ) )
-		{
-		    sprintf( buf, "Load mobile - bad room %d.\n\r", pReset->arg3 );
+		    sprintf( buf, "Load mobile - bad mob %d.\n\r", pReset->rs_vnum );
 		    strcat( final, buf );
 		    continue;
 		}
 
 		pMob = pMobIndex;
-		sprintf( buf, "{o{rM 0 %5d %2d %5d  * %s -> %s{x\n\r",
-			pReset->arg1, pReset->arg2, pReset->arg3,
-			pMob->short_descr, pRoomIndex->name );
+		sprintf( buf, "{o{rM %5d %5d %3d  * %s{x\n\r",
+			pReset->rs_vnum,
+			pReset->loc, 
+			pReset->percent,
+			pMob->short_descr );
 		strcat( final, buf );
 
 		/* check for pet shop */
 		{
 		    ROOM_INDEX_DATA *pRoomIndexPrev;
 
-		    pRoomIndexPrev = get_room_index( pRoomIndex->vnum - 1 );
+		    pRoomIndexPrev = get_room_index( pRoom->vnum - 1 );
 		    if ( pRoomIndexPrev
 			&& IS_SET( pRoomIndexPrev->orig_room_flags, ROOM_PET_SHOP ) )
 			final[14] = 'P';
@@ -497,90 +493,59 @@ void display_resets( CHAR_DATA * ch )
 		break;
 
 	    case 'O':
-		if ( !( pObjIndex = get_obj_index( pReset->arg1 ) ) )
+		if ( !( pObjIndex = get_obj_index( pReset->rs_vnum ) ) )
 		{
 		    sprintf( buf, "Load object - bad object %d.\n\r",
-			    pReset->arg1 );
+			    pReset->rs_vnum );
 		    strcat( final, buf );
 		    continue;
 		}
 
 		pObj = pObjIndex;
 
-		if ( !( pRoomIndex = get_room_index( pReset->arg3 ) ) )
-		{
-		    sprintf( buf, "Load object - bad room %d.\n\r", pReset->arg3 );
-		    strcat( final, buf );
-		    continue;
-		}
-
-		sprintf( buf, "{o{gO 0 %5d  0 %5d  * %s -> %s{x\n",
-			pReset->arg1,
-			pReset->arg3,
-			capitalize( pObj->short_descr ),
-			pRoomIndex->name );
+		sprintf( buf, "{o{gO %5d %5d %3d  * %s{x\n\r",
+			pReset->rs_vnum,
+			pReset->loc,
+			pReset->percent,
+			capitalize( pObj->short_descr ) );
 		strcat( final, buf );
 
 		break;
 
 	    case 'P':
-		if ( !( pObjIndex = get_obj_index( pReset->arg1 ) ) )
+		if ( !( pObjIndex = get_obj_index( pReset->rs_vnum ) ) )
 		{
 		    sprintf( buf, "Put object - bad object %d.\n\r",
-			    pReset->arg1 );
+			    pReset->rs_vnum );
 		    strcat( final, buf );
 		    continue;
 		}
 
 		pObj = pObjIndex;
 
-		if ( !( pObjToIndex = get_obj_index( pReset->arg3 ) ) )
+		if ( !( pObjToIndex = get_obj_index( pReset->loc ) ) )
 		{
 		    sprintf( buf, "Put object - bad to object %d.\n\r",
-			    pReset->arg3 );
+			    pReset->loc );
 		    strcat( final, buf );
 		    continue;
 		}
 
-		sprintf( buf,"{gP 0 %5d  0 %5d  * %s inside %s{x\n",
-			pReset->arg1,
-			pReset->arg3,
-			capitalize( get_obj_index( pReset->arg1 )->short_descr ),
+		sprintf( buf,"{gP %5d %5d %3d  * %s inside %s{x\n\r",
+			pReset->rs_vnum,
+			pReset->loc,
+			pReset->percent,
+			capitalize( get_obj_index( pReset->rs_vnum )->short_descr ),
 			pObjToIndex->short_descr );
 		strcat( final, buf );
 
 		break;
 
-	    case 'G':
-		if ( !( pObjIndex = get_obj_index( pReset->arg1 ) ) )
-		{
-		    sprintf( buf, "Give object - bad object %d.\n\r",
-			    pReset->arg1 );
-		    strcat( final, buf );
-		    continue;
-		}
-
-		pObj = pObjIndex;
-
-		if ( !pMob )
-		{
-		    sprintf( buf, "Give object - no previous mobile.\n\r" );
-		    strcat( final, buf );
-		    break;
-		}
-
-		    sprintf( buf, "{rG 0 %5d  0        *   %s{x\n",
-			    pReset->arg1,
-			    capitalize( pObjIndex->short_descr ) );
-		strcat( final, buf );
-
-		break;
-
 	    case 'E':
-		if ( !( pObjIndex = get_obj_index( pReset->arg1 ) ) )
+		if ( !( pObjIndex = get_obj_index( pReset->rs_vnum ) ) )
 		{
 		    sprintf( buf, "Equip object - bad object %d.\n\r",
-			    pReset->arg1 );
+			    pReset->rs_vnum );
 		    strcat( final, buf );
 		    continue;
 		}
@@ -594,28 +559,21 @@ void display_resets( CHAR_DATA * ch )
 		    break;
 		}
 
-		    sprintf( buf, "{rE 0 %5d  0 %5d  *   %s %s{x\n",
-			    pReset->arg1,
-			    pReset->arg3,
-		    capitalize( get_obj_index( pReset->arg1 )->short_descr ),
-		    flag_string( wear_loc_strings, pReset->arg3 ) );
+		    sprintf( buf, "{rE %5d %5d %3d  *   %s %s{x\n\r",
+			    pReset->rs_vnum,
+			    pReset->loc,
+			    pReset->percent,
+		    capitalize( get_obj_index( pReset->rs_vnum )->short_descr ),
+		    flag_string( wear_loc_strings, pReset->loc ) );
 		strcat( final, buf );
 
 		break;
 
 	    case 'R':
-		if ( !( pRoomIndex = get_room_index( pReset->arg1 ) ) )
-		{
-		    sprintf( buf, "Randomize exits - bad room %d.\n\r",
-			    pReset->arg1 );
-		    strcat( final, buf );
-		    continue;
-		}
-
-		sprintf( buf, "{o{yR 0 %5d %2d        * Randomize %s{x\n",
-			pReset->arg1,
-			pReset->arg2,
-			pRoomIndex->name );
+		sprintf( buf, "{o{yR %5d %5d %3d  * Randomize{x\n\r",
+			pReset->rs_vnum,
+			pReset->loc,
+			pReset->percent );
 		strcat( final, buf );
 
 		break;
@@ -775,29 +733,25 @@ void do_resets( CHAR_DATA * ch, char *argument )
 	{
 	    pReset          = new_reset_data( );
 	    pReset->command = 'M';
-	    pReset->arg1    = atoi( arg3 );
-	    pReset->arg2    = is_number( arg4 ) ? atoi( arg4 ) : 1;
-	    pReset->arg3    = pRoom->vnum;
+	    pReset->rs_vnum = atoi( arg3 );
+	    pReset->loc     = is_number( arg4 ) ? atoi( arg4 ) : 1;
 	}
 	else
 	if ( !str_cmp( arg2, "obj" ) )
 	{
-	    pReset       = new_reset_data( );
-	    pReset->arg1 = atoi( arg3 );
+	    pReset          = new_reset_data( );
+	    pReset->rs_vnum = atoi( arg3 );
 
 	    if ( !str_prefix( arg4, "inside" ) )
 	    {
 		pReset->command = 'P';
-		pReset->arg2    = 0;
-		pReset->arg3    = is_number( arg5 ) ? atoi( arg5 ) : 1;
+		pReset->loc     = is_number( arg5 ) ? atoi( arg5 ) : 1;
 	    }
 	    else
 	    if ( !str_cmp( arg4, "room" ) )
 	    {
 		pReset->command = 'O';
-		pReset->arg1    = atoi( arg3 );
-		pReset->arg2    = 0;
-		pReset->arg3    = pRoom->vnum;
+		pReset->rs_vnum = atoi( arg3 );
 	    }
 	    else
 	    {
@@ -807,12 +761,9 @@ void do_resets( CHAR_DATA * ch, char *argument )
 		    return;
 		}
 
-		pReset->arg3 = flag_value( wear_loc_flags, arg4 );
+		pReset->loc = flag_value( wear_loc_flags, arg4 );
 
-		if ( pReset->arg3 == WEAR_NONE )
-		    pReset->command = 'G';
-		else
-		    pReset->command = 'E';
+		pReset->command = 'E';
 	    }
 	}
 

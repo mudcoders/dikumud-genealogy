@@ -1,0 +1,83 @@
+ $$$   $$$$   $$$$  $$$$  $$$$   
+$   $  $   $  $     $     $   $  
+$      $$$$   $$$   $$$   $   $  
+$  $$  $ $    $     $     $   $  
+$   $  $  $   $     $     $   $  
+ $$$$  $   $  $$$$  $$$$  $$$$ 
+
+
+
+=== History
+
+
+Expected Greed Development Tree:
+================================
+
+     Diku
+       |
+     Merc
+       |
+     Envy
+       |
+UltraEnvy 0.87k (Erased)
+       |
+(FUTURE DEVELOPMENTS)
+       |
+Greed 0.88aXX - Twilight to GREED!
+       .
+       .
+       
+Greed 0.88bXX - Beta Testing, debuging, balance, cleanup of Greed.
+       .
+       .
+       .
+GREED codebase 0.88 GAMMA
+       .
+GREED codebase 0.88 - 1st public code release???
+       .
+       .
+       .
+       ?
+
+
+
+=== TODO'S
+
+%		- indicates these ideas have been incorporated in GREED
+#		- indicates these ideas are being incorporated in GREED
+*MAYBE TRASHED*	- indicates this idea may be trashed in favour of another
+X		- indicates max priority.
+
+
+X	ROM race bonus skills.
+
+X	Bulletin boards like Erwin S.A.'s snippet.
+	Add Erwin S.A.'s auction snippet.
+
+	AWAY instead of AFK like in dragon.ods.com.
+
+	Fix problem with pagelen > 40 and alist.  Smaug also has this problem...
+	Add '$n' thingie support.
+	lset, lstat wiz commands (languages).
+	ROM like skill groupings and Oblivion/VME Schools.
+	Mana channeling.
+#	New skills/spells (including ice combat ones).
+X	New classes (Oblivion/VME/Smaug).
+	Mana channeling/Group spell casting.
+	HpMnMv Perm & HPMnMv Mod.
+X	Learn spells/skills from use - (reduce prac gain to balance things ?).
+	"Teach" and "Study" skills.
+	Add spell_identify info for ITEM_GEM.
+
+	Help editor.
+	Pose editor.
+	Title editor.
+	Social editor.
+	.
+	.
+	.
+	Rename mud engine to GREED = Greed Rpg's Enhanced Envy Diku
+	Yep, its YANC (yet another name change!)
+
+
+- Zen

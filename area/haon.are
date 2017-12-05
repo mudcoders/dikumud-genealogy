@@ -4,2092 +4,2268 @@ Author      Diku~
 Levels      5 10
 Security    1
 VNUMs       6000 6155
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #6000
-john lumberjack~
-John the Lumberjack~
+Name        john lumberjack~
+Short       John the Lumberjack~
+Long
 John the Lumberjack is here, looking for some trees to chop down.
 ~
+Descr
 He is six feet tall and looks quite strong, muscles bulging under his heavy,
 chequered shirt.  His features are worn with hard work and his expression is
 one of a peaceful man leading a simple life.
 ~
-65 0 350 S
-5 15 7 5d5+50 1d8+2
-50 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   350
+Level       5
+Gold        50
+Race        Human
+Sex         male~
+End
+
 #6002
-bear~
-the brown bear~
+Name        bear~
+Short       the brown bear~
+Long
 A big, brown, angry-looking bear is here.
 ~
+Descr
 The bear is a big, brown, furry animal with very large claws and very sharp
 teeth.  It doesn't resemble those cute little thingies from toy shops at all.
 ~
-97 0 -50 S
-8 13 3 8d8+80 2d6+2
-0 0
-0 Bear~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -50
+Level       8
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #6003
-rabbit~
-the ferocious rabbit~
+Name        rabbit~
+Short       the ferocious rabbit~
+Long
 A ferocious rabbit is here, glaring hungrily at you.
 ~
+Descr
 This small, furry creature with long ears and big feet has been attacked by
 the dreaded rabbit rabies, a horrible disease that turns helpless and innocent
 rabbits into ferocious and bloodthirsty monsters.
 ~
-97 0 -150 S
-3 17 6 1d4+26 1d8+0
-0 0
-0 Animal~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -150
+Level       3
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #6004
-deer~
-the fallow deer~
+Name        deer~
+Short       the fallow deer~
+Long
 A fallow deer is grazing peacefully here.
 ~
+Descr
 She is a graceful creature on long, slender legs, and with large, brown eyes
 looking back at you with an air of watchful interest.
 ~
-83 8 350 S
-2 19 2 2d8+2 1d6+0
-0 0
-0 Animal~ 2
+Act         sentinel stay_area~
+AffectBy    detect-invis~
+Alignment   350
+Level       2
+Gold        0
+Race        Animal
+Sex         female~
+End
+
 #6005
-fox~
-the brown fox~
+Name        fox~
+Short       the brown fox~
+Long
 A brown fox is here, looking for some rabbits to chew up.
 ~
+Descr
 It is a large fox with beautiful, red-brown fur and a long, thick brush.
 ~
-65 0 -50 S
-2 18 6 1d4+18 1d6+0
-0 0
-0 Bear~ 0
+Act         stay_area~
+AffectBy    ~
+Alignment   -50
+Level       2
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #6100
-warg vicious~
-the vicious warg~
+Name        warg vicious~
+Short       the vicious warg~
+Long
 A vicious warg is here, snarling angrily at you.
 ~
+Descr
 It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
 quickly from its long, white fangs.  It looks quite dangerous and very angry.
 ~
-97 0 -350 S
-5 16 5 1d12+60 2d4+0
-0 0
-0 Bear~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -350
+Level       5
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #6101
-warg ferocious~
-the ferocious warg~
+Name        warg ferocious~
+Short       the ferocious warg~
+Long
 A ferocious warg is here, snarling angrily at you.
 ~
+Descr
 It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
 quickly from its long, white fangs.  It looks quite dangerous and very angry.
 ~
-97 0 -350 S
-5 16 5 1d12+60 2d4+0
-0 0
-0 Bear~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -350
+Level       5
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #6102
-wolf grey~
-the large, grey wolf~
+Name        wolf grey~
+Short       the large, grey wolf~
+Long
 A large, grey wolf is here, glaring hungrily at you.
 ~
+Descr
 The large, grey wolf eyes you with interest while licking its lips.
 ~
-97 0 -150 S
-3 18 7 1d12+35 1d7+0
-0 0
-0 Bear~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -150
+Level       3
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #6103
-wolf black~
-the large, black wolf~
+Name        wolf black~
+Short       the large, black wolf~
+Long
 A large, black wolf is here, glaring hungrily at you.
 ~
+Descr
 The large, black wolf eyes you with interest while licking its lips.
 ~
-97 0 -150 S
-3 18 7 1d12+35 1d7+0
-0 0
-0 Bear~ 0
+Act         aggressive stay_area~
+AffectBy    ~
+Alignment   -150
+Level       3
+Gold        0
+Race        Bear
+Sex         neutral~
+End
+
 #6112
-dragon green~
-the huge, green dragon~
+Name        dragon green~
+Short       the huge, green dragon~
+Long
 A huge green dragon is here, its narrow yellow eyes glowing with rage.
 ~
+Descr
 This enormous winged serpent has dark green scales covering most of its
 colossal body.  Numerous holes in its heavy wings tell of many fights as does
 the nicks in the horns on its head.  It smells as disgusting as only dragons
 do.
 ~
-99 8 -1000 S
-25 -5 -7 25d25+250 2d6+18
-50000 0
-0 Dragon~ 0
+Act         sentinel aggressive stay_area~
+AffectBy    detect-invis~
+Alignment   -1000
+Level       25
+Gold        50000
+Race        Dragon
+Sex         neutral~
+Spec        spec_breath_gas
+End
+
 #6115
-shargugh brownie~
-Shargugh~
+Name        shargugh brownie~
+Short       Shargugh~
+Long
 Shargugh the Forest Brownie is here, grinning broadly at you.
 ~
+Descr
 This little fellow is only three foot tall with wild matted brown hair and long
 tangled brown beard.  He wears ragged brown and green clothing and looks as if
 he is having great fun.
 ~
-149 32778 1000 S
-10 1 -10 10d10+100 1d8+2
-1000 0
-0 Animal~ 1
+Act         scavenger wimpy~
+AffectBy    invisible detect-invis sneak~
+Alignment   1000
+Level       10
+Gold        1000
+Race        Animal
+Sex         male~
+End
+
 #6116
-elder druid~
-the elder druid~
+Name        elder druid~
+Short       the elder druid~
+Long
 The elder druid is here ... he looks very upset at your presence in his home.
 ~
+Descr
 The druid looks quite old.  You would think him venerable, but you know
 he would be a tough foe.
 ~
-39 8 0 S
-17 4 -7 17d17+170 2d8+2
-5000 0
-0 Elf~ 1
+Act         sentinel scavenger aggressive~
+AffectBy    detect-invis~
+Alignment   0
+Level       17
+Gold        5000
+Race        Elf
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #6000
-axe lumber~
-a lumber axe~
+Name        axe lumber~
+Short       a lumber axe~
+Descr
 A heavy lumber axe lies here.~
-~
-5 0 8193
-0~ 2~ 6~ 1~ 0~
-10 50 0
-E
-axe lumber~
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 6~ 1~ 0~
+Weight      10
+Cost        50
+ExtraDescr  axe lumber~
 It is a heavy axe of the kind lumberjacks use to chop down trees.
 ~
+End
+
 #6001
-shirt~
-a chequered shirt~
+Name        shirt~
+Short       a chequered shirt~
+Descr
 A chequered shirt lies here.~
-~
-9 0 9
-3~ 0~ 0~ 0~ 0~
-2 20 0
-E
-shirt~
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      2
+Cost        20
+ExtraDescr  shirt~
 It is an extra large, chequered shirt made from heavy cloth.
 ~
+End
+
 #6002
-boots~
-a pair of leather boots~
+Name        boots~
+Short       a pair of leather boots~
+Descr
 A pair of leather boots lies here.~
-~
-9 0 65
-3~ 0~ 0~ 0~ 0~
-4 60 0
-E
-boots~
+Type        armor~
+Extra       ~
+Wear        take feet~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      4
+Cost        60
+ExtraDescr  boots~
 They are fashioned from rough leather that has been oiled frequently to make
 it stay waterproof.  They look worn but quite functional.
 ~
+End
+
 #6003
-fireplace~
-a fireplace~
+Name        fireplace~
+Short       a fireplace~
+Descr
 A fireplace made from stone is set against the east wall.~
-~
-15 0 0
-200~ 0~ 0~ 0~ 0~
-0 0 0
-E
-fireplace~
+Type        container~
+Extra       ~
+Wear        ~
+Values      200~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  fireplace~
 It is fashioned from stones of various sizes that have been stacked on top of
 each other and fastened with mortar.  Its chimney is constructed likewise and
 leads the smoke out through the low cabin ceiling.
 ~
+End
+
 #6005
-chest~
-a wooden chest~
+Name        chest~
+Short       a wooden chest~
+Descr
 A wooden chest stands in the corner.~
-~
-15 0 1
-100~ 13~ 6006~ 0~ 0~
-40 100 0
-E
-chest~
+Type        container~
+Extra       ~
+Wear        take~
+Values      100~ 13~ 6006~ 0~ 0~
+Weight      40
+Cost        100
+ExtraDescr  chest~
 It is a robust chest made from short, heavy planks that have been fastened
 together with tenons.  It is equipped with a simple brass lock.
 ~
+End
+
 #6006
-key~
-a small brass key~
+Name        key~
+Short       a small brass key~
+Descr
 A small brass key lies here.~
-~
-18 0 1
-6005~ 0~ 0~ 0~ 0~
-1 10 0
-E
-key~
+Type        key~
+Extra       ~
+Wear        take~
+Values      6005~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10
+ExtraDescr  key~
 It is a small, simple brass key with no inscriptions or marks of any kind.
 ~
+End
+
 #6007
-coins gold~
-a heap of gold coins~
+Name        coins gold~
+Short       a heap of gold coins~
+Descr
 Some gold coins lie piled up in a heap on the floor.~
-~
-20 0 1
-100~ 0~ 0~ 0~ 0~
-0 0 0
-E
-coins~
+Type        money~
+Extra       ~
+Wear        take~
+Values      100~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  coins~
 The coins seem to be gold.  They are obviously valuable.
 ~
+End
+
 #6010
-blackberries~
-some blackberries~
+Name        blackberries~
+Short       some blackberries~
+Descr
 Some blackberries grow on a bush nearby.~
-~
-19 0 1
-3~ 0~ 0~ 0~ 0~
-1 10 0
-E
-blackberries~
+Type        food~
+Extra       ~
+Wear        take~
+Values      3~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10
+ExtraDescr  blackberries~
 They look very tasty indeed.
 ~
+End
+
 #6011
-mushroom~
-a mushroom~
+Name        mushroom~
+Short       a mushroom~
+Descr
 A small mushroom grows nearby.~
-~
-19 0 1
-6~ 0~ 0~ 0~ 0~
-1 10 0
-E
-mushroom~
+Type        food~
+Extra       ~
+Wear        take~
+Values      6~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        10
+ExtraDescr  mushroom~
 It is a tasty little thing.
 ~
+End
+
 #6013
-water barrel~
-the barrel~
+Name        water barrel~
+Short       the barrel~
+Descr
 A water barrel has been left here.~
-~
-17 0 1
-50~ 50~ 0~ 0~ 0~
-65 60 0
+Type        drink_con~
+Extra       ~
+Wear        take~
+Values      50~ 50~ 0~ 0~ 0~
+Weight      65
+Cost        60
+End
+
 #6102
-tree opening~
-a colossal tree~
+Name        tree opening~
+Short       a colossal tree~
+Descr
 A colossal tree blocks the way westwards.~
-~
-15 0 0
-1000~ 0~ 0~ 0~ 0~
-0 0 0
-E
-opening~
+Type        container~
+Extra       ~
+Wear        ~
+Values      1000~ 0~ 0~ 0~ 0~
+Weight      0
+Cost        0
+ExtraDescr  opening~
 The opening is far too narrow for you to squeeze through but it looks as if the
 tree is hollow.
 ~
-E
-tree~
+ExtraDescr  tree~
 This enormous tree must be a thousand years old.  Its rough bark looks grey
 and pale and is decorated with scratches and claw marks.  On its west side is a
 small opening just above ground level.
 ~
+End
+
 #6103
-branch~
-a long, grey branch~
+Name        branch~
+Short       a long, grey branch~
+Descr
 A long, grey branch rests heavily on the ground.~
-~
-1 0 16385
-0~ 0~ 25~ 0~ 0~
-20 1 0
+Type        light~
+Extra       ~
+Wear        take hold~
+Values      0~ 0~ 25~ 0~ 0~
+Weight      20
+Cost        1
+End
+
 #6104
-branch~
-a long, grey branch~
+Name        branch~
+Short       a long, grey branch~
+Descr
 A long, grey branch rests heavily on the ground.~
-~
-5 0 8193
-0~ 2~ 5~ 7~ 0~
-30 60 0
-A
-18 -2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 2~ 5~ 7~ 0~
+Weight      30
+Cost        60
+Affect      hitroll~ -2 ~
+End
+
 #6105
-branch~
-a long, grey branch~
+Name        branch~
+Short       a long, grey branch~
+Descr
 A long, grey branch rests heavily on the ground.~
-~
-13 0 1
-0~ 0~ 0~ 0~ 0~
-40 0 0
+Type        trash~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+End
+
 #6106
-toadstool~
-a toadstool~
+Name        toadstool~
+Short       a toadstool~
+Descr
 A large toadstool grows nearby.~
-~
-19 0 1
-12~ 0~ 0~ 0~ 0~
-5 20 0
-E
-toadstool~
+Type        food~
+Extra       ~
+Wear        take~
+Values      12~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        20
+ExtraDescr  toadstool~
 It is a large, brown boletus that must weigh nearly five pounds.  The top
 surface is covered in a thin layer of transparent slime that emits a weak,
 musty smell.  Not the most delicious thing you have seen.
 ~
+End
+
 #6107
-toadstool~
-a toadstool~
+Name        toadstool~
+Short       a toadstool~
+Descr
 A large toadstool grows nearby.~
-~
-19 0 1
-12~ 0~ 0~ 1~ 0~
-5 20 0
-E
-toadstool~
+Type        food~
+Extra       ~
+Wear        take~
+Values      12~ 0~ 0~ 1~ 0~
+Weight      5
+Cost        20
+ExtraDescr  toadstool~
 It is a large, brown boletus that must weigh nearly five pounds.  It has small
 white spots and the top surface is covered in a thin layer of transparent slime
 that emits a weak, musty smell.  Not the most delicious thing you have seen.
 ~
+End
+
 #6110
-potion yellow~
-a yellow potion~
+Name        potion yellow~
+Short       a yellow potion~
+Descr
 A yellow potion has been left here.~
-~
-10 64 1
-35~ giant strength~  ~  ~  ~
-2 1000 0
-E
-potion yellow~
+Type        potion~
+Extra       magic~
+Wear        take~
+Values      35~ giant strength~  ~  ~  ~
+Weight      2
+Cost        1000
+ExtraDescr  potion yellow~
 It has a deep yellow colour and and a strong spicy smell.
 ~
+End
+
 #6111
-shield large~
-a large round shield~
+Name        shield large~
+Short       a large round shield~
+Descr
 A large round shield has been left here.~
-~
-9 0 513
-5~ 0~ 0~ 0~ 0~
-15 300 0
-E
-shield large~
+Type        armor~
+Extra       ~
+Wear        take shield~
+Values      5~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        300
+ExtraDescr  shield large~
 It is made from hard wood that has been reinforced with heavy iron bands.
 ~
+End
+
 #6112
-crown iron~
-an iron crown~
+Name        crown iron~
+Short       an iron crown~
+Descr
 An iron crown rests on the ground.~
-~
-9 64 17
-4~ 0~ 0~ 0~ 0~
-10 5000 0
-A
-4 3 0
-E
-crown iron~
+Type        armor~
+Extra       magic~
+Wear        take head~
+Values      4~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        5000
+Affect      wisdom~ 3 ~
+ExtraDescr  crown iron~
 It is a heavy human-sized crown made from solid iron.
 ~
+End
+
 #6114
-ring iron~
-an iron ring~
+Name        ring iron~
+Short       an iron ring~
+Descr
 An iron ring has been left here.~
-~
-9 64 3
-1~ 0~ 0~ 0~ 0~
-1 5000 0
-A
-2 1 0
-E
-ring iron~
+Type        armor~
+Extra       magic~
+Wear        take finger~
+Values      1~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        5000
+Affect      dexterity~ 1 ~
+ExtraDescr  ring iron~
 It is a quite heavy human-sized ring made from solid iron.  It lacks
 decorations of any kind.
 ~
+End
+
 #6155
-morning-star star morning~
-the morning star~
+Name        morning-star star morning~
+Short       the morning star~
+Descr
 The morning star is here collecting dust while it lies on the ground.~
-~
-5 64 8193
-0~ 2~ 8~ 8~ 0~
-10 15000 0
-A
-19 -1 0
-A
-18 4 0
+Type        weapon~
+Extra       magic~
+Wear        take wield~
+Values      0~ 2~ 8~ 8~ 0~
+Weight      10
+Cost        15000
+Affect      damroll~ -1 ~
+Affect      hitroll~ 4 ~
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #6000
-The edge of the forest~
+Name        The edge of the forest~
+Descr
 You are standing at the eastern edge of a big forest.  To the east is the West
 Gate of Midgaard and to the west is a narrow trail, leading in through the
 forest.  A dimly lit path leads north, while a rock outcropping is to the 
 south.
 ~
-0 4 2
-E
-tree trees~
+Flags       no_mob~
+Sector      field~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are quite tall considering most of them appear to be quite young.
 On one of the trees, crude letters forming the word "Haon-Dor" have been
 carved into the bark.
 ~
-E
-trail~
+ExtraDescr  trail~
 The forest trail winds westwards through the trees.
 ~
-D0
+Door        north~ ~ 0 1100
 You see a dimly lit path.
 ~
 ~
-0 0 1100
-D1
+Door        east~ ~ -1 3052
 You see the West Gate of the City of Midgaard.
 ~
 ~
-0 -1 3052
-D2
+Door        south~ ~ 0 10001
 You see the rock outcropping.
 ~
 ~
-0 0 10001
-D3
+Door        west~ ~ -1 6001
 You see the narrow forest trail winding westwards in between the trees.
 ~
 ~
-0 -1 6001
-S
+End
+
 #6001
-A trail through the light forest~
+Name        A trail through the light forest~
+Descr
 You are on a trail leading through the forest.  To the east is the forest edge
 and to the west, the trail leads further into the forest.
 ~
-0 0 3
-E
-birds insects animals~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  birds insects animals~
 Very cute little creatures, they seem to enjoy life.
 ~
-E
-tree trees~
+ExtraDescr  tree trees~
 The trees here are quite young and fresh.  They seem to accommodate many kinds
 of birds, insects and other small animals.
 ~
-E
-trail~
+ExtraDescr  trail~
 The forest trail winds east-west through the trees.
 ~
-D1
+Door        east~ ~ -1 6000
 The trail continues eastwards out of the forest.
 ~
 ~
-0 -1 6000
-D3
+Door        west~ ~ -1 6002
 You see the narrow forest trail winding westwards in between the trees.
 ~
 ~
-0 -1 6002
-S
+End
+
 #6002
-A trail through the light forest~
+Name        A trail through the light forest~
+Descr
 You are on a narrow trail leading east and west through the forest.  To the
 west, the forest gradually becomes more dense.  A small forest path leads
 south.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The young, slender trees look beautiful, their fresh, green leaves moving
 lightly in the wind.
 ~
-E
-trail~
+ExtraDescr  trail~
 The forest trail winds east-west through the trees.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D1
+Door        east~ ~ -1 6001
 The trail continues eastwards through the young trees.
 ~
 ~
-0 -1 6001
-D2
+Door        south~ ~ -1 6011
 The small path leads south through the young trees.
 ~
 ~
-0 -1 6011
-D3
+Door        west~ ~ -1 6003
 You see the narrow forest trail winding westwards into the dense forest.
 ~
 ~
-0 -1 6003
-S
+End
+
 #6003
-A trail through the dense forest~
+Name        A trail through the dense forest~
+Descr
 You are on a trail leading east and west through the dense forest.  To the
 east, the forest gradually seems to become lighter.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The dense crowns of the mature trees leave only a fraction of the sky to be
 seen through the leaves.
 ~
-E
-trail~
+ExtraDescr  trail~
 The forest trail seems almost fragile compared to the massive trunks.
 ~
-D1
+Door        east~ ~ -1 6002
 The trail continues eastwards to the younger part of the forest.
 ~
 ~
-0 -1 6002
-D3
+Door        west~ ~ -1 6004
 You see the narrow trail winding westwards through the dense forest.
 ~
 ~
-0 -1 6004
-S
+End
+
 #6004
-A trail through the dense forest~
+Name        A trail through the dense forest~
+Descr
 You are on a trail leading east and west through the dense forest.  To the
 west, the trees are so huge and their crowns so dense that forest remains in
 total darkness.  A small path leads south through the trees.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The crowns of the old trees almost cut out all light.
 ~
-E
-trail~
+ExtraDescr  trail~
 The forest trail seems almost fragile compared to the massive trunks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D1
+Door        east~ ~ -1 6003
 The trail continues eastwards through the dense forest.
 ~
 ~
-0 -1 6003
-D2
+Door        south~ ~ -1 6005
 The small path leads south through the trees.
 ~
 ~
-0 -1 6005
-D3
+Door        west~ ~ -1 6100
 The narrow trail almost seems to disappear between the enormous trunks.
 ~
 ~
-0 -1 6100
-S
+End
+
 #6005
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues north and south.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Door        north~ ~ -1 6004
 The small path leads north through the trees.
 ~
 ~
-0 -1 6004
-D2
+Door        south~ ~ -1 6006
 The small path leads south through the trees.
 ~
 ~
-0 -1 6006
-S
+End
+
 #6006
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues north and east.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Reset       O 6011 0 100
+Door        north~ ~ -1 6005
 The small path leads north through the trees.
 ~
 ~
-0 -1 6005
-D1
+Door        east~ ~ -1 6007
 The small path leads east through the trees.
 ~
 ~
-0 -1 6007
-S
+End
+
 #6007
-An intersection in the dense forest~
+Name        An intersection in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The forest
 gradually lightens to the east.  Paths lead east, west and south.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D1
+Door        east~ ~ -1 6008
 You can barely make out a clearing to the east.
 ~
 ~
-0 -1 6008
-D2
+Door        south~ ~ -1 6012
 The small path leads south through the trees.
 ~
 ~
-0 -1 6012
-D3
+Door        west~ ~ -1 6006
 The small path leads west through the trees.
 ~
 ~
-0 -1 6006
-S
+End
+
 #6008
-The forest clearing~
+Name        The forest clearing~
+Descr
 You are in a clearing in the forest.  Lots of fresh stumps of varying sizes
 protrude from the ground and heavy logs are stacked neatly in a big pile
 supported by stakes set into the ground.  Paths lead north, east and west.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-stump stumps~
+ExtraDescr  stump stumps~
 There are more stumps than logs and some of the stumps are partly covered in
 moss.
 ~
-E
-stake stakes~
+ExtraDescr  stake stakes~
 The stakes keep the logs from rolling down.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-E
-log logs~
+ExtraDescr  log logs~
 Even though the logs have been chopped to shorter pieces, they are quite heavy
 as they are fresh and still filled with sap.
 ~
-D0
+Door        north~ ~ -1 6011
 The small path leads north through the trees.
 ~
 ~
-0 -1 6011
-D1
+Door        east~ ~ -1 6009
 The small path leads east through the trees.
 ~
 ~
-0 -1 6009
-D3
+Door        west~ ~ -1 6007
 The small path leads west through the trees.
 ~
 ~
-0 -1 6007
-S
+End
+
 #6009
-Outside a small cabin in the forest~
+Name        Outside a small cabin in the forest~
+Descr
 You are outside a small cabin built entirely from heavy logs.  There is a
 wooden door to the north and small paths lead west and south through the trees.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are fairly young, not much more than a hundred years or so.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The path is probably used by the cabin's inhabitants.
 ~
-E
-cabin logs~
+ExtraDescr  cabin logs~
 It looks simple but comfortable and the slender trees make the whole place seem
 pretty idyllic.  It's a cabin built from logs.  Wooden logs, not system logs.
 ~
-D0
+Reset       M 6000 1 100
+Reset       E 6000 16 100
+Reset       E 6001 5 100
+Reset       E 6002 8 100
+Door        north~ door closed~ -1 6010
 The wooden door is quite sturdy but does not appear to be equipped with a lock.
 ~
 door wooden~
-3 -1 6010
-D2
+Door        south~ ~ -1 6014
 The small path leads south through the dense forest.
 ~
 ~
-0 -1 6014
-D3
+Door        west~ ~ -1 6008
 The small path leads west through the light forest.
 ~
 ~
-0 -1 6008
-S
+End
+
 #6010
-Inside the cabin~
+Name        Inside the cabin~
+Descr
 You are inside a small one-room cabin made entirely from heavy logs.  It is
 very sparsely furnished, containing only most basic housekeeping equipment,
 such as a bed, a chair and a table.
 ~
-0 8 0
-E
-table~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  table~
 A heavy table that doesn't even appear to rock.
 ~
-E
-chair~
+ExtraDescr  chair~
 It is made from oak and looks strong and sturdy.
 ~
-E
-bed~
+ExtraDescr  bed~
 It is definitely not the most comfortable bed you have seen in your life.
 ~
-D2
+Reset       O 6003 0 100
+Reset       O 6005 0 100
+Reset       P 6007 6005 100
+Reset       P 6006 6003 100
+Reset       O 6013 0 100
+Door        south~ door~ -1 6009
 The wooden door leads south.
 ~
 door wooden~
-1 -1 6009
-S
+End
+
 #6011
-A small path through the light forest~
+Name        A small path through the light forest~
+Descr
 You are on a small path leading through the forest.  The trees are tall and
 slender.  Paths lead north and south.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are fairly young, not much more than a hundred years or so.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Door        north~ ~ -1 6002
 The path leads north through the young trees.
 ~
 ~
-0 -1 6002
-D2
+Door        south~ ~ -1 6008
 The path leads south through the young trees.
 ~
 ~
-0 -1 6008
-S
+End
+
 #6012
-An intersection in the dense forest~
+Name        An intersection in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest floor in an unreal twilight illumination.  Paths
 lead north, east and south.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Reset       M 309 5 100
+Door        north~ ~ -1 6007
 The small path leads north through the trees.
 ~
 ~
-0 -1 6007
-D1
+Door        east~ ~ -1 6013
 The small path leads east through the trees.
 ~
 ~
-0 -1 6013
-D2
+Door        south~ ~ -1 6021
 The small path leads south through the trees.
 ~
 ~
-0 -1 6021
-S
+End
+
 #6013
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues east and west.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D1
+Reset       O 6011 0 100
+Door        east~ ~ -1 6014
 The small path leads east through the trees.
 ~
 ~
-0 -1 6014
-D3
+Door        west~ ~ -1 6012
 The small path leads west through the trees.
 ~
 ~
-0 -1 6012
-S
+End
+
 #6014
-An intersection in the dense forest~
+Name        An intersection in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The forest gradually
 lightens to the north.  Paths lead north, east and west.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The crowns of the old trees leave the forest in an unreal twilight
 illumination.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Reset       M 6005 2 100
+Door        north~ ~ -1 6009
 The path leads north to a lighter part of the forest.
 ~
 ~
-0 -1 6009
-D1
+Door        east~ ~ -1 6015
 The small path leads east through the trees.
 ~
 ~
-0 -1 6015
-D3
+Door        west~ ~ -1 6013
 The small path leads west through the trees.
 ~
 ~
-0 -1 6013
-S
+End
+
 #6015
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues south and west.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D2
+Reset       M 309 5 100
+Door        south~ ~ -1 6016
 The small path leads south through the trees.
 ~
 ~
-0 -1 6016
-D3
+Door        west~ ~ -1 6014
 The small path leads west through the trees.
 ~
 ~
-0 -1 6014
-S
+End
+
 #6016
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues north and south.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Reset       O 6011 0 100
+Door        north~ ~ -1 6015
 The small path leads north through the trees.
 ~
 ~
-0 -1 6015
-D2
+Door        south~ ~ -1 6017
 The small path leads south through the trees.
 ~
 ~
-0 -1 6017
-S
+End
+
 #6017
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The forest seems to
 become lighter to the west.  The path continues north and west.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The crowns of the old trees leave the forest in an unreal twilight
 illumination.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Reset       M 309 5 100
+Door        north~ ~ -1 6016
 The small path leads north through the trees.
 ~
 ~
-0 -1 6016
-D3
+Door        west~ ~ -1 6018
 The small path leads west through the trees to a lighter part of the forest.
 ~
 ~
-0 -1 6018
-S
+End
+
 #6018
-An intersection in the light forest~
+Name        An intersection in the light forest~
+Descr
 You are on a small path leading through the forest.  A path leads north to a
 small field and other paths lead east and west into the dense forest.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The tall trees are young and slender, not much more than a hundred years or so.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Door        north~ ~ -1 6023
 The path leads north to a small, grassy field.
 ~
 ~
-0 -1 6023
-D1
+Door        east~ ~ -1 6017
 The path leads east to a dense part of the forest.
 ~
 ~
-0 -1 6017
-D3
+Door        west~ ~ -1 6019
 The path leads west to a dense part of the forest.
 ~
 ~
-0 -1 6019
-S
+End
+
 #6019
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The forest seems to
 become lighter to the east.  The path continues north and east.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The crowns of the old trees leave the forest in an unreal twilight
 illumination.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Reset       M 309 5 100
+Door        north~ ~ -1 6020
 The small path leads north through the trees.
 ~
 ~
-0 -1 6020
-D1
+Door        east~ ~ -1 6018
 The small path leads east through the trees to a lighter part of the forest.
 ~
 ~
-0 -1 6018
-S
+End
+
 #6020
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues south and west.
 ~
-0 0 3
-E
-tree trees~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees~
 The trees are mostly old beeches and oaks.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D2
+Door        south~ ~ -1 6019
 The small path leads south through the trees.
 ~
 ~
-0 -1 6019
-D3
+Door        west~ ~ -1 6021
 The small path leads west through the trees.
 ~
 ~
-0 -1 6021
-S
+End
+
 #6021
-A small path in the dense forest~
+Name        A small path in the dense forest~
+Descr
 You are on a small path leading through the dense forest.  To the west there is
 a cave entrance.  The path continues north and east.
 ~
-0 0 3
-E
-cave entrance~
+Flags       ~
+Sector      forest~
+Regen       100 100
+ExtraDescr  cave entrance~
 The irregular opening is eight feet wide and six feet tall.  An acrid smell
 emanates from within.
 ~
-E
-tree trees~
+ExtraDescr  tree trees~
 The crowns of the old trees leave the forest in an unreal twilight
 illumination.
 ~
-E
-path paths~
+ExtraDescr  path paths~
 The narrow path is probably used by the animals living in the forest.
 ~
-D0
+Door        north~ ~ -1 6012
 The small path leads north through the trees.
 ~
 ~
-0 -1 6012
-D1
+Door        east~ ~ -1 6020
 The small path leads east through the trees.
 ~
 ~
-0 -1 6020
-D3
+Door        west~ ~ -1 6022
 The cave is very dark.
 ~
 ~
-0 -1 6022
-S
+End
+
 #6022
-Inside the cave~
+Name        Inside the cave~
+Descr
 You are in a natural cave.  Various sorts of debris cover the stone floor,
 emitting a rather unpleasant smell that makes the air thick and hard to
 breathe.  The only obvious exit is east.
 ~
-0 9 0
-E
-air smell~
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  air smell~
 Kind of transparent, but quite noticeable nevertheless.
 ~
-E
-cave walls floor stone~
+ExtraDescr  cave walls floor stone~
 Quite uninteresting.
 ~
-E
-debris~
+ExtraDescr  debris~
 It consists mostly of gnawed bones mixed with small pieces of torn fur.
 ~
-D1
+Reset       M 6002 1 100
+Door        east~ ~ -1 6021
 The cave opening is to the east.
 ~
 ~
-0 -1 6021
-S
+End
+
 #6023
-On a small, grassy field~
+Name        On a small, grassy field~
+Descr
 You are in a small, grassy field somewhere in the forest.  The tall grass
 nearly reaches your waist, and the surrounding oaks and beeches form an almost
 wall-like thicket on all sides of the field.  A small path leads south through
 the trees.
 ~
-0 0 2
-E
-tree trees thicket~
+Flags       ~
+Sector      field~
+Regen       100 100
+ExtraDescr  tree trees thicket~
 The trees form a close thicket.
 ~
-E
-path~
+ExtraDescr  path~
 The narrow path is probably used by the animals living in the forest.
 ~
-E
-grass~
+ExtraDescr  grass~
 The tall grass makes a nice hiding place for animals.
 ~
-D2
+Reset       M 6004 1 100
+Reset       O 6010 0 100
+Door        south~ ~ -1 6018
 The small path leads south in between the trees.
 ~
 ~
-0 -1 6018
-S
+End
+
 #6100
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a narrow trail winding its way between the enormous, grey trunks.
 The crowns of the trees must be very dense, as they leave the forest floor in
 utter darkness.  The trail leads east and west.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Reset       M 6115 1 100
+Reset       E 6114 1 100
+Door        east~ ~ -1 6004
 The narrow trail leads east to a somewhat lighter part of the forest.
 ~
 ~
-0 -1 6004
-D3
+Door        west~ ~ -1 6101
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6101
-S
+End
+
 #6101
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way east-west between huge, ancient trees
 whose grey trunks remind you of ancient pillars in a enormous, deserted hall.
 To the south, a frail path leads away from the trail.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-path~
+ExtraDescr  path~
 The path seems fragile and unsafe compared to the enormous trunks that loom
 around it.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Door        east~ ~ -1 6100
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6100
-D2
+Door        south~ ~ -1 6104
 The path leads south - away from the trail.
 ~
 ~
-0 -1 6104
-D3
+Door        west~ ~ -1 6102
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6102
-S
+End
+
 #6102
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-path~
+ExtraDescr  path~
 The path seems fragile and unsafe compared to the enormous trunks that loom
 around it.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Door        east~ ~ -1 6101
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6101
-D3
+Door        west~ ~ -1 6103
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6103
-S
+End
+
 #6103
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are where the dusty trail bends, as to avoid conflict with a colossal
 trunk to the west.  Not a sound is to be heard - everything is ominously quiet.
 The trail leads east and south.
 ~
-0 9 3
-E
-trees trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  trees trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D0
+Reset       O 6102 0 100
+Door        north~ ~ 0 6150
 You see a dark trail north.
 ~
 ~
-0 0 6150
-D1
+Door        east~ ~ -1 6102
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6102
-D2
+Door        south~ ~ -1 6108
 The narrow, dusty trail leads south through the forest.
 ~
 ~
-0 -1 6108
-S
+End
+
 #6104
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  You feel as if
 the ancient trees observe you in watchful silence.  The path continues north
 and south.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Reset       M 6102 4 100
+Reset       M 6102 4 100
+Reset       O 6106 0 100
+Door        north~ ~ -1 6101
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6101
-D2
+Door        south~ ~ -1 6105
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6105
-S
+End
+
 #6105
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  The path continues north and west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Reset       O 6105 0 100
+Door        north~ ~ -1 6104
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6104
-D3
+Door        west~ ~ -1 6106
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6106
-S
+End
+
 #6106
-A junction in the deep, dark forest~
+Name        A junction in the deep, dark forest~
+Descr
 You are by a junction where three paths meet.  Ancient grey trees tower above
 you on all sides.  Paths lead east, south and west.
 ~
-0 9 3
-E
-path paths~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path paths~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D1
+Door        east~ ~ -1 6105
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6105
-D2
+Door        south~ ~ -1 6117
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6117
-D3
+Door        west~ ~ -1 6107
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6107
-S
+End
+
 #6107
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  The path continues north and east.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Door        north~ ~ -1 6108
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6108
-D1
+Door        east~ ~ -1 6106
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6106
-S
+End
+
 #6108
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way between huge, ancient trees
 standing close on all sides.  The trail leads north and west and to the south,
 a frail path leads away from the trail.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-path~
+ExtraDescr  path~
 The path seems fragile and unsafe compared to the enormous trunks that loom
 around it.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D0
+Reset       M 6102 4 100
+Reset       M 6102 4 100
+Door        north~ ~ -1 6103
 The narrow, dusty trail leads north through the forest.
 ~
 ~
-0 -1 6103
-D2
+Door        south~ ~ -1 6107
 The path leads south - away from the trail.
 ~
 ~
-0 -1 6107
-D3
+Door        west~ ~ -1 6109
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6109
-S
+End
+
 #6109
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Door        east~ ~ -1 6108
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6108
-D3
+Door        west~ ~ -1 6110
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6110
-S
+End
+
 #6110
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way between huge, ancient trees that stand
 close on all sides.  The trail leads east and south.  To the north, a narrow
 path leads away from the trail.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 Some of the trunks to the west are covered in a thin, almost transparent
 substance.  It looks like small threads woven carefully together.
 ~
-E
-path~
+ExtraDescr  path~
 The path seems fragile and unsafe compared to the enormous trunks that loom
 around it.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D0
+Door        north~ ~ -1 6144
 The narrow path leads west between the giant trees.
 ~
 ~
-0 -1 6144
-D1
+Door        east~ ~ -1 6109
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6109
-D2
+Door        south~ ~ -1 6111
 The narrow, dusty trail leads south through the forest.
 ~
 ~
-0 -1 6111
-S
+End
+
 #6111
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way north-south between huge, ancient
 trees that loom ominously above you.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D0
+Reset       O 6106 0 100
+Door        north~ ~ -1 6110
 The narrow, dusty trail leads north through the forest.
 ~
 ~
-0 -1 6110
-D2
+Door        south~ ~ -1 6112
 The narrow, dusty trail leads south through the forest.
 ~
 ~
-0 -1 6112
-S
+End
+
 #6112
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way between huge, ancient trees
 standing close on all sides.  The trail leads north and west and to the east,
 a frail path leads away from the trail.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-path~
+ExtraDescr  path~
 The path seems fragile and unsafe compared to the enormous trunks that loom
 around it.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D0
+Reset       M 6103 4 100
+Reset       M 6103 4 100
+Door        north~ ~ -1 6111
 The narrow, dusty trail leads north through the forest.
 ~
 ~
-0 -1 6111
-D1
+Door        east~ ~ -1 6113
 The path leads east - away from the trail.
 ~
 ~
-0 -1 6113
-D3
+Door        west~ ~ -1 6127
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6127
-S
+End
+
 #6113
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom in all directions.  The path continues south and west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D2
+Reset       O 6103 0 100
+Door        south~ ~ -1 6114
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6114
-D3
+Door        west~ ~ -1 6112
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6112
-S
+End
+
 #6114
-A junction in the deep, dark forest~
+Name        A junction in the deep, dark forest~
+Descr
 You are by a junction where three paths meet.  Ancient grey trees tower above
 you on all sides.  Paths lead north, east and west.
 ~
-0 9 3
-E
-path paths~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path paths~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Door        north~ ~ -1 6113
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6113
-D1
+Door        east~ ~ -1 6115
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6115
-D3
+Door        west~ ~ -1 6122
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6122
-S
+End
+
 #6115
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  You feel as
 if the ancient trees observe you in watchful silence.  The path continues north
 and west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Door        north~ ~ -1 6116
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6116
-D3
+Door        west~ ~ -1 6114
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6114
-S
+End
+
 #6116
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Giant, grey
 trees loom ominously on all sides.  The path continues east and south.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D1
+Reset       M 6100 2 100
+Reset       M 6100 2 100
+Door        east~ ~ -1 6117
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6117
-D2
+Door        south~ ~ -1 6115
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6115
-S
+End
+
 #6117
-A junction in the deep, dark forest~
+Name        A junction in the deep, dark forest~
+Descr
 You are by a junction where three paths meet.  Ancient, grey trees seem to
 observe you silently you from all sides.  Paths lead north, east and west.
 ~
-0 9 3
-E
-path paths~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path paths~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Door        north~ ~ -1 6106
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6106
-D1
+Door        east~ ~ -1 6118
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6118
-D3
+Door        west~ ~ -1 6116
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6116
-S
+End
+
 #6118
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Ancient,
 grey trees loom everywhere.  The path continues south and west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D2
+Reset       M 6103 4 100
+Reset       M 6103 4 100
+Door        south~ ~ -1 6119
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6119
-D3
+Door        west~ ~ -1 6117
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6117
-S
+End
+
 #6119
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Huge, ancient
 trees are on all sides.  The path continues north and south.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 You feel as if they are watching you.
 ~
-D0
+Reset       O 6107 0 100
+Door        north~ ~ -1 6118
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6118
-D2
+Door        south~ ~ -1 6120
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6120
-S
+End
+
 #6120
-On the river bank in the deep, dark forest~
+Name        On the river bank in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  To the south a
 fast river is flowing westwards through the forest.  Ancient grey trees loom on
 both banks.  The path continues north and west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-bank banks tree trees trunk trunks~
+ExtraDescr  bank banks tree trees trunk trunks~
 The ancient crowns of trees on both banks reach together forming a dense roof
 above the dark river.
 ~
-E
-river~
+ExtraDescr  river~
 The river flows fast and strong.  It is black or looks so in the gloom.
 ~
-D0
+Door        north~ ~ -1 6119
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6119
-D3
+Door        west~ ~ -1 6121
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6121
-S
+End
+
 #6121
-A dead end path on the river bank in the deep, dark forest~
+Name        A dead end path on the river bank in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  The ancient
 trees stand so close that the path disappears between the dusty roots.  To the
 south a dark river flows from east to west.  The only exit appears to be east.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-bank banks tree trees trunk trunks~
+ExtraDescr  bank banks tree trees trunk trunks~
 The ancient crowns of trees on both banks reach together forming a dense roof
 above the dark river.
 ~
-E
-river~
+ExtraDescr  river~
 The river flows fast and strong.  It is black or looks so in the gloom.
 ~
-D1
+Door        east~ ~ -1 6120
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6120
-S
+End
+
 #6122
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Giant, grey
 trees loom ominously all around.  The path continues east and south.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D1
+Reset       O 6106 0 100
+Door        east~ ~ -1 6114
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6114
-D2
+Door        south~ ~ -1 6123
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6123
-S
+End
+
 #6123
-A junction on the river bank in the deep, dark forest~
+Name        A junction on the river bank in the deep, dark forest~
+Descr
 You are by a junction where three paths meet.  Ancient, grey trees seem to
 observe you silently you from all around.  To the south a dark river flows from
 east to west through the forest.  Paths lead north, east and west.
 ~
-0 9 3
-E
-path paths~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path paths~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-bank banks tree trees trunk trunks~
+ExtraDescr  bank banks tree trees trunk trunks~
 The ancient crowns of trees on both banks reach together forming a dense roof
 above the dark river.
 ~
-E
-river~
+ExtraDescr  river~
 The river flows fast and strong.  It is black or looks so in the gloom.
 ~
-D0
+Door        north~ ~ -1 6122
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6122
-D1
+Door        east~ ~ -1 6124
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6124
-D3
+Door        west~ ~ -1 6125
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6125
-S
+End
+
 #6124
-A dead end path in the deep, dark forest~
+Name        A dead end path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  The ancient
 trees stand so close that the path disappears between the dusty roots.  To the
 south a dark river flows from east to west.  The only exit appears to be west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-bank banks tree trees trunk trunks~
+ExtraDescr  bank banks tree trees trunk trunks~
 The ancient crowns of trees on both banks reach together forming a dense roof
 above the dark river.
 ~
-E
-river~
+ExtraDescr  river~
 The river flows fast and strong.  It is black or looks so in the gloom.
 ~
-D2
+Door        south~ ~ -1 2801
 It stinks in there.
 ~
 ~
-0 -1 2801
-D3
+Door        west~ ~ -1 6123
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6123
-S
+End
+
 #6125
-A small path on the river bank in the deep, dark forest~
+Name        A small path on the river bank in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom everywhere.  To the south you smell marsh gas.  The path continues
 north and east.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-bank banks tree trees trunk trunks~
+ExtraDescr  bank banks tree trees trunk trunks~
 The ancient crowns of trees on both banks reach together forming a dense roof
 above the dark river.
 ~
-E
-river~
+ExtraDescr  river~
 The river flows fast and strong.  It is black or looks so in the gloom.
 ~
-D0
+Reset       O 6104 0 100
+Door        north~ ~ -1 6126
 The narrow path winds its way through the trees to the north.
 ~
 ~
-0 -1 6126
-D1
+Door        east~ ~ -1 6123
 The narrow path winds its way through the trees to the east.
 ~
 ~
-0 -1 6123
-D2
+Door        south~ ~ -1 8301
 You smell marsh gas.
 ~
 ~
-0 -1 8301
-S
+End
+
 #6126
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way between huge, ancient trees standing
 close on all sides.  The trail leads north and west, and to the south a frail
 path leads away from the trail.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-path~
+ExtraDescr  path~
 The path seems fragile and unsafe compared to the enormous trunks that loom
 around it.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D0
+Door        north~ ~ -1 6127
 The narrow, dusty trail leads north through the forest.
 ~
 ~
-0 -1 6127
-D2
+Door        south~ ~ -1 6125
 The path leads south - away from the trail.
 ~
 ~
-0 -1 6125
-D3
+Door        west~ ~ -1 6128
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6128
-S
+End
+
 #6127
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way between huge, ancient trees
 standing close on all sides.  The trail leads east and south.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Reset       M 6101 2 100
+Reset       M 6101 2 100
+Door        east~ ~ -1 6112
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6112
-D2
+Door        south~ ~ -1 6126
 The narrow, dusty trail leads south through the forest.
 ~
 ~
-0 -1 6126
-S
+End
+
 #6128
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Door        east~ ~ -1 6126
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6126
-D3
+Door        west~ ~ -1 6129
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6129
-S
+End
+
 #6129
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 These ancient trees must have been here for many, many years.  It is impossible
 to catch even a glimpse of anything above the lowest branches.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Door        east~ ~ -1 6128
 The narrow, dusty trail leads east through the forest.
 ~
 ~
-0 -1 6128
-D3
+Door        west~ ~ -1 6135
 The narrow, dusty trail leads west through the forest.
 ~
 ~
-0 -1 6135
-S
+End
+
 #6130
-A narrow trail through the deep, dark forest~
+Name        A narrow trail through the deep, dark forest~
+Descr
 You are on a dusty trail winding its way westwards just below huge sticky
 wires suspended like ropes between the trees.  To the west the path seems to
 be completely covered in a giant web made from huge threads covered with glue.
 This place gives you the creeps.
 ~
-0 9 3
-E
-substance wire wires rope ropes tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  substance wire wires rope ropes tree trees trunk trunks~
 The sticky substance is hanging like ropes between the ancient trees, crossing
 the path just out of reach.  It might be possible to climb one of the sticky
 trunks.
 ~
-E
-trail~
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-D1
+Door        east~ ~ -1 6144
 The narrow, dusty trail leads east through the forest, away from the web.
 ~
 ~
-0 -1 6144
-D3
+Door        west~ ~ -1 6131
 The structure to the west looks most of all like an immense spider web.
 It does not look as if you can go further without getting caught in it.
 ~
 ~
-0 -1 6131
-D4
+Door        up~ ~ -1 6132
 ~
 ~
-0 -1 6132
-S
+End
+
 #6131
-The spider web~
+Name        The spider web~
+Descr
 You are walking along the narrow path, ducking under the sticky ropes as you
 advance...
 
@@ -2106,419 +2282,378 @@ The huge, poisonous spider stings you!  You are poisoned!
 >
 You've fallen, and you can't get up!!!!!
 ~
-0 12 3
-S
+Flags       no_mob indoors~
+Sector      forest~
+Regen       100 100
+End
+
 #6132
-Up in the tree~
+Name        Up in the tree~
+Descr
 You are hanging on the outside of a huge tree trunk covered in a sticky
 substance.  Directly to the west is an immense spider web suspended between
 numerous of the giant trees including the one you are hanging on.
 ~
-0 13 6
-E
-web~
+Flags       dark no_mob indoors~
+Sector      water_swim~
+Regen       100 100
+ExtraDescr  web~
 The spider web stretches out to the west.  It looks as if it is possible to
 walk on it.
 ~
-D3
+Door        west~ ~ -1 6133
 To the west is the immense spider web.  It seems to move softly.
 ~
 ~
-0 -1 6133
-D5
+Door        down~ ~ -1 6130
 Downwards is the narrow forest path.
 ~
 ~
-0 -1 6130
-S
+End
+
 #6133
-On the spider web~
+Name        On the spider web~
+Descr
 You are balancing carefully on the giant sticky threads that holds the giant
 web in place.  To the east is a giant tree trunk and to the west is an entrance
 to a cave-like structure made from many layers of spider web.
 ~
-0 9 6
-E
-cave structure~
+Flags       dark indoors~
+Sector      water_swim~
+Regen       100 100
+ExtraDescr  cave structure~
 It covers a ground area corresponding to an irregular circle with a diameter of
 about 20 feet and is nearly 10 feet tall.  It looks very old.
 ~
-E
-web~
+ExtraDescr  web~
 The immense spider web moves softly.
 ~
-D0
+Door        north~ ~ -1 6200
 The web continues to the north.
 ~
 ~
-0 -1 6200
-D1
+Door        east~ ~ -1 6132
 To the east is the giant tree trunk.
 ~
 ~
-0 -1 6132
-D3
+Door        west~ ~ -1 6134
 To the west is the entrance to the cave-like structure.
 ~
 ~
-0 -1 6134
-S
+End
+
 #6134
-The Den of the Queen Spider~
+Name        The Den of the Queen Spider~
+Descr
 You are inside a cave-like structure that seems to be made entirely from
 countless layers of spider web.  Temperature and humidity is very high making
 it hard to breathe the foul air that lingers here.  The walls are covered with
 open cocoons.
 ~
-0 9 6
-E
-cocoon cocoons~
+Flags       dark indoors~
+Sector      water_swim~
+Regen       100 100
+ExtraDescr  cocoon cocoons~
 The cocoons are burst open as if something inside really wanted to get out.
 They are at the size of a human head.
 ~
-E
-web wall walls~
+ExtraDescr  web wall walls~
 The sticky walls are covered with open cocoons.
 ~
-D1
+Reset       M 6319 1 100
+Reset       E 6308 -1 100
+Reset       M 6318 3 100
+Reset       E 6309 -1 100
+Reset       M 6318 3 100
+Reset       E 6309 -1 100
+Reset       M 6318 3 100
+Reset       E 6309 -1 100
+Door        east~ ~ -1 6133
 Compared to this place the east exit looks inviting.
 ~
 ~
-0 -1 6133
-S
+End
+
 #6135
-A dusty trail in the deep, dark forest~
+Name        A dusty trail in the deep, dark forest~
+Descr
 You are on a dusty trail leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  The trail continues north and east.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Door        north~ ~ -1 6136
 The dusty trail leads north through the trees.
 ~
 ~
-0 -1 6136
-D1
+Door        east~ ~ -1 6129
 The dusty trail leads east through the trees.
 ~
 ~
-0 -1 6129
-S
+End
+
 #6136
-A dusty trail in the deep, dark forest~
+Name        A dusty trail in the deep, dark forest~
+Descr
 You are on a dusty trail leading through the deep, dark forest.  Ancient,
 grey trees loom everywhere.  The trail continues south and west.  A broad
 irregular path leads eastwards away from the trail.
 ~
-0 9 3
-E
-trail~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  trail~
 The dark and dusty trail seems fragile compared to the massive trunks, and in
 some places, giant grey roots have broken up through its surface.
 ~
-E
-path~
+ExtraDescr  path~
 The trees standing on the sides of the path have scratch marks on them.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 To the east the ancient grey giants have many marks as if something with huge
 claws has been tearing at them in rage.
 ~
-D1
+Door        east~ ~ -1 6142
 The trees standing on the sides of the path have scratch marks on them.
 ~
 ~
-0 -1 6142
-D2
+Door        south~ ~ -1 6135
 The dusty trail leads south through the trees.
 ~
 ~
-0 -1 6135
-D3
+Door        west~ ~ -1 6137
 The dusty trail leads west through the trees.
 ~
 ~
-0 -1 6137
-S
+End
+
 #6137
-At the end of the trail through the deep, dark forest~
+Name        At the end of the trail through the deep, dark forest~
+Descr
 You are on a dusty trail leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  You see a dark grove north of you.
 The only other exit is east.
 ~
-0 9 3
-E
-tree trees trunk trunks~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-D0
+Door        north~ ~ 0 1300
 You see a dark grove north.
 ~
 ~
-0 0 1300
-D1
+Door        east~ ~ -1 6136
 The dusty trail leads east through the trees.
 ~
 ~
-0 -1 6136
-S
+End
+
 #6142
-Outside a cave in the deep, dark forest~
+Name        Outside a cave in the deep, dark forest~
+Descr
 You are at the end of a broad, irregular path.  To the north is a very large
 ominous-looking cave opening.  The trees here have many marks as if something
 with huge claws has been tearing at them in rage.
 ~
-0 9 3
-E
-cave opening~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  cave opening~
 The disgusting smell of a large reptile emanates from the cave opening.
 ~
-E
-tree trees~
+ExtraDescr  tree trees~
 The ancient grey giants have many marks as if something with huge claws has
 been tearing at them in rage.
 ~
-D0
+Door        north~ ~ -1 6143
 The disgusting smell of a large reptile emanates from the cave opening.
 ~
 ~
-0 -1 6143
-D3
+Door        west~ ~ -1 6136
 The path winds its way westwards.
 ~
 ~
-0 -1 6136
-S
+End
+
 #6143
-The cave of the Green Dragon~
+Name        The cave of the Green Dragon~
+Descr
 You are in a big natural cave.  The floor is littered with bones of all sorts
 and the stench is so massive that you could cut it with a knife.  The only exit
 is to the south.
 ~
-0 9 3
-E
-bone bones floor~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  bone bones floor~
 Most of the bones on the floor appear to be of human origin.
 ~
-D2
+Reset       M 6112 1 100
+Reset       E 6110 -1 100
+Reset       E 6112 -1 100
+Reset       E 6111 -1 100
+Door        south~ ~ -1 6142
 The exit leads out into the forest.
 ~
 ~
-0 -1 6142
-S
+End
+
 #6144
-A small path in the deep, dark forest~
+Name        A small path in the deep, dark forest~
+Descr
 You are on a narrow path leading through the deep, dark forest.  Ancient,
 grey trees loom everywhere.  The tree trunks here seem to be covered in some
 sticky substance.  The path continues south and west.
 ~
-0 9 3
-E
-path~
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+ExtraDescr  path~
 The path seems all too frail.  One of the giant roots could probably crush it
 in a single blow.
 ~
-E
-tree trees trunk trunks~
+ExtraDescr  tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
-E
-substance rope ropes thread threads~
+ExtraDescr  substance rope ropes thread threads~
 The substance reminds you of giant threads covered with glue.  If it had not
 been for the size you could have sworn it was part of a spider web.
 ~
-D2
+Door        south~ ~ -1 6110
 The narrow path winds its way through the trees to the south.
 ~
 ~
-0 -1 6110
-D3
+Door        west~ ~ -1 6130
 The narrow path winds its way through the trees to the west.
 ~
 ~
-0 -1 6130
-S
+End
+
 #6150
-The narrow trail.~
+Name        The narrow trail.~
+Descr
 This trail looks much spookier than any other thats you have seen.  The usual
 animal claw marks and bites on the trees are getting far and few between. The
 trail continues north.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 6151
 the narrow trail continues north.
 ~
 ~
-0 -1 6151
-D2
+Door        south~ ~ -1 6103
 the trail intersects the main forest path.
 ~
 ~
-0 -1 6103
-S
+End
+
 #6151
-The narrow trail.~
+Name        The narrow trail.~
+Descr
 This area of the trail is also very peculiar.  You can see no signs of animal
 life what so ever.  The structure of the surrounding trees forces the path to
 make a sharp turn to the east.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ -1 6152
 the trail bends east.
 ~
 ~
-0 -1 6152
-D2
+Door        south~ ~ -1 6150
 the start of the trail.
 ~
 ~
-0 -1 6150
-S
+End
+
 #6152
-The circle of trees.~
+Name        The circle of trees.~
+Descr
 The trees here seem to form a circle around a HUGE tree that is in the center
 of them.  You notice a wooden door carved into the huge tree to the east.  The
 trail that you followed to get here seems to end at the base of the tree.
 ~
-0 9 3
-D1
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        east~ door closed~ -1 6153
 The tree door is carved beautifully.
 ~
 door~
-3 -1 6153
-D3
+Door        west~ door~ -1 6151
 the bend on the trail.
 ~
 ~
-1 -1 6151
-S
+End
+
 #6153
-Inside the great tree.~
+Name        Inside the great tree.~
+Descr
 You have stepped inside of this hollowed tree.  From here steps lead down into
 darkness or you can exit the tree by going west.
 ~
-0 9 3
-D3
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        west~ door closed~ -1 6152
 the door is carved beautifully.
 ~
 door~
-3 -1 6152
-D5
+Door        down~ ~ -1 6154
 The steps look appear like they will hold your weight.
 ~
 ~
-0 -1 6154
-S
+End
+
 #6154
-The underground hallway.~
+Name        The underground hallway.~
+Descr
 This hallway is apparently one of the roots of the tree hollowed out.  The hall
 leads south to a room where you hear strange noises or you can go up the steps.
 ~
-0 9 3
-D2
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Door        south~ door~ -1 6155
 the hallway looks quite grand.
 ~
 ~
-1 -1 6155
-D4
+Door        up~ door~ -1 6153
 the steps appear like they will hold your weight.
 ~
 ~
-1 -1 6153
-S
+End
+
 #6155
-The cultist temple.~
+Name        The cultist temple.~
+Descr
 This temple is built to some god that you don't worship.  It is a nice place
 to visit but you feel very uncomfortable about spending much time here.
 The wooden altar seems almost to glow as you enter the room.  The only exit is
 the way you came in.
 ~
-0 9 3
-D0
+Flags       dark indoors~
+Sector      forest~
+Regen       100 100
+Reset       M 6116 1 100
+Reset       E 6155 16 100
+Door        north~ door~ -1 6154
 the hallway looks quite grand.
 ~
 ~
-1 -1 6154
-S
+End
+
 #0
 
-
-#SPECIALS
-M 6112 spec_breath_gas
-M 6116 spec_cast_cleric
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-O 0 6011 0 6006
-M 0 6000 1 6009
-E 0 6000 0 16
-E 0 6001 0 5
-E 0 6002 0 8
-O 0 6003 0 6010
-O 0 6005 0 6010
-P 0 6007 0 6005
-P 0 6006 0 6003
-O 0 6013 0 6010
-M 0 309 5 6012
-O 0 6011 0 6013
-M 0 6005 2 6014
-M 0 309 5 6015
-O 0 6011 0 6016
-M 0 309 5 6017
-M 0 309 5 6019
-M 0 6002 1 6022
-M 0 6004 1 6023
-O 0 6010 0 6023
-M 0 6115 1 6100
-E 0 6114 0 1
-O 0 6102 0 6103
-M 0 6102 4 6104
-M 0 6102 4 6104
-O 0 6106 0 6104
-O 0 6105 0 6105
-M 0 6102 4 6108
-M 0 6102 4 6108
-O 0 6106 0 6111
-M 0 6103 4 6112
-M 0 6103 4 6112
-O 0 6103 0 6113
-M 0 6100 2 6116
-M 0 6100 2 6116
-M 0 6103 4 6118
-M 0 6103 4 6118
-O 0 6107 0 6119
-O 0 6106 0 6122
-O 0 6104 0 6125
-M 0 6101 2 6127
-M 0 6101 2 6127
-M 0 6319 1 6134
-G 0 6308 0
-M 0 6318 3 6134
-G 0 6309 0
-M 0 6318 3 6134
-G 0 6309 0
-M 0 6318 3 6134
-G 0 6309 0
-M 0 6112 1 6143
-G 0 6110 0
-G 0 6112 0
-G 0 6111 0
-M 0 6116 1 6155
-E 0 6155 0 16
-S
-
-
-#SHOPS
-0
 
 
 #$

@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -372,7 +374,7 @@ void show_char_to_char_1( CHAR_DATA *victim, CHAR_DATA *ch )
     sprintf( buf1, "$N the %s:\n\r", race_table[ victim->race ].name );
     strcat( buf, buf1 );
 
-    if ( !IS_NPC( victim ) && is_clan( victim  ) )
+    if ( is_clan( victim  ) )
     {
 	sprintf( buf1, "%s of %s.{x\n\r", 
 		flag_string( rank_flags, victim->pcdata->rank ),
@@ -432,14 +434,25 @@ void show_char_to_char_1( CHAR_DATA *victim, CHAR_DATA *ch )
 	}
     }
 
-    if ( ( victim != ch
-	 && !IS_NPC( ch ) && number_percent( ) < ch->pcdata->learned[gsn_peek] )
-	|| ch->riding == victim 
+    if ( IS_NPC( ch ) || victim == ch )
+	return;
+
+    if (   ch->riding == victim 
 	|| ch->rider  == victim )
     {
 	send_to_char( "\n\r{o{rYou peek at the inventory:{x\n\r", ch );
 	show_list_to_char( victim->carrying, ch, TRUE, TRUE );
     }
+    else
+	if ( number_percent( ) < ch->pcdata->learned[gsn_peek] )
+	{
+	    send_to_char( "\n\r{o{rYou peek at the inventory:{x\n\r", ch );
+	    show_list_to_char( victim->carrying, ch, TRUE, TRUE );
+
+	    learn( ch, gsn_peek, TRUE );
+	}
+	else
+	    learn( ch, gsn_peek, FALSE );
 
     return;
 }
@@ -554,7 +567,7 @@ void do_look( CHAR_DATA *ch, char *argument )
 	if ( arg1[0] == '\0'
 	    || ( !IS_NPC( ch ) && !IS_SET( ch->act, PLR_BRIEF ) ) ) 
 	{
-            sprintf ( buf, "{o{y%s{x", ch->in_room->description );
+            sprintf ( buf, "{w%s{x", ch->in_room->description );
 	    send_to_char( buf, ch );
 	}
 	
@@ -691,13 +704,10 @@ void do_look( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-         if ( !str_prefix( arg1, "north" ) ) door = 0;
-    else if ( !str_prefix( arg1, "east"  ) ) door = 1;
-    else if ( !str_prefix( arg1, "south" ) ) door = 2;
-    else if ( !str_prefix( arg1, "west"  ) ) door = 3;
-    else if ( !str_prefix( arg1, "up"    ) ) door = 4;
-    else if ( !str_prefix( arg1, "down"  ) ) door = 5;
-    else
+    for ( door = 0; door < MAX_DIR; door++ )
+	if ( !str_prefix( arg1, dir_name[door] ) ) break;
+
+    if ( door == MAX_DIR )
     {
 	send_to_char( "You do not see that here.\n\r", ch );
 	return;
@@ -792,7 +802,7 @@ void do_exits( CHAR_DATA *ch, char *argument )
     strcpy( buf, fAuto ? "{o{m[Exits:" : "Obvious exits:\n\r" );
 
     found = FALSE;
-    for ( door = 0; door <= 5; door++ )
+    for ( door = 0; door < MAX_DIR; door++ )
     {
 	if ( ( pexit = ch->in_room->exit[door] )
 	    && pexit->to_room
@@ -861,6 +871,8 @@ void do_score( CHAR_DATA *ch, char *argument )
     char         buf  [ MAX_STRING_LENGTH ];
     char         buf1 [ MAX_STRING_LENGTH ];
     char         buf2 [ MAX_STRING_LENGTH ];
+    char        *ptr;
+    int          ln;
 
     buf1[0] = '\0';
 
@@ -889,7 +901,7 @@ void do_score( CHAR_DATA *ch, char *argument )
     sprintf( buf,
 	    "{o{cYEARS: %-6d      Class: %-11.11s       Time:   %s{x\r",
 	    get_age( ch ),
-	    class_table[ ch->class ]->name,
+	    class_short( ch ),
 	    ctime ( &current_time ) );
     strcat( buf1, buf );
 
@@ -976,14 +988,14 @@ void do_score( CHAR_DATA *ch, char *argument )
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "{o{cCON  : %2d(%2d)                                                    Autosac (%c){x\n\r",
+	    "{o{cCON  : %2d(%2d)                                                    Autosac [%c]{x\n\r",
 	    get_curr_con( ch ), get_max_con( ch ),
 	    ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_AUTOSAC  ) ) ? 'X'
 	                                                         : ' ' );
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "{o{cPRACT: %3.3d         Hitpoints: %-5d of %5d   Pager: (%c) %3d    Autoexit(%c){x\n\r",
+	    "{o{cPRACT: %3.3d         Hitpoints: %-5d of %5d   Pager: [%c] %3d    Autoexit[%c]{x\n\r",
 	    ch->practice,
 	    ch->hit,  ch->max_hit,
 	    ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_PAGER    ) ) ? 'X'
@@ -994,7 +1006,7 @@ void do_score( CHAR_DATA *ch, char *argument )
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "{o{cXP   : %-9d        Mana: %-5d of %5d   MKills:  %-5.5d    Autoloot(%c){x\n\r",
+	    "{o{cXP   : %-9d        Mana: %-5d of %5d   MKills:  %-5.5d    Autoloot[%c]{x\n\r",
 	    ch->exp,
 	    ch->mana, ch->max_mana,
 	    ( IS_NPC( ch ) ? 0 : ch->pcdata->mkills ),
@@ -1003,7 +1015,7 @@ void do_score( CHAR_DATA *ch, char *argument )
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "{o{cGOLD : %-10d       Move: %-5d of %5d   MDeaths: %-5.5d    Autogold(%c){x\n\r",
+	    "{o{cGOLD : %-10d       Move: %-5d of %5d   MDeaths: %-5.5d    Autogold[%c]{x\n\r",
 	    ch->gold,
 	    ch->move, ch->max_move,
 	    ( IS_NPC( ch ) ? 0 : ch->pcdata->mdeaths ),
@@ -1020,18 +1032,16 @@ void do_score( CHAR_DATA *ch, char *argument )
 	&& ch->level < LEVEL_IMMORTAL )
 	strcat( buf1, "{o{cYou are hungry.{x\n\r"  );
 
-        strcat( buf1, "{x\n\r" );
-
     if ( ch->level >= 15 )
     {
-        if ( IS_NPC( ch )
-	    || ch->level >=
-                skill_table[gsn_dual].skill_level[ch->class] )
-            strcat ( buf1, "{o{cPrimary weapon       " );
-        sprintf( buf, "{o{cHitRoll: %-3d              DamRoll: %-3d",
+	strcat( buf1, "{x\n\r" );
+
+        if ( can_use( ch, gsn_dual ) )
+	    strcat ( buf1, "{o{cPrimary weapon       " );
+	sprintf( buf, "{o{cHitRoll: %-3d              DamRoll: %-3d",
             get_hitroll( ch, WEAR_WIELD ), get_damroll( ch, WEAR_WIELD) );
-        strcat( buf1, buf );
-        strcat( buf1, "{x\n\r" );
+	strcat( buf1, buf );
+	strcat( buf1, "{x\n\r" );
         if ( get_eq_char( ch, WEAR_WIELD_2 ) )
         {
             sprintf( buf, "{o{cSecondary weapon     HitRoll: %-3d              DamRoll: %-3d{x\n\r",
@@ -1040,7 +1050,26 @@ void do_score( CHAR_DATA *ch, char *argument )
             strcat( buf1, buf );
         }
     }
-    
+    strcat( buf1, "{x\n\r" );
+
+    strcat( buf1, "{o{cLANGS:\n\r" );
+
+    buf[0] = '\0';
+    for ( ln = 0; ln < MAX_LANGUAGE; ln++ )
+	if ( knows_language( ch, ln, ch ) )
+        {
+            if ( ln == ch->speaking )
+		strcat( buf, "{r" );
+            strcat( buf, lang_table[ln].name );
+            strcat( buf, " {c" );
+        }
+    strcat( buf, "{x\n\r" );
+
+    /* Kludge to avoid memory leak */
+    ptr = format_string( str_dup( buf ) );
+    strcat( buf1, ptr );
+    free_string( ptr );
+
     if ( !IS_NPC( ch ) &&
 	( IS_SET( ch->act, PLR_REGISTER ) ||
 	  !str_cmp( race_table[ch->race].name, "Vampire" ) ) )
@@ -1295,12 +1324,11 @@ void do_who( CHAR_DATA *ch, char *argument )
 {
     DESCRIPTOR_DATA *d;
     char             buf      [ MAX_STRING_LENGTH*3 ];
-    int              iClass;
+    CLASS_TYPE      *clas;
     int              iLevelLower;
     int              iLevelUpper;
     int              nNumber;
     int              nMatch;
-    bool             rgfClass [ MAX_CLASS ];
     bool             fClassRestrict;
     bool             fImmortalOnly;
 
@@ -1317,8 +1345,6 @@ void do_who( CHAR_DATA *ch, char *argument )
     iLevelUpper    = L_DIR; /*Used to be Max_level */
     fClassRestrict = FALSE;
     fImmortalOnly  = FALSE;
-    for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
-	rgfClass[iClass] = FALSE;
 
     /*
      * Parse arguments.
@@ -1345,8 +1371,6 @@ void do_who( CHAR_DATA *ch, char *argument )
 	}
 	else
 	{
-	    int iClass;
-
 	    if ( strlen( arg ) < 3 )
 	    {
 		send_to_char( "Classes must be longer than that.\n\r", ch );
@@ -1364,16 +1388,9 @@ void do_who( CHAR_DATA *ch, char *argument )
 	    else
 	    {
 		fClassRestrict = TRUE;
-		for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
-		{
-		    if ( !str_cmp( arg, class_table[iClass]->who_name ) )
-		    {
-			rgfClass[iClass] = TRUE;
-			break;
-		    }
-		}
+		clas           = class_lookup( arg );
 
-		if ( iClass == MAX_CLASS )
+		if ( !clas )
 		{
 		    send_to_char( "That's not a class.\n\r", ch );
 		    return;
@@ -1403,7 +1420,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	if (   wch->level < iLevelLower
 	    || wch->level > iLevelUpper
 	    || ( fImmortalOnly  && wch->level < LEVEL_HERO )
-	    || ( fClassRestrict && !rgfClass[wch->class] ) )
+	    || ( fClassRestrict && !is_class( wch, clas ) ) )
 	    continue;
 
 	nMatch++;
@@ -1412,7 +1429,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	/*
 	 * Figure out what to print for class.
 	 */
-	class = class_table[wch->class]->name;
+	class = class_short( wch );
 	if ( wch->level >= LEVEL_IMMORTAL )
 	    switch ( wch->level )
 	      {
@@ -1579,7 +1596,7 @@ void do_whois( CHAR_DATA *ch, char *argument )
 	if( str_prefix( name, wch->name ) )
 	    continue;
 
-	class = class_table[ wch->class ]->name;
+	class = class_long( wch );
 	if( wch->level >= LEVEL_IMMORTAL )
 	    switch( wch->level )
 	    {
@@ -2057,10 +2074,14 @@ void do_report( CHAR_DATA *ch, char *argument )
 
 void do_practice( CHAR_DATA *ch, char *argument )
 {
-    char buf  [ MAX_STRING_LENGTH   ];
-    char buf1 [ MAX_STRING_LENGTH*2 ];
-    int  sn;
-    int  money = ch->level * ch->level * 20;
+    CHAR_DATA *mob;
+    char       buf  [ MAX_STRING_LENGTH   ];
+    char       buf1 [ MAX_STRING_LENGTH*2 ];
+    char       buf2 [ MAX_STRING_LENGTH*2 ];
+    int        sn;
+    int        money = ch->level * ch->level * 20;
+    bool       skill;
+    int        adept;
 
     if ( IS_NPC( ch ) )
 	return;
@@ -2088,109 +2109,158 @@ void do_practice( CHAR_DATA *ch, char *argument )
 	        break;
 	}
 
-	col    = 0;
-	for ( sn = 0; sn < MAX_SKILL; sn++ )
+	col     = 0;
+	skill   = FALSE;
+	buf2[0] = '\0';
+	for ( sn = 0; sn < MAX_SPELL; sn++ )
 	{
 	    if ( !skill_table[sn].name )
 		break;
-	    if ( ch->level < skill_table[sn].skill_level[ch->class]
-		|| skill_table[sn].skill_level[ch->class] > LEVEL_HERO )
+	    if ( !can_prac( ch, sn ) )
 		continue;
 
 	    if ( ( mob ) || ( ch->pcdata->learned[sn] > 0 ) )
 	    {
-		sprintf( buf, "{o{b%18s {o{r%3d%%{x  ",
+		skill = TRUE;
+		sprintf( buf, "%18s {o%3d{x%%  ",
 			skill_table[sn].name, ch->pcdata->learned[sn] );
-		strcat( buf1, buf );
+		strcat( buf2, buf );
 		if ( ++col % 3 == 0 )
-		    strcat( buf1, "\n\r" );
+		    strcat( buf2, "\n\r" );
 	    }
 	}
 
-	if ( col % 3 != 0 )
-	    strcat( buf1, "\n\r" );
+	if ( skill )
+	    strcat( buf1, "\n\r{o{c------------------------------- [{y={c]{w SPELLS {c[{y={c] -------------------------------{x\n\r" );
 
-	sprintf( buf, "{o{cYou have %d practice sessions left.{x\n\r",
+	if ( col % 3 != 0 )
+	    strcat( buf2, "\n\r" );
+
+	strcat( buf1, buf2 );
+
+	col     = 0;
+	skill   = FALSE;
+	buf2[0] = '\0';
+	for ( sn = MAX_SPELL + 1; sn < MAX_SKILL; sn++ )
+	{
+	    if ( !skill_table[sn].name )
+		break;
+	    if ( !can_prac( ch, sn ) )
+		continue;
+
+	    if ( ( mob ) || ( ch->pcdata->learned[sn] > 0 ) )
+	    {
+		skill = TRUE;
+		sprintf( buf, "%18s {o%3d{x%%  ",
+			skill_table[sn].name, ch->pcdata->learned[sn] );
+		strcat( buf2, buf );
+		if ( ++col % 3 == 0 )
+		    strcat( buf2, "\n\r" );
+	    }
+	}
+
+	if ( skill )
+	    strcat( buf1, "\n\r{o{c------------------------------- [{y={c]{w SKILLS {c[{y={c] -------------------------------{x\n\r" );
+
+	if ( col % 3 != 0 )
+	    strcat( buf2, "\n\r" );
+
+	strcat( buf1, buf2 );
+
+	sprintf( buf, "\n\r{o{cYou have %d practice sessions left.{x\n\r",
 		ch->practice );
 	strcat( buf1, buf );
 	sprintf( buf, "{o{cCost of practicing is %d gold coins.{x\n\r", money );
 	strcat( buf1, buf );
 	send_to_char( buf1, ch );
+	return;
+    }
+
+    if ( !IS_AWAKE( ch ) )
+    {
+    	send_to_char( "In your dreams, or what?\n\r", ch );
+    	return;
+    }
+
+    for ( mob = ch->in_room->people; mob; mob = mob->next_in_room )
+    {
+    	if ( mob->deleted )
+    	    continue;
+    	if ( IS_NPC( mob ) && IS_SET( mob->act, ACT_PRACTICE ) )
+    	    break;
+    }
+
+    if ( !mob )
+    {
+    	send_to_char( "You can't do that here.\n\r", ch );
+    	return;
+    }
+
+    if ( ch->practice <= 0 )
+    {
+    	send_to_char( "You have no practice sessions left.\n\r", ch );
+    	return;
+    }
+    else if ( money > ch->gold )
+    {
+    	send_to_char( "You don't have enough money to practice.\n\r", ch );
+    	return;
+    }
+
+    if ( ( sn = skill_lookup( argument ) ) == -1
+    	|| !can_use( ch, sn ) )
+    {
+    	send_to_char( "You can't practice that.\n\r", ch );
+    	return;
+    }
+
+    if ( skill_table[sn].teachers[0] != '\0' )
+    {
+    	if ( !is_name( mob->name, skill_table[sn].teachers ) )
+    	{
+    	    act( "{o$n tells you 'I do not know how to teach that.'{x",  
+    		mob, NULL, ch, TO_VICT );
+    	    return;
+    	}
+    }
+
+    adept = IS_NPC( ch ) ? 100 : skill_class( ch, sn )->skill_adept[sn];
+
+    if ( ch->pcdata->learned[sn] >= adept )
+    {
+    	sprintf( buf, "You are already an adept of %s.\n\r",
+    	    skill_table[sn].name );
+    	send_to_char( buf, ch );
+    	return;
+    }
+
+    if ( ch->pcdata->learned[sn] == 0 )
+    {
+    	act( "{o$n tells you 'I see you are new to the ways of $t...'{x",
+    	    mob, skill_table[sn].name, ch, TO_VICT );
+    	act( "{o$n tells you 'You will now be able to learn unaided.'{x",
+    	    mob, NULL, ch, TO_VICT );
+    }
+
+    ch->practice--;
+    ch->gold		    -= money;
+    ch->pcdata->learned[sn] += int_app[get_curr_int( ch )].learn;
+    if ( ch->pcdata->learned[sn] < adept )
+    {
+    	act( "You practice $T.",
+    	    ch, NULL, skill_table[sn].name, TO_CHAR );
+    	act( "$n practices $T.",
+    	    ch, NULL, skill_table[sn].name, TO_ROOM );
     }
     else
     {
-	CHAR_DATA *mob;
-	int        adept;
-
-	if ( !IS_AWAKE( ch ) )
-	{
-	    send_to_char( "In your dreams, or what?\n\r", ch );
-	    return;
-	}
-
-	for ( mob = ch->in_room->people; mob; mob = mob->next_in_room )
-	{
-	    if ( mob->deleted )
-	        continue;
-	    if ( IS_NPC( mob ) && IS_SET( mob->act, ACT_PRACTICE ) )
-		break;
-	}
-
-	if ( !mob )
-	{
-	    send_to_char( "You can't do that here.\n\r", ch );
-	    return;
-	}
-
-	if ( ch->practice <= 0 )
-	{
-	    send_to_char( "You have no practice sessions left.\n\r", ch );
-	    return;
-	}
-	else if ( money > ch->gold )
-	{
-	    send_to_char( "You don't have enough money to practice.\n\r", ch );
-	    return;
-	}
-
-	if ( ( sn = skill_lookup( argument ) ) < 0
-	    || ( !IS_NPC( ch )
-		&& ch->level < skill_table[sn].skill_level[ch->class] ) )
-	{
-	    send_to_char( "You can't practice that.\n\r", ch );
-	    return;
-	}
-
-	adept = IS_NPC( ch ) ? 100 : class_table[ch->class]->skill_adept;
-
-	if ( ch->pcdata->learned[sn] >= adept )
-	{
-	    sprintf( buf, "You are already an adept of %s.\n\r",
-		skill_table[sn].name );
-	    send_to_char( buf, ch );
-	}
-	else
-	{
-	    ch->practice--;
-	    ch->gold                -= money;
-	    ch->pcdata->learned[sn] += int_app[get_curr_int( ch )].learn;
-	    if ( ch->pcdata->learned[sn] < adept )
-	    {
-		act( "You practice $T.",
-		    ch, NULL, skill_table[sn].name, TO_CHAR );
-		act( "$n practices $T.",
-		    ch, NULL, skill_table[sn].name, TO_ROOM );
-	    }
-	    else
-	    {
-		ch->pcdata->learned[sn] = adept;
-		act( "You are now an adept of $T.",
-		    ch, NULL, skill_table[sn].name, TO_CHAR );
-		act( "$n is now an adept of $T.",
-		    ch, NULL, skill_table[sn].name, TO_ROOM );
-	    }
-	}
+    	ch->pcdata->learned[sn] = adept;
+    	act( "You are now an adept of $T.",
+    	    ch, NULL, skill_table[sn].name, TO_CHAR );
+    	act( "$n is now an adept of $T.",
+    	    ch, NULL, skill_table[sn].name, TO_ROOM );
     }
+
     return;
 }
 
@@ -2385,6 +2455,15 @@ void do_channels( CHAR_DATA *ch, char *argument )
 			 ch );
 	}
 
+	if ( !IS_SET( sysdata.act, MUD_NONEWS ) )
+	{
+	    send_to_char( "\n\r", ch );
+	    send_to_char( !IS_SET( ch->deaf, CHANNEL_NEWS    )
+			 ? " +NEWS"
+			 : " -news",
+			 ch );
+	}
+
 	send_to_char( ".\n\r", ch );
     }
     else
@@ -2409,6 +2488,7 @@ void do_channels( CHAR_DATA *ch, char *argument )
 	else if ( !str_cmp( arg+1, "question" ) ) bit = CHANNEL_QUESTION;
 	else if ( !str_cmp( arg+1, "shout"    ) ) bit = CHANNEL_SHOUT;
 	else if ( !str_cmp( arg+1, "yell"     ) ) bit = CHANNEL_YELL;
+	else if ( !str_cmp( arg+1, "news"     ) ) bit = CHANNEL_NEWS;
 	else
 	{
 	    send_to_char( "Set or clear which channel?\n\r", ch );
@@ -2588,8 +2668,7 @@ void do_spells ( CHAR_DATA *ch, char *argument )
     int  sn;
     int  col;
 
-    if ( IS_NPC( ch )
-	|| ( !IS_NPC( ch ) && !class_table[ch->class]->fMana ) )
+    if ( !has_spells( ch ) )
     {  
        send_to_char ( "You don't need no stinking spells!\n\r", ch );
        return;
@@ -2598,15 +2677,14 @@ void do_spells ( CHAR_DATA *ch, char *argument )
     buf1[0] = '\0';
 
     col = 0;
-    for ( sn = 0; sn < MAX_SKILL; sn++ )
+    for ( sn = 0; sn < MAX_SPELL; sn++ )
     {
         if ( !skill_table[sn].name )
 	   break;
-	if ( ( ch->level < skill_table[sn].skill_level[ch->class] )
-	    || ( skill_table[sn].skill_level[ch->class] > LEVEL_HERO ) )
+	if ( !can_prac( ch, sn ) )
 	   continue;
 
-	sprintf ( buf, "{o{b%18s {o{r%3dpts{x ",
+	sprintf ( buf, "%18s {o{y%3d{xpts ",
            skill_table[sn].name, MANA_COST( ch, sn ) );
 	strcat( buf1, buf );
 	if ( ++col % 3 == 0 )
@@ -2623,8 +2701,8 @@ void do_spells ( CHAR_DATA *ch, char *argument )
 
 void do_slist ( CHAR_DATA *ch, char *argument )
 {
-    char buf  [ MAX_STRING_LENGTH ];
-    char buf1 [ MAX_STRING_LENGTH ];
+    char buf  [ MAX_STRING_LENGTH   ];
+    char buf1 [ MAX_STRING_LENGTH*4 ];
     int  sn;
     int  col;
     int  level;
@@ -2638,8 +2716,8 @@ void do_slist ( CHAR_DATA *ch, char *argument )
 
     buf1[0] = '\0';
 
-    strcat ( buf1, "{mALL Abilities available for your class.{x\n\r\n\r" );
-    strcat ( buf1, "{o{rLv          Abilities{x\n\r\n\r" );
+    strcat ( buf1, "{o{rALL Abilities available for your class.{x\n\r\n\r" );
+    strcat ( buf1, "{o{cLv                Abilities{x\n\r\n\r" );
 
     for ( level = 1; level <= LEVEL_HERO; level++ )
     {
@@ -2651,31 +2729,24 @@ void do_slist ( CHAR_DATA *ch, char *argument )
       {
 	if ( !skill_table[sn].name )
 	  break;
-	if ( skill_table[sn].skill_level[ch->class] != level )
+
+	if ( level != ( skill_class( ch, sn ) ? skill_class( ch, sn )->skill_level[sn] : L_APP ) )
 	  continue;
 
 	if ( pSpell )
 	{
-	  sprintf ( buf, "{o{r%2d:{x", level );
-	  strcat ( buf1, buf );
+	  sprintf( buf, "{o{cLevel %d:{x\n\r", level );
+	  strcat( buf1, buf );
 	  pSpell = FALSE;
 	}
 
-	/* format fix by Koala */ 
-	if ( ++col % 4 == 0 )
-	  strcat ( buf1, "   " );
-
-	sprintf ( buf, "{o{b%18s{x", skill_table[sn].name );
-	strcat ( buf1, buf );
-
-	if ( col % 4 == 0 )
-	  strcat ( buf1, "\n\r" );
-
+	sprintf( buf, "{o{c%7s: %20.20s \t Current: %3d%%  Max: %3d%%{x\n\r",
+		 (skill_table[sn].spell_fun != spell_null) ? "Spell" : "Skill",
+		 skill_table[sn].name,
+		 ch->pcdata->learned[sn],
+		 skill_class( ch, sn )->skill_adept[sn] );
+	strcat( buf1, buf );
       }
-
-      if ( col % 4 != 0 )
-	strcat ( buf1, "\n\r" );
-
     }
 
     send_to_char( buf1, ch );
@@ -2843,8 +2914,8 @@ void do_prompt( CHAR_DATA *ch, char *argument )
        return;
    }
 
-   if( !strcmp( argument, "all" ) )
-      strcat( buf, "<%hhp %mm %vmv> ");
+   if( !str_cmp( argument, "all" ) )
+      strcat( buf, daPrompt );
    else
    {
       if ( strlen( argument ) > 50 )

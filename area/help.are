@@ -62,9 +62,12 @@ or to render them null and void.
 
 -1 MOTD~
 ************************* This is the MOTD **************************
+
+Please press <Enter> to continue
 ~
 
 50 IMOTD~
+
 ~
 
 -1 SCHOOL~
@@ -86,31 +89,10 @@ Mud School.  You may not practice until your character reaches 3rd level
 however.  See 'HELP PRACTICE'.
 ~
 
--1 ! !! 'EVENT DESIGNATORS'~
-   {o{wEvent Designators{x
-       An event designator is a reference to a command line entry
-       in the history list.
+0 !~
+Syntax: !
 
-       {o{w!{x      Start  a history substitution.
-       {o{w!!{x     Refer to the previous command.  This is  a  synonym
-              for `!-1'.
-       {o{w!{yn{x     Refer to command line {o{yn{x.
-       {o{w!-{yn{x    Refer to the current command line minus {o{yn{x.
-       {o{w!{ystring{x
-              Refer  to  the  most  recent  command starting with
-              {o{ystring{x.
-       {o{w!?{ystring{x
-              Refer to the most recent command containing {o{ystring{x.
-
-       History is written by Zen (vasc@camoes.rnl.ist.utl.pt)
-~
-
-0 HISTORY~
-Syntax: history
-
-Use this command to see the history list.
-
-See also: {o{wEVENT DESIGNATORS{x
+! repeats the last command you typed.
 ~
 
 0 NORTH SOUTH EAST WEST UP DOWN~
@@ -197,8 +179,7 @@ When you cast an offensive spell, the victim usually gets a saving throw.
 The effect of the spell is reduced or eliminated if the victim makes the
 saving throw successfully.
 
-See also the help sections for individual spells, MAGIC, and also please read
-the MANA help.
+See also the help sections for individual spells.
 ~
 
 0 EXITS~
@@ -546,12 +527,6 @@ to use it properly.
 
 REMOVE will take any object from your equipment and put it back into your
 inventory.
-
-REMOVE as well as most other object manipulation commands,
-allow the use of #.object format, where # is a number or the word "all".
-For example, if you had two bracers and you wanted to remove the second
-one, you would type "remove 2.bracer".  Or if you wanted to remove all your
-equipment you would type "remove all".
 ~
 
 0 'ARMOR WEAR' 'BASIC ARMOR'~
@@ -738,27 +713,27 @@ SOCIALS shows you all of the social commands available to you.
 ~
 
 -1 SUMMARY~
-{oMOVEMENT                          GROUP{x
+MOVEMENT                          GROUP
 north south east west up down     follow group gtell split
 exits recall
 sleep wake rest stand
 
-{oOBJECTS                           INFORMATION / COMMUNICATION{x
+OBJECTS                           INFORMATION / COMMUNICATION
 get put drop give sacrifice       help credits areas commands socials
 donate wear wield hold            report score time weather where who
 recite quaff zap brandish         channels config description password title
 lock unlock open close pick bash  auction chat music question answer shout yell
-inventory equipment look compare  emote pose say tell grats clantalk
+inventory equipment look compare  emote pose say tell
 eat drink fill                    bug idea typo
 list buy sell value               note wizlist slist spells autoexit
 				  autoloot autosac blank brief combine prompt
 
-{oCOMBAT                            OTHER{x
+COMBAT                            OTHER
 kill flee kick rescue disarm      ! save quit pagelength
 backstab cast wimpy               practice train
 
 For more help, type 'help <topic>' for any command, skill, or spell.
-Also help on: {oDAMAGE DEATH EXPERIENCE NEWS STORY TICK{x
+Also help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK
 ~
 
 0 DAMAGE~
@@ -877,47 +852,11 @@ when it comes to bodily health.
 ~
 
 -1 NEWS~
-{oNew UltraEnvy (HomeCooked) features as of version 0.87:{x
-I've worked like a slave this summer to do this... Enjoy! - Zen
-
-Areas:
-Zen's Arena
-Maniac's Mythran Mud Casino
-
-Features:
-Damage classes.
-Resistant, Immune, Susceptible flags.
-Ranged Weapons - see also SHOOT.
-HIT FUN's.
-WIZNET.
-Dice games.
-ANSI color code.
-ARENA code.
-Better CLANS code.
-Hunt/Track.
-MobPrograms - see also MOBINFO.
-Online Creation using ILAB OLC - see help OLC.
-Several new spells, too numerous to list.
-Several new skills, too numerous to list.
-Sacrifice and Remove changed so commands such as "sacrifice all.corpse" are
-  possible.
-
-Changes:
-Smarter Mobs
-Ridable Mobs
-Command history - see also HISTORY
-Aliases - see also ALIAS
-Mana types. Gems to boost spell casting - see also MANA
-Password and Retire commands now don't show your password
-
-
-{oNew Envy features as of version 2.2:{x
-
-Commands:
+New Commands:
 "whois" gives information on characters.
 Many socials added by Binky and Katrina.
 
-Areas:
+New Areas:
 Binky's Circus
 Solace
 
@@ -930,7 +869,7 @@ Purgatory added, so corpse retrieval parties are not necessary.
 
 Changes:
 50 mortal levels instead of 36.
-Dragon breath spells, now available to mages for many levels, have increased
+Dragon breath spells, now avaiable to mages for many levels, have increased
   mana cost and waitstate.
 Changed linked-list structure updates char_list, object_list, and extra
   descriptions every tick in one function rather than instantaneously in many
@@ -1243,27 +1182,25 @@ they _SHAPE YOUR MUD FUTURE!_
 ~
 -1 WIZLIST~
 
-{o{r   These people have achieved immortality and superior powers in this realm.
-   They should be treated with respect and kindness..a few prayers wouldn't be
-   a bad idea now and again either. Lying or stealing from them is punishable
-   by Death. Word of advice....dont do it. *grin*{x
+*******************************************************************************
+*  These people have achieved immortality and superior powers in this realm.  *
+*  They should be treated with respect and kindness..a few prayers wouldn't be*
+*  a bad idea now and again either. Lying or stealing from them is punishable *
+*  by Death. Word of advice....dont do it. *grin*                             *
+*******************************************************************************
 
-{o{r                                 Directors
-{o{d        / \      _-'            ===========                 '-_      / \
-      _/|  \-''- _ /                                        \ _ -''-/  |\_
- __-' {{ |          \                                        /          | } '-__
-      /             \             {o{mSeniors                 {o{d /       
-     /       "{go{o{d.  |{go{o{d }           =========                {{ {go{o{d|  .{go{o{d"
-     |            \ ;                                      ; /
-                   ',                                      ,'
-        \_         __\            {rJuniors{o{d                 /__         _/
-          ''-_    \.//           =========                \\./    _-''
-            / '-____'                                      '____-' \
-           /                                                        \
-          _'                    {mApprentices{o{d                         '_
-       _-'                     =============                          '-_
-                                               
-                                                                {x
+				 Directors
+				===========
+
+				  Seniors
+				 =========
+
+                                  Juniors
+                                 =========
+
+                                Apprentices
+                               =============
+
 ~ 
 
 0 AUTO CONFIG~
@@ -1281,20 +1218,18 @@ option on or off.
 
 The options are:
 
-    EDITINFO  You see extra info on rooms (IMMORTAL ONLY).
     AUTOEXIT  You automatically see exits.
     AUTOGOLD  You automatically loot corpses of their gold.
     AUTOLOOT  You automatically loot corpses.
     AUTOSAC   You automatically sacrifice corpses.
     BLANK     You have a blank line before your prompt.
     BRIEF     You see brief descriptions only.
-    COLOUR    You see ANSI coloured text.
     COMBINE   You see object lists in combined format.
     PROMPT    You have a prompt.
     TELNETGA  You receive a telnet GA sequence.
 
 You can also type AUTOEXIT, AUTOGOLD, AUTOLOOT, AUTOSAC, BLANK, BRIEF,
-COLOUR, or COMBINE directly from the prompt to toggle the status of these
+or COMBINE directly from the prompt to toggle the status of these
 options.  See the helps for these commands.
 ~
 
@@ -1413,8 +1348,6 @@ PROMPT <%*> where the %* are the various variables you may set yourself.
 	%z :  Display the area name you are in (IMMORTAL ONLY)
 	%i :  Display whether or not you are invisible
 	%I :  Display whether or not you are wizinvis (IMMORTAL ONLY)
-	%c :  Display the editing mode you are in (IMMORTAL ONLY)
-	%C :  Display the number of the area you are editing (IMMORTAL ONLY)
 
 Example:  PROMPT <%hhp %mm %vmv>
 	Will set your prompt to "<10hp 100m 100mv>"
@@ -1441,7 +1374,7 @@ WIMPY with no argument sets your wimpy value to 20% of your maximum hit points.
 Some monsters are wimpy.
 ~
 
-0 AUCTION CHAT . MUSIC QUESTION ANSWER SHOUT YELL WARTALK GRATS~
+0 AUCTION CHAT . MUSIC QUESTION ANSWER SHOUT YELL~
 Syntax: auction  <message>
 Syntax: chat     <message>
 Syntax: music    <message>
@@ -1449,21 +1382,17 @@ Syntax: question <message>
 Syntax: answer   <message>
 Syntax: shout    <message>
 Syntax: yell     <message>
-Syntax: wartalk  <message>
-Syntax: grats    <message>
 
 These commands send messages through communication channels to other players.
 
 SHOUT sends a message to all awake players in the world.  To curb excessive
 shouting, SHOUT imposes a three-second delay on the shouter.
 
-AUCTION, CHAT, MUSIC, GRATS, and QUESTION and ANSWER also send messages to all
+AUCTION, CHAT, MUSIC, and QUESTION and ANSWER also send messages to all
 interested players.  '.' is a synonym for CHAT.  The QUESTION and ANSWER
 commands both use the same 'question' channel.
 
 YELL sends a message to all awake players within your area.
-
-WARTALK sends a message to all interested members of your clan/order/guild.
 
 You can use the CHANNELS command to hear, or not hear, any of these channels.
 ~
@@ -1488,7 +1417,7 @@ Syntax: note list
 Syntax: note read
 Syntax: note read    <number>
 Syntax: note read    all
-Syntax: note edit
+Syntax: note +       <message>
 Syntax: note subject <string>
 Syntax: note to      <to-list>
 Syntax: note clear
@@ -1501,8 +1430,8 @@ NOTE LIST lists notes which you can read.  NOTE READ reads one or all notes.
 
 NOTE SUBJECT sets the subject line of a new note.  NOTE TO sets the list of
 recipients.  The recipient ALL means all players, and the recipient IMMORTAL
-means all immortals.  Use NOTE EDIT to write you message onto the note, using an
-online editor.  NOTE SHOW shows your note in progress; NOTE CLEAR starts over.
+means all immortals.  Use NOTE + to write message lines onto the note, one line
+at a time.  NOTE SHOW shows your note in progress; NOTE CLEAR starts over.
 
 NOTE POST or NOTE SEND posts your note for reading.  Posting is not automatic.
 
@@ -1600,12 +1529,6 @@ SACRIFICE offers an object to your God.  God may reward you for the sacrifice.
 The nature of the reward depends upon the type of object.
 
 Hint: God likes corpses.
-
-SACRIFICE as well as most other object manipulation commands,
-allow the use of #.object format, where # is a number or the word "all".
-For example, if you had five daggers and you wanted to sacrifice the third
-one, you would type "sacrifice 3.dagger".  Or if you wanted to clean up all the
-trash on the floor you would type "sacrifice all".
 ~
 
 0 FLEE RESCUE~
@@ -2363,13 +2286,10 @@ Syntax: cast 'control weather' worse
 This spell makes the weather either better or worse.
 ~
 
-0 'CREATE FOOD' 'CREATE BUFFET'~
+0 'CREATE FOOD'~
 Syntax: cast 'create food'
-Syntax: cast 'create buffet'
 
-CREATE FOOD creates a Magic Mushroom, which you or anyone else can eat.
-
-CREATE BUFFET creates a bunch of Magic Mushrooms, which you or anyone can eat.
+This spell creates a Magic Mushroom, which you or anyone else can eat.
 ~
 
 0 'CREATE SPRING'~
@@ -2466,12 +2386,6 @@ This spell detects the presence of poison in food or drink.
 Syntax: cast 'dispel evil' <victim>
 
 This spell invokes the wrath of God on an evil victim.
-~
-
-0 'DISPEL GOOD'~
-Syntax: cast 'dispel good' <victim>
-
-This spell invokes the wrath of Satan on a good victim.
 ~
 
 0 'DISPEL MAGIC'~
@@ -2631,15 +2545,11 @@ rewarding or problematic.  Because of the power of this spell, all currently
 known magics are not able to remove the affects of this spell.
 ~
 
-0 PROTECTION 'PROTECTION EVIL' 'PROTECTION GOOD' SANCTUARY~
-Syntax: cast 'protection good'
-Syntax: cast 'protection evil'
+0 PROTECTION SANCTUARY~
+Syntax: cast protection
 Syntax: cast sanctuary  <character>
 
-The PROTECTION EVIL spell reduces the damage taken from any attack by an evil
-creature by one quarter.
-
-The PROTECTION GOOD spell reduces the damage taken from any attack by a good
+The PROTECTION spell reduces the damage taken from any attack by an evil
 creature by one quarter.
 
 The SANCTUARY spell reduces the damage taken by the character from any attack
@@ -2778,13 +2688,13 @@ This skill shows you a character's inventory when you look at a character.
 Use of the skill is automatic once you have practiced it.
 ~
 
-0 'SECOND ATTACK' 'THIRD ATTACK' 'FOURTH ATTACK'~
+0 'SECOND ATTACK' 'THIRD ATTACK'~
 
 These skills let you attack more than once during a combat round.  Use of
 these skills is automatic once you have practiced them.
 
 You can practice THIRD ATTACK before you have mastered SECOND ATTACK,
-although it isn't efficient to do so. The same goes to FOURTH ATTACK.
+although it isn't efficient to do so.
 ~
 
 0 DUAL 'SECOND WEAPON'~
@@ -3134,7 +3044,7 @@ in the art of mortal combat.  They much prefer to be civil servants to
 society or doctors to their comrades in arms.
 ~
 
--1 MAG MAGE MAGIC-USER 'MAGIC USER'~
+-1 MAG MAGE MAGIC MAGIC-USER 'MAGIC USER'~
 The MAGE class is a 'spellcasting' class devoted primarily toward control
 over the elements.  The universe contains an unmeasured power the MAGE taps
 into to influence the world.  MAGE spells are devoted to the invoking,
@@ -3376,433 +3286,6 @@ With this skill, a psionicist can augment the strength of a companion.
 However, the psionicist's own strength is reduced at the same time.  It is
 possible to augment the strength of several others, as long as the psionicist
 does not become too weak.
-~
-
-0 'METEOR SWARM'~
-Syntax: cast 'meteor swarm'
-
-This high level magic-user spell inflicts damage on every enemy character in
-the room. Beware that other characters who are not yet fighting may attack you
-as a result! It may only be cast out of doors.
-~
-
-0 'CHAIN LIGHTNING'~
-Syntax: cast 'chain lightning' <character>
-
-This magic-user spell inflicts heavy damage on the victim and if it has enough
-power, on every other character in the room. Beware that other characters who
-are not yet fighting may attack you as a result!  This includes other players
-as well!  If the lightning doesn't find a target and still has power on it will
-strike the caster himself...
-~
-
-0 'VORTEX LIFT'~
-Syntax: cast 'vortex lift' <character>
-
-This spell takes the caster from his current location to another caracter's 
-location somewhere in the world.
-You cannot vortex lift to characters who are in a private or solitary room.
-~
-
-0 'WIZARD EYE'~
-Syntax: cast 'wizard eye' <character>
-
-This spell enables the caster to see the location of another caracter somewhere
-in the world.
-~
-
-0 'MASS VORTEX LIFT'~
-Syntax: cast 'mass vortex lift' <character>
-
-This spell takes the caster & group from his current location to another
-character's location somewhere in the world.
-You cannot vortex lift to characters who are in a private or solitary room.
-If you aren't skilled enough some of your group members may not be able to
-vortex lift with you.
-~
-
-0 'SHIELD BLOCK'~
-
-This skill wards off incoming attacks, taking no damage from them.  Use of the
-skill is automatic once you have practiced it.  You must be wielding a shield
-to shield block.
-~
-
-
-0 MEDITATE~
-
-This skill enables you to regain mana faster than normal.
-Use of the skill is automatic once you have practiced it. You may meditate
-while resting or sleeping.
-~
-
-0 'FAST HEALING'~
-
-This skill makes you heal much faster than normal.
-Use of the skill is automatic once you have practiced it.
-~
-
-0 SCRIBE BREW~
-A spell caster of sufficient level holding a 'clean parchment' or 'empty vial'
-may transform them into spelled scrolls or potions via the scribe and
-brew commands.
-
-It takes significantly more mana to bind a spell to a potion or scroll
-than to simply cast it.
-~
-
-0 'PORTAL'~
-Syntax: cast 'portal' <character>
-
-The portal spell creates a lasting one-way portal to the target creature.
-Portals are entered using 'enter' command, as in 'enter portal'.  Portals
-cannot be made to certain destinations, nor used to escape from gate-proof
-rooms.  Portal requires a special source of power to be used, unfortunately the
-secret of this material component has been lost...
-~
-
-0 NEXUS~
-Syntax: cast 'nexus' <character>
-
-This spell is virtually identical to portal (see 'help portal'), with the
-only difference being that while portal creates a one-way gate, a nexus 
-spell makes a two-sided gate.  It also lasts longer than the lower-powered
-portal spell.  Both spells require an additional power source, the secret
-of which has been lost...
-~
-
-0 SCAN~
-Syntax: scan
-
-This skill enables the high-level thief to sense characters around him.
-You may SCAN characters upto 4 squares away from you.
-~
-
-0 'DIRT KICKING'~
-Syntax: dirt
-
-This skill enables you to blind an opponent by throwing dirt into his eyes.
-Of course for this to work properly the location you are on must have dirt.
-~
-
-0 WHIRLWIND~
-Syntax: whirlwind
-
-This skill enables a warrior to spin around the room with his weapon, hiting
-every single enemy character in there once. You may only use this skill to
-start a fight.
-~
-
-0 CLANS CLAN~
-
-When you are above level 20 you may wish to join a clan in order to do a special
-type of pkilling. Clan killing. By killing other clan's members you may win
-fantastic prizes! All pkilling rules apply here also.
-
-See also:  INITIATE, PKILL
-~
-
-0 ARENA~
-
-If you feel bored you may go out and try to kill your friend in the Steel Cage
-Arena. Here there is no need for the respect of pkilling rules and anyone may
-kill anyone, no restrictions! Of course if you do kill anyone in the Arena you
-will not win any exps, only gold. Can't have something for nothing you know!
-The Steel Cage Arena is west from the entrance to the Big Top (Binky's Circus).
-
-See also:  PKILL, CLANS
-~
-
-0 RETIR~
-Syntax: retir
-
-RETIR is a command trap to prevent you from mistakenly typing RETIRE.
-
-If you wish to RETIRE and erase you char type RETIRE in whole.
-~
-
-0 RETIRE~
-Syntax: retire <password>
-
-This command makes you quit the game and erase your player file.
-WARNING! ONCE ERASED YOUR PLAYER FILE IS NOT RECOVERABLE!
-~
-
-51 SOBER~
-Syntax: sober <character>
-
-This Apprentice command allows to sober up a character. Stop drunkness effects.
-~
-
-53 DELET~
-Syntax: DELET
-
-DELET is a command trap to prevent you from mistakenly typing DELETE.
-
-If you wish to DELETE and erase the target char type DELETE in whole.
-~
-
-53 DELETE~
-Syntax: delete <character>
-
-This Senior command makes you disconnect the char and erase his player
-file. The file is recoverable.
-~
-
-52 CLIST~
-Syntax: clist <clan number>
-Syntax: clist all
-
-CLIST shows the clan's name for the given clan number.
-
-CLIST ALL shows this information for all clans.
-~
-
-0 TRACK~
-Syntax: track <character>
-
-Track will assist you in tracking down a character that is within the area, 
-giving you its general direction.
-~
-
-0 SWIM~
-
-This skill enables the character to swim.
-Use of the skill is automatic once you have practiced it.
-The better skilled you are, better will you swim.
-~
-
-0 COLOUR COLOR ANSI~
-Syntax: colour    Toggles colour mode on/off
-
-        You may also talk in colour; the format is like this:
-        the 'escape character' to specify a colour is the left
-        handed brace '{{', following 
-        that you should use one of the following letters.
-                {r{{r     red     {c{{c     cyan
-                {g{{g     green   {y{{y     yellow
-                {b{{b     blue    {w{{w     white
-                {m{{m     magenta {x{{x     clear(reset colour)
-                {{{{     {{ char
-
-        ColoUr is written by Lope (ant@solace.mh.se)
-~
-
--1 MOBINFO~
-.             Our Mobiles have been infused with the breath of a
-             shy faeyrie to give them a slightly warmer nature.
-             Perhaps you have noticed this already.  If not, do
-             take a moment to ask a mobile to tea.  The code is
-             written by J Murphy, N'Atas-Ha of ThePrincedom and
-             based on a concept created on Worlds of Carnage by
-             Aaron Buhr. questions/comments to murph@cs.cmu.edu
-             A little rewriting of the code/DOC/INSTALL done by
-             Kahn of MERC Industries and tested extensively on
-             Marble Mud (marble.bu.edu 4000).
-~
-
-0 ALIAS UNALIAS~
-Syntax: alias
-        alias   <word> <substitution>
-        unalias <word>
-
-        The ALIAS command allows limited shortening of command names.
-        Aliases can generate more than one command using the symbol ';'.
-
-        ALIAS by itself lists your current aliases.
-        ALIAS with both a word and an argument produces a new alias.
-        You cannot alias either ALIAS or UNALIAS to a new command.
-
-        '$' is a special symbol which means the argument of the command typed.
-
-        Examples of use:
-
-        ALIAS                       | TYPING  | ACTION
-        ----------------------------+---------+---------------------------------
-        alias gc get all corpse     | gc      | "get all corpse"
-        alias ff cast 'fireball' $  | ff orc  | "cast 'fireball' orc"
-        alias xx tell $ Quiet $!    | xx Zen  | "tell Zen Quiet Zen!"
-        alias \  recall;north;rest; | \       | "recall", "north", "rest"
-
-        Alias is written by Sektor (sektor@zly.kis.p.lodz.pl)
-~
-
-0 MANA~
-Long ago, when the world was young and the Nordwar's hatred had long since
-been quelled by the death throes of battle, the council of elders began to
-study the amazing gems left on Tyselorrd from ancient times.  The gems
-allow a person to harness the power of the internal crystal and focus it
-into a useful energy.  This release of energy is in the form of spells.
-Each gem can be used for a specific element.  Some rare gems can be used
-for multiple elements.  Different spells use different elements to fuel
-the magic.  Each gem holds a specific amount of mana, and when this mana
-is depleted, the gem implodes and shatters into thousands of tiny, unusable
-shards.
-
-See also: 'THE ELEMENTS'
-~
-
-0 MAGIC~
-To cast spells, first you have to learn them.  Then practice makes perfect
-when attempting to successfully cast.  Finally, the use of gems for the
-empowering of spells is highly recomended.  Using gems you can save your
-precious inner mana. Inner mana is automagically converted into any required
-element unlike gem mana.
-
-See also: MANA
-~
-
-0 'THE ELEMENTS'~
-The elements are as follows:
-
-EARTH
-Nature, the earth, controls mending and binding magic.  The earth shields
-and heals.  It is the element of earth that holds the most powerful healing
-spells, and it is also this element which can be used to thwart dangerous
-foes.
-
-AIR
-Air controls travel and visibility, twisting and bending lights and shadow.
-Air conceals, and it also can forcefully move like the winds of powerful
-storms.
-
-FIRE
-Fire allows the unseen to glow brightly, to light the darkest room and to
-burn harshly the most evil.  Fire allows a person to see the truth behind
-the dark shrouds that covertly conceal many.
-
-WATER
-Water, the cleansing spirit, dominates and overcomes with unfolding strength.
-It is a holy thing, coveted and used to help cure the sickest and vilest of
-diseases, whether those diseases be plagues of the heart or of the mind.
-~
-
-0 'FROST SHIELD'~
-Syntax: cast 'frost shield'
-
-This spell creates a "shield" of magical ice around the caster.  This shield
-when in close contact with an enemy will cause him/her/it to be accosted by
-tongues of ice.
-
-This spell takes a long time to cast and saps a LOT of mana.  Take care you
-do not prepare this spell in an area with many enemies.
-~
-
-0 'SHOCK SHIELD'~
-Syntax: cast 'shock shield'
-
-This spell creates a "shield" of magical electricity around the caster.
-This shield when in close contact with an enemy will cause him/her/it to be
-accosted by bolts of lightning.
-
-This spell takes a long time to cast and saps a LOT of mana.  Take care you
-do not prepare this spell in an area with many enemies.
-~
-
-0 'ETHEREAL SHIELD'~
-Syntax: cast 'ethereal shield'
-
-This spell decreases the amount of damage taken from energy attacks.
-~
-
-0 PUGILISM 'LONG BLADES' 'SHORT BLADES' 'FLEXIBLE ARMS' 'TORNADO SUCTION' BLUDGEONS 'MARKSMANSHIP' 'BLAST WEAPONS'~
-These skills represent your facility with various type of weapons.  Different
-classes have different proficiencies with different types of arms, i.e.
-Mages are best with 'short blades' and Clerics with 'bludgeons'.
-These skills are automatic: you need not type anything to invoke them.
-
-Each skill makes you more proficiencient with a certain weapon. e.g.
-
-Long Blades        swords, axes, other slashing weapons...
-Short Blades       daggers, other piercing weapons...
-Flexible Arms      whips...
-Tornado Suction    vacuum cleaners?!?!
-Bludgeons	   maces, hammers, other crushing weapons...
-Marksmanship	   missile weapons...
-Blast Weapons      some magical weapons.
-Pugilism           other unclassified weapons.
-~
-
-0 CLANS~
-Syntax:  clans
- 
-Displays a list of active clans, their overlord, their chieftain and their
-pkills (number of people killed by the members of each clan).
-~
-
-0 GUILDS~
-Syntax:  guilds
- 
-Displays a list of currently operating guilds, their overlord, their chieftain
-and their mkills (number of mobs killed by guildmembers) and mdeaths (number
-of guild members killed by mobs).
-~
-
-0 ORDERS~
-Syntax:  orders
- 
-Displays a list of active orders, their overlord, their chieftain and their
-mkills (number of mobs the order has killed) and their mdeaths (the
-number of of order members killed by mobs).
-~
-
-0 INITIATE EXILE~
-Syntax:  initiate  <character>
-         exile     <character>
- 
-Induct and exile are clan commands.  The overlord and chieftain of the 
-clan receive the initiate commands, while only the overlord receives exile.
-Initiate will bring a new player into the clan, while exile will remove him.
-~
-
-0 MOUNT DISMOUNT~
-Syntax: mount      <character>
-Syntax: dismount
-
-Mount is a skill, which allows you to mount certain mobs.  Being mounted 
-on a mob cuts down on movement points that are used whenever you move.
-~
-
-51 SETCLAN~
-Syntax: setclan <clan> <sedit>                     
-or:     setclan <clan> <field>            <value>  
-or:     setclan <clan> <string>           <value>  
-or:     setclan <clan> overlord|chieftain <player> 
-
-Field being one of:                            
- mkills mdeaths pkills pdeaths illegalpk type      
- members clanheros subchiefs                       
- recall donation class score                       
- obj1 obj2 obj3                                    
-String being one of:                               
- name whoname filename motto                       
-Sedit being one of:                                
- desc
-
-This command is used to define clan, order and guild files.  The filename
-field must be defined before other fields can be entered.
- 
-See SHOWCLAN, MAKECLAN
-~
-
-52 SHOWCLAN~
-Syntax: showclan <clan>
- 
-Used to display statistics for any clan organization, which includes
-clans, Orders and guilds.
- 
-See SETCLAN, MAKECLAN and CLANS
-~
-
-51 MAKECLAN~
-Syntax:  makeclan <clan name>
-Example: makeclan Krushers
-
-Used to create a new clan, order or guild, which can then be defined using
-the 'setclan' command.  Orders, guilds and clans are distinguished using the
-'type' field in 'setclan'.
- 
-See also: SETCLAN, SHOWCLAN
 ~
 
 0 $~

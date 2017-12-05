@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -625,8 +627,11 @@ void do_give( CHAR_DATA *ch, char *argument )
     }
 
     if ( (   IS_OBJ_STAT( obj, ITEM_HOLY )
-	  && !str_cmp( race_table[victim->race].name, "Vampire" ) )
-	|| ( IS_NPC( victim ) && ( victim->pIndexData->pShop ) ) )
+	  && CHECK_SUS( victim, RIS_WHITE_MANA ) )
+	|| ( IS_NPC( victim ) && victim->fearing )
+	|| ( IS_NPC( victim ) && victim->pIndexData->pShop )
+	|| ( IS_NPC( victim ) && obj->item_type == ITEM_PILL )
+	|| ( IS_NPC( victim ) && victim->hating && victim->hating->who == ch ) )
     {
 	act( "$N refuses the $p.", ch, obj, victim, TO_CHAR );
 	act( "$n tries to give $N a $p but $E refuses.",
@@ -660,7 +665,7 @@ void do_give( CHAR_DATA *ch, char *argument )
     act( "$n gives you $p.",   ch, obj, victim, TO_VICT    );
     act( "$n gives $p to $N.", ch, obj, victim, TO_NOTVICT );
     mprog_give_trigger( victim, ch, obj );
-     return;
+    return;
 }
 
 
@@ -854,7 +859,10 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	    af.duration  = 3 * amount;
 	    af.location  = APPLY_STR;
 	    af.modifier  = -2;
-	    af.bitvector = AFF_POISON;
+
+	    vzero( af.bitvector );
+	    set_bit( af.bitvector, AFF_POISON );
+
 	    affect_join( ch, &af );
 	}
 	
@@ -941,7 +949,10 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	    af.duration  = 2 * obj->value[0];
 	    af.location  = APPLY_STR;
 	    af.modifier  = -2;
-	    af.bitvector = AFF_POISON;
+
+	    vzero( af.bitvector );
+	    set_bit( af.bitvector, AFF_POISON );
+
 	    affect_join( ch, &af );
 	}
 	break;
@@ -1213,8 +1224,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	if ( !remove_obj( ch, WEAR_MISSILE_WIELD, fReplace ) )
 	    return;
 
-	if( IS_NPC( ch )
-	   || ch->level >= skill_table[gsn_dual].skill_level[ch->class] )
+	if ( can_use( ch, gsn_dual ) )
 	{
 	    /*
 	     * If you think this looks ugly now, just imagine how
@@ -1677,6 +1687,8 @@ void do_recite( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( ch )
 	&& !( number_percent( ) < ch->pcdata->learned[gsn_scrolls] ) )
     {
+	learn( ch, gsn_scrolls, FALSE );
+
 	switch ( number_bits( 3 ) )
 	{
 	case 0: 
@@ -1720,7 +1732,11 @@ void do_recite( CHAR_DATA *ch, char *argument )
     }
 
     if ( scroll->level > ch->level ) 
+    {
         act( "$p is too high level for you.", ch, scroll, NULL, TO_CHAR );
+
+	learn( ch, gsn_scrolls, FALSE );
+    }
     else
     {
         /* scroll->value[0] is not used for scrolls */
@@ -1728,6 +1744,8 @@ void do_recite( CHAR_DATA *ch, char *argument )
 	obj_cast_spell( scroll->value[2], scroll->level, ch, victim, obj );
 	obj_cast_spell( scroll->value[3], scroll->level, ch, victim, obj );
 	obj_cast_spell( scroll->value[4], scroll->level, ch, victim, obj );
+
+	learn( ch, gsn_scrolls, TRUE );
     }
 
     if ( !IS_NPC( ch )
@@ -1766,7 +1784,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( sn = staff->value[3] ) < 0
+    if ( ( sn = staff->value[3] ) == -1
 	|| sn >= MAX_SKILL
 	|| skill_table[sn].spell_fun == 0 )
     {
@@ -1787,6 +1805,8 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	if ( !IS_NPC( ch ) 
 	    && !( number_percent( ) < ch->pcdata->learned[gsn_staves] ) )
 	{ 
+	    learn( ch, gsn_staves, FALSE );
+
 	    switch ( number_bits( 3 ) )
 	    {
 	    case 0: 
@@ -1870,6 +1890,8 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	}
     }
 
+    learn( ch, gsn_staves, TRUE );
+
     if ( !IS_NPC( ch )
 	|| ( IS_NPC( ch ) && is_affected( ch, gsn_charm_person ) ) )
         if ( --staff->value[2] <= 0 )
@@ -1944,7 +1966,7 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( sn = wand->value[3] ) < 0
+    if ( ( sn = wand->value[3] ) == -1
 	|| sn >= MAX_SKILL
 	|| skill_table[sn].spell_fun == 0 )
     {
@@ -1977,6 +1999,8 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	if ( !IS_NPC( ch ) 
 	    && !( number_percent( ) < ch->pcdata->learned[gsn_wands] ) )
 	{ 
+	    learn( ch, gsn_wands, FALSE );
+
 	    switch ( number_bits( 3 ) )
 	    {
 	    case 0: 
@@ -2024,6 +2048,8 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	/* wand->value[0] is not used for wands */
 	obj_cast_spell( wand->value[3], wand->level, ch, victim, obj );
     }
+
+    learn( ch, gsn_wands, TRUE );
 
     if ( !IS_NPC( ch )
 	|| ( IS_NPC( ch ) && is_affected( ch, gsn_charm_person ) ) )
@@ -2155,6 +2181,9 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	act( "$n tried to steal from $N.\n\r",  ch, NULL, victim, TO_NOTVICT );
 	sprintf( buf, "%s is a bloody thief!", ch->name );
 	do_shout( victim, buf );
+
+	learn( ch, gsn_steal, FALSE );
+
 	if ( IS_NPC( victim ) )
 	{
 	    multi_hit( victim, ch, TYPE_UNDEFINED );
@@ -2200,6 +2229,8 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	if ( amount <= 0 )
 	{
 	    send_to_char( "You couldn't get any gold.\n\r", ch );
+
+	    learn( ch, gsn_steal, FALSE );
 	    return;
 	}
 
@@ -2207,6 +2238,8 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	victim->gold -= amount;
 	sprintf( buf, "Bingo!  You got %d gold coins.\n\r", amount );
 	send_to_char( buf, ch );
+
+	learn( ch, gsn_steal, TRUE );
 	return;
     }
 
@@ -2215,18 +2248,24 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	|| obj->level > ch->level )
     {
 	send_to_char( "You can't pry it away.\n\r", ch );
+
+	learn( ch, gsn_steal, FALSE );
 	return;
     }
 
     if ( ch->carry_number + get_obj_number( obj ) > can_carry_n( ch ) )
     {
 	send_to_char( "You have your hands full.\n\r", ch );
+
+	learn( ch, gsn_steal, FALSE );
 	return;
     }
 
     if ( ch->carry_weight + get_obj_weight( obj ) > can_carry_w( ch ) )
     {
 	send_to_char( "You can't carry that much weight.\n\r", ch );
+
+	learn( ch, gsn_steal, FALSE );
 	return;
     }
 
@@ -2239,6 +2278,8 @@ void do_steal( CHAR_DATA *ch, char *argument )
     obj_from_char( obj );
     obj_to_char( obj, ch );
     send_to_char( "Ok.\n\r", ch );
+
+    learn( ch, gsn_steal, TRUE );
     return;
 }
 
@@ -2428,7 +2469,7 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	pet	  = create_mobile( pet->pIndexData );
 	SET_BIT( ch->act,          PLR_BOUGHT_PET );
 	SET_BIT( pet->act,         ACT_PET        );
-	SET_BIT( pet->affected_by, AFF_CHARM      );
+	set_bit( pet->affected_by, AFF_CHARM      );
 
 	one_argument( argument, arg );
 
@@ -2829,9 +2870,7 @@ void do_poison_weapon( CHAR_DATA *ch, char *argument )
 
     /* Don't allow mobs or unskilled pcs to do this */
     if ( IS_NPC( ch )
-	|| (  !IS_NPC( ch )
-	    && ch->level
-	    < skill_table[gsn_poison_weapon].skill_level[ch->class] ) )
+	|| !can_use( ch, gsn_poison_weapon ) )
     {                                          
 	send_to_char( "What do you think you are, a thief?\n\r", ch );
 	return;
@@ -2901,6 +2940,9 @@ void do_poison_weapon( CHAR_DATA *ch, char *argument )
     {
 	send_to_char( "You failed and spill some on yourself.  Ouch!\n\r",
 		     ch );
+
+	learn( ch, gsn_poison_weapon, FALSE );
+
 	damage( ch, ch, ch->level, gsn_poison_weapon, WEAR_NONE, DAM_POISON );
 	act( "$n spills the poison all over!", ch, NULL, NULL, TO_ROOM );
 	extract_obj( pobj );
@@ -2937,6 +2979,7 @@ void do_poison_weapon( CHAR_DATA *ch, char *argument )
     extract_obj( pobj );
     extract_obj( wobj );
 
+    learn( ch, gsn_poison_weapon, TRUE );
     return;
 }
 
@@ -3219,7 +3262,7 @@ void do_brew( CHAR_DATA * ch, char *argument )
 	return;
     }
 
-    if ( ( sn = skill_lookup( arg ) ) < 0 )
+    if ( ( sn = skill_blookup( arg, 0, MAX_SPELL ) ) == -1 )
     {
 	send_to_char( "You don't know any spells by that name.\n\r", ch );
 	return;
@@ -3243,6 +3286,9 @@ void do_brew( CHAR_DATA * ch, char *argument )
 	act( "$p explodes violently!", ch, potion, NULL, TO_CHAR );
 	act( "$p explodes violently!", ch, potion, NULL, TO_ROOM );
 	extract_obj( potion );
+
+	learn( ch, gsn_brew, FALSE );
+
 	damage( ch, ch, ch->max_hit / 16, gsn_brew, WEAR_NONE, DAM_ENERGY );
 	return;
     }
@@ -3251,6 +3297,7 @@ void do_brew( CHAR_DATA * ch, char *argument )
     potion->value[0]	= ch->level / 4;
     imprint_spell( sn, ch->level, ch, potion );
 
+    learn( ch, gsn_brew, TRUE );
     return;
 }
 
@@ -3280,7 +3327,7 @@ void do_scribe( CHAR_DATA * ch, char *argument )
 	return;
     }
 
-    if ( ( sn = skill_lookup( arg ) ) < 0 )
+    if ( ( sn = skill_blookup( arg, 0, MAX_SPELL ) ) == -1 )
     {
 	send_to_char( "You don't know any spells by that name.\n\r", ch );
 	return;
@@ -3297,6 +3344,9 @@ void do_scribe( CHAR_DATA * ch, char *argument )
 	act( "$p bursts in flames!", ch, scroll, NULL, TO_CHAR );
 	act( "$p bursts in flames!", ch, scroll, NULL, TO_ROOM );
 	extract_obj( scroll );
+
+	learn( ch, gsn_scribe, FALSE );
+
 	damage( ch, ch, ch->max_hit / 16, gsn_scribe, WEAR_NONE, DAM_FIRE );
 	return;
     }
@@ -3305,5 +3355,6 @@ void do_scribe( CHAR_DATA * ch, char *argument )
     scroll->value[0]	= ch->level / 3;
     imprint_spell( sn, ch->level, ch, scroll );
 
+    learn( ch, gsn_scribe, TRUE );
     return;
 }

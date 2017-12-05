@@ -4,348 +4,534 @@ Author      Casret~
 Levels      5 50
 Security    1
 VNUMs       2400 2584
-Builders    None~
+Builders    ~
 Recall      3001
 Reset       You hear the patter of little feet.~
+Note
+~
 End
 
 
-#MOBILES
+
+#MOBDB
 #2400
-insects swarm bugs~
-the insects~
+Name        insects swarm bugs~
+Short       the insects~
+Long
 You hear buzzing, and see a swarm of insects flying at you.
 ~
+Descr
 These insects are more of an annoyance than a threat.  It is made
 up of hundreds of annoying insects.
 ~
-33 524288 -200 S
-2 0 0 0d0+0 0d0+0
-0 0
-0 Insect~ 0
+Act         aggressive~
+AffectBy    flying~
+Alignment   -200
+Level       2
+Gold        0
+Race        Insect
+Sex         neutral~
+End
+
 #2401
-bat~
-the bat~
+Name        bat~
+Short       the bat~
+Long
 A black furry bat flies into your face.
 ~
+Descr
 You hear a high pitch screech.  It is a black furry bat.  This
 annoying creature usually travel in flocks, so WATCH OUT.
 ~
-35 524288 -500 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Bat~ 1
+Act         sentinel aggressive~
+AffectBy    flying~
+Alignment   -500
+Level       4
+Gold        0
+Race        Bat
+Sex         male~
+End
+
 #2402
-shepherd man~
-the shepherd~
+Name        shepherd man~
+Short       the shepherd~
+Long
 A humble shepherd is here looking after his sheep.
 ~
+Descr
 The shepherd is a patient old man, who has spent all his days
 looking after his sheep, and all his nights studying the virtue
 of Humility.  Through his wrinkled face though you can see
 his proud dignity and begin to sense that he was once a warrior.
 ~
-65 0 1000 S
-4 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         stay_area~
+AffectBy    ~
+Alignment   1000
+Level       4
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2403
-girl child~
-the girl~
+Name        girl child~
+Short       the girl~
+Long
 A smiling young girl is here.
 ~
+Descr
 The girl looks shyly at you.  Even at this young age, she has
 learned enough of her culture to be humble.   She jumps rope and
 looks up at you expectantly.
 ~
-129 0 1000 S
-3 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         wimpy~
+AffectBy    ~
+Alignment   1000
+Level       3
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #2404
-sheep~
-the sheep~
+Name        sheep~
+Short       the sheep~
+Long
 A sheep peacefully eats grass.
 ~
+Descr
 Even the sheep in New Magincia seem to exude humbleness.  The
 sheep has pure white fleece.
 ~
-131 0 1000 S
-3 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         sentinel wimpy~
+AffectBy    ~
+Alignment   1000
+Level       3
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #2405
-woman shepherd~
-Katrina the Shepherd~
+Name        woman shepherd~
+Short       Katrina the Shepherd~
+Long
 Katrina the Shepherd is here looking over the village.
 ~
+Descr
 Katrina was one of the Warriors of Destiny.  She epitomizes the
 virtue of humility.  After her great Enlightenment, she traveled
 back to her home and helped rebuild Magincia.  She still is a
 great warrior and an able guardian of New Magincia.
 ~
-69 128 1000 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         scavenger stay_area~
+AffectBy    sanctuary~
+Alignment   1000
+Level       5
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #2406
-rat~
-the giant rat~
+Name        rat~
+Short       the giant rat~
+Long
 A rat is knawing on a book.
 ~
+Descr
 This giant rat is smelly and fleas jump up from fur.  The rats
 have been a great problem in the Library because they eat and
 shred the books.  This rat seems to be rabid, so beware his
 teeth.
 ~
-33 0 -1000 S
-5 0 0 0d0+0 0d0+0
-0 0
-0 Rat~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       5
+Gold        0
+Race        Rat
+Sex         neutral~
+End
+
 #2407
-spider~
-the giant spider~
+Name        spider~
+Short       the giant spider~
+Long
 The giant spider sits on its web.
 ~
+Descr
 This scavenger has seemed to collected many things, including
 books, scrolls, and other scraps.  His glistening teeth drip with
 poison.
 ~
-39 0 -1000 S
-8 0 0 0d0+0 0d0+0
-0 0
-0 Arachnid~ 0
+Act         sentinel scavenger aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       8
+Gold        0
+Race        Arachnid
+Sex         neutral~
+Spec        spec_poison
+End
+
 #2408
-mage~
-the mage~
+Name        mage~
+Short       the mage~
+Long
 A mage stands here reading a book.
 ~
+Descr
 The mage in his ever-increasing search for Honesty and Truth, has
 come to library to peruse the ancient tomes of knowledge.  He
 glances at you, and returns to his study.
 ~
-65 16 1000 S
-6 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 1
+Act         stay_area~
+AffectBy    detect-magic~
+Alignment   1000
+Level       6
+Gold        0
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #2409
-nystul Librarian mage~
-Nystul the Librarian~
+Name        nystul Librarian mage~
+Short       Nystul the Librarian~
+Long
 Nystul the Librarian sits at his desk, writing some scrolls.
 ~
+Descr
 Nystul is the mentor, teacher, mage of the Lyceum.  He is a
 shining example of Truth.  His head is bowed over a book, but
 power radiates from him.
 ~
-3 128 1000 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       30
+Gold        0
+Race        Elf
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #2410
-mariah mage~
-Mariah the Mage~
+Name        mariah mage~
+Short       Mariah the Mage~
+Long
 Mariah walks around the stacks, busily looking for a book.
 ~
+Descr
 Mariah is another Warrior of Destiny.  She joined the Avatar to
 add some magical punch during his Enlightenment.  She seems
 serene in her total devotion to the virtue of Honesty.
 ~
-65 128 1000 S
-8 0 0 0d0+0 0d0+0
-0 0
-0 Elf~ 2
+Act         stay_area~
+AffectBy    sanctuary~
+Alignment   1000
+Level       8
+Gold        0
+Race        Elf
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #2411
-slime puddle mass~
-the slime~
+Name        slime puddle mass~
+Short       the slime~
+Long
 An ugly green mass sits on the ground in a puddle.
 ~
+Descr
 The slime is an amorphous goo.  It seems pretty wimpy, but it has
 alot of friends.  As you look at it you wonder how these things
 reproduce.
 ~
-161 0 -1000 S
-7 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 0
+Act         aggressive wimpy~
+AffectBy    ~
+Alignment   -1000
+Level       7
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #2412
-snake~
-the snake~
+Name        snake~
+Short       the snake~
+Long
 The snake strikes.
 ~
+Descr
 The green snake tongue darts in and out tasting the air.  It
 senses spilled beer, and the distinctive taste of human.
 ~
-161 0 -1000 S
-9 0 0 0d0+0 0d0+0
-0 0
-0 Snake~ 1
+Act         aggressive wimpy~
+AffectBy    ~
+Alignment   -1000
+Level       9
+Gold        0
+Race        Snake
+Sex         male~
+End
+
 #2413
-horse Smithy~
-Mr. Smithy~
+Name        horse Smithy~
+Short       Mr. Smithy~
+Long
 Mr. Smithy, the talking horse, is chewing hay.
 ~
+Descr
 This useless horse is a novelty, he can talk.  Though his talk is
 often meaningless and he gives out irrelevant clues, his sleek
 body and his much practiced jaw muscles can be very dangerous.
 ~
-3 0 500 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   500
+Level       25
+Gold        0
+Race        Animal
+Sex         male~
+End
+
 #2414
-bard musician~
-the bard~
+Name        bard musician~
+Short       the bard~
+Long
 A bard sits here strumming his mandolin.
 ~
+Descr
 The bard seems happy and content to play his mandolin.  He is a
 seeker of compassion, but in his spare time he sings and
 dances.
 ~
-3 0 750 S
-9 0 0 0d0+0 0d0+0
-0 0
-0 Hobbit~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   750
+Level       9
+Gold        0
+Race        Hobbit
+Sex         male~
+End
+
 #2415
-beggar~
-the beggar~
+Name        beggar~
+Short       the beggar~
+Long
 A beggar is here with his hand out.
 ~
+Descr
 He is more accustomed to receiving Compassion, than giving it. 
 But help him out, give him a few coins.
 ~
-1 0 500 S
-8 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         ~
+AffectBy    ~
+Alignment   500
+Level       8
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2416
-iolo bard musician~
-Iolo the Bard~
+Name        iolo bard musician~
+Short       Iolo the Bard~
+Long
 Iolo sits here with a bottle in his hand, and a smile on his
 face.
 ~
+Descr
 Iolo is one of the first Warrior of Destiny.  He seems to be a
 little bit tipsy from the party and you wonder why he has
 wandered down to the cellar.  Anyway, in the spirit of the virtue
 Compassion that he embodies, he holds out a bottle for you.
 ~
-3 128 1000 S
-11 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       11
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2417
-jester chuckles~
-Chuckles the Jester~
+Name        jester chuckles~
+Short       Chuckles the Jester~
+Long
 Chuckles the Jester is juggling and entertaining.
 ~
+Descr
 Chuckles the Jester is here mumbling, 'Spam Spam.'  This annoying
 characters is Lord British's major entertainment.  He is laughing
 and telling corny jokes.  He seems to hold his dinner in his
 hands, and when he dances the bells on his hat jingle merrily.
 ~
-3 128 1000 S
-33 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       33
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2418
-townsman man~
-the townsman~
+Name        townsman man~
+Short       the townsman~
+Long
 A townsman is here downing drinks.
 ~
+Descr
 This townsman is here partying and having many drinks.  Though he
 is also an ardent believer in Compassion, and a responsible
 citizen, he knows the value of a good party.
 ~
-1 0 1000 S
-9 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       9
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2419
-gwenno bard~
-Gwenno the Bard~
+Name        gwenno bard~
+Short       Gwenno the Bard~
+Long
 Gwenno the Bard, Iolo's happy wife, wanders around with bow in
 hand.
 ~
+Descr
 You see a pretty woman, with finely sculptured musculature. 
 She seems to guard the party with her Infinity Bow, the best
 bow in the Ultima world.  Her kindly eyes seem to emit pure
 Compassion, and as she wanders she helps the drunks up and leads
 them out the door.
 ~
-1 128 1000 S
-31 0 0 0d0+0 0d0+0
-0 0
-0 Hobbit~ 2
+Act         ~
+AffectBy    sanctuary~
+Alignment   1000
+Level       31
+Gold        0
+Race        Hobbit
+Sex         female~
+End
+
 #2420
-orc ape~
-the orc~
+Name        orc ape~
+Short       the orc~
+Long
 A mutated ape carries a spear.
 ~
+Descr
 This orc is a disgusting animal, this ape-like monster scratches
 its armpits.  It travels in herds and is a coward.
 ~
-161 0 -1000 S
-11 0 0 0d0+0 0d0+0
-0 0
-0 Orc~ 1
+Act         aggressive wimpy~
+AffectBy    ~
+Alignment   -1000
+Level       11
+Gold        0
+Race        Orc
+Sex         male~
+End
+
 #2421
-troll~
-the troll~
+Name        troll~
+Short       the troll~
+Long
 A stony troll swings his club.
 ~
+Descr
 This huge monster is immense and powerful.  Over a chest and a
 head taller then you, his meaty arms swing a club at you!
 ~
-33 0 -1000 S
-13 0 0 0d0+0 0d0+0
-0 0
-0 Troll~ 1
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       13
+Gold        0
+Race        Troll
+Sex         male~
+End
+
 #2422
-wisp ball~
-the wisp~
+Name        wisp ball~
+Short       the wisp~
+Long
 A blue ball of light soars over to you and winks.
 ~
+Descr
 The Wisp is constantly blinking.  It wishes information exchange.
 
 It looks peaceful, but will defend itself.
 ~
-5 128 0 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Faerie~ 0
+Act         scavenger~
+AffectBy    sanctuary~
+Alignment   0
+Level       15
+Gold        0
+Race        Faerie
+Sex         neutral~
+End
+
 #2423
-druid~
-the forest druid~
+Name        druid~
+Short       the forest druid~
+Long
 A chanting druid walks the woods.
 ~
+Descr
 Dressed in long robes that obscure his face, the druid is softly
 chanting words and traveling through the woods.  He is one that
 is secure in his sense of Justice, and enlightened in the ways of
 judging others.  Through his communion with nature, he has gained
 power.
 ~
-1 0 1000 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Halfdwarf~ 1
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       12
+Gold        0
+Race        Halfdwarf
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #2424
-druid~
-the city druid~
+Name        druid~
+Short       the city druid~
+Long
 A druid walks around a flame.
 ~
+Descr
 This druid seems to be entranced by the fire.  She chants softly
 as she waves her hand and stares into the flame.  She is one with
 the flame.  When she looks at you her hard eyes, only judge,
 seeking Justice.
 ~
-3 0 1000 S
-12 0 0 0d0+0 0d0+0
-0 0
-0 Halfdwarf~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   1000
+Level       12
+Gold        0
+Race        Halfdwarf
+Sex         female~
+Spec        spec_cast_cleric
+End
+
 #2425
-judge~
-The Judge~
+Name        judge~
+Short       The Judge~
+Long
 The Judge sits here.
 ~
+Descr
 You cannot help but shiver as you see the Judge sit here
 silently.  His eyes pierce into your soul, and he knows.  He
 knows your faults.  He knows your virtues.  He knows if you've
@@ -353,3900 +539,4790 @@ been bad or good.... so be good.  This ultimate purveyor of
 Justice, sends criminals to jail everyday, sometimes with his
 bare hands.
 ~
-3 128 1000 S
-32 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       32
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2426
-jaana druid~
-Jaana the Druid~
+Name        jaana druid~
+Short       Jaana the Druid~
+Long
 Jaana the Druid is in deep meditation.
 ~
+Descr
 You meet another Warrior of Destiny.  She helped to lead the
 magical force to the Avatar.  The Avatar's mentor in Justice; she
 has gone to the woods to drive life into a corner.
 ~
-1 4194432 1000 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Halfdwarf~ 2
+Act         ~
+AffectBy    sanctuary~
+Alignment   1000
+Level       15
+Gold        0
+Race        Halfdwarf
+Sex         female~
+Spec        spec_cast_cleric
+End
+
 #2427
-prisoner~
-the dirty prisoner~
+Name        prisoner~
+Short       the dirty prisoner~
+Long
 The Prisoner grips the bars with his dirty hands.
 ~
+Descr
 The Prisoner seems to be a slimy character.  He was a thief, and
 Justice was done to him.  You glimpse light shining off of
 something black in his hands.
 ~
-131 32768 -666 S
-11 0 0 0d0+0 0d0+0
-0 0
-0 Drow~ 1
+Act         sentinel wimpy~
+AffectBy    sneak~
+Alignment   -666
+Level       11
+Gold        0
+Race        Drow
+Sex         male~
+End
+
 #2428
-prisoner~
-the prisoner~
+Name        prisoner~
+Short       the prisoner~
+Long
 The Prisoner is big and grins evilly at you.
 ~
+Descr
 This Prisoner was convicted of one of the most heinous crimes,
 MURDER.  It took many guards and druids to restrain this beast.
 ~
-35 0 -1000 S
-14 0 0 0d0+0 0d0+0
-0 0
-0 Drow~ 1
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       14
+Gold        0
+Race        Drow
+Sex         male~
+End
+
 #2429
-citizen yewsman~
-the citizen of yew~
+Name        citizen yewsman~
+Short       the citizen of yew~
+Long
 A citizen of Yew walks around.
 ~
+Descr
 Being the second largest city in Britannia, second only to
 Britain itself; this city employs and houses many people.  This
 citizen of the city of Justice strolls the street, sure of his
 Virtue.
 ~
-129 0 1000 S
-13 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         wimpy~
+AffectBy    ~
+Alignment   1000
+Level       13
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2430
-bartender~
-the bartender~
+Name        bartender~
+Short       the bartender~
+Long
 A bartender stands here in the middle of a throng of people.
 ~
+Descr
 A smiling face asks you what you would like to drink.  Well
 versed in compassion, he has heard and sympathized with many
 people who have gone to him for advice.  His advice to you, is to
 kick back and enjoy a drink.
 ~
-1 0 1000 S
-10 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       10
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2431
-owner bartender~
-the pub owner~
+Name        owner bartender~
+Short       the pub owner~
+Long
 The owner of the pub walks around to her customers.
 ~
+Descr
 The pub owner waves and smiles to you.  She asks what you want to
 drink and eat.
 ~
-3 0 1000 S
-13 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         sentinel~
+AffectBy    ~
+Alignment   1000
+Level       13
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #2432
-ettin~
-the ettin~
+Name        ettin~
+Short       the ettin~
+Long
 The ettin scratches its heads, and attack.
 ~
+Descr
 With its two heads, it should make sense that this monster should
 have double the intelligence.  But in fact it has half.
 ~
-33 0 -1000 S
-16 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       16
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #2433
-gremlin~
-the gremlin~
+Name        gremlin~
+Short       the gremlin~
+Long
 This little creature sneaks around and steals your food.
 ~
+Descr
 It seems to be just a head with little hands and feet sticking
 out of it.  It does not seem like these things could hurt you,
 but your money pouch seems much lighter.
 ~
-133 98304 -1000 S
-15 0 0 0d0+0 0d0+0
-0 0
-0 Goblin~ 0
+Act         scavenger wimpy~
+AffectBy    sneak hide~
+Alignment   -1000
+Level       15
+Gold        0
+Race        Goblin
+Sex         neutral~
+Spec        spec_thief
+End
+
 #2434
-headless~
-the headless~
+Name        headless~
+Short       the headless~
+Long
 The headless creature seems to be heading right for you!
 ~
+Descr
 No one really understands how these things can sense, but as it
 unerringly reaches for you, you know it does.  In any case these
 creatures are strong and enduring.
 ~
-33 0 -1000 S
-19 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       19
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #2435
-fighter~
-the fighter~
+Name        fighter~
+Short       the fighter~
+Long
 A muscular fighter searches here.
 ~
+Descr
 This fighter is cleaning out the dungeons.  In the peaceful time
 following the Avatar's success, there are few ways to show Valor.
 
 One of the more dangerous is to descend into the pits of hell and
 clean them out.
 ~
-1 0 1000 S
-18 0 0 0d0+0 0d0+0
-0 0
-0 Giant~ 2
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       18
+Gold        0
+Race        Giant
+Sex         female~
+End
+
 #2436
-geoffrey~
-Geoffrey the Fighter~
+Name        geoffrey~
+Short       Geoffrey the Fighter~
+Long
 Geoffrey the Fighter leads this campaign.
 ~
+Descr
 The muscle power of the Warriors of Destiny, Geoffrey is immense.
 
 His board shoulders make you look like a mouse.  He epitomizes
 Valor.
 ~
-1 128 1000 S
-22 0 0 0d0+0 0d0+0
-0 0
-0 Giant~ 1
+Act         ~
+AffectBy    sanctuary~
+Alignment   1000
+Level       22
+Gold        0
+Race        Giant
+Sex         male~
+End
+
 #2437
-lord serpent simon~
-Lord Simon~
+Name        lord serpent simon~
+Short       Lord Simon~
+Long
 Lord Simon of the Serpent Hold stares at your form.
 ~
+Descr
 His movements are liquid and art.  As he makes a few practice
 swings, you HOPE that you are never on the receiving end of his
 immense sword.  This is The Lord of Serpent Hold, courage itself
 solidified into a human form.
 ~
-1 128 1000 S
-33 0 0 0d0+0 0d0+0
-0 0
-0 Giant~ 1
+Act         ~
+AffectBy    sanctuary~
+Alignment   1000
+Level       33
+Gold        0
+Race        Giant
+Sex         male~
+End
+
 #2438
-mimic~
-the mimic~
+Name        mimic~
+Short       the mimic~
+Long
 A treasure chest is here, overflowing with gold.
 ~
+Descr
 The treasure chest reforms, and spits out a glob of poison. 
 Beware adventurer of the Mimic.
 ~
-33 0 -1000 S
-26 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       26
+Gold        0
+Race        Object
+Sex         neutral~
+Spec        spec_poison
+End
+
 #2439
-gazer eyeball~
-the gazer~
+Name        gazer eyeball~
+Short       the gazer~
+Long
 A floating eyeball glares at you.
 ~
+Descr
 This creature is comprised of one main eyeball and several
 auxiliary eyeballs coming of the main.  The eyeballs draw you in,
 making you forget who you are....
 ~
-33 0 -1000 S
-23 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       23
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #2440
-tinker~
-a tinker~
+Name        tinker~
+Short       a tinker~
+Long
 A tinker is fiddling with one device or another.
 ~
+Descr
 The tinker has huge rippling muscles and a scarred skin.  You
 realize that his great Sacrifice to his craft has led to his
 incredible strength and weaponskill.  This is not one you wish to
 fight.
 ~
-1 0 1000 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Faerie~ 1
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       25
+Gold        0
+Race        Faerie
+Sex         male~
+End
+
 #2441
-julia~
-Julia the Tinker~
+Name        julia~
+Short       Julia the Tinker~
+Long
 Julia the Tinker is here forging a sword.
 ~
+Descr
 Julia the Tinker provided some of the muscle power to the Avatar,
 during his Great Quest for enlightenment.  She was a Warrior of
 Destiny and you see that not much has changed since those days. 
 She represents Sacrifice in everything she does, she is the 
 Keeper of Oral History, as well as a prominent weaponsmith.
 ~
-3 128 1000 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Faerie~ 2
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       28
+Gold        0
+Race        Faerie
+Sex         female~
+End
+
 #2442
-lady~
-The Lady of Empath Abbey~
+Name        lady~
+Short       The Lady of Empath Abbey~
+Long
 The Lady of Empath Abbey stands here.
 ~
+Descr
 When you see her your heart almost stops, as you feel the intense
 waves of pure Love come from her body.  Her love for you almost
 knocks you down.  You cannot hurt this one.
 ~
-1 128 1000 S
-34 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         ~
+AffectBy    sanctuary~
+Alignment   1000
+Level       34
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #2443
-sandtrap tentacle~
-the sandtrap~
+Name        sandtrap tentacle~
+Short       the sandtrap~
+Long
 A tentacle reaches out of the sand, and latches onto your leg.
 ~
+Descr
 The Sandtrap burrows around under the stand, and comes onto
 travellers hidden.  No one is really sure what the Sandtrap looks
 like, but it is a dangerous foe.
 ~
-165 98304 -1000 S
-29 0 0 0d0+0 0d0+0
-0 0
-0 Object~ 0
+Act         scavenger aggressive wimpy~
+AffectBy    sneak hide~
+Alignment   -1000
+Level       29
+Gold        0
+Race        Object
+Sex         neutral~
+End
+
 #2444
-dragon~
-the dragon~
+Name        dragon~
+Short       the dragon~
+Long
 A dragon lies on his heap of treasure, turns his head, and fire
 comes billowing out of his maw.
 ~
+Descr
 The dragon looks like every other dragon you've seen, wings,
 tail, fire.  Only this one doesn't have a dorky color attached
 to it.  And doesn't talk about annoying C terms. 
 ~
-35 0 -1000 S
-32 0 0 0d0+0 0d0+0
-0 0
-0 Dragon~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       32
+Gold        0
+Race        Dragon
+Sex         neutral~
+Spec        spec_breath_fire
+End
+
 #2445
-paladin~
-the paladin~
+Name        paladin~
+Short       the paladin~
+Long
 A paladin practices his sword strokes here.
 ~
+Descr
 This paladin works hard to keep his Honor and the Honor of his
 people.  Honor does not lead his life, Honor is his life.  His
 shiny armour and equally shiny sword serves to remind you that he
 is among Brittannia's most powerful battalion.
 ~
-1 0 1000 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Dwarf~ 1
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       30
+Gold        0
+Race        Dwarf
+Sex         male~
+End
+
 #2446
-dupre paladin~
-Dupre the Paladin~
+Name        dupre paladin~
+Short       Dupre the Paladin~
+Long
 Sitting here, Dupre the Paladin consults his maps.
 ~
+Descr
 Dupre the Paladin was constant companion of the Avatar and a
 Warrior of Destiny.  He is a symbol of Honor.  He is right now
 trying to figure out a plan of attack to get the dragon.
 ~
-3 128 1000 S
-33 0 0 0d0+0 0d0+0
-0 0
-0 Dwarf~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       33
+Gold        0
+Race        Dwarf
+Sex         male~
+End
+
 #2447
-reaper~
-the reaper~
+Name        reaper~
+Short       the reaper~
+Long
 The reaper strikes out with his tentacles.
 ~
+Descr
 The reaper is immobilized and attached to the ground.  Even with
 this disadvantage his tentacles and magical powers more then make
 up for disadvantage.
 ~
-35 0 -1000 S
-31 0 0 0d0+0 0d0+0
-0 0
-0 Animal~ 0
+Act         sentinel aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       31
+Gold        0
+Race        Animal
+Sex         neutral~
+End
+
 #2448
-gargoyle king draxthanum~
-Draxthanum the Gargoyle~
+Name        gargoyle king draxthanum~
+Short       Draxthanum the Gargoyle~
+Long
 The King of Gargoyles is here.
 ~
+Descr
 Draxthanum the Winged Gargoyle is here to observe the odd habits
 of humans and their combat tactics.  He is red with wings, and is
 strong and his aura is overpowering.
 ~
-1 128 1000 S
-35 0 0 0d0+0 0d0+0
-0 0
-0 Bat~ 1
+Act         ~
+AffectBy    sanctuary~
+Alignment   1000
+Level       35
+Gold        0
+Race        Bat
+Sex         male~
+End
+
 #2449
-ghost spirit~
-the spirit~
+Name        ghost spirit~
+Short       the spirit~
+Long
 The spirit of a peaceful man floats around here.
 ~
+Descr
 This ghost seems peaceful, even though he is chained to the earth
 through some responsibility.
 ~
-1 0 1000 S
-22 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       22
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_ghost
+End
+
 #2450
-ghost spirit~
-the ghost~
+Name        ghost spirit~
+Short       the ghost~
+Long
 This ghost was an evil man in a past life.
 ~
+Descr
 In through its transparent face, you can see a grimace of
 evilness and swoops over to you.
 ~
-33 0 -1000 S
-22 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       22
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_ghost
+End
+
 #2451
-skeleton~
-the skeleton~
+Name        skeleton~
+Short       the skeleton~
+Long
 The skeleton walks around in tattered clothing.
 ~
+Descr
 The skeleton has rotting bits of flesh attached to his bones.  He
 carries a rusty shield and sword.  In fact the only thing
 completely clean on him is his white teeth, perhaps from his
 nightly meals of flesh and bone.
 ~
-33 0 -1000 S
-23 0 0 0d0+0 0d0+0
-0 0
-0 Undead~ 0
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       23
+Gold        0
+Race        Undead
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #2452
-daemon demon~
-the daemon~
+Name        daemon demon~
+Short       the daemon~
+Long
 He unfurls his wings and swoops into you.
 ~
+Descr
 The most dangerous undead, and among the most dangerous of all
 monsters, this beast can use all magics, is strong and hardy. 
 Right now he seems to be busy... killing you.
 ~
-33 128 -1000 S
-34 0 0 0d0+0 0d0+0
-0 0
-0 God~ 0
+Act         aggressive~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       34
+Gold        0
+Race        God
+Sex         neutral~
+Spec        spec_cast_undead
+End
+
 #2453
-mourner~
-the mourner~
+Name        mourner~
+Short       the mourner~
+Long
 A mourner bows his head over the grave.
 ~
+Descr
 A mourner is in tears.  She is crying over the grave of a loved
 one.  She is expressing poignant Spirituality.  This gives her
 strength to persevere.
 ~
-1 0 1000 S
-13 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 2
+Act         ~
+AffectBy    ~
+Alignment   1000
+Level       13
+Gold        0
+Race        Human
+Sex         female~
+End
+
 #2454
-shamino ranger~
-Shamino the Ranger~
+Name        shamino ranger~
+Short       Shamino the Ranger~
+Long
 Shamino the Ranger sits here, meditating.
 ~
+Descr
 The last Warrior of Destiny, Shamino sits here in a yoga
 position.  The Enlightened smile on his face confirms that he
 indeed is one with the spirit of Spirituality.
 ~
-3 128 1000 S
-35 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       35
+Gold        0
+Race        Human
+Sex         male~
+Spec        spec_cast_psionicist
+End
+
 #2455
-timelord~
-the Timelord~
+Name        timelord~
+Short       the Timelord~
+Long
 The Timelord is here in an aura of power.
 ~
+Descr
 The Hourglass that he holds in his hand actually controls the
 fickle powers of time.  This being is so awe-inspiring that you
 fell an urge to prostrate yourself to him.  But as all godly
 powers must be, he is truly and totally neutral.
 ~
-3 128 0 S
-40 0 0 0d0+0 0d0+0
-0 0
-0 God~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   0
+Level       40
+Gold        0
+Race        God
+Sex         male~
+End
+
 #2456
-guardian~
-The Guardian~
+Name        guardian~
+Short       The Guardian~
+Long
 The Guardian as far as you can tell is just a big red face.
 ~
+Descr
 First you hear a booming voice.  'You will join the Fellowship.' 
 He is the latest, and some people say greatest of the Avatar's
 enemies.  And now you have the joy of meeting him.
 ~
-35 128 -1000 S
-45 0 0 0d0+0 0d0+0
-0 0
-0 God~ 1
+Act         sentinel aggressive~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       45
+Gold        0
+Race        God
+Sex         male~
+End
+
 #2457
-blackthorn~
-Blackthorn~
+Name        blackthorn~
+Short       Blackthorn~
+Long
 Blackthorn wonders how he lost the throne.
 ~
+Descr
 Blackthorn was more misguided rather then evil.  Though he was
 still a foe of Avatar that eventually was destroyed, during this
 era he still is corrupt and VERY, VERY dangerous.
 ~
-35 128 -1000 S
-43 0 0 0d0+0 0d0+0
-0 0
-0 Werewolf~ 1
+Act         sentinel aggressive~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       43
+Gold        0
+Race        Werewolf
+Sex         male~
+End
+
 #2458
-exodus~
-Exodus~
+Name        exodus~
+Short       Exodus~
+Long
 Exodus is here, reveling in his island fortress.
 ~
+Descr
 Exodus, the horrible progeny of Minax and Mondain is here.  More
 powerful then his parents, he is also more dangerous.  He was the
 last of the Triad that the Avatar destroyed.
 ~
-35 128 -1000 S
-41 0 0 0d0+0 0d0+0
-0 0
-0 Ogre~ 0
+Act         sentinel aggressive~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       41
+Gold        0
+Race        Ogre
+Sex         neutral~
+End
+
 #2459
-minax~
-Minax~
+Name        minax~
+Short       Minax~
+Long
 Minax is here conjuring up the evil spirits.
 ~
+Descr
 More powerful then her master and lover, Minax is as beautiful as
 she is dangerous.  Bold enough to take on the forces of evil
 without the gem, she eventually proved to be their mistress. 
 Without the Avatar the world would still be under her complete
 power.
 ~
-35 128 -1000 S
-39 0 0 0d0+0 0d0+0
-0 0
-0 Ogre~ 2
+Act         sentinel aggressive~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       39
+Gold        0
+Race        Ogre
+Sex         female~
+Spec        spec_cast_mage
+End
+
 #2460
-mondain~
-Mondain~
+Name        mondain~
+Short       Mondain~
+Long
 Mondain grips his evil gem and conjures magic to destroy you.
 ~
+Descr
 Mondain. the first of the Triad of Evil, was the first foe that
 the man, later to be known as the Avatar, was to face.  Mondain
 has killed his father to gain the power of the dark gem that he
 wielded.
 ~
-35 128 -1000 S
-37 0 0 0d0+0 0d0+0
-0 0
-0 Ogre~ 1
+Act         sentinel aggressive~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       37
+Gold        0
+Race        Ogre
+Sex         male~
+Spec        spec_cast_mage
+End
+
 #2461
-sentri guard~
-Sentri~
+Name        sentri guard~
+Short       Sentri~
+Long
 Sentri stoically stands here, protecting his Lord and castle from
 harm.
 ~
+Descr
 Sentri is a powerful man, whose only job is to protect the life
 of Lord British.  In seeing this done he is completely armored
 and wields a heavy blade.
 ~
-3 0 1000 S
-35 0 0 0d0+0 0d0+0
-0 0
-0 Giant~ 1
+Act         sentinel~
+AffectBy    ~
+Alignment   1000
+Level       35
+Gold        0
+Race        Giant
+Sex         male~
+End
+
 #2462
-batlin~
-Batlin~
+Name        batlin~
+Short       Batlin~
+Long
 Batlin says, 'Join the Fellowship.'
 ~
+Descr
 Batlin is an evil man that goes around and corrupts the young. 
 You see also that he has a full set of mantras, probably stolen
 from their rightful owners.  He is though protected by the power
 of his god.
 ~
-1 128 -1000 S
-37 0 0 0d0+0 0d0+0
-0 0
-0 God~ 1
+Act         ~
+AffectBy    sanctuary~
+Alignment   -1000
+Level       37
+Gold        0
+Race        God
+Sex         male~
+Spec        spec_cast_cleric
+End
+
 #2463
-avatar~
-The Avatar~
+Name        avatar~
+Short       The Avatar~
+Long
 The Avatar is here chatting to Lord British.
 ~
+Descr
 The Avatar is the symbol of courage and truth and love, and all
 that descends from it.  He has mastered Compassion, Humility,
 Justice, Spirituality, Honesty, Sacrifice, Valor, and Honor.  He
 truly is an inspiration to those who know him.
 ~
-3 128 1000 S
-50 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       50
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2464
-lord british~
-Lord British~
+Name        lord british~
+Short       Lord British~
+Long
 Lord British is healing the Avatar's wounds.
 ~
+Descr
 Lord British sits in his throne.  When you see him, you know the
 meaning of true leadership.  His charisma is almost tangible.  On
 him you see the three crown jewels.  These hold power both
 figuratively and truly.
 ~
-3 128 1000 S
-55 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    sanctuary~
+Alignment   1000
+Level       55
+Gold        0
+Race        Human
+Sex         male~
+End
+
 #2465
-shark~
-the shark~
+Name        shark~
+Short       the shark~
+Long
 The shark smells blood.
 ~
+Descr
 This fish can sense blood in the water and comes to kill you.
 ~
-33 0 -1000 S
-25 0 0 0d0+0 0d0+0
-0 0
-0 Fish~ 1
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       25
+Gold        0
+Race        Fish
+Sex         male~
+End
+
 #2466
-seahorse sea horse~
-a seahorse~
+Name        seahorse sea horse~
+Short       a seahorse~
+Long
 The peaceful seahorse swims here.
 ~
+Descr
 The seahorse is an amazingly beautiful creature.  Its swimming
 and diving please you.
 ~
-1 0 500 S
-28 0 0 0d0+0 0d0+0
-0 0
-0 Fish~ 1
+Act         ~
+AffectBy    ~
+Alignment   500
+Level       28
+Gold        0
+Race        Fish
+Sex         male~
+End
+
 #2467
-squid~
-the squid~
+Name        squid~
+Short       the squid~
+Long
 The squid's tentacles reach for you.
 ~
+Descr
 The squid easily is double the boat in size.  Its tentacles are
 huge and you fear as it grabs for you.
 ~
-33 0 -1000 S
-30 0 0 0d0+0 0d0+0
-0 0
-0 Fish~ 1
+Act         aggressive~
+AffectBy    ~
+Alignment   -1000
+Level       30
+Gold        0
+Race        Fish
+Sex         male~
+End
+
 #2468
-armourer~
-the armourer~
+Name        armourer~
+Short       the armourer~
+Long
 The Armourer stands here.
 ~
+Descr
 The Armourer sells... armour.
 ~
-3 4 1000 S
-100 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-evil~
+Alignment   1000
+Level       100
+Gold        0
+Race        Human
+Sex         male~
+Shop        armor~ ~ ~ ~ ~ 110 90 0 23
+End
+
 #2469
-weaponseller~
-the weaponseller~
+Name        weaponseller~
+Short       the weaponseller~
+Long
 The Weaponseller stands here.
 ~
+Descr
 The Weaponseller sells... weapons.
 ~
-3 4 1000 S
-100 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-evil~
+Alignment   1000
+Level       100
+Gold        0
+Race        Human
+Sex         male~
+Shop        weapon~ ~ ~ ~ ~ 110 90 0 23
+End
+
 #2470
-boatseller~
-the boatseller~
+Name        boatseller~
+Short       the boatseller~
+Long
 The Boatseller stands here.
 ~
+Descr
 The Boatseller sells... boats.
 ~
-3 4 1000 S
-100 0 0 0d0+0 0d0+0
-0 0
-0 Human~ 1
+Act         sentinel~
+AffectBy    detect-evil~
+Alignment   1000
+Level       100
+Gold        0
+Race        Human
+Sex         male~
+Shop        boat~ ~ ~ ~ ~ 110 90 0 23
+End
+
 #0
 
 
-#NEWOBJECTS
+
+#OBJDB
 #2400
-mantra compassion mu~
-mu~
+Name        mantra compassion mu~
+Short       mu~
+Descr
 Mu, the Mantra of Compassion is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2401
-mantra humility lum~
-lum~
+Name        mantra humility lum~
+Short       lum~
+Descr
 Lum, the Mantra of Humility is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2402
-mantra justice beh~
-beh~
+Name        mantra justice beh~
+Short       beh~
+Descr
 Beh, the Mantra of Justice is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2403
-mantra spirituality ohm~
-ohm~
+Name        mantra spirituality ohm~
+Short       ohm~
+Descr
 Ohm, the Mantra of Spirituality is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2404
-mantra honesty ahm~
-ahm~
+Name        mantra honesty ahm~
+Short       ahm~
+Descr
 Ahm, the Mantra of Honesty is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2405
-mantra sacrifice cah~
-cah~
+Name        mantra sacrifice cah~
+Short       cah~
+Descr
 Cah, the Mantra of Sacrifice is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2406
-mantra valor ra~
-ra~
+Name        mantra valor ra~
+Short       ra~
+Descr
 Ra, the Mantra of Valor is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2407
-mantra honor summ~
-summ~
+Name        mantra honor summ~
+Short       summ~
+Descr
 Summ, the Mantra of Honor is here.~
-~
-18 2 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       hum~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2408
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2409
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2410
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2411
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2412
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2413
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2414
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2415
-moonstone~
-moonstone~
+Name        moonstone~
+Short       moonstone~
+Descr
 A totally featureless Moonstone is here.~
-~
-18 0 1
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        key~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2416
-hourglass~
-the Hourglass~
+Name        hourglass~
+Short       the Hourglass~
+Descr
 You feel an aura of power emanating from the Hourglass.~
-~
-18 1 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-4 2 0
-A
-9 -50 0
+Type        key~
+Extra       glow~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      wisdom~ 2 ~
+Affect      age~ -50 ~
+End
+
 #2417
-crook~
-the shepherd's crook~
+Name        crook~
+Short       the shepherd's crook~
+Descr
 The crook lies here.~
-~
-5 0 8193
-0~ 0~ 0~ 7~ 0~
-4 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      4
+Cost        0
+End
+
 #2418
-doll~
-the doll~
+Name        doll~
+Short       the doll~
+Descr
 An old rag doll is here.~
-~
-13 128 1
-0~ 0~ 0~ 0~ 0~
-30 0 0
-E
-rag old doll~
+Type        trash~
+Extra       nodrop~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        0
+ExtraDescr  rag old doll~
 The rag doll seems to take on the weight of the child you killed.
 ~
+End
+
 #2419
-sword~
-katrina's sword~
+Name        sword~
+Short       katrina's sword~
+Descr
 Katrina's sword gleams prettily.~
-~
-5 1024 8193
-0~ 0~ 0~ 1~ 0~
-2 0 0
-E
-sword~
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      2
+Cost        0
+ExtraDescr  sword~
 The sword is shined and cared for with much care.  It glows with
 the light of virtue.
 ~
+End
+
 #2420
-scroll~
-a wrinkled scroll~
+Name        scroll~
+Short       a wrinkled scroll~
+Descr
 A scroll rescued from the spider's web.~
-~
-2 0 1
-10~ earthquake~  ~  ~  ~
-1 0 0
+Type        scroll~
+Extra       ~
+Wear        take~
+Values      10~ earthquake~  ~  ~  ~
+Weight      1
+Cost        0
+End
+
 #2421
-dagger~
-a magic dagger~
+Name        dagger~
+Short       a magic dagger~
+Descr
 The magic dagger lies here, pulsating.~
-~
-5 2 8193
-0~ 0~ 0~ 11~ 0~
-4 0 0
-A
-18 2 0
-A
-3 2 0
+Type        weapon~
+Extra       hum~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      4
+Cost        0
+Affect      hitroll~ 2 ~
+Affect      intelligence~ 2 ~
+End
+
 #2422
-robe~
-a robe~
+Name        robe~
+Short       a robe~
+Descr
 The robes of a mage lies here.~
-~
-9 0 1025
-0~ 0~ 0~ 0~ 0~
-5 0 0
-E
-robe~
+Type        armor~
+Extra       ~
+Wear        take about~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+ExtraDescr  robe~
 These robes are comfortable and clean.
 ~
+End
+
 #2423
-horseshoes~
-horseshoes~
+Name        horseshoes~
+Short       horseshoes~
+Descr
 Smithy's horseshoes are here.~
-~
-9 1 65
-0~ 0~ 0~ 0~ 0~
-7 0 0
-A
-19 3 0
-A
-14 50 0
+Type        armor~
+Extra       glow~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      7
+Cost        0
+Affect      damroll~ 3 ~
+Affect      move~ 50 ~
+End
+
 #2424
-instrument mandolin~
-a mandolin~
+Name        instrument mandolin~
+Short       a mandolin~
+Descr
 The fine instrument lies here.~
-~
-5 0 8193
-0~ 0~ 0~ 6~ 0~
-5 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 6~ 0~
+Weight      5
+Cost        0
+End
+
 #2425
-cup~
-a cup~
+Name        cup~
+Short       a cup~
+Descr
 The beggar's cup is here.~
-~
-15 0 5
-0~ 0~ 0~ 0~ 0~
-1 0 0
+Type        container~
+Extra       ~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+End
+
 #2426
-gold~
-some gold pieces~
+Name        gold~
+Short       some gold pieces~
+Descr
 Gold pieces.~
-~
-20 0 1
-50~ 0~ 0~ 0~ 0~
-5 0 0
+Type        money~
+Extra       ~
+Wear        take~
+Values      50~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+End
+
 #2427
-bottle~
-the bottle~
+Name        bottle~
+Short       the bottle~
+Descr
 Iolo's bottle sits here.~
-~
-10 0 1
-11~ cure critical~ fire breath~  ~  ~
-1 0 0
+Type        potion~
+Extra       ~
+Wear        take~
+Values      11~ cure critical~ fire breath~  ~  ~
+Weight      1
+Cost        0
+End
+
 #2428
-bow~
-iolo's bow~
+Name        bow~
+Short       iolo's bow~
+Descr
 Iolo's bow stands against a wall.~
-~
-5 3 8193
-0~ 0~ 0~ 6~ 0~
-4 0 0
-A
-2 1 0
-E
-bow iolo~
+Type        weapon~
+Extra       glow hum~
+Wear        take wield~
+Values      0~ 0~ 0~ 6~ 0~
+Weight      4
+Cost        0
+Affect      dexterity~ 1 ~
+ExtraDescr  bow iolo~
 Crafted by the master himself, Iolo, the bow is finely made.  It
 wood gleams, and as you pluck the string the clearest note
 sounds.
 ~
+End
+
 #2429
-chicken~
-a chicken~
+Name        chicken~
+Short       a chicken~
+Descr
 A chicken is lying on the ground.~
-~
-5 1024 8193
-0~ 0~ 0~ 7~ 0~
-6 0 0
-A
-19 3 0
-E
-chicken~
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      6
+Cost        0
+Affect      damroll~ 3 ~
+ExtraDescr  chicken~
 As you look closer you see this isn't a real chicken, it's one of
 those gag rubber chickens. 
 ~
+End
+
 #2430
-infinity bow~
-the Infinity Bow~
+Name        infinity bow~
+Short       the Infinity Bow~
+Descr
 The Infinity Bow floats here.~
-~
-5 1027 8193
-0~ 0~ 0~ 6~ 0~
-3 0 0
-A
-19 5 0
-A
-2 3 0
-E
-infinity bow~
+Type        weapon~
+Extra       glow hum anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 6~ 0~
+Weight      3
+Cost        0
+Affect      damroll~ 5 ~
+Affect      dexterity~ 3 ~
+ExtraDescr  infinity bow~
 The bow is immense, yet light.  You see no string, but as your
 hands touch the bow a string of pure energy appears and the bow
 vibrates with power.
 ~
+End
+
 #2431
-spear~
-a wooden spear~
+Name        spear~
+Short       a wooden spear~
+Descr
 A simple wooden spear lies here.~
-~
-5 0 8193
-0~ 0~ 0~ 2~ 0~
-4 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 2~ 0~
+Weight      4
+Cost        0
+End
+
 #2432
-club~
-a stone club~
+Name        club~
+Short       a stone club~
+Descr
 A stone club is here.~
-~
-5 0 8193
-0~ 0~ 0~ 7~ 0~
-10 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      10
+Cost        0
+End
+
 #2433
-gavel~
-a gavel~
+Name        gavel~
+Short       a gavel~
+Descr
 The Judge's gavel lies here.~
-~
-5 1024 8193
-0~ 0~ 0~ 7~ 0~
-5 0 0
-A
-12 10 0
-A
-4 3 0
-E
-judge gavel~
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      5
+Cost        0
+Affect      mana~ 10 ~
+Affect      wisdom~ 3 ~
+ExtraDescr  judge gavel~
 The Gavel is made of ironwood, and seems to have some of the
 qualities of Justice in it.
 ~
+End
+
 #2434
-staff jannas~
-a staff~
+Name        staff jannas~
+Short       a staff~
+Descr
 Janna's staff lies here.~
-~
-5 1025 8193
-0~ 0~ 0~ 8~ 0~
-7 0 0
-A
-4 1 0
-E
-staff~
+Type        weapon~
+Extra       glow anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      7
+Cost        0
+Affect      wisdom~ 1 ~
+ExtraDescr  staff~
 Janna's staff is strangely shaped, in a double helix form.  As
 you look at the two snake-like pieces of wood, they seem to
 move.
 ~
+End
+
 #2435
-sword~
-a sword~
+Name        sword~
+Short       a sword~
+Descr
 Geoffrey's sword gleams in the sun.~
-~
-5 1025 8193
-0~ 0~ 0~ 3~ 0~
-7 0 0
-A
-1 1 0
-E
-geoffreys sword~
+Type        weapon~
+Extra       glow anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      7
+Cost        0
+Affect      strength~ 1 ~
+ExtraDescr  geoffreys sword~
 Geoffrey's sword is heavy but sharp.  When you touch the jeweled
 hilt, power floods into your arm.~
+End
+
 #2436
-sword~
-a sword~
+Name        sword~
+Short       a sword~
+Descr
 A simple sword is here.~
-~
-5 0 8193
-0~ 0~ 0~ 1~ 0~
-5 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      5
+Cost        0
+End
+
 #2437
-sword bastard~
-a bastard sword~
+Name        sword bastard~
+Short       a bastard sword~
+Descr
 Simon's monstrous bastard sword lies here.~
-~
-5 1025 8193
-0~ 0~ 0~ 3~ 0~
-18 0 0
-A
-17 -10 0
-A
-13 -50 0
-A
-19 5 0
-A
-18 5 0
-A
-2 2 0
-A
-1 3 0
-E
-sword bastard~
+Type        weapon~
+Extra       glow anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      18
+Cost        0
+Affect      ac~ -10 ~
+Affect      hp~ -50 ~
+Affect      damroll~ 5 ~
+Affect      hitroll~ 5 ~
+Affect      dexterity~ 2 ~
+Affect      strength~ 3 ~
+ExtraDescr  sword bastard~
 This is the biggest and best sword you've ever seen.  It's
 balance is perfect and it is sharp and sure.  When you grab it,
 you suddenly feel incredibly strong, and incredibly courageous.
 ~
+End
+
 #2438
-hammer~
-a hammer~
+Name        hammer~
+Short       a hammer~
+Descr
 A tinker's hammer lies here.~
-~
-5 0 8193
-0~ 0~ 0~ 8~ 0~
-12 0 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 8~ 0~
+Weight      12
+Cost        0
+End
+
 #2439
-sword~
-a sword~
+Name        sword~
+Short       a sword~
+Descr
 Julia's hot, glowing sword lies here.~
-~
-5 1025 8193
-0~ 0~ 0~ 1~ 0~
-8 0 0
-A
-18 -2 0
-A
-19 3 0
-A
-23 3 0
-E
-glowing sword hot~
+Type        weapon~
+Extra       glow anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      8
+Cost        0
+Affect      hitroll~ -2 ~
+Affect      damroll~ 3 ~
+Affect      saving-breath~ 3 ~
+ExtraDescr  glowing sword hot~
 Julia was working on this sword before you attacked her.  Though
 it has been removed from the forge for a long time, it seems to
 continue to glow as if Julia's vengeful spirit has taken its
 place.
 ~
+End
+
 #2440
-amulet~
-the Amulet of Love~
+Name        amulet~
+Short       the Amulet of Love~
+Descr
 The most beautiful amulet lies in a pile here.~
-~
-9 3073 5
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-6 1 0
-A
-24 -5 0
-A
-23 -5 0
-A
-22 -5 0
-A
-21 -5 0
-A
-20 -5 0
+Type        armor~
+Extra       glow anti-evil anti-neutral~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      sex~ 1 ~
+Affect      saving-spell~ -5 ~
+Affect      saving-breath~ -5 ~
+Affect      saving-petri~ -5 ~
+Affect      saving-rod~ -5 ~
+Affect      saving-para~ -5 ~
+End
+
 #2441
-sword~
-a shiny sword~
+Name        sword~
+Short       a shiny sword~
+Descr
 A sword lies on the ground.~
-~
-5 0 8193
-0~ 0~ 0~ 1~ 0~
-10 0 0
-A
-18 2 0
+Type        weapon~
+Extra       ~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      10
+Cost        0
+Affect      hitroll~ 2 ~
+End
+
 #2442
-armour~
-shiny armour~
+Name        armour~
+Short       shiny armour~
+Descr
 A paladin's suit of armour lies here.~
-~
-9 0 9
-0~ 0~ 0~ 0~ 0~
-15 0 0
-A
-17 -5 0
-A
-1 1 0
+Type        armor~
+Extra       ~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      15
+Cost        0
+Affect      ac~ -5 ~
+Affect      strength~ 1 ~
+End
+
 #2443
-rapier~
-a rapier~
+Name        rapier~
+Short       a rapier~
+Descr
 Dupre's rapier is here.~
-~
-5 1025 8193
-0~ 0~ 0~ 11~ 0~
-13 0 0
-A
-2 1 0
-A
-1 1 0
+Type        weapon~
+Extra       glow anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 11~ 0~
+Weight      13
+Cost        0
+Affect      dexterity~ 1 ~
+Affect      strength~ 1 ~
+End
+
 #2444
-boomerang~
-a boomerang~
+Name        boomerang~
+Short       a boomerang~
+Descr
 A gargoyle's boomerang is here.~
-~
-5 2 8193
-0~ 0~ 0~ 6~ 0~
-6 0 0
-A
-17 5 0
-A
-18 5 0
-E
-boomerang~
+Type        weapon~
+Extra       hum~
+Wear        take wield~
+Values      0~ 0~ 0~ 6~ 0~
+Weight      6
+Cost        0
+Affect      ac~ 5 ~
+Affect      hitroll~ 5 ~
+ExtraDescr  boomerang~
 Though this seems like your basic boomerang, it is much more.  It
 hums with an unearthly tone, waiting for its power to be
 unleashed.
 ~
+End
+
 #2445
-rusty sword~
-a rusty sword~
+Name        rusty sword~
+Short       a rusty sword~
+Descr
 A corroded, rusty sword is here.~
-~
-5 4224 8193
-0~ 0~ 0~ 1~ 0~
-9 0 0
-A
-9 100 0
+Type        weapon~
+Extra       nodrop noremove~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      9
+Cost        0
+Affect      age~ 100 ~
+End
+
 #2446
-rusty shield~
-a rusty shield~
+Name        rusty shield~
+Short       a rusty shield~
+Descr
 A spiked rusty shield lies here.~
-~
-9 4224 513
-0~ 0~ 0~ 0~ 0~
-5 0 0
-A
-17 -3 0
-A
-19 3 0
+Type        armor~
+Extra       nodrop noremove~
+Wear        take shield~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      5
+Cost        0
+Affect      ac~ -3 ~
+Affect      damroll~ 3 ~
+End
+
 #2447
-cloak~
-a magic cloak~
+Name        cloak~
+Short       a magic cloak~
+Descr
 A magic cloak is here.~
-~
-9 1 5
-0~ 0~ 0~ 0~ 0~
-6 0 0
-A
-13 10 0
-A
-12 10 0
+Type        armor~
+Extra       glow~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        0
+Affect      hp~ 10 ~
+Affect      mana~ 10 ~
+End
+
 #2448
-aura power~
-an aura of power~
+Name        aura power~
+Short       an aura of power~
+Descr
 A bright light of power shoots into the air.~
-~
-9 1 9
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-4 2 0
-A
-17 10 0
+Type        armor~
+Extra       glow~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      wisdom~ 2 ~
+Affect      ac~ 10 ~
+End
+
 #2449
-red helmet face~
-a big red face~
+Name        red helmet face~
+Short       a big red face~
+Descr
 The empty shell of the Guardian head lies here.~
-~
-9 2580 17
-0~ 0~ 0~ 0~ 0~
-10 0 0
-A
-5 2 0
-A
-1 3 0
-A
-14 50 0
-A
-13 50 0
-A
-12 50 0
-E
-face head helmet red~
+Type        armor~
+Extra       dark evil anti-good anti-neutral~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+Affect      constitution~ 2 ~
+Affect      strength~ 3 ~
+Affect      move~ 50 ~
+Affect      hp~ 50 ~
+Affect      mana~ 50 ~
+ExtraDescr  face head helmet red~
 When you slew the evil Guardian, all that was left was his
 corporal form that he inhabited.  That of the big red head.
 ~
+End
+
 #2450
-spiked mace~
-a spiked mace~
+Name        spiked mace~
+Short       a spiked mace~
+Descr
 Waves of corruption come off this evilly enchanted spiked mace.~
-~
-5 2576 8193
-0~ 0~ 0~ 7~ 0~
-5 0 0
-A
-18 5 0
-A
-19 6 0
+Type        weapon~
+Extra       evil anti-good anti-neutral~
+Wear        take wield~
+Values      0~ 0~ 0~ 7~ 0~
+Weight      5
+Cost        0
+Affect      hitroll~ 5 ~
+Affect      damroll~ 6 ~
+End
+
 #2451
-black death armour~
-a completely black armour~
+Name        black death armour~
+Short       a completely black armour~
+Descr
 This completely black armor reeks of death.~
-~
-9 2580 9
-0~ 0~ 0~ 0~ 0~
-9 0 0
-A
-19 5 0
-A
-14 -100 0
-A
-17 5 0
+Type        armor~
+Extra       dark evil anti-good anti-neutral~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      9
+Cost        0
+Affect      damroll~ 5 ~
+Affect      move~ -100 ~
+Affect      ac~ 5 ~
+End
+
 #2452
-evil charm~
-an evil charm~
+Name        evil charm~
+Short       an evil charm~
+Descr
 You see a very oddly shaped charm...  it might be worth it to
 look at its shape.~
-~
-9 2576 5
-0~ 0~ 0~ 0~ 0~
-3 0 0
-A
-6 1 0
-A
-3 1 0
-A
-12 50 0
-E
-shape~
+Type        armor~
+Extra       evil anti-good anti-neutral~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      3
+Cost        0
+Affect      sex~ 1 ~
+Affect      intelligence~ 1 ~
+Affect      mana~ 50 ~
+ExtraDescr  shape~
 The charm looks to be a mummified part of a body.  It is about 3
 inches long, and... NO it could not be....
 ~
+End
+
 #2453
-evil gem~
-an evil gem~
+Name        evil gem~
+Short       an evil gem~
+Descr
 The evil gem pulsates.~
-~
-4 2580 16385
-60~ 1~ 1~ harm~ 0~
-1 0 0
-A
-3 3 0
-A
-12 50 0
+Type        staff~
+Extra       dark evil anti-good anti-neutral~
+Wear        take hold~
+Values      60~ 1~ 1~ harm~ 0~
+Weight      1
+Cost        0
+Affect      intelligence~ 3 ~
+Affect      mana~ 50 ~
+End
+
 #2454
-helmet~
-sentri's helmet~
+Name        helmet~
+Short       sentri's helmet~
+Descr
 Sentri's helmet is here.~
-~
-9 1024 17
-0~ 0~ 0~ 0~ 0~
-30 0 0
-A
-12 15 0
-A
-4 2 0
+Type        armor~
+Extra       anti-evil~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        0
+Affect      mana~ 15 ~
+Affect      wisdom~ 2 ~
+End
+
 #2455
-sleeves~
-sentri's sleeves~
+Name        sleeves~
+Short       sentri's sleeves~
+Descr
 Sentri's sleeves lies here.~
-~
-9 1024 257
-0~ 0~ 0~ 0~ 0~
-40 0 0
-A
-13 15 0
-A
-1 2 0
+Type        armor~
+Extra       anti-evil~
+Wear        take arms~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+Affect      hp~ 15 ~
+Affect      strength~ 2 ~
+End
+
 #2456
-girth~
-sentri's girth~
+Name        girth~
+Short       sentri's girth~
+Descr
 Sentri's girth is here.~
-~
-9 1024 2049
-0~ 0~ 0~ 0~ 0~
-40 0 0
-A
-24 -6 0
-A
-13 15 0
+Type        armor~
+Extra       anti-evil~
+Wear        take waist~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+Affect      saving-spell~ -6 ~
+Affect      hp~ 15 ~
+End
+
 #2457
-two-handed sword~
-sentri's two-handed sword~
+Name        two-handed sword~
+Short       sentri's two-handed sword~
+Descr
 Sentri's two-handed sword is here.~
-~
-5 1024 8193
-0~ 0~ 0~ 3~ 0~
-20 0 0
-A
-19 3 0
-A
-18 3 0
+Type        weapon~
+Extra       anti-evil~
+Wear        take wield~
+Values      0~ 0~ 0~ 3~ 0~
+Weight      20
+Cost        0
+Affect      damroll~ 3 ~
+Affect      hitroll~ 3 ~
+End
+
 #2458
-gloves~
-sentri's gloves~
+Name        gloves~
+Short       sentri's gloves~
+Descr
 Sentri's gloves are here.~
-~
-9 1024 129
-0~ 0~ 0~ 0~ 0~
-40 0 0
-A
-13 15 0
-A
-18 3 0
+Type        armor~
+Extra       anti-evil~
+Wear        take hands~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+Affect      hp~ 15 ~
+Affect      hitroll~ 3 ~
+End
+
 #2459
-boots~
-sentri's boots~
+Name        boots~
+Short       sentri's boots~
+Descr
 Sentri's boots are here.~
-~
-9 1024 65
-0~ 0~ 0~ 0~ 0~
-40 0 0
-A
-13 15 0
-A
-2 1 0
+Type        armor~
+Extra       anti-evil~
+Wear        take feet~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+Affect      hp~ 15 ~
+Affect      dexterity~ 1 ~
+End
+
 #2460
-leggings~
-sentri's leggings~
+Name        leggings~
+Short       sentri's leggings~
+Descr
 Sentri left his leggings here.~
-~
-9 1024 33
-0~ 0~ 0~ 0~ 0~
-40 0 0
-A
-18 3 0
-A
-2 1 0
+Type        armor~
+Extra       anti-evil~
+Wear        take legs~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      40
+Cost        0
+Affect      hitroll~ 3 ~
+Affect      dexterity~ 1 ~
+End
+
 #2461
-armour~
-sentri's armour~
+Name        armour~
+Short       sentri's armour~
+Descr
 Sentri left his armour here.~
-~
-9 1024 9
-0~ 0~ 0~ 0~ 0~
-30 0 0
-A
-13 20 0
-A
-18 3 0
+Type        armor~
+Extra       anti-evil~
+Wear        take body~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      30
+Cost        0
+Affect      hp~ 20 ~
+Affect      hitroll~ 3 ~
+End
+
 #2462
-fellowship medallion~
-a Fellowship medallion~
+Name        fellowship medallion~
+Short       a Fellowship medallion~
+Descr
 A triangular shaped medallion is here.~
-~
-9 0 5
-0~ 0~ 0~ 0~ 0~
-6 0 0
-A
-4 -1 0
-A
-12 10 0
+Type        armor~
+Extra       ~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      6
+Cost        0
+Affect      wisdom~ -1 ~
+Affect      mana~ 10 ~
+End
+
 #2463
-glass sword~
-the Glass Sword~
+Name        glass sword~
+Short       the Glass Sword~
+Descr
 The most amazingly well crafted sword lies here.~
-~
-5 352 8193
-0~ 0~ 0~ 1~ 0~
-4 0 0
-A
-12 10 0
-A
-2 1 0
-A
-1 1 0
-A
-19 5 0
-A
-18 5 0
-E
-glass sword~
+Type        weapon~
+Extra       invis magic bless~
+Wear        take wield~
+Values      0~ 0~ 0~ 1~ 0~
+Weight      4
+Cost        0
+Affect      mana~ 10 ~
+Affect      dexterity~ 1 ~
+Affect      strength~ 1 ~
+Affect      damroll~ 5 ~
+Affect      hitroll~ 5 ~
+ExtraDescr  glass sword~
 Invisible to the naked eye, this sword is the best crafted, as
 you look at it, its amazing shape and size brings tears to your
 eyes.  You know that this is the best weapon that you will ever
 see.
 ~
+End
+
 #2464
-crown~
-british's crown~
+Name        crown~
+Short       british's crown~
+Descr
 A jewel encrusted crown is here.~
-~
-9 1 17
-0~ 0~ 0~ 0~ 0~
-10 0 0
-A
-17 10 0
-A
-12 50 0
-A
-4 2 0
-A
-3 2 0
-E
-british crown~
+Type        armor~
+Extra       glow~
+Wear        take head~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      10
+Cost        0
+Affect      ac~ 10 ~
+Affect      mana~ 50 ~
+Affect      wisdom~ 2 ~
+Affect      intelligence~ 2 ~
+ExtraDescr  british crown~
 Legend has it that this most perfect of crowns has within one of
 its jewels, a perfect ray of sunlight.  He who wears it must
 truly be enlightened.
 ~
+End
+
 #2465
-sceptre~
-british's sceptre~
+Name        sceptre~
+Short       british's sceptre~
+Descr
 A pure gold sceptre is topped with a perfect crystal orb of
 power.~
-~
-9 1 16385
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-19 5 0
-A
-18 5 0
-A
-13 50 0
-A
-5 2 0
-E
-orb~
+Type        armor~
+Extra       glow~
+Wear        take hold~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      damroll~ 5 ~
+Affect      hitroll~ 5 ~
+Affect      hp~ 50 ~
+Affect      constitution~ 2 ~
+ExtraDescr  orb~
 The orb of power is transparent to the point of sightlessness. 
 It holds within a vast store of power.
 ~
-E
-sceptre~
+ExtraDescr  sceptre~
 The second of the crown jewels, this sceptre is amazingly light,
 and amazingly powerful.  It is pure gold, but topped with an orb
 of power.
 ~
+End
+
 #2466
-silver amulet~
-british's amulet~
+Name        silver amulet~
+Short       british's amulet~
+Descr
 A silver amulet lies here.~
-~
-9 1 5
-0~ 0~ 0~ 0~ 0~
-1 0 0
-A
-14 50 0
-A
-13 50 0
-A
-2 2 0
-A
-1 2 0
-E
-amulet~
+Type        armor~
+Extra       glow~
+Wear        take neck~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1
+Cost        0
+Affect      move~ 50 ~
+Affect      hp~ 50 ~
+Affect      dexterity~ 2 ~
+Affect      strength~ 2 ~
+ExtraDescr  amulet~
 British's amulet is in the shape of the great earth serpent.
 ~
+End
+
 #2467
-fountain~
-a fountain~
+Name        fountain~
+Short       a fountain~
+Descr
 A fountain shaped in an Ankh pours water.~
-~
-25 0 0
-0~ 0~ 0~ 0~ 0~
-1000 0 0
+Type        fountain~
+Extra       ~
+Wear        ~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      1000
+Cost        0
+End
+
 #2468
-boat~
-a boat~
+Name        boat~
+Short       a boat~
+Descr
 A boat lies here.~
-~
-22 0 1
-0~ 0~ 0~ 0~ 0~
-20 0 0
+Type        boat~
+Extra       ~
+Wear        take~
+Values      0~ 0~ 0~ 0~ 0~
+Weight      20
+Cost        0
+End
+
 #0
 
 
-#ROOMDATA
+
+#ROOMDB
 #2400
-Entrance to Ultima~
+Name        Entrance to Ultima~
+Descr
 The blue moongate casts an strange blue light upon a huge gate to
 the south.  The gate is open and beyond it you see a simple
 village.  Around the gate there are two pedestals.  On the first
 pedestal, there is a magic scroll.  On the second there is a
 plaque.
 ~
-0 12 0
-E
-plaque~
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 The plaque reads, "The Ultima Area was made for Merc 2.0."
 ~
-E
-magic scroll~
+ExtraDescr  magic scroll~
 An image flew out of the scroll and creates a huge image of a
 face approximately ten feet off the ground.  It says, " Welcome
 to Ultima, where adventure and excitement may be found for all
 people, and all levels.  Each of the separate planes increase in
 level. Have a nice day!"
 ~
-D2
+Door        south~ door~ -1 2401
 There is a huge gate
 ~
 gate~
-1 -1 2401
-D5
+Door        down~ door~ -1 315
 A blue moongate
 ~
 moongate~
-1 -1 315
-S
+End
+
 #2401
-New Magincia Road~
+Name        New Magincia Road~
+Descr
 This is the main road of New Magincia.  To the south the dirt
 path continues to the south and a huge gate to the north.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 2402 10 100
+Reset       E 2417 16 100
+Reset       M 2404 10 100
+Door        north~ door~ -1 2400
 There is a huge gate.
 ~
 gate~
-1 -1 2400
-D2
+Door        south~ ~ -1 2402
 ~
 ~
-0 -1 2402
-S
+End
+
 #2402
-New Magincia Road~
+Name        New Magincia Road~
+Descr
 The path continues to the south and the north.  You see the
 tracks of sheep here.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 2403 5 100
+Reset       E 2418 17 100
+Door        north~ ~ -1 2401
 The path continues to the north.
 ~
 ~
-0 -1 2401
-D2
+Door        south~ ~ -1 2403
 There is a shimmering light to the south.
 ~
 ~
-0 -1 2403
-S
+End
+
 #2403
-The New Magincia Moongate~
+Name        The New Magincia Moongate~
+Descr
 You see another moongate here, exactly between the crossing of
 two paths.
 ~
-0 4 1
-D0
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 2402
 ~
 ~
-0 -1 2402
-D1
+Door        east~ ~ -1 2413
 ~
 ~
-0 -1 2413
-D2
+Door        south~ ~ -1 2404
 ~
 ~
-0 -1 2404
-D3
+Door        west~ ~ -1 2408
 ~
 ~
-0 -1 2408
-D4
+Door        up~ door closed locked pickproof~ 2408 2416
 Through the translucent moongate you think you see... books?~
 moongate~
-39 2408 2416
-S
+End
+
 #2404
-New Magincia Road~
+Name        New Magincia Road~
+Descr
 The path continues to the south and north.  On the east there
 seems to be administrative building.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 2404 10 100
+Door        north~ ~ -1 2403
 There is a shimmering light.
 ~
 ~
-0 -1 2403
-D1
+Door        east~ door closed~ -1 2414
 ~
 door~
-3 -1 2414
-D2
+Door        south~ ~ -1 2405
 ~
 ~
-0 -1 2405
-S
+End
+
 #2405
-New Magincia Road~
+Name        New Magincia Road~
+Descr
 The dirt road path ends here in a grove.  You can continue back
 to the north, and there is an old abandoned house to the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 2404
 ~
 ~
-0 -1 2404
-D3
+Door        west~ door closed~ -1 2410
 ~
 door~
-3 -1 2410
-S
+End
+
 #2406
-Stables~
+Name        Stables~
+Descr
 This is the stables for the shepherd.  There are many fine horses
 here.  You can return to the barn in to the south.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2413 1 100
+Reset       E 2423 8 100
+Door        south~ ~ -1 2407
 The front part of the barn is to the south.
 ~
 ~
-0 -1 2407
-S
+End
+
 #2407
-Barn~
+Name        Barn~
+Descr
 This is your basic barn, with hay and stables to the north.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2402 10 100
+Reset       E 2417 16 100
+Door        north~ ~ -1 2406
 You hear neighing, intermixed with a strange talking.
 ~
 ~
-0 -1 2406
-D2
+Door        south~ door closed~ -1 2408
 ~
 door~
-3 -1 2408
-S
+End
+
 #2408
-Humility Lane~
+Name        Humility Lane~
+Descr
 This is a even smaller dirt path that crosses New Maginica Road. 
 To your north there is a barn, and to the south you see a
 condemned building, though you cannot enter this way.  West is
 blocked off a herd o sheep.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 2400 5 100
+Reset       M 2403 5 100
+Reset       E 2418 17 100
+Reset       M 2404 10 100
+Door        north~ door closed~ -1 2407
 ~
 door~
-3 -1 2407
-D1
+Door        east~ door~ -1 2403
 There is a shimmering light to the east.
 ~
 ~
-1 -1 2403
-S
+End
+
 #2409
-Condemned House~
+Name        Condemned House~
+Descr
 This place is wrecked, the rafters have fell, and light shines
 through a large hole in the roof.  You wonder what kinds of
 animals have taken home here.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 2410
 ~
 ~
-0 -1 2410
-S
+End
+
 #2410
-Condemned House~
+Name        Condemned House~
+Descr
 As you walk into the house, you realize that this house must not
 have been reconstructed yet from the ruin of Old Magincia.  Faint
 intimations of foolish pride still can be seen through the
 wreckage.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 2409
 ~
 ~
-0 -1 2409
-D1
+Door        east~ door closed~ -1 2405
 ~
 door~
-3 -1 2405
-S
+End
+
 #2411
-Attic~
+Name        Attic~
+Descr
 The attic is dark, and you smell some vestiges of bat guano.
 ~
-0 8 1
-D5
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2401 1 100
+Reset       E 2408 -1 100
+Door        down~ door closed~ -1 2412
 The rest of the house is down.
 ~
 trapdoor~
-3 -1 2412
-S
+End
+
 #2412
-House~
+Name        House~
+Descr
 This is a small humble house.  You do not see much here, though
 there are some faint squeaking.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2403 5 100
+Reset       E 2418 17 100
+Door        south~ door closed~ -1 2413
 ~
 door~
-3 -1 2413
-D4
+Door        up~ door closed~ -1 2411
 You see the faint outline of a trapdoor.
 ~
 trapdoor~
-3 -1 2411
-S
+End
+
 #2413
-Humility Lane~
+Name        Humility Lane~
+Descr
 This is a very small path.  It ends here with a fence to the
 east.  To the west is the Moongate, and to the north there is a
 small house.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 2402 10 100
+Reset       E 2417 16 100
+Reset       M 2404 10 100
+Door        north~ door closed~ -1 2412
 ~
 door~
-3 -1 2412
-D3
+Door        west~ door~ -1 2403
 ~
 door~
-1 -1 2403
-S
+End
+
 #2414
-Entrance to the Office~
+Name        Entrance to the Office~
+Descr
 Though this room is small, it acts as a meeting place for Katrina
 and any other person that she has to meet.  You can exit to the
 west or enter an office to the south.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 2415
 ~
 ~
-0 -1 2415
-D3
+Door        west~ door closed~ -1 2404
 ~
 door~
-3 -1 2404
-S
+End
+
 #2415
-Katrina's Office~
+Name        Katrina's Office~
+Descr
 This is office is very sparse... and humble.  There are no
 decorations, in fact the room is bare except for a simple desk
 and its chair.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2405 1 100
+Reset       E 2419 16 100
+Reset       E 2401 17 100
+Door        north~ ~ -1 2414
 ~
 ~
-0 -1 2414
-S
+End
+
 #2416
-Library~
+Name        Library~
+Descr
 This is an amazing HUGE library.  Its musty smell, and the
 collapsed bookshelf to your north, tell you that it also must be
 ancient.  In any case you can't get out of the Library (remember
 the collapsed shelves?) so just pick a book and start reading. 
 The stacks continue to the east and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 These shelves deal with the fascinating letter A.  Among the more
 interesting books are, "Andersen's tips on Area Building."  "The
 Art of Spamming" and  "Axes and You."
 ~
-D1
+Door        east~ ~ -1 2417
 ~
 ~
-0 -1 2417
-D3
+Door        west~ ~ -1 2436
 ~
 ~
-0 -1 2436
-S
+End
+
 #2417
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 These books are about the letters B and C.  Some titles are:
 'Boom Boxes: How large will they become?' and 'Cutlery: The fine
 points of Killing' and of course the classic, 'Casret's Titles.'
 ~
-D1
+Door        east~ ~ -1 2418
 ~
 ~
-0 -1 2418
-D3
+Door        west~ ~ -1 2416
 ~
 ~
-0 -1 2416
-S
+End
+
 #2418
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 This shelf has books dealing with the 'D's'.  'Dracula, Blood
 Sucker or Beavis fan?' seems to be the most interesting book
 here.
 ~
-D1
+Reset       M 2410 1 100
+Reset       E 2404 17 100
+Door        east~ ~ -1 2419
 ~
 ~
-0 -1 2419
-D3
+Door        west~ ~ -1 2417
 ~
 ~
-0 -1 2417
-S
+End
+
 #2419
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and south.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 The 'E' section is here.  One book, "Howard Stern" doesn't seem
 to belong here.
 ~
-D2
+Door        south~ ~ -1 2420
 ~
 ~
-0 -1 2420
-D3
+Door        west~ ~ -1 2418
 ~
 ~
-0 -1 2418
-S
+End
+
 #2420
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the north and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 You find 'Fax Fun' and 'Farts: How to Blame it on the Dog.' in
 this section of the library.
 ~
-D0
+Door        north~ ~ -1 2419
 ~
 ~
-0 -1 2419
-D3
+Door        west~ ~ -1 2421
 You see a big desk and a man.
 ~
 ~
-0 -1 2421
-S
+End
+
 #2421
-Library Office~
+Name        Library Office~
+Descr
 A big desk dominates this room.  All books must go through this
 office before getting taken out.  Through this office, and
 through this man.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2409 1 100
+Reset       E 2421 16 100
+Door        east~ ~ -1 2420
 ~
 ~
-0 -1 2420
-D3
+Door        west~ ~ -1 2422
 ~
 ~
-0 -1 2422
-S
+End
+
 #2422
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the west and east.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 The books here start with 'G'.  'Grating Cheese with Julia
 Childs' and 'Garamond: What kind of font is this anyway?' lie
 here.
 ~
-D1
+Door        east~ ~ -1 2421
 You see a huge desk and man.
 ~
 ~
-0 -1 2421
-D3
+Door        west~ ~ -1 2423
 ~
 ~
-0 -1 2423
-S
+End
+
 #2423
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and south .
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 The books here comprise 'H' and 'I'.  'Hiya: The Women who Use
 it, and the Man who Use the Women'  and 'Icaza Loves Ya' are here
 in a gaudy and annoying covers.
 ~
-D1
+Door        east~ ~ -1 2422
 ~
 ~
-0 -1 2422
-D2
+Door        south~ ~ -1 2424
 ~
 ~
-0 -1 2424
-S
+End
+
 #2424
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the north and east.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 These books start with the letter 'J'.  'Jokey Smurf's Greatest
 Explosions' and 'The Judge take on New York' seem to be the most
 popular books.
 ~
-D0
+Reset       M 2406 10 100
+Door        north~ ~ -1 2423
 ~
 ~
-0 -1 2423
-D1
+Door        east~ ~ -1 2425
 ~
 ~
-0 -1 2425
-S
+End
+
 #2425
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the west and east.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 Hmmm this is the 'K' section, and 'Kicking Vs. Bashing' is here.
 ~
-D1
+Door        east~ ~ -1 2426
 ~
 ~
-0 -1 2426
-D3
+Door        west~ ~ -1 2424
 ~
 ~
-0 -1 2424
-S
+End
+
 #2426
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the west and east.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 A book titled, 'Lick me, Lick you'  is here.
 ~
-D1
+Door        east~ ~ -1 2427
 ~
 ~
-0 -1 2427
-D3
+Door        west~ ~ -1 2425
 ~
 ~
-0 -1 2425
-S
+End
+
 #2427
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the west and south.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 'Mahatma Teachs French' and 'MC Echser: The Rap Star and
 Paradoxical Artist'.
 ~
-D2
+Door        south~ ~ -1 2429
 ~
 ~
-0 -1 2429
-D3
+Door        west~ ~ -1 2426
 ~
 ~
-0 -1 2426
-S
+End
+
 #2428
-The Library Moongate~
+Name        The Library Moongate~
+Descr
 A blue moongate is here, lighting up the otherwise featureless
 room.
 ~
-0 12 0
-D0
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed~ -1 2432
 ~
 shelf~
-3 -1 2432
-D4
+Door        up~ door closed locked pickproof~ 2409 2437
 Through the moongate, there is a party.
 ~
 moongate~
-39 2409 2437
-S
+End
+
 #2429
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the north and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 Hmmm... This is the 'N' section... but 'Nothing' seems to be
 here.
 ~
-D0
+Door        north~ ~ -1 2427
 ~
 ~
-0 -1 2427
-D3
+Door        west~ ~ -1 2430
 ~
 ~
-0 -1 2430
-S
+End
+
 #2430
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 This is the 'OP' section.  You hear moaning behind those stacks,
 yup there there on the floor there is another P.
 ~
-D1
+Reset       M 2408 10 100
+Reset       E 2422 5 100
+Door        east~ ~ -1 2429
 ~
 ~
-0 -1 2429
-D3
+Door        west~ ~ -1 2431
 ~
 ~
-0 -1 2431
-S
+End
+
 #2431
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and west.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 'Quai Mackdaddy Monk and 'Rhinoplasty, or The Inebriation of Wild
 Animals' are here.
 ~
-D1
+Door        east~ ~ -1 2430
 ~
 ~
-0 -1 2430
-D3
+Door        west~ ~ -1 2432
 ~
 ~
-0 -1 2432
-S
+End
+
 #2432
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and west..
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 'Secret Door: The Shelf' is on the shelf.
 ~
-D1
+Door        east~ ~ -1 2431
 ~
 ~
-0 -1 2431
-D2
+Door        south~ door closed~ -1 2428
 Hinges on a shelf?
 ~
 Shelf~
-3 -1 2428
-D3
+Door        west~ ~ -1 2433
 ~
 ~
-0 -1 2433
-S
+End
+
 #2433
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the east and north.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 'Textile Farming' and 'Tempting Miss. Daisy' is here.
 ~
-D0
+Door        north~ ~ -1 2434
 ~
 ~
-0 -1 2434
-D1
+Door        east~ ~ -1 2432
 ~
 ~
-0 -1 2432
-S
+End
+
 #2434
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the south and north.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 'Ultima: The Building of an Area' and 'Vulva Void' are here.
 ~
-D0
+Door        north~ ~ -1 2435
 There is an odd chattering to the north.
 ~
 ~
-0 -1 2435
-D2
+Door        south~ ~ -1 2433
 ~
 ~
-0 -1 2433
-S
+End
+
 #2435
-Web~
+Name        Web~
+Descr
 There is a Huge Web sitting here, stretching from shelf to shelf.
 And stupid you wandered into it.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2407 1 100
+Reset       E 2409 -1 100
+Reset       E 2420 -1 100
+Door        north~ ~ -1 2436
 ~
 ~
-0 -1 2436
-D2
+Door        south~ ~ -1 2434
 ~
 ~
-0 -1 2434
-S
+End
+
 #2436
-Library~
+Name        Library~
+Descr
 The Library continues here, with exits to the north and east.
 ~
-0 8 0
-E
-book books shelves~
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+ExtraDescr  book books shelves~
 "Yaz: Grooming Tips" is here.
 ~
-D1
+Door        east~ ~ -1 2416
 ~
 ~
-0 -1 2416
-D2
+Door        south~ ~ -1 2435
 There is a strange chattering noise to the south.
 ~
 ~
-0 -1 2435
-S
+End
+
 #2437
-The Center of the Tavern~
+Name        The Center of the Tavern~
+Descr
 The moongate has opened inside of a huge party.  There are bards
 and other townsman.  This must be Britain.  There are people
 everywhere carrying their drinks and singing everywhere.  The
 party continues to the north, east south and west.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2415 3 100
+Reset       E 2425 17 100
+Reset       P 2426 2425 100
+Door        north~ ~ -1 2439
 ~
 ~
-0 -1 2439
-D1
+Door        east~ ~ -1 2442
 ~
 ~
-0 -1 2442
-D2
+Door        south~ ~ -1 2444
 ~
 ~
-0 -1 2444
-D3
+Door        west~ ~ -1 2441
 ~
 ~
-0 -1 2441
-S
+End
+
 #2438
-The Northwest Corner of the Tavern~
+Name        The Northwest Corner of the Tavern~
+Descr
 This is where the tavern entrance would be if it wasn't packed
 with humans trying to get in or get out.  There is no chance of
 you leaving the tavern tonight.you can return to the part to the
 east and the south.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2439
 ~
 ~
-0 -1 2439
-D2
+Door        south~ ~ -1 2441
 ~
 ~
-0 -1 2441
-S
+End
+
 #2439
-The North Wall of the Tavern~
+Name        The North Wall of the Tavern~
+Descr
 Party-goers mingle here in front of the bar.  They seem to be
 having a great time and wish for you to join them.  You can
 continue on to the south, east or north.
 ~
-0 8 0
-D1
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2418 10 100
+Reset       M 2430 1 100
+Door        east~ ~ -1 2440
 ~
 ~
-0 -1 2440
-D2
+Door        south~ ~ -1 2437
 ~
 ~
-0 -1 2437
-D3
+Door        west~ ~ -1 2438
 ~
 ~
-0 -1 2438
-S
+End
+
 #2440
-The Northeast Corner of the Tavern~
+Name        The Northeast Corner of the Tavern~
+Descr
 Along this east wall of the tavern are all the tables for the
 meals.  Outside the windows you see cobblestone streets.
 ~
-0 8 0
-D2
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ -1 2442
 ~
 ~
-0 -1 2442
-D3
+Door        west~ ~ -1 2439
 ~
 ~
-0 -1 2439
-S
+End
+
 #2441
-The West Wall of the Tavern~
+Name        The West Wall of the Tavern~
+Descr
 The band has set up here, against the west wall.  Many people
 dance to the music.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2438
 ~
 ~
-0 -1 2438
-D1
+Door        east~ ~ -1 2437
 ~
 ~
-0 -1 2437
-D2
+Door        south~ ~ -1 2443
 ~
 ~
-0 -1 2443
-S
+End
+
 #2442
-The East Wall of the Tavern~
+Name        The East Wall of the Tavern~
+Descr
 The tables are set up here, you see many couples and group just
 sitting and talking.  They have drinks on their tables and smiles
 on there face.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2440
 ~
 ~
-0 -1 2440
-D2
+Door        south~ ~ -1 2445
 ~
 ~
-0 -1 2445
-D3
+Door        west~ ~ -1 2437
 ~
 ~
-0 -1 2437
-S
+End
+
 #2443
-The Southwest Corner of the Tavern~
+Name        The Southwest Corner of the Tavern~
+Descr
 There are many people here, but even through their scent, there
 seems to be a slight stench.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2441
 ~
 ~
-0 -1 2441
-D1
+Door        east~ ~ -1 2444
 ~
 ~
-0 -1 2444
-D5
+Door        down~ door closed~ -1 2446
 ~
 cellar~
-3 -1 2446
-S
+End
+
 #2444
-The South Wall of the Tavern~
+Name        The South Wall of the Tavern~
+Descr
 The South Wall windows overlook the sea.  There seems to be a
 island far to the south, and boats just floating in the ports. 
 The party-goers just wander around here.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2414 5 100
+Reset       E 2424 16 100
+Door        north~ ~ -1 2437
 ~
 ~
-0 -1 2437
-D1
+Door        east~ ~ -1 2445
 ~
 ~
-0 -1 2445
-D3
+Door        west~ ~ -1 2443
 ~
 ~
-0 -1 2443
-S
+End
+
 #2445
-The Southeast Corner of the Tavern~
+Name        The Southeast Corner of the Tavern~
+Descr
 There are tables here that continue to the north.  The
 party-goers just mingle and hit on each other.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2419 1 100
+Reset       E 2430 16 100
+Door        north~ ~ -1 2442
 ~
 ~
-0 -1 2442
-D3
+Door        west~ ~ -1 2444
 ~
 ~
-0 -1 2444
-S
+End
+
 #2446
-Cellar~
+Name        Cellar~
+Descr
 The stairway seems to lie down into the cellar.  It stinks of
 wine, beer and snakes here.
 ~
-0 12 0
-D1
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2447
 ~
 ~
-0 -1 2447
-D2
+Door        south~ ~ -1 2449
 ~
 ~
-0 -1 2449
-D4
+Door        up~ door closed~ -1 2443
 ~
 stairs~
-3 -1 2443
-S
+End
+
 #2447
-Cellar~
+Name        Cellar~
+Descr
 There are huge wine casks against this wall.  Most seem intact
 though one is eaten through, and the inside seems to have a gooey
 green substance.
 ~
-0 9 0
-D1
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2448
 There is the sound of singing in that corner.
 ~
 ~
-0 -1 2448
-D2
+Door        south~ ~ -1 2450
 There is a shimmering light to the south.
 ~
 ~
-0 -1 2450
-D3
+Door        west~ ~ -1 2446
 ~
 ~
-0 -1 2446
-S
+End
+
 #2448
-Cellar~
+Name        Cellar~
+Descr
 There is a chair in corner.  And plenty of empty bottles.  There
 is also the evidence of the green substance here as well.
 ~
-0 9 0
-D2
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2416 1 100
+Reset       E 2427 -1 100
+Reset       E 2428 16 100
+Reset       E 2400 17 100
+Door        south~ ~ -1 2451
 ~
 ~
-0 -1 2451
-D3
+Door        west~ ~ -1 2447
 ~
 ~
-0 -1 2447
-S
+End
+
 #2449
-Cellar~
+Name        Cellar~
+Descr
 There is a slime trail here.  There seems to be much broken glass
 down here.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2446
 ~
 ~
-0 -1 2446
-D1
+Door        east~ ~ -1 2450
 ~
 ~
-0 -1 2450
-D2
+Door        south~ ~ -1 2452
 ~
 ~
-0 -1 2452
-S
+End
+
 #2450
-The Britain Moongate~
+Name        The Britain Moongate~
+Descr
 The place around the moongate, as always, seems clean and neat. 
 The blue light of the moongate has become a comforting sight to
 you.
 ~
-0 12 0
-D0
+Flags       no_mob indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2447
 ~
 ~
-0 -1 2447
-D1
+Door        east~ ~ -1 2451
 ~
 ~
-0 -1 2451
-D2
+Door        south~ ~ -1 2453
 ~
 ~
-0 -1 2453
-D3
+Door        west~ ~ -1 2449
 ~
 ~
-0 -1 2449
-D4
+Door        up~ door closed locked pickproof~ 2410 2456
 Through the moongate there is a large courtroom.~
 moongate~
-39 2410 2456
-S
+End
+
 #2451
-Cellar~
+Name        Cellar~
+Descr
 The walls are leaking here.  You here the bang of feet and the
 shifting of chairs from above.
 ~
-0 8 0
-D0
+Flags       indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2448
 ~
 ~
-0 -1 2448
-D2
+Door        south~ ~ -1 2454
 ~
 ~
-0 -1 2454
-D3
+Door        west~ ~ -1 2450
 ~
 ~
-0 -1 2450
-S
+End
+
 #2452
-Cellar~
+Name        Cellar~
+Descr
 The damp walls of this corner bother you... not because it's
 damp.  Because its not water!
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2411 20 100
+Door        north~ ~ -1 2449
 ~
 ~
-0 -1 2449
-D1
+Door        east~ ~ -1 2453
 ~
 ~
-0 -1 2453
-S
+End
+
 #2453
-Cellar~
+Name        Cellar~
+Descr
 The smells and ventilation of this cellar are overpowering.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2450
 There is a shimmering light.
 ~
 ~
-0 -1 2450
-D1
+Door        east~ ~ -1 2454
 ~
 ~
-0 -1 2454
-D3
+Door        west~ ~ -1 2452
 ~
 ~
-0 -1 2452
-S
+End
+
 #2454
-Cellar~
+Name        Cellar~
+Descr
 This corner of the cellar is the ugliest.  From the smell in the
 corner it is obvious where the Drunks clear their guts.
 ~
-0 9 0
-D0
+Flags       dark indoors~
+Sector      inside~
+Regen       100 100
+Reset       M 2412 1 100
+Reset       E 2410 -1 100
+Door        north~ ~ -1 2451
 ~
 ~
-0 -1 2451
-D3
+Door        west~ ~ -1 2453
 ~
 ~
-0 -1 2453
-S
+End
+
 #2455
-The Yew Entrance~
+Name        The Yew Entrance~
+Descr
 To the south you see a large courthouse and a small part of Yew. 
 Most of Yew is secretly hidden in the branches of the forest. 
 To the north you see one of the most dangerous parts of this same
 forest.
 ~
-0 4 3
-D0
+Flags       no_mob~
+Sector      forest~
+Regen       100 100
+Door        north~ ~ -1 2470
 ~
 ~
-0 -1 2470
-D2
+Door        south~ ~ -1 2456
 ~
 ~
-0 -1 2456
-S
+End
+
 #2456
-In Front of the Courthouse~
+Name        In Front of the Courthouse~
+Descr
 The immense Courthouse faces this street.  All of Brittainia's
 crime goes here to be tried.  There is little crime anymore
 though, after the great enlightenment.  There is also a pub to
 the west.
 ~
-0 0 1
-D0
+Flags       ~
+Sector      city~
+Regen       100 100
+Reset       M 2429 5 100
+Door        north~ ~ -1 2455
 ~
 ~
-0 -1 2455
-D1
+Door        east~ ~ -1 2457
 ~
 ~
-0 -1 2457
-D2
+Door        south~ door~ -1 2463
 The courthouse doors lie this way.
 ~
 doors~
-1 -1 2463
-D3
+Door        west~ ~ -1 2462
 ~
 ~
-0 -1 2462
-S
+End
+
 #2457
-Justice Row~
+Name        Justice Row~
+Descr
 The cobblestone road leads into a clearing of the woods to the
 east and to a pub to the west.  To your south you see a great
 Courthouse, but its entrance is on the east.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 2458
 ~
 ~
-0 -1 2458
-D3
+Door        west~ ~ -1 2456
 ~
 ~
-0 -1 2456
-S
+End
+
 #2458
-Under the Stone Arch~
+Name        Under the Stone Arch~
+Descr
 You stand under a large stone arch.  To your east there is a
 bonfire.  Around the bonfire, are these same stone arches; they
 form a circle around the clearing.
 ~
-0 0 3
-D1
+Flags       ~
+Sector      forest~
+Regen       100 100
+Door        east~ ~ -1 2459
 There are chanting druids and a large bonfire to the east.
 ~
 ~
-0 -1 2459
-D3
+Door        west~ ~ -1 2457
 ~
 ~
-0 -1 2457
-S
+End
+
 #2459
-Bonfire~
+Name        Bonfire~
+Descr
 The heat from the bonfire warms you even at the fringe of the
 ceremony.  Here, Druids form a circle and chant the sacred
 mantra.
 ~
-0 0 3
-D3
+Flags       ~
+Sector      forest~
+Regen       100 100
+Reset       M 2424 10 100
+Door        west~ ~ -1 2458
 ~
 ~
-0 -1 2458
-S
+End
+
 #2460
-Pub~
+Name        Pub~
+Descr
 You are in a happy little pub.  There are many little tables and
 citizens are talking here.
 ~
-0 8 1
-D1
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2431 1 100
+Door        east~ ~ -1 2461
 ~
 ~
-0 -1 2461
-S
+End
+
 #2461
-Justice Row~
+Name        Justice Row~
+Descr
 There are some citizens strolling on the road.  There is a Pub to
 the west.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 2462
 ~
 ~
-0 -1 2462
-D3
+Door        west~ ~ -1 2460
 ~
 ~
-0 -1 2460
-S
+End
+
 #2462
-Justice Row~
+Name        Justice Row~
+Descr
 Perhaps the only real street in a city where all the citizens
 are nestled in trees, it leads east to west.
 ~
-0 0 1
-D1
+Flags       ~
+Sector      city~
+Regen       100 100
+Door        east~ ~ -1 2456
 ~
 ~
-0 -1 2456
-D3
+Door        west~ ~ -1 2461
 ~
 ~
-0 -1 2461
-S
+End
+
 #2463
-The Audience Room~
+Name        The Audience Room~
+Descr
 This is where people would sit to see the cases and wait for the
 Judge.  To the North you see the actual Bench.  All around are
 the pew-like seats.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ door~ -1 2456
 ~
 doors~
-1 -1 2456
-D2
+Door        south~ ~ -1 2464
 ~
 ~
-0 -1 2464
-S
+End
+
 #2464
-The Bench~
+Name        The Bench~
+Descr
 The Bench is one of the most imposing things you've seen.  You
 have to crane your neck to even glimpse at the Judge.  There are
 no lawyers, there is only justice.  To the east and west there
 are the prisons.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2425 1 100
+Reset       E 2433 16 100
+Door        north~ ~ -1 2463
 ~
 ~
-0 -1 2463
-D1
+Door        east~ door closed~ -1 2465
 ~
 door~
-3 -1 2465
-D3
+Door        west~ door closed~ -1 2466
 ~
 door~
-3 -1 2466
-S
+End
+
 #2465
-Prison~
+Name        Prison~
+Descr
 To the north you see a cell.  Locks are unnecessary, because the
 prisoners are kept in their cells by magic.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 2468
 The prisoner looks at you and growls.
 ~
 ~
-0 -1 2468
-D3
+Door        west~ door closed~ -1 2464
 ~
 door~
-3 -1 2464
-S
+End
+
 #2466
-Prison~
+Name        Prison~
+Descr
 To the north you see a cell.  Locks are unnecessary, because the
 prisoners are kept in their cells by magic.
 ~
-0 8 1
-D0
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Door        north~ ~ -1 2467
 The prisoner is a small man.
 ~
 ~
-0 -1 2467
-D1
+Door        east~ door closed~ -1 2464
 ~
 door~
-3 -1 2464
-S
+End
+
 #2467
-Prison Cell~
+Name        Prison Cell~
+Descr
 This is a cell where they keep dangerous prisoners.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2427 1 100
+Reset       E 2411 -1 100
+Door        south~ ~ -1 2466
 ~
 ~
-0 -1 2466
-S
+End
+
 #2468
-Prison Cell~
+Name        Prison Cell~
+Descr
 This is a cell where they keep dangerous prisoners.
 ~
-0 8 1
-D2
+Flags       indoors~
+Sector      city~
+Regen       100 100
+Reset       M 2428 1 100
+Door        south~ ~ -1 2465
 ~
 ~
-0 -1 2465
-S
+End
+
 #2469
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2478
 You see trees.
 ~
 ~
-0 -1 2478
-D1
+Door        east~ ~ -1 2470
 You see trees.
 ~
 ~
-0 -1 2470
-D2
+Door        south~ ~ -1 2479
 You see trees.
 ~
 ~
-0 -1 2479
-D3
+Door        west~ ~ -1 2473
 You see trees.
 ~
 ~
-0 -1 2473
-S
+End
+
 #2470
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 2426 1 100
+Reset       E 2402 17 100
+Reset       E 2434 16 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2477
 You see trees.
 ~
 ~
-0 -1 2477
-D1
+Door        east~ ~ -1 2471
 You see trees.
 ~
 ~
-0 -1 2471
-D2
+Door        south~ ~ -1 2455
 You see the entrance to Yew.
 ~
 ~
-0 -1 2455
-D3
+Door        west~ ~ -1 2469
 You see trees.
 ~
 ~
-0 -1 2469
-S
+End
+
 #2471
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2476
 You see trees.
 ~
 ~
-0 -1 2476
-D1
+Door        east~ ~ -1 2472
 You see trees.
 ~
 ~
-0 -1 2472
-D2
+Door        south~ ~ -1 2481
 You see trees.
 ~
 ~
-0 -1 2481
-D3
+Door        west~ ~ -1 2470
 You see trees.
 ~
 ~
-0 -1 2470
-S
+End
+
 #2472
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2475
 You see trees.
 ~
 ~
-0 -1 2475
-D1
+Door        east~ ~ -1 2473
 You see trees.
 ~
 ~
-0 -1 2473
-D2
+Door        south~ ~ -1 2482
 You see trees.
 ~
 ~
-0 -1 2482
-D3
+Door        west~ ~ -1 2471
 You see trees.
 ~
 ~
-0 -1 2471
-S
+End
+
 #2473
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 2421 20 100
+Reset       E 2432 16 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2474
 You see trees.
 ~
 ~
-0 -1 2474
-D1
+Door        east~ ~ -1 2469
 You see trees.
 ~
 ~
-0 -1 2469
-D2
+Door        south~ ~ -1 2483
 You see trees.
 ~
 ~
-0 -1 2483
-D3
+Door        west~ ~ -1 2472
 You see trees.
 ~
 ~
-0 -1 2472
-S
+End
+
 #2474
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2483
 You see trees.
 ~
 ~
-0 -1 2483
-D1
+Door        east~ ~ -1 2478
 You see trees.
 ~
 ~
-0 -1 2478
-D2
+Door        south~ ~ -1 2473
 You see trees.
 ~
 ~
-0 -1 2473
-D3
+Door        west~ ~ -1 2475
 You see trees.
 ~
 ~
-0 -1 2475
-S
+End
+
 #2475
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2482
 You see trees.
 ~
 ~
-0 -1 2482
-D1
+Door        east~ ~ -1 2474
 You see trees.
 ~
 ~
-0 -1 2474
-D2
+Door        south~ ~ -1 2472
 You see trees.
 ~
 ~
-0 -1 2472
-D3
+Door        west~ ~ -1 2476
 You see trees.
 ~
 ~
-0 -1 2476
-S
+End
+
 #2476
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2481
 You see trees.
 ~
 ~
-0 -1 2481
-D1
+Door        east~ ~ -1 2475
 You see trees.
 ~
 ~
-0 -1 2475
-D2
+Door        south~ ~ -1 2471
 You see trees.
 ~
 ~
-0 -1 2471
-D3
+Door        west~ ~ -1 2477
 You see trees.
 ~
 ~
-0 -1 2477
-S
+End
+
 #2477
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2480
 You see trees.
 ~
 ~
-0 -1 2480
-D1
+Door        east~ ~ -1 2476
 You see trees.
 ~
 ~
-0 -1 2476
-D2
+Door        south~ ~ -1 2470
 You see trees.
 ~
 ~
-0 -1 2470
-D3
+Door        west~ ~ -1 2478
 You see trees.
 ~
 ~
-0 -1 2478
-S
+End
+
 #2478
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 2423 10 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2479
 You see trees.
 ~
 ~
-0 -1 2479
-D1
+Door        east~ ~ -1 2477
 You see trees.
 ~
 ~
-0 -1 2477
-D2
+Door        south~ ~ -1 2469
 You see trees.
 ~
 ~
-0 -1 2469
-D3
+Door        west~ ~ -1 2474
 You see trees.
 ~
 ~
-0 -1 2474
-S
+End
+
 #2479
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2469
 You see trees.
 ~
 ~
-0 -1 2469
-D1
+Door        east~ ~ -1 2480
 You see trees.
 ~
 ~
-0 -1 2480
-D2
+Door        south~ ~ -1 2478
 You see trees.
 ~
 ~
-0 -1 2478
-D3
+Door        west~ ~ -1 2483
 You see trees.
 ~
 ~
-0 -1 2483
-S
+End
+
 #2480
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 2420 5 100
+Reset       E 2431 16 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2484
 There is a shimmering light.
 ~
 ~
-0 -1 2484
-D1
+Door        east~ ~ -1 2481
 You see trees.
 ~
 ~
-0 -1 2481
-D2
+Door        south~ ~ -1 2477
 You see trees.
 ~
 ~
-0 -1 2477
-D3
+Door        west~ ~ -1 2479
 You see trees.
 ~
 ~
-0 -1 2479
-S
+End
+
 #2481
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       M 2422 10 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2471
 You see trees.
 ~
 ~
-0 -1 2471
-D1
+Door        east~ ~ -1 2482
 You see trees.
 ~
 ~
-0 -1 2482
-D2
+Door        south~ ~ -1 2476
 You see trees.
 ~
 ~
-0 -1 2476
-D3
+Door        west~ ~ -1 2480
 You see trees.
 ~
 ~
-0 -1 2480
-S
+End
+
 #2482
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2472
 You see trees.
 ~
 ~
-0 -1 2472
-D1
+Door        east~ ~ -1 2483
 You see trees.
 ~
 ~
-0 -1 2483
-D2
+Door        south~ ~ -1 2475
 You see trees.
 ~
 ~
-0 -1 2475
-D3
+Door        west~ ~ -1 2481
 You see trees.
 ~
 ~
-0 -1 2481
-S
+End
+
 #2483
-Yew Forest~
+Name        Yew Forest~
+Descr
 This is the Yew Forest.  The trees look all the same.  Consequently
 you are lost.
 ~
-0 1 3
-D0
+Flags       dark~
+Sector      forest~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2473
 You see trees.
 ~
 ~
-0 -1 2473
-D1
+Door        east~ ~ -1 2479
 You see trees.
 ~
 ~
-0 -1 2479
-D2
+Door        south~ ~ -1 2474
 You see trees.
 ~
 ~
-0 -1 2474
-D3
+Door        west~ ~ -1 2482
 You see trees.
 ~
 ~
-0 -1 2482
-S
+End
+
 #2484
-The Yew Moongate~
+Name        The Yew Moongate~
+Descr
 There is your way out, through the blue moongate.
 ~
-0 4 3
-D2
+Flags       no_mob~
+Sector      forest~
+Regen       100 100
+Door        south~ ~ -1 2480
 You see trees.
 ~
 ~
-0 -1 2480
-D4
+Door        up~ door closed locked pickproof~ 2411 2485
 Through the moongate you see a cave opening.
 ~
 moongate~
-39 2411 2485
-S
+End
+
 #2485
-Dungeon Entrance~
+Name        Dungeon Entrance~
+Descr
 There is a huge maw of an entrance to one of the terrible
 Dungeons.  After the Age of Enlightenment only 8 sources of evil
 still survive in the world.  These are the eight Dungeons.  Now
 they are being cleaned out.
 ~
-0 4 3
-D4
+Flags       no_mob~
+Sector      forest~
+Regen       100 100
+Door        up~ ~ -1 2487
 A cold draft pours out of the dungeon.
 ~
 ~
-0 -1 2487
-D5
+Door        down~ ~ -1 2484
 ~
 ~
-0 -1 2484
-S
+End
+
 #2486
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2435 10 100
+Reset       E 2436 16 100
+Door        north~ ~ -1 2490
 ~
 ~
-0 -1 2490
-S
+End
+
 #2487
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2436 1 100
+Reset       E 2406 17 100
+Reset       E 2435 16 100
+Door        north~ ~ -1 2491
 ~
 ~
-0 -1 2491
-D5
+Door        down~ ~ -1 2485
 ~
 ~
-0 -1 2485
-S
+End
+
 #2488
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2432 10 100
+Reset       M 2437 1 100
+Reset       E 2437 16 100
+Door        north~ ~ -1 2492
 ~
 ~
-0 -1 2492
-D1
+Door        east~ ~ -1 2489
 ~
 ~
-0 -1 2489
-S
+End
+
 #2489
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D3
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ -1 2488
 ~
 ~
-0 -1 2488
-S
+End
+
 #2490
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2433 10 100
+Door        north~ ~ -1 2494
 ~
 ~
-0 -1 2494
-D1
+Door        east~ ~ -1 2491
 ~
 ~
-0 -1 2491
-D2
+Door        south~ ~ -1 2486
 ~
 ~
-0 -1 2486
-S
+End
+
 #2491
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2495
 ~
 ~
-0 -1 2495
-D1
+Door        east~ ~ -1 2492
 ~
 ~
-0 -1 2492
-D2
+Door        south~ ~ -1 2487
 ~
 ~
-0 -1 2487
-D3
+Door        west~ ~ -1 2490
 ~
 ~
-0 -1 2490
-S
+End
+
 #2492
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2434 1 100
+Reset       E 2412 -1 100
+Door        east~ ~ -1 2493
 ~
 ~
-0 -1 2493
-D2
+Door        south~ ~ -1 2488
 ~
 ~
-0 -1 2488
-D3
+Door        west~ ~ -1 2491
 ~
 ~
-0 -1 2491
-S
+End
+
 #2493
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2497
 ~
 ~
-0 -1 2497
-D3
+Door        west~ ~ -1 2492
 ~
 ~
-0 -1 2492
-S
+End
+
 #2494
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2498
 ~
 ~
-0 -1 2498
-D2
+Door        south~ ~ -1 2490
 ~
 ~
-0 -1 2490
-S
+End
+
 #2495
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2499
 ~
 ~
-0 -1 2499
-D1
+Door        east~ ~ -1 2496
 ~
 ~
-0 -1 2496
-D2
+Door        south~ ~ -1 2491
 ~
 ~
-0 -1 2491
-S
+End
+
 #2496
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2500
 ~
 ~
-0 -1 2500
-D3
+Door        west~ ~ -1 2495
 ~
 ~
-0 -1 2495
-S
+End
+
 #2497
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D2
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ -1 2493
 ~
 ~
-0 -1 2493
-S
+End
+
 #2498
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D2
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ -1 2494
 ~
 ~
-0 -1 2494
-S
+End
+
 #2499
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D2
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        south~ ~ -1 2495
 ~
 ~
-0 -1 2495
-S
+End
+
 #2500
-The Dungeon~
+Name        The Dungeon~
+Descr
 These dungeon rooms seem all the same.  There are signs of recent
 battling everywhere.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2501
 There is a shimmering light.
 ~
 ~
-0 -1 2501
-D2
+Door        south~ ~ -1 2496
 ~
 ~
-0 -1 2496
-S
+End
+
 #2501
-The Dungeon Moongate~
+Name        The Dungeon Moongate~
+Descr
 You feel safe within the blue glow of the moongate.
 ~
-0 4 0
-D3
+Flags       no_mob~
+Sector      inside~
+Regen       100 100
+Door        west~ ~ -1 2500
 ~
 ~
-0 -1 2500
-D4
+Door        up~ door closed locked pickproof~ 2412 2502
 ~
 moongate gate moon~
-39 2412 2502
-S
+End
+
 #2502
-Minoc~
+Name        Minoc~
+Descr
 The moongate has lead to the ocean side city of Minoc.  To the
 north, there is the sea; and to the south there is the town of
 Minoc.
 ~
-0 4 0
-D0
+Flags       no_mob~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2515
 ~
 ~
-0 -1 2515
-D2
+Door        south~ ~ -1 2504
 ~
 ~
-0 -1 2504
-S
+End
+
 #2503
-The Armourer~
+Name        The Armourer~
+Descr
 The Armourer buys and sells armour.  His smithy is impressive
 with all of his greatest works hanging on the walls.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2468 1 100
+Door        east~ door~ -1 2504
 ~
 door~
-1 -1 2504
-S
+End
+
 #2504
-Minoc's Fountain~
+Name        Minoc's Fountain~
+Descr
 This is the entrance of Minoc.  To the east you see the
 weaponsmith, and to the west is the Armourer.  To the south there
 seems to be a large road.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       O 2467 0 100
+Door        north~ ~ -1 2502
 ~
 ~
-0 -1 2502
-D1
-~
-door~
-1 -1 2505
-D2
-~
-~
-0 -1 2508
-D3
+Door        east~ door~ -1 2505
 ~
 door~
-1 -1 2503
-S
+Door        south~ ~ -1 2508
+~
+~
+Door        west~ door~ -1 2503
+~
+door~
+End
+
 #2505
-The Weaponsmith~
+Name        The Weaponsmith~
+Descr
 The best Weaponsmith in the realm is here.  His shop is full of
 hanging weapons.
 ~
-0 1 0
-D3
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2469 1 100
+Door        west~ door~ -1 2504
 ~
 door~
-1 -1 2504
-S
+End
+
 #2506
-The Boatseller~
+Name        The Boatseller~
+Descr
 This is the shop where you can purchase vehicles to cross the
 sea.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2470 1 100
+Reset       E 2468 -1 100
+Door        east~ door closed~ -1 2507
 ~
 door~
-3 -1 2507
-S
+End
+
 #2507
-Sacrifice Street~
+Name        Sacrifice Street~
+Descr
 This Street goes from east to west.  To the west is a shop and to
 the south is a home.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2508
 ~
 ~
-0 -1 2508
-D2
-~
-door~
-3 -1 2511
-D3
+Door        south~ door closed~ -1 2511
 ~
 door~
-3 -1 2506
-S
+Door        west~ door closed~ -1 2506
+~
+door~
+End
+
 #2508
-Sacrifice Street~
+Name        Sacrifice Street~
+Descr
 This Street runs from east to west. To the west there is a shop,
 and to there east there is a forge.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2440 5 100
+Reset       E 2438 16 100
+Reset       M 2442 1 100
+Reset       E 2440 3 100
+Door        north~ ~ -1 2504
 ~
 ~
-0 -1 2504
-D1
+Door        east~ ~ -1 2509
 ~
 ~
-0 -1 2509
-D3
+Door        west~ ~ -1 2507
 ~
 ~
-0 -1 2507
-S
+End
+
 #2509
-Sacrifice Street~
+Name        Sacrifice Street~
+Descr
 This Street runs from west to east.  There is a home to the south
 and forge to the east.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        east~ door closed~ -1 2510
 ~
 door~
-3 -1 2510
-D2
+Door        south~ door closed~ -1 2512
 ~
 door~
-3 -1 2512
-D3
+Door        west~ ~ -1 2508
 ~
 ~
-0 -1 2508
-S
+End
+
 #2510
-Forge~
+Name        Forge~
+Descr
 The heat of the place cause blisters to form.  The rhythmic beat
 of hammer against the forge causes you to believe that someone is
 working here.
 ~
-0 1 0
-D3
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2441 1 100
+Reset       E 2405 17 100
+Reset       E 2439 16 100
+Door        west~ door closed~ -1 2509
 ~
 door~
-3 -1 2509
-S
+End
+
 #2511
-Residence~
+Name        Residence~
+Descr
 This residence is very small.  It befits the teaching of
 sacrifice without any item that is extra.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2440 5 100
+Reset       E 2438 16 100
+Door        north~ door closed~ -1 2507
 ~
 door~
-3 -1 2507
-S
+End
+
 #2512
-Residence~
+Name        Residence~
+Descr
 This residence is very small.  It befits the teaching of
 sacrifice without any item that is extra.
 ~
-0 1 0
-D0
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2440 5 100
+Reset       E 2438 16 100
+Door        north~ door closed~ -1 2509
 ~
 door~
-3 -1 2509
-S
+End
+
 #2513
-The Beach~
+Name        The Beach~
+Descr
 This beach ends here.  You can go east or west.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2514
 ~
 ~
-0 -1 2514
-D3
+Door        west~ ~ -1 2584
 ~
 ~
-0 -1 2584
-S
+End
+
 #2514
-The Beach~
+Name        The Beach~
+Descr
 The beach extends from west to east, the waves are too heavy here
 to enter the ocean.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2439 2 100
+Door        east~ ~ -1 2515
 ~
 ~
-0 -1 2515
-D3
+Door        west~ ~ -1 2513
 ~
 ~
-0 -1 2513
-S
+End
+
 #2515
-The Beach~
+Name        The Beach~
+Descr
 The beach here is perfect, glistening white sands, perfect sun. 
 Too bad there is a monster infestation....
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2439 2 100
+Door        east~ ~ -1 2516
 ~
 ~
-0 -1 2516
-D2
+Door        south~ ~ -1 2502
 ~
 ~
-0 -1 2502
-D3
+Door        west~ ~ -1 2514
 ~
 ~
-0 -1 2514
-S
+End
+
 #2516
-The Beach~
+Name        The Beach~
+Descr
 The Beach seems so idyllic, to bad these monster keep showing up.
 ~
-0 1 0
-D1
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2438 2 100
+Door        east~ ~ -1 2517
 ~
 ~
-0 -1 2517
-D3
+Door        west~ ~ -1 2515
 ~
 ~
-0 -1 2515
-S
+End
+
 #2517
-The Beach~
+Name        The Beach~
+Descr
 The Beach ends here.
 ~
-0 1 0
-D3
+Flags       dark~
+Sector      inside~
+Regen       100 100
+Reset       M 2438 2 100
+Door        west~ ~ -1 2516
 ~
 ~
-0 -1 2516
-S
+End
+
 #2518
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2521
 ~
 ~
-0 -1 2521
-D1
+Door        east~ ~ -1 2519
 ~
 ~
-0 -1 2519
-D2
+Door        south~ ~ -1 2584
 A swampy lagoon.
 ~
 ~
-0 -1 2584
-D3
+Door        west~ ~ -1 2520
 ~
 ~
-0 -1 2520
-S
+End
+
 #2519
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2522
 ~
 ~
-0 -1 2522
-D1
+Door        east~ ~ -1 2520
 ~
 ~
-0 -1 2520
-D2
+Door        south~ ~ -1 2525
 ~
 ~
-0 -1 2525
-D3
+Door        west~ ~ -1 2518
 ~
 ~
-0 -1 2518
-S
+End
+
 #2520
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2523
 ~
 ~
-0 -1 2523
-D1
+Door        east~ ~ -1 2518
 ~
 ~
-0 -1 2518
-D2
+Door        south~ ~ -1 2526
 ~
 ~
-0 -1 2526
-D3
+Door        west~ ~ -1 2519
 ~
 ~
-0 -1 2519
-S
+End
+
 #2521
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 2466 5 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2524
 ~
 ~
-0 -1 2524
-D1
+Door        east~ ~ -1 2522
 ~
 ~
-0 -1 2522
-D2
+Door        south~ ~ -1 2518
 ~
 ~
-0 -1 2518
-D3
+Door        west~ ~ -1 2523
 ~
 ~
-0 -1 2523
-S
+End
+
 #2522
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 2465 5 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2525
 ~
 ~
-0 -1 2525
-D1
+Door        east~ ~ -1 2523
 ~
 ~
-0 -1 2523
-D2
+Door        south~ ~ -1 2519
 ~
 ~
-0 -1 2519
-D3
+Door        west~ ~ -1 2521
 ~
 ~
-0 -1 2521
-S
+End
+
 #2523
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       M 2467 1 100
+Reset       E 2413 -1 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2526
 ~
 ~
-0 -1 2526
-D1
+Door        east~ ~ -1 2521
 ~
 ~
-0 -1 2521
-D2
+Door        south~ ~ -1 2520
 ~
 ~
-0 -1 2520
-D3
+Door        west~ ~ -1 2522
 ~
 ~
-0 -1 2522
-S
+End
+
 #2524
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2527
 There is a shimmering light to the north
 ~
 ~
-0 -1 2527
-D1
+Door        east~ ~ -1 2525
 ~
 ~
-0 -1 2525
-D2
+Door        south~ ~ -1 2521
 ~
 ~
-0 -1 2521
-D3
+Door        west~ ~ -1 2526
 ~
 ~
-0 -1 2526
-S
+End
+
 #2525
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2519
 ~
 ~
-0 -1 2519
-D1
+Door        east~ ~ -1 2526
 ~
 ~
-0 -1 2526
-D2
+Door        south~ ~ -1 2522
 ~
 ~
-0 -1 2522
-D3
+Door        west~ ~ -1 2524
 ~
 ~
-0 -1 2524
-S
+End
+
 #2526
-The Whirlpool~
+Name        The Whirlpool~
+Descr
 This is a nasty whirlpool.  The boat is tossed and turned
 everywhere.
 ~
-0 0 7
-D0
+Flags       ~
+Sector      water_noswim~
+Regen       100 100
+Reset       R 4 0 0
+Door        north~ ~ -1 2520
 ~
 ~
-0 -1 2520
-D1
+Door        east~ ~ -1 2524
 ~
 ~
-0 -1 2524
-D2
+Door        south~ ~ -1 2523
 ~
 ~
-0 -1 2523
-D3
+Door        west~ ~ -1 2525
 ~
 ~
-0 -1 2525
-S
+End
+
 #2527
-The Minoc Moongate~
+Name        The Minoc Moongate~
+Descr
 The sea waves lap up against the Moongate.
 ~
-0 4 1
-D2
+Flags       no_mob~
+Sector      city~
+Regen       100 100
+Door        south~ ~ -1 2524
 ~
 ~
-0 -1 2524
-D4
+Door        up~ door closed locked pickproof~ 2413 2528
 Through the moongate you see a large campfire.
 ~
 moongate~
-39 2413 2528
-S
+End
+
 #2528
-A Campfire~
+Name        A Campfire~
+Descr
 This campfire sits in the middle of the camp.  Many of the
 paladins stand by it looking it the desert beyond.  Some just
 wander by.  To the south is a small tent, to the north are more
 tents. 
 ~
-0 0 10
-D0
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        north~ ~ -1 2538
 ~
 ~
-0 -1 2538
-D1
+Door        east~ ~ -1 2529
 ~
 ~
-0 -1 2529
-D2
+Door        south~ door closed~ -1 2532
 ~
 tent~
-3 -1 2532
-S
+End
+
 #2529
-Between the Tents~
+Name        Between the Tents~
+Descr
 There is a grand tent to the south, entered into through the
 east.
 ~
-0 0 10
-D1
+Flags       ~
+Sector      desert~
+Regen       100 100
+Reset       M 2445 6 100
+Reset       E 2441 17 100
+Reset       E 2442 5 100
+Door        east~ ~ -1 2530
 ~
 ~
-0 -1 2530
-D3
+Door        west~ ~ -1 2528
 ~
 ~
-0 -1 2528
-S
+End
+
 #2530
-In front of the Grand Tent~
+Name        In front of the Grand Tent~
+Descr
 To the south, there is a huge tent.  To the east lies a smaller
 tent.
 ~
-0 0 10
-D1
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        east~ door closed~ -1 2531
 ~
 tent~
-3 -1 2531
-D2
+Door        south~ door closed~ -1 2534
 ~
 tent~
-3 -1 2534
-D3
+Door        west~ ~ -1 2529
 ~
 ~
-0 -1 2529
-S
+End
+
 #2531
-A Small Tent~
+Name        A Small Tent~
+Descr
 The paladin's tent is very Spartan, as he has to live without
 much in order to develop his Honor.
 ~
-0 8 10
-D3
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Reset       M 2445 6 100
+Reset       E 2441 17 100
+Reset       E 2442 5 100
+Door        west~ door closed~ -1 2530
 ~
 tent~
-3 -1 2530
-S
+End
+
 #2532
-A Small Tent~
+Name        A Small Tent~
+Descr
 The paladin's tent is very Spartan, as he has to live without
 much in order to develop his Honor.
 ~
-0 8 10
-D0
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Reset       M 2445 6 100
+Reset       E 2441 17 100
+Reset       E 2442 5 100
+Door        north~ door closed~ -1 2528
 ~
 tent~
-3 -1 2528
-S
+End
+
 #2533
-The Treasure Tent~
+Name        The Treasure Tent~
+Descr
 There is a HUGE stack of treasure here.  It is truly immense.  It
 would make you easily a millionaire.  If you could even take a
 tenth of it, you could buy your levels.  But the treasure is
@@ -4254,49 +5330,54 @@ surrounded by a shield.  A shield that only the truly Honorable
 could get through.  And if you were truly honorable you wouldn't
 take the treasure.
 ~
-0 8 10
-D1
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Door        east~ ~ -1 2534
 ~
 ~
-0 -1 2534
-S
+End
+
 #2534
-The Grand Tent~
+Name        The Grand Tent~
+Descr
 This tent is absolutely huge.  To the east is the map room.  To
 the south there is Dupre.  To the east is the treasure room.
 ~
-0 8 10
-D0
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Reset       M 2448 1 100
+Reset       E 2444 16 100
+Door        north~ door closed~ -1 2530
 ~
 tent~
-3 -1 2530
-D1
+Door        east~ ~ -1 2535
 ~
 ~
-0 -1 2535
-D2
+Door        south~ ~ -1 2536
 ~
 ~
-0 -1 2536
-D3
+Door        west~ ~ -1 2533
 ~
 ~
-0 -1 2533
-S
+End
+
 #2535
-The Map Tent~
+Name        The Map Tent~
+Descr
 This room has many maps and scrolls all over the table.  There is
 one in particular that interest you.
 ~
-0 8 10
-E
-map~
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+ExtraDescr  map~
 The map has a rough drawing of the camp and to the north a small
 segment of the desert, and a drawing of a winged lizard near the
 very north.
 ~
-E
-scroll~
+ExtraDescr  scroll~
 The scroll reads as follows:
 Dear Lord British,
      This is Dupre reporting about the paladin expedition.  We
@@ -4308,225 +5389,267 @@ liege.
 			 Your Servant,
 			 Dupre
 ~
-D3
+Door        west~ ~ -1 2534
 ~
 ~
-0 -1 2534
-S
+End
+
 #2536
-Dupre's Tent~
+Name        Dupre's Tent~
+Descr
 This is the commander tent.  It is full of commander type things.
 ~
-0 8 10
-D0
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Reset       M 2446 1 100
+Reset       E 2407 17 100
+Reset       E 2443 16 100
+Door        north~ ~ -1 2534
 ~
 ~
-0 -1 2534
-S
+End
+
 #2537
-A Small Tent~
+Name        A Small Tent~
+Descr
 The paladin's tent is very Spartan, as he has to live without
 much in order to develop his Honor.
 ~
-0 8 10
-D1
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Reset       M 2445 6 100
+Reset       E 2441 17 100
+Reset       E 2442 5 100
+Door        east~ door closed~ -1 2538
 ~
 tent~
-3 -1 2538
-S
+End
+
 #2538
-Desert Entrance~
+Name        Desert Entrance~
+Descr
 You feel the hot desert wind blow sand into your face as you look
 at those dunes.
 ~
-0 0 10
-D0
+Flags       ~
+Sector      desert~
+Regen       100 100
+Reset       M 2445 6 100
+Reset       E 2441 17 100
+Reset       E 2442 5 100
+Door        north~ ~ -1 2541
 ~
 ~
-0 -1 2541
-D1
+Door        east~ door closed~ -1 2539
 ~
 tent~
-3 -1 2539
-D3
+Door        west~ door closed~ -1 2537
 ~
 tent~
-3 -1 2537
-S
+End
+
 #2539
-A Small Tent~
+Name        A Small Tent~
+Descr
 The paladin's tent is very Spartan, as he has to live without
 much in order to develop his Honor.
 ~
-0 8 10
-D3
+Flags       indoors~
+Sector      desert~
+Regen       100 100
+Reset       M 2445 6 100
+Reset       E 2441 17 100
+Reset       E 2442 5 100
+Door        west~ door closed~ -1 2538
 ~
 tent~
-3 -1 2538
-S
+End
+
 #2540
-The Desert~
+Name        The Desert~
+Descr
 The desert in the northeast part of Britannia is a perfect
 example of its kind.  Dry, ugly, and lots of sand.
 ~
-0 0 10
-D0
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        north~ ~ -1 2544
 There is a shimmering light.
 ~
 ~
-0 -1 2544
-D1
+Door        east~ ~ -1 2541
 ~
 ~
-0 -1 2541
-S
+End
+
 #2541
-The Desert~
+Name        The Desert~
+Descr
 The Desert is an ugly place.  Sand whips into your eyes, making
 you unsure of where you are and what you see.
 ~
-0 0 10
-D1
+Flags       ~
+Sector      desert~
+Regen       100 100
+Reset       M 2443 10 100
+Door        east~ ~ -1 2542
 ~
 ~
-0 -1 2542
-D2
+Door        south~ ~ -1 2538
 ~
 ~
-0 -1 2538
-D3
+Door        west~ ~ -1 2540
 ~
 ~
-0 -1 2540
-S
+End
+
 #2542
-The Desert~
+Name        The Desert~
+Descr
 You trudge on.  This desert seems endless.
 ~
-0 0 10
-D0
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        north~ ~ -1 2546
 ~
 ~
-0 -1 2546
-D1
+Door        east~ ~ -1 2543
 There is a shimmering light.
 ~
 ~
-0 -1 2543
-D3
+Door        west~ ~ -1 2541
 ~
 ~
-0 -1 2541
-S
+End
+
 #2543
-The Desert Moongate~
+Name        The Desert Moongate~
+Descr
 Your thirst seems to slacken as you see the comforting glow of
 the moongate.
 ~
-0 4 10
-D3
+Flags       no_mob~
+Sector      desert~
+Regen       100 100
+Door        west~ ~ -1 2542
 ~
 ~
-0 -1 2542
-D4
+Door        up~ door closed locked pickproof~ 2414 2549
 Through the moongate you seem to see a shrine.
 ~
 moongate~
-39 2414 2549
-S
+End
+
 #2544
-The Desert Moongate~
+Name        The Desert Moongate~
+Descr
 Your thirst seems to slacken as you see the comforting glow of
 the moongate.
 ~
-0 0 10
-D2
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        south~ ~ -1 2540
 ~
 ~
-0 -1 2540
-D4
+Door        up~ door closed locked pickproof~ -1 1
 There is just blue.
 ~
 moongate~
-39 -1 1
-S
+End
+
 #2545
-The Desert~
+Name        The Desert~
+Descr
 There is a large cave to the north.  Smoke pours out of it, at
 regular intervals.
 ~
-0 0 10
-D0
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        north~ ~ -1 2548
 The smoke obscures all vision.
 ~
 ~
-0 -1 2548
-D1
+Door        east~ ~ -1 2546
 ~
 ~
-0 -1 2546
-S
+End
+
 #2546
-The Desert~
+Name        The Desert~
+Descr
 The sands blows into your ear and eyes.
 ~
-0 0 10
-D1
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        east~ ~ -1 2547
 There is a shimmering light.
 ~
 ~
-0 -1 2547
-D2
+Door        south~ ~ -1 2542
 ~
 ~
-0 -1 2542
-D3
+Door        west~ ~ -1 2545
 ~
 ~
-0 -1 2545
-S
+End
+
 #2547
-The Desert Moongate~
+Name        The Desert Moongate~
+Descr
 Your thirst seems to slacken as you see the comforting glow of
 the moongate.
 ~
-0 0 10
-D3
+Flags       ~
+Sector      desert~
+Regen       100 100
+Door        west~ ~ -1 2546
 ~
 ~
-0 -1 2546
-D4
+Door        up~ door closed locked pickproof~ -1 1
 There is just blue.
 ~
 moongate~
-39 -1 1
-S
+End
+
 #2548
-The Dragon Cave~
+Name        The Dragon Cave~
+Descr
 The cave is smoky.  There is a a glint of gold.
 ~
-0 0 10
-D2
+Flags       ~
+Sector      desert~
+Regen       100 100
+Reset       M 2444 1 100
+Reset       E 2414 -1 100
+Door        south~ ~ -1 2545
 ~
 ~
-0 -1 2545
-S
+End
+
 #2549
-The Shrine of Spirituality~
+Name        The Shrine of Spirituality~
+Descr
 In this room a huge ankh sits on a pedestal.  The Shrine is the
 source of all magical power.  The Timelord himself lives here. 
 There is a moongate here also.  And last of all there is a huge
 engraving taking up the west wall.
 ~
-0 4 2
-E
-ankh~
+Flags       no_mob~
+Sector      field~
+Regen       100 100
+ExtraDescr  ankh~
 Through your entire journey you have not understood the real
 symbol of the ankh.  Its true beauty only realizes itself to you
 now.  This knowledge transcends all that come before.
 ~
-E
-engraving~
+ExtraDescr  engraving~
 Pilgrim,
      You have reached the final step on your way to enlightenment. 
 In this last step you will be shown ultimate evil to your north,
@@ -4539,821 +5662,704 @@ through the evil, there is one final test before you prove
 yourself equal to the Avatar himself.  You must endure the test
 of time.
 ~
-D0
+Reset       M 2455 1 100
+Reset       E 2416 17 100
+Reset       E 2448 5 100
+Door        north~ ~ -1 2554
 You peer into the blackness, and hear shrieks and sounds totally
 inhuman.~
 ~
-0 -1 2554
-D2
+Door        south~ ~ -1 2557
 Peace infuses your body.  The graveyard is a solemn and sobering
 place.
 ~
 ~
-0 -1 2557
-D4
+Door        up~ door closed locked pickproof~ 2415 2562
 Through the moongate you see a castle.
 ~
 moongate~
-39 2415 2562
-S
+End
+
 #2550
-The Place of Ultimate Evil~
+Name        The Place of Ultimate Evil~
+Descr
 The ground itself seems malevolent.  It sinks and engulfs you.
 ~
-0 8193 11
-D1
+Flags       dark no_recall~
+Sector      dunno~
+Regen       100 100
+Reset       M 2447 3 100
+Door        east~ ~ -1 2551
 ~
 ~
-0 -1 2551
-D2
+Door        south~ ~ -1 2553
 ~
 ~
-0 -1 2553
-S
+End
+
 #2551
-The Place of Ultimate Evil~
+Name        The Place of Ultimate Evil~
+Descr
 The air sickens you.  You choke on whatever flows through the
 air.
 ~
-0 8193 11
-D1
+Flags       dark no_recall~
+Sector      dunno~
+Regen       100 100
+Reset       M 2452 1 100
+Reset       E 2415 -1 100
+Door        east~ ~ -1 2552
 ~
 ~
-0 -1 2552
-D2
+Door        south~ ~ -1 2554
 ~
 ~
-0 -1 2554
-D3
+Door        west~ ~ -1 2550
 ~
 ~
-0 -1 2550
-S
+End
+
 #2552
-The Place of Ultimate Evil~
+Name        The Place of Ultimate Evil~
+Descr
 It is dark, there is no evidence of light except what you have
 with you.  And this is swallowed by the darkness within 2 feet.
 ~
-0 8193 11
-D2
+Flags       dark no_recall~
+Sector      dunno~
+Regen       100 100
+Reset       M 2447 3 100
+Door        south~ ~ -1 2555
 ~
 ~
-0 -1 2555
-D3
+Door        west~ ~ -1 2551
 ~
 ~
-0 -1 2551
-S
+End
+
 #2553
-The Place of Ultimate Evil~
+Name        The Place of Ultimate Evil~
+Descr
 Sounds are very weird in this place.  Some sounds, like shrieks
 and blood-curdling shouts are amplified, and you hear them
 frequently.  Other's like your own voice, will not travel to
 beyond a inch from your face.
 ~
-0 8193 11
-D0
+Flags       dark no_recall~
+Sector      dunno~
+Regen       100 100
+Reset       M 2450 5 100
+Door        north~ ~ -1 2550
 ~
 ~
-0 -1 2550
-D1
+Door        east~ ~ -1 2554
 ~
 ~
-0 -1 2554
-S
+End
+
 #2554
-The Place of Ultimate Evil~
+Name        The Place of Ultimate Evil~
+Descr
 When you enter this place all of your senses are immediately
 blasted.  You breath in that total evilness and feel dirty.  You
 want to leave right now.
 ~
-0 8193 11
-D0
+Flags       dark no_recall~
+Sector      dunno~
+Regen       100 100
+Door        north~ ~ -1 2551
 ~
 ~
-0 -1 2551
-D1
+Door        east~ ~ -1 2555
 ~
 ~
-0 -1 2555
-D2
+Door        south~ ~ -1 2549
 ~
 ~
-0 -1 2549
-D3
+Door        west~ ~ -1 2553
 ~
 ~
-0 -1 2553
-S
+End
+
 #2555
-The Place of Ultimate Evil~
+Name        The Place of Ultimate Evil~
+Descr
 You feel things all over your body.  Sucking it and hurting it.
 ~
-0 8193 11
-D0
+Flags       dark no_recall~
+Sector      dunno~
+Regen       100 100
+Reset       M 2447 3 100
+Reset       M 2451 3 100
+Reset       E 2445 16 100
+Reset       E 2446 11 100
+Door        north~ ~ -1 2552
 ~
 ~
-0 -1 2552
-D3
+Door        west~ ~ -1 2554
 ~
 ~
-0 -1 2554
-S
+End
+
 #2556
-The Graveyard~
+Name        The Graveyard~
+Descr
 The graveyard background noises seem to sooth you.  The are light
 and peaceful.  Your own voices carries so well and softly that
 you seem to be telepathically communicating.
 ~
-0 0 2
-D1
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        east~ ~ -1 2557
 ~
 ~
-0 -1 2557
-D2
+Door        south~ ~ -1 2559
 ~
 ~
-0 -1 2559
-S
+End
+
 #2557
-The Graveyard~
+Name        The Graveyard~
+Descr
 When you walk into here you are immediately soothed.  Nothing
 could be wrong with the world.  All your senses are pleased.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 2549
 There is a shimmering light.
 ~
 ~
-0 -1 2549
-D1
+Door        east~ ~ -1 2558
 ~
 ~
-0 -1 2558
-D2
+Door        south~ ~ -1 2560
 ~
 ~
-0 -1 2560
-D3
+Door        west~ ~ -1 2556
 ~
 ~
-0 -1 2556
-S
+End
+
 #2558
-The Graveyard~
+Name        The Graveyard~
+Descr
 You feel a light breath of air under your clothing.  It massages
 you.
 ~
-0 0 2
-D2
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        south~ ~ -1 2561
 ~
 ~
-0 -1 2561
-D3
+Door        west~ ~ -1 2557
 ~
 ~
-0 -1 2557
-S
+End
+
 #2559
-The Graveyard~
+Name        The Graveyard~
+Descr
 The ground itself here seems to welcome your footsteps.  It is
 springy and causes you little fatigue.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Door        north~ ~ -1 2556
 ~
 ~
-0 -1 2556
-D1
+Door        east~ ~ -1 2560
 ~
 ~
-0 -1 2560
-S
+End
+
 #2560
-The Graveyard~
+Name        The Graveyard~
+Descr
 The scent of the air refreshes you.  It is sweet and lovely.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 2449 5 100
+Reset       M 2453 4 100
+Door        north~ ~ -1 2557
 ~
 ~
-0 -1 2557
-D1
+Door        east~ ~ -1 2561
 ~
 ~
-0 -1 2561
-D3
+Door        west~ ~ -1 2559
 ~
 ~
-0 -1 2559
-S
+End
+
 #2561
-The Graveyard~
+Name        The Graveyard~
+Descr
 The light here is bright and lovely.
 ~
-0 0 2
-D0
+Flags       ~
+Sector      field~
+Regen       100 100
+Reset       M 2454 1 100
+Reset       E 2447 12 100
+Reset       E 2403 17 100
+Door        north~ ~ -1 2558
 ~
 ~
-0 -1 2558
-D3
+Door        west~ ~ -1 2560
 ~
 ~
-0 -1 2560
-S
+End
+
 #2562
-Lord British's Castle Entrance~
+Name        Lord British's Castle Entrance~
+Descr
 This building is awe-inspiring.  Just smaller then Yaz's own. 
 Anyway Lord British's personal Jester is here to entertain you.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2417 1 100
+Reset       E 2429 16 100
+Door        north~ ~ -1 2563
 You see a fountain.
 ~
 ~
-0 -1 2563
-S
+End
+
 #2563
-Castle Fountain~
+Name        Castle Fountain~
+Descr
 A lovely fountain sits here.  To the north you see a guard.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       O 2467 0 100
+Door        north~ ~ -1 2565
 ~
 ~
-0 -1 2565
-D2
+Door        south~ ~ -1 2562
 ~
 ~
-0 -1 2562
-S
+End
+
 #2564
-A staircase~
+Name        A staircase~
+Descr
 There is a magical staircase going up.  Beware, for those who go
 up shall not return down.  The other exits except for the west
 are closed for construction.
 ~
-0 0 0
-D1
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        east~ ~ -1 2565
 ~
 ~
-0 -1 2565
-D4
+Door        up~ ~ -1 2569
 You see the altars of enlightenment.
 ~
 ~
-0 -1 2569
-S
+End
+
 #2565
-Hallways~
+Name        Hallways~
+Descr
 This is the entrance for Lord British.  Through the great doors
 to the north you can enter.  Another hallways passes across this
 one.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2461 1 100
+Reset       E 2454 6 100
+Reset       E 2455 10 100
+Reset       E 2456 13 100
+Reset       E 2457 16 100
+Reset       E 2458 9 100
+Reset       E 2459 8 100
+Reset       E 2460 7 100
+Reset       E 2461 5 100
+Door        north~ door~ -1 2567
 ~
 doors~
-1 -1 2567
-D1
+Door        east~ ~ -1 2566
 ~
 ~
-0 -1 2566
-D2
+Door        south~ ~ -1 2563
 ~
 ~
-0 -1 2563
-D3
+Door        west~ ~ -1 2564
 ~
 ~
-0 -1 2564
-S
+End
+
 #2566
-Hallway~
+Name        Hallway~
+Descr
 This is a hallway that would regularly extend from west to east,
 but it is closed for reconstruction.  There is though a room to
 your north that can be entered.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        north~ door closed~ -1 2568
 ~
 door~
-3 -1 2568
-D3
+Door        west~ ~ -1 2565
 ~
 ~
-0 -1 2565
-S
+End
+
 #2567
-The Throne Room~
+Name        The Throne Room~
+Descr
 In the Throne Room there are the two most important figures in
 the world.  The avatar and Lord British himself.
 ~
-0 0 0
-D2
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2463 1 100
+Reset       E 2463 16 100
+Reset       M 2464 1 100
+Reset       E 2464 6 100
+Reset       E 2465 17 100
+Reset       E 2466 3 100
+Door        south~ door~ -1 2565
 ~
 doors~
-1 -1 2565
-S
+End
+
 #2568
-Batlin's Room~
+Name        Batlin's Room~
+Descr
 Batlin, the molester of animals, and the general jerk, lives
 here.
 ~
-0 0 0
-D2
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2462 1 100
+Reset       E 2400 -1 100
+Reset       E 2401 -1 100
+Reset       E 2402 -1 100
+Reset       E 2403 -1 100
+Reset       E 2404 -1 100
+Reset       E 2405 -1 100
+Reset       E 2406 -1 100
+Reset       E 2407 -1 100
+Reset       E 2462 3 100
+Door        south~ door closed~ -1 2566
 ~
 door~
-3 -1 2566
-S
+End
+
 #2569
-The Altar of Honesty~
+Name        The Altar of Honesty~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Honesty is the scrupulous respect for truth-the willingness never
 to deceive oneself or another.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2404 2570
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2404 2570
-S
+End
+
 #2570
-The Altar of Compassion~
+Name        The Altar of Compassion~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Compassion is nonjudgmental empathy for one's fellow creatures. 
 It is pure love.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2400 2571
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2400 2571
-S
+End
+
 #2571
-The Altar of Valor~
+Name        The Altar of Valor~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Valor is the courage to take actions in support of one's
 convictions.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2406 2572
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2406 2572
-S
+End
+
 #2572
-The Altar of Justice~
+Name        The Altar of Justice~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Justice is devotion to truth, tempered by love.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2402 2573
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2402 2573
-S
+End
+
 #2573
-The Altar of Sacrifice~
+Name        The Altar of Sacrifice~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Sacrifice is the courage to give of oneself in the name of love.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2405 2574
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2405 2574
-S
+End
+
 #2574
-The Altar of Honour~
+Name        The Altar of Honour~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Honour is the courage to stand for truth, against any odds.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2407 2575
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2407 2575
-S
+End
+
 #2575
-The Altar of Spirituality~
+Name        The Altar of Spirituality~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Spirituality is the concern with one's inner being and how one
 deals with truth, love, and courage.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2403 2576
 The Path Of Enlightenment leads on.
 ~
 Path~
-39 2403 2576
-S
+End
+
 #2576
-The Altar of Humility~
+Name        The Altar of Humility~
+Descr
 You may gain true enlightenment here.  There is a large plaque on
 the wall.  The path continues only if you use the mantra, to
 gain enlightenment.
 ~
-0 0 0
-E
-plaque~
+Flags       ~
+Sector      inside~
+Regen       100 100
+ExtraDescr  plaque~
 Humility is perceiving one's place in the world, not according
 to one's own accomplishments, but  according to the intrinsic
 value of all individuals.
 ~
-D0
+Door        north~ door closed locked pickproof~ 2401 2577
 The Path Of Enlightenment ends there.
 ~
 Path~
-39 2401 2577
-S
+End
+
 #2577
-The Enlightenment~
+Name        The Enlightenment~
+Descr
 A voice booms out, "You are now eight part enlightened.  To truly
 become an Avatar though you must experience what he has
 experienced.  Go through the time warp and fight his enemies. 
 Beware only High Mortals should attempt this challenge."
 ~
-0 0 0
-D4
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        up~ door closed locked pickproof~ 2416 2578
 The Time Warp changes space, and fluxes its surroundings.
 ~
 warp~
-39 2416 2578
-S
+End
+
 #2578
-In the Warp~
+Name        In the Warp~
+Descr
 This is a forest.  You were sent very far back in time.  Before
 there was a Britannia.  Almost before there was a Lord British. 
 This is the time of Mondain.  The first enemy that the Avatar
 met.
 ~
-0 0 0
-D4
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2460 1 100
+Reset       E 2453 17 100
+Door        up~ door closed locked pickproof~ 2416 2579
 The Time Warp leads you to another place.
 ~
 warp~
-39 2416 2579
-S
+End
+
 #2579
-In the Warp~
+Name        In the Warp~
+Descr
 You are in a featureless room.  You see the apprentice and lover
 of Mondain here.  Minax.  She does not seem happy to see you.
 ~
-0 0 0
-D4
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2459 1 100
+Reset       E 2452 3 100
+Door        up~ door closed locked pickproof~ 2416 2580
 The Time Warp zips to the future.
 ~
 warp~
-39 2416 2580
-S
+End
+
 #2580
-In the Warp~
+Name        In the Warp~
+Descr
 You see the last of the Triad of Evil.  With its destruction came
 the breaking of the world.
 ~
-0 0 0
-D4
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2458 1 100
+Reset       E 2451 5 100
+Door        up~ door closed locked pickproof~ 2416 2581
 The Time Warp continues on.
 ~
 warp~
-39 2416 2581
-S
+End
+
 #2581
-The Enlightenment~
+Name        The Enlightenment~
+Descr
 A voice booms out, "You have now truly became Enlightened.  You
 have fought and defeated the Avatar's enemy of the past.  Now the
 time warp leads to the future.  Only the truly courageous can
 survive the enemies there."
 ~
-0 0 0
-D4
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        up~ door closed locked pickproof~ 2416 2582
 The Time Warp changes space, and fluxes its surroundings.
 ~
 warp~
-39 2416 2582
-S
+End
+
 #2582
-In the Warp~
+Name        In the Warp~
+Descr
 You seem to be in a castle.  But there are torture devices here,
 and an angry King.
 ~
-0 0 0
-D4
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2457 1 100
+Reset       E 2450 16 100
+Door        up~ door closed locked pickproof~ 2416 2583
 The Time Warp sputters and crackles.
 ~
 warp~
-39 2416 2583
-S
+End
+
 #2583
-In the Warp~
+Name        In the Warp~
+Descr
 You seem to be in a blue room.  It seems to be only 2 dimensional
 as it sparkles.  There is also a big red face here.
 ~
-0 0 0
-S
+Flags       ~
+Sector      inside~
+Regen       100 100
+Reset       M 2456 1 100
+Reset       E 2449 6 100
+End
+
 #2584
-The Lagoon~
+Name        The Lagoon~
+Descr
 The whirlpool-like ocean is to the north, and the beach is back to the east.
 ~
-0 0 0
-D0
+Flags       ~
+Sector      inside~
+Regen       100 100
+Door        north~ ~ -1 2518
 The Ocean Roars.
 ~
 ~
-0 -1 2518
-D1
+Door        east~ ~ -1 2513
 The beach sparkles.
 ~
 ~
-0 -1 2513
-S
+End
+
 #0
 
-
-#SPECIALS
-M 2407 spec_poison
-M 2408 spec_cast_mage
-M 2409 spec_cast_mage
-M 2410 spec_cast_mage
-M 2423 spec_cast_cleric
-M 2424 spec_cast_cleric
-M 2426 spec_cast_cleric
-M 2433 spec_thief
-M 2438 spec_poison
-M 2444 spec_breath_fire
-M 2449 spec_cast_ghost
-M 2450 spec_cast_ghost
-M 2451 spec_cast_undead
-M 2452 spec_cast_undead
-M 2454 spec_cast_psionicist
-M 2459 spec_cast_mage
-M 2460 spec_cast_mage
-M 2462 spec_cast_cleric
-S
-
-
-#GAMES
-S
-
-
-#RESETS
-M 0 2402 10 2401
-E 0 2417 0 16
-M 0 2404 10 2401
-M 0 2403 5 2402
-E 0 2418 0 17
-M 0 2404 10 2404
-M 0 2413 1 2406
-E 0 2423 0 8
-M 0 2402 10 2407
-E 0 2417 0 16
-M 0 2400 5 2408
-M 0 2403 5 2408
-E 0 2418 0 17
-M 0 2404 10 2408
-M 0 2401 1 2411
-G 0 2408 0
-M 0 2403 5 2412
-E 0 2418 0 17
-M 0 2402 10 2413
-E 0 2417 0 16
-M 0 2404 10 2413
-M 0 2405 1 2415
-E 0 2419 0 16
-E 0 2401 0 17
-M 0 2410 1 2418
-E 0 2404 0 17
-M 0 2409 1 2421
-E 0 2421 0 16
-M 0 2406 10 2424
-M 0 2408 10 2430
-E 0 2422 0 5
-M 0 2407 1 2435
-G 0 2409 0
-G 0 2420 0
-M 0 2415 3 2437
-E 0 2425 0 17
-P 0 2426 0 2425
-M 0 2418 10 2439
-M 0 2430 1 2439
-M 0 2414 5 2444
-E 0 2424 0 16
-M 0 2419 1 2445
-E 0 2430 0 16
-M 0 2416 1 2448
-G 0 2427 0
-E 0 2428 0 16
-E 0 2400 0 17
-M 0 2411 20 2452
-M 0 2412 1 2454
-G 0 2410 0
-M 0 2429 5 2456
-M 0 2424 10 2459
-M 0 2431 1 2460
-M 0 2425 1 2464
-E 0 2433 0 16
-M 0 2427 1 2467
-G 0 2411 0
-M 0 2428 1 2468
-R 0 2469 4
-M 0 2426 1 2470
-E 0 2402 0 17
-E 0 2434 0 16
-R 0 2470 4
-R 0 2471 4
-R 0 2472 4
-M 0 2421 20 2473
-E 0 2432 0 16
-R 0 2473 4
-R 0 2474 4
-R 0 2475 4
-R 0 2476 4
-R 0 2477 4
-M 0 2423 10 2478
-R 0 2478 4
-R 0 2479 4
-M 0 2420 5 2480
-E 0 2431 0 16
-R 0 2480 4
-M 0 2422 10 2481
-R 0 2481 4
-R 0 2482 4
-R 0 2483 4
-M 0 2435 10 2486
-E 0 2436 0 16
-M 0 2436 1 2487
-E 0 2406 0 17
-E 0 2435 0 16
-M 0 2432 10 2488
-M 0 2437 1 2488
-E 0 2437 0 16
-M 0 2433 10 2490
-M 0 2434 1 2492
-G 0 2412 0
-M 0 2468 1 2503
-O 0 2467 0 2504
-M 0 2469 1 2505
-M 0 2470 1 2506
-G 0 2468 0
-M 0 2440 5 2508
-E 0 2438 0 16
-M 0 2442 1 2508
-E 0 2440 0 3
-M 0 2441 1 2510
-E 0 2405 0 17
-E 0 2439 0 16
-M 0 2440 5 2511
-E 0 2438 0 16
-M 0 2440 5 2512
-E 0 2438 0 16
-M 0 2439 2 2514
-M 0 2439 2 2515
-M 0 2438 2 2516
-M 0 2438 2 2517
-R 0 2518 4
-R 0 2519 4
-R 0 2520 4
-M 0 2466 5 2521
-R 0 2521 4
-M 0 2465 5 2522
-R 0 2522 4
-M 0 2467 1 2523
-G 0 2413 0
-R 0 2523 4
-R 0 2524 4
-R 0 2525 4
-R 0 2526 4
-M 0 2445 6 2529
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2531
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2532
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2448 1 2534
-E 0 2444 0 16
-M 0 2446 1 2536
-E 0 2407 0 17
-E 0 2443 0 16
-M 0 2445 6 2537
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2538
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2539
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2443 10 2541
-M 0 2444 1 2548
-G 0 2414 0
-M 0 2455 1 2549
-E 0 2416 0 17
-E 0 2448 0 5
-M 0 2447 3 2550
-M 0 2452 1 2551
-G 0 2415 0
-M 0 2447 3 2552
-M 0 2450 5 2553
-M 0 2447 3 2555
-M 0 2451 3 2555
-E 0 2445 0 16
-E 0 2446 0 11
-M 0 2449 5 2560
-M 0 2453 4 2560
-M 0 2454 1 2561
-E 0 2447 0 12
-E 0 2403 0 17
-M 0 2417 1 2562
-E 0 2429 0 16
-O 0 2467 0 2563
-M 0 2461 1 2565
-E 0 2454 0 6
-E 0 2455 0 10
-E 0 2456 0 13
-E 0 2457 0 16
-E 0 2458 0 9
-E 0 2459 0 8
-E 0 2460 0 7
-E 0 2461 0 5
-M 0 2463 1 2567
-E 0 2463 0 16
-M 0 2464 1 2567
-E 0 2464 0 6
-E 0 2465 0 17
-E 0 2466 0 3
-M 0 2462 1 2568
-G 0 2400 0
-G 0 2401 0
-G 0 2402 0
-G 0 2403 0
-G 0 2404 0
-G 0 2405 0
-G 0 2406 0
-G 0 2407 0
-E 0 2462 0 3
-M 0 2460 1 2578
-E 0 2453 0 17
-M 0 2459 1 2579
-E 0 2452 0 3
-M 0 2458 1 2580
-E 0 2451 0 5
-M 0 2457 1 2582
-E 0 2450 0 16
-M 0 2456 1 2583
-E 0 2449 0 6
-S
-
-
-#SHOPS
-2468 9 0 0 0 0 110 90 0 23
-2469 5 0 0 0 0 110 90 0 23
-2470 22 0 0 0 0 110 90 0 23
-0
 
 
 #$

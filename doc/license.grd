@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
-Wednesday, 10th December 1997
+GreedMud Release 0.88a4 (NON PUBLIC RELEASE)
+Wednesday, 14th January 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -32,11 +32,12 @@ the copyright and license agreements for both Diku Mud, Merc Diku Mud,
 and Envy Mud.  The modifications and improvements contained in EnvyMud 2.2
 are copyright (C) 1996, 1997 by Michael Quan.
 
-HomeCooked 0.87 is a derivative of EnvyMud, version 2.2, and is subject to 
+GreedMud 0.88 is a derivative of EnvyMud, version 2.2, and is subject to 
 the copyright and license agreements for both Diku Mud, Merc Diku Mud,
-and Envy Mud.
+and Envy Mud.  The modifications and improvements contained in GreedMud 0.88
+are copyright (C) 1997, 1998 by Vasco Costa.
 
-In order to use HomeCooked you must follow the Diku license, the Merc license,
+In order to use GreedMud you must follow the Diku license, the Merc license,
 the Envy license and my license.  The exact terms of the Diku license are in the
 file 'license.doc'.  A summary of these terms is:
 
@@ -58,16 +59,15 @@ of these terms is:
         -- 'Help envy' must report Envy help text, as shipped.
 
 My terms are:
-	-- All my code here is *freeware*.
-	-- But the snippets have their own author rights, please give credit
-	   where credit is due.
+        -- Copyrights must remain in original source.
+        -- 'Help greed' must report Greed help text, as shipped.
         -- Don't forget to follow the Envy, Merc and Diku licenses. You should
 	   find them in the 'doc' directory.
 
-Neither the Merc, EnvyMud nor HomeCooked license terms require keeping author
+Neither the Merc, EnvyMud nor GreedMud license terms require keeping author
 names in the 'greeting' text.  If you want to include a reference to Merc and
 its authors (Furey, Hatchet, and Kahn), EnvyMud and its authors (Kahn and
-Hatchet) or HomeCooked author (Zen), they would appreciate it, but do not
+Hatchet) or GreedMud author (Zen), they would appreciate it, but do not
 require it.  However, you must keep the original Diku authors in the login
 sequence.
 

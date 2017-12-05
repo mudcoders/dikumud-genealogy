@@ -1,14 +1,110 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
-Wednesday, 10th December 1997
+GreedMud Release 0.88a9 (NON PUBLIC INTERNAL RELEASE)
+Wednesday, 25th February 1998
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
+:::: Internal subversion 9
+
+=== What's new in this patch Release 0.88a9
+
+Zen:		TheIsles style area format.  This one's actually readable :-)
+		  It is marginally slower to load though.
+		Added NEWS for deaths and levelings.
+		Changed do_give() so mobs don't receive items from people
+		  they're hating; if they're affraid (paranoid); if it's a pill
+		  (to stop player cheating).
+		Removed checks for player cheating in use_magical_item() for a
+		  new more subtle one.
+		'mclone' and 'oclone' imm commands.
+		Fixed gizmo do_slay() options.
+		Cleaned up Hunt, Hate & Fear code a wee bit.
+		Added info for ITEM_RANGED_WEAPON & value[4] field to identify
+		  spell.
+		Added loads of spells based on SMAUG:
+		  Blazeward, Blazebane, InnerWarmth, WinterMist, EtherealFunnel,
+		  AntimagicShell, ShadowForm, EldritchSphere, SwordBait,
+		  Demonskin, RazorBait, DragonSkin, DragonWit, Sagacity, Slink,
+		  TrollishVigor.
+		Now skills have class dependent max % like SMAUG.
+		Made code for Poses, Titles a bit safer.
+		New binary search method for skill_lookup() like in SMAUG.
+		New look for do_practice().
+		Cleaned up comm.c in loads of places.
+		Replaced WIN32 for _WIN32.
+		Added room specials.
+		Added ASSHOLE.LST ala SillyMUD.
+		MOBPrograms load from area files again.
+		  Also made a nicer new format and cleaner load/save routines.
+		Teachers code is on.
+		Added new affect bitvector format and new area bitvector look.
+		Added Note field in #AREADATA so builders can insert comments.
+		Removed all useless calls to spec_mob_lookup().
+		  Thanks to that i found a bug in Envy 2.2: spec_breath_cold
+		  doesn't exist.
+		Radically improved OLC help.  -- STILL IN PROGRESS --
+		Changed do_dirt() and do_whirlwind() as per Sektor's suggestion.
+		Started language support.  Dictionaries and transliteration
+		  routines are now done.
+		Added 'dot' log loading style.
+		Added do_speak(), know_language() and language info to score.
+		New 'verbose logs' mudconfig flag.
+		Changed the look of the mud.
+		Removed clookup immskll.
+		New immsklls: cslist, cinfo, cpose, ctitle.
+		Cleaned up list_update().
+		Changed update_handler(), room_update().
+		------
+		Changed MAX_LEVEL to 60.
+		Changed EXP_PER_LEVEL to 2000.  Players are leveling too fast..
+		Added some info to skill_table and cleaned up caracter
+		  generation.
+		Added IDENT protocol support.  Uses getpeername and getsockname.
+		Changed do_users to use IDENT info and be more readable.
+		Removed small niggle in mclone, now act isn't copied on PC's.
+		Scrapped ROM like character generation.
+		Added MUD_AUTOPARDON flag.
+		Added SECT_DUNNO 11 type because it seems like there are rooms
+		  on the bog standard areas in Envy2.2 with this type number!
+		Added vzero(), vcopy() functions for bitvectors. 
+		Added fread_vect(), fread_flag() because non-settable flags
+		  wheren't being read by the server sorry...
+		Added vect_strings() and flag_strings().
+		Changed type of bitvector arrays to 'unsigned char' i was
+		  having problems with signed vs unsigned aritmetic.
+		Changed MAX_VECTOR to have bitvectors >= 64 bits.
+		Changed alloc_mem(), free_mem() to ROM like MAGIC stuff to find
+		  a weird bug.
+		I forgot a free_mem() in free_char() from an older code version
+		  which was attempting to free non existant memory, causing
+		  weird crashes along the way.  Thanx ROM code!
+		Changed area file format to be even more readable.
+		Changed pfile format a bit also.
+		Changed look of character generation.
+		Changed look of do_score().
+		Multiclassing is in.  Limited to 2 classes for now, but is easy
+		  to add more.
+		Classes are now stored in a single linked list instead of in
+		  an array.
+		Eliminated pose_table[], title_table[].  That data is now stored
+		  in the CLASS_TYPE structures.
+		Moved all class related data from skill_table[] to the
+		  CLASS_TYPE structures.
+		Eliminated all MAX_CLASS related stuff.
+		Tweaked xp_compute() so ch now gets "xp /= number_classes".
+		New Punch skill.
+		New Unravel Defense spell.
+		Changed scan skill.
+		Changed Chameleon Power and Shadow Form.
+		Changed move_char() for mountable mobs only.
+		Changed mount skill.
+		Added learn() so players only need to practice one time, and
+		  then they can learn for themselves.
+		  Players can still waste practices to learn more like in Envy.
+		Added missing titles for all classes.
+		Added Ranger class.
 
 
-=== What's new in this patch Release 0.87j
-
-The 0.87X series consists of bugfix releases only.  Don't expect any new
-features in here.  For new features wait for 0.88 (?)...
+=== What's new in patch Release 0.87k
 
 		---0.87a---
 Zen:		Fixed bug in Envy 2.2 which caused descriptions of objects in
@@ -48,7 +144,7 @@ Zen:		Removed several ugly bugs from clan code.
 		  one Envy2.2 bug and one memory leak! (fixed)
 
 		---0.87g---
-		If you ordered a charmed mob to suicide himself he would attack
+Zen:		If you ordered a charmed mob to suicide himself he would attack
 		  you, this one comes from Envy2.2 (fixed)
 		No more easy going for players who give offensive pills & stuff
 		  to a mob to make it hurt himself.
@@ -74,7 +170,7 @@ Zen:		Removed several ugly bugs from clan code.
 		"who" command now should have less weird results.
 
 		---0.87h---
-		Solved small bug in saving of object resets.
+Zen:		Solved small bug in saving of object resets.
 		Changed "#if defined( linux )" to "#if defined( __linux__ )".
 		  Although the former is defined, it is not POSIX compliant.
 		Changed OLC and do_astat to work with Sektor's new #AREADATA
@@ -91,11 +187,18 @@ Sektor:		Suggested new directory structure.
 		New area loading routines: new_load_area(), fread_area().
 
 		---0.87j---
-                Removed ridable mobs bug.
+Zen:		Removed ridable mobs bug.
                 Scraped old aliases for Sektor's code.  MUCH better.
                 Made noticeable changes to alias code including I/O routines.
 
 Sektor:         Much improved alias code.
+		---0.87k---
+Zen:		Removed loading alias bug.
+		'Speedwalk' with ';' thingie.
+		Support for '^' thingie.
+		Pose tables are read from the class files.
+		Fixed small problem with title loading from class files.
+		Changed alias code quite a bit.
 
 
 === What's new in patch Release 0.87
@@ -212,7 +315,7 @@ Satan:		Bug in comm.c act() sometimes made a segmentation fault.
 
 === What's new in patch Release 0.85
 
-Zen:		It seems like i forgot do update load_helps() in db.c.
+Zen:		It seems like i forgot to update load_helps() in db.c.
 		Added SMAUG's track code.
 		Smarter mobs.
 		Track skill for Thieves (SMAUG code)
@@ -236,7 +339,7 @@ Zen:		It seems like i forgot do update load_helps() in db.c.
 		Added new "editinfo" mode.
 		Added medit_copy.
 		Added oedit_copy.
-		Envy2.2 didn't have the Irix target defined in the top Makefile...
+		Envy2.2 didn't have Irix defined in the top Makefile...
 		Changed Flee code a bit to make mobs look smarter and slightly
 		  more aggressive.
 		Fixed bug in mprog_translate.
@@ -320,7 +423,6 @@ Zen:		Converted skills from src/Contributions.
 		Added several new liquid types
 		Added ITEM_PORTAL, ITEM_WARP_STONE
 		Added do_enter, so you can enter a portal and teleport.
-		Added several new liquid types.
 		Added Online Editing using ILAB OLC Beta 1.1.
 		Changed object format slightly. Will still load old Envy areas.
 		Added alias, and unalias commands.

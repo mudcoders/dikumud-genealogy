@@ -489,6 +489,9 @@ void temp_fread_string( FILE *fp, char *buf )
 
     for ( ;; )
     {
+	if ( (ptr-buf) >= MAX_STRING_LENGTH )
+	   bug( "AAAAAAAAAAAAAAAAAH  %d.", (ptr-buf) );
+
 	switch ( *ptr = getc( fp ) )
 	{
 	    default:

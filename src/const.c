@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -264,7 +266,7 @@ const   struct    race_type       race_table      [MAX_RACE]	=
 	RIS_CHARM | RIS_BASH,
 	RIS_NONE,
 	RIS_FIRE | RIS_ACID,
-	LANG_TROLLISH
+	LANG_TROLLESE
     },
 
     {
@@ -431,7 +433,7 @@ const   struct    race_type       race_table      [MAX_RACE]	=
 		PART_FANGS,
 	RIS_NONE,
 	RIS_NONE,
-	RIS_LIGHT,
+	RIS_NONE,
 	LANG_RODENT
     },
 
@@ -718,7 +720,7 @@ const	struct	attack_type	attack_table	[MAX_ATTACK]	=
     {  "stab",      &gsn_pierce,   DAM_PIERCE,	NULL             },
     {  "slash",     &gsn_slash,    DAM_SLASH,	NULL             },
     {  "whip",      &gsn_whip,     DAM_SLASH,	NULL             },
-    {  "claw",      &gsn_slash,	   DAM_SLASH,	NULL             },  /*  5   */
+    {  "claw",      &gsn_claw,	   DAM_SLASH,	NULL             },  /*  5   */
     {  "blast",     &gsn_explode,  DAM_BASH,	NULL             },
     {  "pound",     &gsn_pound,    DAM_BASH,	NULL             },
     {  "crush",     &gsn_pound,    DAM_BASH,	NULL             },
@@ -947,1730 +949,1774 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
  */
 
     {
-	"reserved",		{ L_APP },
-	0,			TAR_IGNORE,		POS_STANDING,
-	NULL,			0,	 0,
-	"",			"",
-	SCHOOL_NONE,
-	MANA_NONE,
-    },
-
-    {
-	"acid blast",		{ L_APP },
+	"acid blast",
 	spell_acid_blast,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
 	"acid blast",		"!Acid Blast!",
-	SCHOOL_EVOCATION,
-	MANA_WATER
+	MANA_WATER,		""
     },
 
     {
-	"armor",		{ L_APP },
-	spell_armor,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			5,	12,
-	"",			"You feel less protected.",
-	SCHOOL_CONJURATION,
-	MANA_EARTH
-    },
-
-    {
-	"bless",		{ L_APP },
-	spell_bless,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			5,	12,
-	"",			"You feel less righteous.",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
-    },
-
-    {
-	"blindness",		{ L_APP },
-	spell_blindness,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_blindness,		5,	12,
-	"",			"You can see again.",
-	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
-	MANA_FIRE
-    },
-
-    {
-	"breathe water",	{ L_APP },
-	spell_breathe_water,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	&gsn_breathe_water, 	 5,	12,
-	"pained lungs",		"You can no longer breathe underwater.",
-	SCHOOL_SURVIVAL,
-	MANA_WATER
-    },
-
-    {
-	"burning hands",	{ L_APP },
-	spell_burning_hands,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_burning_hands,     15,	12,
-	"burning hands",	"!Burning Hands!",
-	SCHOOL_ALTERATION,
-	MANA_FIRE
-    },
-
-    {
-	"call lightning",	{ L_APP },
-	spell_call_lightning,	TAR_IGNORE,		POS_FIGHTING,
-	NULL,			15,	12,
-	"lightning bolt",	"!Call Lightning!",
-	SCHOOL_ALTERATION,
-	MANA_AIR
-    },
-
-    {
-	"cause critical",	{ L_APP },
-	spell_cause_critical,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			20,	12,
-	"invocation",		"!Cause Critical!",
-	SCHOOL_NECROMANCY,
-	MANA_AIR
-    },
-
-    {
-	"cause light",		{ L_APP },
-	spell_cause_light,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"invocation",		"!Cause Light!",
-	SCHOOL_NECROMANCY,
-	MANA_AIR
-    },
-
-    {
-	"cause serious",	{ L_APP },
-	spell_cause_serious,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			17,	12,
-	"invocation",		"!Cause Serious!",
-	SCHOOL_NECROMANCY,
-	MANA_AIR
-    },
-
-    {
-	"change sex",		{ L_APP },
-	spell_change_sex,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			15,	0,
-	"",			"Your body feels familiar again.",
-	SCHOOL_ENCHANTMENT | SCHOOL_ALTERATION,
-	MANA_ANY
-    },
-
-    {
-	"charm person",		{ L_APP },
-	spell_charm_person,	TAR_CHAR_OFFENSIVE,	POS_STANDING,
-	&gsn_charm_person,	5,	12,
-	"",			"You feel more self-confident.",
-	SCHOOL_ENCHANTMENT | SCHOOL_CHARM,
-	MANA_ANY
-    },
-
-    {
-	"chill touch",		{ L_APP },
-	spell_chill_touch,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"chilling touch",	"You feel less cold.",
-	SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"colour spray",		{ L_APP },
-	spell_colour_spray,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"colour spray",		"!Colour Spray!",
-	SCHOOL_ALTERATION,
-	MANA_AIR
-    },
-
-    {
-        "cone of silence",	{ L_APP },
-        spell_cone_of_silence,	TAR_IGNORE,		POS_FIGHTING,
-        NULL,			35,     12,
-        "",                     "!Cone of Silence!",
-        SCHOOL_INVOCATION,
-        MANA_EARTH
-    },
-
-    {
-	"continual light",	{ L_APP },
-	spell_continual_light,	TAR_IGNORE,		POS_STANDING,
-	NULL,			7,	12,
-	"",			"!Continual Light!",
-	SCHOOL_ALTERATION,
-	MANA_FIRE
-    },
-
-    {
-	"control weather",	{ L_APP },
-	spell_control_weather,	TAR_IGNORE,		POS_STANDING,
-	NULL,			25,	12,
-	"",			"!Control Weather!",
-	SCHOOL_ALTERATION,
-	MANA_AIR
-    },
-
-    {
-	"create food",		{ L_APP },
-	spell_create_food,	TAR_IGNORE,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"!Create Food!",
-	SCHOOL_CONJURATION,
-	MANA_EARTH
-    },
-
-    {
-	"create spring",	{ L_APP },
-	spell_create_spring,	TAR_IGNORE,		POS_STANDING,
-	NULL,			20,	12,
-	"",			"!Create Spring!",
-	SCHOOL_ALTERATION,
-	MANA_WATER
-    },
-
-    {
-	"create water",		{ L_APP },
-	spell_create_water,	TAR_OBJ_INV,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"!Create Water!",
-	SCHOOL_ALTERATION,
-	MANA_WATER
-    },
-
-    {
-	"cure blindness",	{ L_APP },
-	spell_cure_blindness,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			5,	12,
-	"",			"!Cure Blindness!",
-	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"cure critical",	{ L_APP },
-	spell_cure_critical,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			20,	12,
-	"",			"!Cure Critical!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"cure disease",		{ L_APP },
-	spell_cure_disease,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			20,	12,
-	"",			"!Cure Disease!",
-	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"cure light",		{ L_APP },
-	spell_cure_light,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			10,	12,
-	"",			"!Cure Light!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"cure poison",		{ L_APP },
-	spell_cure_poison,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			5,	12,
-	"",			"!Cure Poison!",
-	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"cure serious",		{ L_APP },
-	spell_cure_serious,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"",			"!Cure Serious!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"curse",		{ L_APP },
-	spell_curse,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_curse,		20,	12,
-	"curse",		"The curse wears off.",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
-    },
-
-    {
-	"destroy cursed",	{ L_APP },
-	spell_destroy_cursed,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			20,	12,
-	"",			"!destroy cursed!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"detect evil",		{ L_APP },
-	spell_detect_evil,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"The red in your vision disappears.",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
-    },
-
-    {
-	"detect hidden",	{ L_APP },
-	spell_detect_hidden,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"You feel less aware of your surroundings.",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
-    },
-
-    {
-	"detect invis",		{ L_APP },
-	spell_detect_invis,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"You no longer see invisible objects.",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
-    },
-
-    {
-	"detect magic",		{ L_APP },
-	spell_detect_magic,	TAR_CHAR_SELF,		POS_STANDING, 
-	NULL,			5,	12,
-	"",			"The detect magic wears off.",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
-    },
-
-    {
-	"detect poison",	{ L_APP },
-	spell_detect_poison,	TAR_OBJ_INV,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"!Detect Poison!",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
-    },
-
-    {
-	"dispel evil",		{ L_APP },
-	spell_dispel_evil,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"holy fire",		"!Dispel Evil!",
-	SCHOOL_ABJURATION,
-	MANA_WATER
-    },
-
-    {
-	"dispel magic",		{ L_APP },
-	spell_dispel_magic,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			15,	16,
-	"",			"!Dispel Magic!",
-	SCHOOL_ABJURATION,
-	MANA_EARTH
-    },
-
-    {
-	"earthquake",		{ L_APP },
-	spell_earthquake,	TAR_IGNORE,		POS_FIGHTING,
-	NULL,			15,	12,
-	"earthquake",		"!Earthquake!",
-	SCHOOL_ALTERATION,
-	MANA_EARTH
-    },
-
-    {
-	"enchant weapon",	{ L_APP },
-	spell_enchant_weapon,	TAR_OBJ_INV,		POS_STANDING,
-	NULL,			100,	24,
-	"",			"!Enchant Weapon!",
-	SCHOOL_ENCHANTMENT,
-	MANA_FIRE
-    },
-
-    {
-	"energy drain",		{ L_APP },
-	spell_energy_drain,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			35,	12,
-	"energy drain",		"!Energy Drain!",
-	SCHOOL_NECROMANCY,
-	MANA_FIRE
-    },
-
-    {
-	"exorcise",		{ L_APP },
-	spell_exorcise, 	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			35,	12,
-	"",		        "!Exorcise!",
-	SCHOOL_ALTERATION | SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"faerie fire",		{ L_APP },
-	spell_faerie_fire,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			5,	12,
-	"faerie fire",		"The pink aura around you fades away.",
-	SCHOOL_ALTERATION,
-	MANA_FIRE
-    },
-
-    {
-	"faerie fog",		{ L_APP },
-	spell_faerie_fog,	TAR_IGNORE,		POS_STANDING,
-	NULL,			12,	12,
-	"faerie fog",		"!Faerie Fog!",
-	SCHOOL_CONJURATION,
-	MANA_AIR
-    },
-
-    {
-	"fireball",		{ L_APP },
-	spell_fireball,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"fireball",		"!Fireball!",
-	SCHOOL_EVOCATION,
-	MANA_FIRE
-    },
-
-    {
-	"flamestrike",		{ L_APP },
-	spell_flamestrike,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			20,	12,
-	"flamestrike",		"!Flamestrike!",
-	SCHOOL_CONJURATION,
-	MANA_FIRE
-    },
-
-    {
-	"fly",			{ L_APP },
-	spell_fly,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			10,	18,
-	"",			"You slowly float to the ground.",
-	SCHOOL_ALTERATION,
-	MANA_AIR
-    },
-
-    {
-	"gate",			{ L_APP },
-	spell_gate,		TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			50,	12,
-	"",			"!Gate!",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_EARTH
-    },
-
-    {
-	"giant strength",	{ L_APP },
-	spell_giant_strength,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			20,	12,
-	"",			"You feel weaker.",
-	SCHOOL_ALTERATION,
-	MANA_EARTH
-    },
-
-    {
-	"harm",			{ L_APP },
-	spell_harm,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			35,	12,
-	"divine power",		"!Harm!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"heal",			{ L_APP },
-	spell_heal,		TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			50,	12,
-	"",			"!Heal!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"identify",		{ L_APP },
-	spell_identify,		TAR_OBJ_INV,		POS_STANDING,
-	NULL,			12,	24,
-	"",			"!Identify!",
-	SCHOOL_DIVINATION,
-	MANA_ANY
-    },
-
-    {
-	"infravision",		{ L_APP },
-	spell_infravision,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			5,	18,
-	"",			"You no longer see in the dark.",
-	SCHOOL_ILLUSION,
-	MANA_FIRE
-    },
-
-    {
-	"invis",		{ L_APP },
-	spell_invis,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	&gsn_invis,		5,	12,
-	"",			"You are no longer invisible.",
-	SCHOOL_ILLUSION,
-	MANA_AIR
-    },
-
-    {
-	"know alignment",	{ L_APP },
-	spell_know_alignment,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			9,	12,
-	"",			"!Know Alignment!",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
-    },
-
-    {
-	"lightning bolt",	{ L_APP },
-	spell_lightning_bolt,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"lightning bolt",	"!Lightning Bolt!",
-	SCHOOL_EVOCATION,
-	MANA_FIRE
-    },
-
-    {
-	"locate object",	{ L_APP },
-	spell_locate_object,	TAR_IGNORE,		POS_STANDING,
-	NULL,			20,	18,
-	"",			"!Locate Object!",
-	SCHOOL_DIVINATION,
-	MANA_ANY
-    },
-
-    {
-	"magic missile",	{ L_APP },
-	spell_magic_missile,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"magic missile",	"!Magic Missile!",
-	SCHOOL_EVOCATION,
-	MANA_FIRE
-    },
-
-    {
-	"mass heal",		{ L_APP },
-	spell_mass_heal,	TAR_IGNORE,		POS_STANDING,
-	NULL,           	50,	24,
-	"",			"!Mass Heal!",
-	SCHOOL_NECROMANCY,
-	MANA_EARTH
-    },
-
-    {
-	"mass invis",		{ L_APP },
-	spell_mass_invis,	TAR_IGNORE,		POS_STANDING,
-	&gsn_mass_invis,	20,	24,
-	"",			"You are no longer invisible.",
-	SCHOOL_ILLUSION,
-	MANA_AIR
-    },
-
-    {
-        "mute",			{ L_APP },
-        spell_mute,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-        &gsn_mute,		20,     12,
-        "",                     "You are no longer muted.",
-	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
-        MANA_WATER
-    },
-
-    {
-	"pass door",		{ L_APP },
-	spell_pass_door,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			20,	12,
-	"",			"You feel solid again.",
-	SCHOOL_ALTERATION,
-	MANA_AIR
-    },
-
-    {
-	"plague",		{ L_APP },
-	spell_plague,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_plague,		20,	12,
-	"sickness",		"Your sores vanish.",
-	SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"poison",		{ L_APP },
-	spell_poison,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
-	&gsn_poison,		10,	12,
-	"burning blood",	"You feel less sick.",
-	SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"polymorph other",	{ L_APP },
-	spell_polymorph_other,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			20,	0,
-	"",			"Your body feels familiar again.",
-	SCHOOL_ALTERATION,
-	MANA_ANY
-    },
-
-    {
-	"protection",		{ L_APP },
-	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"You feel less protected.",
-	SCHOOL_ABJURATION,
-	MANA_FIRE
-    },
-
-    {
-	"protection evil",	{ L_APP },
-	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"You feel less protected.",
-	SCHOOL_ABJURATION,
-	MANA_FIRE
-    },
-
-    {
-	"protection good",	{ L_APP },
-	spell_protection_good,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"You feel less protected.",
-	SCHOOL_ABJURATION,
-	MANA_FIRE
-    },
-
-    {                                  
-        "recharge item",        { L_APP },
-        spell_recharge_item,    TAR_OBJ_INV,            POS_STANDING,
-        NULL,                   25,     12,
-        "blunder",              "!Recharge Item!",
-        SCHOOL_INVOCATION | SCHOOL_ENCHANTMENT,
-        MANA_ANY
-    }, 
-
-    {
-	"refresh",		{ L_APP },
-	spell_refresh,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			12,	18,
-	"refresh",		"!Refresh!",
-	SCHOOL_ALTERATION,
-	MANA_EARTH
-    },
-
-    {
-        "remove alignment",	{ L_APP },
-        spell_remove_alignment,	TAR_OBJ_INV,		POS_STANDING,
-        NULL,			10,	12,
-        "",                     "!Remove Alignment!",
-	SCHOOL_ABJURATION,
-        MANA_WATER
-    },
-
-    {
-	"remove curse",		{ L_APP },
-	spell_remove_curse,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			5,	12,
-	"",			"!Remove Curse!",
-	SCHOOL_ABJURATION,
-	MANA_WATER
-    },
-
-    {
-        "remove silence",	{ L_APP },
-        spell_remove_silence,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-        NULL,			15,     12,
-        "",                     "!Remove Silence!",
-	SCHOOL_ABJURATION | SCHOOL_NECROMANCY,
-        MANA_WATER
-    },
-
-    {
-	"sanctuary",		{ L_APP },
-	spell_sanctuary,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			75,	12,
-	"",			"The white aura around your body fades.",
-	SCHOOL_ABJURATION,
-	MANA_WATER
-    },
-
-    {
-	"shield",		{ L_APP },
-	spell_shield,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
-	NULL,			12,	18,
-	"",			"Your force shield shimmers then fades away.",
-	SCHOOL_CONJURATION,
-	MANA_ANY
-    },
-
-    {
-	"shocking grasp",	{ L_APP },
-	spell_shocking_grasp,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
-	"shocking grasp",	"!Shocking Grasp!",
-	SCHOOL_EVOCATION,
-	MANA_FIRE
-    },
-
-    {
-	"sleep",		{ L_APP },
-	spell_sleep,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
-	&gsn_sleep,		15,	12,
-	"",			"You feel less tired.",
-	SCHOOL_ENCHANTMENT | SCHOOL_CHARM,
-	MANA_EARTH
-    },
-
-    {
-	"stone skin",		{ L_APP },
-	spell_stone_skin,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			12,	18,
-	"",			"Your skin feels soft again.",
-	SCHOOL_ALTERATION,
-	MANA_EARTH
-    },
-
-    {
-	"summon",		{ L_APP },
-	spell_summon,		TAR_IGNORE,		POS_STANDING,
-	NULL,			50,	12,
-	"",			"!Summon!",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
-    },
-
-    {
-	"teleport",		{ L_APP },
-	spell_teleport,		TAR_CHAR_SELF,		POS_FIGHTING,
-	NULL,	 		35,	12,
-	"",			"!Teleport!",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
-    },
-
-    {
-	"turn undead",		{ L_APP },
-	spell_turn_undead,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_turn_undead,	10,	12,
-	"divine exorcism",	"!Turn undead!",
-	SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"ventriloquate",	{ L_APP },
-	spell_ventriloquate,	TAR_IGNORE,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"!Ventriloquate!",
-	SCHOOL_PHANTASM,
-	MANA_AIR
-    },
-
-    {
-	"weaken",		{ L_APP },
-	spell_weaken,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			20,	12,
-	"weakening spell",	"You feel stronger.",
-	SCHOOL_NECROMANCY,
-	MANA_WATER
-    },
-
-    {
-	"word of recall",	{ L_APP },
-	spell_word_of_recall,	TAR_CHAR_SELF,		POS_RESTING,
-	NULL,			5,	12,
-	"",			"!Word of Recall!",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
-    },
-
-/*
- * Dragon breath.
- */
-    {
-	"acid breath",		{ L_APP },
+	"acid breath",
 	spell_acid_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
 	"breath of acid",	"!Acid Breath!",
-	SCHOOL_EVOCATION,
-	MANA_WATER
+	MANA_WATER,		""
     },
 
     {
-	"fire breath",		{ L_APP },
-	spell_fire_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			50,	12,
-	"breath of flame",	"!Fire Breath!",
-	SCHOOL_EVOCATION,
-	MANA_FIRE
-    },
-
-    {
-	"frost breath",		{ L_APP },
-	spell_frost_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			50,	12,
-	"breath of frost",	"!Frost Breath!",
-	SCHOOL_EVOCATION,
-	MANA_WATER
-    },
-
-    {
-	"gas breath",		{ L_APP },
-	spell_gas_breath,	TAR_IGNORE,		POS_FIGHTING,
-	NULL,			50,	12,
-	"breath of gas",		"!Gas Breath!",
-	SCHOOL_EVOCATION,
-	MANA_AIR
-    },
-
-    {
-	"lightning breath",	{ L_APP },
-	spell_lightning_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			50,	12,
-	"breath of lightning",	"!Lightning Breath!",
-	SCHOOL_EVOCATION,
-	MANA_ANY
-    },
-
-/*
- * Fighter and thief skills, as well as magic item skills.
- */
-    {
-	"backstab",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_backstab,		 0,	24,
-	"vicious backstab",	"!Backstab!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"bash door", 	 	{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_bash,		 0,	24,
-	"powerful bash",	"!Bash Door!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-    {
-        "berserk",              { L_APP },
-        spell_null,             TAR_IGNORE,             POS_FIGHTING,
-        &gsn_berserk,            0,      12,
-        "",                     "The bloody haze lifts.",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-        "circle",		{ L_APP },
-        spell_null,		TAR_IGNORE,		POS_FIGHTING,
-        &gsn_circle,		 0,	24,
-        "sneak attack",		"!Circle!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"disarm",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_disarm,		 0,	24,
-	"",			"!Disarm!",
-	SCHOOL_DEFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"dodge",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_dodge,		 0,	 0,
-	"",			"!Dodge!",
-	SCHOOL_DEFENSIVE,
-	MANA_NONE
-    },
-
-    {
-        "dual",         	{ L_APP },
-        spell_null,		TAR_IGNORE,		POS_FIGHTING,
-        &gsn_dual,      	 0,	 0,
-        "",                     "!Dual!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"enhanced damage",	{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_enhanced_damage,	0,	 0,
-	"",			"!Enhanced Damage!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"hide",			{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_RESTING,
-	&gsn_hide,		 0,	12,
-	"",			"!Hide!",
-	SCHOOL_STEALTH,
-	MANA_NONE
-    },
-
-    {
-	"kick",			{ L_APP },
-	spell_null,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_kick,		 0,	 8,
-	"mighty kick",		"!Kick!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"parry",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_parry,		 0,	 0,
-	"",			"!Parry!",
-	SCHOOL_DEFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"peek",			{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_peek,		 0,	 0,
-	"",			"!Peek!",
-	SCHOOL_STEALTH,
-	MANA_NONE
-    },
-
-    {
-	"pick lock",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_pick_lock,		 0,	12,
-	"",			"!Pick!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-    {
-	"poison weapon",	{ L_APP },
-	spell_null,		TAR_OBJ_INV,		POS_STANDING,
-	&gsn_poison_weapon,	 0,	12,
-	"poisonous concoction",	"!Poison Weapon!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-    {
-	"rescue",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_rescue,		 0,	12,
-	"",			"!Rescue!",
-	SCHOOL_DEFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"scrolls",      	{ L_APP },
-	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
-	&gsn_scrolls,	 	 0,	0,
-	"blazing scroll",	"!Scrolls!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-    {
-	"second attack",	{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_second_attack,	 0,	 0,
-	"",			"!Second Attack!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"snare",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_snare,		 0,	12,
-	"",			"You are no longer ensnared.",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"sneak",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_sneak,		 0,	12,
-	"",			NULL,
-	SCHOOL_STEALTH,
-	MANA_NONE
-    },
-
-    {
-	"staves",       	{ L_APP },
-	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
-	&gsn_staves,	 	 0,	0,
-	"shattered staff",	"!Staves!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-    {
-	"steal",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_steal,		 0,	24,
-	"",			"!Steal!",
-	SCHOOL_STEALTH,
-	MANA_NONE
-    },
-
-    {
-	"third attack",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_third_attack,	 0,	 0,
-	"",			"!Third Attack!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
-    },
-
-    {
-        "untangle",		{ L_APP },
-        spell_null,		TAR_IGNORE,		POS_STANDING,
-        &gsn_untangle,		 0,	24,
-        "",                     "!Untangle!",
-	SCHOOL_DEFENSIVE,
-	MANA_NONE
-    },
-
-    {
-	"wands",        	{ L_APP },
-	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
-	&gsn_wands,	 	 0,	0,
-	"exploding wand",	"!Wands!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-/*
- *  Spells for mega1.are from Glop/Erkenbrand.
- */
-    {
-        "general purpose",      { L_APP },
-	spell_general_purpose,  TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-	NULL,                   0,      12,
-	"general purpose ammo", "!General Purpose Ammo!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-    {
-        "high explosive",       { L_APP },
-	spell_high_explosive,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-	NULL,                   0,      12,
-	"high explosive ammo",  "!High Explosive Ammo!",
-	SCHOOL_NONE,
-	MANA_NONE
-    },
-
-
-    /*
-     * Psionicist spell/skill definitions
-     * Psi class conceived, created, and coded by Thelonius (EnvyMud)
-     */
-
-    {
-        "adrenaline control",   { L_APP },
+        "adrenaline control",
         spell_adrenaline_control,       TAR_CHAR_SELF,  POS_STANDING,
-        NULL,                           6,      12,
-        "",                             "The adrenaline rush wears off.",
-	SCHOOL_ALTERATION,
-        MANA_WATER
+        NULL,				6,      12,
+        "",				"The adrenaline rush wears off.",
+        MANA_WATER,			""
     },
 
     {
-        "agitation",            { L_APP },
+        "agitation",
         spell_agitation,        TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   10,     12,
         "molecular agitation",  "!Agitation!",
-        SCHOOL_EVOCATION,
-        MANA_AIR
+        MANA_AIR,		""
     },
 
     {
-        "aura sight",           { L_APP },
+	"antimagic shell",
+	spell_antimagic_shell,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			40,	12,
+	"",			"The shimmering antimagic shell fades away...",
+	MANA_EARTH,		""
+    },
+
+    {
+	"aquiles power",
+	spell_aquiles_power,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			50,	60,
+	"",			"The aquiles power within you dissipates...",
+	MANA_EARTH,		""
+    },
+
+    {
+	"armor",
+	spell_armor,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less protected.",
+	MANA_EARTH,		""
+    },
+
+    {
+        "aura sight",
         spell_aura_sight,       TAR_CHAR_DEFENSIVE,     POS_STANDING,
         NULL,                   9,     12,
         "",                     "!Aura Sight!",
-        SCHOOL_DIVINATION,
-        MANA_FIRE
+        MANA_FIRE,		""
     },
 
     {
-        "awe",                  { L_APP },
+        "awe",
         spell_awe,              TAR_CHAR_DEFENSIVE,     POS_FIGHTING,
         NULL,                   35,     12,
         "",                     "!Awe!",
-        SCHOOL_PHANTASM,
-        MANA_WATER
+        MANA_WATER,		""
     },
 
     {
-        "ballistic attack",     { L_APP },
+        "ballistic attack",
         spell_ballistic_attack, TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   5,     12,
         "ballistic attack",     "!Ballistic Attack!",
-        SCHOOL_EVOCATION,
-        MANA_AIR
+        MANA_AIR,		""
     },
 
     {
-        "biofeedback",          { L_APP },
+        "biofeedback",
         spell_biofeedback,      TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   75,     12,
         "",                     "Your biofeedback is no longer effective.",
-        SCHOOL_ALTERATION,
-        MANA_WATER
+        MANA_WATER,		""
     },
 
     {
-        "cell adjustment",      { L_APP },
+	"blazebane",
+	spell_blazebane,	TAR_CHAR_OFFENSIVE,  	POS_STANDING,
+	NULL,			70,	15,
+	"",			"Your flesh grows less susceptible to fire.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"blazeward",
+	spell_blazeward,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			70,	15,
+	"",			"The ward of flames ceases to protect you.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"bless",
+	spell_bless,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less righteous.",
+	MANA_AIR,		""
+    },
+
+    {
+	"blindness",
+	spell_blindness,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_blindness,		5,	12,
+	"",			"You can see again.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"breathe water",
+	spell_breathe_water,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	&gsn_breathe_water, 	 5,	12,
+	"pained lungs",		"You can no longer breathe underwater.",
+	MANA_WATER,		""
+    },
+
+    {
+	"burning hands",
+	spell_burning_hands,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_burning_hands,     15,	12,
+	"burning hands",	"!Burning Hands!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"call lightning",
+	spell_call_lightning,	TAR_IGNORE,		POS_FIGHTING,
+	NULL,			15,	12,
+	"lightning bolt",	"!Call Lightning!",
+	MANA_AIR,		""
+    },
+
+    {
+	"cause critical",
+	spell_cause_critical,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			20,	12,
+	"invocation",		"!Cause Critical!",
+	MANA_AIR,		""
+    },
+
+    {
+	"cause light",
+	spell_cause_light,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"invocation",		"!Cause Light!",
+	MANA_AIR,		""
+    },
+
+    {
+	"cause serious",
+	spell_cause_serious,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			17,	12,
+	"invocation",		"!Cause Serious!",
+	MANA_AIR,		""
+    },
+
+    {
+        "cell adjustment",
         spell_cell_adjustment,  TAR_CHAR_SELF,          POS_STANDING,
         NULL,                   8,     12,
         "",                     "!Cell Adjustment!",
-        SCHOOL_ALTERATION,
-        MANA_EARTH
-    },
-
-    {
-        "chameleon power",      { L_APP },
-        spell_null,             TAR_IGNORE,             POS_STANDING,
-        &gsn_chameleon,         0,     12,
-        "",                     "!Chameleon Power!",
-	SCHOOL_STEALTH,
-        MANA_NONE
-    },
-
-    {
-        "combat mind",          { L_APP },
-        spell_combat_mind,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
-        NULL,                   15,     12,
-        "",                     "Your battle sense has faded.",
-	SCHOOL_EVOCATION | SCHOOL_SUMMONING,
-        MANA_EARTH
-    },
-
-    {
-        "complete healing",     { L_APP },
-        spell_complete_healing, TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   100,    12,
-        "",                     "!Complete Healing!",
-	SCHOOL_NECROMANCY,
-        MANA_EARTH
-    },
-
-    {
-        "control flames",       { L_APP },
-        spell_control_flames,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   15,     12,
-        "tongue of flame",      "!Control Flames!",
-        SCHOOL_EVOCATION,
-        MANA_FIRE
-    },
-
-    {
-        "create sound",         { L_APP },
-        spell_create_sound,     TAR_CHAR_DEFENSIVE,     POS_STANDING,
-        NULL,                   5,     12,
-        "",                     "!Create Sound!",
-        SCHOOL_PHANTASM,
-        MANA_AIR
-    },
-
-    {
-        "death field",          { L_APP },
-        spell_death_field,      TAR_IGNORE,             POS_FIGHTING,
-        NULL,                   200,    18,
-        "field of death",       "!Death Field!",
-        SCHOOL_EVOCATION | SCHOOL_NECROMANCY,
-        MANA_FIRE
-    },
-
-    {
-        "detonate",             { L_APP },
-        spell_detonate,         TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   35,     24,
-        "detonation",           "!Detonate!",
-        SCHOOL_EVOCATION,
-        MANA_FIRE
-    },
-
-    {
-        "disintegrate",         { L_APP },
-        spell_disintegrate,     TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   150,    18,
-        "disintegration",       "!Disintegrate!",
-        SCHOOL_EVOCATION | SCHOOL_NECROMANCY,
-        MANA_FIRE
-    },
-
-    {
-        "displacement",         { L_APP },
-        spell_displacement,     TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   10,     12,
-        "",                     "You are no longer displaced.",
-        SCHOOL_ALTERATION,
-        MANA_AIR
-    },
-
-    {
-        "domination",           { L_APP },
-        spell_domination,       TAR_CHAR_OFFENSIVE,     POS_STANDING,
-        &gsn_domination,        5,     12,
-        "",                     "You regain control of your body.",
-	SCHOOL_ENCHANTMENT | SCHOOL_CHARM,
-        MANA_ANY
-    },
-
-    {
-        "ectoplasmic form",     { L_APP },
-        spell_ectoplasmic_form, TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   20,     12,
-        "",                     "You feel solid again.",
-	SCHOOL_ALTERATION,
-        MANA_AIR
-    },
-
-    {
-        "ego whip",             { L_APP },
-        spell_ego_whip,         TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   20,     12,
-        "",                     "You feel more confident.",
-        SCHOOL_PHANTASM,
-        MANA_WATER
-    },
-
-    {
-        "energy containment",   { L_APP },
-        spell_energy_containment,       TAR_CHAR_SELF,  POS_STANDING,
-        NULL,                           10,     12,
-        "",                             "You no longer absorb energy.",
-        SCHOOL_ALTERATION,
-        MANA_EARTH
-    },
-
-    {
-        "enhance armor",        { L_APP },
-        spell_enhance_armor,    TAR_OBJ_INV,    POS_STANDING,
-        NULL,                   100,    24,
-        "",                     "!Enhance Armor!",
-	SCHOOL_ENCHANTMENT,
-        MANA_FIRE
-    },
-
-    {
-        "enhanced strength",    { L_APP },
-        spell_enhanced_strength,        TAR_CHAR_SELF,  POS_STANDING,
-        NULL,                           20,     12,
-        "",                             "You no longer feel so HUGE.",
-	SCHOOL_ALTERATION,
-        MANA_EARTH
-    },
-
-    {
-        "flesh armor",          { L_APP },
-        spell_flesh_armor,      TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   15,     12,
-        "",                     "Your skin returns to normal.",
-	SCHOOL_ALTERATION,
-        MANA_EARTH
-    },
-
-    {
-        "heighten senses",      { L_APP },
-        spell_null,             TAR_CHAR_SELF,          POS_STANDING,
-        &gsn_heighten,          0,      0,
-        "",                     "Your senses return to normal.",
-        SCHOOL_DIVINATION,
-        MANA_FIRE
-    },
-
-    {
-        "inertial barrier",     { L_APP },
-        spell_inertial_barrier, TAR_IGNORE,             POS_STANDING,
-        NULL,                   40,     24,
-        "",                     "Your inertial barrier dissipates.",
-        SCHOOL_CONJURATION,
-        MANA_AIR
-    },
-
-    {
-        "inflict pain",         { L_APP },
-        spell_inflict_pain,     TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   10,     12,
-        "mindpower",            "!Inflict Pain!",
-	SCHOOL_EVOCATION,
-        MANA_FIRE
-    },
-
-    {
-        "intellect fortress",   { L_APP },
-        spell_intellect_fortress,       TAR_IGNORE,     POS_STANDING,
-        NULL,                           25,     24,
-        "",                     "Your intellectual fortress crumbles.",
-        SCHOOL_EVOCATION,
-        MANA_ANY
-    },
-
-    {
-        "lend health",          { L_APP },
-        spell_lend_health,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
-        NULL,                   10,     12,
-        "",                     "!Lend Health!",
-        SCHOOL_NECROMANCY,
-        MANA_EARTH
-    },
-
-    {
-        "levitation",           { L_APP },
-        spell_levitation,       TAR_CHAR_DEFENSIVE,     POS_STANDING,
-        NULL,                   10,     18,
-        "",                     "You slowly float to the ground.",
-        SCHOOL_ALTERATION,
-        MANA_AIR
-    },
-
-    {
-        "mental barrier",       { L_APP },
-        spell_mental_barrier,   TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   8,     12,
-        "",                     "Your mental barrier breaks down.",
-	SCHOOL_CONJURATION,
-        MANA_EARTH
-    },
-
-    {
-        "mind thrust",          { L_APP },
-        spell_mind_thrust,      TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   8,     12,
-        "mind thrust",          "!Mind Thrust!",
-        SCHOOL_PHANTASM,
-        MANA_WATER
-    },
-
-    {
-        "project force",        { L_APP },
-        spell_project_force,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   18,     12,
-        "projected force",      "!Project Force!",
-        SCHOOL_EVOCATION,
-        MANA_EARTH
-    },
-
-    {
-        "psionic blast",        { L_APP },
-        spell_psionic_blast,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   25,     12,
-        "psionic blast",        "!Psionic Blast!",
-        SCHOOL_EVOCATION,
-        MANA_FIRE
-    },
-
-    {
-        "psychic crush",        { L_APP },
-        spell_psychic_crush,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   15,     18,
-        "psychic crush",        "!Psychic Crush!",
-        SCHOOL_EVOCATION,
-        MANA_EARTH
-    },
-
-    {
-        "psychic drain",        { L_APP },
-        spell_psychic_drain,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        NULL,                   20,     12,
-        "",                     "You no longer feel drained.",
-	SCHOOL_NECROMANCY,
-        MANA_FIRE
-    },
-
-    {
-        "psychic healing",      { L_APP },
-        spell_psychic_healing,  TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   20,      12,
-        "",                     "!Psychic Healing!",
-	SCHOOL_NECROMANCY,
-        MANA_EARTH
-    },
-
-    {
-        "shadow form",          { L_APP },
-        spell_null,             TAR_IGNORE,             POS_STANDING,
-        &gsn_shadow,            0,     12,
-        "",                     "You no longer move in the shadows.",
-	SCHOOL_STEALTH,
-        MANA_NONE
-    },
-
-    {
-        "share strength",       { L_APP },
-        spell_share_strength,   TAR_CHAR_DEFENSIVE,     POS_STANDING,
-        NULL,                   8,     12,
-        "",                     "You no longer share strength with another.",
-	SCHOOL_CONJURATION,
-        MANA_EARTH
-    },
-
-    {
-        "thought shield",       { L_APP },
-        spell_thought_shield,   TAR_CHAR_SELF,          POS_STANDING,
-        NULL,                   5,     12,
-        "",                     "You no longer feel so protected.",
-	SCHOOL_CONJURATION,
-        MANA_ANY
-    },
-
-    {
-        "ultrablast",           { L_APP },
-        spell_ultrablast,       TAR_IGNORE,             POS_FIGHTING,
-        NULL,                   75,     24,
-        "ultrablast",           "!Ultrablast!",
-        SCHOOL_EVOCATION,
-        MANA_FIRE
-    },
-
-    {
-        "stake",                { L_APP },
-        spell_null,             TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
-        &gsn_stake,             0,       8,
-        "carefully aimed stake","!Stake!",
-	SCHOOL_OFFENSIVE,
-        MANA_NONE
-    },
-
-/*
- * New abilities added by Zen, made by several other ppl.
- */
-    {
-        "scan",			{ L_APP },
-        spell_null,		TAR_IGNORE,		POS_STANDING,
-        &gsn_scan,		0,       24,
-        "",			"!Scan!",
-	SCHOOL_STEALTH,
-        MANA_NONE
-    },
-
-    {
-        "shield block",         { L_APP },
-        spell_null,             TAR_IGNORE,             POS_FIGHTING,
-        &gsn_shield_block,      0,      0,
-        "",                     "!Shield Block!",
-	SCHOOL_DEFENSIVE,
-        MANA_NONE
-    },
-
-    {
-        "fast healing",         { L_APP },
-        spell_null,             TAR_IGNORE,             POS_DEAD,
-        &gsn_fast_healing,      0,      0,
-        "",                     "!Fast Healing!",
-        SCHOOL_NONE,
-        MANA_NONE
-    },
-
-   {
-        "fourth attack",        { L_APP },
-        spell_null,             TAR_IGNORE,             POS_FIGHTING,
-        &gsn_fourth_attack,     0,      0,
-        "",                     "!Fourth Attack!",
-	SCHOOL_OFFENSIVE,
-        MANA_NONE
-    },
-
-    {
-	"brew",			{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_brew,		0,	 24,
-	"blunder",		"!Brew!",
-        SCHOOL_ENCHANTMENT,
-        MANA_NONE
-    },
-
-    {
-	"scribe",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_scribe,		0,	 24,
-	"blunder",		"!Scribe!",
-        SCHOOL_ENCHANTMENT,
-        MANA_NONE
-    },
-
-    {
-        "track",		{ L_APP },
-        spell_null,		TAR_IGNORE,		POS_STANDING,
-        &gsn_track,		0,       2,
-        "",			"!Track!",
-	SCHOOL_SURVIVAL,
-        MANA_NONE
-    },
-
-    {
-	"whirlwind",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_whirlwind,		0,	 12,
-	"WhirlWind",		"!Whirlwind!",
-	SCHOOL_OFFENSIVE,
-        MANA_NONE
-    },
-
-    {
-        "mount",		{ L_APP },
-        spell_null,		TAR_IGNORE,		POS_STANDING,
-        &gsn_mount,		0,       5,
-        "",			"!Mount!",
-        SCHOOL_NONE,
-        MANA_NONE
-    },
-
-/*
- * Spells & skills here by Zen.
- */
-    {
-        "dirt kicking",		{ L_APP },
-        spell_null,             TAR_IGNORE,             POS_FIGHTING,
-        &gsn_dirt,              0,      24,
-        "kicked dirt",          "You rub the dirt out of your eyes.",
-	SCHOOL_OFFENSIVE,
-        MANA_NONE
-    },
-
-    {
-        "swim",                 { L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_swim,		 0,	 0,
-	"",			"!Swim!",
-	SCHOOL_SURVIVAL,
-	MANA_NONE
-    },
-
-    {
-        "meditate",         	{ L_APP },
-        spell_null,             TAR_IGNORE,             POS_DEAD,
-        &gsn_meditate,      	0,      0,
-        "",			"!Meditate!",
-        SCHOOL_NONE,
-        MANA_NONE
-    },
-
-    {
-        "meteor swarm",		{ L_APP },
-        spell_meteor_swarm,	TAR_IGNORE,     POS_FIGHTING,
-        NULL,			20,       12,
-        "meteor swarm",		"!Meteor Swarm!",
-        SCHOOL_EVOCATION,
-        MANA_AIR
+        MANA_EARTH,		""
     },
 
     {   
-	"chain lightning",	{ L_APP },
+	"chain lightning",
 	spell_chain_lightning,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			25,	12,
 	"lightning",		"!Chain Lightning!",
-	SCHOOL_EVOCATION,
-	MANA_FIRE
+	MANA_FIRE,		""
     }, 
 
     {
-	"wizard eye",		{ L_APP },
-	spell_wizard_eye, 	TAR_IGNORE,		POS_STANDING,
-	NULL,			40,	12,
-	"",			"!Wizard Eye!",
-	SCHOOL_DIVINATION,
-	MANA_AIR
-    },
-    
-    {
-	"vortex lift",		{ L_APP },
-	spell_vortex_lift,	TAR_IGNORE,		POS_STANDING,
-	NULL,			60,	12,
-	"",			"!Vortex Lift!",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
-    },
-    
-    {
-	"mass vortex lift",	{ L_APP },
-	spell_mass_vortex_lift,	TAR_IGNORE,		POS_STANDING,
-	&gsn_mass_vortex_lift,	150,	12,
-	"",			"!Mass Vortex Lift!",
-	SCHOOL_CONJURATION | SCHOOL_SUMMONING,
-	MANA_AIR
+	"change sex",
+	spell_change_sex,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			15,	0,
+	"",			"Your body feels familiar again.",
+	MANA_FIRE,		""
     },
 
     {
-	"detect good",		{ L_APP },
-	spell_detect_good,	TAR_CHAR_SELF,		POS_STANDING,
-	NULL,			5,	12,
-	"",			"The gold in your vision disappears.",
-	SCHOOL_DIVINATION,
-	MANA_FIRE
+	"charm person",
+	spell_charm_person,	TAR_CHAR_OFFENSIVE,	POS_STANDING,
+	&gsn_charm_person,	5,	12,
+	"",			"You feel more self-confident.",
+	MANA_AIR,		""
     },
 
     {
-	"dispel good",		{ L_APP },
-	spell_dispel_good,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	"chill touch",
+	spell_chill_touch,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"unholy fire",		"!Dispel Good!",
-	SCHOOL_ABJURATION,
-	MANA_FIRE
+	"chilling touch",	"You feel less cold.",
+	MANA_WATER,		""
     },
 
     {
-        "portal",               { L_APP },
-        spell_portal,           TAR_IGNORE,             POS_STANDING,
-        NULL,                   100,     24,
-        "",                     "!Portal!",
-        SCHOOL_CONJURATION | SCHOOL_ENCHANTMENT,
-        MANA_AIR
+	"colour spray",
+	spell_colour_spray,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"colour spray",		"!Colour Spray!",
+	MANA_AIR,		""
     },
 
     {
-        "nexus",                { L_APP },
-        spell_nexus,            TAR_IGNORE,             POS_STANDING,
-        NULL,                   150,   36,
-        "",                     "!Nexus!",
-        SCHOOL_CONJURATION | SCHOOL_ENCHANTMENT,
-        MANA_AIR
+        "combat mind",
+        spell_combat_mind,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
+        NULL,                   15,     12,
+        "",                     "Your battle sense has faded.",
+        MANA_EARTH,		""
     },
 
     {
-	"create buffet",	{ L_APP },
+        "complete healing",
+        spell_complete_healing, TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   100,    12,
+        "",                     "!Complete Healing!",
+        MANA_EARTH,		""
+    },
+
+    {
+        "cone of silence",
+        spell_cone_of_silence,	TAR_IGNORE,		POS_FIGHTING,
+        NULL,			35,     12,
+        "",                     "!Cone of Silence!",
+        MANA_EARTH,		""
+    },
+
+    {
+	"continual light",
+	spell_continual_light,	TAR_IGNORE,		POS_STANDING,
+	NULL,			7,	12,
+	"",			"!Continual Light!",
+	MANA_FIRE,		""
+    },
+
+    {
+        "control flames",
+        spell_control_flames,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   15,     12,
+        "tongue of flame",      "!Control Flames!",
+        MANA_FIRE,		""
+    },
+
+    {
+	"control weather",
+	spell_control_weather,	TAR_IGNORE,		POS_STANDING,
+	NULL,			25,	12,
+	"",			"!Control Weather!",
+	MANA_AIR,		""
+    },
+
+    {
+	"create buffet",
 	spell_create_buffet,	TAR_IGNORE,		POS_STANDING,
 	NULL,			33,	12,
 	"",			"!Create Buffet!",
-	SCHOOL_CONJURATION,
-	MANA_EARTH
+	MANA_EARTH,		""
     },
 
     {
-	"flaming shield",	{ L_APP },
+	"create food",
+	spell_create_food,	TAR_IGNORE,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"!Create Food!",
+	MANA_EARTH,		""
+    },
+
+    {
+        "create sound",
+        spell_create_sound,     TAR_CHAR_DEFENSIVE,     POS_STANDING,
+        NULL,                   5,     12,
+        "",                     "!Create Sound!",
+        MANA_AIR,		""
+    },
+
+    {
+	"create spring",
+	spell_create_spring,	TAR_IGNORE,		POS_STANDING,
+	NULL,			20,	12,
+	"",			"!Create Spring!",
+	MANA_WATER,		""
+    },
+
+    {
+	"create water",
+	spell_create_water,	TAR_OBJ_INV,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"!Create Water!",
+	MANA_WATER,		""
+    },
+
+    {
+	"cure blindness",
+	spell_cure_blindness,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			5,	12,
+	"",			"!Cure Blindness!",
+	MANA_WATER,		""
+    },
+
+    {
+	"cure critical",
+	spell_cure_critical,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			20,	12,
+	"",			"!Cure Critical!",
+	MANA_EARTH,		""
+    },
+
+    {
+	"cure disease",
+	spell_cure_disease,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			20,	12,
+	"",			"!Cure Disease!",
+	MANA_WATER,		""
+    },
+
+    {
+	"cure light",
+	spell_cure_light,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			10,	12,
+	"",			"!Cure Light!",
+	MANA_EARTH,		""
+    },
+
+    {
+	"cure poison",
+	spell_cure_poison,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			5,	12,
+	"",			"!Cure Poison!",
+	MANA_WATER,		""
+    },
+
+    {
+	"cure serious",
+	spell_cure_serious,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"",			"!Cure Serious!",
+	MANA_EARTH,		""
+    },
+
+    {
+	"curse",
+	spell_curse,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_curse,		20,	12,
+	"curse",		"The curse wears off.",
+	MANA_AIR,		""
+    },
+
+    {
+        "death field",
+        spell_death_field,      TAR_IGNORE,             POS_FIGHTING,
+        NULL,                   200,    18,
+        "field of death",       "!Death Field!",
+        MANA_FIRE,		""
+    },
+
+    {
+	"demon skin",
+	spell_demon_skin,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			55,	25,
+	"",			"Your leathery skin grows thinner...",
+	MANA_EARTH,		""
+    },
+
+    {
+	"destroy cursed",
+	spell_destroy_cursed,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			20,	12,
+	"",			"!destroy cursed!",
+	MANA_EARTH,		""
+    },
+
+    {
+	"detect evil",
+	spell_detect_evil,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"The red in your vision disappears.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"detect good",
+	spell_detect_good,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"The gold in your vision disappears.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"detect hidden",
+	spell_detect_hidden,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less aware of your surroundings.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"detect invis",
+	spell_detect_invis,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You no longer see invisible objects.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"detect magic",
+	spell_detect_magic,	TAR_CHAR_SELF,		POS_STANDING, 
+	NULL,			5,	12,
+	"",			"The detect magic wears off.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"detect poison",
+	spell_detect_poison,	TAR_OBJ_INV,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"!Detect Poison!",
+	MANA_FIRE,		""
+    },
+
+    {
+        "detonate",
+        spell_detonate,         TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   35,     24,
+        "detonation",           "!Detonate!",
+        MANA_FIRE,		""
+    },
+
+    {
+        "disintegrate",
+        spell_disintegrate,     TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   150,    18,
+        "disintegration",       "!Disintegrate!",
+        MANA_FIRE,		""
+    },
+
+    {
+	"dispel evil",
+	spell_dispel_evil,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"holy fire",		"!Dispel Evil!",
+	MANA_WATER,		""
+    },
+
+    {
+	"dispel good",
+	spell_dispel_good,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"unholy fire",		"!Dispel Good!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"dispel magic",
+	spell_dispel_magic,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			15,	16,
+	"",			"!Dispel Magic!",
+	MANA_EARTH,		""
+    },
+
+    {
+        "displacement",
+        spell_displacement,     TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   10,     12,
+        "",                     "You are no longer displaced.",
+        MANA_AIR,		""
+    },
+
+    {
+        "domination",
+        spell_domination,       TAR_CHAR_OFFENSIVE,     POS_STANDING,
+        &gsn_domination,        5,     12,
+        "",                     "You regain control of your body.",
+        MANA_AIR,		""
+    },
+
+    {
+	"dragon skin",
+	spell_dragon_skin,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			45,	14,
+	"",			"Your flesh sheds its draconian aspects.",
+	MANA_EARTH,		""
+    },
+
+    {
+	"dragon wit",
+	spell_dragon_wit,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			20,	12,
+	"",			"The dragon wit withdraws from your mind.",
+	MANA_EARTH,		""
+    },
+
+    {
+	"earthquake",
+	spell_earthquake,	TAR_IGNORE,		POS_FIGHTING,
+	NULL,			15,	12,
+	"earthquake",		"!Earthquake!",
+	MANA_EARTH,		""
+    },
+
+    {
+        "ectoplasmic form",
+        spell_pass_door,	TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   20,     12,
+        "",                     "You feel solid again.",
+        MANA_AIR,		""
+    },
+
+    {
+        "ego whip",
+        spell_ego_whip,         TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   20,     12,
+        "",                     "You feel more confident.",
+        MANA_WATER,		""
+    },
+
+    {
+	"eldritch sphere",
+	spell_eldritch_sphere,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			70,	20,
+	"",			"The eldritch sphere about you vanishes...",
+	MANA_EARTH,		""
+    },
+
+    {
+	"enchant weapon",
+	spell_enchant_weapon,	TAR_OBJ_INV,		POS_STANDING,
+	NULL,			100,	24,
+	"",			"!Enchant Weapon!",
+	MANA_FIRE,		""
+    },
+
+    {
+        "energy containment",
+        spell_energy_containment,       TAR_CHAR_SELF,  POS_STANDING,
+        NULL,                           10,     12,
+        "",			"You no longer absorb energy.",
+        MANA_EARTH,		""
+    },
+
+    {
+	"energy drain",
+	spell_energy_drain,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			35,	12,
+	"energy drain",		"!Energy Drain!",
+	MANA_FIRE,		""
+    },
+
+    {
+        "enhance armor",
+        spell_enhance_armor,    TAR_OBJ_INV,    POS_STANDING,
+        NULL,                   100,    24,
+        "",                     "!Enhance Armor!",
+        MANA_FIRE,		""
+    },
+
+    {
+        "enhanced strength",
+        spell_enhanced_strength,        TAR_CHAR_SELF,  POS_STANDING,
+        NULL,                           20,     12,
+        "",			"You no longer feel so HUGE.",
+        MANA_EARTH,		""
+    },
+
+    {
+	"ethereal funnel",
+	spell_ethereal_funnel,	TAR_CHAR_OFFENSIVE,  	POS_STANDING,
+	NULL,			65,	8,
+	"",			"The ethereal funnel about you vanishes...",
+	MANA_ANY,		""
+    },
+
+    {
+	"ethereal shield",
+	spell_ethereal_shield,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			50,	60,
+	"",			"You return to the mundane energy continuum.",
+	MANA_ANY,		""
+    },
+
+    {
+	"exorcise",
+	spell_exorcise, 	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			35,	12,
+	"",		        "!Exorcise!",
+	MANA_WATER,		""
+    },
+
+    {
+	"faerie fire",
+	spell_faerie_fire,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			5,	12,
+	"faerie fire",		"The pink aura around you fades away.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"faerie fog",
+	spell_faerie_fog,	TAR_IGNORE,		POS_STANDING,
+	NULL,			12,	12,
+	"faerie fog",		"!Faerie Fog!",
+	MANA_AIR,		""
+    },
+
+    {
+	"fire breath",
+	spell_fire_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			50,	12,
+	"breath of flame",	"!Fire Breath!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"fireball",
+	spell_fireball,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"fireball",		"!Fireball!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"flamestrike",
+	spell_flamestrike,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			20,	12,
+	"flamestrike",		"!Flamestrike!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"flaming shield",
 	spell_flame_shield,  	TAR_CHAR_SELF,  	POS_STANDING,
 	&gsn_flame_shield,	100,	60,
 	"flaming shield",	"The flaming shield around you dies out.",
-	SCHOOL_EVOCATION | SCHOOL_ALTERATION,
-	MANA_FIRE
+	MANA_FIRE,		""
     },
 
     {
-	"frost shield",		{ L_APP },
+        "flesh armor",
+        spell_flesh_armor,      TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   15,     12,
+        "",                     "Your skin returns to normal.",
+        MANA_EARTH,		""
+    },
+
+    {
+	"fly",
+	spell_fly,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			10,	18,
+	"",			"You slowly float to the ground.",
+	MANA_AIR,		""
+    },
+
+    {
+	"frost breath",
+	spell_frost_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			50,	12,
+	"breath of frost",	"!Frost Breath!",
+	MANA_WATER,		""
+    },
+
+    {
+	"frost shield",
 	spell_frost_shield,  	TAR_CHAR_SELF,  	POS_STANDING,
 	&gsn_frost_shield,	100,	60,
-	"frost shield",		"The frost shield around you melts and evaporates into nothingness.",
-	SCHOOL_EVOCATION | SCHOOL_ALTERATION,
-	MANA_WATER
+	"frost shield",		"The frost shield around you melts.",
+	MANA_WATER,		""
     },
 
     {
-	"shock shield",		{ L_APP },
-	spell_shock_shield,  	TAR_CHAR_SELF,  	POS_STANDING,
+	"gas breath",
+	spell_gas_breath,	TAR_IGNORE,		POS_FIGHTING,
+	NULL,			50,	12,
+	"breath of gas",		"!Gas Breath!",
+	MANA_AIR,		""
+    },
+
+    {
+	"gate",
+	spell_gate,		TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			50,	12,
+	"",			"!Gate!",
+	MANA_EARTH,		""
+    },
+
+    {
+        "general purpose",
+	spell_general_purpose,  TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+	NULL,                   0,      12,
+	"general purpose ammo", "!General Purpose Ammo!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"giant strength",
+	spell_giant_strength,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			20,	12,
+	"",			"You feel weaker.",
+	MANA_EARTH,		""
+    },
+
+    {
+	"harm",
+	spell_harm,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			35,	12,
+	"divine power",		"!Harm!",
+	MANA_EARTH,		""
+    },
+
+    {
+	"heal",
+	spell_heal,		TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			50,	12,
+	"",			"!Heal!",
+	MANA_EARTH,		""
+    },
+
+    {
+        "high explosive",
+	spell_high_explosive,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+	NULL,                   0,      12,
+	"high explosive ammo",  "!High Explosive Ammo!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"identify",
+	spell_identify,		TAR_OBJ_INV,		POS_STANDING,
+	NULL,			12,	24,
+	"",			"!Identify!",
+	MANA_FIRE,		""
+    },
+
+    {
+        "inertial barrier",
+        spell_inertial_barrier, TAR_IGNORE,             POS_STANDING,
+        NULL,                   40,     24,
+        "",                     "Your inertial barrier dissipates.",
+        MANA_AIR,		""
+    },
+
+    {
+        "inflict pain",
+        spell_inflict_pain,     TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   10,     12,
+        "mindpower",            "!Inflict Pain!",
+        MANA_FIRE,		""
+    },
+
+    {
+	"infravision",
+	spell_infravision,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			5,	18,
+	"",			"You no longer see in the dark.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"inner warmth",
+	spell_inner_warmth,	TAR_CHAR_DEFENSIVE,  	POS_STANDING,
+	NULL,			65,	8,
+	"",			"The magical warmth within you subsides.",
+	MANA_FIRE,		""
+    },
+
+    {
+        "intellect fortress",
+        spell_intellect_fortress,       TAR_IGNORE,     POS_STANDING,
+        NULL,                           25,     24,
+        "",                     "Your intellectual fortress crumbles.",
+        MANA_EARTH,		""
+    },
+
+    {
+	"invis",
+	spell_invis,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	&gsn_invis,		5,	12,
+	"",			"You are no longer invisible.",
+	MANA_AIR,		""
+    },
+
+    {
+	"know alignment",
+	spell_know_alignment,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			9,	12,
+	"",			"!Know Alignment!",
+	MANA_FIRE,		""
+    },
+
+    {
+        "lend health",
+        spell_lend_health,      TAR_CHAR_DEFENSIVE,     POS_STANDING,
+        NULL,                   10,     12,
+        "",                     "!Lend Health!",
+        MANA_EARTH,		""
+    },
+
+    {
+        "levitation",
+        spell_fly,		TAR_CHAR_DEFENSIVE,     POS_STANDING,
+        NULL,                   10,     18,
+        "",                     "You slowly float to the ground.",
+        MANA_AIR,		""
+    },
+
+    {
+	"lightning bolt",
+	spell_lightning_bolt,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"lightning bolt",	"!Lightning Bolt!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"lightning breath",
+	spell_lightning_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			50,	12,
+	"breath of lightning",	"!Lightning Breath!",
+	MANA_AIR,		""
+    },
+
+    {
+	"locate object",
+	spell_locate_object,	TAR_IGNORE,		POS_STANDING,
+	NULL,			20,	18,
+	"",			"!Locate Object!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"magic missile",
+	spell_magic_missile,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"magic missile",	"!Magic Missile!",
+	MANA_FIRE,		""
+    },
+
+    {
+	"mass heal",
+	spell_mass_heal,	TAR_IGNORE,		POS_STANDING,
+	NULL,           	50,	24,
+	"",			"!Mass Heal!",
+	MANA_EARTH,		""
+    },
+
+    {
+	"mass invis",
+	spell_mass_invis,	TAR_IGNORE,		POS_STANDING,
+	&gsn_mass_invis,	20,	24,
+	"",			"You are no longer invisible.",
+	MANA_AIR,		""
+    },
+
+    {
+	"mass vortex lift",
+	spell_mass_vortex_lift,	TAR_IGNORE,		POS_STANDING,
+	&gsn_mass_vortex_lift,	150,	12,
+	"",			"!Mass Vortex Lift!",
+	MANA_AIR,		""
+    },
+
+    {
+        "mental barrier",
+        spell_mental_barrier,   TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   8,     12,
+        "",                     "Your mental barrier breaks down.",
+        MANA_EARTH,		""
+    },
+
+    {
+        "meteor swarm",
+        spell_meteor_swarm,	TAR_IGNORE,     POS_FIGHTING,
+        NULL,			20,       12,
+        "meteor swarm",		"!Meteor Swarm!",
+        MANA_AIR,		""
+    },
+
+    {
+        "mind thrust",
+        spell_mind_thrust,      TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   8,     12,
+        "mind thrust",          "!Mind Thrust!",
+        MANA_WATER,		""
+    },
+
+    {
+        "mute",
+        spell_mute,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+        &gsn_mute,		20,     12,
+        "",                     "You are no longer muted.",
+        MANA_WATER,		""
+    },
+
+    {
+        "nexus",
+        spell_nexus,            TAR_IGNORE,             POS_STANDING,
+        NULL,                   150,   36,
+        "",                     "!Nexus!",
+        MANA_AIR,		""
+    },
+
+    {
+	"pass door",
+	spell_pass_door,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			20,	12,
+	"",			"You feel solid again.",
+	MANA_AIR,		""
+    },
+
+    {
+	"plague",
+	spell_plague,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_plague,		20,	12,
+	"sickness",		"Your sores vanish.",
+	MANA_WATER,		""
+    },
+
+    {
+	"poison",
+	spell_poison,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
+	&gsn_poison,		10,	12,
+	"burning blood",	"You feel less sick.",
+	MANA_WATER,		""
+    },
+
+    {
+	"polymorph other",
+	spell_polymorph_other,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			20,	0,
+	"",			"Your body feels familiar again.",
+	MANA_FIRE,		""
+    },
+
+    {
+        "portal",
+        spell_portal,           TAR_IGNORE,             POS_STANDING,
+        NULL,                   100,     24,
+        "",                     "!Portal!",
+        MANA_AIR,		""
+    },
+
+    {
+        "project force",
+        spell_project_force,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   18,     12,
+        "projected force",      "!Project Force!",
+        MANA_EARTH,		""
+    },
+
+    {
+	"protection",
+	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less protected.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"protection evil",
+	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less protected.",
+	MANA_FIRE,		""
+    },
+
+    {
+	"protection good",
+	spell_protection_good,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less protected.",
+	MANA_FIRE,		""
+    },
+
+    {
+        "psionic blast",
+        spell_psionic_blast,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   25,     12,
+        "psionic blast",        "!Psionic Blast!",
+        MANA_FIRE,		""
+    },
+
+    {
+        "psychic crush",
+        spell_psychic_crush,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   15,     18,
+        "psychic crush",        "!Psychic Crush!",
+        MANA_EARTH,		""
+    },
+
+    {
+        "psychic drain",
+        spell_psychic_drain,    TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        NULL,                   20,     12,
+        "",                     "You no longer feel drained.",
+        MANA_FIRE,		""
+    },
+
+    {
+        "psychic healing",
+        spell_psychic_healing,  TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   20,      12,
+        "",                     "!Psychic Healing!",
+        MANA_EARTH,		""
+    },
+
+    {
+	"razorbait",
+	spell_razorbait,	TAR_CHAR_OFFENSIVE,  	POS_STANDING,
+	NULL,			45,	14,
+	"",			"You are no longer afraid of stabbing weapons.",
+	MANA_FIRE,		""
+    },
+
+    {                                  
+        "recharge item",
+        spell_recharge_item,    TAR_OBJ_INV,            POS_STANDING,
+        NULL,                   25,     12,
+        "blunder",              "!Recharge Item!",
+        MANA_ANY,		""
+    }, 
+
+    {
+	"refresh",
+	spell_refresh,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			12,	18,
+	"refresh",		"!Refresh!",
+	MANA_EARTH,		""
+    },
+
+    {
+        "remove alignment",
+        spell_remove_alignment,	TAR_OBJ_INV,		POS_STANDING,
+        NULL,			10,	12,
+        "",                     "!Remove Alignment!",
+        MANA_WATER,		""
+    },
+
+    {
+	"remove curse",
+	spell_remove_curse,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			5,	12,
+	"",			"!Remove Curse!",
+	MANA_WATER,		""
+    },
+
+    {
+        "remove silence",
+        spell_remove_silence,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+        NULL,			15,     12,
+        "",                     "!Remove Silence!",
+        MANA_WATER,		""
+    },
+
+    {
+	"sagacity",
+	spell_sagacity,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			12,	12,
+	"",			"You sense the weight of wisdom leave you.",
+	MANA_EARTH,		""
+    },
+
+    {
+	"sanctuary",
+	spell_sanctuary,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			75,	12,
+	"",			"The white aura around your body fades.",
+	MANA_WATER,		""
+    },
+
+    {
+        "share strength",
+        spell_share_strength,   TAR_CHAR_DEFENSIVE,     POS_STANDING,
+        NULL,                   8,     12,
+        "",                     "You no longer share strength with another.",
+        MANA_EARTH,		""
+    },
+
+    {
+	"shield",
+	spell_shield,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			12,	18,
+	"",			"Your force shield shimmers then fades away.",
+	MANA_EARTH,		""
+    },
+
+    {
+	"shock shield",
+	spell_shock_shield,	TAR_CHAR_SELF,  	POS_STANDING,
 	&gsn_shock_shield,	100,	60,
-	"shock shield",		"The torrents of cascading energy suddenly fade away.",
-	SCHOOL_EVOCATION | SCHOOL_ALTERATION,
-	MANA_AIR
+	"shock shield",		"The energy suddenly fades away.",
+	MANA_AIR,		""
     },
 
     {
-	"ethereal shield",	{ L_APP },
-	spell_ethereal_shield, 	TAR_CHAR_SELF,  	POS_STANDING,
-	NULL,			50,	60,
-	"",			"You are returned to the mundane energy continuum.",
-	SCHOOL_ALTERATION,
-	MANA_FIRE
-    },
-
-/*
- * Weapon proficiencies.
- * These must all be together and after "pugilism".
- */
-    {
-	"pugilism",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_hit,		0,	0,
-	"",			"!Pugilism!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"shocking grasp",
+	spell_shocking_grasp,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			15,	12,
+	"shocking grasp",	"!Shocking Grasp!",
+	MANA_FIRE,		""
     },
 
     {
-	"long blades",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_slash,		0,	0,
-	"",			"!Long Blades!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"sleep",
+	spell_sleep,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
+	&gsn_sleep,		15,	12,
+	"",			"You feel less tired.",
+	MANA_EARTH,		""
     },
 
     {
-	"short blades",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_pierce,		0,	0,
-	"",			"!Short blades!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"slink",
+	spell_slink,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			12,	12,
+	"",			"You suddenly feel less coordinated...",
+	MANA_EARTH,		""
     },
 
     {
-	"flexible arms",	{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_whip,		0,	0,
-	"",			"!Flexible arms!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"stone skin",
+	spell_stone_skin,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			12,	18,
+	"",			"Your skin feels soft again.",
+	MANA_EARTH,		""
     },
 
     {
-	"blast weapons",	{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_explode,		0,	0,
-	"",			"!Blast Weapons!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"summon",
+	spell_summon,		TAR_IGNORE,		POS_STANDING,
+	NULL,			50,	12,
+	"",			"!Summon!",
+	MANA_AIR,		""
     },
 
     {
-	"bludgeons",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_pound,		0,	0,
-	"",			"!Bludgeons!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"swordbait",
+	spell_swordbait,	TAR_CHAR_OFFENSIVE,  	POS_STANDING,
+	NULL,			55,	25,
+	"",			"Your fear of slashing weapons dissipates.",
+	MANA_FIRE,		""
     },
 
     {
-	"tornado suction",	{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_suction,		0,	0,
-	"",			"!Tornado Suction!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+	"teleport",
+	spell_teleport,		TAR_CHAR_SELF,		POS_FIGHTING,
+	NULL,	 		35,	12,
+	"",			"!Teleport!",
+	MANA_AIR,		""
     },
 
     {
-	"marksmanship",		{ L_APP },
-	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_shot,		0,	0,
-	"",			"!Marksmanship!",
-	SCHOOL_OFFENSIVE,
-	MANA_NONE
+        "thought shield",
+        spell_thought_shield,   TAR_CHAR_SELF,          POS_STANDING,
+        NULL,                   5,     12,
+        "",                     "You no longer feel so protected.",
+        MANA_EARTH,		""
     },
 
-	  /* Race ability spells */
     {
-        "vampiric bite",        { L_APP },
+	"trollish vigor",
+	spell_trollish_vigor,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			16,	12,
+	"",			"The trollish vigor dissipates.",
+	MANA_EARTH,		""
+    },
+
+    {
+	"turn undead",
+	spell_turn_undead,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_turn_undead,	10,	12,
+	"divine exorcism",	"!Turn undead!",
+	MANA_WATER,		""
+    },
+
+    {
+        "ultrablast",
+        spell_ultrablast,       TAR_IGNORE,             POS_FIGHTING,
+        NULL,                   75,     24,
+        "ultrablast",           "!Ultrablast!",
+        MANA_FIRE,		""
+    },
+
+    {
+	"unravel defense",
+	spell_unravel_defense,	TAR_CHAR_OFFENSIVE,  	POS_STANDING,
+	NULL,			70,	15,
+	"",			"Your defenses are restored to their quality.",
+	MANA_FIRE,		""
+    },
+
+    {
+        "vampiric bite",
         spell_vampiric_bite,    TAR_CHAR_DEFENSIVE,     POS_FIGHTING,
         &gsn_vampiric_bite,     0,     0,
         "vampiric bite",        "You feel well fed.",
-	SCHOOL_NONE,
-	MANA_NONE
+	MANA_FIRE,		""
+    },
+
+    {
+	"ventriloquate",
+	spell_ventriloquate,	TAR_IGNORE,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"!Ventriloquate!",
+	MANA_AIR,		""
+    },
+
+    {
+	"vortex lift",
+	spell_vortex_lift,	TAR_IGNORE,		POS_STANDING,
+	NULL,			60,	12,
+	"",			"!Vortex Lift!",
+	MANA_AIR,		""
+    },
+    
+    {
+	"weaken",
+	spell_weaken,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			20,	12,
+	"weakening spell",	"You feel stronger.",
+	MANA_WATER,		""
+    },
+
+    {
+	"winter mist",
+	spell_winter_mist,	TAR_CHAR_OFFENSIVE,  	POS_STANDING,
+	NULL,			65,	8,
+	"",			"The magical chilling mist about you subsides.",
+	MANA_AIR,		""
+    },
+
+    {
+	"wizard eye",
+	spell_wizard_eye, 	TAR_IGNORE,		POS_STANDING,
+	NULL,			40,	12,
+	"",			"!Wizard Eye!",
+	MANA_AIR,		""
+    },
+    
+    {
+	"word of recall",
+	spell_word_of_recall,	TAR_CHAR_SELF,		POS_RESTING,
+	NULL,			5,	12,
+	"",			"!Word of Recall!",
+	MANA_AIR,		""
+    },
+
+/*
+ * Miscelaneous Skills.
+ */
+    {
+	"backstab",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_backstab,		0,	24,
+	"vicious backstab",	"!Backstab!",
+	MANA_NONE,		""
+    },
+
+    {
+	"bash door",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_bash,		0,	24,
+	"powerful bash",	"!Bash Door!",
+	MANA_NONE,		""
+    },
+
+    {
+        "berserk",
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_berserk,		0,      12,
+        "",                     "The bloody haze lifts.",
+	MANA_NONE,		""
+    },
+
+    {
+	"blast weapons",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_explode,		0,	0,
+	"",			"!Blast Weapons!",
+	MANA_NONE,		""
+    },
+
+    {
+	"bludgeons",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_pound,		0,	0,
+	"",			"!Bludgeons!",
+	MANA_NONE,		""
+    },
+
+    {
+	"brew",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_brew,		0,	 24,
+	"blunder",		"!Brew!",
+        MANA_NONE,		""
+    },
+
+    {
+        "chameleon power",
+        spell_null,             TAR_IGNORE,             POS_STANDING,
+        &gsn_chameleon,         0,     12,
+        "",                     "!Chameleon Power!",
+        MANA_NONE,		""
+    },
+
+    {
+        "circle",
+        spell_null,		TAR_IGNORE,		POS_FIGHTING,
+        &gsn_circle,		0,	24,
+        "sneak attack",		"!Circle!",
+	MANA_NONE,		""
+    },
+
+    {
+	"common",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Common!",
+	MANA_NONE,		""
+    },
+
+    {
+        "dirt kicking",
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_dirt,              0,      24,
+        "kicked dirt",          "You rub the dirt out of your eyes.",
+        MANA_NONE,		""
+    },
+
+    {
+	"disarm",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_disarm,		 0,	24,
+	"",			"!Disarm!",
+	MANA_NONE,		""
+    },
+
+    {
+	"dodge",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_dodge,		 0,	 0,
+	"",			"!Dodge!",
+	MANA_NONE,		""
+    },
+
+    {
+	"drow",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Drow!",
+	MANA_NONE,		""
+    },
+
+    {
+        "dual",
+        spell_null,		TAR_IGNORE,		POS_FIGHTING,
+        &gsn_dual,      	 0,	 0,
+        "",                     "!Dual!",
+	MANA_NONE,		""
+    },
+
+    {
+	"dwarven",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Dwarven!",
+	MANA_NONE,		""
+    },
+
+    {
+	"elven",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Elven!",
+	MANA_NONE,		""
+    },
+
+    {
+	"enhanced damage",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_enhanced_damage,	0,	 0,
+	"",			"!Enhanced Damage!",
+	MANA_NONE,		""
+    },
+
+    {
+        "fast healing",
+        spell_null,             TAR_IGNORE,             POS_DEAD,
+        &gsn_fast_healing,      0,      0,
+        "",                     "!Fast Healing!",
+        MANA_NONE,		""
+    },
+
+    {
+        "fifth attack",
+        spell_null,		TAR_IGNORE,             POS_FIGHTING,
+        &gsn_fifth_attack,	0,      0,
+        "",			"!Fifth Attack!",
+        MANA_NONE,		""
+    },
+
+    {
+	"flexible arms",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_whip,		0,	0,
+	"",			"!Flexible arms!",
+	MANA_NONE,		""
+    },
+
+    {
+        "fourth attack",
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_fourth_attack,     0,      0,
+        "",                     "!Fourth Attack!",
+        MANA_NONE,		""
+    },
+
+    {
+	"gith",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Gith!",
+	MANA_NONE,		""
+    },
+
+    {
+	"gnomish",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Gnomish!",
+	MANA_NONE,		""
+    },
+
+    {
+	"goblin",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Goblin!",
+	MANA_NONE,		""
+    },
+
+    {
+	"halfling",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Halfling!",
+	MANA_NONE,		""
+    },
+
+    {
+        "heighten senses",
+        spell_null,             TAR_CHAR_SELF,          POS_STANDING,
+        &gsn_heighten,          0,      0,
+        "",                     "Your senses return to normal.",
+        MANA_FIRE,		""
+    },
+
+    {
+	"hide",
+	spell_null,		TAR_IGNORE,		POS_RESTING,
+	&gsn_hide,		 0,	12,
+	"",			"!Hide!",
+	MANA_NONE,		""
+    },
+
+    {
+	"kick",
+	spell_null,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_kick,		 0,	 8,
+	"mighty kick",		"!Kick!",
+	MANA_NONE,		""
+    },
+
+    {
+	"kobold",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Kobold!",
+	MANA_NONE,		""
+    },
+
+    {
+	"long blades",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_slash,		0,	0,
+	"",			"!Long Blades!",
+	MANA_NONE,		""
+    },
+
+    {
+	"marksmanship",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_shot,		0,	0,
+	"",			"!Marksmanship!",
+	MANA_NONE,		""
+    },
+
+    {
+        "meditate",
+        spell_null,             TAR_IGNORE,             POS_DEAD,
+        &gsn_meditate,      	0,      0,
+        "",			"!Meditate!",
+        MANA_NONE,		""
+    },
+
+    {
+        "mount",
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_mount,		0,       5,
+        "",			"!Mount!",
+        MANA_NONE,		""
+    },
+
+    {
+	"ogre",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Ogre!",
+	MANA_NONE,		""
+    },
+
+    {
+	"orcish",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Orcish!",
+	MANA_NONE,		""
+    },
+
+    {
+	"parry",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_parry,		 0,	 0,
+	"",			"!Parry!",
+	MANA_NONE,		""
+    },
+
+    {
+	"peek",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_peek,		 0,	 0,
+	"",			"!Peek!",
+	MANA_NONE,		""
+    },
+
+    {
+	"pick lock",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_pick_lock,		0,	12,
+	"",			"!Pick!",
+	MANA_NONE,		""
+    },
+
+    {
+	"pixie",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Pixie!",
+	MANA_NONE,		""
+    },
+
+    {
+	"poison weapon",
+	spell_null,		TAR_OBJ_INV,		POS_STANDING,
+	&gsn_poison_weapon,	 0,	12,
+	"poisonous concoction",	"!Poison Weapon!",
+	MANA_NONE,		""
+    },
+
+    {
+	"pugilism",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_hit,		0,	0,
+	"",			"!Pugilism!",
+	MANA_NONE,		""
+    },
+
+    {
+	"punch",
+	spell_null,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_punch,		0,	 8,
+	"punch",		"!Punch!",
+	MANA_NONE,		""
+    },
+
+    {
+	"rescue",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_rescue,		 0,	12,
+	"",			"!Rescue!",
+	MANA_NONE,		""
+    },
+
+    {
+        "scan",
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_scan,		0,       24,
+        "",			"!Scan!",
+        MANA_NONE,		""
+    },
+
+    {
+	"scribe",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_scribe,		0,	 24,
+	"blunder",		"!Scribe!",
+        MANA_NONE,		""
+    },
+
+    {
+	"scrolls",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	&gsn_scrolls,	 	 0,	0,
+	"blazing scroll",	"!Scrolls!",
+	MANA_NONE,		""
+    },
+
+    {
+	"second attack",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_second_attack,	 0,	 0,
+	"",			"!Second Attack!",
+	MANA_NONE,		""
+    },
+
+    {
+        "shadow form",
+        spell_null,             TAR_IGNORE,             POS_STANDING,
+        &gsn_shadow,            0,     12,
+        "",                     "You no longer move in the shadows.",
+        MANA_NONE,		""
+    },
+
+    {
+        "shield block",
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_shield_block,      0,      0,
+        "",                     "!Shield Block!",
+        MANA_NONE,		""
+    },
+
+    {
+	"short blades",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_pierce,		0,	0,
+	"",			"!Short blades!",
+	MANA_NONE,		""
+    },
+
+    {
+	"snare",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_snare,		 0,	12,
+	"",			"You are no longer ensnared.",
+	MANA_NONE,		""
+    },
+
+    {
+	"sneak",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_sneak,		 0,	12,
+	"",			NULL,
+	MANA_NONE,		""
+    },
+
+    {
+        "stake",
+        spell_null,             TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        &gsn_stake,             0,       8,
+        "carefully aimed stake","!Stake!",
+        MANA_NONE,		""
+    },
+
+    {
+	"staves",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	&gsn_staves,	 	 0,	0,
+	"shattered staff",	"!Staves!",
+	MANA_NONE,		""
+    },
+
+    {
+	"steal",
+	spell_null,		TAR_IGNORE,		POS_STANDING,
+	&gsn_steal,		 0,	24,
+	"",			"!Steal!",
+	MANA_NONE,		""
+    },
+
+    {
+        "swim",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_swim,		 0,	 0,
+	"",			"!Swim!",
+	MANA_NONE,		""
+    },
+
+    {
+	"talonous arms",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_claw,		0,	0,
+	"",			"!Talonous Arms!",
+	MANA_NONE,		""
+    },
+
+    {
+	"third attack",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_third_attack,	 0,	 0,
+	"",			"!Third Attack!",
+	MANA_NONE,		""
+    },
+
+    {
+	"tornado suction",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_suction,		0,	0,
+	"",			"!Tornado Suction!",
+	MANA_NONE,		""
+    },
+
+    {
+        "track",
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_track,		0,       2,
+        "",			"!Track!",
+        MANA_NONE,		""
+    },
+
+    {
+	"trollese",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	NULL,			0,	0,
+	"",			"!Trollese!",
+	MANA_NONE,		""
+    },
+
+    {
+        "untangle",
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_untangle,		 0,	24,
+        "",                     "!Untangle!",
+	MANA_NONE,		""
+    },
+
+    {
+	"wands",
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	&gsn_wands,	 	 0,	0,
+	"exploding wand",	"!Wands!",
+	MANA_NONE,		""
+    },
+
+    {
+	"whirlwind",
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_whirlwind,		0,	 12,
+	"WhirlWind",		"!Whirlwind!",
+        MANA_NONE,		""
     }
 
 };

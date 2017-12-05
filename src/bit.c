@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -50,38 +52,40 @@ struct flag_stat_type
 {
     const struct flag_type	*structure;
     bool			 stat;
+    bool			 vect;
 };
 
 
 const	struct	flag_stat_type	flag_stat_table	[ ]	=
 {
-/*
- * {    structure               stat    }, 
- */
-    {	area_flags, 		FALSE	},
-    {	sex_flags, 		TRUE	},
-    {	exit_flags, 		FALSE	},
-    {	door_resets, 		TRUE	},
-    {	room_flags, 		FALSE	},
-    {	sector_flags, 		TRUE	},
-    {	type_flags, 		TRUE	},
-    {	extra_flags, 		FALSE	},
-    {	wear_flags, 		FALSE	},
-    {	act_flags, 		FALSE	},
-    {	affect_flags, 		FALSE	},
-    {	apply_flags, 		TRUE	},
-    {	wear_loc_flags, 	TRUE	},
-    {	wear_loc_strings, 	TRUE	},
-    {	weapon_flags, 		TRUE	},
-    {	container_flags, 	FALSE	},
-    {	liquid_flags, 		TRUE	},
-    {	mprog_type_flags, 	TRUE	},
-    {	portal_door_flags, 	FALSE	},
-    {	portal_flags,	 	FALSE	},
-    {	mana_flags,	 	FALSE	},
-    {	rank_flags, 		TRUE	},
-    {	clan_flags, 		TRUE	},
-    {	0, 			0	}
+/*      structure		stat	vector  */
+    {	connected_flags, 	TRUE,	FALSE	},
+    {	area_flags, 		FALSE,	FALSE	},
+    {	sex_flags, 		TRUE,	FALSE	},
+    {	size_flags, 		TRUE,	FALSE	},
+    {	exit_flags, 		FALSE,	FALSE	},
+    {	door_resets, 		TRUE,	FALSE	},
+    {	room_flags, 		FALSE,	FALSE	},
+    {	sector_flags, 		TRUE,	FALSE	},
+    {	type_flags, 		TRUE,	FALSE	},
+    {	extra_flags, 		FALSE,	FALSE	},
+    {	wear_flags, 		FALSE,	FALSE	},
+    {	act_flags, 		FALSE,	FALSE	},
+    {	plr_flags, 		FALSE,	FALSE	},
+    {	affect_flags, 		FALSE,	TRUE	},
+    {	apply_flags, 		TRUE,	FALSE	},
+    {	wear_loc_flags, 	TRUE,	FALSE	},
+    {	wear_loc_strings, 	TRUE,	FALSE	},
+    {	weapon_flags, 		TRUE,	FALSE	},
+    {	container_flags, 	FALSE,	FALSE	},
+    {	liquid_flags, 		TRUE,	FALSE	},
+    {	mprog_type_flags, 	TRUE,	FALSE	},
+    {	portal_door_flags, 	FALSE,	FALSE	},
+    {	portal_flags,	 	FALSE,	FALSE	},
+    {	mana_flags,	 	FALSE,	FALSE	},
+    {	rank_flags, 		TRUE,	FALSE	},
+    {	clan_flags, 		TRUE,	FALSE	},
+    {	0, 			0,	0	}
 };
 
 
@@ -93,6 +97,20 @@ bool is_stat( const struct flag_type *flag_table )
     {
 	if ( flag_stat_table[flag].structure == flag_table
 	    && flag_stat_table[flag].stat )
+	    return TRUE;
+    }
+    return FALSE;
+}
+
+
+bool is_vect( const struct flag_type *flag_table )
+{
+    int flag;
+
+    for ( flag = 0; flag_stat_table[flag].structure; flag++ )
+    {
+	if ( flag_stat_table[flag].structure == flag_table
+	    && flag_stat_table[flag].vect )
 	    return TRUE;
     }
     return FALSE;
@@ -119,6 +137,20 @@ int flag_lookup( const char *name, const struct flag_type *flag_table )
 }
 
 
+int flag_slookup( const char *name, const struct flag_type *flag_table )
+{
+    int flag;
+
+    for ( flag = 0; *flag_table[flag].name; flag++ )
+    {
+	if ( !str_cmp( name, flag_table[flag].name ) )
+	    return flag_table[flag].bit;
+    }
+
+    return NO_FLAG;
+}
+
+
 int flag_value( const struct flag_type *flag_table, char *argument )
 {
     char word [ MAX_INPUT_LENGTH ];
@@ -130,10 +162,8 @@ int flag_value( const struct flag_type *flag_table, char *argument )
     {
 	one_argument( argument, word );
 
-	if ( ( bit = flag_lookup( word, flag_table ) ) != NO_FLAG )
-	    return bit;
-	else
-	    return NO_FLAG;
+	bit = flag_slookup( word, flag_table );
+	return bit;
     }
 
     for ( ; ; )
@@ -154,6 +184,44 @@ int flag_value( const struct flag_type *flag_table, char *argument )
 	return marked;
     else
 	return NO_FLAG;
+}
+
+
+int fread_flag( FILE *fp, const struct flag_type *flag_table )
+{
+    char   word [ MAX_INPUT_LENGTH  ];
+    char   buf  [ MAX_STRING_LENGTH ];
+    char  *argument;
+    int    bit;
+    int    marked	= 0;
+    bool   found	= FALSE;
+
+    temp_fread_string( fp, buf );
+    argument = &buf[0];
+
+    if ( is_stat( flag_table ) )
+    {
+	one_argument( argument, word );
+
+	bit = flag_slookup( word, flag_table );
+	return bit;
+    }
+
+    for ( ; ; )
+    {
+	argument = one_argument( argument, word );
+
+	if ( word[0] == '\0' )
+	    break;
+
+	if ( ( bit = flag_slookup( word, flag_table ) ) != NO_FLAG )
+	{
+	    SET_BIT( marked, bit );
+	    found = TRUE;
+	}
+    }
+
+    return marked;
 }
 
 
@@ -178,8 +246,173 @@ char *flag_string( const struct flag_type *flag_table, int bits )
 	    break;
 	}
     }
-    return ( buf[0] != '\0' ) ? buf + 1 : "none";
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
+
+
+char *flag_strings( const struct flag_type *flag_table, int bits )
+{
+    static char buf [ MAX_STRING_LENGTH ];
+    int         flag;
+
+    buf[0] = '\0';
+
+    for ( flag = 0; *flag_table[flag].name; flag++ )
+    {
+	if ( !flag_table[flag].settable )
+	    continue;
+
+	if ( !is_stat( flag_table ) && IS_SET( bits, flag_table[flag].bit ) )
+	{
+	    strcat( buf, " " );
+	    strcat( buf, flag_table[flag].name );
+	}
+	else if ( flag_table[flag].bit == bits )
+	{
+	    strcat( buf, " " );
+	    strcat( buf, flag_table[flag].name );
+	    break;
+	}
+    }
+    return ( buf[0] != '\0' ) ? buf+1 : "";
+}
+
+
+u_intc *fread_vect( FILE *fp, const struct flag_type *flag_table, int *status )
+{
+           char    word   [ MAX_INPUT_LENGTH  ];
+           char    buf    [ MAX_STRING_LENGTH ];
+	   char   *argument;
+           int     bit;
+    static u_intc  vector [ MAX_VECTOR ];
+           bool    found;
+
+    *status = 0;
+    vzero( vector );
+
+    temp_fread_string( fp, buf );
+    argument = &buf[0];
+
+    if ( !is_vect( flag_table ) )
+    {
+	*status = 1;
+	return vector;
+    }
+
+    found = FALSE;
+    for ( ; ; )
+    {
+	argument = one_argument( argument, word );
+
+	if ( word[0] == '\0' )
+	    break;
+
+	if ( ( bit = flag_slookup( word, flag_table ) ) != NO_FLAG
+	    && bit >= 0
+	    && bit < MAX_VECTOR*CHAR_BIT )
+	{
+	    set_bit( vector, bit );
+	    found = TRUE;
+	}
+    }
+
+    if ( !found )
+	*status = 2;
+
+    return vector;
+}
+
+
+char *vect_string( const struct flag_type *flag_table, const u_intc *vector )
+{
+    static char buf [ MAX_STRING_LENGTH ];
+    int         flag;
+
+    buf[0] = '\0';
+
+    if ( !is_vect( flag_table ) )
+	return "";
+
+    for ( flag = 0; *flag_table[flag].name; flag++ )
+    {
+	if (   flag_table[flag].bit < 0
+	    || flag_table[flag].bit >= MAX_VECTOR*CHAR_BIT )
+	    continue;
+
+	if ( !is_stat( flag_table ) && is_set( vector, flag_table[flag].bit ) )
+	{
+	    strcat( buf, " " );
+	    strcat( buf, flag_table[flag].name );
+	}
+    }
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+
+char *vect_strings( const struct flag_type *flag_table, const u_intc *vector )
+{
+    static char buf [ MAX_STRING_LENGTH ];
+    int         flag;
+
+    buf[0] = '\0';
+
+    if ( !is_vect( flag_table ) )
+	return "";
+
+    for ( flag = 0; *flag_table[flag].name; flag++ )
+    {
+	if ( !flag_table[flag].settable )
+	    continue;
+
+	if (   flag_table[flag].bit < 0
+	    || flag_table[flag].bit >= MAX_VECTOR*CHAR_BIT )
+	    continue;
+
+	if ( !is_stat( flag_table ) && is_set( vector, flag_table[flag].bit ) )
+	{
+	    strcat( buf, " " );
+	    strcat( buf, flag_table[flag].name );
+	}
+    }
+    return ( buf[0] != '\0' ) ? buf+1 : "";
+}
+
+
+
+const	struct	flag_type	connected_flags	[ ]	=
+{
+    {	"PLAYING",		CON_PLAYING,			FALSE	},
+    {	"GET_NAME",		CON_GET_NAME,			FALSE	},
+    {	"GET_OLD_PASSWORD",	CON_GET_OLD_PASSWORD,		FALSE	},
+    {	"CONFIRM_NEW_NAME",	CON_CONFIRM_NEW_NAME,		FALSE	},
+    {	"GET_NEW_PASSWORD",	CON_GET_NEW_PASSWORD,		FALSE	},
+    {	"CONFIRM_NEW_PASSWORD", CON_CONFIRM_NEW_PASSWORD,	FALSE	},
+    {	"GET_COLOUR",		CON_GET_COLOUR,			FALSE	},
+    {	"DISPLAY_RACE", 	CON_DISPLAY_RACE,		FALSE	},
+    {	"GET_NEW_RACE", 	CON_GET_NEW_RACE,		FALSE	},
+    {	"CONFIRM_NEW_RACE",	CON_CONFIRM_NEW_RACE,		FALSE	},
+    {	"GET_NEW_SEX",		CON_GET_NEW_SEX,		FALSE	},
+    {	"DISPLAY_1ST_CLASS",	CON_DISPLAY_1ST_CLASS,		FALSE	},
+    {	"GET_1ST_CLASS",	CON_GET_1ST_CLASS,		FALSE	},
+    {	"CONFIRM_1ST_CLASS",	CON_CONFIRM_1ST_CLASS,		FALSE	},
+    {	"DEFAULT_CHOICE",	CON_DEFAULT_CHOICE,		FALSE	},
+    {	"DISPLAY_2ND_CLASS",	CON_DISPLAY_2ND_CLASS,		FALSE	},
+    {	"GET_2ND_CLASS",	CON_GET_2ND_CLASS,		FALSE	},
+    {	"CONFIRM_2ND_CLASS",	CON_CONFIRM_2ND_CLASS,		FALSE	},
+    {	"SHOW_MOTD",		CON_SHOW_MOTD,			FALSE	},
+    {	"READ_MOTD",		CON_READ_MOTD,			FALSE	},
+    {	"PASSWD_GET_OLD",	CON_PASSWD_GET_OLD,		FALSE	},
+    {	"PASSWD_GET_NEW",	CON_PASSWD_GET_NEW,		FALSE	},
+    {	"PASSWD_CONFIRM_NEW",	CON_PASSWD_CONFIRM_NEW, 	FALSE	},
+    {	"RETIRE_GET_PASSWORD",	CON_RETIRE_GET_PASSWORD,	FALSE	},
+    {	"RETIRE_CONFIRM",	CON_RETIRE_CONFIRM,		FALSE	},
+    {	"AEDITOR",		CON_AEDITOR,			FALSE	},
+    {	"REDITOR",		CON_REDITOR,			FALSE	},
+    {	"MEDITOR",		CON_MEDITOR,			FALSE	},
+    {	"OEDITOR",		CON_OEDITOR,			FALSE	},
+    {	"MPEDITOR",		CON_MPEDITOR,			FALSE	},
+    {	"", 			0,				0	}
+};
 
 
 const	struct	flag_type	area_flags	[ ]	=
@@ -198,6 +431,23 @@ const	struct	flag_type	sex_flags	[ ]	=
     {	"male", 		SEX_MALE, 	TRUE	},
     {	"female", 		SEX_FEMALE, 	TRUE	},
     {	"neutral", 		SEX_NEUTRAL, 	TRUE	},
+    {	"", 			0, 		0	}
+};
+
+
+const	struct	flag_type	size_flags	[ ]	=
+{
+    {	"any",			SIZE_ANY,	TRUE	},
+    {	"male", 		SIZE_MINUTE,	TRUE	},
+    {	"minute", 		SIZE_MINUTE,	TRUE	},
+    {	"small", 		SIZE_SMALL,	TRUE	},
+    {	"petite", 		SIZE_PETITE,	TRUE	},
+    {	"average", 		SIZE_AVERAGE,	TRUE	},
+    {	"medium", 		SIZE_MEDIUM,	TRUE	},
+    {	"large", 		SIZE_LARGE,	TRUE	},
+    {	"huge", 		SIZE_HUGE,	TRUE	},
+    {	"titanic", 		SIZE_TITANIC,	TRUE	},
+    {	"gargantuan", 		SIZE_GARGANTUAN,TRUE	},
     {	"", 			0, 		0	}
 };
 
@@ -254,6 +504,8 @@ const	struct	flag_type	sector_flags	[ ]	=
     {	"underwater", 		SECT_UNDERWATER, 	TRUE	},
     {	"air", 			SECT_AIR, 		TRUE	},
     {	"desert", 		SECT_DESERT, 		TRUE	},
+    {	"dunno", 		SECT_DUNNO, 		TRUE	},
+    {	"iceland", 		SECT_ICELAND, 		TRUE	},
     {	"", 			0, 			0	}
 };
 
@@ -271,13 +523,13 @@ const	struct	flag_type	type_flags	[ ]	=
     {	"furniture", 		ITEM_FURNITURE, 	TRUE	},
     {	"trash", 		ITEM_TRASH, 		TRUE	},
     {	"container", 		ITEM_CONTAINER, 	TRUE	},
-    {	"drink-container", 	ITEM_DRINK_CON, 	TRUE	},
+    {	"drink_con",		ITEM_DRINK_CON, 	TRUE	},
     {	"key", 			ITEM_KEY, 		TRUE	},
     {	"food", 		ITEM_FOOD, 		TRUE	},
     {	"money", 		ITEM_MONEY, 		TRUE	},
     {	"boat", 		ITEM_BOAT, 		TRUE	},
-    {	"npc_corpse", 		ITEM_CORPSE_NPC, 	TRUE	},
-    {	"pc_corpse", 		ITEM_CORPSE_PC, 	FALSE	},
+    {	"corpse_npc", 		ITEM_CORPSE_NPC, 	TRUE	},
+    {	"corpse_pc", 		ITEM_CORPSE_PC, 	TRUE	},
     {	"fountain", 		ITEM_FOUNTAIN, 		TRUE	},
     {	"pill", 		ITEM_PILL, 		TRUE	},
     {	"portal", 		ITEM_PORTAL, 		TRUE	},
@@ -347,14 +599,49 @@ const	struct	flag_type	act_flags	[ ]	=
     {	"pet", 			ACT_PET, 		TRUE	},
     {	"train", 		ACT_TRAIN, 		TRUE	},
     {	"practice", 		ACT_PRACTICE, 		TRUE	},
+    {	"mobinvis", 		ACT_MOBINVIS, 		TRUE	},
     {	"mountable", 		ACT_MOUNTABLE, 		TRUE	},
+    {	"", 			0, 			0	}
+};
+
+
+const	struct	flag_type	plr_flags	[ ]	=
+{
+    {	"npc", 			PLR_IS_NPC,		FALSE	},
+    {	"bought_pet", 		PLR_BOUGHT_PET,		TRUE	},
+    {	"register", 		PLR_REGISTER,		TRUE	},
+    {	"autoexit", 		PLR_AUTOEXIT,		TRUE	},
+    {	"autoloot", 		PLR_AUTOLOOT,		TRUE	},
+    {	"autosac", 		PLR_AUTOSAC,		TRUE	},
+    {	"blank", 		PLR_BLANK,		TRUE	},
+    {	"brief", 		PLR_BRIEF,		TRUE	},
+    {	"combine", 		PLR_COMBINE,		TRUE	},
+    {	"prompt", 		PLR_PROMPT,		TRUE	},
+    {	"telnet_ga", 		PLR_TELNET_GA,		TRUE	},
+    {	"holylight", 		PLR_HOLYLIGHT,		TRUE	},
+    {	"wizinvis", 		PLR_WIZINVIS,		TRUE	},
+    {	"wizbit", 		PLR_WIZBIT,		TRUE	},
+    {	"silence", 		PLR_SILENCE,		TRUE	},
+    {	"no_emote", 		PLR_NO_EMOTE,		TRUE	},
+    {	"moved", 		PLR_MOVED,		TRUE	},
+    {	"no_tell", 		PLR_NO_TELL,		TRUE	},
+    {	"log", 			PLR_LOG,		TRUE	},
+    {	"deny", 		PLR_DENY,		TRUE	},
+    {	"freeze", 		PLR_FREEZE,		TRUE	},
+    {	"thief", 		PLR_THIEF,		TRUE	},
+    {	"killer", 		PLR_KILLER,		TRUE	},
+    {	"autogold", 		PLR_AUTOGOLD,		TRUE	},
+    {	"afk", 			PLR_AFK,		TRUE	},
+    {	"colour", 		PLR_COLOUR,		TRUE	},
+    {	"edit_info", 		PLR_EDIT_INFO,		TRUE	},
+    {	"pager", 		PLR_PAGER,		TRUE	},
     {	"", 			0, 			0	}
 };
 
 
 const	struct	flag_type	affect_flags	[ ]	=
 {
-    {	"none", 		0,	 		TRUE	},
+    {	"none", 		-1, 			FALSE	},
     {	"blind", 		AFF_BLIND, 		TRUE	},
     {	"invisible", 		AFF_INVISIBLE, 		TRUE	},
     {	"detect-evil", 		AFF_DETECT_EVIL, 	TRUE	},
@@ -375,11 +662,11 @@ const	struct	flag_type	affect_flags	[ ]	=
     {	"flying", 		AFF_FLYING, 		TRUE	},
     {	"pass-door", 		AFF_PASS_DOOR, 		TRUE	},
     {	"waterwalk", 		AFF_WATERWALK, 		TRUE	},
-    {	"summoned", 		AFF_SUMMONED, 		TRUE	},
+    {	"summoned", 		AFF_SUMMONED, 		FALSE	},
     {	"mute", 		AFF_MUTE, 		TRUE	},
     {	"gills", 		AFF_GILLS, 		TRUE	},
     {	"vamp-bite", 		AFF_VAMP_BITE, 		TRUE	},
-    {	"ghoul", 		AFF_GHOUL, 		TRUE	},
+    {	"ghoul", 		AFF_GHOUL, 		FALSE	},
     {	"flaming", 		AFF_FLAMING, 		TRUE	},
     {	"detect-good", 		AFF_DETECT_GOOD, 	TRUE	},
     {	"protect-good",		AFF_PROTECT_GOOD, 	TRUE	},

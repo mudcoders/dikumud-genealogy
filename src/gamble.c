@@ -13,6 +13,8 @@
  *                                                                         *
  *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
  *                                                                         *
+ *  GreedMud 0.88 improvements copyright (C) 1997, 1998 by Vasco Costa.    *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -172,7 +174,7 @@ void do_bet( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !strcmp( wager, "limit" ) )
+    if ( !str_cmp( wager, "limit" ) )
 	amount = atoi( BET_LIMIT );
     else
 	amount = advatoi( wager );
