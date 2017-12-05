@@ -5,6 +5,7 @@ Syntax: AEDIT [create/reset]            - Area Creation and Repoping.
 Syntax: REDIT [create/reset] [vnum]     - Room Creation and Editing.
 Syntax: OEDIT   [create] <vnum>         - Object Creation and Editing.
 Syntax: MEDIT   [create] <vnum>         - Mobile Creation and Editing.
+Syntax: MPEDIT  [create] <vnum> [svnum] - Mobprog Creation and Editing.
 
 Syntax: ASAVE  <world/area/changed/list>	- Save Editing to Disk.
 Syntax: ALIST                                   - Listing of Areas.
@@ -19,7 +20,7 @@ It was then converted to work with Envy by Jason Dinkel.
      Inside an editor, typing COMMANDS lists working commands and ? gives
 help. AEDIT and REDIT default to the current area or room. EDIT ROOM RESET
 resets the current room.  Most commands with no arguments display syntax.
-See also help: AEDIT REDIT MEDIT OEDIT
+See also help: AEDIT REDIT MEDIT OEDIT MPEDIT
 ~
 
 0 ALIST~
@@ -238,6 +239,94 @@ An up-to-date list of liquids can be obtained by typing
    value 2    unused
    value 3    unused
 ~
+
+
+0 MPEDIT~
+Syntax: mpedit <vnum> [#num]     - Enters the mobprog editor for the selected 
+                                   mobile.  If a prog-num is specified (#num)
+                                   and the mobile has that many rograms, you 
+                                   will edit that program, otherwise you will 
+                                   be editing the first mobprog.
+Syntax: mpedit create <vnum> [svnum] - 
+				   Creates a mob-program for mobile <vnum> 
+				   if that mobile currently has no mobprogs.  If
+                                   [svnum] is specified, the mob-programs from
+                                   the mob 'svnum' will be copied to <vnum>.
+
+The MPEDITor works by letting you edit ONE mob-program at a time.  The way you 
+invoke the MPEDIT command determines which program you'll be editing.  If the 
+mobile has more than one program and you want, for example, to edit the third, 
+you would type:
+
+      EDIT MPROG <mob-vnum> 3
+
+If you don't supply the program number (3 in this case) you will automatically 
+be entered into the mobprog editor for the first program.  If no programs exist
+for the given mobile you will be informed and will have to use the 'EDIT MPROG 
+create' invocation.
+
+* Setting the Type of the Mob Program
+
+  This is done by simply typing the name of the program.  The current mob-prog 
+  types that are recognized are: 
+
+  in_file_prog, act_prog, speech_prog, rand_prog, fight_prog, hitprcnt_prog, 
+  death_prog, entry_prog, greet_prog, all_greet_prog, give_prog and bribe_prog. 
+
+* Supplying the Argument/Trigger to the Program
+
+  This is done by using the 'trigger' command and giving it an argument.
+  For example, if the program type is 'rand_prog' and you want to give it an 
+  argument of 50 (a random program that will activate 50% of the time), you 
+  will type:
+
+      trigger 50
+
+  If you have a speech_prog, for example, that you wish to be triggered on the
+  phrase 'can you help?', you will need to type:
+
+      trigger p can you help?
+
+* Coding the Program Itself
+
+  To type the commands for the program, simply type 'program':
+
+      program
+
+  This will put you into an editor similar to the note editor and to the 
+  'description' editor for rooms.  Here you will type the code for the actual 
+  mob-program content.
+
+  NOTE: You do NOT need to type any tildes in!  
+        The editor will put those in the right places for you.
+
+* Brief Summary of Commands
+
+  The following commands are available from within the MPROG editor:
+
+  <prog-type>           - set the type of the currently edited mobprog.
+  trigger <value>       - set the trigger for the currently edited mobprog.
+  program               - enter the editor for the content of the mob-program.
+  add                   - add a mob program to the end of the current list of 
+			  programs.
+  create <vnum> [svnum] - creates a mobprog for mob vnum [optionally copies 
+			  from svnum].
+  show [#num,all]       - display a mobprog.  Without arguments will display 
+			  the current one.
+  delete [#num,all]     - delete a mobprog.  Without arguments will delete 
+			  the current one.
+  done                  - exits the mobprog editor and returns to normal play.
+  commands              - prints a list of possible commands.
+
+* Default Values
+
+  When creating or adding a mob program, it will have default values set for 
+  the program type and for the trigger and content.  These are necessary in
+  order to prevent crashes caused by empty mobprogs.  These values can be 
+  changed by just replacing them with the correct value (see above Summary 
+  of Commands).
+~
+
 
 0 $~
 

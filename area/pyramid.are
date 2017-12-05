@@ -18,7 +18,7 @@ The asp is a small, smooth-scaled snake the color of worn pottery.
 The poison bite of this snake has felled many a mighty pharoah.
 ~
 97 0 0 S
-8 14 0 5d5+50 1d6+1
+9 14 0 5d5+50 1d6+1
 10 0
 0 Snake~ 0
 #2601
@@ -30,7 +30,7 @@ The cobra snake waves back and forth before you, its hood displaying brilliant
 colors designed to serve notice to its prey that it is about to strike.
 ~
 97 0 0 S
-4 13 0 7d7+70 2d4+2
+7 13 0 7d7+70 2d4+2
 25 0
 0 Snake~ 0
 #2602
@@ -42,7 +42,7 @@ The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.
 She sniffs you and appears to be looking for food in your hand.
 ~
 65 512 10 S
-14 10 0 11d11+110 3d5+3
+16 10 0 11d11+110 3d5+3
 100 0
 0 Animal~ 2
 #2603
@@ -55,7 +55,7 @@ the tombs of the pharoahs.  He is clad from head to foot in utilitarian
 sand-colored clothing.
 ~
 3 0 250 S
-11 12 0 8d8+80 2d6+2
+10 12 0 8d8+80 2d6+2
 200 0
 0 Human~ 1
 #2604
@@ -66,7 +66,7 @@ A sneaky tomb thief moves about in search of treasure.
 The thief brushes against you briefly, then slinks back into the shadows.
 ~
 193 32768 -250 S
-12 10 0 10d10+100 2d6+3
+11 10 0 10d10+100 2d6+3
 500 0
 0 Dwarf~ 1
 #2605
@@ -93,7 +93,7 @@ It seems to rise up at the touch of your feet.  Wait, it is rising, a few feet
 above the ground!  In fact, it seems to be ALIVE!
 ~
 3 520 500 S
-2 11 0 9d9+90 2d5+2
+5 11 0 9d9+90 2d5+2
 250 0
 0 Object~ 0
 #2607
@@ -105,7 +105,7 @@ You only see the disfigured, rotting features of decaying human flesh,
 animated by the distempered spirit of a long-deceased person.
 ~
 65 512 -600 S
-14 8 0 12d12+120 1d6+6
+12 8 0 12d12+120 1d6+6
 750 0
 0 Undead~ 0
 #2608
@@ -118,7 +118,7 @@ of the desert floor.  It seems quite large and strong and at home in the heat
 and sandy winds.
 ~
 65 512 0 S
-12 6 0 14d14+140 2d7+4
+13 6 0 14d14+140 2d7+4
 1500 0
 0 Object~ 1
 #2609
@@ -130,7 +130,7 @@ The efreeti is a mighty being formed from living fire.  He gazes down at you
 with disdain and scorn, arms folded across his mighty chest.
 ~
 35 520 -600 S
-19 0 0 20d20+200 4d6+4
+18 0 0 20d20+200 4d6+4
 11000 0
 0 God~ 1
 #2610
@@ -143,7 +143,7 @@ outward into the room.  The sandstone of the caryatid is smooth with age,
 but you can still make out a deadly stone sword in the hands of each figure.
 ~
 3 512 0 S
-13 -4 0 24d24+240 4d6+8
+11 -4 0 24d24+240 4d6+8
 35000 0
 0 God~ 2
 #2611
@@ -157,7 +157,7 @@ He smiles down at you congenially, arms folded across his blue-tinged
 skin, and strokes his goatee.
 ~
 3 512 600 S
-31 -8 0 28d28+280 6d6+12
+29 -8 0 28d28+280 6d6+12
 60000 0
 0 God~ 1
 #2612
@@ -171,7 +171,7 @@ to pieces.  They tend to be quite jealous of the sharper wits of their older
 cousins.
 ~
 97 512 -200 S
-16 5 0 15d15+150 1d10+5
+17 5 0 15d15+150 1d10+5
 7500 0
 0 God~ 0
 #2613
@@ -185,7 +185,7 @@ and the hind legs of a mighty cat.  Right now she is confused, having
 just heard a puzzling riddle from a cousin criosphinx.
 ~
 3 8 100 S
-26 1 0 19d19+190 2d10+10
+24 1 0 19d19+190 2d10+10
 10000 0
 0 God~ 2
 #2614
@@ -198,7 +198,7 @@ the body of a well-furred feline with eagle-like wings.  He delights in riddles
 and in poking occasional fun at his easily confused lesser cousins.
 ~
 3 8 300 S
-22 -3 0 23d23+230 3d10+15
+25 -3 0 23d23+230 3d10+15
 25000 0
 0 God~ 1
 #2615
@@ -212,7 +212,7 @@ wings.  Tales are told of pharoahs that were rendered permanently deaf by the
 mighty roar of this sphinx.
 ~
 3 8 400 S
-32 -7 0 27d27+270 4d10+20
+30 -7 0 27d27+270 4d10+20
 50000 0
 0 God~ 0
 #2616
@@ -227,7 +227,7 @@ it, although you can still make out the features of the handsome face that once
 advised many rulers.
 ~
 3 8344 500 S
-40 -21 0 41d41+410 5d10+25
+41 -21 0 41d41+410 5d10+25
 125000 0
 0 God~ 0
 #2617
@@ -2140,17 +2140,17 @@ S
 
 
 #SPECIALS
-M 2600 spec_poison
-M 2601 spec_poison
-M 2604 spec_thief
-M 2605 spec_thief
-M 2609 spec_breath_fire
-M 2611 spec_cast_mage
-M 2613 spec_cast_cleric
-M 2614 spec_cast_cleric
-M 2615 spec_cast_cleric
-M 2616 spec_breath_any
-M 2617 spec_cast_cleric
+M 2600 spec_poison 	; A horrible asp
+M 2601 spec_poison 	; A hooded cobra snake
+M 2604 spec_thief 	; A tomb thief
+M 2605 spec_thief 	; Ali Baba
+M 2609 spec_breath_fire 	; The efreeti
+M 2611 spec_cast_mage 	; The djinn
+M 2613 spec_cast_cleric 	; A gynosphinx
+M 2614 spec_cast_cleric 	; A criosphinx
+M 2615 spec_cast_cleric 	; An androsphinx
+M 2616 spec_breath_any 	; The great sphinx
+M 2617 spec_cast_cleric 	; Ramses the Damned
 S
 
 
@@ -2161,98 +2161,98 @@ S
 
 
 #RESETS
-M 0 2600 6 2602
-M 0 2601 4 2603
-M 0 2600 6 2605
-M 0 2602 3 2606
-M 0 2603 6 2609
-E 0 2600 0 16
-M 0 2603 6 2609
-E 0 2601 0 12
-M 0 2609 1 2611
-E 0 2607 0 0
-M 0 2600 6 2613
-M 0 2602 3 2616
-O 0 2623 0 2619
-M 0 2606 1 2623
-M 0 2611 1 2623
-E 0 2613 0 17
-M 0 2604 6 2625
-E 0 2602 0 16
-M 0 2607 4 2625
-E 0 2604 0 5
-G 0 2606 0
-M 0 2607 4 2625
-E 0 2604 0 5
-G 0 2605 0
-M 0 2602 3 2626
-M 0 2604 6 2626
-E 0 2602 0 16
-M 0 2617 1 2632
-G 0 2619 0
-G 0 2620 0
-G 0 2621 0
-G 0 2621 0
-E 0 2622 0 6
-M 0 2604 6 2633
-E 0 2602 0 16
-M 0 2604 6 2634
-E 0 2602 0 16
-M 0 2604 6 2635
-E 0 2602 0 16
-M 0 2603 6 2637
-E 0 2600 0 16
-M 0 2603 6 2637
-E 0 2601 0 12
-M 0 2607 4 2637
-E 0 2604 0 5
-M 0 2600 6 2640
-M 0 2603 6 2640
-E 0 2600 0 16
-M 0 2603 6 2640
-E 0 2601 0 12
-M 0 2601 4 2641
-M 0 2607 4 2641
-E 0 2604 0 5
-M 0 2604 6 2642
-E 0 2602 0 16
-M 0 2605 1 2643
-E 0 2603 0 6
-E 0 2602 0 16
-M 0 2610 2 2645
-E 0 2608 0 16
-M 0 2610 2 2645
-E 0 2608 0 16
-G 0 2609 0
-O 0 2610 0 2645
-P 0 2611 0 2610
-P 0 2612 0 2610
-M 0 2615 1 2647
-G 0 2616 0
-M 0 2612 3 2648
-M 0 2612 3 2649
-M 0 2613 2 2650
-M 0 2613 2 2650
-G 0 2614 0
-M 0 2612 3 2651
-M 0 2614 2 2652
-M 0 2614 2 2652
-G 0 2615 0
-R 0 2654 4
-M 0 2608 4 2654
-R 0 2655 4
-M 0 2608 4 2655
-R 0 2656 4
-M 0 2608 4 2656
-R 0 2657 4
-M 0 2608 4 2657
-M 0 2616 1 2658
-E 0 2617 0 17
-O 0 2618 0 2659
-O 0 2624 0 2659
-O 0 2625 0 2659
-O 0 2626 0 2659
-O 0 2627 0 2659
+M 0 2600  6 2602  	; A horrible asp to Climbing the Great Pyramid
+M 0 2601  4 2603  	; A hooded cobra snake to Climbing the Great Pyramid
+M 0 2600  6 2605  	; A horrible asp to Climbing the Great Pyramid
+M 0 2602  3 2606  	; A wily little mongoose to The Apex of the Great Pyramid
+M 0 2603  6 2609  	; A pyramid watcher to A Musty Chamber
+E 0 2600  0 16    	;   An egyptian mace wielded (1)
+M 0 2603  6 2609  	; A pyramid watcher to A Musty Chamber
+E 0 2601  0 12    	;   Sand-colored robes about the shoulders
+M 0 2609  1 2611  	; The efreeti to The Chamber of the Efreet
+E 0 2607  0 0     	;   A small hot ball of fire as a light
+M 0 2600  6 2613  	; A horrible asp to A Tiny Crawlway
+M 0 2602  3 2616  	; A wily little mongoose to The Crawlway's End
+O 0 2623  0 2619  	; The diamond to A Rough Crevasse
+M 0 2606  1 2623  	; The magic carpet to The Vault of the Lamp
+M 0 2611  1 2623  	; The djinn to The Vault of the Lamp
+E 0 2613  0 17    	;   The lamp held in the hands
+M 0 2604  6 2625  	; A tomb thief to A Looted Tomb
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2607  4 2625  	; A mummy to A Looted Tomb
+E 0 2604  0 5     	;   Some cloth wrappings on the body
+G 0 2606  0      	;   A jar of formaldehyde
+M 0 2607  4 2625  	; A mummy to A Looted Tomb
+E 0 2604  0 5     	;   Some cloth wrappings on the body
+G 0 2605  0      	;   A bottle of embalming fluid
+M 0 2602  3 2626  	; A wily little mongoose to A Demolished Tomb
+M 0 2604  6 2626  	; A tomb thief to A Demolished Tomb
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2617  1 2632  	; Ramses the Damned to The Tomb of Ramses
+G 0 2619  0      	;   A pile of sand
+G 0 2620  0      	;   The curse of the mummy
+G 0 2621  0      	;   A small elixir
+G 0 2621  0      	;   A small elixir
+E 0 2622  0 6     	;   A golden mask over the head
+M 0 2604  6 2633  	; A tomb thief to A Ransacked Tomb
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2604  6 2634  	; A tomb thief to A Tunnel
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2604  6 2635  	; A tomb thief to A Fork in the Tunnel
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2603  6 2637  	; A pyramid watcher to A Dank Chamber
+E 0 2600  0 16    	;   An egyptian mace wielded (1)
+M 0 2603  6 2637  	; A pyramid watcher to A Dank Chamber
+E 0 2601  0 12    	;   Sand-colored robes about the shoulders
+M 0 2607  4 2637  	; A mummy to A Dank Chamber
+E 0 2604  0 5     	;   Some cloth wrappings on the body
+M 0 2600  6 2640  	; A horrible asp to A Smelly Chamber
+M 0 2603  6 2640  	; A pyramid watcher to A Smelly Chamber
+E 0 2600  0 16    	;   An egyptian mace wielded (1)
+M 0 2603  6 2640  	; A pyramid watcher to A Smelly Chamber
+E 0 2601  0 12    	;   Sand-colored robes about the shoulders
+M 0 2601  4 2641  	; A hooded cobra snake to A Dust-Covered Hallway
+M 0 2607  4 2641  	; A mummy to A Dust-Covered Hallway
+E 0 2604  0 5     	;   Some cloth wrappings on the body
+M 0 2604  6 2642  	; A tomb thief to A Turn in the Hallway
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2605  1 2643  	; Ali Baba to A Dead End
+E 0 2603  0 6     	;   A dirty cloth turban over the head
+E 0 2602  0 16    	;   An obsidian dirk wielded (1)
+M 0 2610  2 2645  	; A caryatid to The Tomb of the Pharoahs
+E 0 2608  0 16    	;   A stone scimitar wielded (1)
+M 0 2610  2 2645  	; A caryatid to The Tomb of the Pharoahs
+E 0 2608  0 16    	;   A stone scimitar wielded (1)
+G 0 2609  0      	;   A stone key
+O 0 2610  0 2645  	; A mighty stone sarcophagus to The Tomb of the Pharoahs
+P 0 2611  0 2610  	; Some ancient dust inside some ancient dust
+P 0 2612  0 2610  	; A small emerald scarab inside a small emerald scarab
+M 0 2615  1 2647  	; An androsphinx to A Sandstone Crypt
+G 0 2616  0      	;   A lion's paw
+M 0 2612  3 2648  	; A hieracosphinx to An Arched Hall
+M 0 2612  3 2649  	; A hieracosphinx to An Arched Hall
+M 0 2613  2 2650  	; A gynosphinx to A Golden Crypt
+M 0 2613  2 2650  	; A gynosphinx to A Golden Crypt
+G 0 2614  0      	;   An ankh
+M 0 2612  3 2651  	; A hieracosphinx to An Arched Hall
+M 0 2614  2 2652  	; A criosphinx to A Shining Vault
+M 0 2614  2 2652  	; A criosphinx to A Shining Vault
+G 0 2615  0      	;   A book of riddles
+R 0 2654  4      	; Randomize A Swirling Sandstorm
+M 0 2608  4 2654  	; A sand man to A Swirling Sandstorm
+R 0 2655  4      	; Randomize A Swirling Sandstorm
+M 0 2608  4 2655  	; A sand man to A Swirling Sandstorm
+R 0 2656  4      	; Randomize A Swirling Sandstorm
+M 0 2608  4 2656  	; A sand man to A Swirling Sandstorm
+R 0 2657  4      	; Randomize A Swirling Sandstorm
+M 0 2608  4 2657  	; A sand man to A Swirling Sandstorm
+M 0 2616  1 2658  	; The great sphinx to A Massive Sand Dune
+E 0 2617  0 17    	;   The answer held in the hands
+O 0 2618  0 2659  	; The treasure of the sphinx to Through the Hole in the Sand
+O 0 2624  0 2659  	; A blazing sun wand to Through the Hole in the Sand
+O 0 2625  0 2659  	; A sandy-colored ring to Through the Hole in the Sand
+O 0 2626  0 2659  	; A small golden sphinx to Through the Hole in the Sand
+O 0 2627  0 2659  	; A pair of sphinxian leggings to Through the Hole in the Sand
 S
 
 

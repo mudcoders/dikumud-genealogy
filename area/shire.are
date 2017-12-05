@@ -21,7 +21,7 @@ than the oldest man, he seems to have an inner strength which most mortals
 cannot overcome.
 ~
 67 8 500 S
-18 5 0 18d18+180 3d2+15
+21 5 0 18d18+180 3d2+15
 2109 0
 0 Elf~ 1
 #1101
@@ -36,7 +36,7 @@ usually a halfling of peace, he will fight you to the death if you attempt
 to take away that which belongs to him.
 ~
 67 10 0 S
-17 2 0 19d19+190 1d8+16
+16 2 0 19d19+190 1d8+16
 1231 0
 0 Hobbit~ 1
 #1102
@@ -49,7 +49,7 @@ been tanned from working the fields night and day.  He's quite a jolly
 chap, always ready to befriend an injured bunny rabbit.
 ~
 131 0 350 S
-3 14 0 7d7+77 1d4+5
+2 14 0 7d7+77 1d4+5
 0 0
 0 Hobbit~ 1
 #1103
@@ -74,7 +74,7 @@ toddlers for too long has evidently taken its toll.  She looks to you and
 in her eyes you can see her longing for a better life.
 ~
 3 0 100 S
-4 16 0 5d5+55 1d3+4
+9 16 0 5d5+55 1d3+4
 30 0
 0 Hobbit~ 2
 #1105
@@ -100,7 +100,7 @@ and cares only for the care-free life that he leads.  It is enormously fat
 and consequently cannot move around very quickly.
 ~
 65 0 0 S
-3 17 0 3d3+33 2d2+1
+1 17 0 3d3+33 2d2+1
 0 0
 0 Animal~ 0
 #1107
@@ -111,7 +111,7 @@ A chicken sits on her nest.
 The chicken is bright and healthy.  She has no weapons but her beak.
 ~
 65 0 0 S
-2 20 0 2d2+22 1d4+0
+6 20 0 2d2+22 1d4+0
 0 0
 0 Animal~ 2
 #1108
@@ -124,7 +124,7 @@ reckoned with.  With his horns and his hooves he can attack just about
 anything.
 ~
 35 0 0 S
-7 15 0 6d6+66 1d4+4
+9 15 0 6d6+66 1d4+4
 0 0
 0 Animal~ 1
 #1109
@@ -136,7 +136,7 @@ The horse looks at you and turns away.  You can tell that it is afraid of
 you.
 ~
 67 0 0 S
-3 17 0 4d4+44 1d8+0
+4 17 0 4d4+44 1d8+0
 2 0
 0 Animal~ 0
 #1110
@@ -150,7 +150,7 @@ his belt is a thin dagger, and on his body he wears a suit of leather armor.
 This is one halfling you don't want to mess with.
 ~
 69 0 150 S
-2 13 0 8d8+88 1d4+5
+3 13 0 8d8+88 1d4+5
 50 0
 0 Hobbit~ 1
 #1111
@@ -164,7 +164,7 @@ his belt is a thin dagger, and on his body he wears a suit of leather armor.
 This is one halfling you don't want to mess with.
 ~
 69 0 150 S
-2 13 0 8d8+88 1d4+5
+1 13 0 8d8+88 1d4+5
 50 0
 0 Hobbit~ 1
 #1112
@@ -216,7 +216,7 @@ mill.  He doesn't notice your presence, but he looks like he could break you
 in two without thinking about it.
 ~
 3 0 0 S
-3 16 0 5d5+55 1d6+3
+8 16 0 5d5+55 1d6+3
 50 0
 0 Hobbit~ 1
 #1116
@@ -229,7 +229,7 @@ on his countenance is solemn and tragic.  He cares not for this world any
 longer and wearies of it.
 ~
 3 0 600 S
-18 4 0 17d17+170 1d4+15
+16 4 0 17d17+170 1d4+15
 500 0
 0 Elf~ 1
 #1117
@@ -242,7 +242,7 @@ dwarves of his land.  His glowing eyes peer out of his bushy face and stare
 beyond your gaze.
 ~
 3 0 200 S
-19 6 0 17d17+170 1d4+15
+20 6 0 17d17+170 1d4+15
 700 0
 0 Dwarf~ 1
 #1118
@@ -290,7 +290,7 @@ The battle master offers you the services of his fine trainees.
 The battle master is a wizened fighter, with many scars to prove his worth.
 ~
 3 0 350 S
-21 -2 0 25d25+250 2d6+20
+22 -2 0 25d25+250 2d6+20
 1500 0
 0 Hobbit~ 1
 #1122
@@ -302,7 +302,7 @@ The halfling youth is not yet quite in the prime of his youth.  He's knee
 high and you get the sudden urge to step on him.
 ~
 193 0 0 S
-4 18 0 3d3+33 1d6+1
+9 18 0 3d3+33 1d6+1
 0 0
 0 Hobbit~ 1
 #1123
@@ -315,7 +315,7 @@ past his prime, he still looks like he could put up more than his share of
 a good fight.
 ~
 3 0 100 S
-12 13 0 8d8+88 2d3+7
+15 13 0 8d8+88 2d3+7
 170 0
 0 Dwarf~ 1
 #1124
@@ -327,7 +327,7 @@ The gossip is all talk and no action.  You're transfixed by her ability to
 talk so much so quickly.
 ~
 131 0 0 S
-9 17 0 4d4+44 1d4+2
+8 17 0 4d4+44 1d4+2
 25 0
 0 Human~ 2
 #1125
@@ -341,7 +341,7 @@ at her feet, hoping she'll take you in like a lost puppy.  You wouldn't dare
 harm a hair on her precious little head.
 ~
 3 0 1000 S
-9 15 0 6d6+66 1d4+4
+7 15 0 6d6+66 1d4+4
 75 0
 0 Hobbit~ 2
 #1126
@@ -354,7 +354,7 @@ fresh, but his enthusiasm and desire to please more than make up for what
 he lacks in skill.
 ~
 3 0 0 S
-3 16 0 5d5+55 1d6+3
+2 16 0 5d5+55 1d6+3
 0 0
 0 Hobbit~ 1
 #1127
@@ -367,7 +367,7 @@ all of the latest fashions and his manners impeccable.  He offers you some
 coins if you'd be so good as to order a drink for him.
 ~
 131 0 0 S
-5 17 0 4d4+44 2d2+2
+1 17 0 4d4+44 2d2+2
 100 0
 0 Human~ 1
 #1128
@@ -378,7 +378,7 @@ A country bumpkin dreams of pipeweed and its many uses.
 The country bumpkin snores noisily.
 ~
 3 0 0 S
-12 16 0 5d5+55 1d4+3
+11 16 0 5d5+55 1d4+3
 70 0
 0 Human~ 1
 #1130
@@ -390,7 +390,7 @@ The Innkeeper is a jolly old halfling who spends his days eavesdropping on
 local gossip.  In his younger days, he was quite a seasoned traveller.
 ~
 3 0 200 S
-8 9 0 12d12+120 1d4+10
+4 9 0 12d12+120 1d4+10
 1000 0
 0 Dwarf~ 1
 #1131
@@ -401,7 +401,7 @@ The receptionist sits here, signing forms.
 He is a very professional looking type.
 ~
 3 0 200 S
-12 4 0 12d12+120 1d8+14
+7 4 0 12d12+120 1d8+14
 70 0
 0 Elf~ 1
 #1132
@@ -414,7 +414,7 @@ He looks at you, smiles and asks you if you have seen a halfling youth
 somewhere outside the shire.
 ~
 3 0 150 S
-8 13 0 8d8+88 1d4+6
+7 13 0 8d8+88 1d4+6
 50 0
 0 Hobbit~ 1
 #0
@@ -1662,16 +1662,16 @@ S
 
 
 #SPECIALS
-M 1100 spec_cast_mage
-M 1101 spec_poison
-M 1110 spec_guard
-M 1111 spec_guard
-M 1112 spec_guard
-M 1116 spec_cast_mage
-M 1117 spec_cast_mage
-M 1121 spec_guard
-M 1122 spec_thief
-M 1132 spec_guard
+M 1100 spec_cast_mage 	; the Elven Wizard
+M 1101 spec_poison 	; the Keeper of the Ring
+M 1110 spec_guard 	; a shiriff
+M 1111 spec_guard 	; a shiriff
+M 1112 spec_guard 	; the Thain
+M 1116 spec_cast_mage 	; the elven warrior
+M 1117 spec_cast_mage 	; the dwarven prince
+M 1121 spec_guard 	; the battle master
+M 1122 spec_thief 	; a halfling youth
+M 1132 spec_guard 	; a shiriff
 S
 
 
@@ -1682,148 +1682,148 @@ S
 
 
 #RESETS
-O 0 1102 0 1103
-M 0 1118 1 1105
-G 0 1111 0
-G 0 1112 0
-M 0 1120 1 1107
-M 0 1104 2 1108
-M 0 1104 2 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1103 6 1108
-M 0 1110 8 1110
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1110
-E 0 616 0 5
-M 0 1111 4 1110
-E 0 616 0 5
-M 0 1112 1 1111
-E 0 1113 0 16
-E 0 616 0 5
-E 0 1108 0 13
-M 0 1128 4 1114
-G 0 1103 0
-M 0 1128 4 1115
-G 0 1103 0
-M 0 1113 1 1116
-G 0 1110 0
-G 0 648 0
-G 0 649 0
-G 0 650 0
-M 0 1123 4 1116
-M 0 1123 4 1116
-M 0 1124 2 1116
-M 0 1124 2 1116
-M 0 1127 7 1116
-M 0 1127 7 1116
-M 0 1127 7 1116
-M 0 1121 1 1117
-E 0 1113 0 16
-M 0 1126 3 1117
-E 0 1113 0 16
-M 0 1126 3 1117
-E 0 1113 0 16
-M 0 1126 3 1117
-E 0 1113 0 16
-M 0 1110 8 1119
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1119
-E 0 616 0 5
-M 0 1111 4 1119
-E 0 616 0 5
-M 0 1119 1 1121
-G 0 1103 0
-M 0 1115 6 1123
-M 0 1115 6 1123
-M 0 1115 6 1124
-M 0 1115 6 1124
-M 0 1115 6 1124
-M 0 1114 1 1124
-M 0 1115 6 1125
-M 0 1122 9 1127
-M 0 1122 9 1127
-M 0 1122 9 1127
-M 0 1125 1 1128
-M 0 1100 1 1128
-E 0 1104 0 12
-E 0 1100 0 0
-M 0 1122 9 1129
-M 0 1122 9 1129
-M 0 1122 9 1129
-M 0 1122 9 1130
-M 0 1122 9 1130
-M 0 1122 9 1130
-M 0 1116 1 1136
-E 0 1106 0 16
-E 0 622 0 6
-M 0 1117 1 1136
-E 0 1107 0 16
-E 0 621 0 5
-M 0 1101 1 1137
-E 0 1101 0 16
-E 0 1105 0 1
-E 0 623 0 7
-M 0 1108 1 1138
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1106 5 1139
-M 0 1102 1 1141
-M 0 1105 3 1142
-M 0 1105 3 1142
-M 0 1105 3 1142
-M 0 1109 4 1142
-M 0 1109 4 1142
-M 0 1109 4 1142
-M 0 1109 4 1142
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1107 6 1143
-G 0 1110 0
-M 0 1130 1 1144
-G 0 1110 0
-G 0 648 0
-G 0 649 0
-G 0 650 0
-M 0 1123 6 1144
-M 0 1123 6 1144
-M 0 1123 6 1144
-M 0 1127 7 1144
-M 0 1127 7 1144
-M 0 1127 7 1144
-M 0 1127 7 1144
-M 0 1110 8 1145
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1145
-E 0 616 0 5
-M 0 1111 4 1145
-E 0 616 0 5
-M 0 1110 8 1153
-E 0 1109 0 16
-E 0 616 0 5
-M 0 1110 8 1153
-E 0 616 0 5
-M 0 1111 4 1153
-E 0 616 0 5
-M 0 1128 4 1154
-M 0 1128 4 1155
-M 0 1131 1 1157
+O 0 1102  0 1103  	; A sign to Entrance to the Shire
+M 0 1118  1 1105  	; the shopkeeper to The General Store
+G 0 1111  0      	;   A bag
+G 0 1112  0      	;   A lantern
+M 0 1120  1 1107  	; the blacksmith to The House of Arms
+M 0 1104  2 1108  	; a nursemaid to Kid'n Keep
+M 0 1104  2 1108  	; a nursemaid to Kid'n Keep
+M 0 1103  6 1108  	; a toddler to Kid'n Keep
+M 0 1103  6 1108  	; a toddler to Kid'n Keep
+M 0 1103  6 1108  	; a toddler to Kid'n Keep
+M 0 1103  6 1108  	; a toddler to Kid'n Keep
+M 0 1103  6 1108  	; a toddler to Kid'n Keep
+M 0 1103  6 1108  	; a toddler to Kid'n Keep
+M 0 1110  8 1110  	; a shiriff to Shiriff Post of the Eastern Shire
+E 0 1109  0 16    	;   A tiny dagger wielded (1)
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1110  8 1110  	; a shiriff to Shiriff Post of the Eastern Shire
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1111  4 1110  	; a shiriff to Shiriff Post of the Eastern Shire
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1112  1 1111  	; the Thain to Thain's Office
+E 0 1113  0 16    	;   A bardiche wielded (1)
+E 0 616  0 5     	;   A leather vest on the body
+E 0 1108  0 13    	;   The thain girth around the waist
+M 0 1128  4 1114  	; a country bumpkin to A smial
+G 0 1103  0      	;   A pipeweed bread
+M 0 1128  4 1115  	; a country bumpkin to A smial
+G 0 1103  0      	;   A pipeweed bread
+M 0 1113  1 1116  	; the Innkeeper to The Ivy Bush
+G 0 1110  0      	;   An egg
+G 0 648  0      	;   A shot of whiskey
+G 0 649  0      	;   A quart of ale
+G 0 650  0      	;   A quart of port brew
+M 0 1123  4 1116  	; a seasoned adventurer to The Ivy Bush
+M 0 1123  4 1116  	; a seasoned adventurer to The Ivy Bush
+M 0 1124  2 1116  	; a local gossip to The Ivy Bush
+M 0 1124  2 1116  	; a local gossip to The Ivy Bush
+M 0 1127  7 1116  	; a chic urbanite to The Ivy Bush
+M 0 1127  7 1116  	; a chic urbanite to The Ivy Bush
+M 0 1127  7 1116  	; a chic urbanite to The Ivy Bush
+M 0 1121  1 1117  	; the battle master to Shiriff Training Grounds
+E 0 1113  0 16    	;   A bardiche wielded (1)
+M 0 1126  3 1117  	; a trainee to Shiriff Training Grounds
+E 0 1113  0 16    	;   A bardiche wielded (1)
+M 0 1126  3 1117  	; a trainee to Shiriff Training Grounds
+E 0 1113  0 16    	;   A bardiche wielded (1)
+M 0 1126  3 1117  	; a trainee to Shiriff Training Grounds
+E 0 1113  0 16    	;   A bardiche wielded (1)
+M 0 1110  8 1119  	; a shiriff to Shiriff Post of the Bridge
+E 0 1109  0 16    	;   A tiny dagger wielded (1)
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1110  8 1119  	; a shiriff to Shiriff Post of the Bridge
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1111  4 1119  	; a shiriff to Shiriff Post of the Bridge
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1119  1 1121  	; the grocer to The Grocer's Delight
+G 0 1103  0      	;   A pipeweed bread
+M 0 1115  6 1123  	; the mill worker to Entrance to Watermill
+M 0 1115  6 1123  	; the mill worker to Entrance to Watermill
+M 0 1115  6 1124  	; the mill worker to The Watermill
+M 0 1115  6 1124  	; the mill worker to The Watermill
+M 0 1115  6 1124  	; the mill worker to The Watermill
+M 0 1114  1 1124  	; the Miller to The Watermill
+M 0 1115  6 1125  	; the mill worker to Rear of watermill
+M 0 1122  9 1127  	; a halfling youth to Northern end of grassy field
+M 0 1122  9 1127  	; a halfling youth to Northern end of grassy field
+M 0 1122  9 1127  	; a halfling youth to Northern end of grassy field
+M 0 1125  1 1128  	; a halfling beauty to A grassy field
+M 0 1100  1 1128  	; the Elven Wizard to A grassy field
+E 0 1104  0 12    	;   A silvery cloak about the shoulders
+E 0 1100  0 0     	;   The rainbow staff as a light
+M 0 1122  9 1129  	; a halfling youth to Southern end of grassy field
+M 0 1122  9 1129  	; a halfling youth to Southern end of grassy field
+M 0 1122  9 1129  	; a halfling youth to Southern end of grassy field
+M 0 1122  9 1130  	; a halfling youth to Western end of grassy field
+M 0 1122  9 1130  	; a halfling youth to Western end of grassy field
+M 0 1122  9 1130  	; a halfling youth to Western end of grassy field
+M 0 1116  1 1136  	; the elven warrior to Bedroom
+E 0 1106  0 16    	;   An elven bow wielded (1)
+E 0 622  0 6     	;   A brass helm over the head
+M 0 1117  1 1136  	; the dwarven prince to Bedroom
+E 0 1107  0 16    	;   A mithril axe wielded (1)
+E 0 621  0 5     	;   Brass plate on the body
+M 0 1101  1 1137  	; the Keeper of the Ring to Pantry
+E 0 1101  0 16    	;   Sting wielded (1)
+E 0 1105  0 1     	;   The one ring on the left finger
+E 0 623  0 7     	;   Brass leggings on the legs
+M 0 1108  1 1138  	; a bull to A grassy field
+M 0 1106  5 1139  	; a pig to Pig pen
+M 0 1106  5 1139  	; a pig to Pig pen
+M 0 1106  5 1139  	; a pig to Pig pen
+M 0 1106  5 1139  	; a pig to Pig pen
+M 0 1106  5 1139  	; a pig to Pig pen
+M 0 1102  1 1141  	; Farmer Gamgee to Gamgee Residence
+M 0 1105  3 1142  	; a cow to A barn
+M 0 1105  3 1142  	; a cow to A barn
+M 0 1105  3 1142  	; a cow to A barn
+M 0 1109  4 1142  	; a horse to A barn
+M 0 1109  4 1142  	; a horse to A barn
+M 0 1109  4 1142  	; a horse to A barn
+M 0 1109  4 1142  	; a horse to A barn
+M 0 1107  6 1143  	; a chicken to A chicken coop
+G 0 1110  0      	;   An egg
+M 0 1107  6 1143  	; a chicken to A chicken coop
+G 0 1110  0      	;   An egg
+M 0 1107  6 1143  	; a chicken to A chicken coop
+G 0 1110  0      	;   An egg
+M 0 1107  6 1143  	; a chicken to A chicken coop
+G 0 1110  0      	;   An egg
+M 0 1107  6 1143  	; a chicken to A chicken coop
+G 0 1110  0      	;   An egg
+M 0 1107  6 1143  	; a chicken to A chicken coop
+G 0 1110  0      	;   An egg
+M 0 1130  1 1144  	; the Innkeeper to The Green Dragon
+G 0 1110  0      	;   An egg
+G 0 648  0      	;   A shot of whiskey
+G 0 649  0      	;   A quart of ale
+G 0 650  0      	;   A quart of port brew
+M 0 1123  6 1144  	; a seasoned adventurer to The Green Dragon
+M 0 1123  6 1144  	; a seasoned adventurer to The Green Dragon
+M 0 1123  6 1144  	; a seasoned adventurer to The Green Dragon
+M 0 1127  7 1144  	; a chic urbanite to The Green Dragon
+M 0 1127  7 1144  	; a chic urbanite to The Green Dragon
+M 0 1127  7 1144  	; a chic urbanite to The Green Dragon
+M 0 1127  7 1144  	; a chic urbanite to The Green Dragon
+M 0 1110  8 1145  	; a shiriff to Shiriff Post of Delving Lane
+E 0 1109  0 16    	;   A tiny dagger wielded (1)
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1110  8 1145  	; a shiriff to Shiriff Post of Delving Lane
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1111  4 1145  	; a shiriff to Shiriff Post of Delving Lane
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1110  8 1153  	; a shiriff to Shiriff Post of the Lower Shire
+E 0 1109  0 16    	;   A tiny dagger wielded (1)
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1110  8 1153  	; a shiriff to Shiriff Post of the Lower Shire
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1111  4 1153  	; a shiriff to Shiriff Post of the Lower Shire
+E 0 616  0 5     	;   A leather vest on the body
+M 0 1128  4 1154  	; a country bumpkin to A halfling hole
+M 0 1128  4 1155  	; a country bumpkin to A halfling hole
+M 0 1131  1 1157  	; the receptionist to The Inn of the Green Dragon
 S
 
 
@@ -1834,11 +1834,11 @@ S
 
 
 #SHOPS
-1113 17 0 0 0 0 150 50 0 23
-1118 13 5 15 1 17 150 50 0 23
-1119 13 5 15 1 17 150 50 0 23
-1120 9 5 0 0 0 150 50 0 23
-1130 17 0 0 0 0 150 50 0 23
+1113 17  0  0  0  0 150  50  0 23 	; the Innkeeper
+1118 13  5 15  1 17 150  50  0 23 	; the shopkeeper
+1119 13  5 15  1 17 150  50  0 23 	; the grocer
+1120  9  5  0  0  0 150  50  0 23 	; the blacksmith
+1130 17  0  0  0  0 150  50  0 23 	; the Innkeeper
 0
 
 

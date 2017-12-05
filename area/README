@@ -1,9 +1,9 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+Mythran mud release 3.1.1
+Monday, October 21 1996
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
-
+Maniac		mark@delftnet.nl
+Canth		canth@xs4all.nl
+Staff		mythran@envy.com
 
 
 === The doc directory
@@ -27,4 +27,10 @@ TIME.TXT	- Contains information instructing the server when to
 TYPOS.TXT	- Contains a list of all the player typo contributions.  You
 		may wish to look at this file frequently to maintain integrity
 		of your area files.
+BANK.TXT	- This file holds the price of mud shares, so players don't go
+		broke or get very rich after a crash or reboot.
+DISABLED.TXT	- This file holds all the data needed for disabling/disabled
+		commands.
+SOCIALS.TXT	- This file holds the editable social database.
+MOBProgs/	- This directory holds all the mobprogs
 

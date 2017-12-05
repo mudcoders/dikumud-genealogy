@@ -23,7 +23,7 @@
 
 /*
  * Mythran Mud clan system
- * Version 0.1
+ * Version 0.2
  * Written by Maniac
  *
  * History:
@@ -33,6 +33,7 @@
  *			Added clan donate (in act_obj.c)
  * july 23, 1996:	Added clan recall (in act_move.c), and crecall command
  * july 25, 1996:	Fixed some bugs with leader and advance
+ * october 21, 1996:	Improved on info, if char exiled or in no clan...
  *
  */
 
@@ -127,21 +128,21 @@ void do_clantalk( CHAR_DATA *ch, char *argument )
 {
 	if (!is_in_clan(ch))
 	{
-		send_to_char ("You are not in a clan... so don't clantalk...\r\n", ch);
+		send_to_char ("You are not in a clan... so don't clantalk...\n\r", ch);
 		return;
 	}
 
 	if ( IS_AFFECTED( ch, AFF_MUTE )
 		|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	{
-		send_to_char( "You can't seem to break the silence.\r\n", ch );
+		send_to_char( "You can't seem to break the silence.\n\r", ch );
 		return;
 	}
 
 	if (argument[0] == '\0' )
 	{
 		TOGGLE_BIT( ch->deaf, CHANNEL_CLAN );
-		send_to_char ("Clan channel toggled.\r\n", ch );
+		send_to_char ("Clan channel toggled.\n\r", ch );
 		return;
 	}
 
@@ -166,7 +167,7 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 	if (IS_NPC( ch ) )
 	{
-		send_to_char ("You are not interested in clans.\r\n", ch);
+		send_to_char ("You are not interested in clans.\n\r", ch);
 		return;
 	}
 
@@ -174,15 +175,25 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 	if ( arg1[0] == '\0' )
 	{
-		send_to_char ("Syntax: clan [function] [parameters].\r\n", ch );
-		send_to_char ("Functions: info, who, talk, apply, kick,\r\n", ch);
-		send_to_char ("advance, recruit, initiate, leader, leave\r\n", ch );
+		send_to_char ("Syntax: clan [function] [parameters].\n\r", ch );
+		send_to_char ("Functions: info, who, talk, apply, kick,\n\r", ch);
+		send_to_char ("advance, recruit, initiate, leader, leave\n\r", ch );
 		return;
 	}
 
 	if ( !str_prefix( arg1, "info" ) )
 	{
-		sprintf (buf, "You are member of clan %s (level %d).\r\n",
+		if (ch->pcdata->clan == CLAN_NONE)
+		{
+			send_to_char ("You are not in a clan.\n\r", ch );
+			return;
+		}
+		if (ch->pcdata->clan == CLAN_EXILE)
+		{
+			send_to_char ("You have been exiled from your clan.\n\r", ch );
+			return;
+		}
+		sprintf (buf, "You are member of clan %s (level %d).\n\r",
 		    clan_name(ch->pcdata->clan),
 		    (ch->pcdata->clanlevel - CLAN_INITIATE ) );
 		send_to_char( buf, ch );
@@ -204,40 +215,40 @@ void do_clan( CHAR_DATA *ch, char *argument )
 	{
 		if ( ch->pcdata->clan == CLAN_EXILE )
 		{
-    send_to_char ("You have already been in a clan, and have been exiled.\r\n", ch);
-    send_to_char ("This means you can't join any clans anymore...\r\n", ch);
-    send_to_char ("\t\tHave a nice day.\r\n", ch);
+    send_to_char ("You have already been in a clan, and have been exiled.\n\r", ch);
+    send_to_char ("This means you can't join any clans anymore...\n\r", ch);
+    send_to_char ("\t\tHave a nice day.\n\r", ch);
 			return;
 		}
 
 		if ( is_in_clan (ch) )
 		{
-			send_to_char ("You are already in a clan...\r\n", ch);
+			send_to_char ("You are already in a clan...\n\r", ch);
 			return;
 		}
 
 		if (arg2[0] == '\0' )
 		{
-			send_to_char ("Usage: clan apply <clanname>\r\n", ch);
+			send_to_char ("Usage: clan apply <clanname>\n\r", ch);
 			return;
 		}
 
 		if (( clan = clan_lookup(arg2)) <= CLAN_NONE )
 		{
-			send_to_char ("That is not a valid clan.\r\n", ch );
+			send_to_char ("That is not a valid clan.\n\r", ch );
 			return;
 		}
 
 		if ( ch->level < 10 )
 		{
-			send_to_char ("You have to be level 10 to join a clan.\r\n", ch );
+			send_to_char ("You have to be level 10 to join a clan.\n\r", ch );
 			return;
 		}
 
 		if (!clan_accept(ch, clan ) )
 		{
-			send_to_char ("You do not have the right qualities the clan\r\n", ch );
-			send_to_char ("Requires from you, you have not been accepted.\r\n", ch );
+			send_to_char ("You do not have the right qualities the clan\n\r", ch );
+			send_to_char ("Requires from you, you have not been accepted.\n\r", ch );
 			return;
 		}
 
@@ -247,9 +258,9 @@ void do_clan( CHAR_DATA *ch, char *argument )
 		interpret (ch, "note + Please let me join...");
 		interpret (ch, "note send" );
 
-		send_to_char ("Your application has been accepted.\r\n", ch );
-		send_to_char ("The clan leaders will discuss your membership at\r\n", ch);
-		send_to_char ("next clan meeting, you will hear from us.\r\n", ch );
+		send_to_char ("Your application has been accepted.\n\r", ch );
+		send_to_char ("The clan leaders will discuss your membership at\n\r", ch);
+		send_to_char ("next clan meeting, you will hear from us.\n\r", ch );
 		ch->pcdata->clan = clan;
 		ch->pcdata->clanlevel = CLAN_APPLICANT;
 	} /* Apply */
@@ -258,32 +269,32 @@ void do_clan( CHAR_DATA *ch, char *argument )
 	{
 		if ( !is_in_clan(ch) )
 		{
-			send_to_char ("You are not with a clan.\r\n", ch );
+			send_to_char ("You are not with a clan.\n\r", ch );
 			return;
 		}
 
 		if ( ch->pcdata->clanlevel < CLAN_APPLICATOR )
 		{
-			send_to_char ("You have no power to initiate members.\r\n", ch );
+			send_to_char ("You have no power to initiate members.\n\r", ch );
 			return;
 		}
 
 		if (arg2[0] == '\0' )
 		{
-			send_to_char ("Who do you wish to initiate.\r\n", ch );
+			send_to_char ("Who do you wish to initiate.\n\r", ch );
 			return;
 		}
 
 		if ((victim = get_char_world(ch, arg2 ) ) == NULL )
 		{
-			sprintf (buf, "You can't find %s.\r\n", arg2 );
+			sprintf (buf, "You can't find %s.\n\r", arg2 );
 			send_to_char(buf, ch );
 			return;
 		}
 
 		if ( victim->pcdata->clanlevel != CLAN_APPLICANT )
 		{
-			sprintf (buf, "%s has not applied for a clan.\r\n",
+			sprintf (buf, "%s has not applied for a clan.\n\r",
 			    victim->name);
 			send_to_char(buf, ch );
 			return;
@@ -291,16 +302,16 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 		if ( !is_same_clan (ch, victim) )
 		{
-			sprintf (buf, "%s hasn't applied for YOUR clan.\r\n",
+			sprintf (buf, "%s hasn't applied for YOUR clan.\n\r",
 			    victim->name );
 			send_to_char(buf, ch );
 			return;
 		}
 
 		victim->pcdata->clanlevel = CLAN_INITIATE;
-		sprintf (buf, "Ok, %s has been accepted as applicant.\r\n", victim->name );
+		sprintf (buf, "Ok, %s has been accepted as applicant.\n\r", victim->name );
 		send_to_char (buf, ch );
-		send_to_char ("Your application has been acccepted, you are now a clan initiate.\r\n", victim);
+		send_to_char ("Your application has been acccepted, you are now a clan initiate.\n\r", victim);
 		return;
 	} /* initiate */
 
@@ -308,32 +319,32 @@ void do_clan( CHAR_DATA *ch, char *argument )
 	{
 		if ( !is_in_clan(ch) )
 		{
-			send_to_char ("You are not with a clan.\r\n", ch );
+			send_to_char ("You are not with a clan.\n\r", ch );
 			return;
 		}
 
 		if ( ch->pcdata->clanlevel < CLAN_LEADER )
 		{
-			send_to_char ("You have no power to advance members.\r\n", ch );
+			send_to_char ("You have no power to advance members.\n\r", ch );
 			return;
 		}
 
 		if (arg2[0] == '\0' )
 		{
-			send_to_char ("Who do you wish to advance.\r\n", ch );
+			send_to_char ("Who do you wish to advance.\n\r", ch );
 			return;
 		}
 
 		if ((victim = get_char_world(ch, arg2 ) ) == NULL )
 		{
-			sprintf (buf, "You can't find %s.\r\n", arg2 );
+			sprintf (buf, "You can't find %s.\n\r", arg2 );
 			send_to_char(buf, ch );
 			return;
 		}
 
 		if ( !is_same_clan( ch, victim ) )
 		{
-			sprintf (buf, "%s isn't a member of YOUR clan.\r\n",
+			sprintf (buf, "%s isn't a member of YOUR clan.\n\r",
 			    victim->name );
 			send_to_char(buf, ch );
 			return;
@@ -341,7 +352,7 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 		if (victim->pcdata->clanlevel >= ch->pcdata->clanlevel )
 		{
-			sprintf (buf, "You are not powerfull enough to advance %s.\r\n",
+			sprintf (buf, "You are not powerfull enough to advance %s.\n\r",
 			    victim->name );
 			send_to_char( buf, ch );
 			return;
@@ -349,7 +360,7 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 		if (victim->pcdata->clanlevel >= CLAN_LEVEL_5 )
 		{
-			sprintf (buf, "%s is already at maximum clan level.\r\n",
+			sprintf (buf, "%s is already at maximum clan level.\n\r",
 				victim->name );
 			send_to_char (buf, ch );
 			return;
@@ -364,15 +375,15 @@ void do_clan( CHAR_DATA *ch, char *argument )
 			level = atoi(arg3);
 			if ((level < 1 ) || (level > 5 ) )
 			{
-				send_to_char ("Levelrange is 1 to 5.\r\n", ch );
+				send_to_char ("Levelrange is 1 to 5.\n\r", ch );
 				return;
 			}
 			victim->pcdata->clanlevel = (CLAN_INITIATE + level);
 		}
-		sprintf (buf, "%s is now clanlevel %d.\r\n",
+		sprintf (buf, "%s is now clanlevel %d.\n\r",
 		    victim->name, (victim->pcdata->clanlevel - CLAN_INITIATE) );
 		send_to_char (buf, ch );
-		sprintf (buf, "You are now clanlevel %d.\r\n",
+		sprintf (buf, "You are now clanlevel %d.\n\r",
 			(victim->pcdata->clanlevel - CLAN_INITIATE ) );
 		send_to_char (buf, victim );
 		return;
@@ -382,32 +393,32 @@ void do_clan( CHAR_DATA *ch, char *argument )
         {
                 if ( !is_in_clan( ch ) )
                 {
-                        send_to_char ("You are not with a clan.\r\n", ch );
+                        send_to_char ("You are not with a clan.\n\r", ch );
                         return;
                 }
 
                 if ( ch->pcdata->clanlevel < CLAN_RECRUITER )
                 {
-                        send_to_char ("You have no power to recruit members.\r\n", ch );
+                        send_to_char ("You have no power to recruit members.\n\r", ch );
                         return;
                 }
 
                 if (arg2[0] == '\0' )
                 {
-                        send_to_char ("Who do you wish to recruit.\r\n", ch );
+                        send_to_char ("Who do you wish to recruit.\n\r", ch );
                         return;
                 }
 
                 if ((victim = get_char_world(ch, arg2 ) ) == NULL )
                 {
-                        sprintf (buf, "You can't find %s.\r\n", arg2 );
+                        sprintf (buf, "You can't find %s.\n\r", arg2 );
                         send_to_char(buf, ch );
                         return;
                 }
 
                 if ( victim->pcdata->clanlevel != CLAN_INITIATE )
                 {
-                        sprintf (buf, "%s has yet been initiated for the clan.\r\n",
+                        sprintf (buf, "%s has yet been initiated for the clan.\n\r",
                             victim->name);
                         send_to_char(buf, ch );
                         return;
@@ -415,17 +426,17 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
                 if ( !is_same_clan( ch, victim ) )
                 {
-                        sprintf (buf, "%s isn't a member of YOUR clan.\r\n",
+                        sprintf (buf, "%s isn't a member of YOUR clan.\n\r",
                             victim->name );
                         send_to_char(buf, ch );
                         return;
                 }
 
                 victim->pcdata->clanlevel++;
-                sprintf (buf, "Ok, %s has been accepted as a full clan member.\r\n",
+                sprintf (buf, "Ok, %s has been accepted as a full clan member.\n\r",
 		    victim->name );
 		send_to_char (buf, ch );
-                send_to_char ("You are now a full clan member (level 1).\r\n", victim );
+                send_to_char ("You are now a full clan member (level 1).\n\r", victim );
                 return;
         } /* recruit */
 
@@ -433,32 +444,32 @@ void do_clan( CHAR_DATA *ch, char *argument )
 	{
 		if ( !is_in_clan(ch) )
 		{
-			send_to_char ("You are not with a clan.\r\n", ch );
+			send_to_char ("You are not with a clan.\n\r", ch );
 			return;
 		}
 
 		if ( ch->pcdata->clanlevel < CLAN_LEADER )
 		{
-			send_to_char ("You have no power to make members leaders.\r\n", ch );
+			send_to_char ("You have no power to make members leaders.\n\r", ch );
 			return;
 		}
 
 		if (arg2[0] == '\0' )
 		{
-			send_to_char ("Who do you wish to advance to a leader.\r\n", ch );
+			send_to_char ("Who do you wish to advance to a leader.\n\r", ch );
 			return;
 		}
 
 		if ((victim = get_char_world(ch, arg2 ) ) == NULL )
 		{
-			sprintf (buf, "You can't find %s.\r\n", arg2 );
+			sprintf (buf, "You can't find %s.\n\r", arg2 );
 			send_to_char(buf, ch );
 			return;
 		}
 
 		if ( !is_same_clan( ch, victim ) )
 		{
-			sprintf (buf, "%s isn't a member of YOUR clan.\r\n",
+			sprintf (buf, "%s isn't a member of YOUR clan.\n\r",
 			    victim->name );
 			send_to_char(buf, ch );
 			return;
@@ -466,7 +477,7 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 		if (victim->pcdata->clanlevel >= ch->pcdata->clanlevel )
 		{
-			sprintf (buf, "You are not powerfull enough to advance %s.\r\n",                    victim->name );
+			sprintf (buf, "You are not powerfull enough to advance %s.\n\r",                    victim->name );
 			send_to_char( buf, ch );
 			return;
 		}
@@ -477,31 +488,31 @@ void do_clan( CHAR_DATA *ch, char *argument )
 			if (victim->pcdata->clanlevel == CLAN_LEADER)
 			{
 				victim->pcdata->clanlevel--;
-				send_to_char ("Ok... done.\r\n", ch );
+				send_to_char ("Ok... done.\n\r", ch );
 			}
 			/* Make someone a leader */
 			else
 			{
 				victim->pcdata->clanlevel = CLAN_LEADER;
-				send_to_char ("Ok... done.\r\n", ch );
-				send_to_char ("You are now a clan leader.\r\n", victim );
+				send_to_char ("Ok... done.\n\r", ch );
+				send_to_char ("You are now a clan leader.\n\r", victim );
 			}
 			return;
 		}
 		else if (ch->pcdata->clanlevel == CLAN_LEADER )
 		{
-			send_to_char ("Ok... you are no longer a leader.\r\n", ch );
+			send_to_char ("Ok... you are no longer a leader.\n\r", ch );
 			ch->pcdata->clanlevel = CLAN_LEVEL_5;
 			if (victim->pcdata->clanlevel < CLAN_LEADER )
 			{
 				victim->pcdata->clanlevel = CLAN_LEADER;
-				send_to_char ("You are now clan leader.\r\n", victim );
+				send_to_char ("You are now clan leader.\n\r", victim );
 			}
 			return;
 		}
 		else
 		{
-			send_to_char ("Something is wrong with leader, notify coders.\r\n", ch );
+			send_to_char ("Something is wrong with leader, notify coders.\n\r", ch );
 			return;
 		}
 	} /* Leader */
@@ -510,28 +521,28 @@ void do_clan( CHAR_DATA *ch, char *argument )
 	{
 		if (!is_in_clan(ch) )
 		{
-			send_to_char ("But you are not in a clan...\r\n", ch);
+			send_to_char ("But you are not in a clan...\n\r", ch);
 			return;
 		}
 
 		if (arg2[0] == '\0')
 		{
-			send_to_char ("Are you very sure you want to leave the clan ??\r\n", ch );
-			send_to_char ("If so, type: clan leave, but with the string below as argument.\r\n", ch );
-			sprintf ( buf, "%s\r\n", ch->pcdata->pwd );
+			send_to_char ("Are you very sure you want to leave the clan ??\n\r", ch );
+			send_to_char ("If so, type: clan leave, but with the string below as argument.\n\r", ch );
+			sprintf ( buf, "%s\n\r", ch->pcdata->pwd );
 			send_to_char (buf, ch);
 			return;
 		}
 		else if (!str_cmp( arg2, ch->pcdata->pwd) )
 		{
-			send_to_char ("OK... you are now exiled.\r\n", ch );
+			send_to_char ("OK... you are now exiled.\n\r", ch );
 			ch->pcdata->clan = CLAN_EXILE;
 			ch->pcdata->clanlevel = CLAN_NOLEVEL;
 			return;
 		}
 		else
 		{
-			send_to_char ("That was not the correct string.\r\n", ch );
+			send_to_char ("That was not the correct string.\n\r", ch );
 			return;
 		}
 	}
@@ -540,32 +551,32 @@ void do_clan( CHAR_DATA *ch, char *argument )
 	{
 		if ( !is_in_clan(ch) )
 		{
-			send_to_char ("You are not with a clan.\r\n", ch );
+			send_to_char ("You are not with a clan.\n\r", ch );
 			return;
 		}
 
 		if ( ch->pcdata->clanlevel < CLAN_RECRUITER )
 		{
-			send_to_char ("You have no power to kick members.\r\n", ch );
+			send_to_char ("You have no power to kick members.\n\r", ch );
 			return;
 		}
 
 		if (arg2[0] == '\0' )
 		{
-			send_to_char ("Who do you wish to kick.\r\n", ch );
+			send_to_char ("Who do you wish to kick.\n\r", ch );
 			return;
 		}
 
 		if ((victim = get_char_world(ch, arg2 ) ) == NULL )
 		{
-			sprintf (buf, "You can't find %s.\r\n", arg2 );
+			sprintf (buf, "You can't find %s.\n\r", arg2 );
 			send_to_char(buf, ch );
 			return;
 		}
 
 		if ( !is_same_clan( ch, victim ) )
 		{
-			sprintf (buf, "%s isn't a member of YOUR clan.\r\n",
+			sprintf (buf, "%s isn't a member of YOUR clan.\n\r",
 			    victim->name );
 			send_to_char(buf, ch );
 			return;
@@ -573,7 +584,7 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 		if (victim->pcdata->clanlevel >= ch->pcdata->clanlevel )
 		{
-			sprintf (buf, "You are not powerfull enough to kick %s.\r\n",                    victim->name );
+			sprintf (buf, "You are not powerfull enough to kick %s.\n\r",                    victim->name );
 			send_to_char( buf, ch );
 			return;
 		}
@@ -581,8 +592,8 @@ void do_clan( CHAR_DATA *ch, char *argument )
 		/* Ok... do it... */
 		victim->pcdata->clan = CLAN_EXILE;
 		victim->pcdata->clanlevel = CLAN_NOLEVEL;
-		send_to_char ("You have been kicked from the clan.\r\n", victim );
-		send_to_char ("You are now exiled.\r\n", victim );
+		send_to_char ("You have been kicked from the clan.\n\r", victim );
+		send_to_char ("You are now exiled.\n\r", victim );
 		sprintf (buf, "%s has been exiled.", victim->name );
 		send_to_char (buf, ch );
 		return;
@@ -590,12 +601,13 @@ void do_clan( CHAR_DATA *ch, char *argument )
 
 	else if (!str_prefix ( arg1, "who" ) )
 	{
+		send_to_char ("Function not implemented yet.\n\r", ch );
 		return;
 	}
 
 	else
 	{
-		send_to_char ("Unknown option.\r\n", ch );
+		send_to_char ("Unknown option.\n\r", ch );
 		return;
 	}
 }
@@ -616,25 +628,25 @@ void do_guild( CHAR_DATA *ch, char *argument )
 
 	if ( arg1[0] == '\0' )
 	{
-		send_to_char( "Syntax: guild <char> <cln name> <level>\r\n",ch);
+		send_to_char( "Syntax: guild <char> <cln name> <level>\n\r",ch);
 		return;
 	}
 
 	if ( ( victim = get_char_world( ch, arg1 ) ) == NULL )
 	{
-		send_to_char( "They aren't playing.\r\n", ch );
+		send_to_char( "They aren't playing.\n\r", ch );
 		return;
 	}
 
 	if (IS_NPC(victim))
 	{
-		send_to_char( "Only on players.\r\n", ch );
+		send_to_char( "Only on players.\n\r", ch );
 		return;
 	}
 
 	if ( arg2[0] == '\0' )
 	{
-		sprintf(buf,"%s is member of clan %s (level %d).\r\n",
+		sprintf(buf,"%s is member of clan %s (level %d).\n\r",
 		victim->name, capitalize(clan_table[ch->pcdata->clan].name),
 		(victim->pcdata->clanlevel - CLAN_INITIATE) );
                 send_to_char(buf,ch);
@@ -643,9 +655,9 @@ void do_guild( CHAR_DATA *ch, char *argument )
 
 	if (!str_prefix(arg2,"none"))
 	{
-		sprintf (buf, "%s is now clanless.\r\n", victim->name);
+		sprintf (buf, "%s is now clanless.\n\r", victim->name);
 		send_to_char(buf, ch);
-		send_to_char("You are now a member of no clan!\r\n",victim);
+		send_to_char("You are now a member of no clan!\n\r",victim);
 		victim->pcdata->clan = CLAN_NONE;
 		victim->pcdata->clanlevel = CLAN_NOLEVEL;
 		return;
@@ -653,9 +665,9 @@ void do_guild( CHAR_DATA *ch, char *argument )
 
 	if (!str_prefix(arg2,"exile"))
 	{
-		sprintf (buf, "%s is now exiled.\r\n", victim->name);
+		sprintf (buf, "%s is now exiled.\n\r", victim->name);
 		send_to_char(buf, ch);
-		send_to_char("You are now exiled\r\n",victim);
+		send_to_char("You are now exiled\n\r",victim);
 		victim->pcdata->clan = CLAN_EXILE;
 		victim->pcdata->clanlevel = CLAN_NOLEVEL;
 		return;
@@ -668,24 +680,24 @@ void do_guild( CHAR_DATA *ch, char *argument )
 
 	if ( ( level < CLAN_APPLICANT ) || ( level > CLAN_GOD ) )
 	{
-		send_to_char ("Level range is -1 to 9.\r\n", ch );
-		send_to_char ("-1 = Applicant, 0 = initiate, 1-5 = level 1-5\r\n", ch);
-		send_to_char ("6 = applicator, 7 = recruiter, 8 = leader 9 = god.\r\n", ch );
+		send_to_char ("Level range is -1 to 9.\n\r", ch );
+		send_to_char ("-1 = Applicant, 0 = initiate, 1-5 = level 1-5\n\r", ch);
+		send_to_char ("6 = applicator, 7 = recruiter, 8 = leader 9 = god.\n\r", ch );
 		return;
 	}
 
 	if ((clan = clan_lookup(arg2)) == 0)
 	{
-		send_to_char("No such clan exists.\r\n",ch);
+		send_to_char("No such clan exists.\n\r",ch);
 		return;
 	}
 	else
 	{
-		sprintf(buf,"%s is now a member of clan %s (level %d).\r\n",
+		sprintf(buf,"%s is now a member of clan %s (level %d).\n\r",
 		    victim->name, capitalize(clan_table[clan].name),
 		    (level - CLAN_INITIATE) );
 		send_to_char(buf,ch);
-		sprintf(buf,"You are now a member of clan %s (level %d).\r\n",
+		sprintf(buf,"You are now a member of clan %s (level %d).\n\r",
 		capitalize(clan_table[clan].name),
 		    (level - CLAN_INITIATE ) );
 	}
@@ -700,17 +712,17 @@ int clan_accept(CHAR_DATA *ch, int clan )
 	{
 		if (ch->alignment < 0 )	/* Accept good chars only */
 		{
-			send_to_char ("You must be of good alignment to join clan Mythran.\r\n", ch );
+			send_to_char ("You must be of good alignment to join clan Mythran.\n\r", ch );
 			return FALSE;
 		}
 		if (ch->level < 15 )
 		{
-			send_to_char ("You must be level 15 to join clan Mythran.\r\n", ch );
+			send_to_char ("You must be level 15 to join clan Mythran.\n\r", ch );
 			return FALSE;	/* Must be level 15 */
 		}
 		if (ch->gold < 50000 )
 		{
-			send_to_char ("You don't have enough money to join clan Mythran.\r\n", ch );
+			send_to_char ("You don't have enough money to join clan Mythran.\n\r", ch );
 			return FALSE;	/* only wealthy players... */
 		}
 	}

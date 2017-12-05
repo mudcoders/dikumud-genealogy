@@ -67,6 +67,7 @@ const struct flag_stat_type flag_stat_table[] =
     {   weapon_flags,		TRUE	},
     {   container_flags,	FALSE	},
     {   liquid_flags,		TRUE	},
+    {	mprog_type_flags,	TRUE	},
 
     {   0,			0	}
 };
@@ -562,3 +563,22 @@ const struct flag_type liquid_flags[] =
     {	"cola",			15,	TRUE	},
     {	"",			0,	0	}
 };
+
+
+const struct flag_type mprog_type_flags[] =
+{
+    {	"in_file_prog",		IN_FILE_PROG,	TRUE	},
+    {	"act_prog",		ACT_PROG,	TRUE	},
+    {	"speech_prog",		SPEECH_PROG,	TRUE	},
+    {	"rand_prog",		RAND_PROG,	TRUE	},
+    {	"fight_prog",		FIGHT_PROG,	TRUE	},
+    {	"hitprcnt_prog",	HITPRCNT_PROG,	TRUE	},
+    {	"death_prog",		DEATH_PROG,	TRUE	},
+    {	"entry_prog",		ENTRY_PROG,	TRUE	},
+    {	"greet_prog",		GREET_PROG,	TRUE	},
+    {	"all_greet_prog",	ALL_GREET_PROG,	TRUE	},
+    {	"give_prog",		GIVE_PROG,	TRUE	},
+    {	"bribe_prog",		BRIBE_PROG,	TRUE	},
+    {	"",			0,		0	}
+};
+

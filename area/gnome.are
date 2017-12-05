@@ -30,7 +30,7 @@ The woman is short and gnarled, but acts like a woman several times her beauty.
 She's starting to look pretty attractive to you ...
 ~
 21 0 600 S
-1 16 0 2d6+70 1d8+0
+2 16 0 2d6+70 1d8+0
 500 0
 0 Gnome~ 2
 #1502
@@ -42,7 +42,7 @@ This is a prime example of a gnome.  He looks short and weak, but at the
 same time an intelligent creature who could outsmart you.
 ~
 5 0 500 S
-7 15 0 1d12+100 1d8+1
+11 15 0 1d12+100 1d8+1
 450 0
 0 Gnome~ 1
 #1503
@@ -78,7 +78,7 @@ The Chief looks like he could whap you hard.  He looks not only powerful
 but wise and resourceful.  You better not mess with him.
 ~
 3 0 550 S
-12 6 0 1d12+300 2d10+0
+9 6 0 1d12+300 2d10+0
 8000 0
 0 Gnome~ 1
 #1507
@@ -90,7 +90,7 @@ The small troll is a short and stocky beast with a human-like face
 but with the eyes and fangs of a wild beast.
 ~
 39 0 -900 S
-9 12 0 2d4+105 2d5+1
+11 12 0 2d4+105 2d5+1
 800 0
 0 Troll~ 1
 #1508
@@ -112,7 +112,7 @@ A small rat shrieks and runs around.
 The rat is a little evil creature that deserves death.
 ~
 5 0 -200 S
-3 19 0 2d4+24 1d5+1
+5 19 0 2d4+24 1d5+1
 5 0
 0 Rat~ 1
 #1510
@@ -134,7 +134,7 @@ A giant rat growls at you and prepares to attack.
 This rat has grown up to be the size of an average dog.
 ~
 5 0 -200 S
-7 15 0 1d12+72 1d8+1
+6 15 0 1d12+72 1d8+1
 20 0
 0 Rat~ 1
 #1512
@@ -146,7 +146,7 @@ You see before you a huge mass of living flesh.  You cringe in fear as
 he lifts his powerful arm to bludgeon you.
 ~
 35 0 -800 S
-13 7 0 3d5+160 2d8+1
+12 7 0 3d5+160 2d8+1
 9000 0
 0 Troll~ 1
 #1513
@@ -157,7 +157,7 @@ A black bat hangs from the ceiling.
 The bat is a grotesque little creature with large wings and fangs.
 ~
 1 0 -500 S
-3 16 0 3d4+70 1d8+0
+4 16 0 3d4+70 1d8+0
 1 0
 0 Bat~ 0
 #1514
@@ -169,7 +169,7 @@ This is a creature which has passed away long ago.  His body has been
 pulled out of its resting place by some evil force.
 ~
 1 0 -700 S
-9 14 0 3d4+90 3d4+0
+7 14 0 3d4+90 3d4+0
 696 0
 0 Undead~ 0
 #1515
@@ -181,7 +181,7 @@ You see a huge flame which resembles the shape of a bat.  The creature
 hangs from the ceiling and bites at you.
 ~
 39 8 -900 S
-11 9 0 3d4+150 3d5+0
+9 9 0 3d4+150 3d5+0
 6000 0
 0 Bat~ 1
 #1516
@@ -193,7 +193,7 @@ This is an extra large, extra ugly goblin like creature.  He grins evilly
 as he attempts to brain you.
 ~
 35 0 -700 S
-5 15 0 1d12+102 1d8+1
+3 15 0 1d12+102 1d8+1
 750 0
 0 Hobgoblin~ 1
 #1517
@@ -205,7 +205,7 @@ This is just a low life hobgoblin, who couldn't make it to the ranks
 of the elite guards.  He looks pissed.
 ~
 35 0 -600 S
-2 18 0 2d6+36 1d7+0
+4 18 0 2d6+36 1d7+0
 200 0
 0 Hobgoblin~ 1
 #1518
@@ -217,7 +217,7 @@ This is one of the elite hobgoblin guards.  He stands tall for his short
 stature.  He grins a toothy grin as he prepares to attack.
 ~
 3 0 -500 S
-8 14 0 1d12+85 1d7+2
+5 14 0 1d12+85 1d7+2
 600 0
 0 Hobgoblin~ 1
 #1519
@@ -229,7 +229,7 @@ The king is a silly looking hobgoblin whose muscles bulge out of his robes,
 destroying the sophisticated effect he was trying to create.
 ~
 3 0 -500 S
-11 9 0 2d6+148 2d7+1
+13 9 0 2d6+148 2d7+1
 6000 0
 0 Hobgoblin~ 1
 #1520
@@ -240,7 +240,7 @@ A hobgoblin miner stands here looking for gold.
 The miner is totally covered in dust.
 ~
 7 0 -400 S
-10 16 0 1d12+60 1d8+0
+12 16 0 1d12+60 1d8+0
 700 0
 0 Hobgoblin~ 1
 #1521
@@ -252,7 +252,7 @@ The hobgoblin treasurer is an old goblin with glasses.  It appears that he
 can only see a couple feet in front of him.
 ~
 7 0 -200 S
-14 11 0 3d5+120 2d6+1
+15 11 0 3d5+120 2d6+1
 5000 0
 0 Hobgoblin~ 1
 #1522
@@ -263,7 +263,7 @@ A gnome prisoner is here resting in the straw.
 The prisoner is just barely alive.
 ~
 7 0 100 S
-3 17 0 3d5+10 2d3+1
+1 17 0 3d5+10 2d3+1
 1 0
 0 Gnome~ 1
 #1523
@@ -274,7 +274,7 @@ A human prisoner is here resting in the straw.
 The prisoner is just barely alive.
 ~
 7 0 100 S
-9 17 0 3d5+10 2d3+1
+8 17 0 3d5+10 2d3+1
 1 0
 0 Human~ 2
 #1524
@@ -286,7 +286,7 @@ The hermit crab is about 5 feet high and looks mad that you had the nerve
 to wake it up.
 ~
 39 0 -10 S
-8 16 0 1d11+61 1d8+0
+10 16 0 1d11+61 1d8+0
 200 0
 0 Animal~ 1
 #1526
@@ -298,7 +298,7 @@ The cook is a dirty and fat hobgoblin.  He burps as he stirs up something
 in a pot.
 ~
 7 0 -300 S
-8 14 0 1d12+85 1d7+1
+7 14 0 1d12+85 1d7+1
 2600 0
 0 Hobgoblin~ 1
 #0
@@ -2049,15 +2049,15 @@ S
 
 
 #SPECIALS
-M 1503 spec_cast_mage
-M 1505 spec_cast_cleric
-M 1509 spec_poison
-M 1510 spec_poison
-M 1511 spec_poison
-M 1513 spec_breath_acid
-M 1514 spec_cast_undead
-M 1515 spec_breath_fire
-M 1519 spec_cast_mage
+M 1503 spec_cast_mage 	; a gnome scientist
+M 1505 spec_cast_cleric 	; the chief gnome
+M 1509 spec_poison 	; a rat
+M 1510 spec_poison 	; a large rat
+M 1511 spec_poison 	; a giant rat
+M 1513 spec_breath_acid 	; a black bat
+M 1514 spec_cast_undead 	; the zombie gnome
+M 1515 spec_breath_fire 	; the fire bat
+M 1519 spec_cast_mage 	; the king of the hobgoblins
 S
 
 
@@ -2068,125 +2068,125 @@ S
 
 
 #RESETS
-M 0 1502 3 1503
-E 0 1503 0 16
-M 0 1502 3 1505
-E 0 1503 0 16
-M 0 1502 3 1506
-E 0 1503 0 16
-M 0 1500 3 1509
-E 0 1502 0 16
-M 0 1501 3 1509
-M 0 1500 3 1510
-E 0 1502 0 16
-M 0 1501 3 1510
-M 0 1500 3 1511
-E 0 1502 0 16
-M 0 1501 3 1511
-M 0 1503 1 1513
-G 0 1511 0
-P 0 1513 0 1511
-M 0 1503 1 1514
-G 0 1511 0
-P 0 1512 0 1511
-M 0 1503 1 1515
-E 0 1514 0 16
-M 0 1504 1 1519
-G 0 1500 0
-G 0 1506 0
-E 0 1507 0 3
-M 0 1508 1 1522
-M 0 1508 1 1522
-M 0 1507 1 1524
-M 0 1504 1 1527
-E 0 1504 0 16
-M 0 1504 1 1530
-E 0 1504 0 16
-M 0 1504 1 1530
-E 0 1504 0 16
-M 0 1504 1 1534
-E 0 1504 0 16
-M 0 1509 3 1541
-E 0 1505 0 11
-M 0 1510 3 1542
-E 0 1503 0 16
-M 0 1511 3 1543
-M 0 1512 1 1545
-G 0 1501 0
-R 0 1548 4
-M 0 1513 10 1548
-M 0 1514 10 1548
-R 0 1549 4
-R 0 1550 4
-M 0 1513 10 1550
-M 0 1514 10 1550
-R 0 1551 4
-M 0 1513 10 1551
-M 0 1514 10 1551
-R 0 1552 4
-R 0 1553 4
-M 0 1513 10 1553
-M 0 1514 10 1553
-R 0 1554 4
-R 0 1555 4
-M 0 1513 10 1555
-M 0 1514 10 1555
-M 0 1515 1 1556
-G 0 1505 0
-G 0 1512 0
-G 0 1516 0
-O 0 1517 0 1557
-O 0 1518 0 1557
-M 0 1505 1 1558
-E 0 1508 0 1
-E 0 1509 0 3
-E 0 1510 0 16
-M 0 1520 1 1563
-M 0 1520 1 1565
-M 0 1518 2 1569
-E 0 1521 0 16
-M 0 1518 2 1569
-E 0 1521 0 16
-M 0 1518 2 1569
-E 0 1521 0 16
-M 0 1518 2 1569
-E 0 1521 0 16
-M 0 1518 2 1569
-E 0 1521 0 16
-M 0 1519 2 1569
-E 0 1520 0 5
-M 0 1521 1 1570
-O 0 1516 0 1570
-O 0 1517 0 1570
-M 0 1517 3 1571
-E 0 1521 0 16
-M 0 1517 3 1571
-E 0 1521 0 16
-M 0 1517 3 1571
-E 0 1521 0 16
-M 0 1517 3 1571
-E 0 1521 0 16
-M 0 1517 3 1572
-E 0 1521 0 16
-M 0 1517 3 1572
-E 0 1521 0 16
-M 0 1517 3 1572
-E 0 1521 0 16
-M 0 1517 3 1572
-E 0 1521 0 16
-O 0 1521 0 1573
-M 0 1522 3 1577
-M 0 1522 3 1578
-M 0 1522 3 1579
-M 0 1523 3 1580
-M 0 1523 3 1581
-M 0 1517 3 1583
-M 0 1517 3 1583
-M 0 1517 3 1584
-M 0 1517 3 1584
-M 0 1526 1 1587
-M 0 1524 1 1589
-M 0 1520 2 1590
+M 0 1502  3 1503  	; a gnome man to A Road in the Village
+E 0 1503  0 16    	;   A gnarled staff wielded (1)
+M 0 1502  3 1505  	; a gnome man to A Road in the Village
+E 0 1503  0 16    	;   A gnarled staff wielded (1)
+M 0 1502  3 1506  	; a gnome man to A Road in the Village
+E 0 1503  0 16    	;   A gnarled staff wielded (1)
+M 0 1500  3 1509  	; a gnome child to A Small Gnome House
+E 0 1502  0 16    	;   A toy boomerang wielded (1)
+M 0 1501  3 1509  	; a gnome woman to A Small Gnome House
+M 0 1500  3 1510  	; a gnome child to A Small Gnome House
+E 0 1502  0 16    	;   A toy boomerang wielded (1)
+M 0 1501  3 1510  	; a gnome woman to A Small Gnome House
+M 0 1500  3 1511  	; a gnome child to A Small Gnome House
+E 0 1502  0 16    	;   A toy boomerang wielded (1)
+M 0 1501  3 1511  	; a gnome woman to A Small Gnome House
+M 0 1503  1 1513  	; a gnome scientist to A Small Gnome House
+G 0 1511  0      	;   A wicker basket
+P 0 1513  0 1511  	; Some grain inside some grain
+M 0 1503  1 1514  	; a gnome scientist to A Gnome Shop
+G 0 1511  0      	;   A wicker basket
+P 0 1512  0 1511  	; Some peanuts inside some peanuts
+M 0 1503  1 1515  	; a gnome scientist to A Gnome Shop
+E 0 1514  0 16    	;   A skiff wielded (1)
+M 0 1504  1 1519  	; a gnome guard to A Small Hut
+G 0 1500  0      	;   A bloody key
+G 0 1506  0      	;   A bloody potion
+E 0 1507  0 3     	;   A bloody cloak around the neck (1)
+M 0 1508  1 1522  	; a field mouse to The Field of Mice's Dreams
+M 0 1508  1 1522  	; a field mouse to The Field of Mice's Dreams
+M 0 1507  1 1524  	; a small troll to Darker Cave
+M 0 1504  1 1527  	; a gnome guard to The Iron Gateway
+E 0 1504  0 16    	;   A gnome sword wielded (1)
+M 0 1504  1 1530  	; a gnome guard to The Barracks
+E 0 1504  0 16    	;   A gnome sword wielded (1)
+M 0 1504  1 1530  	; a gnome guard to The Barracks
+E 0 1504  0 16    	;   A gnome sword wielded (1)
+M 0 1504  1 1534  	; a gnome guard to The Mess Hall
+E 0 1504  0 16    	;   A gnome sword wielded (1)
+M 0 1509  3 1541  	; a rat to Prison Cell
+E 0 1505  0 11    	;   A studded shield as a shield
+M 0 1510  3 1542  	; a large rat to Prison Cell
+E 0 1503  0 16    	;   A gnarled staff wielded (1)
+M 0 1511  3 1543  	; a giant rat to Prison Cell
+M 0 1512  1 1545  	; the troll to End of the Dark Hallway
+G 0 1501  0      	;   A dirty key
+R 0 1548  4      	; Randomize A Damp Hallway
+M 0 1513 10 1548  	; a black bat to A Damp Hallway
+M 0 1514 10 1548  	; the zombie gnome to A Damp Hallway
+R 0 1549  4      	; Randomize A Damp Hallway
+R 0 1550  4      	; Randomize A Damp Hallway
+M 0 1513 10 1550  	; a black bat to A Damp Hallway
+M 0 1514 10 1550  	; the zombie gnome to A Damp Hallway
+R 0 1551  4      	; Randomize A Damp Hallway
+M 0 1513 10 1551  	; a black bat to A Damp Hallway
+M 0 1514 10 1551  	; the zombie gnome to A Damp Hallway
+R 0 1552  4      	; Randomize A Damp Hallway
+R 0 1553  4      	; Randomize A Damp Hallway
+M 0 1513 10 1553  	; a black bat to A Damp Hallway
+M 0 1514 10 1553  	; the zombie gnome to A Damp Hallway
+R 0 1554  4      	; Randomize A Damp Hallway
+R 0 1555  4      	; Randomize A Damp Hallway
+M 0 1513 10 1555  	; a black bat to A Damp Hallway
+M 0 1514 10 1555  	; the zombie gnome to A Damp Hallway
+M 0 1515  1 1556  	; the fire bat to The End of the Hallway
+G 0 1505  0      	;   A studded shield
+G 0 1512  0      	;   Some peanuts
+G 0 1516  0      	;   A pile of coins
+O 0 1517  0 1557  	; A pile of coins to The Altar
+O 0 1518  0 1557  	; A pile of coins to The Altar
+M 0 1505  1 1558  	; the chief gnome to The Chief's House
+E 0 1508  0 1     	;   A bat ring on the left finger
+E 0 1509  0 3     	;   A bead necklace around the neck (1)
+E 0 1510  0 16    	;   An electrum sword wielded (1)
+M 0 1520  1 1563  	; a hobgoblin miner to Mine Shaft
+M 0 1520  1 1565  	; a hobgoblin miner to Mine Shaft
+M 0 1518  2 1569  	; the hobgoblin bodyguard to The Throne Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1518  2 1569  	; the hobgoblin bodyguard to The Throne Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1518  2 1569  	; the hobgoblin bodyguard to The Throne Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1518  2 1569  	; the hobgoblin bodyguard to The Throne Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1518  2 1569  	; the hobgoblin bodyguard to The Throne Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1519  2 1569  	; the king of the hobgoblins to The Throne Room
+E 0 1520  0 5     	;   Heavy banded mail on the body
+M 0 1521  1 1570  	; the treasurer to The Treasury
+O 0 1516  0 1570  	; A pile of coins to The Treasury
+O 0 1517  0 1570  	; A pile of coins to The Treasury
+M 0 1517  3 1571  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1571  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1571  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1571  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1572  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1572  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1572  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+M 0 1517  3 1572  	; the hobgoblin soldier to Guarded Room
+E 0 1521  0 16    	;   A large club wielded (1)
+O 0 1521  0 1573  	; A large club to Hobgoblin Armory
+M 0 1522  3 1577  	; a gnome prisoner to A Jail Cell
+M 0 1522  3 1578  	; a gnome prisoner to The Jail Cell
+M 0 1522  3 1579  	; a gnome prisoner to The Jail Cell
+M 0 1523  3 1580  	; a human prisoner to The Jail Cell
+M 0 1523  3 1581  	; a human prisoner to The Jail Cell
+M 0 1517  3 1583  	; the hobgoblin soldier to Hobgoblin Barracks
+M 0 1517  3 1583  	; the hobgoblin soldier to Hobgoblin Barracks
+M 0 1517  3 1584  	; the hobgoblin soldier to Hobgoblin Barracks
+M 0 1517  3 1584  	; the hobgoblin soldier to Hobgoblin Barracks
+M 0 1526  1 1587  	; the cook to The Kitchen
+M 0 1524  1 1589  	; a hermit to Hermit's Lair
+M 0 1520  2 1590  	; a hobgoblin miner to A Hole
 S
 
 

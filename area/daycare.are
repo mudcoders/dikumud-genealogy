@@ -17,7 +17,7 @@ A young dwarf plays with a toy axe.
 This is a young but not totally harmless creature.
 ~
 69 0 -5 S
-3 17 0 1d4+30 1d4+3
+2 17 0 1d4+30 1d4+3
 50 0
 0 Dwarf~ 1
 #6601
@@ -28,7 +28,7 @@ A cute and fuzzy teddy bear stands here.
 This is a tiny little bear with a heart on his chest.
 ~
 69 0 500 S
-2 19 0 1d10+10 1d4+1
+3 19 0 1d10+10 1d4+1
 75 0
 0 Bear~ 1
 #6602
@@ -39,7 +39,7 @@ A raggedy anne doll is sitting here.
 You see a small little cute rag doll.
 ~
 69 0 300 S
-8 18 0 2d5+19 1d5+1
+5 18 0 2d5+19 1d5+1
 250 0
 0 Object~ 2
 #6603
@@ -50,7 +50,7 @@ A toy soldier is standing here.
 The toy is looking for target practice.
 ~
 69 0 -300 S
-11 18 0 3d5+26 2d3+2
+15 18 0 3d5+26 2d3+2
 400 0
 0 Object~ 1
 #6604
@@ -73,7 +73,7 @@ An abused and old doll is here.
 This doll has been hugged and played with until there is almost nothing left.
 ~
 69 0 -2 S
-6 20 0 1d10+1 1d4+2
+4 20 0 1d10+1 1d4+2
 50 0
 0 Object~ 0
 #6606
@@ -85,7 +85,7 @@ You see an old dwarven lady who has been hunched over with age.  However, it
 appears that there is still some fight left in her.
 ~
 65 0 10 S
-4 16 0 4d4+50 1d8+2
+3 16 0 4d4+50 1d8+2
 750 0
 0 Dwarf~ 2
 #6607
@@ -109,7 +109,7 @@ You see a little tyke who has always gotten what he wanted.  You have the
 biggest urge to put him out of his misery.
 ~
 71 0 -400 S
-7 18 0 2d4+15 2d2+1
+10 18 0 2d4+15 2d2+1
 2000 0
 0 Dwarf~ 1
 #0
@@ -525,14 +525,14 @@ S
 
 
 #SPECIALS
-M 6600 spec_thief
-M 6601 spec_thief
-M 6602 spec_thief
-M 6603 spec_thief
-M 6604 spec_thief
-M 6605 spec_thief
-M 6606 spec_cast_cleric
-M 6608 spec_thief
+M 6600 spec_thief 	; the dwarven youth
+M 6601 spec_thief 	; a teddy bear
+M 6602 spec_thief 	; a raggedy anne doll
+M 6603 spec_thief 	; a toy soldier
+M 6604 spec_thief 	; the ugly bear
+M 6605 spec_thief 	; an old doll
+M 6606 spec_cast_cleric 	; the nanny
+M 6608 spec_thief 	; the spoiled brat
 S
 
 
@@ -543,55 +543,55 @@ S
 
 
 #RESETS
-M 0 6600 3 6602
-E 0 6600 0 16
-M 0 6601 2 6602
-M 0 6602 2 6602
-M 0 6606 2 6602
-G 0 6646 0
-G 0 6644 0
-E 0 6621 0 12
-M 0 6600 3 6603
-E 0 6600 0 16
-M 0 6600 3 6604
-E 0 6600 0 16
-M 0 6602 2 6604
-M 0 6606 2 6604
-G 0 6646 0
-M 0 6605 2 6604
-M 0 6600 3 6605
-E 0 6600 0 16
-M 0 6602 2 6605
-G 0 6645 0
-M 0 6605 2 6605
-E 0 6601 0 1
-M 0 6605 3 6606
-M 0 6601 3 6606
-M 0 6600 2 6608
-M 0 6603 3 6608
-E 0 6647 0 16
-M 0 6600 2 6609
-M 0 6604 3 6609
-M 0 6603 3 6609
-E 0 6647 0 16
-M 0 6603 3 6609
-E 0 6647 0 16
-M 0 6600 2 6610
-M 0 6604 3 6610
-M 0 6603 3 6610
-E 0 6647 0 16
-M 0 6605 2 6610
-M 0 6604 3 6611
-M 0 6603 3 6611
-E 0 6647 0 16
-M 0 6603 3 6611
-E 0 6647 0 16
-R 0 6613 4
-R 0 6614 4
-R 0 6615 4
-R 0 6616 4
-M 0 6607 1 6624
-M 0 6608 1 6631
+M 0 6600  3 6602  	; the dwarven youth to Day Care Center
+E 0 6600  0 16    	;   A toy axe wielded (1)
+M 0 6601  2 6602  	; a teddy bear to Day Care Center
+M 0 6602  2 6602  	; a raggedy anne doll to Day Care Center
+M 0 6606  2 6602  	; the nanny to Day Care Center
+G 0 6646  0      	;   An amber potion
+G 0 6644  0      	;   A juicy steak
+E 0 6621  0 12    	;   A linen robe about the shoulders
+M 0 6600  3 6603  	; the dwarven youth to Day Care Center
+E 0 6600  0 16    	;   A toy axe wielded (1)
+M 0 6600  3 6604  	; the dwarven youth to Day Care Center
+E 0 6600  0 16    	;   A toy axe wielded (1)
+M 0 6602  2 6604  	; a raggedy anne doll to Day Care Center
+M 0 6606  2 6604  	; the nanny to Day Care Center
+G 0 6646  0      	;   An amber potion
+M 0 6605  2 6604  	; an old doll to Day Care Center
+M 0 6600  3 6605  	; the dwarven youth to Day Care Center
+E 0 6600  0 16    	;   A toy axe wielded (1)
+M 0 6602  2 6605  	; a raggedy anne doll to Day Care Center
+G 0 6645  0      	;   A rotten steak
+M 0 6605  2 6605  	; an old doll to Day Care Center
+E 0 6601  0 1     	;   A pink ice ring on the left finger
+M 0 6605  3 6606  	; an old doll to The Messy Bathroom
+M 0 6601  3 6606  	; a teddy bear to The Messy Bathroom
+M 0 6600  2 6608  	; the dwarven youth to The Playground
+M 0 6603  3 6608  	; a toy soldier to The Playground
+E 0 6647  0 16    	;   A toy gun wielded (1)
+M 0 6600  2 6609  	; the dwarven youth to The Playground
+M 0 6604  3 6609  	; the ugly bear to The Playground
+M 0 6603  3 6609  	; a toy soldier to The Playground
+E 0 6647  0 16    	;   A toy gun wielded (1)
+M 0 6603  3 6609  	; a toy soldier to The Playground
+E 0 6647  0 16    	;   A toy gun wielded (1)
+M 0 6600  2 6610  	; the dwarven youth to The Playground
+M 0 6604  3 6610  	; the ugly bear to The Playground
+M 0 6603  3 6610  	; a toy soldier to The Playground
+E 0 6647  0 16    	;   A toy gun wielded (1)
+M 0 6605  2 6610  	; an old doll to The Playground
+M 0 6604  3 6611  	; the ugly bear to The Playground
+M 0 6603  3 6611  	; a toy soldier to The Playground
+E 0 6647  0 16    	;   A toy gun wielded (1)
+M 0 6603  3 6611  	; a toy soldier to The Playground
+E 0 6647  0 16    	;   A toy gun wielded (1)
+R 0 6613  4      	; Randomize Mini-Maze
+R 0 6614  4      	; Randomize Mini-Maze
+R 0 6615  4      	; Randomize Mini-Maze
+R 0 6616  4      	; Randomize Mini-Maze
+M 0 6607  1 6624  	; the armed guard to End of the Mini-Maze
+M 0 6608  1 6631  	; the spoiled brat to The End?
 S
 
 

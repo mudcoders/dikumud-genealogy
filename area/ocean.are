@@ -29,7 +29,7 @@ A stranded sailor stands here, selling boats.
 It appears that this sailor's captain has left him here on the dock.
 ~
 3 0 900 S
-24 2 0 1d30000+0 1d8+32
+23 2 0 1d30000+0 1d8+32
 12000 0
 0 Human~ 1
 #0
@@ -1150,11 +1150,11 @@ S
 
 
 #RESETS
-M 0 202 1 239
-G 0 203 0
-M 0 201 1 244
-E 0 202 0 17
-O 0 201 0 244
+M 0 202  1 239   	; the sailor to The Dock
+G 0 203  0      	;   A canoe
+M 0 201  1 244   	; a witch to Inside the Cottage
+E 0 202  0 17    	;   A colorless flask held in the hands
+O 0 201  0 244   	; A red book to Inside the Cottage
 S
 
 
@@ -1165,7 +1165,7 @@ S
 
 
 #SHOPS
-202 22 0 0 0 0 120 90 6 22
+202 22  0  0  0  0 120  90  6 22 	; the sailor
 0
 
 

@@ -1,9 +1,8 @@
 /*
- * Mythran Mud 3.1
+ * Mythran Mud 3.1.1
  * Mud Configuration file
  *
  * Various extra options to change the way the mud is run...
- * Not much here yet, but it's a start...
  *
  * Well the list is growing, default all options are on, only
  * pfile compression is standard off, and there are still some
@@ -21,7 +20,7 @@
  * This is a great way for implementors to reduce the amount
  * of money in the game and reduce the power of the rich players
  * Tax is currently 1 tenth of the amount of money above 250000
- * Tax can be turned on by defining TAX, to turn it of comment it.
+ * Tax can be turned on by defining TAX, to turn it off comment it.
  */
 
 #define TAX			/* Taxes are on by default */
@@ -45,8 +44,16 @@
  * Other channels still use normal (read 'no') language.
  *
  */
-
 #define FORCE_LANGUAGE
+
+/*
+ * ALL_SPEAK_COMMON
+ *
+ * This let's all characters learn common and speak it by default
+ * untill they learn another language and speak that.
+ *
+ */
+#define ALL_SPEAK_COMMON
 
 /*
  * Drunk System
@@ -78,6 +85,7 @@
  * (or if you want to call it this way: the economy)
  *
  * Define SHARE_VALUE to be the start/average/default value of a share (100)
+ * Between reboots this value is stored in the file BANK.TXT
  */
 
 #define BANK_INVEST
@@ -111,3 +119,35 @@
 #define BET_LIMIT	5000
 #define BET_LIMIT_STR	"5000"
 #define GAME_CHEAT	TRUE
+
+/*
+ * Godnames on sacrificing
+ *
+ * If SAC_GODNAMES is defined, a player will get a different text each time
+ * he sacrifices an item, if it is not defined, it say's 'The gods' instead
+ * of something like 'Maniac' or 'Canth' etc.
+ *
+ */
+#define SAC_GODNAMES	TRUE
+
+/*
+ * Different rewards for sacrificing...
+ *
+ * If SAC_VAR_REWARD is defined, players get a random reward for a
+ * sacrifice they make, if not, they will just get the usual 1 gp
+ *
+ */
+#define SAC_VAR_REWARD
+
+/*
+ * AUTO_WORLD_SAVE
+ * Enable or disable automatic saving of all areas (every 30 minutes)
+ *
+ * If you define AUTO_SAVE_WORLD, the mud will save all area's every 30
+ * minutes, this will cause a log of lag for 1-10 seconds (depending on
+ * CPU and harddisk speed) This is handy to have in a building port, but
+ * very irritating in the playing port. So it's best to have this defined
+ * in the building port, and undefined in the running port.
+ *
+ */
+#undef AUTO_WORLD_SAVE

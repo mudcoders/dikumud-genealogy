@@ -1,47 +1,34 @@
-      
 #HELPS
 -1 GREETING~
 .
-This Mud is based on the fabolous
-                   __ ____  ./|        ./\     ____ ____
-Based on          / __|_/"`/ /|_______/ / |   '"\_|_  @ \       By:
-Envy 2.0        /  /#/      | @/ _@@@@ \ @/          \#\  @ \     The EnvyMud
-( see 'help   / @/##/        \|  .\ @ /. >            \##\  @ \       Staff
- envy' &    / @ |###|        | < .!| |!.|              |##\   @ \  ( see 'help
- 'help     | @  |###|        |@ \  \ /  /\             |###|   @@|   wizlist' )
- merc' )   |@@  |###_\___    |@| \(o o)/\@\            |###|    @|
-           |@@  .\/'/'/'/\__  \ \_\___/_/\@ \ ________/####|  __@|__
-           |@@  | \_\_\_\   |\ \@\  |   | |\@ \  |    |###/  /     /
-           |@@  |   \)\)\)__|  \\@ \|   | |/\ @@\|    |#/  /     /
-           | @  |  |_____|       \@ |   | |/ \ @@|    | \/     /@|  Mud Version
-            \ @ |   _____|   |\    \|   |  \/ \ /     |      /  @|   2.0.0
-DikuMud       \ |  |_____|__ |  \       |    \/      /      |   @|
-was created    \|           ||    \     |          / |      |\ @@|
-by:  Han Henrik |___________||  ____\___| \______/___|______|@ \@|
-Staerfeldt, Katja    |     \  /     |   | |   |   _     \     @@ \   Kahn,
-Nyboe, Tom Madsen,   |      \/      |   | |   |  | |     |     @@ \   Hatchet,
-Michael Seifert,     |   |\    /|   |   |_|   |  |_|     |      @@ \   and
-and Sebastian Hammer |___| \__/ |___|\_______/|_________/           |   Staff
-( see 'help diku' )
+This Mud was based on Mythran 2, EnvyMUD 2, EnvyMud, Merc and DikuMud
+for licensing info see help mythran, envy, merc and diku
+
+Some more credits:
+quest code: based on Ryan Adams' Quest Code v2.01
+social-editing code: Erwin S. Andreasen (erwin@pip.dknet.dk)
+hunting code: based on the SillyMud hunt code, mods by Turtle
+OLC: based on Jason Dinkels ILAB OLC
+
 
            _,.-----.,_
         ,--           --.               M    Y    T    H    R    A    N
       ,^___           ___^.
      /--   --   .   --   --\                      M    U    D
     Y  ,--._    I    _.--.  Y
-    | Y     --. | ,--     Y |                        3 . 0
+    | Y     --. | ,--     Y |                        3 . 1
     | |        }:{        | |
     j l       / | \       ! l
  .--  (__,.--- .^. ---.,__)  --. 
 (           / / | \ \           )
  \.____,   -  \/-\/  -   .____,/
-  ^.____                 ____.^    Implementor :  Maniac!
-     | |T -\  !   !  /- T| |
+  ^.____                 ____.^    Implementor :  Maniac
+     | |T -\  !   !  /- T| |                    & Canth
      | |l   _ _ _ _ _   !| |
      | l \/V V V V V V\/ j |
      l  \ \|_|_|_|_|_|/ /  ! Original DikuMUD by Hans Staerfeldt, Katja Nyboe,
       \  \[T T T T T TI/  /  Tom Madsen, Michael Seifert, and Sebastian Hammer
-       \  `^-^-^-^-^-^'  /
+       \  `^-^-^-^-^-^'  /   (see help diku)
         \               /
          \.           ,/ 
            -^-.____,-^
@@ -76,7 +63,7 @@ Failure to adhere to the rules will result in the following:
 - permanent demotion to level 1           /* you blew your second chance
  - and/or removal of your char           /* rm <charname> [enter] :) so sorry
 
-Brought to you by the Directors of EnvyMud.
+Brought to you by the Directors of Mythran
 And we reserve the right to modify these guidlines at any point in time
 or to render them null and void.
 
@@ -88,11 +75,9 @@ Welcome to Mythran Mud,
 Many great and new additions have been made the past few days.
 The following things have changed...
 
-	Languages are in, learn 'em at the healers
-	The mud economy has been boosted, check out: help economy
-	You can do your bank things in the (old) defunct reception
+	Mud economy, clans, languages, hidden items, etc... etc.
 
-	Maniac
+	Mythran staff (mythran@envy.com)
 
 ~
 
@@ -803,6 +788,7 @@ some others on with this command.
 wiznet login snoop chat
 this would turn the logins off (since they where on) and snoop and chat on,
 since they where off.
+[The idea of wiznet came from ROM, but we recoded it completely -- Maniac]
 ~
 
 0 AREAS COMMANDS SOCIALS~
@@ -1163,6 +1149,41 @@ Share and enjoy.
 The EnvyMud Staff
 ~
 
+-1 MYTHRAN~
+[Note: this entry may not be removed or altered or you will face legal
+ action. See 'license.myt'.]
+Mythran Mud was written by The Maniac (mark@delftnet.nl) and is based on
+EnvyMUD 2 (see help envy) It can be downloaded from ftp.game.org and the
+primary site at: http://www.delftnet.nl/(tilde)mark/mythran
+
+Thanx go to ...
+   ...	Canth for some bug fixes and good idea's and code snippets
+   ...	Zenith for some nice skills and spells for necromancers and druids
+   ...	Vego for programming solutions, where I didn't know it anymore
+   ...	The EnvyMUD staff, for this great mud
+   ...	Ryan Adams for the quest code
+   ...	Jason Dinkel for ILAB OLC
+   ...  Turtle for the merc version of SillyMud track and hunt skills
+   ...  Apex for his circle code for drunk talking, ported to envy by Maniac
+   ...	Alander for the healer code
+   ...	Russ Taylor for many idea's we re-wrote from scratch to fit our needs
+   ...  N'Atas-ha for the MOB-Progs (Bugfixes by Maniac)
+   ...	Magilum for his scan code, modified by VampLestat and Mikko Kilpikoski
+   ...	Rimmer for his great area's and area-specific code (specials)
+   ...	Many implementors and coders worldwide for their idea's and solutions
+   ...	All the mud players worldwide for their idea's and support
+   ...  Canth for whotext and marriage code.
+   ...	Maniac for: Game Functions, Languages, Hidden Objects, many skills
+	plague, drunk talking, wizpassword, sset all, arena's, flagnews,
+	wiznet, mud economy, clans, update, utilities, and many big and small
+	bug fixes.
+
+The Mythran Mud Staff:
+	The Maniac	(mark@delftnet.nl)
+	Canth		(canth@xs4all.nl)
+	Staff-mail:	mythran@envy.com
+~
+
 -1 MAP MAPS~
 Experienced explorers have chronicled their adventures and 'sold' their rights
 to the local mapmaker in Midgaard.  You might find the shop wherelse but
@@ -1442,6 +1463,7 @@ PROMPT <%*> where the %* are the various variables you may set yourself.
 	%r :  Display the room name you are in
 	%R :  Display the vnum you are in (IMMORTAL ONLY)
 	%z :  Display the area name you are in (IMMORTAL ONLY)
+	%c :  Display the current OLC editor you are using (BUILDER ONLY)
 	%i :  Display whether or not you are invisible
 	%I :  Display whether or not you are wizinvis (IMMORTAL ONLY)
 
@@ -2018,14 +2040,14 @@ SNOOP yourself to cancel all outstanding snoops.
 ~
 
 53 IMTLSET~
-Syntax: imtlset <character> + <skill>
-Syntax: imtlset <character> -
+Syntax: imtlset <character> <+|-> <skill|all>
 Syntax: imtlset <character>
 
-IMTLSET sets the immortal skills for an immortal.  IMTLSET <character>
-+ adds to the immortal's skills one at a time.  IMTLSET <character> -
-removes all of the immortal's skills.  IMTLSET <character> shows you
-all the immortal skills the immortal has available.
+IMTLSET sets the immortal skills for an immortal. You can add or delete skills
+one at a time with the skillname, or all at once with the all keyword.
+
+IMTLSET without any argument give you a short help, if you only supply a
+character name you see that players immortal skills.
 ~
 
 52 MSET OSET RSET SSET~
@@ -3438,13 +3460,22 @@ your score.
 
 53 UPDATE~
 Syntax:
-update bank
-update time <value>
+update bank [<value>]
+update time [<value>]
+update dumpdb [<value>]
 
 The update command updates (several) in-game mechanisms.
 
-Update bank forces an update of the share price
+Update bank forces an update of the share price to value, or -if omitted-
+	prints the current share-price.
 Update time changes the time (handy if shops are closed)
+Update Dumpdb, checks, or sets the Database dump time, the time until the
+	next forced 'asave world' by the system. (To backup the areas)
+	It is best to set this to a very high value on the playing port, and
+	to a low value on the building port.
+	since there are 4 ticks in a second take very high values for this.
+
+The Update command was written by Maniac!
 ~
 
 1 CLAN~
@@ -3565,7 +3596,11 @@ If you insert a # in the action, it will be replaced by the name of the target.
 If # is a part of the action, the action will be executed for every target
 in game. If there is no #, the action will be executed for every room containg
 at least one target, but only once per room. # cannot be used with FOR EVERY-
-WHERE. # can be anywhere in the action.
+WHERE and with FOR MOBS. # can be anywhere in the action.
+
+We are you not to use the FOR command unless it is really needed, which it
+is almost never, this command causes the mud to lag a LOT, since it does a
+lot of commands in one go.
 
 Example:
 
@@ -3575,13 +3610,111 @@ FOR ALL TWIDDLE # -> In a room with A and B, you will twiddle A then B.
 Destroying the characters this command acts upon MAY cause it to fail. Try to
 avoid something like FOR MOBS PURGE (although it actually works at my MUD).
 
-FOR MOBS TRANS 3054 (transfer ALL the mobs to Midgaard temple) does NOT work
-though :)
-
 The command works by transporting the character to each of the rooms with
 target in them. Private rooms are not violated.
+~
+
+51 SETKILL~
+Syntax: setkill <character> <killer|thief>
+
+	Setkill it the opposite from pardon, it toggles <player>'s killer
+	or thief flag, this is usefull for debugging and testing and if
+	you want to piss some char off. (or another god who pardon'd a char)
+~
+
+50 LSET~
+Syntax:	lset <victim> <language> <value>
+or:	lset <victim> all	 <value>
+or:	lset <victim> learn	 <value>
+
+	lset set's a players language settings, with lset all, you can give
+	all languages a value, this is a value between 0 (not) and 100 (always)
+	With lset learn, you can set a players learning options, the times he
+	may try to learn a new language (like practices and trains)
+
+	Example:lset maniac all 100	(Give maniac all languages)
+		lset arshole all 0	(Take all languages away from arshole)
+		lset maniac learn 15	(Give maniac 15 learning sessions)
+~
+
+50 MARRY~
+Syntax:	marry <ch1> <ch2> [undo]
+
+	With this command, 2 players can get married, this ceremony has to
+	be done by a god from the mud who has the rights to marry people.
+
+	With the optional undo argument, players can get divorced again.
+	(But this was not meant to be this was <grin>)
+
+SEE ALSO:	DIVORCE, NEWRING
+~
+
+50 DIVORCE~
+
+	Divorce is a call to marry with the word undo added to the command.
+
+SEE ALSO:	MARRY, NEWRING
+~
+
+50 NEWRING~
+Syntax: newring <char>
+
+	This command is used internally, by the marriage code, but can also
+	be used by gods to give characters back a lost wedding ring/band
+~
+
+51 RENAME~
+Syntax: rename <ch> <newname>
+
+	This command changes the name of a character to newname, the code was
+	written by Erwin S. Andriesen.
+
+	You cannot rename a character to an already existing character or a
+	normally illegal name.
+~
+
+50 PWHERE~
+Syntax: pwhere [character]
+
+Pwhere is the immortal (enhanced) version of the where command (room vnum)
+~
+
+50 SET STAT~
+
+The SET and STAT commands are other ways to start the mset, oset, rset, sset,
+lset, ostat, mstat, rstat and lstat commands, type set or stat to see syntaxes.
+
+The SET and STAT commands where originally from ROM, and where modified and
+enhanced (with many new options) for use with mythran.
+~
+
+50 WIZPWD WIZPASSWORD~
+Syntax wizpwd <character> <password>
+
+With wizpwd you can change a character's password, this can only be done
+to players that are on-line, and is usefull for players who forgot their
+password, you nullify (off-line) their password, let them log-in, and then
+wizpwd them, so they can change their password, since you can't normally
+change a nullified password.
+
+WIZPWD was written by Maniac
+~
+
+50 NOTESTAT~
+Syntax: notestat <character>
+
+Get some statistics about someone's note status
+
+NOTESTAT was written by Garion
+~
+
+50 EXLIST~
+Syntax:	exlist
+
+Show all exits to and from the area you are currently in
 ~
 
 0 $~
 
 #$
+

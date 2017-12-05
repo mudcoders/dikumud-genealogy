@@ -1,6 +1,6 @@
 /****************************************************************************
 *  Automated Quest code written by Vassago of MOONGATE, moongate.ams.com    *
-*  4000. Copyright (c) 1996 Ryan Addams, All Rights Reserved. Use of this   * 
+*  4000. Copyright (c) 1996 Ryan Addams, All Rights Reserved. Use of this   *
 *  code is allowed provided you add a credit line to the effect of:         *
 *  "Quest Code (c) 1996 Ryan Addams" to your logon screen with the rest     *
 *  of the standard diku/rom credits. If you use this or a modified version  *
@@ -10,6 +10,7 @@
 *  ress. Quest Code v2.01. Please do not remove this notice from this file. *
 ****************************************************************************/
 
+#include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -70,8 +71,8 @@ void do_quest(CHAR_DATA *ch, char *argument)
 
     if (arg1[0] == '\0')
     {
-        send_to_char("QUEST commands: POINTS INFO TIME REQUEST COMPLETE LIST BUY.\r\n",ch);
-        send_to_char("For more information, type 'HELP QUEST'.\r\n",ch);
+        send_to_char("QUEST commands: POINTS INFO TIME REQUEST COMPLETE LIST BUY.\n\r",ch);
+        send_to_char("For more information, type 'HELP QUEST'.\n\r",ch);
 	return;
     }
     if (!strcmp(arg1, "info"))
@@ -80,7 +81,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
 	{
 	    if (ch->questmob == -1 && ch->questgiver->short_descr != NULL)
 	    {
-		sprintf(buf, "Your quest is ALMOST complete!\r\nGet back to %s before your time runs out!\r\n",ch->questgiver->short_descr);
+		sprintf(buf, "Your quest is ALMOST complete!\n\rGet back to %s before your time runs out!\n\r",ch->questgiver->short_descr);
 		send_to_char(buf, ch);
 	    }
 	    else if (ch->questobj > 0)
@@ -88,10 +89,10 @@ void do_quest(CHAR_DATA *ch, char *argument)
                 questinfoobj = get_obj_index(ch->questobj);
 		if (questinfoobj != NULL)
 		{
-		    sprintf(buf, "You are on a quest to recover the fabled %s!\r\n",questinfoobj->name);
+		    sprintf(buf, "You are on a quest to recover the fabled %s!\n\r",questinfoobj->name);
 		    send_to_char(buf, ch);
 		}
-		else send_to_char("You aren't currently on a quest.\r\n",ch);
+		else send_to_char("You aren't currently on a quest.\n\r",ch);
 		return;
 	    }
 	    else if (ch->questmob > 0)
@@ -99,20 +100,20 @@ void do_quest(CHAR_DATA *ch, char *argument)
                 questinfo = get_mob_index(ch->questmob);
 		if (questinfo != NULL)
 		{
-	            sprintf(buf, "You are on a quest to slay the dreaded %s!\r\n",questinfo->short_descr);
+	            sprintf(buf, "You are on a quest to slay the dreaded %s!\n\r",questinfo->short_descr);
 		    send_to_char(buf, ch);
 		}
-		else send_to_char("You aren't currently on a quest.\r\n",ch);
+		else send_to_char("You aren't currently on a quest.\n\r",ch);
 		return;
 	    }
 	}
 	else
-	    send_to_char("You aren't currently on a quest.\r\n",ch);
+	    send_to_char("You aren't currently on a quest.\n\r",ch);
 	return;
     }
     if (!strcmp(arg1, "points"))
     {
-	sprintf(buf, "You have %d quest points.\r\n",ch->questpoints);
+	sprintf(buf, "You have %d quest points.\n\r",ch->questpoints);
 	send_to_char(buf, ch);
 	return;
     }
@@ -120,28 +121,28 @@ void do_quest(CHAR_DATA *ch, char *argument)
     {
 	if (!IS_SET(ch->act, PLR_QUESTOR))
 	{
-	    send_to_char("You aren't currently on a quest.\r\n",ch);
+	    send_to_char("You aren't currently on a quest.\n\r",ch);
 	    if (ch->nextquest > 1)
 	    {
-		sprintf(buf, "There are %d minutes remaining until you can go on another quest.\r\n",ch->nextquest);
+		sprintf(buf, "There are %d minutes remaining until you can go on another quest.\n\r",ch->nextquest);
 		send_to_char(buf, ch);
 	    }
 	    else if (ch->nextquest == 1)
 	    {
-		sprintf(buf, "There is less than a minute remaining until you can go on another quest.\r\n");
+		sprintf(buf, "There is less than a minute remaining until you can go on another quest.\n\r");
 		send_to_char(buf, ch);
 	    }
 	}
         else if (ch->countdown > 0)
         {
-	    sprintf(buf, "Time left for current quest: %d\r\n",ch->countdown);
+	    sprintf(buf, "Time left for current quest: %d\n\r",ch->countdown);
 	    send_to_char(buf, ch);
 	}
 	return;
     }
 
 /* Checks for a character in the room with spec_questmaster set. This special
-   procedure must be defined in special.c. You could instead use an 
+   procedure must be defined in special.c. You could instead use an
    ACT_QUESTMASTER flag instead of a special procedure. */
 
     for ( questman = ch->in_room->people; questman != NULL; questman = questman->next_in_room )
@@ -152,13 +153,13 @@ void do_quest(CHAR_DATA *ch, char *argument)
 
     if (questman == NULL || questman->spec_fun != spec_lookup( "spec_questmaster" ))
     {
-        send_to_char("You can't do that here.\r\n",ch);
+        send_to_char("You can't do that here.\n\r",ch);
         return;
     }
 
     if ( questman->fighting != NULL)
     {
-	send_to_char("Wait until the fighting stops.\r\n",ch);
+	send_to_char("Wait until the fighting stops.\n\r",ch);
         return;
     }
 
@@ -171,19 +172,9 @@ void do_quest(CHAR_DATA *ch, char *argument)
 
     if (!strcmp(arg1, "list"))
     {
-        act( "$n asks $N for a list of quest items.", ch, NULL, questman, TO_ROOM); 
+        act( "$n asks $N for a list of quest items.", ch, NULL, questman, TO_ROOM);
 	act ("You ask $N for a list of quest items.",ch, NULL, questman, TO_CHAR);
-	sprintf(buf, "Current Quest Items available for Purchase:\r\n"
-/*
-1000qp.........The COMFY CHAIR!!!!!!\r\n
-850qp..........Sword of Vassago\r\n
-750qp..........Amulet of Vassago\r\n
-750qp..........Shield of Vassago\r\n
-550qp..........Decanter of Endless Water\r\n
-*/
-"500qp..........350,000 gold pieces\r\n"
-"500qp..........30 Practices\r\n"
-"To buy an item, type 'QUEST BUY <item>'.\r\n");
+	sprintf(buf, "Current Quest Items available for Purchase:\n\r/1000qp.........The COMFY CHAIR!!!!!!\n\r850qp..........Sword of Vassago\n\r750qp..........Amulet of Vassago\n\r750qp..........Shield of Vassago\n\r550qp..........Decanter of Endless Water\n\r*500qp..........350,000 gold pieces\n\r500qp..........30 Practices\n\rTo buy an item, type 'QUEST BUY <item>'.\n\r");
 	send_to_char(buf, ch);
 	return;
     }
@@ -192,7 +183,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
     {
 	if (arg2[0] == '\0')
 	{
-	    send_to_char("To buy an item, type 'QUEST BUY <item>'.\r\n",ch);
+	    send_to_char("To buy an item, type 'QUEST BUY <item>'.\n\r",ch);
 	    return;
 	}
 	if (is_name(arg2, "amulet"))
@@ -314,7 +305,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
     }
     else if (!strcmp(arg1, "request"))
     {
-        act( "$n asks $N for a quest.", ch, NULL, questman, TO_ROOM); 
+        act( "$n asks $N for a quest.", ch, NULL, questman, TO_ROOM);
 	act ("You ask $N for a quest.",ch, NULL, questman, TO_CHAR);
 	if (IS_SET(ch->act, PLR_QUESTOR))
 	{
@@ -351,7 +342,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
     }
     else if (!strcmp(arg1, "complete"))
     {
-        act( "$n informs $N $e has completed $s quest.", ch, NULL, questman, TO_ROOM); 
+        act( "$n informs $N $e has completed $s quest.", ch, NULL, questman, TO_ROOM);
 	act ("You inform $N you have completed $s quest.",ch, NULL, questman, TO_CHAR);
 	if (ch->questgiver != questman)
 	{
@@ -376,7 +367,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
 		if (chance(15))
 		{
 		    pracreward = number_range(1,6);
-		    sprintf(buf, "You gain %d practices!\r\n",pracreward);
+		    sprintf(buf, "You gain %d practices!\n\r",pracreward);
 		    send_to_char(buf, ch);
 		    ch->practice += pracreward;
 		}
@@ -399,7 +390,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
     		for (obj = ch->carrying; obj != NULL; obj= obj_next)
     		{
         	    obj_next = obj->next_content;
-        
+
 		    if (obj != NULL && obj->pIndexData->vnum == ch->questobj)
 		    {
 			obj_found = TRUE;
@@ -423,7 +414,7 @@ void do_quest(CHAR_DATA *ch, char *argument)
 		    if (chance(15))
 		    {
 		        pracreward = number_range(1,6);
-		        sprintf(buf, "You gain %d practices!\r\n",pracreward);
+		        sprintf(buf, "You gain %d practices!\n\r",pracreward);
 		        send_to_char(buf, ch);
 		        ch->practice += pracreward;
 		    }
@@ -461,8 +452,8 @@ void do_quest(CHAR_DATA *ch, char *argument)
 	return;
     }
 
-    send_to_char("QUEST commands: POINTS INFO TIME REQUEST COMPLETE LIST BUY.\r\n",ch);
-    send_to_char("For more information, type 'HELP QUEST'.\r\n",ch);
+    send_to_char("QUEST commands: POINTS INFO TIME REQUEST COMPLETE LIST BUY.\n\r",ch);
+    send_to_char("For more information, type 'HELP QUEST'.\n\r",ch);
     return;
 }
 
@@ -570,7 +561,7 @@ void generate_quest(CHAR_DATA *ch, CHAR_DATA *questman)
 
     /* Quest to kill a mob */
 
-    else 
+    else
     {
     switch(number_range(0,1))
     {
@@ -621,27 +612,27 @@ bool quest_level_diff(int clevel, int mlevel)
     else if (clevel > 200 && mlevel > 315) return TRUE;
     else return FALSE;
 }
-		
+
 /* Called from update_handler() by pulse_area */
 
 void quest_update(void)
 {
     DESCRIPTOR_DATA *d;
     CHAR_DATA *ch;
- 
+
     for ( d = descriptor_list; d != NULL; d = d->next )
     {
         if (d->character != NULL && d->connected == CON_PLAYING)
         {
- 
+
         ch = d->character;
- 
+
         if (ch->nextquest > 0)
         {
             ch->nextquest--;
             if (ch->nextquest == 0)
             {
-                send_to_char("You may now quest again.\r\n",ch);
+                send_to_char("You may now quest again.\n\r",ch);
                 return;
             }
         }
@@ -650,9 +641,9 @@ void quest_update(void)
             if (--ch->countdown <= 0)
             {
                 char buf [MAX_STRING_LENGTH];
- 
+
                 ch->nextquest = 10;
-                sprintf(buf, "You have run out of time for your quest!\r\nYou may quest again in %d minutes.\r\n",ch->nextquest);
+                sprintf(buf, "You have run out of time for your quest!\n\rYou may quest again in %d minutes.\n\r",ch->nextquest);
                 send_to_char(buf, ch);
                 REMOVE_BIT(ch->act, PLR_QUESTOR);
                 ch->questgiver = NULL;
@@ -661,7 +652,7 @@ void quest_update(void)
             }
             if (ch->countdown > 0 && ch->countdown < 6)
             {
-                send_to_char("Better hurry, you're almost out of time for your quest!\r\n",ch);
+                send_to_char("Better hurry, you're almost out of time for your quest!\n\r",ch);
                 return;
             }
         }

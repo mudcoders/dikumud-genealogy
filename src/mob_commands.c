@@ -32,11 +32,7 @@
 #include <stdlib.h>
 #include "merc.h"
 
-/*
- * Local functions.
- */
-
-char *			mprog_type_to_name	args( ( int type ) );
+/* Local functions moved to merc.h by Maniac (also needed in olc) */
 
 /* This routine transfers between alpha and numeric forms of the
  *  mob_prog bitvector types. It allows the words to show up in mpstat to
@@ -79,46 +75,46 @@ void do_mpstat( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "MobProg stat whom?\r\n", ch );
+	send_to_char( "MobProg stat whom?\n\r", ch );
 	return;
     }
 
     if ( ( victim = get_char_world( ch, arg ) ) == NULL )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( !IS_NPC( victim ) )
     {
-	send_to_char( "Only Mobiles can have Programs!\r\n", ch);
+	send_to_char( "Only Mobiles can have Programs!\n\r", ch);
 	return;
     }
 
     if ( !( victim->pIndexData->progtypes ) )
     {
-	send_to_char( "That Mobile has no Programs set.\r\n", ch);
+	send_to_char( "That Mobile has no Programs set.\n\r", ch);
 	return;
     }
 
-    sprintf( buf, "Name: %s.  Vnum: %d.\r\n",
+    sprintf( buf, "Name: %s.  Vnum: %d.\n\r",
 	victim->name, victim->pIndexData->vnum );
     send_to_char( buf, ch );
 
-    sprintf( buf, "Short description: %s.\r\nLong  description: %s",
+    sprintf( buf, "Short description: %s.\n\rLong  description: %s",
 	    victim->short_descr,
 	    victim->long_descr[0] != '\0' ?
-	    victim->long_descr : "(none).\r\n" );
+	    victim->long_descr : "(none).\n\r" );
     send_to_char( buf, ch );
 
-    sprintf( buf, "Hp: %d/%d.  Mana: %d/%d.  Move: %d/%d. \r\n",
+    sprintf( buf, "Hp: %d/%d.  Mana: %d/%d.  Move: %d/%d. \n\r",
 	victim->hit,         victim->max_hit,
 	victim->mana,        victim->max_mana,
 	victim->move,        victim->max_move );
     send_to_char( buf, ch );
 
     sprintf( buf,
-	"Lv: %d.  Class: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\r\n",
+	"Lv: %d.  Class: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\n\r",
 	victim->level,       victim->class,        victim->alignment,
 	GET_AC( victim ),    victim->gold,         victim->exp );
     send_to_char( buf, ch );
@@ -126,7 +122,7 @@ void do_mpstat( CHAR_DATA *ch, char *argument )
     for ( mprg = victim->pIndexData->mobprogs; mprg != NULL;
 	 mprg = mprg->next )
     {
-      sprintf( buf, ">%s %s\r\n%s\r\n",
+      sprintf( buf, ">%s %s\n\r%s\n\r",
 	      mprog_type_to_name( mprg->type ),
 	      mprg->arglist,
 	      mprg->comlist );
@@ -147,7 +143,7 @@ void do_mpasound( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
         return;
     }
 
@@ -186,7 +182,7 @@ void do_mpkill( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
@@ -244,7 +240,7 @@ void do_mpjunk( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
@@ -293,7 +289,7 @@ void do_mpechoaround( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-       send_to_char( "Huh?\r\n", ch );
+       send_to_char( "Huh?\n\r", ch );
        return;
     }
 
@@ -325,7 +321,7 @@ void do_mpechoat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-       send_to_char( "Huh?\r\n", ch );
+       send_to_char( "Huh?\n\r", ch );
        return;
     }
 
@@ -355,7 +351,7 @@ void do_mpecho( CHAR_DATA *ch, char *argument )
 {
     if ( !IS_NPC(ch) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
         return;
     }
 
@@ -383,7 +379,7 @@ void do_mpmload( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
@@ -416,7 +412,7 @@ void do_mpoload( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
@@ -484,7 +480,7 @@ void do_mppurge( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
@@ -545,7 +541,7 @@ void do_mpgoto( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
 
@@ -582,7 +578,7 @@ void do_mpat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-        send_to_char( "Huh?\r\n", ch );
+        send_to_char( "Huh?\n\r", ch );
 	return;
     }
  
@@ -635,7 +631,7 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-	send_to_char( "Huh?\r\n", ch );
+	send_to_char( "Huh?\n\r", ch );
 	return;
     }
     argument = one_argument( argument, arg1 );
@@ -720,7 +716,7 @@ void do_mpforce( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( ch ) )
     {
-	send_to_char( "Huh?\r\n", ch );
+	send_to_char( "Huh?\n\r", ch );
 	return;
     }
 

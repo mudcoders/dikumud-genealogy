@@ -1,4 +1,4 @@
-src/envy
+src/mythran.new
 *.exe
 *.o
 *.log
@@ -8,3 +8,4 @@ area/TYPOS.txt
 area/NOTES.txt
 area/SHUTDOWN.txt
 area/TIME.txt
+area/DISABLED.txt

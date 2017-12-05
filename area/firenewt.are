@@ -17,7 +17,7 @@ A mountain goat is standing here.
 It looks hungry and searches for food.
 ~
 3 0 -100 S
-1 18 0 2d2+30 1d4+2
+4 18 0 2d2+30 1d4+2
 14 0
 0 Animal~ 1
 #2902
@@ -28,7 +28,7 @@ A mountain ewe is standing here.
 The ewe is watching her young.
 ~
 3 0 -100 S
-4 19 0 2d2+30 1d4+1
+6 19 0 2d2+30 1d4+1
 10 0
 0 Animal~ 2
 #2903
@@ -39,7 +39,7 @@ A mountain kid is standing here.
 The kid is playing with its siblings.
 ~
 3 0 -100 S
-6 20 0 3d6+1 1d3+1
+7 20 0 3d6+1 1d3+1
 6 0
 0 Animal~ 0
 #2904
@@ -50,7 +50,7 @@ A fire newt worker is standing here.
 The fire newt worker looks hot and sweaty.
 ~
 101 0 -400 S
-3 18 0 3d12+8 1d6+2
+7 18 0 3d12+8 1d6+2
 23 0
 0 Lizard~ 1
 #2905
@@ -83,7 +83,7 @@ A fire newt guard is standing here.
 The fire newt guard wants to kill you!
 ~
 97 0 -450 S
-8 17 0 3d3+35 1d10+2
+7 17 0 3d3+35 1d10+2
 30 0
 0 Lizard~ 2
 #2908
@@ -94,7 +94,7 @@ A fire newt mother is standing here.
 The fire newt mother is watching her kids.
 ~
 3 0 -355 S
-4 18 0 3d10+8 1d6+2
+6 18 0 3d10+8 1d6+2
 26 0
 0 Lizard~ 2
 #2909
@@ -105,7 +105,7 @@ A fire newt baby is crawling here.
 The fire newt baby is crawling and drooling here.
 ~
 7 0 -350 S
-7 20 0 3d2+1 1d3+0
+9 20 0 3d2+1 1d3+0
 6 0
 0 Lizard~ 0
 #2910
@@ -116,7 +116,7 @@ A fire newt sergeant patrols this area.
 He's just found something that doesn't belong here!
 ~
 35 0 -500 S
-4 15 0 12d10+20 1d12+4
+3 15 0 12d10+20 1d12+4
 200 0
 0 Lizard~ 1
 #2911
@@ -127,7 +127,7 @@ A fire newt general is standing here.
 The fire newt general grins evilly at you.
 ~
 35 0 -700 S
-6 13 0 8d8+100 1d15+4
+8 13 0 8d8+100 1d15+4
 400 0
 0 Lizard~ 1
 #2912
@@ -138,7 +138,7 @@ A fire newt leader is standing here.
 The fire newt leader screams, 'I'm going to hose you!'
 ~
 35 136 -1000 S
-11 9 0 13d13+150 1d5+12
+8 9 0 13d13+150 1d5+12
 1000 0
 0 Lizard~ 1
 #2913
@@ -149,7 +149,7 @@ A fire newt priest is standing here.
 The fire newt priest is preparing for worship.
 ~
 35 8 -1000 S
-12 11 0 10d10+100 1d4+8
+11 11 0 10d10+100 1d4+8
 700 0
 0 Lizard~ 1
 #2914
@@ -160,7 +160,7 @@ A fire lizard is crawling here.
 The fire lizard flicks its tongue at you.
 ~
 35 8 -100 S
-10 10 0 11d11+110 2d12+8
+9 10 0 11d11+110 2d12+8
 1000 0
 0 Snake~ 0
 #0
@@ -868,8 +868,8 @@ S
 
 
 #SPECIALS
-M 2913 spec_cast_cleric
-M 2914 spec_breath_fire
+M 2913 spec_cast_cleric 	; a fire newt priest
+M 2914 spec_breath_fire 	; a fire lizard
 S
 
 
@@ -880,108 +880,108 @@ S
 
 
 #RESETS
-M 0 2901 2 2903
-E 0 2901 0 16
-M 0 2901 2 2904
-E 0 2901 0 16
-M 0 2902 2 2904
-G 0 2902 0
-M 0 2902 2 2904
-G 0 2902 0
-M 0 2903 6 2904
-M 0 2903 6 2904
-M 0 2903 6 2904
-M 0 2903 6 2904
-M 0 2903 6 2904
-M 0 2903 6 2904
-M 0 2904 10 2910
-E 0 2903 0 16
-M 0 2905 6 2911
-E 0 2904 0 16
-M 0 2905 6 2911
-E 0 2904 0 16
-M 0 2905 6 2911
-E 0 2904 0 16
-M 0 2905 6 2912
-E 0 2905 0 16
-M 0 2905 6 2912
-E 0 2904 0 16
-M 0 2905 6 2912
-E 0 2905 0 16
-M 0 2904 10 2914
-M 0 2904 10 2914
-E 0 2903 0 16
-M 0 2906 4 2915
-E 0 2903 0 16
-M 0 2906 4 2915
-E 0 2903 0 16
-M 0 2906 4 2915
-M 0 2906 4 2915
-O 0 2906 0 2915
-M 0 2904 10 2916
-E 0 2903 0 16
-M 0 2904 10 2917
-M 0 2907 6 2917
-E 0 2904 0 16
-M 0 2904 10 2918
-E 0 2903 0 16
-M 0 2907 6 2918
-E 0 2904 0 16
-M 0 2904 10 2919
-E 0 2903 0 16
-M 0 2907 6 2919
-E 0 2905 0 16
-M 0 2908 2 2920
-M 0 2909 12 2920
-M 0 2909 12 2920
-M 0 2909 12 2920
-M 0 2909 12 2920
-M 0 2909 12 2920
-M 0 2909 12 2920
-M 0 2904 10 2921
-M 0 2904 10 2921
-M 0 2907 6 2921
-E 0 2905 0 16
-M 0 2908 2 2922
-M 0 2909 12 2922
-M 0 2909 12 2922
-M 0 2909 12 2922
-M 0 2909 12 2922
-M 0 2909 12 2922
-M 0 2909 12 2922
-M 0 2904 10 2923
-E 0 2903 0 16
-M 0 2907 6 2923
-E 0 2904 0 16
-M 0 2907 6 2923
-M 0 2910 2 2924
-E 0 2906 0 5
-E 0 2907 0 16
-M 0 2911 4 2925
-E 0 2906 0 5
-E 0 2907 0 16
-M 0 2911 4 2925
-E 0 2906 0 5
-E 0 2907 0 16
-M 0 2912 1 2926
-E 0 2911 0 16
-E 0 2912 0 5
-M 0 2910 2 2927
-E 0 2906 0 5
-E 0 2907 0 16
-M 0 2911 4 2928
-E 0 2906 0 5
-E 0 2907 0 16
-M 0 2911 4 2928
-E 0 2906 0 5
-E 0 2907 0 16
-M 0 2913 1 2929
-E 0 2913 0 16
-M 0 2914 2 2930
-G 0 2914 0
-M 0 2914 2 2930
-G 0 2914 0
-O 0 2915 0 2931
+M 0 2901  2 2903  	; a mountain goat to Mountain side
+E 0 2901  0 16    	;   Horns wielded (1)
+M 0 2901  2 2904  	; a mountain goat to Mountain side
+E 0 2901  0 16    	;   Horns wielded (1)
+M 0 2902  2 2904  	; a mountain ewe to Mountain side
+G 0 2902  0      	;   Milk bladder
+M 0 2902  2 2904  	; a mountain ewe to Mountain side
+G 0 2902  0      	;   Milk bladder
+M 0 2903  6 2904  	; a mountain kid to Mountain side
+M 0 2903  6 2904  	; a mountain kid to Mountain side
+M 0 2903  6 2904  	; a mountain kid to Mountain side
+M 0 2903  6 2904  	; a mountain kid to Mountain side
+M 0 2903  6 2904  	; a mountain kid to Mountain side
+M 0 2903  6 2904  	; a mountain kid to Mountain side
+M 0 2904 10 2910  	; a fire newt worker to Inside the mountain
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2905  6 2911  	; a fire newt guard to Guard room
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2905  6 2911  	; a fire newt guard to Guard room
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2905  6 2911  	; a fire newt guard to Guard room
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2905  6 2912  	; a fire newt guard to Guard room
+E 0 2905  0 16    	;   Hand axe wielded (1)
+M 0 2905  6 2912  	; a fire newt guard to Guard room
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2905  6 2912  	; a fire newt guard to Guard room
+E 0 2905  0 16    	;   Hand axe wielded (1)
+M 0 2904 10 2914  	; a fire newt worker to Store room
+M 0 2904 10 2914  	; a fire newt worker to Store room
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2906  4 2915  	; a fire newt worker to Workers' quarters
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2906  4 2915  	; a fire newt worker to Workers' quarters
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2906  4 2915  	; a fire newt worker to Workers' quarters
+M 0 2906  4 2915  	; a fire newt worker to Workers' quarters
+O 0 2906  0 2915  	; Chainmail to Workers' quarters
+M 0 2904 10 2916  	; a fire newt worker to Bottom of the mountain
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2904 10 2917  	; a fire newt worker to The tunnel
+M 0 2907  6 2917  	; fire newt guard to The tunnel
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2904 10 2918  	; a fire newt worker to Bend in the tunnel
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2907  6 2918  	; fire newt guard to Bend in the tunnel
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2904 10 2919  	; a fire newt worker to The tunnel
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2907  6 2919  	; fire newt guard to The tunnel
+E 0 2905  0 16    	;   Hand axe wielded (1)
+M 0 2908  2 2920  	; a fire newt mother to Fire Newt House
+M 0 2909 12 2920  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2920  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2920  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2920  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2920  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2920  	; a fire newt baby to Fire Newt House
+M 0 2904 10 2921  	; a fire newt worker to The tunnel
+M 0 2904 10 2921  	; a fire newt worker to The tunnel
+M 0 2907  6 2921  	; fire newt guard to The tunnel
+E 0 2905  0 16    	;   Hand axe wielded (1)
+M 0 2908  2 2922  	; a fire newt mother to Fire Newt House
+M 0 2909 12 2922  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2922  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2922  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2922  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2922  	; a fire newt baby to Fire Newt House
+M 0 2909 12 2922  	; a fire newt baby to Fire Newt House
+M 0 2904 10 2923  	; a fire newt worker to The tunnel
+E 0 2903  0 16    	;   Shovel wielded (1)
+M 0 2907  6 2923  	; fire newt guard to The tunnel
+E 0 2904  0 16    	;   Short sword wielded (1)
+M 0 2907  6 2923  	; fire newt guard to The tunnel
+M 0 2910  2 2924  	; a fire newt sergeant to Entrance to the town hall
+E 0 2906  0 5     	;   Chainmail on the body
+E 0 2907  0 16    	;   Pick wielded (1)
+M 0 2911  4 2925  	; a fire newt general to The Waiting Room
+E 0 2906  0 5     	;   Chainmail on the body
+E 0 2907  0 16    	;   Pick wielded (1)
+M 0 2911  4 2925  	; a fire newt general to The Waiting Room
+E 0 2906  0 5     	;   Chainmail on the body
+E 0 2907  0 16    	;   Pick wielded (1)
+M 0 2912  1 2926  	; a fire newt leader to The Leader's Office
+E 0 2911  0 16    	;   Broad axe wielded (1)
+E 0 2912  0 5     	;   Leather suit on the body
+M 0 2910  2 2927  	; a fire newt sergeant to Outside the temple
+E 0 2906  0 5     	;   Chainmail on the body
+E 0 2907  0 16    	;   Pick wielded (1)
+M 0 2911  4 2928  	; a fire newt general to Entrance to the temple
+E 0 2906  0 5     	;   Chainmail on the body
+E 0 2907  0 16    	;   Pick wielded (1)
+M 0 2911  4 2928  	; a fire newt general to Entrance to the temple
+E 0 2906  0 5     	;   Chainmail on the body
+E 0 2907  0 16    	;   Pick wielded (1)
+M 0 2913  1 2929  	; a fire newt priest to Inside the Temple
+E 0 2913  0 16    	;   Mace wielded (1)
+M 0 2914  2 2930  	; a fire lizard to The room before the doors
+G 0 2914  0      	;   Orange potion
+M 0 2914  2 2930  	; a fire lizard to The room before the doors
+G 0 2914  0      	;   Orange potion
+O 0 2915  0 2931  	; A newt egg to The Egg Room
 S
 
 

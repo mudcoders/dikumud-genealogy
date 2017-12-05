@@ -1,0 +1,155 @@
+Mythran Mud release 3.1.1
+Mon Oct 21, 1996
+
+
+=== The src directory
+
+This file gives a brief description of the files in the src directory.
+
+	Makefiles
+	source files
+	startup scripts
+	executable file
+	What is new, what is old in the source
+
+
+
+=== The Makefiles
+
+Makefile	- Is the generic Makefile for machines with gcc
+Makefile.aix	- Is the Makefile specifically designed for AIX Machines
+Makefile.hp	- Is the Makefile specifically designed for HPUX Machines
+Makefile.irx	- Is the Makefile specifically designed for IRIX Machines
+Makefile.mip	- Is the Makefile specifically designed for MIPS Machines
+Makefile.nex	- Is the Makefile specifically designed for the NeXT
+Makefile.osf	- Is the Makefile specifically designed for the DEC OSF Alpha
+Makefile.sol	- Is the Makefile specifically designed for Solaris 2.4
+Makefile.std	- Is the generic Makefile for machines with gcc
+Makefile.sys	- Is the Makefile specifically designed for the Sequent SysV
+Makefile.tek	- Is the Makefile specifically designed for utek Machines
+
+To compile the executable file 'mythran', you must first find the appropriate
+Makefile for you.  Usually the Makefile provided is adequate.  But if you
+match one of the other Makefiles, you would replace the current 'Makefile'
+with the Makefile you choose to use.  For example, you are running a
+machine running IRIX, so you choose the file 'Makefile.irx'.  You rename
+'Makefile.irx' to 'Makefile' replacing it, then type 'make -k >&! a.out'
+
+If you have problems with crypt, add to the NOCRYPT line in your Makefile
+-DNOCRYPT.
+
+We do not guarantee each Makefile will work for your system as each
+system administrator will modify to his/her liking.  The Makefile are
+only to be used as a close guideline for your system.
+
+We extend a hearty thanks to all who have tested Envy source on these
+ports.
+
+
+=== The source files
+
+act_comm.c	- Contains procedures for pc to pc or pc to mud communication
+act_info.c	- Contains procedures for information reports for the pc
+act_move.c	- Contains procedures for pc/mobile movement around the mud
+act_obj.c	- Contains procedures for object manipulation
+act_wiz.c	- Contains procedures for immortal commands
+act_wiz2.c	- Contains even more procedures for immortal commands
+bit.c		- Contains procedures used internally by OLC
+blade.c		- Contains the blade thirst skills
+brewscribe.c	- Contains brew and scribe spells/skills
+clan.c		- Contains everything related to clans
+comm.c		- Contains procedures for game TCP/IP communications
+const.c		- Contains tables used within the game
+db.c		- Contains procedures for data file loading
+drunk.c		- Contains procedures for drunk talking
+economy.c	- Contains procedures used in the Mythran bank system
+fight.c		- Contains procedures for pc/mob combat
+games.c		- Contains procedures for in-mud game functions
+handler.c	- Contains procedures for data element handling
+healer.c	- Contains the healer special functions, a.k.a. heal command
+hunt.c		- Contains hunt and track commands
+interp.c	- Contains procedures and tables for game user commands
+language.c	- Contains language related functions
+magic.c		- Contains procedures for spells
+mem.c		- Contains OLC memory functions
+merc.h		- Contains data types/prototypes/macros used within the game
+mob_commands.c	- Contains mob-prog mob-commands
+mob_prog.c	- Contains mob-prog related functions
+necromancer.c	- Contains skills and spells for the necromancer class
+objlist.c	- Contains (unused) objlist command
+olc.c		- Contains on-line creation commands
+olc_act.c	- Contains OLC procedures
+olc_save.c	- Contains OLC area saving functions
+quest.c		- Contains quest code
+save.c		- Contains procedures for player/mob file read and write
+scan.c		- Contains the scan command
+social-edit.c	- Contains the on-line social editor
+special.c	- Contains procedures for mobile special abilities
+ssm.c		- Contains the shared string manager
+string.c	- Contains OLC string functions
+update.c	- Contains procedures for game operation
+wiznet.c	- Contains wiznet functions
+
+
+
+=== The startup scripts
+
+startup		- Is the startup script for mythran using CSH
+Start		- Another very easy startup script
+
+
+On most systems, 'startup &' is adequate for you.
+
+If you wish a more indepth logging feature, 'Start' will give you that.
+
+The startup script will create a number log file starting from 1000.log in
+the log directory.  Should your game crash, and you have enabled core dumps
+by setting your 'LIMIT coredumpsize unlimited' (see your system manual for
+information on the command LIMIT), you will have a core file with a name
+matching the appropriate log file in your src directory.
+
+The startup script will run the executable named mythran.  This will
+allow you to compile and test your code without worrying about
+touching the running mud.  When you are done testing your testmud,
+rename it as mythran.new in the src directory and reboot your "real" mud.
+The startup script will automatically update your running executable
+and backup your old one.
+
+--- Debugging
+
+Get to know the debugger setup in your computer system.  The most well known
+are dbx, adb, and gdb.  My favorite is dbx.  All can be accessed by
+issuing this command at your computer prompt, 'dbx mythran 1000.core'.  The
+output is the line of code where the game has crashed.  To gain more
+information, you must obtain a stack trace.  (See the system manual for
+information on your resident debugger)
+
+
+
+=== The executable file
+
+The executable file is created after typing 'make'.  You must first choose
+a Makefile best suited for your machine.  See 'port.txt' for more information.
+
+After making, the executable file is named 'mythran' you may then boot the
+game by executing the startup script 'startup' by typing 'startup &'.
+
+To enter the game, type 'telnet localhost 1234' from your mud account.
+
+
+
+=== What is new, what is old
+
+This source is based on the Envy 2.0 release source code.  Some internal
+workings have changed and some player visible improvements have been made.
+We've been developing the code for the past 3 years with extensive playing.
+Unfortunately, there might be bugs we have missed.  If you encounter errors
+or bugs, first check your code additions then forward questions to the
+mailing list at merc-l@webnexus.com.
+
+All in all, Mythran will "feel" like any other envy mud out there.  Mythran is
+designed to go beyond the envy releases and make into reality many
+improvements that went undone in the envy releases.
+
+Mythran does not support traditional C compilers.
+

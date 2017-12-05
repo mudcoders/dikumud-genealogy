@@ -17,7 +17,7 @@ The huge python rears its head and hisses at you.
 It sways back and forth contemplating whether or not to eat you.
 ~
 35 8 -200 S
-9 7 0 11d11+110 3d6+0
+7 7 0 11d11+110 3d6+0
 0 0
 0 Snake~ 1
 #4001
@@ -28,7 +28,7 @@ A small green garter snake slithers along the floor.
 It looks harmless enough.  Or is it?
 ~
 3 0 -100 S
-7 12 0 7d7+70 2d6+1
+8 12 0 7d7+70 2d6+1
 0 0
 0 Snake~ 0
 #4002
@@ -39,7 +39,7 @@ A small centipede here is looking for vegetation.
 It looks completely harmless but who knows for sure?
 ~
 3 0 100 S
-7 20 0 3d3+30 1d6+0
+4 20 0 3d3+30 1d6+0
 0 0
 0 Worm~ 0
 #4003
@@ -50,7 +50,7 @@ An ugly kobold mumbles something under its breath.
 It looks ugly enough to scare its own mother.
 ~
 69 0 -100 S
-1 16 0 4d4+40 1d8+1
+2 16 0 4d4+40 1d8+1
 50 0
 0 Kobold~ 0
 #4004
@@ -61,7 +61,7 @@ This orc is frothing around the mouth.  Better stay away.
 You notice a slight tinge of madness in his eyes.
 ~
 101 0 -400 S
-9 15 0 5d5+50 2d4+0
+11 15 0 5d5+50 2d4+0
 100 0
 0 Orc~ 1
 #4005
@@ -72,7 +72,7 @@ This large orc is looking for someone small to pick on.
 The orc says, "Whatcha look'n at?"
 ~
 69 0 -500 S
-7 11 0 7d7+70 2d6+2
+6 11 0 7d7+70 2d6+2
 200 0
 0 Orc~ 1
 #4050
@@ -83,7 +83,7 @@ This tall warrior has more scars than even you!
 He's surely a strong, brainless fighter.  Like you.
 ~
 103 0 -300 S
-11 8 0 12d12+120 2d8+1
+7 8 0 12d12+120 2d8+1
 1000 0
 0 Giant~ 1
 #4051
@@ -108,7 +108,7 @@ sad as you see the terror and fear in its eyes.  Why
 don't you put it out of its misery?
 ~
 69 0 -300 S
-4 12 0 6d6+60 2d4+0
+6 12 0 6d6+60 2d4+0
 100 0
 0 Hobgoblin~ 1
 #4053
@@ -119,7 +119,7 @@ A sickly brown snake watches you with caution.
 A closer look reveals a hungry demeanor.  Don't get too close!
 ~
 35 0 -600 S
-11 10 0 10d10+100 3d5+1
+10 10 0 10d10+100 3d5+1
 0 0
 0 Snake~ 0
 #4054
@@ -142,7 +142,7 @@ Red, bloodshot eyes and drool dripping from its mouth makes you
 wonder just how far away you should be.
 ~
 69 0 -500 S
-11 11 0 1d10+120 2d6+1
+12 11 0 1d10+120 2d6+1
 300 0
 0 Hobgoblin~ 1
 #4056
@@ -154,7 +154,7 @@ As you already know, orcs have quite a ravenous appetite.
 Care to be dinner?
 ~
 101 0 -800 S
-10 13 0 3d10+100 2d5+2
+12 13 0 3d10+100 2d5+2
 150 0
 0 Orc~ 1
 #4057
@@ -166,7 +166,7 @@ Huge claws and big teeth make quite a fearsome opponent for
 the weary.  Are you next?
 ~
 97 0 -100 S
-3 16 0 1d10+60 2d4+0
+4 16 0 1d10+60 2d4+0
 0 0
 0 Animal~ 1
 #4058
@@ -191,7 +191,7 @@ knows his way with magic.
 This guy can ace the SAT with his frontal lobe tied behind his back.
 ~
 39 8 -100 S
-13 10 0 13d13+130 2d6+0
+9 10 0 13d13+130 2d6+0
 1500 0
 0 Elf~ 1
 #4101
@@ -203,7 +203,7 @@ Whilst you look at this troll, you realize he is trying to
 figure just how tender you are.
 ~
 39 0 -800 S
-18 8 0 2d10+100 2d7+1
+22 8 0 2d10+100 2d7+1
 500 0
 0 Troll~ 1
 #4102
@@ -215,7 +215,7 @@ You take a closer look at this large snake while it tries to
 bite your head off!
 ~
 39 0 -700 S
-15 8 0 10d10+100 2d5+2
+18 8 0 10d10+100 2d5+2
 0 0
 0 Snake~ 1
 #4104
@@ -260,7 +260,7 @@ A green kobold hobbles along the cave walls puking periodically.
 It looks a little sick.  Something he ate maybe?
 ~
 101 0 -100 S
-3 14 0 2d10+20 1d10+0
+1 14 0 2d10+20 1d10+0
 20 0
 0 Kobold~ 1
 #4150
@@ -271,7 +271,7 @@ A blue bat flies in circles while electrical charges arc here and there.
 Bzzzt.  Zap.  Crackle.  Speak about static electricity!
 ~
 35 0 -100 S
-3 15 0 3d10+70 1d7+1
+2 15 0 3d10+70 1d7+1
 0 0
 0 Bat~ 0
 #4151
@@ -282,7 +282,7 @@ A red bat hangs upside down from the ceiling, glowing.
 You can definitely feel some heat from this thing.  A fever perhaps?
 ~
 35 0 -100 S
-7 15 0 3d10+70 1d7+1
+8 15 0 3d10+70 1d7+1
 0 0
 0 Bat~ 0
 #4152
@@ -293,7 +293,7 @@ A green bat flies from wall to wall leaving an awful smell.
 Whew!  What a stinker!
 ~
 35 0 -100 S
-6 15 0 3d10+70 1d7+1
+9 15 0 3d10+70 1d7+1
 0 0
 0 Bat~ 0
 #4153
@@ -304,7 +304,7 @@ A white bat rests on the ceiling.  You wonder where the cold is coming from.
 Brrr!  You almost can't distinguish this bat from an ice cube.
 ~
 35 0 -100 S
-6 15 0 3d10+70 1d7+1
+2 15 0 3d10+70 1d7+1
 0 0
 0 Bat~ 0
 #4154
@@ -315,7 +315,7 @@ A black bat flies from wall to wall leaving something hissing behind.
 Amazing!  This bat is grooming itself with acid!
 ~
 35 0 -100 S
-7 15 0 3d10+70 1d7+1
+3 15 0 3d10+70 1d7+1
 0 0
 0 Bat~ 0
 #4155
@@ -326,7 +326,7 @@ A sneaky thief appears and disappears within the shadows.
 He definitely knows what he's doing.  Trust him.
 ~
 69 32770 400 S
-17 7 0 3d20+130 2d7+1
+13 7 0 3d20+130 2d7+1
 2000 0
 0 Human~ 1
 #4156
@@ -337,7 +337,7 @@ A large ugly troll is here mumbling something.
 He looks quite mean.  Don't mess with him.
 ~
 39 0 -700 S
-14 8 0 8d20+140 2d7+1
+16 8 0 8d20+140 2d7+1
 3000 0
 0 Troll~ 1
 #4157
@@ -361,7 +361,7 @@ Sickly brown as it is, you know what it really wants is you
 for dinner.
 ~
 35 0 200 S
-15 12 0 1d10+110 2d5+1
+14 12 0 1d10+110 2d5+1
 0 0
 0 Snake~ 1
 #4159
@@ -372,7 +372,7 @@ A small troll is here happily dancing.  Trala-la-la.  La-la.
 He is so happy, you are disgusted.  Kill him now!
 ~
 101 0 -300 S
-13 13 0 3d10+80 2d5+2
+12 13 0 3d10+80 2d5+2
 500 0
 0 Troll~ 1
 #4160
@@ -383,7 +383,7 @@ A large orc growls in your face.
 He is just looking for a fight isn't he?
 ~
 101 0 -200 S
-5 12 0 1d20+100 2d5+1
+9 12 0 1d20+100 2d5+1
 500 0
 0 Orc~ 1
 #0
@@ -2566,19 +2566,19 @@ S
 
 
 #SPECIALS
-M 4000 spec_poison
-M 4001 spec_poison
-M 4053 spec_poison
-M 4100 spec_cast_mage
-M 4102 spec_poison
-M 4150 spec_breath_lightning
-M 4151 spec_breath_fire
-M 4152 spec_breath_gas
-M 4153 spec_breath_frost
-M 4154 spec_breath_acid
-M 4155 spec_thief
-M 4157 spec_cast_mage
-M 4158 spec_poison
+M 4000 spec_poison 	; the huge python
+M 4001 spec_poison 	; the garter snake
+M 4053 spec_poison 	; the snake
+M 4100 spec_cast_mage 	; the Mage
+M 4102 spec_poison 	; the guardian snake
+M 4150 spec_breath_lightning 	; the blue bat
+M 4151 spec_breath_fire 	; the red bat
+M 4152 spec_breath_gas 	; the green bat
+M 4153 spec_breath_frost 	; the white bat
+M 4154 spec_breath_acid 	; the black bat
+M 4155 spec_thief 	; the thief
+M 4157 spec_cast_mage 	; the Mage
+M 4158 spec_poison 	; the snake
 S
 
 
@@ -2589,91 +2589,91 @@ S
 
 
 #RESETS
-M 0 4003 6 4013
-M 0 4003 6 4013
-M 0 4001 2 4015
-M 0 4004 3 4015
-M 0 4002 3 4017
-M 0 4002 3 4020
-M 0 4003 6 4021
-M 0 4003 6 4021
-M 0 4005 1 4022
-E 0 4000 0 1
-M 0 4002 3 4023
-M 0 4001 2 4025
-M 0 4003 6 4027
-M 0 4003 6 4027
-M 0 4004 3 4028
-M 0 4004 3 4028
-M 0 4000 1 4030
-G 0 4001 0
-P 0 4002 0 4001
-M 0 4051 4 4050
-M 0 4054 3 4052
-M 0 4054 3 4053
-M 0 4051 4 4055
-M 0 4052 3 4056
-M 0 4056 2 4057
-M 0 4053 2 4058
-M 0 4052 3 4059
-M 0 4054 3 4060
-M 0 4050 1 4062
-G 0 4051 0
-M 0 4055 2 4064
-G 0 4050 0
-M 0 4052 3 4065
-M 0 4056 2 4067
-M 0 4053 2 4068
-O 0 4052 0 4068
-O 0 4052 0 4069
-M 0 4051 4 4070
-O 0 4052 0 4070
-M 0 4055 2 4071
-G 0 4050 0
-O 0 4052 0 4071
-M 0 4051 4 4073
-M 0 4102 3 4103
-G 0 4103 0
-G 0 4104 0
-M 0 3005 5 4103
-M 0 4105 3 4108
-M 0 4102 2 4111
-G 0 4103 0
-M 0 4102 2 4111
-G 0 4104 0
-M 0 4106 2 4113
-G 0 4101 0
-M 0 4100 1 4114
-G 0 4102 0
-M 0 4107 1 4119
-G 0 4104 0
-M 0 4101 1 4122
-G 0 4100 0
-M 0 4104 3 4124
-G 0 4104 0
-M 0 4156 1 4151
-M 0 4159 2 4153
-M 0 4150 2 4155
-M 0 4152 2 4155
-M 0 4151 2 4157
-M 0 4154 2 4157
-M 0 4155 1 4158
-E 0 4152 0 16
-M 0 4151 2 4159
-M 0 4152 2 4159
-M 0 4160 2 4160
-G 0 4150 0
-M 0 4160 2 4161
-M 0 4158 2 4162
-M 0 4153 2 4164
-M 0 4154 2 4164
-M 0 4157 2 4167
-M 0 4157 2 4167
-G 0 4151 0
-M 0 4159 2 4168
-M 0 4158 2 4169
-M 0 4150 2 4170
-M 0 4153 2 4170
+M 0 4003  6 4013  	; the kobold to The tunnel
+M 0 4003  6 4013  	; the kobold to The tunnel
+M 0 4001  2 4015  	; the garter snake to The tunnel
+M 0 4004  3 4015  	; the orc to The tunnel
+M 0 4002  3 4017  	; the centipede to The large cave
+M 0 4002  3 4020  	; the centipede to The hole
+M 0 4003  6 4021  	; the kobold to The hole
+M 0 4003  6 4021  	; the kobold to The hole
+M 0 4005  1 4022  	; the large orc to The damp tunnel
+E 0 4000  0 1     	;   A yellow and green ring on the left finger
+M 0 4002  3 4023  	; the centipede to The large cave
+M 0 4001  2 4025  	; the garter snake to The cave
+M 0 4003  6 4027  	; the kobold to The tunnel
+M 0 4003  6 4027  	; the kobold to The tunnel
+M 0 4004  3 4028  	; the orc to The smelly tunnel
+M 0 4004  3 4028  	; the orc to The smelly tunnel
+M 0 4000  1 4030  	; the huge python to The light cave
+G 0 4001  0      	;   A corpse
+P 0 4002  0 4001  	; Some coins inside some coins
+M 0 4051  4 4050  	; the warrior to The tunnel
+M 0 4054  3 4052  	; the centipede to The tunnel
+M 0 4054  3 4053  	; the centipede to The tunnel
+M 0 4051  4 4055  	; the warrior to The maze
+M 0 4052  3 4056  	; the hobgoblin to The light cave
+M 0 4056  2 4057  	; the orc to The maze
+M 0 4053  2 4058  	; the snake to The maze
+M 0 4052  3 4059  	; the hobgoblin to The tunnel
+M 0 4054  3 4060  	; the centipede to The tunnel
+M 0 4050  1 4062  	; the warrior to The maze
+G 0 4051  0      	;   A metal helmet
+M 0 4055  2 4064  	; the large hobgoblin to The tunnel
+G 0 4050  0      	;   A purple potion
+M 0 4052  3 4065  	; the hobgoblin to The maze
+M 0 4056  2 4067  	; the orc to The maze
+M 0 4053  2 4068  	; the snake to The large cave
+O 0 4052  0 4068  	; A mushroom to The large cave
+O 0 4052  0 4069  	; A mushroom to The large cave
+M 0 4051  4 4070  	; the warrior to The large cave
+O 0 4052  0 4070  	; A mushroom to The large cave
+M 0 4055  2 4071  	; the large hobgoblin to The large cave
+G 0 4050  0      	;   A purple potion
+O 0 4052  0 4071  	; A mushroom to The large cave
+M 0 4051  4 4073  	; the warrior to End of tunnel
+M 0 4102  3 4103  	; the guardian snake to The long tunnel
+G 0 4103  0      	;   A green slime mold
+G 0 4104  0      	;   A green slime mold
+M 0 3005  5 4103  	; the thief to The long tunnel
+M 0 4105  3 4108  	; a centipede to The golden cave
+M 0 4102  2 4111  	; the guardian snake to The tunnel
+G 0 4103  0      	;   A green slime mold
+M 0 4102  2 4111  	; the guardian snake to The tunnel
+G 0 4104  0      	;   A green slime mold
+M 0 4106  2 4113  	; the Warrior to The passage
+G 0 4101  0      	;   Swordsman's gloves
+M 0 4100  1 4114  	; the Mage to The golden cave
+G 0 4102  0      	;   A scroll which reads "ysafg"
+M 0 4107  1 4119  	; the green kobold to The cave
+G 0 4104  0      	;   A green slime mold
+M 0 4101  1 4122  	; the troll to The secret chamber
+G 0 4100  0      	;   A black demon blade
+M 0 4104  3 4124  	; the orc to The cave
+G 0 4104  0      	;   A green slime mold
+M 0 4156  1 4151  	; the troll to The small passage
+M 0 4159  2 4153  	; the small troll to The large tunnel
+M 0 4150  2 4155  	; the blue bat to The large tunnel
+M 0 4152  2 4155  	; the green bat to The large tunnel
+M 0 4151  2 4157  	; the red bat to The wet tunnel
+M 0 4154  2 4157  	; the black bat to The wet tunnel
+M 0 4155  1 4158  	; the thief to The small maze
+E 0 4152  0 16    	;   A light silver dagger wielded (1)
+M 0 4151  2 4159  	; the red bat to The small maze
+M 0 4152  2 4159  	; the green bat to The small maze
+M 0 4160  2 4160  	; the orc to In the tunnel at the inscription
+G 0 4150  0      	;   A black potion
+M 0 4160  2 4161  	; the orc to The wet tunnel
+M 0 4158  2 4162  	; the snake to The small maze
+M 0 4153  2 4164  	; the white bat to The entrance to the small maze
+M 0 4154  2 4164  	; the black bat to The entrance to the small maze
+M 0 4157  2 4167  	; the Mage to The wet maze
+M 0 4157  2 4167  	; the Mage to The wet maze
+G 0 4151  0      	;   A heavy oak staff
+M 0 4159  2 4168  	; the small troll to A Tunnel
+M 0 4158  2 4169  	; the snake to In the water
+M 0 4150  2 4170  	; the blue bat to In the water
+M 0 4153  2 4170  	; the white bat to In the water
 S
 
 

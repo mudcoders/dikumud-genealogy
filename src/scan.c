@@ -77,7 +77,7 @@ void scan( CHAR_DATA *ch, int door )
 	      if( door_name[0] == '\0' )
 		strcat( door_name, "door" );
 
-	      sprintf( buf, "A closed %s %s %s.\r\n",
+	      sprintf( buf, "A closed %s %s %s.\n\r",
 		      door_name, dist_name[distance-1], dir_desc[door] );
 	      send_to_char( buf, ch );
 
@@ -100,7 +100,7 @@ void scan( CHAR_DATA *ch, int door )
 	    if( can_see( ch, rch ) )
 	      {
 		found = TRUE;
-		sprintf( buf, "%s%s who is %s %s.\r\n",
+		sprintf( buf, "%s%s who is %s %s.\n\r",
 			PERS( rch, ch ),
 			IS_NPC(rch) ? "" : " (PLAYER)",
 			dist_name[distance],
@@ -115,7 +115,7 @@ void scan( CHAR_DATA *ch, int door )
 
   if( !found )
     {
-      sprintf( buf, "You see can't see anything %s.\r\n",
+      sprintf( buf, "You see can't see anything %s.\n\r",
 	      dir_desc[door] );
       send_to_char( buf, ch );
     }
@@ -150,7 +150,7 @@ void do_scan( CHAR_DATA *ch, char *argument )
 	  }
 
       if( !found )
-	send_to_char( "There are no exits here!\r\n", ch );
+	send_to_char( "There are no exits here!\n\r", ch );
     }
   else
     {
@@ -162,7 +162,7 @@ void do_scan( CHAR_DATA *ch, char *argument )
       else if( !str_prefix( argument, "down"  ) ) dir = DIR_DOWN;
       else
 	{
-	  send_to_char( "That's not a direction!\r\n", ch );
+	  send_to_char( "That's not a direction!\n\r", ch );
 	  return;
 	}
 
@@ -170,7 +170,7 @@ void do_scan( CHAR_DATA *ch, char *argument )
 
       if( ch->in_room->exit[dir] == NULL )
 	{
-	  send_to_char( "There is no exit in that direction!\r\n", ch );
+	  send_to_char( "There is no exit in that direction!\n\r", ch );
 	  return;
 	}
 

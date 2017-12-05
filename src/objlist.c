@@ -927,7 +927,7 @@ void printarea (FILE *fp, AREA_DATA *pArea)
     	{
     		if ( ( last_mob = get_mob_index( pReset->arg1 ) ) == NULL )
            	{ /* mob doesnt seem to exist ? */
-           		bug( "objlist: 'M': bad vnum %d.\r\n", pReset->arg1 );
+           		bug( "objlist: 'M': bad vnum %d.\n\r", pReset->arg1 );
                	continue; /* next reset */
            	}
            	
@@ -936,7 +936,7 @@ void printarea (FILE *fp, AREA_DATA *pArea)
 
            	if ( (last_room = get_room_index( pReset->arg3 ) ) == NULL )
            	{ /* room doesn't seem to exist ? */
-           		bug( "objlist: 'R': bad vnum %d.\r\n", pReset->arg3 );
+           		bug( "objlist: 'R': bad vnum %d.\n\r", pReset->arg3 );
                	continue;
            	}
     		
@@ -977,7 +977,7 @@ void printarea (FILE *fp, AREA_DATA *pArea)
     			printobj (fp,list,on_mob, pReset->arg1, last_room->vnum, last_mob->vnum, 0, 
     			          mob_reboot );
     		else
-    			printf ("objlist: 'G' or 'E': no last mob\r\n");
+    			printf ("objlist: 'G' or 'E': no last mob\n\r");
     	
     		break; /* case G,E */
     	}
@@ -1025,7 +1025,7 @@ void do_objlist (CHAR_DATA *ch, char *argument)
     	
     	if (!fp) /* could not create file */
     	{
-			send_to_char ("Could not open the specified file for output.\r\n",ch);
+			send_to_char ("Could not open the specified file for output.\n\r",ch);
     		return;
     	}
 
@@ -1040,7 +1040,7 @@ void do_objlist (CHAR_DATA *ch, char *argument)
 
 		fclose (fp);
 		
-		send_to_char ("Probably successful.\r\n",ch);
+		send_to_char ("Probably successful.\n\r",ch);
 	} /* if */
 	else /* not 'all' or 'area' */
 		do_help (ch, "objlist");

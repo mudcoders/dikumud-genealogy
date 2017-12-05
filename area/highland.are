@@ -30,7 +30,7 @@ The Barbarian looks like he could eat a horse but he will
 consider you also.
 ~
 65 0 -100 S
-19 0 0 0d0+0 0d0+0
+18 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
 #11502
@@ -66,7 +66,7 @@ The Elite of the army they will protect their Lord at all cost
 even death they don NOT fear.
 ~
 3 0 -600 S
-20 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
 #11505
@@ -78,7 +78,7 @@ An man who lives in these harsh lands. He knows is way around here.
 He walks around playing his bagpipes.
 ~
 1 132 700 S
-23 0 0 0d0+0 0d0+0
+21 0 0 0d0+0 0d0+0
 100 0
 0 Human~ 1
 #11506
@@ -90,7 +90,7 @@ He rules this district. He is a very harsh ruler all his subjects
 fear him. He has teeth like a boar, man what is he ugly.
 ~
 3 128 -1000 S
-30 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 1500 0
 0 Giant~ 1
 #11507
@@ -102,7 +102,7 @@ She is a ugliest looking example of the feminine sex, you wonder
 how he can stand the sight of her even in absolute darkness.
 ~
 7 0 -900 S
-16 0 0 0d0+0 0d0+0
+17 0 0 0d0+0 0d0+0
 1000 0
 0 Ogre~ 2
 #11508
@@ -115,7 +115,7 @@ He murmurs something of making a big mistake and now having to roam the
 lands without peace.
 ~
 1 642 0 S
-36 0 0 0d0+0 0d0+0
+37 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #11509
@@ -140,7 +140,7 @@ She is doing some sort of an experiment here. Beter watch out it
 might explode in your face.
 ~
 3 152 -800 S
-20 0 0 0d0+0 0d0+0
+23 0 0 0d0+0 0d0+0
 60 0
 0 Halfelf~ 2
 #11511
@@ -153,7 +153,7 @@ in body and mind. Presently he is meditating on something, so he
 is deep in thought and hasn't noticed you enter yet.
 ~
 3 128 -350 S
-35 0 0 0d0+0 0d0+0
+37 0 0 0d0+0 0d0+0
 95 0
 0 Elf~ 1
 #11512
@@ -164,7 +164,7 @@ The keeper greets you.
 His sole duty is that his Beacon stays lit. It's the only thing he cares for.
 ~
 3 0 0 S
-8 0 0 0d0+0 0d0+0
+3 0 0 0d0+0 0d0+0
 10 0
 0 Hobbit~ 1
 #11513
@@ -176,7 +176,7 @@ Before you you see a reptilian monster of enormous size, you better not
 get into a fight with her.
 ~
 3 128 200 S
-17 0 0 0d0+0 0d0+0
+21 0 0 0d0+0 0d0+0
 10000 0
 0 Snake~ 2
 #11514
@@ -188,7 +188,7 @@ A smaller replica of Nessy lies here sleeping contently. Don't disturb her
 even kids of a reptilian need their sleep.
 ~
 3 512 300 S
-20 0 0 0d0+0 0d0+0
+18 0 0 0d0+0 0d0+0
 0 0
 0 Snake~ 1
 #11515
@@ -201,7 +201,7 @@ this exit. The guardians will attack anybody that comes here and isn't the
 mage.
 ~
 35 524840 -1000 S
-14 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
 0 Elemental~ 0
 #11516
@@ -214,7 +214,7 @@ they would be on duty but they are just on-call now.
 They are not very tall but look quite though.
 ~
 35 0 -400 S
-18 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 0
 #0
@@ -3825,10 +3825,10 @@ S
 
 
 #SPECIALS
-M 11510 spec_cast_mage
-M 11511 spec_cast_cleric
-M 11513 spec_breath_any
-M 11514 spec_breath_any
+M 11510 spec_cast_mage 	; The Lord's Mage Mardonna
+M 11511 spec_cast_cleric 	; The Lord's Cleric Boldar
+M 11513 spec_breath_any 	; Nessy
+M 11514 spec_breath_any 	; Nessy's Child.
 S
 
 
@@ -3839,143 +3839,143 @@ S
 
 
 #RESETS
-M 0 11501 10 11522
-E 0 11501 0 16
-M 0 11501 10 11522
-E 0 11501 0 16
-M 0 11509 20 11527
-M 0 11509 20 11527
-M 0 11509 20 11527
-M 0 11509 20 11527
-M 0 11509 20 11527
-M 0 11501 10 11530
-E 0 11501 0 16
-M 0 11501 10 11530
-E 0 11501 0 16
-M 0 11512 4 11530
-G 0 11518 0
-M 0 11509 20 11535
-M 0 11509 20 11535
-M 0 11501 10 11536
-E 0 11501 0 16
-M 0 11501 10 11536
-E 0 11501 0 16
-M 0 11512 4 11536
-G 0 11519 0
-M 0 11505 1 11539
-E 0 11502 0 13
-E 0 11507 0 16
-E 0 11523 0 17
-M 0 11500 5 11547
-M 0 11509 20 11547
-M 0 11509 20 11547
-M 0 11509 20 11552
-M 0 11509 20 11552
-M 0 11509 20 11555
-M 0 11509 20 11555
-M 0 11509 20 11555
-M 0 11509 20 11555
-M 0 11509 20 11555
-M 0 11500 5 11565
-M 0 11516 8 11568
-M 0 11516 8 11568
-M 0 11516 8 11568
-M 0 11516 8 11568
-M 0 11516 8 11571
-M 0 11516 8 11571
-M 0 11516 8 11571
-M 0 11516 8 11571
-M 0 11509 20 11576
-M 0 11501 10 11584
-E 0 11501 0 16
-M 0 11501 10 11584
-E 0 11501 0 16
-M 0 11512 4 11584
-G 0 11520 0
-M 0 11509 20 11589
-M 0 11509 20 11589
-M 0 11509 20 11589
-M 0 11501 10 11591
-E 0 11501 0 16
-M 0 11501 10 11591
-E 0 11501 0 16
-M 0 11512 4 11591
-G 0 11521 0
-M 0 11513 1 11601
-M 0 11514 1 11604
-M 0 11502 6 11608
-E 0 11516 0 16
-M 0 11502 6 11608
-E 0 11516 0 16
-M 0 11503 7 11612
-E 0 11516 0 16
-M 0 11503 7 11612
-E 0 11516 0 16
-M 0 11510 1 11612
-E 0 11508 0 17
-E 0 11509 0 3
-G 0 11517 0
-M 0 11502 6 11618
-E 0 11516 0 16
-M 0 11502 6 11618
-E 0 11516 0 16
-M 0 11502 6 11622
-E 0 11516 0 16
-M 0 11502 6 11622
-E 0 11516 0 16
-M 0 11500 5 11628
-M 0 11500 5 11636
-M 0 11500 5 11648
-M 0 11515 2 11662
-M 0 11515 2 11662
-R 0 11674 4
-R 0 11675 4
-R 0 11676 4
-R 0 11677 4
-R 0 11678 4
-R 0 11679 4
-R 0 11681 4
-R 0 11682 4
-R 0 11683 4
-M 0 11508 1 11686
-E 0 11512 0 16
-E 0 11513 0 5
-M 0 11503 7 11690
-E 0 11516 0 16
-M 0 11503 7 11690
-E 0 11516 0 16
-M 0 11511 1 11690
-E 0 11510 0 16
-E 0 11511 0 8
-M 0 11504 6 11692
-E 0 11524 0 16
-M 0 11504 6 11692
-E 0 11524 0 16
-M 0 11507 1 11692
-G 0 11514 0
-G 0 11514 0
-E 0 11515 0 16
-M 0 11503 7 11698
-E 0 11516 0 16
-M 0 11503 7 11698
-E 0 11516 0 16
-M 0 11503 7 11698
-E 0 11516 0 16
-M 0 11504 6 11700
-E 0 11524 0 16
-M 0 11504 6 11700
-E 0 11524 0 16
-M 0 11504 6 11700
-E 0 11524 0 16
-M 0 11504 6 11700
-E 0 11524 0 16
-M 0 11506 1 11700
-E 0 11500 0 16
-E 0 11503 0 5
-E 0 11504 0 8
-E 0 11505 0 6
-E 0 11506 0 10
-E 0 11522 0 11
+M 0 11501 10 11522 	; A Barbarian to The Crossroads.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11501 10 11522 	; A Barbarian to The Crossroads.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11509 20 11527 	; A sheep to A path uphill.
+M 0 11509 20 11527 	; A sheep to A path uphill.
+M 0 11509 20 11527 	; A sheep to A path uphill.
+M 0 11509 20 11527 	; A sheep to A path uphill.
+M 0 11509 20 11527 	; A sheep to A path uphill.
+M 0 11501 10 11530 	; A Barbarian to A path uphill.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11501 10 11530 	; A Barbarian to A path uphill.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11512  4 11530 	; The Keeper of the Tower to A path uphill.
+G 0 11518  0      	;   A key of the tower
+M 0 11509 20 11535 	; A sheep to A path uphill.
+M 0 11509 20 11535 	; A sheep to A path uphill.
+M 0 11501 10 11536 	; A Barbarian to A path uphill.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11501 10 11536 	; A Barbarian to A path uphill.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11512  4 11536 	; The Keeper of the Tower to A path uphill.
+G 0 11519  0      	;   A key of the tower
+M 0 11505  1 11539 	; A Highlander to Crossroads at the Lake.
+E 0 11502  0 13    	;   A highlanders kilt around the waist
+E 0 11507  0 16    	;   A highlanders sword wielded (1)
+E 0 11523  0 17    	;   A bagpipe held in the hands
+M 0 11500  5 11547 	; A gigantic frog to Path along lake.
+M 0 11509 20 11547 	; A sheep to Path along lake.
+M 0 11509 20 11547 	; A sheep to Path along lake.
+M 0 11509 20 11552 	; A sheep to Path along lake.
+M 0 11509 20 11552 	; A sheep to Path along lake.
+M 0 11509 20 11555 	; A sheep to Path along lake.
+M 0 11509 20 11555 	; A sheep to Path along lake.
+M 0 11509 20 11555 	; A sheep to Path along lake.
+M 0 11509 20 11555 	; A sheep to Path along lake.
+M 0 11509 20 11555 	; A sheep to Path along lake.
+M 0 11500  5 11565 	; A gigantic frog to Path along lake.
+M 0 11516  8 11568 	; A guard to Path along lake.
+M 0 11516  8 11568 	; A guard to Path along lake.
+M 0 11516  8 11568 	; A guard to Path along lake.
+M 0 11516  8 11568 	; A guard to Path along lake.
+M 0 11516  8 11571 	; A guard to Path along lake.
+M 0 11516  8 11571 	; A guard to Path along lake.
+M 0 11516  8 11571 	; A guard to Path along lake.
+M 0 11516  8 11571 	; A guard to Path along lake.
+M 0 11509 20 11576 	; A sheep to On Nessy's Isle.
+M 0 11501 10 11584 	; A Barbarian to In front of the tower.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11501 10 11584 	; A Barbarian to In front of the tower.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11512  4 11584 	; The Keeper of the Tower to In front of the tower.
+G 0 11520  0      	;   A key of the tower
+M 0 11509 20 11589 	; A sheep to Down hill.
+M 0 11509 20 11589 	; A sheep to Down hill.
+M 0 11509 20 11589 	; A sheep to Down hill.
+M 0 11501 10 11591 	; A Barbarian to On a hill.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11501 10 11591 	; A Barbarian to On a hill.
+E 0 11501  0 16    	;   A barbarian sword wielded (1)
+M 0 11512  4 11591 	; The Keeper of the Tower to On a hill.
+G 0 11521  0      	;   A key of the tower
+M 0 11513  1 11601 	; Nessy to In Nessy's nest.
+M 0 11514  1 11604 	; Nessy's Child. to The cave of Nessy's kid.
+M 0 11502  6 11608 	; A barbarian warrior to On the top of the tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11502  6 11608 	; A barbarian warrior to On the top of the tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11503  7 11612 	; A Barbarian Guard to On the top of the tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11503  7 11612 	; A Barbarian Guard to On the top of the tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11510  1 11612 	; The Lord's Mage Mardonna to On the top of the tower.
+E 0 11508  0 17    	;   A rod of omniscience held in the hands
+E 0 11509  0 3     	;   The cloak of magus around the neck (1)
+G 0 11517  0      	;   A dark key
+M 0 11502  6 11618 	; A barbarian warrior to On the top of the tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11502  6 11618 	; A barbarian warrior to On the top of the tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11502  6 11622 	; A barbarian warrior to On the top of a tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11502  6 11622 	; A barbarian warrior to On the top of a tower.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11500  5 11628 	; A gigantic frog to In a secret gangway.
+M 0 11500  5 11636 	; A gigantic frog to In a secret gangway.
+M 0 11500  5 11648 	; A gigantic frog to In a secret gangway.
+M 0 11515  2 11662 	; A Fire Elemental to At the porch.
+M 0 11515  2 11662 	; A Fire Elemental to At the porch.
+R 0 11674  4      	; Randomize In the northwestern corner of the foyer.
+R 0 11675  4      	; Randomize In the west of the foyer.
+R 0 11676  4      	; Randomize In the southwestern corner of the foyer.
+R 0 11677  4      	; Randomize In the north of the foyer.  To the north, you see stairs.
+R 0 11678  4      	; Randomize In the Center of the foyer.
+R 0 11679  4      	; Randomize In the south of the foyer.  To the south, you see some stairs.
+R 0 11681  4      	; Randomize In the northeastern corner of the foyer.
+R 0 11682  4      	; Randomize In the east of the foyer.
+R 0 11683  4      	; Randomize In the southeastern corner of the foyer.
+M 0 11508  1 11686 	; The Holy Slayer to In an unused room.
+E 0 11512  0 16    	;   The holy basher wielded (1)
+E 0 11513  0 5     	;   The holy armor on the body
+M 0 11503  7 11690 	; A Barbarian Guard to A bedroom.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11503  7 11690 	; A Barbarian Guard to A bedroom.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11511  1 11690 	; The Lord's Cleric Boldar to A bedroom.
+E 0 11510  0 16    	;   The mace of oblivion wielded (1)
+E 0 11511  0 8     	;   The boots of necromany on the feet
+M 0 11504  6 11692 	; An Elite barbarian to The Lady's bedroom.
+E 0 11524  0 16    	;   A claymore wielded (1)
+M 0 11504  6 11692 	; An Elite barbarian to The Lady's bedroom.
+E 0 11524  0 16    	;   A claymore wielded (1)
+M 0 11507  1 11692 	; The wife of the Lord to The Lady's bedroom.
+G 0 11514  0      	;   Potion of the lady
+G 0 11514  0      	;   Potion of the lady
+E 0 11515  0 16    	;   A dagger wielded (1)
+M 0 11503  7 11698 	; A Barbarian Guard to In the Ante-Room.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11503  7 11698 	; A Barbarian Guard to In the Ante-Room.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11503  7 11698 	; A Barbarian Guard to In the Ante-Room.
+E 0 11516  0 16    	;   A notched sword wielded (1)
+M 0 11504  6 11700 	; An Elite barbarian to The throne room.
+E 0 11524  0 16    	;   A claymore wielded (1)
+M 0 11504  6 11700 	; An Elite barbarian to The throne room.
+E 0 11524  0 16    	;   A claymore wielded (1)
+M 0 11504  6 11700 	; An Elite barbarian to The throne room.
+E 0 11524  0 16    	;   A claymore wielded (1)
+M 0 11504  6 11700 	; An Elite barbarian to The throne room.
+E 0 11524  0 16    	;   A claymore wielded (1)
+M 0 11506  1 11700 	; The Barbarian Lord to The throne room.
+E 0 11500  0 16    	;   An enormous claymore wielded (1)
+E 0 11503  0 5     	;   A suit of laen plate on the body
+E 0 11504  0 8     	;   A pair of laen boots on the feet
+E 0 11505  0 6     	;   A laen helmet over the head
+E 0 11506  0 10    	;   A pair of laen gauntlets on the arms
+E 0 11522  0 11    	;   A laen shield as a shield
 S
 
 

@@ -19,7 +19,7 @@ void do_brew ( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( ch )                                                  
 	&& ch->level < skill_table[gsn_brew].skill_level[ch->class] )
     {                                          
-	send_to_char( "You do not know how to brew potions.\r\n", ch );
+	send_to_char( "You do not know how to brew potions.\n\r", ch );
 	return;
     }
 
@@ -27,7 +27,7 @@ void do_brew ( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Brew what spell?\r\n", ch );
+	send_to_char( "Brew what spell?\n\r", ch );
 	return;
     }
 
@@ -54,13 +54,13 @@ void do_brew ( CHAR_DATA *ch, char *argument )
 
     if ( !obj )
     {
-	send_to_char( "You are not holding a vial.\r\n", ch );
+	send_to_char( "You are not holding a vial.\n\r", ch );
 	return;
     }
 
     if ( ( sn = skill_lookup(arg) )  < 0)
     {
-	send_to_char( "You don't know any spells by that name.\r\n", ch );
+	send_to_char( "You don't know any spells by that name.\n\r", ch );
 	return;
     }
 
@@ -73,7 +73,7 @@ void do_brew ( CHAR_DATA *ch, char *argument )
     if ( (skill_table[sn].target != TAR_CHAR_DEFENSIVE) && 
          (skill_table[sn].target != TAR_CHAR_SELF)              ) 
     {
-	send_to_char( "You cannot brew that spell.\r\n", ch );
+	send_to_char( "You cannot brew that spell.\n\r", ch );
 	return;
     }
 *** So much for commenting it out... */
@@ -115,7 +115,7 @@ void do_scribe ( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( ch )                                                  
 	&& ch->level < skill_table[gsn_scribe].skill_level[ch->class] )
     {                                          
-	send_to_char( "You do not know how to scribe scrolls.\r\n", ch );
+	send_to_char( "You do not know how to scribe scrolls.\n\r", ch );
 	return;
     }
 
@@ -123,7 +123,7 @@ void do_scribe ( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Scribe what spell?\r\n", ch );
+	send_to_char( "Scribe what spell?\n\r", ch );
 	return;
     }
 
@@ -135,14 +135,14 @@ void do_scribe ( CHAR_DATA *ch, char *argument )
     }
     if ( !obj )
     {
-	send_to_char( "You are not holding a parchment.\r\n", ch );
+	send_to_char( "You are not holding a parchment.\n\r", ch );
 	return;
     }
 
 
     if ( ( sn = skill_lookup(arg) )  < 0)
     {
-	send_to_char( "You don't know any spells by that name.\r\n", ch );
+	send_to_char( "You don't know any spells by that name.\n\r", ch );
 	return;
     }
     
@@ -183,7 +183,7 @@ void spell_imprint( int sn, int level, CHAR_DATA *ch, void *vo )
 
       if (skill_table[sn].spell_fun == spell_null )
       {
-	send_to_char("That is not a spell.\r\n",ch);
+	send_to_char("That is not a spell.\n\r",ch);
 	return;
       }
 
@@ -205,14 +205,14 @@ void spell_imprint( int sn, int level, CHAR_DATA *ch, void *vo )
 	    
     if ( !IS_NPC(ch) && ch->mana < mana )
     {
-	send_to_char( "You don't have enough mana.\r\n", ch );
+	send_to_char( "You don't have enough mana.\n\r", ch );
 	return;
     }
       
 
     if ((number_percent() > ch->pcdata->learned[sn]) && (ch->level < L_SEN))
     {
-	send_to_char( "You lost your concentration.\r\n", ch );
+	send_to_char( "You lost your concentration.\n\r", ch );
 	ch->mana -= mana / 2;
 	return;
     }
@@ -236,7 +236,7 @@ void spell_imprint( int sn, int level, CHAR_DATA *ch, void *vo )
     case 1:
         if ( number_percent() > 80 )
         { 
-          sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\r\n", item_type_name(obj) );
+          sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\n\r", item_type_name(obj) );
 	  send_to_char( buf, ch );
 	  extract_obj( obj );
 	  return;
@@ -245,7 +245,7 @@ void spell_imprint( int sn, int level, CHAR_DATA *ch, void *vo )
     case 2:
         if ( number_percent() > 25 )
         { 
-          sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\r\n", item_type_name(obj) );
+          sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\n\r", item_type_name(obj) );
 	  send_to_char( buf, ch );
 	  extract_obj( obj );
 	  return;
@@ -255,7 +255,7 @@ void spell_imprint( int sn, int level, CHAR_DATA *ch, void *vo )
     case 3:
         if ( number_percent() > 10 )
         { 
-          sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\r\n", item_type_name(obj) );
+          sprintf(buf, "The magic enchantment has failed --- the %s vanishes.\n\r", item_type_name(obj) );
 	  send_to_char( buf, ch );
 	  extract_obj( obj );
 	  return;
@@ -281,7 +281,7 @@ void spell_imprint( int sn, int level, CHAR_DATA *ch, void *vo )
     free_string( obj->name );
     obj->name = str_dup( buf );        
 
-    sprintf(buf, "You have imbued a new spell to the %s.\r\n", item_type_name(obj) );
+    sprintf(buf, "You have imbued a new spell to the %s.\n\r", item_type_name(obj) );
     send_to_char( buf, ch );
 
     return;
@@ -297,38 +297,38 @@ void do_study( CHAR_DATA *ch, char *argument )
 
     if (( scroll = get_obj_carry(ch,arg1)) == NULL)
     {
-        send_to_char("You don't have that scroll.\r\n",ch);
+        send_to_char("You don't have that scroll.\n\r",ch);
         return;
     }
 
     if ( scroll->item_type != ITEM_SCROLL )
     {
-        send_to_char("You can only study scrolls.\r\n",ch);
+        send_to_char("You can only study scrolls.\n\r",ch);
         return;
     }
 
     if ( ch->level < scroll->level )
     {
-        send_to_char("You are not a high enough level to use this scroll.\r\n", ch );
+        send_to_char("You are not a high enough level to use this scroll.\n\r", ch );
         return;
     }
 
     if (( skill_table[scroll->value[1]].skill_level[ch->class] >= 72 )
         && ( !IS_IMMORTAL(ch) ))
     {
-        send_to_char("Your class may not learn that spell.\r\n",ch);
+        send_to_char("Your class may not learn that spell.\n\r",ch);
         return;
     }
 
     if ( skill_table[scroll->value[1]].skill_level[ch->class] > ch->level )
     {
-        send_to_char("This spell is beyond your grasp. Perhaps in a few levels...\r\n", ch );
+        send_to_char("This spell is beyond your grasp. Perhaps in a few levels...\n\r", ch );
         return;
     }
 
     if ( ch->pcdata->learned[scroll->value[1]] > 0 )
     {
-        send_to_char("You know that spell already!\r\n",ch);
+        send_to_char("You know that spell already!\n\r",ch);
         return;
     }
 
@@ -337,7 +337,7 @@ void do_study( CHAR_DATA *ch, char *argument )
 
     if (number_percent() >= (20 + ch->pcdata->learned[gsn_scrolls]) * 4/5)
     {
-        send_to_char("You mess up and the scroll vanishes!\r\n",ch);
+        send_to_char("You mess up and the scroll vanishes!\n\r",ch);
         act("$n screams in anger.",ch,NULL,NULL,TO_ROOM);
 /*      check_improve(ch,gsn_scrolls,FALSE,2);		*/
     }

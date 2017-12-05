@@ -117,7 +117,7 @@ void do_bet( CHAR_DATA *ch, char *argument )
     if ( IS_AFFECTED( ch, AFF_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\r\n", ch );
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
         return;
     }
 
@@ -133,7 +133,7 @@ void do_bet( CHAR_DATA *ch, char *argument )
 
     if ( !croupier )
     {
-        send_to_char( "You can't gamble here.\r\n", ch );
+        send_to_char( "You can't gamble here.\n\r", ch );
         return;
     }
 
@@ -144,24 +144,24 @@ void do_bet( CHAR_DATA *ch, char *argument )
     argument = one_argument (argument, arg);
     if (arg[0] == '\0')
     {
-	send_to_char ("Bet <amount> [option].\r\n", ch );
-	send_to_char ("option can be: (shortcut)\r\n", ch );
-	send_to_char ("upper-lower-triple: upper(+), lower(-) or triple(3)\r\n", ch );
-	send_to_char ("seven: under(-), over(+) or seven(7)\r\n", ch );
-	send_to_char ("\r\nFor more info see the help for games\r\n", ch );
+	send_to_char ("Bet <amount> [option].\n\r", ch );
+	send_to_char ("option can be: (shortcut)\n\r", ch );
+	send_to_char ("upper-lower-triple: upper(+), lower(-) or triple(3)\n\r", ch );
+	send_to_char ("seven: under(-), over(+) or seven(7)\n\r", ch );
+	send_to_char ("\n\rFor more info see the help for games\n\r", ch );
 	return;
     }
     amount = advatoi (arg);
 
     if (amount < 0)
     {
-	send_to_char ("Only positive amounts allowed.\r\n", ch );
+	send_to_char ("Only positive amounts allowed.\n\r", ch );
 	return;
     }
 
     if (amount > ch->gold)
     {
-	send_to_char ("You don't have enough money.\r\n", ch );
+	send_to_char ("You don't have enough money.\n\r", ch );
 	return;
     }
 
@@ -225,7 +225,7 @@ void game_u_l_t( CHAR_DATA *ch, CHAR_DATA *croupier,
     else if ( !str_cmp( choice, "triple" ) ) ichoice = 3;
     else
     {
-        send_to_char( "What do you wish to bet: Upper, Lower, or Triple?\r\n",
+        send_to_char( "What do you wish to bet: Upper, Lower, or Triple?\n\r",
                      ch );
         return;
     }
@@ -265,7 +265,7 @@ void game_u_l_t( CHAR_DATA *ch, CHAR_DATA *croupier,
             ch->gold += amount;
         }
         else
-            send_to_char( "It's a TRIPLE!  You lose!\r\n", ch );
+            send_to_char( "It's a TRIPLE!  You lose!\n\r", ch );
 
         return;
     }
@@ -285,7 +285,7 @@ void game_u_l_t( CHAR_DATA *ch, CHAR_DATA *croupier,
         ch->gold += amount;
     }
     else
-        send_to_char( "Sorry, better luck next time!\r\n", ch );
+        send_to_char( "Sorry, better luck next time!\n\r", ch );
 
     return;
 }
@@ -391,7 +391,7 @@ void game_high_dice( CHAR_DATA *ch, CHAR_DATA *croupier,
         ch->gold += amount;
     }
     else
-        send_to_char( "Sorry, better luck next time!\r\n", ch );
+        send_to_char( "Sorry, better luck next time!\n\r", ch );
     return;
 }
 
@@ -433,7 +433,7 @@ void game_seven( CHAR_DATA *ch, CHAR_DATA *croupier,
     else if ( !str_cmp   ( choice, "7"     ) ) ichoice = 3;
     else
     {
-        send_to_char( "What do you wish to bet: Under(-), Over(+), or Seven(7)?\r\n", ch );
+        send_to_char( "What do you wish to bet: Under(-), Over(+), or Seven(7)?\n\r", ch );
         return;
     }
 
@@ -472,7 +472,7 @@ void game_seven( CHAR_DATA *ch, CHAR_DATA *croupier,
             ch->gold += amount;
         }
         else
-            send_to_char( "It's a SEVEN!  You lose!\r\n", ch );
+            send_to_char( "It's a SEVEN!  You lose!\n\r", ch );
 
         return;
     }
@@ -492,7 +492,7 @@ void game_seven( CHAR_DATA *ch, CHAR_DATA *croupier,
         ch->gold += amount;
     }
     else
-        send_to_char( "Sorry, better luck next time!\r\n", ch );
+        send_to_char( "Sorry, better luck next time!\n\r", ch );
 
     return;
 }

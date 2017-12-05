@@ -6,27 +6,29 @@
 
 CC      = gcc
 PROF    =
-DEBUG   =
-O_FLAGS = -O2 -g3
-C_FLAGS = $(O_FLAGS) -Wall $(DEBUG) $(PROF)
-L_FLAGS = $(DEBUG) $(PROF) -lcrypt
+DEBUG   = -ggdb
+NOCRYPT =
+O_FLAGS = -O2
+C_FLAGS = $(O_FLAGS) -Wall $(DEBUG) $(PROF) $(NOCRYPT)
+L_FLAGS = $(O_FLAGS) $(DEBUG) $(PROF)
+LIBS    = -lcrypt
 
 O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
           db.o fight.o handler.o interp.o magic.o save.o special.o update.o \
           healer.o blade.o act_wiz2.o scan.o games.o hunt.o drunk.o quest.o \
           brewscribe.o language.o social-edit.o economy.o clan.o \
-          mob_commands.o mob_prog.o wiznet.o \
+          mob_commands.o mob_prog.o wiznet.o ssm.o \
           necromancer.o bit.o mem.o olc.o olc_act.o olc_save.o string.o
 
 envy: $(O_FILES) merc.h
-	rm -f envy2
-	$(CC) -o envy2 $(O_FILES) $(L_FLAGS)
+	rm -f mythran.new
+	$(CC) $(L_FLAGS) -o mythran.new $(O_FILES) $(LIBS)
 
 .c.o: merc.h
 	$(CC) -c $(C_FLAGS) $<
 
 clean:
-	rm -f *.o envy2 core
+	rm -f mythran.new core
 
 proper:
-	rm -f envy2 core $(O_FILES) *.out
+	rm -f mythran.new core $(O_FILES) *.out

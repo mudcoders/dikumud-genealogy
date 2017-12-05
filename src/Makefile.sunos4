@@ -1,0 +1,23 @@
+# Makefile for Sunos 4
+# By The Maniac
+
+CC      = gcc
+PROF    = -pg
+DEBUG   = -ggdb
+NOCRYPT =
+O_FLAGS = -O2
+C_FLAGS = $(O_FLAGS) -Wall -Dsun $(DEBUG) $(PROF) $(NOCRYPT)
+L_FLAGS =                  $(DEBUG) $(PROF)
+
+O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
+          db.o fight.o handler.o interp.o magic.o save.o special.o update.o \
+          healer.o blade.o act_wiz2.o scan.o games.o drunk.o quest.o clan.o \
+          hunt.o brewscribe.o language.o social-edit.o objlist.o economy.o \
+          necromancer.o ssm.o 
+
+envy: $(O_FILES) merc.h
+	rm -f envy
+	$(CC) $(L_FLAGS) -o envy $(O_FILES)
+
+.c.o: merc.h
+	$(CC) -c $(C_FLAGS) $<

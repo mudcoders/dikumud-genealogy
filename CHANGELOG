@@ -218,8 +218,50 @@ somewhere:	Added the drunk code... finally
 		Added wiznet DEBUG channel, for broadcasting debug-info
 		in a immort visible/player invisible way.
 
+/* Maniac finally back to coding.... don't you just hate holydays */
 6-nov-1996:	It's been a long time, but i'm back to coding... fixed a
 		bug in mob-progs which caused the mud to crash sometimes
 		Fixed this before, but that was on an older version (17-jun)
 		(which missed all functions added after that date, so I did it
 		again... )
+
+/* Canth going wild at the code again after 3 months of idling */
+13-oct-1996:	Added mariage code. (converted the ROM version)
+		Added race/class restrictions.. Now dwarves can't become mages
+		   need to make more restrictions. suggestions anyone?
+		Fixed hide (Now hides from inventory)
+		Fixed get (Now removes hidden item flag)
+		Added remove all (Upon popular demand)
+		Fixed _THE_ strdup bug... (yeah yeah, I know...)
+
+16-oct-1996:	Fixed a bug in OLC, thanx for Dan (Daisy mud) for the help
+		Updated the /doc directory and cleaned up all stuff lying
+		around, so the distribution gets smaller.
+
+17-oct-1996:	Added ssm2.2 for better string management
+		Modified do_for, won't allow 'for mobs #' anymore, caused crash
+		Added 2 more entries in config.h, to configure sacrificing...
+			VAR_SAC_REWARD and SAC_GODNAMES
+		Added better warning system for asave_world (5 pulses ahead)
+
+18-oct-1996:	Added lope's color code...
+
+19-oct-1996:	Disabled do_dog command... had fatal bug
+		Added lot's of needed help entries
+		Added another item to config.h AUTO_SAVE_WORLD, for db dumps.
+		Added ALL_SPEAK_COMMON to config.h to make all speak common
+
+20-oct-1996:	Fixed many switch-related problems and bugs...
+		Removed lope's color code, since he will release a new version
+			very soon. (we'll wait for that and release it a.s.a.p.)
+
+21-oct-1996:	Fixed a but in do_search (uninitialized strings -> garbage)
+		Changes bug in mobprogs, by making mobprog commands L_DIR+1
+		Make the OLC commands L_SEN, not needed for players anyway.
+		Fixed some illegal name bug, fixed enter on login bug
+		Fixed the send_to_buf switch BUG... finally....
+		Added MobProg Editor... very simplistic... doesn't save yet...
+
+22-oct-1996:	Added save function for mobprogs, now no more need for a
+			mobprogs area, mobprogs are saved automatically
+		Release 3.1.3 is here

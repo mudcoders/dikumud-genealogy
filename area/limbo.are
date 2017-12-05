@@ -16,7 +16,7 @@ Puff the Fractal Dragon is here, contemplating a higher reality.
 ~
 ~
 1 0 1000 S
-21 1 0 5d10+550 4d6+3
+24 1 0 5d10+550 4d6+3
 10000 0
 0 Dragon~ 2
 #2
@@ -369,8 +369,8 @@ S
 
 
 #RESETS
-O 0 50 0 1
-M 0 1 1 2
+O 0 50  0 1     	; A hot tub all naked to The Void
+M 0 1  1 2     	; Puff to Limbo
 S
 
 

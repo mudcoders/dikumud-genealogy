@@ -31,7 +31,7 @@ Toede's wispy, white hair tops a very ugly face. His speckled gray skin,
 double chins, and pot belly all resemble those of a vicious little toad.
 ~
 97 128 -900 S
-7 0 0 0d0+0 0d0+0
+6 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 1
 #10003
@@ -43,7 +43,7 @@ A black haired ranger who's muscles surge with power.
 He looks travel weary and tired.
 ~
 65 128 900 S
-31 0 0 0d0+0 0d0+0
+29 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10004
@@ -55,7 +55,7 @@ Its hard to tell anything about the figure. It is concealed by its heavy robe
 and hood.
 ~
 67 512 -750 S
-10 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
 0 Dragon~ 1
 #10005
@@ -66,7 +66,7 @@ The Farmer is standing here looking after his workers...
 He looks like a farmer.....go figure...
 ~
 1 0 150 S
-13 0 0 0d0+0 0d0+0
+15 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10006
@@ -77,7 +77,7 @@ A farm worker is here harvesting grain.
 The worker is very busy...leave him alone.
 ~
 65 0 125 S
-6 0 0 0d0+0 0d0+0
+8 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #10007
@@ -88,7 +88,7 @@ There is a barracuda swimming around you...it looks hungry..
 This is a very hungry looking fish with BIG teeth...
 ~
 35 0 20 S
-7 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Fish~ 0
 #10008
@@ -101,7 +101,7 @@ Its blue-green scales glisten with moisture. Steam jets from its nostrils.
 It looks intently at you as if you look you over before eating you.
 ~
 99 8 -700 S
-27 0 0 0d0+0 0d0+0
+26 0 0 0d0+0 0d0+0
 0 0
 0 Dragon~ 0
 #10009
@@ -113,7 +113,7 @@ This is a very mean looking dog. And since it doesn't know you ...I think he's
 thinking of biting You!!....
 ~
 35 8 100 S
-8 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #10010
@@ -125,7 +125,7 @@ Some unknown type of fish....probably originally from near Guam.
 Probably walks too....
 ~
 65 0 200 S
-7 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Fish~ 0
 #10011
@@ -136,7 +136,7 @@ A small hobgoblin seems to be searching for something.
 The hobgoblin screams at you, "Give me the blue crystal staff!!!!"
 ~
 69 0 -300 S
-17 12 0 6d6+60 2d4+0
+14 12 0 6d6+60 2d4+0
 100 0
 0 Hobgoblin~ 1
 #10012
@@ -148,7 +148,7 @@ This is the White Stag. You can't believe you actually see it....its
 suppose to be just a legend...
 ~
 69 65536 -300 S
-11 12 0 6d6+60 2d4+0
+13 12 0 6d6+60 2d4+0
 100 0
 0 Animal~ 1
 #10013
@@ -159,7 +159,7 @@ An old worn out winnie the pooh bear is here.
 This is an old pooh bear. It looks as if it has been loved a little too much.
 ~
 69 0 300 S
-5 18 0 2d5+19 1d5+1
+7 18 0 2d5+19 1d5+1
 250 0
 0 Bear~ 1
 #10014
@@ -171,7 +171,7 @@ You have the urge to kill this vile creature.
 I'm sure the farmers would appreciate it too.
 ~
 5 0 -200 S
-3 17 0 3d4+48 1d8+0
+7 17 0 3d4+48 1d8+0
 10 0
 0 Rat~ 1
 #10015
@@ -182,7 +182,7 @@ A small mouse runs across your foot.
 The Mouse is a cute little creature.
 ~
 7 0 100 S
-6 19 0 2d4+10 1d4+0
+2 19 0 2d4+10 1d4+0
 1 0
 0 Rat~ 1
 #0
@@ -2342,9 +2342,9 @@ S
 
 
 #SPECIALS
-M 10001 spec_cast_adept
-M 10008 spec_breath_gas
-M 10013 spec_thief
+M 10001 spec_cast_adept 	; Goldmoon
+M 10008 spec_breath_gas 	; Turtle dragon
+M 10013 spec_thief 	; Old pooh bear
 S
 
 
@@ -2355,76 +2355,76 @@ S
 
 
 #RESETS
-M 0 10001 1 10002
-E 0 10003 0 17
-E 0 10013 0 5
-M 0 10003 1 10002
-E 0 10008 0 16
-E 0 10013 0 5
-M 0 10007 1 10005
-M 0 10010 40 10006
-M 0 10010 40 10010
-M 0 10005 1 10013
-E 0 10002 0 16
-E 0 10009 0 5
-M 0 10006 10 10013
-E 0 10009 0 5
-M 0 10004 4 10015
-E 0 10015 0 16
-E 0 10016 0 5
-E 0 10017 0 6
-M 0 10012 1 10016
-O 0 10005 0 10018
-P 0 10004 0 10005
-M 0 10011 17 10022
-M 0 10011 17 10023
-M 0 10010 40 10026
-M 0 10011 17 10027
-M 0 10011 17 10029
-M 0 10002 1 10030
-E 0 10014 0 16
-E 0 10013 0 5
-M 0 10014 7 10031
-R 0 10031 4
-R 0 10032 4
-R 0 10033 4
-M 0 10015 1 10034
-R 0 10034 4
-O 0 10012 0 10034
-M 0 10014 7 10035
-R 0 10035 4
-R 0 10036 4
-O 0 10012 0 10036
-M 0 10015 1 10037
-R 0 10037 4
-M 0 10014 7 10038
-R 0 10038 4
-O 0 10012 0 10038
-M 0 10009 2 10039
-G 0 10006 0
-O 0 10007 0 10042
-M 0 10013 2 10043
-M 0 10010 40 10049
-R 0 10050 4
-M 0 10010 40 10051
-M 0 10010 40 10053
-R 0 10053 4
-M 0 10010 40 10055
-R 0 10056 4
-M 0 10007 1 10057
-R 0 10060 4
-M 0 10010 40 10061
-M 0 10010 40 10064
-M 0 10007 1 10066
-M 0 10010 40 10067
-M 0 10007 1 10069
-M 0 10010 40 10073
-M 0 10008 1 10076
-E 0 10001 0 12
-G 0 10010 0
-M 0 10010 40 10078
-M 0 10007 1 10079
-M 0 10007 1 10081
+M 0 10001  1 10002 	; Goldmoon to Small Grove
+E 0 10003  0 17    	;   A blue crystal staff held in the hands
+E 0 10013  0 5     	;   Leather armor on the body
+M 0 10003  1 10002 	; Riverwind to Small Grove
+E 0 10008  0 16    	;   Silver longsword wielded (1)
+E 0 10013  0 5     	;   Leather armor on the body
+M 0 10007  1 10005 	; Barracuda to Middle of Crystalmir Lake
+M 0 10010 40 10006 	; strange fish to North shore of Crystalmir Lake
+M 0 10010 40 10010 	; strange fish to South shore of Crystalmir Lake
+M 0 10005  1 10013 	; The Farmer to Nearfields
+E 0 10002  0 16    	;   Farming scythe wielded (1)
+E 0 10009  0 5     	;   A farmer's longjohns on the body
+M 0 10006 10 10013 	; Farm worker to Nearfields
+E 0 10009  0 5     	;   A farmer's longjohns on the body
+M 0 10004  4 10015 	; Baaz Draconian to Twin Flat
+E 0 10015  0 16    	;   A footman's lance wielded (1)
+E 0 10016  0 5     	;   A humanskin vest on the body
+E 0 10017  0 6     	;   A draconian helmet over the head
+M 0 10012  1 10016 	; the White Stag to Jakanth Vale
+O 0 10005  0 10018 	; Fire pit to Smoldering Campsite
+P 0 10004  0 10005 	; A bright silver bracer inside a bright silver bracer
+M 0 10011 17 10022 	; hobgoblin flunky to Road through the forest
+M 0 10011 17 10023 	; hobgoblin flunky to Stone bridge
+M 0 10010 40 10026 	; strange fish to In the Mountains
+M 0 10011 17 10027 	; hobgoblin flunky to In the Mountains
+M 0 10011 17 10029 	; hobgoblin flunky to Among the Vallenwoods
+M 0 10002  1 10030 	; Fewmaster Toede to Solace East Woods
+E 0 10014  0 16    	;   Chamorro dagger wielded (1)
+E 0 10013  0 5     	;   Leather armor on the body
+M 0 10014  7 10031 	; a large rat to Northfields
+R 0 10031  4      	; Randomize Northfields
+R 0 10032  4      	; Randomize Northfields
+R 0 10033  4      	; Randomize Northfields
+M 0 10015  1 10034 	; a field mouse to Northfields
+R 0 10034  4      	; Randomize Northfields
+O 0 10012  0 10034 	; Some grain to Northfields
+M 0 10014  7 10035 	; a large rat to Northfields
+R 0 10035  4      	; Randomize Northfields
+R 0 10036  4      	; Randomize Northfields
+O 0 10012  0 10036 	; Some grain to Northfields
+M 0 10015  1 10037 	; a field mouse to Northfields
+R 0 10037  4      	; Randomize Northfields
+M 0 10014  7 10038 	; a large rat to Northfields
+R 0 10038  4      	; Randomize Northfields
+O 0 10012  0 10038 	; Some grain to Northfields
+M 0 10009  2 10039 	; Farmers guarddog to A Farmer's House
+G 0 10006  0      	;   House key
+O 0 10007  0 10042 	; Coathanger to Bedroom
+M 0 10013  2 10043 	; Old pooh bear to Kids Room
+M 0 10010 40 10049 	; strange fish to Underwater
+R 0 10050  4      	; Randomize Underwater
+M 0 10010 40 10051 	; strange fish to Underwater
+M 0 10010 40 10053 	; strange fish to Underwater
+R 0 10053  4      	; Randomize Underwater
+M 0 10010 40 10055 	; strange fish to Underwater
+R 0 10056  4      	; Randomize Underwater
+M 0 10007  1 10057 	; Barracuda to Underwater
+R 0 10060  4      	; Randomize Underwater
+M 0 10010 40 10061 	; strange fish to Underwater
+M 0 10010 40 10064 	; strange fish to Underwater
+M 0 10007  1 10066 	; Barracuda to Underwater
+M 0 10010 40 10067 	; strange fish to Underwater
+M 0 10007  1 10069 	; Barracuda to Underwater
+M 0 10010 40 10073 	; strange fish to Underwater Cave
+M 0 10008  1 10076 	; Turtle dragon to Cave of the Turtle Dragon
+E 0 10001  0 12    	;   Turtle dragon shell about the shoulders
+G 0 10010  0      	;   A heap of ancient gold coins
+M 0 10010 40 10078 	; strange fish to Small Tunnel
+M 0 10007  1 10079 	; Barracuda to Dead end
+M 0 10007  1 10081 	; Barracuda to Barracuda Nest
 S
 
 

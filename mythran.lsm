@@ -1,20 +1,20 @@
 Begin3
-Title:		Mythran Mud Source distribution, version 10-07-96
-Version:	3.1
-Entered-date:	1996-10-07
+Title:		Mythran Mud Source distribution, version 3.1.3 10/22/96
+Version:	3.1.3
+Entered-date:	1996-10-22
 Description: 	Mythran Mud is an envymud 2 derivative, with many addidions,
 		like clans, languages, hidden items, new skills and spells,
-		a necromancer class, many handy wizutils etc.
+		many handy wizutils etc.
 
 Keywords:       mud source mythran game multiplayer envy
-Author:         mark@delftnet.nl (Mark Janssen, a.k.a. The Maniac!)
-Maintained-by:  mark@delftnet.nl (Mark Janssen, a.k.a. The Maniac!)
+Author:         mythran@envy.com (The Mythran Staff)
+Maintained-by:  mark@delftnet.nl (Maniac)
 Primary-site:	http://www.delftnet.nl/~mark/mythran/
-		1350k myth1007.tgz
-
-Alternate-site:
-Original-site:
-Platforms:	Any unix platform, Windows 95 and some others
-Copying-policy: 
+		1001k mythran-3.1.3.tar.gz
+Alternate-site:	ftp://ftp.game.org/pub/mud/diku/merc/envy/mythran
+		mythran-3_1_3_tar.gz
+Original-site:	http://www.delftnet.nl/~mark/mythran/
+Platforms:	Any unix platform and some others
+Copying-policy: Mythran.license
 End
 

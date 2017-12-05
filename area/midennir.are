@@ -29,7 +29,7 @@ A mountain goblin is wandering about, mumbling to himself.
 You see before you a small and twisted creature with knotted muscles.
 ~
 609 0 -500 S
-9 15 0 4d4+60 1d8+4
+11 15 0 4d4+60 1d8+4
 150 0
 0 Goblin~ 1
 #3502
@@ -41,7 +41,7 @@ The poor boy has numerous cuts and scratches, but appears to be all right.
 He is apparently the only survivor of the ambush.
 ~
 147 0 500 S
-2 17 0 1d12+47 1d8+0
+1 17 0 1d12+47 1d8+0
 0 0
 0 Halfdwarf~ 1
 #3503
@@ -66,7 +66,7 @@ You can smell the alcohol on his breath from across the room.  This poor bard
 has been sitting here quite a while, drinking himself into oblivion.
 ~
 67 8 600 S
-6 13 0 1d12+110 2d6+0
+8 13 0 1d12+110 2d6+0
 1500 0
 0 Hobbit~ 1
 #3505
@@ -78,7 +78,7 @@ The man is obviously an outlaw, and has no qualms about slashing you into
 little bits.
 ~
 197 32768 -900 S
-8 12 0 1d12+97 1d5+7
+11 12 0 1d12+97 1d5+7
 1000 0
 0 Drow~ 1
 #3506
@@ -90,7 +90,7 @@ The goblin lieutenant is rather angry, and looking for one of his men to
 beat up upon, but maybe you will do just fine ...
 ~
 609 0 -600 S
-3 15 0 1d12+100 2d5+1
+1 15 0 1d12+100 2d5+1
 300 0
 0 Goblin~ 1
 #3507
@@ -1079,7 +1079,7 @@ S
 
 
 #SPECIALS
-M 3500 spec_poison
+M 3500 spec_poison 	; the wyvern
 S
 
 
@@ -1090,22 +1090,22 @@ S
 
 
 #RESETS
-M 0 3501 8 3506
-M 0 3501 8 3509
-M 0 3501 8 3512
-M 0 3501 8 3512
-M 0 3501 8 3513
-M 0 3500 2 3521
-M 0 3500 2 3521
-M 0 3506 4 3551
-M 0 3501 8 3556
-M 0 3506 4 3556
-M 0 3507 1 3556
-M 0 3502 1 3575
-M 0 3503 1 3576
-M 0 3504 1 3577
-M 0 3505 4 3584
-M 0 3505 4 3584
+M 0 3501  8 3506  	; the goblin to The Miden'nir
+M 0 3501  8 3509  	; the goblin to The Miden'nir
+M 0 3501  8 3512  	; the goblin to The Miden'nir
+M 0 3501  8 3512  	; the goblin to The Miden'nir
+M 0 3501  8 3513  	; the goblin to The Miden'nir
+M 0 3500  2 3521  	; the wyvern to Carnage
+M 0 3500  2 3521  	; the wyvern to Carnage
+M 0 3506  4 3551  	; the goblin lieutenant to The Deep in the Forest of Miden'nir
+M 0 3501  8 3556  	; the goblin to The Goblin Headquarters
+M 0 3506  4 3556  	; the goblin lieutenant to The Goblin Headquarters
+M 0 3507  1 3556  	; the goblin leader to The Goblin Headquarters
+M 0 3502  1 3575  	; the small boy to The Ambush Point
+M 0 3503  1 3576  	; the Innkeeper to The Bar
+M 0 3504  1 3577  	; the bard to The Bard's Table
+M 0 3505  4 3584  	; the dark horseman to A Dead End Trail
+M 0 3505  4 3584  	; the dark horseman to A Dead End Trail
 S
 
 

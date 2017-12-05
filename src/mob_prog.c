@@ -26,6 +26,7 @@
  *  such installation can be found in INSTALL.  Enjoy...         N'Atas-Ha *
  ***************************************************************************/
 
+#include <sys/types.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -74,7 +75,7 @@ char * strstr(s1,s2) const char *s1; const char *s2;
 }
 #endif
 
-/* Used to get sequential lines of a multi line string (separated by "\r\n")
+/* Used to get sequential lines of a multi line string (separated by "\n\r")
  * Thus its like one_argument(), but a trifle different. It is destructive
  * to the multi line string argument, and thus clist must not be shared.
  */
@@ -113,7 +114,7 @@ bool mprog_seval( char *lhs, char *opr, char *rhs )
   if ( !str_cmp( opr, "!/" ) )
     return ( bool )( str_infix( rhs, lhs ) );
 
-  bug ( "Improper MOBprog operator\r\n", 0 );
+  bug ( "Improper MOBprog operator\n\r", 0 );
   return 0;
 
 }
@@ -138,7 +139,7 @@ bool mprog_veval( int lhs, char *opr, int rhs )
   if ( !str_cmp( opr, "|" ) )
     return ( lhs | rhs );
 
-  bug ( "Improper MOBprog operator\r\n", 0 );
+  bug ( "Improper MOBprog operator\n\r", 0 );
   return 0;
 
 }
@@ -962,12 +963,10 @@ char *mprog_process_if( char *ifchck, char *com_list, CHAR_DATA *mob,
 
  /* check for trueness of the ifcheck */
  if ( ( legal = mprog_do_ifchck( ifchck, mob, actor, obj, vo, rndm ) ) )
- {
    if ( legal == 1 )
      flag = TRUE;
    else
      return NULL;
- }
 
  while( loopdone == FALSE ) /*scan over any existing or statements */
  {
@@ -984,12 +983,10 @@ char *mprog_process_if( char *ifchck, char *com_list, CHAR_DATA *mob,
      if ( !str_cmp( buf, "or" ) )
      {
 	 if ( ( legal = mprog_do_ifchck( morebuf,mob,actor,obj,vo,rndm ) ) )
-       {
 	   if ( legal == 1 )
 	     flag = TRUE;
 	   else
 	     return NULL;
-       }
      }
      else
        loopdone = TRUE;
@@ -1156,9 +1153,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA *mob, CHAR_DATA *actor,
 
      case 'N':
          if ( actor ) 
-         {
             if ( can_see( mob, actor ) )
-            {
 	       if ( IS_NPC( actor ) )
 		 strcpy( t, actor->short_descr );
 	       else
@@ -1167,8 +1162,6 @@ void mprog_translate( char ch, char *t, CHAR_DATA *mob, CHAR_DATA *actor,
 		   strcat( t, " " );
 		   strcat( t, actor->pcdata->title );
 	       }
-            }
-          }
 	    else
 	      strcpy( t, "someone" );
 	 break;
@@ -1183,9 +1176,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA *mob, CHAR_DATA *actor,
 
      case 'T':
          if ( vict ) 
-         {
             if ( can_see( mob, vict ) )
-            {
 	       if ( IS_NPC( vict ) )
 		 strcpy( t, vict->short_descr );
 	       else
@@ -1194,8 +1185,6 @@ void mprog_translate( char ch, char *t, CHAR_DATA *mob, CHAR_DATA *actor,
 		 strcat( t, " " );
 		 strcat( t, vict->pcdata->title );
 	       }
-            }
-          }
 	    else
 	      strcpy( t, "someone" );
 	 break;
@@ -1210,9 +1199,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA *mob, CHAR_DATA *actor,
 
      case 'R':
          if ( rndm ) 
-         {
             if ( can_see( mob, rndm ) )
-            {
 	       if ( IS_NPC( rndm ) )
 		 strcpy(t,rndm->short_descr);
 	       else
@@ -1221,8 +1208,6 @@ void mprog_translate( char ch, char *t, CHAR_DATA *mob, CHAR_DATA *actor,
 		 strcat( t, " " );
 		 strcat( t, rndm->pcdata->title );
 	       }
-            }
-          }
 	    else
 	      strcpy( t, "someone" );
 	 break;

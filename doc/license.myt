@@ -1,4 +1,9 @@
-MythranMud 3.0 Release 1.0
+MythranMud 3.1.1
+Monday, 21 October 1996
+
+Mark Janssen (Maniac)	mark@delftnet.nl
+Jeroen v/d Maat (Canth)	canth@xs4all.nl
+Mythran Staff:		mythran@envy.com
 
 
 === Copyright and License Terms
@@ -23,13 +28,13 @@ the copyright and license agreements for both Diku Mud, Merc Diku Mud,
 and Envy Mud.  The modifications and improvements contained in EnvyMud 2.0
 are copyright (C) 1995 by Michael Quan and Mitchell Tse.
 
-MythranMud 2.0 is a derivative of EnvyMud, version 2.0, and is subject to
+Mythran Mud 3.0 is a derivative of EnvyMud, version 2.0, and is subject to
 the copyright and license agreements for Diku Mud, Merc Diku Mud, Envy Mud
-and EnvyMud 2.0. The Modifications and improvements contained in MythranMud
+and EnvyMud 2.0. The Modifications and improvements contained in Mythran Mud
 are copyright (C) 1996 by Mark Janssen (the Maniac) accept when stated
 otherwise in the relevant source-code
 
-In order to use MythranMud you must follow the Diku license, the Merc license,
+In order to use Mythran Mud you must follow the Diku license, the Merc license,
 the EnvyMud license and our license.  The exact terms of the Diku license are
 in the file 'license.doc'.  A summary of these terms is:
 
@@ -58,7 +63,7 @@ Our terms are:
 Neither the Merc nor EnvyMud nor our license terms require keeping our names
 in the 'greeting' text.  If you want to include a reference to Merc and its
 authors (Furey, Hatchet, and Kahn), EnvyMud and its authors (Kahn and
-Hatchet), or Mythran Mud and its author (Maniac and Rimmer) we'd appreciate
+Hatchet), or Mythran Mud and its authors (Maniac and Canth) we'd appreciate
 it, but we do not require it.  However, you must keep the original Diku
 authors in the login sequence.
 
@@ -69,4 +74,29 @@ without permission).
 
 These are very generous terms for any software.  If you don't want to accept
 them, feel free to run some other software, or write your own.
+
+----------------------
+
+In plain english this means:
+
+	Your login screen has to mention the diku authors, but doesn't need
+	to mention all others (merc, envy(1/2) and mythran) This doesn't mean
+	we wouldn't mind them to be there...
+
+	You must have the original diku, merc, envy and mythran help entries
+	in your mud help.
+
+	You must send mail to mark@delftnet.nl if you RUN a mud based on
+	mythran, this is only to make an index on how many users use mythran
+	and an easy way to distribute serious bug-fixes or reports.
+
+	You may not name your mud Mythran Mud, this right can only be granted
+	to you by Mark Janssen in person (mark@delftnet.nl)
+	P.S. I'm willing to give you permission, since i'm still looking for
+	a good and stable site, I don't have one. (send mail first)
+
+	Apart from this, you may do anything with this code.
+
+	And remember... share YOUR code.
+
 

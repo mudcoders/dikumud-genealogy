@@ -1,12 +1,16 @@
-MythranMud 3.0 Release 1.0
-Monday, 25th December 1995
+MythranMud 3.1.1
+Monday, 21 October 1996
 
-This Document was written by:
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+This document was written by:
+Kahn            michael@uclink.berkeley.edu
+Hatchet         hatchet@uclink.berkeley.edu
 
 and changed and updated by:
-The Maniac      v942346@si.hhs.nl       maniacs@dds.nl
+Maniac		mark@delftnet.nl
+Canth		canth@xs4all.nl
+Staff		mythran@envy.com
+
+for use with MythranMud 3.1.1
 
 
 === Disclaimer

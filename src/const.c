@@ -703,6 +703,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
     int                 wis_mod;
     int                 dex_mod;
     int                 con_mod;
+    int			not_class;
     char *              dmg_message;
     char *              hate;
 */
@@ -712,7 +713,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	HUMAN,
 	RACE_PC_AVAIL | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
-	0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0,
 	"punch",
 	"Githyanki Vampire Werewolf Mindflayer"
     },
@@ -723,7 +724,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_AVERAGE,
-	0, 1, 0, 1, -1,
+	0, 1, 0, 1, -1, 0,
 	"punch",
 	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"
     },
@@ -733,7 +734,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	ELVISH,
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
-	0, 0, 0, 1, 0,
+	0, 0, 0, 1, 0, 0,
 	"punch",
 	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin"
     },
@@ -744,7 +745,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	0, 0, 1, 1, 0,
+	0, 0, 1, 1, 0, 0,
 	"punch",
 	"Elf Halfelf Hobbit Githyanki Vampire Werewolf"
     },
@@ -755,7 +756,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
         SIZE_PETITE,
-	0, 0, 0, -1, 1,
+	0, 0, 0, -1, 1, CLS_MAGE,
 	"punch",
 	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"
     },
@@ -765,7 +766,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	DWARVISH,
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	0, 0, 0, 0, 1,
+	0, 0, 0, 0, 1, 0,
 	"punch",
 	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin"
     },
@@ -776,7 +777,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	0, 0, 0, 1, -1,
+	0, 0, 0, 1, -1, 0,
 	"punch",
 	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"
     },
@@ -786,7 +787,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_WEAPON_WIELD,
 	SIZE_HUGE,
-	2, -1, 0, -1, 1,
+	2, -1, 0, -1, 1, 0,
 	"fist",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -796,7 +797,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	OGRE,
 	RACE_WEAPON_WIELD,
 	SIZE_HUGE,
-	1, -1, 0, -1, 1,
+	1, -1, 0, -1, 1, 0,
 	"fist",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -806,7 +807,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	ORCISH,
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_LARGE,
-	1, -1, 0, 0, 0,
+	1, -1, 0, 0, 0, 0,
 	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -816,7 +817,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	KOBOLD,
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	-1, -1, 0, 1, 0,
+	-1, -1, 0, 1, 0, 0,
 	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome Halfkobold"
     },
@@ -826,7 +827,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_LARGE,
-	2, 0, 0, -1, 1,
+	2, 0, 0, -1, 1, 0,
 	"fist",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -836,7 +837,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	TROLLISH,
 	RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_TITANIC,
-	2, -1, 0, 0, 1,
+	2, -1, 0, 0, 1, 0,
 	"fist",
 	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -846,7 +847,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
-	1, 0, -1, 0, 1,
+	1, 0, -1, 0, 1, 0,
 	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -856,7 +857,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_NO_ABILITIES,
 	SIZE_MINUTE,
-	0, 0, 0, 0, -1,
+	0, 0, 0, 0, -1, 0,
 	"bite",
 	""
     },
@@ -867,7 +868,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_FLY | RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS |
 		RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_GARGANTUAN,
-	2, 2, 1, -3, 2,
+	2, 2, 1, -3, 2, 0,
 	"claw",
 	""
     },
@@ -877,7 +878,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_DETECT_HIDDEN,
 	SIZE_SMALL,
-	0, 0, 0, 1, 0,
+	0, 0, 0, 1, 0, 0,
 	"bite",
 	"Kobold Halfkobold"
     },
@@ -890,7 +891,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_PROTECTION |
 		RACE_SANCT | RACE_WEAPON_WIELD,
 	SIZE_GARGANTUAN,
-	3, 3, 3, 3, 3,
+	3, 3, 3, 3, 3, 0,
 	"smite",
 	""
     },
@@ -901,7 +902,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_AVERAGE,
-	1, 0, 0, -2, 1,
+	1, 0, 0, -2, 1, 0,
 	"touch",
 	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Goblin Faerie Gnome"
     },
@@ -911,7 +912,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_FLY | RACE_DETECT_INVIS,
 	SIZE_AVERAGE,
-	0, 0, 0, 2, 0,
+	0, 0, 0, 2, 0, 0,
 	"claw",
 	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Gnome"
     },
@@ -921,7 +922,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_SWIM | RACE_DETECT_HIDDEN,
 	SIZE_AVERAGE,
-	1, 0, 0, -1, 1,
+	1, 0, 0, -1, 1, 0,
 	"swipe",
 	""
     },
@@ -931,7 +932,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
-	0, 1, 0, 0, 0,
+	0, 1, 0, 0, 0, 0,
 	"punch",
 	"Mindflayer"
     },
@@ -941,7 +942,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_NO_ABILITIES,
 	SIZE_LARGE,
-	1, 0, 0, 0, 1,
+	1, 0, 0, 0, 1, 0,
 	"punch",
 	""
     },
@@ -951,7 +952,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_FLY | RACE_INFRAVISION,
 	SIZE_MINUTE,
-	-1, 0, 0, 2, -1,
+	-1, 0, 0, 2, -1, 0,
 	"bite",
 	""
     },
@@ -961,7 +962,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_NO_ABILITIES,
 	SIZE_MINUTE,
-	0, 0, 0, -1, 1,
+	0, 0, 0, -1, 1, 0,
 	"swipe",
 	""
     },
@@ -971,7 +972,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_PASSDOOR,
         SIZE_MINUTE,
-	-1, 0, 0, 2, -1,
+	-1, 0, 0, 2, -1, 0,
 	"bite",
 	""
     },
@@ -982,7 +983,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_FLY | RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 		RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
-	1, 1, 0, 1, 2,
+	1, 1, 0, 1, 2, 0,
 	"claw",
 	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Werewolf Goblin Faerie Gnome"
     },
@@ -993,7 +994,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS |
 		RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	SIZE_AVERAGE,
-	2, 0, 1, 2, 3,
+	2, 0, 1, 2, 3, 0,
 	"claw",
 	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Vampire Goblin Faerie Gnome"
     },
@@ -1003,7 +1004,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	GOBLIN,
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	-1, -1, -1, 1, 0,
+	-1, -1, -1, 1, 0, 0,
 	"punch",
 	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"
     },
@@ -1014,7 +1015,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	RACE_FLY | RACE_INFRAVISION | RACE_DETECT_INVIS | RACE_DETECT_HIDDEN |
 		RACE_WEAPON_WIELD,
 	SIZE_MINUTE,
-	-2, 1, 1, 1, -1,
+	-2, 1, 1, 1, -1, 0,
 	"punch",
 	""
     },
@@ -1024,7 +1025,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_NO_ABILITIES | RACE_WEAPON_WIELD,
 	SIZE_SMALL,
-	0, 0, 0, 1, 0,
+	0, 0, 0, 1, 0, 0,
 	"bite",
 	""
     },
@@ -1034,7 +1035,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_MEDIUM,
-	1, 2, 1, -1, 0,
+	1, 2, 1, -1, 0, 0,
 	"punch",
 	"Githyanki"
     },
@@ -1044,7 +1045,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_WATERBREATH,
 	SIZE_AVERAGE,
-	3, 0, 0, 0, 3,
+	3, 0, 0, 0, 3, 0,
 	"swing",
 	""
     },
@@ -1054,7 +1055,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_FLY | RACE_PASSDOOR,
 	SIZE_PETITE,
-	-1, 0, 0, 3, 0,
+	-1, 0, 0, 3, 0, 0,
 	"gas",
 	""
     },
@@ -1064,7 +1065,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_NO_ABILITIES,
 	SIZE_MINUTE,
-	0, 0, 0, 1, 0,
+	0, 0, 0, 1, 0, 0,
 	"bite",
 	""
     },
@@ -1074,7 +1075,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_PASSDOOR,
 	SIZE_MINUTE,
-	0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0,
 	"slime",
 	""
     },
@@ -1084,7 +1085,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_WATERBREATH | RACE_SWIM,
 	SIZE_MINUTE,
-	0, 0, 0, 2, 0,
+	0, 0, 0, 2, 0, 0,
 	"slap",
 	""
     },
@@ -1094,7 +1095,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_DETECT_HIDDEN,
 	SIZE_TITANIC,
-	2, 0, 0, -1, 2,
+	2, 0, 0, -1, 2, 0,
 	"bite",
 	""
     },
@@ -1104,7 +1105,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	COMMON,
 	RACE_NO_ABILITIES,
 	SIZE_SMALL,
-	-1, 0, 0, 1, 0,
+	-1, 0, 0, 1, 0, 0,
 	"lash",
 	""
     },
@@ -1114,7 +1115,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	GNOMISH,
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	-1, 0, 1, 1, -1,
+	-1, 0, 1, 1, -1, 0,
 	"punch",
 	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin"
     },
@@ -1124,7 +1125,7 @@ const   struct    race_type       race_table      [ MAX_RACE ]    =
 	KOBOLD,
 	RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	SIZE_PETITE,
-	-2, -1, -2, 3, -2,
+	-2, -1, -2, 3, -2, 0,
 	"punch",
 	"Ogre Orc Giant Troll Hobgoblin"
     }
@@ -2505,5 +2506,38 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 
 };
 
-
-
+const	int	bitvalues [31] =
+{
+	1,		/* 0 */
+	2,		/* 1 */
+	4,		/* 2 */
+	8,		/* 3 */
+	16,		/* 4 */
+	32,		/* 5 */
+	64,
+	128,
+	256,
+	512,
+	1024,		/* 10 */
+	2048,
+	4096,
+	8192,
+	16384,
+	32768,		/* 15 */
+	65536,
+	131072,
+	262144,
+	524288,
+	1048576,	/* 20 */
+	2097152,
+	4194304,
+	8388608,
+	16777216,
+	33554432,	/* 25 */
+	67108864,
+	134217728,
+	268435456,
+	536870912,
+	1073741824	/* 30 */
+/*	2147483648	   31 (Unused, Cannot be used in an int. (should)) */
+};

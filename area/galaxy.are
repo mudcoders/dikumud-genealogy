@@ -17,7 +17,7 @@ A poor adventurer, lost in this place.
 You will become him if you are not careful.
 ~
 69 0 0 S
-6 16 0 10d5+20 1d6+3
+8 16 0 10d5+20 1d6+3
 100 0
 0 Human~ 1
 #9302
@@ -39,7 +39,7 @@ A young nebula, waiting to become a star.
 It hasn't got a definite shape, it is just a cloud of mist.
 ~
 65 0 200 S
-6 10 0 3d6+240 2d4+4
+1 10 0 3d6+240 2d4+4
 1000 0
 0 God~ 2
 #9304
@@ -50,7 +50,7 @@ A speedy comet is waiting to crush your head in.
 You see the offspring of Halley's comet, here just to wipe everything out.
 ~
 101 0 -500 S
-13 9 0 4d6+160 2d6+4
+12 9 0 4d6+160 2d6+4
 1500 0
 0 God~ 1
 #9305
@@ -62,7 +62,7 @@ You notice the giant is not as tough as his name sounds ...
 Still he can be very powerful.
 ~
 195 0 0 S
-17 3 0 5d5+200 6d3+2
+19 3 0 5d5+200 6d3+2
 2000 0
 0 God~ 1
 #9306
@@ -74,7 +74,7 @@ Like the red giant, he is also appointed to stand guard for the galaxy.
 But somehow he manages to escape.  Though tiny, it can take a lot of hits!
 ~
 69 0 0 S
-17 8 0 8d5+280 4d2+10
+13 8 0 8d5+280 4d2+10
 2000 0
 0 God~ 1
 #9307
@@ -86,7 +86,7 @@ You can only make out its shape from the darkness.  He was cursed to stay in
 here and his face may never be seen by anyone again.
 ~
 67 98304 -1000 S
-20 0 0 8d5+300 4d5+1
+18 0 0 8d5+300 4d5+1
 6000 0
 0 God~ 1
 #9308
@@ -98,7 +98,7 @@ She was once a princess of beauty.  However, her beauty has led to a Goddess's
 jealousy and she has to suffer here endlessly until Perseus comes.
 ~
 83 128 1000 S
-16 0 0 8d5+300 4d4+0
+15 0 0 8d5+300 4d4+0
 7500 0
 0 God~ 2
 #9309
@@ -111,7 +111,7 @@ queen goddess, who disliked him.  But he finished them all and at the end was
 granted immortality. He is a very brave and strong fighter.
 ~
 67 128 1000 S
-38 0 0 6d5+400 5d4+10
+41 0 0 6d5+400 5d4+10
 7500 0
 0 God~ 1
 #9310
@@ -122,7 +122,7 @@ The wild pegasus is grazing peacefully.
 It is the legendary horse with wings on its back.
 ~
 195 0 300 S
-16 3 0 5d4+170 2d7+0
+15 3 0 5d4+170 2d7+0
 5000 0
 0 Animal~ 0
 #9311
@@ -136,7 +136,7 @@ appears on one side of the sky and the other the other side so they will
 never meet. 
 ~
 67 128 300 S
-42 0 0 6d3+400 4d4+2
+44 0 0 6d3+400 4d4+2
 7500 0
 0 God~ 1
 #9312
@@ -148,7 +148,7 @@ These are the seven sisters of the Myths, and as for why they are here, no
 one knows; even the Gods themselves have forgotten.
 ~
 67 0 300 S
-23 5 0 3d4+120 2d7+0
+24 5 0 3d4+120 2d7+0
 3000 0
 0 God~ 2
 #9313
@@ -174,7 +174,7 @@ resembles a snake.  Gosh, is this a draco, you wonder, is this the thing
 we are on now?
 ~
 197 0 -700 S
-8 6 0 3d3+100 2d5+0
+6 6 0 3d3+100 2d5+0
 4000 0
 0 Dragon~ 0
 #9315
@@ -198,7 +198,7 @@ You see a wild-looking bull with a bad temper.  He is well-built and looks like
 he can fight well ... indeed he has fought with Orion before and survived.
 ~
 99 136 -100 S
-28 0 0 5d3+500 4d6+1
+24 0 0 5d3+500 4d6+1
 10000 0
 0 God~ 1
 #9317
@@ -210,7 +210,7 @@ As soon as you see him you know that he is the most perfect man you have seen.
 You can't find any imperfections on him.
 ~
 67 128 1000 S
-40 0 0 7d3+400 5d4+2
+43 0 0 7d3+400 5d4+2
 10000 0
 0 God~ 1
 #9318
@@ -222,7 +222,7 @@ As soon as you see him you see the most imperfect man you have ever seen.
 How can there be such a contrast?  You wonder ...
 ~
 231 1048712 -1000 S
-35 5 0 3d4+200 3d4+2
+33 5 0 3d4+200 3d4+2
 5000 0
 0 God~ 1
 #9319
@@ -248,7 +248,7 @@ during his first Labour.  His skin is so weapon-proof that Hercules had to use
 his bare hands to tear the lion into two from its mouth!
 ~
 99 136 -100 S
-30 0 0 2d20+500 5d3+3
+28 0 0 2d20+500 5d3+3
 10000 0
 0 God~ 1
 #9321
@@ -261,7 +261,7 @@ may not be the maid of chastity and purity at all!  But still she looks
 gorgeous and is waiting for your first move, whatever it is ...
 ~
 67 128 1000 S
-31 0 0 3d8+450 4d5+1
+29 0 0 3d8+450 4d5+1
 10000 0
 0 God~ 2
 #9322
@@ -273,7 +273,7 @@ He is a wise old man and can see people's thoughts through their eyes....
 Now all he can see from you is greed and bloodshed.
 ~
 67 128 1000 S
-39 0 0 4d5+500 5d4+2
+38 0 0 4d5+500 5d4+2
 10000 0
 0 God~ 1
 #9323
@@ -296,7 +296,7 @@ Sagittarius the centaur is waiting to let go of his well aimed arrow ...
 He is a centaur and a well trained archer. No one can escape his arrows.
 ~
 67 128 1000 S
-26 0 0 5d6+500 3d9+2
+29 0 0 5d6+500 3d9+2
 10000 0
 0 God~ 1
 #9325
@@ -309,7 +309,7 @@ war but now the gods have decided to put him here, to live out the rest of his
 days in peace.
 ~
 67 128 700 S
-36 0 0 4d7+520 3d10+0
+37 0 0 4d7+520 3d10+0
 10000 0
 0 God~ 1
 #9326
@@ -321,7 +321,7 @@ The pretty Water Bearer is smiling at you, you think you'd better give her a
 hand with holding the vessel. 
 ~
 67 128 1000 S
-30 0 0 3d5+500 2d10+1
+31 0 0 3d5+500 2d10+1
 10000 0
 0 God~ 2
 #9327
@@ -333,7 +333,7 @@ She has been forced to serve her husband, who had been cursed to turn into a
 fish and she deserves your pity.
 ~
 67 128 1000 S
-19 0 0 4d5+500 3d7+0
+21 0 0 4d5+500 3d7+0
 10000 0
 0 God~ 2
 #9328
@@ -345,7 +345,7 @@ He was once a very handsome man but now has turned into an ugly big fish.
 So he becomes jealous of any living thing which is more handsome than him.
 ~
 99 128 -1000 S
-33 4 0 3d3+400 3d6+2
+32 4 0 3d3+400 3d6+2
 10000 0
 0 God~ 1
 #9329
@@ -357,7 +357,7 @@ The Huge Bear which resides in the northern skies is here.
 You think you'd better turn back.  At least you have got a chance of survival.
 ~
 99 136 0 S
-44 0 0 2d4+800 5d5+3
+45 0 0 2d4+800 5d5+3
 15000 0
 0 Bear~ 0
 #9330
@@ -368,7 +368,7 @@ Cassiopeia, the queen of the Universe, is sitting on her throne.
 She is the Queen of Dignity; facing her you feel all your dignity has gone.
 ~
 67 128 700 S
-42 0 0 10d3+700 4d7+2
+40 0 0 10d3+700 4d7+2
 12000 0
 0 God~ 2
 #9331
@@ -380,7 +380,7 @@ He is the King of Might as well as of the Universe. You suddenly feel very
 weak and useless in front of him.
 ~
 67 128 700 S
-40 0 0 10d4+700 4d8+1
+36 0 0 10d4+700 4d8+1
 12000 0
 0 God~ 1
 #9332
@@ -394,7 +394,7 @@ actually a STAR, with dazzling bright light ... maybe you shouldn't have come
 here at all?
 ~
 67 138 1000 S
-41 0 0 0d0+1500 6d6+3
+44 0 0 0d0+1500 6d6+3
 20000 0
 0 God~ 1
 #0
@@ -1795,27 +1795,27 @@ S
 
 
 #SPECIALS
-M 9301 spec_thief
-M 9313 spec_breath_fire
-M 9314 spec_breath_fire
-M 9315 spec_cast_cleric
-M 9316 spec_cast_cleric
-M 9317 spec_cast_cleric
-M 9318 spec_cast_cleric
-M 9319 spec_cast_cleric
-M 9320 spec_cast_cleric
-M 9321 spec_cast_cleric
-M 9322 spec_cast_cleric
-M 9323 spec_cast_cleric
-M 9324 spec_cast_cleric
-M 9325 spec_cast_cleric
-M 9326 spec_cast_cleric
-M 9327 spec_cast_cleric
-M 9328 spec_cast_cleric
-M 9329 spec_cast_cleric
-M 9330 spec_cast_mage
-M 9331 spec_cast_mage
-M 9332 spec_breath_acid
+M 9301 spec_thief 	; a poor adventurer
+M 9313 spec_breath_fire 	; the Head of Draco
+M 9314 spec_breath_fire 	; a baby draco
+M 9315 spec_cast_cleric 	; Aries
+M 9316 spec_cast_cleric 	; Taurus
+M 9317 spec_cast_cleric 	; Gemini
+M 9318 spec_cast_cleric 	; Gemini
+M 9319 spec_cast_cleric 	; Cancer
+M 9320 spec_cast_cleric 	; Leo
+M 9321 spec_cast_cleric 	; Virgo
+M 9322 spec_cast_cleric 	; Libra
+M 9323 spec_cast_cleric 	; Scorpio
+M 9324 spec_cast_cleric 	; Sagittarius
+M 9325 spec_cast_cleric 	; Capricorn
+M 9326 spec_cast_cleric 	; Aquarius
+M 9327 spec_cast_cleric 	; Pisces the mermaid
+M 9328 spec_cast_cleric 	; Pisces the fish
+M 9329 spec_cast_cleric 	; Ursa Major the bear
+M 9330 spec_cast_mage 	; Cassiopeia the Queen
+M 9331 spec_cast_mage 	; Cepheus the King
+M 9332 spec_breath_acid 	; Polaris, the polar star
 S
 
 
@@ -1826,97 +1826,97 @@ S
 
 
 #RESETS
-M 0 9302 1 9304
-M 0 9305 1 9304
-M 0 9306 1 9306
-M 0 9302 1 9308
-M 0 9305 1 9308
-M 0 9305 1 9309
-M 0 9303 4 9310
-M 0 9303 4 9310
-M 0 9303 4 9310
-M 0 9307 1 9310
-M 0 9302 1 9312
-M 0 9301 1 9313
-M 0 9305 1 9313
-M 0 9306 1 9314
-M 0 9304 2 9317
-E 0 9301 0 16
-M 0 9304 2 9317
-E 0 9301 0 16
-M 0 9310 1 9317
-M 0 9303 1 9318
-M 0 9302 7 9321
-M 0 9302 7 9321
-M 0 9302 7 9321
-M 0 9302 7 9321
-M 0 9301 1 9322
-M 0 9303 1 9322
-M 0 9304 3 9322
-E 0 9301 0 16
-M 0 9304 3 9322
-E 0 9301 0 16
-M 0 9306 1 9322
-M 0 9301 1 9323
-M 0 9312 7 9326
-M 0 9312 7 9326
-M 0 9312 7 9326
-M 0 9312 7 9326
-M 0 9312 7 9326
-M 0 9312 7 9326
-M 0 9312 7 9326
-M 0 9311 1 9328
-E 0 9304 0 13
-M 0 9308 1 9330
-E 0 9328 0 17
-M 0 9309 1 9332
-E 0 9302 0 10
-M 0 9302 1 9333
-M 0 9315 1 9342
-G 0 9324 0
-E 0 9306 0 3
-M 0 9316 1 9343
-E 0 9307 0 8
-M 0 9317 1 9344
-E 0 9308 0 6
-M 0 9318 1 9344
-M 0 9319 1 9345
-G 0 9325 0
-E 0 9309 0 5
-M 0 9320 1 9346
-E 0 9310 0 12
-M 0 9321 1 9347
-E 0 9311 0 14
-M 0 9322 1 9348
-G 0 9326 0
-G 0 9312 0
-E 0 9313 0 11
-M 0 9323 1 9349
-E 0 9314 0 16
-M 0 9324 1 9350
-E 0 9315 0 17
-E 0 9316 0 16
-M 0 9325 1 9351
-G 0 9327 0
-E 0 9317 0 9
-M 0 9326 1 9352
-E 0 9318 0 17
-M 0 9327 1 9353
-E 0 9319 0 7
-M 0 9328 1 9353
-M 0 9302 1 9355
-M 0 9314 1 9358
-M 0 9314 2 9360
-M 0 9313 1 9363
-G 0 9305 0
-M 0 9330 1 9365
-E 0 9320 0 1
-M 0 9331 1 9367
-E 0 9321 0 0
-M 0 9329 1 9370
-M 0 9332 1 9371
-E 0 9322 0 2
-E 0 9323 0 16
+M 0 9302  1 9304  	; a beautiful star to On an InterGalactic Walkway
+M 0 9305  1 9304  	; a red supergiant to On an InterGalactic Walkway
+M 0 9306  1 9306  	; a white dwarf to At the Undeveloped Part of the Galaxy
+M 0 9302  1 9308  	; a beautiful star to On the Bridge of Stars
+M 0 9305  1 9308  	; a red supergiant to On the Bridge of Stars
+M 0 9305  1 9309  	; a red supergiant to On the Bridge of Nebulae
+M 0 9303  4 9310  	; a young nebula to The Throne Room of the Nebula King
+M 0 9303  4 9310  	; a young nebula to The Throne Room of the Nebula King
+M 0 9303  4 9310  	; a young nebula to The Throne Room of the Nebula King
+M 0 9307  1 9310  	; a horsehead nebula to The Throne Room of the Nebula King
+M 0 9302  1 9312  	; a beautiful star to At the Start of the Milky Way
+M 0 9301  1 9313  	; a poor adventurer to Along the Milky Way
+M 0 9305  1 9313  	; a red supergiant to Along the Milky Way
+M 0 9306  1 9314  	; a white dwarf to At the End of the Milky Way
+M 0 9304  2 9317  	; a speedy comet to A Small Clearing
+E 0 9301  0 16    	;   A comet's tail wielded (1)
+M 0 9304  2 9317  	; a speedy comet to A Small Clearing
+E 0 9301  0 16    	;   A comet's tail wielded (1)
+M 0 9310  1 9317  	; the wild Pegasus to A Small Clearing
+M 0 9303  1 9318  	; a young nebula to An Edge of the Galaxy
+M 0 9302  7 9321  	; a beautiful star to The Star Cluster
+M 0 9302  7 9321  	; a beautiful star to The Star Cluster
+M 0 9302  7 9321  	; a beautiful star to The Star Cluster
+M 0 9302  7 9321  	; a beautiful star to The Star Cluster
+M 0 9301  1 9322  	; a poor adventurer to Another Edge of the Galaxy
+M 0 9303  1 9322  	; a young nebula to Another Edge of the Galaxy
+M 0 9304  3 9322  	; a speedy comet to Another Edge of the Galaxy
+E 0 9301  0 16    	;   A comet's tail wielded (1)
+M 0 9304  3 9322  	; a speedy comet to Another Edge of the Galaxy
+E 0 9301  0 16    	;   A comet's tail wielded (1)
+M 0 9306  1 9322  	; a white dwarf to Another Edge of the Galaxy
+M 0 9301  1 9323  	; a poor adventurer to Corner of the Galaxy
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9312  7 9326  	; the Pleiades to The Homes of the Pleiades
+M 0 9311  1 9328  	; Orion the hunter to Orion's Hunting Lodge
+E 0 9304  0 13    	;   The titanic belt of orion around the waist
+M 0 9308  1 9330  	; poor Andromeda to The Offering Chamber
+E 0 9328  0 17    	;   Chains of andromeda held in the hands
+M 0 9309  1 9332  	; the mighty Hercules to Hercules' Mighty Throne
+E 0 9302  0 10    	;   The titanic arm plates of hercules on the arms
+M 0 9302  1 9333  	; a beautiful star to Eastern Side of the Temple
+M 0 9315  1 9342  	; Aries to On a Hill
+G 0 9324  0      	;   A spring shoot
+E 0 9306  0 3     	;   The titanic fleece of aries around the neck (1)
+M 0 9316  1 9343  	; Taurus to Inside a Spanish Bull-Ring
+E 0 9307  0 8     	;   The titanic hoof of taurus on the feet
+M 0 9317  1 9344  	; Gemini to Inside a study
+E 0 9308  0 6     	;   The titanic mask of gemini over the head
+M 0 9318  1 9344  	; Gemini to Inside a study
+M 0 9319  1 9345  	; Cancer to Along the seashore
+G 0 9325  0      	;   A summer flower
+E 0 9309  0 5     	;   The titanic shell of cancer on the body
+M 0 9320  1 9346  	; Leo to Within the Deep Jungle
+E 0 9310  0 12    	;   The titanic skin of leo about the shoulders
+M 0 9321  1 9347  	; Virgo to Inside a Luxurious Bedroom
+E 0 9311  0 14    	;   The titanic bracelet of virgo on the left wrist
+M 0 9322  1 9348  	; Libra to The Supreme Court
+G 0 9326  0      	;   An autumn leaf
+G 0 9312  0      	;   The titanic scale of libra
+E 0 9313  0 11    	;   The titanic scale of libra as a shield
+M 0 9323  1 9349  	; Scorpio to In the Dry Desert
+E 0 9314  0 16    	;   The sting of scorpio wielded (1)
+M 0 9324  1 9350  	; Sagittarius to In the Woods
+E 0 9315  0 17    	;   The arrow of sagittarius held in the hands
+E 0 9316  0 16    	;   The titanic bow of sagittarius wielded (1)
+M 0 9325  1 9351  	; Capricorn to On a Mountain Peak
+G 0 9327  0      	;   A winter branch
+E 0 9317  0 9     	;   The titanic horns of capricorn on the hands
+M 0 9326  1 9352  	; Aquarius to Inside a Waterfall
+E 0 9318  0 17    	;   The ancient vessel of aquarius held in the hands
+M 0 9327  1 9353  	; Pisces the mermaid to Inside a Gigantic Clam
+E 0 9319  0 7     	;   The titanic tail of pisces on the legs
+M 0 9328  1 9353  	; Pisces the fish to Inside a Gigantic Clam
+M 0 9302  1 9355  	; a beautiful star to On the Draco
+M 0 9314  1 9358  	; a baby draco to Near the Legs of Draco
+M 0 9314  2 9360  	; a baby draco to Between the Wings of Draco
+M 0 9313  1 9363  	; the Head of Draco to Approaching the Head of Draco
+G 0 9305  0      	;   An ugly skull of draco
+M 0 9330  1 9365  	; Cassiopeia the Queen to Cassiopeia's Throne
+E 0 9320  0 1     	;   The ring of dignity on the left finger
+M 0 9331  1 9367  	; Cepheus the King to Cepheus' Throne
+E 0 9321  0 0     	;   The sceptre of might as a light
+M 0 9329  1 9370  	; Ursa Major the bear to End of the Dipper
+M 0 9332  1 9371  	; Polaris, the polar star to The Polar Star
+E 0 9322  0 2     	;   The ring of the universe on the right finger
+E 0 9323  0 16    	;   The great dipper of the skies wielded (1)
 S
 
 

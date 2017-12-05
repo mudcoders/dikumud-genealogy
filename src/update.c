@@ -21,6 +21,11 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined( macintosh )
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -31,6 +36,8 @@
  * Externals
  */ 
 extern  bool            merc_down;
+
+int		pulse_db_dump;
 
 /*
  * Globals
@@ -96,7 +103,7 @@ void advance_level( CHAR_DATA *ch )
 	REMOVE_BIT( ch->act, PLR_BOUGHT_PET );
 
     sprintf( buf,
-	    "Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\r\n",
+	    "Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
 	    add_hp,	ch->max_hit,
 	    add_mana,	ch->max_mana,
 	    add_move,	ch->max_move,
@@ -150,7 +157,7 @@ void demote_level( CHAR_DATA *ch )
 
     ch->level -= 1;
     sprintf( buf,
-	    "Your loss is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\r\n",
+	    "Your loss is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
 	    add_hp,	ch->max_hit,
 	    add_mana,	ch->max_mana,
 	    add_move,	ch->max_move,
@@ -350,16 +357,16 @@ void gain_condition( CHAR_DATA *ch, int iCond, int value )
 	switch ( iCond )
 	{
 	case COND_FULL:
-	    send_to_char( "You are hungry.\r\n",    ch );
+	    send_to_char( "You are hungry.\n\r",    ch );
 	    break;
 
 	case COND_THIRST:
-	    send_to_char( "You are thirsty.\r\n",   ch );
+	    send_to_char( "You are thirsty.\n\r",   ch );
 	    break;
 
 	case COND_DRUNK:
 	    if ( condition != 0 )
-		send_to_char( "You are sober.\r\n", ch );
+		send_to_char( "You are sober.\n\r", ch );
 	    break;
 	}
     }
@@ -526,22 +533,22 @@ void weather_update( void )
     {
     case  6:
 	weather_info.sunlight = SUN_RISE;
-	strcat( buf, "The sun rises in the east.\r\n" );
+	strcat( buf, "The sun rises in the east.\n\r" );
 	break;
 
     case  7:
 	weather_info.sunlight = SUN_LIGHT;
-	strcat( buf, "The day has begun.\r\n" );
+	strcat( buf, "The day has begun.\n\r" );
 	break;
 
     case 19:
 	weather_info.sunlight = SUN_SET;
-	strcat( buf, "The sun slowly disappears in the west.\r\n" );
+	strcat( buf, "The sun slowly disappears in the west.\n\r" );
 	break;
 
     case 20:
 	weather_info.sunlight = SUN_DARK;
-	strcat( buf, "The night has begun.\r\n" );
+	strcat( buf, "The night has begun.\n\r" );
 	break;
 
     case 24:
@@ -589,7 +596,7 @@ void weather_update( void )
 	if (     weather_info.mmhg <  990
 	    || ( weather_info.mmhg < 1010 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The sky is getting cloudy.\r\n" );
+	    strcat( buf, "The sky is getting cloudy.\n\r" );
 	    weather_info.sky = SKY_CLOUDY;
 	}
 	break;
@@ -598,13 +605,13 @@ void weather_update( void )
 	if (     weather_info.mmhg <  970
 	    || ( weather_info.mmhg <  990 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "It starts to rain.\r\n" );
+	    strcat( buf, "It starts to rain.\n\r" );
 	    weather_info.sky = SKY_RAINING;
 	}
 
 	if ( weather_info.mmhg > 1030 && number_bits( 2 ) == 0 )
 	{
-	    strcat( buf, "The clouds disappear.\r\n" );
+	    strcat( buf, "The clouds disappear.\n\r" );
 	    weather_info.sky = SKY_CLOUDLESS;
 	}
 	break;
@@ -612,14 +619,14 @@ void weather_update( void )
     case SKY_RAINING:
 	if ( weather_info.mmhg <  970 && number_bits( 2 ) == 0 )
 	{
-	    strcat( buf, "Lightning flashes in the sky.\r\n" );
+	    strcat( buf, "Lightning flashes in the sky.\n\r" );
 	    weather_info.sky = SKY_LIGHTNING;
 	}
 
 	if (     weather_info.mmhg > 1030
 	    || ( weather_info.mmhg > 1010 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The rain stopped.\r\n" );
+	    strcat( buf, "The rain stopped.\n\r" );
 	    weather_info.sky = SKY_CLOUDY;
 	}
 	break;
@@ -628,7 +635,7 @@ void weather_update( void )
 	if (     weather_info.mmhg > 1010
 	    || ( weather_info.mmhg >  990 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The lightning has stopped.\r\n" );
+	    strcat( buf, "The lightning has stopped.\n\r" );
 	    weather_info.sky = SKY_RAINING;
 	    break;
 	}
@@ -674,7 +681,7 @@ void bank_update(void)
                 bug( "bank_update:  fopen of BANK_FILE failed", 0 );
                 return;
         }
-        fprintf (fp, "SHARE_VALUE %d\r\n", share_value);
+        fprintf (fp, "SHARE_VALUE %d\n\r", share_value);
         fclose(fp);
 }
 
@@ -752,7 +759,7 @@ void char_update( void )
 		    ch->was_in_room = ch->in_room;
 		    if ( ch->fighting )
 			stop_fighting( ch, TRUE );
-		    send_to_char( "You disappear into the void.\r\n", ch );
+		    send_to_char( "You disappear into the void.\n\r", ch );
 		    act( "$n disappears into the void.",
 			ch, NULL, NULL, TO_ROOM );
 		    save_char_obj( ch );
@@ -786,7 +793,7 @@ void char_update( void )
 		    if ( paf->type > 0 && skill_table[paf->type].msg_off )
 		    {
 			send_to_char( skill_table[paf->type].msg_off, ch );
-			send_to_char( "\r\n", ch );
+			send_to_char( "\n\r", ch );
 		    }
 		}
 
@@ -814,7 +821,7 @@ void char_update( void )
 
             act("$n writhes in agony as plague sores erupt from $s skin.",
                 ch,NULL,NULL,TO_ROOM);
-            send_to_char("You writhe in agony from the plague.\r\n",ch);
+            send_to_char("You writhe in agony from the plague.\n\r",ch);
             for ( af = ch->affected; af != NULL; af = af->next )
             {
                 if (af->type == gsn_plague)
@@ -844,7 +851,7 @@ void char_update( void )
                 if (save != 0 && !saves_spell(save,vch) && !IS_IMMORTAL(vch)
                 &&  !IS_AFFECTED(vch,AFF_PLAGUE) && number_bits(4) == 0)
                 {
-                    send_to_char("You feel hot and feverish.\r\n",vch);
+                    send_to_char("You feel hot and feverish.\n\r",vch);
                     act("$n shivers and looks very ill.",vch,NULL,NULL,TO_ROOM);
                     affect_join(vch,&plague);
                 }
@@ -899,13 +906,13 @@ void char_update( void )
 		    && ( strcmp( race_table[ ch->race ].name, "Object" )
 			&& strcmp( race_table[ ch->race ].name, "God" ) ) ) )
         {
-            send_to_char( "You can't breathe!\r\n", ch );
+            send_to_char( "You can't breathe!\n\r", ch );
             act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
             damage( ch, ch, 5, gsn_breathe_water, WEAR_NONE );
         }
         else if ( IS_AFFECTED( ch, AFF_POISON ) )
         {
-            send_to_char( "You shiver and suffer.\r\n", ch );
+            send_to_char( "You shiver and suffer.\n\r", ch );
             act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
             damage( ch, ch, 2, gsn_poison, WEAR_NONE );
         }
@@ -966,7 +973,7 @@ void obj_update( void )
 	 *Slash's Merc Snippets
 	 *esnible@goodnet.com
 	 *Ported to envy2, and damage from falling objects added by Canth
-	 *phule@xs4all.nl
+	 *canth@xs4all.nl
 	 */
 	if( obj->in_room &&
 	    obj->in_room->sector_type == SECT_AIR &&
@@ -1103,6 +1110,9 @@ void aggr_update( void )
     {
 	ch = d->character;
 
+	if (!ch)				/* Fix ?? */
+		ch = d->original;
+
 	if ( d->connected != CON_PLAYING
 	    || ch->level >= LEVEL_IMMORTAL
 	    || !ch->in_room )
@@ -1205,7 +1215,7 @@ void time_update( void )
         return;
     if ( current_time > warning1 && warning1 > 0 )
     {
-	sprintf( buf, "First Warning!\r\n%s in %d minutes or %d seconds.\r\n",
+	sprintf( buf, "First Warning!\n\r%s in %d minutes or %d seconds.\n\r",
 		Reboot ? "Reboot" : "Shutdown",
 		(int) ( down_time - current_time ) / 60,
 		(int) ( down_time - current_time ) );
@@ -1214,7 +1224,7 @@ void time_update( void )
     }
     if ( current_time > warning2 && warning2 > 0 )
     {
-	sprintf( buf, "Second Warning!\r\n%s in %d minutes or %d seconds.\r\n",
+	sprintf( buf, "Second Warning!\n\r%s in %d minutes or %d seconds.\n\r",
 		Reboot ? "Reboot" : "Shutdown",
 		(int) ( down_time - current_time ) / 60,
 		(int) ( down_time - current_time ) );
@@ -1223,7 +1233,7 @@ void time_update( void )
     }
     if ( current_time + 10 > down_time && warning2 == 0 )
     {
-	sprintf( buf, "Final Warning!\r\n%s in 10 seconds.\r\n",
+	sprintf( buf, "Final Warning!\n\r%s in 10 seconds.\n\r",
 		Reboot ? "Reboot" : "Shutdown" );
 	send_to_all_char( buf );
 	warning2--;
@@ -1233,7 +1243,7 @@ void time_update( void )
         /* OLC 1.1b */
         do_asave( NULL, "" );
 
-        sprintf( buf, "%s by system.\r\n", Reboot ? "Reboot" : "Shutdown" );
+        sprintf( buf, "%s by system.\n\r", Reboot ? "Reboot" : "Shutdown" );
 	send_to_all_char( buf );
 	log_string( buf );
 
@@ -1491,7 +1501,7 @@ void update_handler( void )
     static int pulse_mobile;
     static int pulse_violence;
     static int pulse_point;
-    static int pulse_db_dump = PULSE_DB_DUMP;   /* OLC 1.1b */
+/*  static int pulse_db_dump = PULSE_DB_DUMP; */	/* OLC 1.1b */
 
     if ( --pulse_area     <= 0 )
     {
@@ -1515,12 +1525,26 @@ void update_handler( void )
 	mobile_update   ( );
     }
 
+#if defined (AUTO_WORLD_SAVE)
     /* OLC 1.1b */
     if ( --pulse_db_dump  <= 0 )
     {
 	wiznet(NULL, WIZ_TICKS, L_DIR, "Dump Area pulse (OLC)" );
         pulse_db_dump   = PULSE_DB_DUMP;
         do_asave( NULL, "" );
+    }
+#endif
+
+    /* Maniac, added this warning so it can be delayed on time... */
+    if ( pulse_db_dump == 100 )
+    {
+	wiznet(NULL, WIZ_TICKS, L_SEN, "Dump Area Pulse in 100 pulses...");
+    }
+
+    if ( pulse_db_dump == 5 )
+    {
+	wiznet(NULL, WIZ_TICKS, L_JUN, "Dump Area pulse coming soon...beware of lag" );
+	send_to_all_char ("OLC world save coming soon... get ready for some lag..." );
     }
 
     if ( --pulse_point    <= 0 )

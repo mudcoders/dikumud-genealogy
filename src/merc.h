@@ -23,12 +23,27 @@
 
 #include "config.h"			/* Configuration / options */
 
+/*
+ * Accommodate old non-Ansi compilers.
+ */
+#if defined( TRADITIONAL )
+#define const
+#define args( list )                    ( )
+#define DECLARE_DO_FUN( fun )           void fun( )
+#define DECLARE_SPEC_FUN( fun )         bool fun( )
+#define DECLARE_SPELL_FUN( fun )        void fun( )
+#define DECLARE_GAME_FUN( fun )         void fun( )
+#define DECLARE_OBJ_FUN( fun )		bool fun( )
+#else
 #define args( list )                    list
 #define DECLARE_DO_FUN( fun )           DO_FUN    fun
 #define DECLARE_SPEC_FUN( fun )         SPEC_FUN  fun
 #define DECLARE_SPELL_FUN( fun )        SPELL_FUN fun
 #define DECLARE_GAME_FUN( fun )         GAME_FUN  fun
 #define DECLARE_OBJ_FUN( fun )		OBJ_FUN   fun
+#endif
+
+
 
 /*
  * Short scalar types.
@@ -42,7 +57,15 @@
 #define TRUE     1
 #endif
 
+#if     defined( _AIX )
+#if     !defined( const )
+#define const
+#endif
+typedef int                             bool;
+#define unix
+#else
 typedef unsigned char                   bool;
+#endif
 
 /* Bit defines, so you don't have to recalculate/think up
    all the bitvalues every time  -- Maniac -- */
@@ -141,6 +164,7 @@ typedef void GAME_FUN		args( ( CHAR_DATA *ch,
  * Increase the max'es if you add more of something.
  * Adjust the pulse numbers to suit yourself.
  */
+#define MAX_CHUNKS		   27		/* Used in ssm.c */
 #define MAX_SKILL                 165
 #define MAX_CLASS                   8
 #define MAX_RACE                   41
@@ -285,6 +309,20 @@ struct  weather_data
 #define CLASS_NEW_CLASS		8
 
 /*
+ * Classes again..this time with bits.
+ * Used for race/class restrictions - Canth
+ */
+#define CLS_MAGE		BIT_1
+#define CLS_CLERIC		BIT_2
+#define CLS_THIEF		BIT_3
+#define CLS_WARRIOR		BIT_4
+#define CLS_PSIONICIST		BIT_5
+#define CLS_NECROMANCER		BIT_6
+#define CLS_DRUID		BIT_7
+#define CLS_RANGER		BIT_8
+#define CLS_NEW_CLASS		BIT_9
+
+/*
  * Clans
  */
 /* The clans */
@@ -321,6 +359,7 @@ struct  race_type
     int                 wis_mod;
     int                 dex_mod;
     int                 con_mod;
+    int			not_class;
     char *              dmg_message;
     char *              hate;
 };
@@ -661,6 +700,11 @@ struct  kill_data
 #define OBJ_VNUM_NEC_BONE	26
 #define OBJ_VNUM_NEC_HOOD	24
 #define OBJ_VNUM_NEC_BLACKMOOR	29
+
+/* Was 60 and 61 */
+#define OBJ_VNUM_DIAMOND_RING	3371	/* Wedding rings for Marriage code */
+#define OBJ_VNUM_WEDDING_BAND	3372	/* Canth (canth@xs4all.nl) of Mythran */
+
 
 /*
  * Item types.
@@ -1130,7 +1174,6 @@ struct  char_data
     int                 move;
     int                 max_move;
     int                 gold;
-    int			balance;
     int                 exp;
     int			questpoints;		/* Vassago */
     int			nextquest;		/* Vassago */
@@ -1168,7 +1211,8 @@ struct  pc_data
     char *              immskll;
     char *              title;
     char *              prompt;
-    char *		who_text;
+    char *		who_text;	/* Text in who listing - Canth */
+    char *		spouse;		/* Name of spouse if wed - Canth */
     int                 perm_str;
     int                 perm_int;
     int                 perm_wis;
@@ -1191,6 +1235,7 @@ struct  pc_data
     int			clan;					/* Maniac */
     int			clanlevel;				/* Maniac */
     int			wiznet;					/* Maniac */
+    int			mprog_edit;	/* Mprog currently editing - Walker */
     bool                switched;
     bool		confirm_delete;				/* Maniac */
 };
@@ -1646,6 +1691,7 @@ extern  char *  const                   title_table     [ MAX_CLASS   ]
 							[ MAX_LEVEL+1 ]
 							[ 2 ];
 extern  const   struct  race_type       race_table      [ MAX_RACE ];
+extern	int	const			bitvalues	[ 31 ];
 
 
 
@@ -1686,6 +1732,7 @@ extern          time_t                  warning1;
 extern          time_t                  warning2;
 extern          bool                    Reboot;
 extern		int			share_value;
+extern		int			pulse_db_dump;
 
 
 /*
@@ -1962,6 +2009,14 @@ DECLARE_DO_FUN( do_rename	);	/* rename players */
 DECLARE_DO_FUN( do_exlist	);	/* Find exits between areas */
 DECLARE_DO_FUN( do_objlist	);	/* Dumps list of objects */
 
+DECLARE_DO_FUN( do_marry	);	/* Marry 2 ppl - Canth */
+DECLARE_DO_FUN( do_divorce	);	/* Divorce 2 ppl - Canth */
+DECLARE_DO_FUN( do_wed		);	/* Married comm channel - Canth */
+DECLARE_DO_FUN( do_gospouse	);	/* Goto spouse - Canth */
+DECLARE_DO_FUN( do_getspouse	);	/* Trans spouse - Canth */
+DECLARE_DO_FUN( do_rings	);	/* Make rings 4 married ppl - Canth */
+
+
 /*
  * Spell functions.
  * Defined in magic.c.
@@ -2105,7 +2160,100 @@ DECLARE_SPELL_FUN(	spell_rock_flesh	);
 DECLARE_SPELL_FUN(	spell_summon_dead	);
 DECLARE_SPELL_FUN(	spell_call_quake	);
 
+/*
+ * OS-dependent declarations.
+ * These are all very standard library functions,
+ *   but some systems have incomplete or non-ansi header files.
+ */
+#if     defined( _AIX )
 char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+#if     defined( apollo )
+int     atoi            args( ( const char *string ) );
+void *  calloc          args( ( unsigned nelem, size_t size ) );
+char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+#if     defined( hpux )
+char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+#if     defined( linux )
+char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+#if     defined( macintosh )
+#define NOCRYPT
+#if     defined( unix )
+#undef  unix
+#endif
+#endif
+
+#if     defined( MIPS_OS )
+char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+#if     defined( MSDOS )
+#define NOCRYPT
+#if     defined( unix )
+#undef  unix
+#endif
+#endif
+
+#if     defined( NeXT )
+char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+#if     defined( sequent )
+char *  crypt           args( ( const char *key, const char *salt ) );
+int     fclose          args( ( FILE *stream ) );
+int     fprintf         args( ( FILE *stream, const char *format, ... ) );
+int     fread           args( ( void *ptr, int size, int n, FILE *stream ) );
+int     fseek           args( ( FILE *stream, long offset, int ptrname ) );
+void    perror          args( ( const char *s ) );
+int     ungetc          args( ( int c, FILE *stream ) );
+#endif
+
+#if     defined( sun )
+char *  crypt           args( ( const char *key, const char *salt ) );
+int     fclose          args( ( FILE *stream ) );
+int     fprintf         args( ( FILE *stream, const char *format, ... ) );
+size_t  fread           args( ( void *ptr, size_t size, size_t nitems,
+			       FILE *stream ) );
+int     fseek           args( ( FILE *stream, long offset, int ptrname ) );
+void    perror          args( ( const char *s ) );
+int     ungetc          args( ( int c, FILE *stream ) );
+#endif
+
+#if     defined( ultrix )
+char *  crypt           args( ( const char *key, const char *salt ) );
+#endif
+
+/*
+ * Stuff for DEC UNIX on Alpha (OSF3.2C)
+ * Fusion
+ */
+#if defined( _OSF_SOURCE )
+char *  crypt           args( ( const char *key, const char *salt ) );
+int     system          args( ( const char *string ) );
+ssize_t read            args( ( int fd, void *buf, size_t nbyte ) );
+ssize_t write           args( ( int fd, const void *buf, size_t nbyte ) );
+int     close           args( ( int fd ) );
+#endif
+
+
+/*
+ * The crypt(3) function is not available on some operating systems.
+ * In particular, the U.S. Government prohibits its export from the
+ *   United States to foreign countries.
+ * Turn on NOCRYPT to keep passwords in plain text.
+ */
+#if     defined( NOCRYPT )
+#define crypt( s1, s2 ) ( s1 )
+#endif
+
+
 
 /*
  * Data files used by the server.
@@ -2118,9 +2266,29 @@ char *  crypt           args( ( const char *key, const char *salt ) );
  *   so players can go ahead and telnet to all the other descriptors.
  * Then we close it whenever we need to open a file (e.g. a save file).
  */
+#if defined( macintosh )
+#define PLAYER_DIR      ""              /* Player files                 */
+#define NULL_FILE       "proto.are"     /* To reserve one stream        */
+#define MOB_DIR         ""		/* MOBProg files                */
+#endif
+
+#if defined( MSDOS )
+#define PLAYER_DIR      "../player/"    /* Player files                 */
+#define NULL_FILE       "nul"           /* To reserve one stream        */
+#define MOB_DIR         ""		/* MOBProg files                */
+#endif
+
+#if defined( unix )
 #define PLAYER_DIR      "../player/"    /* Player files                 */
 #define NULL_FILE       "/dev/null"     /* To reserve one stream        */
 #define MOB_DIR         "MOBProgs/"     /* MOBProg files                */
+#endif
+
+#if defined( linux )
+#define PLAYER_DIR      "../player/"    /* Player files                 */
+#define NULL_FILE       "/dev/null"     /* To reserve one stream        */
+#define MOB_DIR         "MOBProgs/"     /* MOBProg files                */
+#endif
 
 #define AREA_LIST       "AREA.LST"      /* List of areas                */
 #define MUSIC_FILE	"MUSIC.TXT"	/* For jukebox			*/
@@ -2199,6 +2367,7 @@ DECLARE_DO_FUN( do_aedit        );      /* OLC 1.1b */
 DECLARE_DO_FUN( do_redit        );      /* OLC 1.1b */
 DECLARE_DO_FUN( do_oedit        );      /* OLC 1.1b */
 DECLARE_DO_FUN( do_medit        );      /* OLC 1.1b */
+DECLARE_DO_FUN( do_mpedit	);	/* OLC 1.1b addition */
 DECLARE_DO_FUN( do_asave        );
 DECLARE_DO_FUN( do_alist        );
 DECLARE_DO_FUN( do_resets       );
@@ -2284,6 +2453,7 @@ extern const struct flag_type   wear_loc_flags[];
 extern const struct flag_type   weapon_flags[];
 extern const struct flag_type   container_flags[];
 extern const struct flag_type   liquid_flags[];
+extern const struct flag_type	mprog_type_flags[];
 
 /*
  * Our function prototypes.
@@ -2460,7 +2630,8 @@ CD   *  get_char        args( ( CHAR_DATA *ch ) );
 bool    longstring      args( ( CHAR_DATA *ch, char *argument ) );
 bool    authorized      args( ( CHAR_DATA *ch, char *skllnm ) );
 void    end_of_game     args( ( void ) );
-int     race_lookup     args( ( const char *race ) );
+int     race_lookup     args( ( const char *race ) );	/* Maniac */
+int	race_lookup_prefix	args( ( const char *race ) ); /* Maniac */
 int     affect_lookup   args( ( const char *race ) );
 int	advatoi		args( ( const char *s ) );
 int	count_users	args( ( OBJ_DATA *obj ) );
@@ -2521,8 +2692,15 @@ int	lang_lookup	args( ( const char *name ) );
 void save_social_table	( );
 void load_social_table	( );
 
+/* mob_commands.c */
+char *	mprog_type_to_name	args ( ( int type ) );
+
 /* wiznet.c */
 void	wiznet		args ( ( CHAR_DATA *ch, int chan, int level, char * string ) );
+
+#ifdef DUNNO_STRSTR
+char *  strstr                  args ( (const char *s1, const char *s2 ) );
+#endif
 
 void    mprog_wordlist_check    args ( ( char * arg, CHAR_DATA *mob,
                                         CHAR_DATA* actor, OBJ_DATA* object,

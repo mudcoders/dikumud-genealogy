@@ -27,13 +27,13 @@ while ( 1 )
     end
 
     # Update to new code if possible.
-    if ( -e ../src/envy.new ) then
-	\mv ../src/envy2 ../src/envy.old
-	\mv ../src/envy.new ../src/envy2
+    if ( -e ../src/mythran.new ) then
+	\mv ../src/mythran3 ../src/mythran.old
+	\mv ../src/mythran.new ../src/mythran3
     endif
 
-    # Run envy.
-    ../src/envy2 $port >&! $logfile
+    # Run Mythran
+    ../src/mythran3 $port >&! $logfile
 
     if ( -e core ) then
 	\mv core ../src/

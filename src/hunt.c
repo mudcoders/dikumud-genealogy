@@ -453,7 +453,7 @@ void do_hunt( CHAR_DATA *ch, char *argument )
 
   if( arg[0] == '\0' )
     {
-      send_to_char( "Whom are you trying to hunt?\r\n", ch );
+      send_to_char( "Whom are you trying to hunt?\n\r", ch );
       return;
     }
 
@@ -467,7 +467,7 @@ void do_hunt( CHAR_DATA *ch, char *argument )
 
   if( victim == NULL )
     {
-      send_to_char("No-one around by that name.\r\n", ch );
+      send_to_char("No-one around by that name.\n\r", ch );
       return;
     }
 
@@ -484,7 +484,7 @@ void do_hunt( CHAR_DATA *ch, char *argument )
     ch->move -= 3;
   else
     {
-      send_to_char( "You're too exhausted to hunt anyone!\r\n", ch );
+      send_to_char( "You're too exhausted to hunt anyone!\n\r", ch );
       return;
     }
 
@@ -502,7 +502,7 @@ void do_hunt( CHAR_DATA *ch, char *argument )
 
   if( direction < 0 || direction > 5 )
     {
-      send_to_char( "Hmm... Something seems to be wrong.\r\n", ch );
+      send_to_char( "Hmm... Something seems to be wrong.\n\r", ch );
       return;
     }
 

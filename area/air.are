@@ -30,7 +30,7 @@ Golden maned and black all over.  It's quite a beautiful creature if not
 for the fact it is hungry and is attacking you!
 ~
 97 0 300 S
-15 14 0 1d1+104 2d5+2
+17 14 0 1d1+104 2d5+2
 500 0
 0 Harpy~ 1
 #0
@@ -1211,7 +1211,7 @@ S
 
 
 #SPECIALS
-M 1000 spec_cast_mage
+M 1000 spec_cast_mage 	; A fairy dragon
 S
 
 
@@ -1222,10 +1222,10 @@ S
 
 
 #RESETS
-M 0 1000 10 1005
-M 0 1000 10 1019
-M 0 1000 10 1022
-M 0 1001 3 1034
+M 0 1000 10 1005  	; A fairy dragon to In the air ...
+M 0 1000 10 1019  	; A fairy dragon to In the air ...
+M 0 1000 10 1022  	; A fairy dragon to In the air ...
+M 0 1001  3 1034  	; A griffin to In the air ...
 S
 
 

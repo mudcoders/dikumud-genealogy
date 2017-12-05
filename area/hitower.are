@@ -17,7 +17,7 @@ A shadow guardian screams a challenge and attacks.
 It seems to be made of nothing more than darkness ...
 ~
 101 33290 -350 S
-7 10 0 9d9+90 2d5+5
+11 10 0 9d9+90 2d5+5
 100 0
 0 Undead~ 0
 #1301
@@ -28,7 +28,7 @@ An emaciated adventurer is here looking lost and hopeless.
 He looks haggard and sickly; no doubt he's been lost here for quite some time.
 ~
 135 0 400 S
-8 12 0 10d10+10 2d4+4
+6 12 0 10d10+10 2d4+4
 286 0
 0 Human~ 1
 #1302
@@ -42,7 +42,7 @@ You see before you, one of Midgaard's finest fighting elite, the mighty
 bunny slayer himself, Edgar the Horrible!
 ~
 149 0 1000 S
-3 20 0 3d9+10 1d8+1
+2 20 0 3d9+10 1d8+1
 23 0
 0 Giant~ 1
 #1303
@@ -53,7 +53,7 @@ A huge diamond golem is standing guard here.
 It looks quite strong.
 ~
 67 8 500 S
-30 5 0 23d23+230 3d6+15
+26 5 0 23d23+230 3d6+15
 985 0
 0 Object~ 0
 #1304
@@ -65,7 +65,7 @@ He seems to be contemplating life, love and the mysteries of the universe.
 Then again, he may just have a headache.
 ~
 193 8 450 S
-11 10 0 10d10+100 1d8+8
+14 10 0 10d10+100 1d8+8
 436 0
 0 Elf~ 1
 #1305
@@ -76,7 +76,7 @@ Strick is here levitating drinks to his customers.
 He looks rather harmless, but then again so does a sleeping dragon.
 ~
 67 8 750 S
-29 1 0 1d1+30000 3d7+20
+27 1 0 1d1+30000 3d7+20
 2000 0
 0 Human~ 1
 #1306
@@ -87,7 +87,7 @@ Tatorious the wizard is here counting his earnings.
 Tatorious winks at you mischievously.
 ~
 67 8 900 S
-20 0 0 1d1+3000 3d7+21
+19 0 0 1d1+3000 3d7+21
 5000 0
 0 Halfelf~ 1
 #1307
@@ -97,7 +97,7 @@ Ezmerelda the cook is here stirring a large pot of something.
 ~
 ~
 67 8 -500 S
-22 6 0 20d20+200 3d4+8
+17 6 0 20d20+200 3d4+8
 1092 0
 0 Human~ 2
 #1308
@@ -123,7 +123,7 @@ casting you cannot tell.
 He looks quite mad, no doubt he's been mistreated horribly.
 ~
 231 0 100 S
-20 6 0 3d30+30 2d4+9
+19 6 0 3d30+30 2d4+9
 0 0
 0 Gnome~ 1
 #1310
@@ -134,7 +134,7 @@ The Jailor is here enjoying a comfortable nap.
 He looks rather dirty.
 ~
 67 8 100 S
-15 5 0 17d17+170 3d5+10
+21 5 0 17d17+170 3d5+10
 1326 0
 0 Human~ 1
 #1311
@@ -145,7 +145,7 @@ A straw broom is here leaning against the wall.
 The broom screams 'Take that you lout!'
 ~
 103 8 50 S
-14 10 0 7d7+70 2d4+4
+13 10 0 7d7+70 2d4+4
 0 0
 0 Object~ 0
 #1312
@@ -156,7 +156,7 @@ A pair of disembodied hands floats in the air here.
 The hands twitch with anticipation of strangling someone.
 ~
 97 0 -400 S
-8 7 0 9d9+90 2d4+5
+11 7 0 9d9+90 2d4+5
 0 0
 0 Undead~ 0
 #1313
@@ -167,7 +167,7 @@ A pair of disembodied eyes floats here glaring at you.
 The eyes smolder with hatred.
 ~
 97 8 -600 S
-13 5 0 15d15+150 3d4+8
+10 5 0 15d15+150 3d4+8
 0 0
 0 Undead~ 0
 #1314
@@ -178,7 +178,7 @@ A visiting mage is here snoring away in peaceful slumber.
 He looks quite sleepy.
 ~
 199 8 250 S
-13 8 0 12d12+120 2d4+5
+11 8 0 12d12+120 2d4+5
 726 0
 0 Gnome~ 1
 #1315
@@ -189,7 +189,7 @@ A young apprentice magic user is here doing magical studies.
 She looks quite intent on her studies.
 ~
 195 0 400 S
-7 7 0 7d6+25 2d4+5
+5 7 0 7d6+25 2d4+5
 369 0
 0 Human~ 2
 #1316
@@ -200,7 +200,7 @@ A young apprentice is here mumbling words of magic to himself.
 He looks to be oblivious to all but the spell he is memorizing.
 ~
 195 0 380 S
-6 6 0 7d6+25 2d4+5
+8 6 0 7d6+25 2d4+5
 487 0
 0 Human~ 1
 #1317
@@ -211,7 +211,7 @@ A young apprentice is sleeping here.
 He seems to be dreaming.
 ~
 195 0 350 S
-6 7 0 7d6+25 2d4+4
+7 7 0 7d6+25 2d4+4
 211 0
 0 Gnome~ 1
 #1318
@@ -222,7 +222,7 @@ A young apprentice is here teasing a cornered kitten.
 He looks like a mischievous youth.
 ~
 195 0 -200 S
-2 7 0 7d6+25 2d4+5
+1 7 0 7d6+25 2d4+5
 382 0
 0 Elf~ 1
 #1319
@@ -234,7 +234,7 @@ The little ball of fur looks very unhappy.  Singed fur and a few minor burns
 mark its mottled coat.
 ~
 195 0 500 S
-3 20 0 1d1+10 1d4+1
+1 20 0 1d1+10 1d4+1
 0 0
 0 Animal~ 2
 #1320
@@ -245,7 +245,7 @@ A student of spells is here looking quite bored
 The student yawns.
 ~
 195 0 350 S
-10 9 0 8d8+80 2d4+6
+7 9 0 8d8+80 2d4+6
 263 0
 0 Elf~ 1
 #1321
@@ -256,7 +256,7 @@ The instructor screams at your interruption and attacks you.
 He looks quite angry at your interruption.
 ~
 99 8 300 S
-21 6 0 14d14+140 3d4+8
+23 6 0 14d14+140 3d4+8
 880 0
 0 Elf~ 1
 #1322
@@ -267,7 +267,7 @@ A student of spells is here trying to master invisibility.
 He blinks in and out of existence, trying to master the spell.
 ~
 195 10 400 S
-6 8 0 8d8+80 2d4+6
+5 8 0 8d8+80 2d4+6
 198 0
 0 Halfelf~ 1
 #1323
@@ -288,7 +288,7 @@ A student of spells has fallen asleep at her desk here.
 She looks to have collapsed from sheer boredom.
 ~
 195 8 400 S
-14 11 0 9d9+90 2d4+7
+16 11 0 9d9+90 2d4+7
 567 0
 0 Human~ 2
 #1325
@@ -298,7 +298,7 @@ An old wizard is here making a speech
 ~
 ~
 195 8 400 S
-15 4 0 18d18+180 3d4+8
+17 4 0 18d18+180 3d4+8
 2468 0
 0 Elf~ 1
 #1326
@@ -330,7 +330,7 @@ A spell teacher is here relaxing.
 ~
 ~
 67 8 200 S
-11 5 0 15d15+150 3d4+4
+12 5 0 15d15+150 3d4+4
 1002 0
 0 Human~ 1
 #1329
@@ -340,7 +340,7 @@ An aged wizard is sleeping here.
 ~
 ~
 227 8 350 S
-22 5 0 20d20+200 3d4+9
+21 5 0 20d20+200 3d4+9
 1567 0
 0 Gnome~ 1
 #1330
@@ -350,7 +350,7 @@ A scribe is here working on some manuscripts.
 ~
 ~
 199 8 400 S
-13 6 0 14d14+140 3d4+4
+14 6 0 14d14+140 3d4+4
 312 0
 0 Elf~ 1
 #1331
@@ -374,7 +374,7 @@ He seems to be so old, his skin has become nothing but a giant wrinkle.
 The master scribe screams 'How dare you interrupt my important work???'
 ~
 227 8 100 S
-20 4 0 22d22+220 3d5+8
+19 4 0 22d22+220 3d5+8
 5634 0
 0 Drow~ 1
 #1333
@@ -384,7 +384,7 @@ The scribe's assistant is here folding parchments.
 ~
 ~
 227 8 100 S
-7 6 0 16d16+160 3d4+6
+4 6 0 16d16+160 3d4+6
 1050 0
 0 Drow~ 1
 #1334
@@ -394,7 +394,7 @@ The Enchanter is here placing a dweomer upon well made sword.
 ~
 ~
 99 8 -200 S
-26 4 0 23d23+230 3d5+6
+25 4 0 23d23+230 3d5+6
 6812 0
 0 Human~ 1
 #1335
@@ -405,7 +405,7 @@ A well crafted sword lies on the work table here.
 It looks quite sharp.
 ~
 99 0 -500 S
-14 1 0 10d10+100 3d5+5
+13 1 0 10d10+100 3d5+5
 0 0
 0 Object~ 0
 #1336
@@ -419,7 +419,7 @@ wildly, and he starts to drool.
 The Mad Alchemist throws back his head and cackles with insane glee!
 ~
 231 8 150 S
-26 4 0 24d24+240 3d5+10
+23 4 0 24d24+240 3d5+10
 2346 0
 0 Gnome~ 1
 #1337
@@ -429,7 +429,7 @@ The master summoner is here holding gateways open to other planes.
 ~
 ~
 227 8 -200 S
-22 5 0 22d22+220 3d5+6
+19 5 0 22d22+220 3d5+6
 1019 0
 0 Elf~ 1
 #1338
@@ -440,7 +440,7 @@ The master charmer utters the words, 'uuuzzldctz'.
 The master charmer sizes you up, always looking for a new pet.
 ~
 35 8 -400 S
-21 4 0 23d23+230 3d5+10
+23 4 0 23d23+230 3d5+10
 4672 0
 0 Drow~ 1
 #1339
@@ -451,7 +451,7 @@ A wooden golem stands a silent vigil here, guarding the stairs.
 He looks flammable.
 ~
 99 8 100 S
-23 7 0 16d16+160 1d10+10
+22 7 0 16d16+160 1d10+10
 1000 0
 0 Object~ 0
 #1340
@@ -462,7 +462,7 @@ The master spell binder is here re-charging a blackened wand.
 The master spell binder snarls at you and attacks.
 ~
 231 8 -500 S
-20 5 0 23d23+230 3d5+8
+17 5 0 23d23+230 3d5+8
 2315 0
 0 Drow~ 1
 #1341
@@ -483,7 +483,7 @@ A granite golem stands here waiting to do its master's bidding.
 It looks like a statue, until you see it shamble towards you.
 ~
 99 0 300 S
-20 7 0 20d20+200 4d5+10
+22 7 0 20d20+200 4d5+10
 0 0
 0 Object~ 0
 #1343
@@ -494,7 +494,7 @@ A bronze golem stands here shining in the light.
 He looks rather dim witted.
 ~
 67 0 350 S
-12 8 0 18d18+180 4d5+5
+11 8 0 18d18+180 4d5+5
 0 0
 0 Object~ 0
 #1344
@@ -506,7 +506,7 @@ It looks to be made of a potpourri of different body parts; some don't even
 resemble anything human.
 ~
 99 0 200 S
-10 9 0 12d12+120 4d4+4
+7 9 0 12d12+120 4d4+4
 0 0
 0 Object~ 0
 #1345
@@ -517,7 +517,7 @@ A cloth golem wanders around here.
 It looks like a bunch of old rags, quite surprising it can actually walk.
 ~
 71 0 350 S
-6 10 0 8d8+80 3d4+1
+7 10 0 8d8+80 3d4+1
 0 0
 0 Object~ 0
 #1346
@@ -529,7 +529,7 @@ It seems to be forged of dark metal.  It looks strong and durable,
 but somewhat un-intelligent.
 ~
 71 0 350 S
-27 0 0 25d25+250 3d7+3
+28 0 0 25d25+250 3d7+3
 10000 0
 0 Object~ 0
 #1347
@@ -539,7 +539,7 @@ A clay golem stands guard here.
 ~
 ~
 103 8 200 S
-13 5 0 15d15+150 4d5+3
+10 5 0 15d15+150 4d5+3
 0 0
 0 Object~ 0
 #1348
@@ -551,7 +551,7 @@ The image of an ugly dragon flickers slightly, and where the dragon was
 now stands a small harmless looking old man.
 ~
 199 8 150 S
-16 6 0 21d21+210 3d5+5
+15 6 0 21d21+210 3d5+5
 2345 0
 0 Human~ 1
 #1349
@@ -565,7 +565,7 @@ embers which serve as eyes can be seen through the shadow.
 The Necromancer shrieks some obscenities and orders his minions to attack.
 ~
 231 8 -950 S
-24 0 0 25d25+250 3d7+7
+25 0 0 25d25+250 3d7+7
 11684 0
 0 Human~ 1
 #1350
@@ -586,7 +586,7 @@ An undead giant lumbers towards you.
 ~
 ~
 103 8 -500 S
-16 5 0 18d18+180 3d5+10
+20 5 0 18d18+180 3d5+10
 0 0
 0 Undead~ 0
 #1352
@@ -599,7 +599,7 @@ her mouth should be, comes a disgusting giggling sound that makes your skin
 crawl with revulsion.
 ~
 103 8 -450 S
-17 5 0 20d20+200 3d6+5
+14 5 0 20d20+200 3d6+5
 2150 0
 0 Undead~ 2
 #1353
@@ -610,7 +610,7 @@ The Librarian has fallen asleep at his desk here.
 He looks like a rather peaceful old man.
 ~
 227 8 450 S
-22 3 0 23d23+230 3d6+5
+23 3 0 23d23+230 3d6+5
 1287 0
 0 Human~ 1
 #1354
@@ -624,7 +624,7 @@ great master in hopes of gleaning secrets one could never hope to uncover
 alone.
 ~
 103 8 0 S
-21 -3 0 24d24+240 3d6+6
+23 -3 0 24d24+240 3d6+6
 6723 0
 0 Human~ 1
 #1355
@@ -636,7 +636,7 @@ The grey cat cocks an ear towards you, sensing your scrutiny, then purrs
 contentedly.  It looks rather harmless, until you notice its very large claws.
 ~
 67 32770 0 S
-14 5 0 15d15+150 5d5+5
+11 5 0 15d15+150 5d5+5
 0 0
 0 Animal~ 2
 #1356
@@ -660,7 +660,7 @@ must have been beautiful, now the scar combined with what seems to be a
 permanent scowl make her looks quite fearsome.
 ~
 103 32776 -750 S
-19 2 0 20d20+200 3d6+6
+17 2 0 20d20+200 3d6+6
 13876 0
 0 Halfelf~ 2
 #1358
@@ -672,7 +672,7 @@ It looks both mean and dangerous.  Petting seems to be completely out of
 the question.
 ~
 67 32776 -800 S
-12 5 0 16d16+160 3d7+3
+10 5 0 16d16+160 3d7+3
 0 0
 0 Animal~ 0
 #1359
@@ -683,7 +683,7 @@ The master of the black robes is here plotting vile deeds.
 The master glares at you.
 ~
 71 136 -1000 S
-35 -10 0 30d30+300 2d5+20
+40 -10 0 30d30+300 2d5+20
 22100 0
 0 Drow~ 1
 #1360
@@ -695,7 +695,7 @@ He looks like a fanatic.
 The apprentice screams 'Thou art unworthy of this honor!'
 ~
 99 8 750 S
-18 2 0 20d20+200 3d6+6
+14 2 0 20d20+200 3d6+6
 7400 0
 0 Human~ 1
 #1361
@@ -706,7 +706,7 @@ A white cat is here preening its fur.
 It seems to be nothing more than a large ball of fluff with claws.
 ~
 67 32776 800 S
-16 4 0 15d8+10 3d7+3
+19 4 0 15d8+10 3d7+3
 0 0
 0 Animal~ 0
 #1362
@@ -717,7 +717,7 @@ The master of goodness is here frowning at your intrusion.
 He looks like a self-righteous bastard.
 ~
 67 136 1000 S
-31 -10 0 30d30+300 2d5+20
+29 -10 0 30d30+300 2d5+20
 21900 0
 0 Elf~ 1
 #1363
@@ -743,7 +743,7 @@ youthful appearance through the use of strong magics.
 The Grand Master pets her familiar and smiles at you in confidence.
 ~
 67 136 0 S
-51 -20 0 50d50+500 3d4+20
+49 -20 0 50d50+500 3d4+20
 50000 0
 0 Elf~ 2
 #1365
@@ -4938,60 +4938,60 @@ S
 
 
 #SPECIALS
-M 1300 spec_cast_undead
-M 1301 spec_cast_cleric
-M 1304 spec_cast_mage
-M 1306 spec_cast_mage
-M 1307 spec_cast_mage
-M 1308 spec_cast_mage
-M 1309 spec_cast_mage
-M 1310 spec_cast_mage
-M 1311 spec_thief
-M 1312 spec_cast_undead
-M 1313 spec_cast_undead
-M 1314 spec_cast_mage
-M 1315 spec_cast_mage
-M 1316 spec_cast_mage
-M 1317 spec_cast_mage
-M 1318 spec_cast_mage
-M 1320 spec_cast_mage
-M 1321 spec_cast_mage
-M 1322 spec_cast_mage
-M 1323 spec_cast_mage
-M 1324 spec_cast_mage
-M 1325 spec_cast_mage
-M 1326 spec_cast_mage
-M 1327 spec_cast_mage
-M 1328 spec_cast_mage
-M 1329 spec_cast_mage
-M 1330 spec_cast_mage
-M 1331 spec_cast_mage
-M 1332 spec_cast_mage
-M 1333 spec_cast_mage
-M 1334 spec_cast_mage
-M 1336 spec_cast_mage
-M 1337 spec_cast_mage
-M 1338 spec_cast_mage
-M 1340 spec_cast_mage
-M 1341 spec_cast_mage
-M 1348 spec_cast_mage
-M 1349 spec_cast_mage
-M 1350 spec_cast_undead
-M 1351 spec_cast_undead
-M 1352 spec_cast_mage
-M 1353 spec_cast_mage
-M 1354 spec_cast_mage
-M 1355 spec_cast_mage
-M 1356 spec_cast_mage
-M 1357 spec_cast_mage
-M 1358 spec_cast_mage
-M 1359 spec_cast_mage
-M 1360 spec_cast_mage
-M 1361 spec_cast_mage
-M 1362 spec_cast_mage
-M 1363 spec_cast_mage
-M 1364 spec_cast_mage
-M 1365 spec_cast_mage
+M 1300 spec_cast_undead 	; a shadow guardian
+M 1301 spec_cast_cleric 	; a lost adventurer
+M 1304 spec_cast_mage 	; a mage
+M 1306 spec_cast_mage 	; Tatorious
+M 1307 spec_cast_mage 	; Ezmerelda
+M 1308 spec_cast_mage 	; The cook's assistant
+M 1309 spec_cast_mage 	; The prisoner
+M 1310 spec_cast_mage 	; the Jailor
+M 1311 spec_thief 	; a broom
+M 1312 spec_cast_undead 	; a pair of disembodied hands
+M 1313 spec_cast_undead 	; a pair of disembodied eyes
+M 1314 spec_cast_mage 	; the mage
+M 1315 spec_cast_mage 	; a young apprentice magic user
+M 1316 spec_cast_mage 	; a young apprentice
+M 1317 spec_cast_mage 	; a young apprentice
+M 1318 spec_cast_mage 	; A young apprentice
+M 1320 spec_cast_mage 	; a student
+M 1321 spec_cast_mage 	; an instructor of magic
+M 1322 spec_cast_mage 	; a student of spells
+M 1323 spec_cast_mage 	; a spell teacher
+M 1324 spec_cast_mage 	; a student of spells
+M 1325 spec_cast_mage 	; a wizard
+M 1326 spec_cast_mage 	; a young mage
+M 1327 spec_cast_mage 	; the battle mistress
+M 1328 spec_cast_mage 	; a spell teacher
+M 1329 spec_cast_mage 	; an aged wizard
+M 1330 spec_cast_mage 	; a scribe
+M 1331 spec_cast_mage 	; a scribe
+M 1332 spec_cast_mage 	; the master scribe
+M 1333 spec_cast_mage 	; the scribe's assistant
+M 1334 spec_cast_mage 	; the Enchanter
+M 1336 spec_cast_mage 	; the Mad Alchemist
+M 1337 spec_cast_mage 	; the master summoner
+M 1338 spec_cast_mage 	; the master charmer
+M 1340 spec_cast_mage 	; the master spell binder
+M 1341 spec_cast_mage 	; the golem maker
+M 1348 spec_cast_mage 	; the master of illusions
+M 1349 spec_cast_mage 	; the Necromancer
+M 1350 spec_cast_undead 	; an animated skeleton
+M 1351 spec_cast_undead 	; an undead giant
+M 1352 spec_cast_mage 	; an ugly witch
+M 1353 spec_cast_mage 	; the Librarian
+M 1354 spec_cast_mage 	; the master's apprentice
+M 1355 spec_cast_mage 	; a grey cat
+M 1356 spec_cast_mage 	; the master of Neutrality
+M 1357 spec_cast_mage 	; a black robed apprentice
+M 1358 spec_cast_mage 	; a black cat
+M 1359 spec_cast_mage 	; the master of the black robes
+M 1360 spec_cast_mage 	; a white robed apprentice
+M 1361 spec_cast_mage 	; a white cat
+M 1362 spec_cast_mage 	; The master of goodness
+M 1363 spec_cast_mage 	; A calico cat
+M 1364 spec_cast_mage 	; The Grand Mistress
+M 1365 spec_cast_mage 	; a wizard
 S
 
 
@@ -5002,222 +5002,222 @@ S
 
 
 #RESETS
-R 0 1301 4
-R 0 1302 4
-M 0 1300 6 1302
-R 0 1303 4
-R 0 1304 4
-M 0 1300 6 1304
-R 0 1305 4
-R 0 1306 4
-M 0 1300 6 1306
-R 0 1307 4
-M 0 1302 1 1307
-R 0 1308 4
-M 0 1300 6 1308
-R 0 1309 4
-M 0 1300 6 1311
-M 0 1301 1 1311
-M 0 1303 1 1312
-M 0 1304 7 1313
-M 0 1304 7 1314
-M 0 1304 7 1314
-M 0 1304 7 1315
-M 0 1304 7 1316
-M 0 1304 7 1318
-M 0 1305 1 1318
-G 0 1351 0
-G 0 1352 0
-M 0 1304 7 1319
-M 0 1306 1 1319
-O 0 1301 0 1320
-P 0 1304 0 1301
-O 0 1302 0 1320
-P 0 1305 0 1302
-P 0 1306 0 1302
-M 0 1307 1 1320
-E 0 1355 0 16
-M 0 1308 1 1320
-M 0 1309 1 1327
-E 0 1356 0 14
-M 0 1310 1 1328
-E 0 1323 0 17
-M 0 1311 2 1333
-M 0 1311 2 1333
-O 0 1307 0 1333
-O 0 1307 0 1333
-M 0 1312 10 1335
-M 0 1312 10 1335
-M 0 1312 10 1335
-M 0 1312 10 1335
-M 0 1313 7 1335
-M 0 1314 1 1337
-M 0 1312 10 1340
-M 0 1315 3 1342
-M 0 1316 3 1342
-M 0 1317 3 1342
-M 0 1315 3 1344
-M 0 1316 3 1344
-M 0 1317 3 1344
-M 0 1318 3 1345
-M 0 1318 3 1345
-M 0 1318 3 1345
-M 0 1319 1 1345
-M 0 1320 4 1349
-M 0 1320 4 1349
-M 0 1320 4 1349
-M 0 1320 4 1349
-M 0 1321 1 1349
-M 0 1322 4 1354
-M 0 1322 4 1354
-M 0 1322 4 1354
-M 0 1322 4 1354
-M 0 1323 1 1354
-M 0 1324 3 1357
-M 0 1324 3 1357
-M 0 1324 3 1357
-M 0 1325 1 1357
-M 0 1326 3 1359
-E 0 1357 0 16
-M 0 1326 3 1359
-E 0 1357 0 16
-M 0 1326 3 1359
-E 0 1357 0 16
-M 0 1327 1 1359
-E 0 1357 0 17
-M 0 1328 2 1364
-M 0 1329 1 1365
-M 0 1330 1 1367
-M 0 1312 10 1368
-M 0 1339 4 1368
-M 0 1331 2 1371
-M 0 1331 2 1371
-M 0 1332 1 1373
-G 0 1359 0
-G 0 1360 0
-G 0 1361 0
-M 0 1333 1 1373
-G 0 1362 0
-M 0 1313 5 1375
-O 0 1310 0 1379
-O 0 1311 0 1379
-O 0 1312 0 1379
-O 0 1313 0 1379
-O 0 1314 0 1381
-O 0 1315 0 1382
-P 0 1317 0 1315
-P 0 1318 0 1315
-P 0 1319 0 1315
-M 0 1334 1 1382
-E 0 1316 0 17
-G 0 1363 0
-M 0 1335 1 1382
-M 0 1336 1 1388
-E 0 1364 0 17
-P 0 1365 0 1364
-P 0 1367 0 1364
-P 0 1368 0 1364
-P 0 1369 0 1364
-P 0 1370 0 1364
-M 0 1337 1 1390
-E 0 1371 0 17
-R 0 1392 6
-M 0 1338 1 1395
-E 0 1372 0 17
-G 0 1373 0
-M 0 1339 4 1398
-M 0 1339 4 1398
-M 0 1313 4 1400
-O 0 1320 0 1401
-M 0 1340 1 1402
-E 0 1325 0 17
-E 0 1374 0 13
-P 0 1375 0 1374
-O 0 1321 0 1403
-P 0 1326 0 1321
-P 0 1327 0 1321
-O 0 1322 0 1403
-P 0 1328 0 1322
-P 0 1329 0 1322
-P 0 1330 0 1322
-M 0 1341 1 1409
-E 0 1376 0 17
-M 0 1342 1 1409
-M 0 1345 2 1409
-M 0 1343 1 1411
-M 0 1344 1 1411
-M 0 1346 1 1411
-M 0 1347 1 1411
-M 0 1348 1 1417
-E 0 1377 0 13
-P 0 1378 0 1377
-M 0 1349 1 1425
-E 0 1379 0 3
-E 0 1380 0 17
-M 0 1350 4 1425
-M 0 1350 4 1425
-M 0 1351 1 1425
-E 0 1381 0 16
-M 0 1339 5 1428
-M 0 1339 5 1428
-M 0 1312 10 1430
-M 0 1313 5 1433
-M 0 1352 3 1435
-M 0 1352 3 1435
-M 0 1352 3 1435
-O 0 1331 0 1435
-P 0 1332 0 1331
-P 0 1333 0 1331
-M 0 1353 1 1437
-O 0 1334 0 1445
-P 0 1335 0 1334
-M 0 1313 5 1449
-M 0 1354 1 1453
-E 0 1382 0 12
-E 0 1384 0 14
-M 0 1355 1 1454
-M 0 1356 1 1454
-E 0 1383 0 3
-E 0 1385 0 16
-E 0 1386 0 17
-M 0 1357 1 1461
-E 0 1387 0 12
-E 0 1388 0 14
-M 0 1358 1 1464
-M 0 1359 1 1464
-E 0 1389 0 3
-E 0 1390 0 16
-E 0 1386 0 17
-M 0 1360 1 1467
-E 0 1391 0 12
-E 0 1392 0 14
-M 0 1361 1 1469
-M 0 1362 1 1469
-E 0 1393 0 3
-E 0 1394 0 16
-E 0 1386 0 17
-M 0 1363 1 1477
-E 0 1395 0 3
-M 0 1364 1 1477
-E 0 1401 0 5
-E 0 1397 0 1
-E 0 1398 0 14
-E 0 1399 0 17
-E 0 1400 0 16
-G 0 1339 0
-O 0 1336 0 1480
-P 0 1337 0 1336
-O 0 1338 0 1481
-P 0 1340 0 1338
-O 0 1341 0 1482
-O 0 1342 0 1482
-O 0 1343 0 1482
-O 0 1345 0 1482
-P 0 1344 0 1345
-O 0 1401 0 1499
-O 0 1402 0 1499
-P 0 1403 0 1402
-P 0 1404 0 1402
+R 0 1301  4      	; Randomize The Shadow Grove
+R 0 1302  4      	; Randomize The Shadow Grove
+M 0 1300  6 1302  	; a shadow guardian to The Shadow Grove
+R 0 1303  4      	; Randomize The Shadow Grove
+R 0 1304  4      	; Randomize The Shadow Grove
+M 0 1300  6 1304  	; a shadow guardian to The Shadow Grove
+R 0 1305  4      	; Randomize The Shadow Grove
+R 0 1306  4      	; Randomize The Shadow Grove
+M 0 1300  6 1306  	; a shadow guardian to The Shadow Grove
+R 0 1307  4      	; Randomize The Shadow Grove
+M 0 1302  1 1307  	; Edgar to The Shadow Grove
+R 0 1308  4      	; Randomize The Shadow Grove
+M 0 1300  6 1308  	; a shadow guardian to The Shadow Grove
+R 0 1309  4      	; Randomize The Shadow Grove
+M 0 1300  6 1311  	; a shadow guardian to A small clearing
+M 0 1301  1 1311  	; a lost adventurer to A small clearing
+M 0 1303  1 1312  	; the golem to Entrance to the High Tower
+M 0 1304  7 1313  	; a mage to Inside the High Tower of Sorcerery
+M 0 1304  7 1314  	; a mage to Common Room
+M 0 1304  7 1314  	; a mage to Common Room
+M 0 1304  7 1315  	; a mage to The Hallway
+M 0 1304  7 1316  	; a mage to Dining Room
+M 0 1304  7 1318  	; a mage to Mages Tavern
+M 0 1305  1 1318  	; Strick the bartender to Mages Tavern
+G 0 1351  0      	;   A herbal brew
+G 0 1352  0      	;   A waybread
+M 0 1304  7 1319  	; a mage to The Magic Shop
+M 0 1306  1 1319  	; Tatorious to The Magic Shop
+O 0 1301  0 1320  	; An oven to the kitchen
+P 0 1304  0 1301  	; A slice of pizza inside a slice of pizza
+O 0 1302  0 1320  	; A meat locker to the kitchen
+P 0 1305  0 1302  	; A large chunk of meat inside a large chunk of meat
+P 0 1306  0 1302  	; A finger sandwich inside a finger sandwich
+M 0 1307  1 1320  	; Ezmerelda to the kitchen
+E 0 1355  0 16    	;   A meat cleaver wielded (1)
+M 0 1308  1 1320  	; The cook's assistant to the kitchen
+M 0 1309  1 1327  	; The prisoner to A dark cell
+E 0 1356  0 14    	;   Some chain shackles on the left wrist
+M 0 1310  1 1328  	; the Jailor to The Jailor's office
+E 0 1323  0 17    	;   An old key held in the hands
+M 0 1311  2 1333  	; a broom to A broom closet
+M 0 1311  2 1333  	; a broom to A broom closet
+O 0 1307  0 1333  	; A straw broom to A broom closet
+O 0 1307  0 1333  	; A straw broom to A broom closet
+M 0 1312 10 1335  	; a pair of disembodied hands to Guardians chamber
+M 0 1312 10 1335  	; a pair of disembodied hands to Guardians chamber
+M 0 1312 10 1335  	; a pair of disembodied hands to Guardians chamber
+M 0 1312 10 1335  	; a pair of disembodied hands to Guardians chamber
+M 0 1313  7 1335  	; a pair of disembodied eyes to Guardians chamber
+M 0 1314  1 1337  	; the mage to A guest bedroom
+M 0 1312 10 1340  	; a pair of disembodied hands to A hallway
+M 0 1315  3 1342  	; a young apprentice magic user to The Apprentice's Barracks
+M 0 1316  3 1342  	; a young apprentice to The Apprentice's Barracks
+M 0 1317  3 1342  	; a young apprentice to The Apprentice's Barracks
+M 0 1315  3 1344  	; a young apprentice magic user to The Apprentice's barracks
+M 0 1316  3 1344  	; a young apprentice to The Apprentice's barracks
+M 0 1317  3 1344  	; a young apprentice to The Apprentice's barracks
+M 0 1318  3 1345  	; A young apprentice to A hallway
+M 0 1318  3 1345  	; A young apprentice to A hallway
+M 0 1318  3 1345  	; A young apprentice to A hallway
+M 0 1319  1 1345  	; a small kitten to A hallway
+M 0 1320  4 1349  	; a student to A classroom
+M 0 1320  4 1349  	; a student to A classroom
+M 0 1320  4 1349  	; a student to A classroom
+M 0 1320  4 1349  	; a student to A classroom
+M 0 1321  1 1349  	; an instructor of magic to A classroom
+M 0 1322  4 1354  	; a student of spells to An empty classroom
+M 0 1322  4 1354  	; a student of spells to An empty classroom
+M 0 1322  4 1354  	; a student of spells to An empty classroom
+M 0 1322  4 1354  	; a student of spells to An empty classroom
+M 0 1323  1 1354  	; a spell teacher to An empty classroom
+M 0 1324  3 1357  	; a student of spells to The Amphitheater
+M 0 1324  3 1357  	; a student of spells to The Amphitheater
+M 0 1324  3 1357  	; a student of spells to The Amphitheater
+M 0 1325  1 1357  	; a wizard to The Amphitheater
+M 0 1326  3 1359  	; a young mage to The training room
+E 0 1357  0 16    	;   A silvery dagger wielded (1)
+M 0 1326  3 1359  	; a young mage to The training room
+E 0 1357  0 16    	;   A silvery dagger wielded (1)
+M 0 1326  3 1359  	; a young mage to The training room
+E 0 1357  0 16    	;   A silvery dagger wielded (1)
+M 0 1327  1 1359  	; the battle mistress to The training room
+E 0 1357  0 17    	;   A silvery dagger held in the hands
+M 0 1328  2 1364  	; a spell teacher to The spellmaster's lounge
+M 0 1329  1 1365  	; an aged wizard to A bedroom
+M 0 1330  1 1367  	; a scribe to The study
+M 0 1312 10 1368  	; a pair of disembodied hands to Below the stairs
+M 0 1339  4 1368  	; a wooden golem to Below the stairs
+M 0 1331  2 1371  	; a scribe to A small office
+M 0 1331  2 1371  	; a scribe to A small office
+M 0 1332  1 1373  	; the master scribe to The master scribe's workshop
+G 0 1359  0      	;   A scroll
+G 0 1360  0      	;   A bound scroll
+G 0 1361  0      	;   A long cylindrical tube
+M 0 1333  1 1373  	; the scribe's assistant to The master scribe's workshop
+G 0 1362  0      	;   An old scroll
+M 0 1313  5 1375  	; a pair of disembodied eyes to A store room
+O 0 1310  0 1379  	; A bar of silver to A store room
+O 0 1311  0 1379  	; A bar of gold to A store room
+O 0 1312  0 1379  	; A bar of mithril to A store room
+O 0 1313  0 1379  	; A bar of adamantite to A store room
+O 0 1314  0 1381  	; A mithril hammer to A very hot room
+O 0 1315  0 1382  	; A chest to The master Enchanter's chamber
+P 0 1317  0 1315  	; A long sword inside a long sword
+P 0 1318  0 1315  	; A silver dagger inside a silver dagger
+P 0 1319  0 1315  	; A curved scimitar inside a curved scimitar
+M 0 1334  1 1382  	; the Enchanter to The master Enchanter's chamber
+E 0 1316  0 17    	;   A small key held in the hands
+G 0 1363  0      	;   A scroll written on blue paper
+M 0 1335  1 1382  	; a dancing sword to The master Enchanter's chamber
+M 0 1336  1 1388  	; the Mad Alchemist to The Mad Alchemist's workroom
+E 0 1364  0 17    	;   A leather pouch held in the hands
+P 0 1365  0 1364  	; A silver stirring spoon inside a silver stirring spoon
+P 0 1367  0 1364  	; A bright red potion inside a bright red potion
+P 0 1368  0 1364  	; A green potion inside a green potion
+P 0 1369  0 1364  	; An effervecent potion inside an effervecent potion
+P 0 1370  0 1364  	; A milky white potion inside a milky white potion
+M 0 1337  1 1390  	; the master summoner to The pentagram chamber
+E 0 1371  0 17    	;   A black staff held in the hands
+R 0 1392  6      	; Randomize Inside the Energy Field
+M 0 1338  1 1395  	; the master charmer to The charm master's chamber
+E 0 1372  0 17    	;   A golden flute held in the hands
+G 0 1373  0      	;   A small figurine
+M 0 1339  4 1398  	; a wooden golem to The end of the hallway
+M 0 1339  4 1398  	; a wooden golem to The end of the hallway
+M 0 1313  4 1400  	; a pair of disembodied eyes to A hallway
+O 0 1320  0 1401  	; A wooden staff to A store room
+M 0 1340  1 1402  	; the master spell binder to The master spellbinder's chamber
+E 0 1325  0 17    	;   A silvery key held in the hands
+E 0 1374  0 13    	;   A holstered belt around the waist
+P 0 1375  0 1374  	; A blackened wand inside a blackened wand
+O 0 1321  0 1403  	; A silver chased cabinet to The spellbinder's cache
+P 0 1326  0 1321  	; A red and white staff inside a red and white staff
+P 0 1327  0 1321  	; A burnt staff inside a burnt staff
+O 0 1322  0 1403  	; A silver chased cabinet to The spellbinder's cache
+P 0 1328  0 1322  	; A black rod inside a black rod
+P 0 1329  0 1322  	; A wooden stick inside a wooden stick
+P 0 1330  0 1322  	; A metal wand inside a metal wand
+M 0 1341  1 1409  	; the golem maker to The golem master's workshop
+E 0 1376  0 17    	;   A runed chisel held in the hands
+M 0 1342  1 1409  	; a granite golem to The golem master's workshop
+M 0 1345  2 1409  	; a cloth golem to The golem master's workshop
+M 0 1343  1 1411  	; a bronze golem to The golem chamber
+M 0 1344  1 1411  	; a flesh golem to The golem chamber
+M 0 1346  1 1411  	; an adamantite golem to The golem chamber
+M 0 1347  1 1411  	; a clay golem to The golem chamber
+M 0 1348  1 1417  	; the master of illusions to The master of illusion's chamber
+E 0 1377  0 13    	;   A beltpouch around the waist
+P 0 1378  0 1377  	; Some sparkling dust inside some sparkling dust
+M 0 1349  1 1425  	; the Necromancer to The Necromancer's Lair
+E 0 1379  0 3     	;   A dark cowl around the neck (1)
+E 0 1380  0 17    	;   An ashen wand held in the hands
+M 0 1350  4 1425  	; an animated skeleton to The Necromancer's Lair
+M 0 1350  4 1425  	; an animated skeleton to The Necromancer's Lair
+M 0 1351  1 1425  	; an undead giant to The Necromancer's Lair
+E 0 1381  0 16    	;   A huge spiked club wielded (1)
+M 0 1339  5 1428  	; a wooden golem to The end of the hallway
+M 0 1339  5 1428  	; a wooden golem to The end of the hallway
+M 0 1312 10 1430  	; a pair of disembodied hands to A corridor
+M 0 1313  5 1433  	; a pair of disembodied eyes to An intersection
+M 0 1352  3 1435  	; an ugly witch to The scrying chamber
+M 0 1352  3 1435  	; an ugly witch to The scrying chamber
+M 0 1352  3 1435  	; an ugly witch to The scrying chamber
+O 0 1331  0 1435  	; A black cauldron to The scrying chamber
+P 0 1332  0 1331  	; A small pair of bat wings inside a small pair of bat wings
+P 0 1333  0 1331  	; An eyeball inside an eyeball
+M 0 1353  1 1437  	; the Librarian to The entrance to the library
+O 0 1334  0 1445  	; The book of magic to The reading room
+P 0 1335  0 1334  	; A pair of spectacles inside a pair of spectacles
+M 0 1313  5 1449  	; a pair of disembodied eyes to The landing
+M 0 1354  1 1453  	; the master's apprentice to The antechamber
+E 0 1382  0 12    	;   A grey robe about the shoulders
+E 0 1384  0 14    	;   A glinting silver bracelet on the left wrist
+M 0 1355  1 1454  	; a grey cat to The main chamber
+M 0 1356  1 1454  	; the master of Neutrality to The main chamber
+E 0 1383  0 3     	;   A long grey cloak around the neck (1)
+E 0 1385  0 16    	;   An iron shod staff wielded (1)
+E 0 1386  0 17    	;   A ward minor held in the hands
+M 0 1357  1 1461  	; a black robed apprentice to The chamber of darkness
+E 0 1387  0 12    	;   A black robe about the shoulders
+E 0 1388  0 14    	;   An onyx bracelet on the left wrist
+M 0 1358  1 1464  	; a black cat to The inner chamber
+M 0 1359  1 1464  	; the master of the black robes to The inner chamber
+E 0 1389  0 3     	;   A dark black cloak around the neck (1)
+E 0 1390  0 16    	;   A sharp shard of obsidian wielded (1)
+E 0 1386  0 17    	;   A ward minor held in the hands
+M 0 1360  1 1467  	; a white robed apprentice to An antechamber
+E 0 1391  0 12    	;   A white robe about the shoulders
+E 0 1392  0 14    	;   A white gold bracelet on the left wrist
+M 0 1361  1 1469  	; a white cat to The chamber of the white light
+M 0 1362  1 1469  	; The master of goodness to The chamber of the white light
+E 0 1393  0 3     	;   A white cloak around the neck (1)
+E 0 1394  0 16    	;   An ivory hilted dagger wielded (1)
+E 0 1386  0 17    	;   A ward minor held in the hands
+M 0 1363  1 1477  	; A calico cat to The audience chamber
+E 0 1395  0 3     	;   A spiked collar around the neck (1)
+M 0 1364  1 1477  	; The Grand Mistress to The audience chamber
+E 0 1401  0 5     	;   A tight fitting green dragon scale shirt on the body
+E 0 1397  0 1     	;   A small emerald ring on the left finger
+E 0 1398  0 14    	;   An emerald bracelet on the left wrist
+E 0 1399  0 17    	;   A ward major held in the hands
+E 0 1400  0 16    	;   The ebony kris wielded (1)
+G 0 1339  0      	;   An intricately carved key
+O 0 1336  0 1480  	; A golden altar to The altar
+P 0 1337  0 1336  	; A heart shaped medallion inside a heart shaped medallion
+O 0 1338  0 1481  	; A large chest to The treasury
+P 0 1340  0 1338  	; A pile of coins is here inside a pile of coins is here
+O 0 1341  0 1482  	; A brown cloak to A passage
+O 0 1342  0 1482  	; A chameleon poncho to A passage
+O 0 1343  0 1482  	; A pair of old boots to A passage
+O 0 1345  0 1482  	; A leather backpack to A passage
+P 0 1344  0 1345  	; A seashell ring inside a seashell ring
+O 0 1401  0 1499  	; A tight fitting green dragon scale shirt to Skylar's Hideout
+O 0 1402  0 1499  	; A fridge to Skylar's Hideout
+P 0 1403  0 1402  	; A bottle of absolut vodka inside a bottle of Absolut vodka
+P 0 1404  0 1402  	; A bottle of cranberry juice inside a bottle of cranberry juice
 S
 
 
@@ -5228,8 +5228,8 @@ S
 
 
 #SHOPS
-1305 17 19 0 0 0 210 50 0 23
-1306 2 3 4 10 21 250 30 0 23
+1305 17 19  0  0  0 210  50  0 23 	; Strick the bartender
+1306  2  3  4 10 21 250  30  0 23 	; Tatorious
 0
 
 

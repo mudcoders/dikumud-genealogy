@@ -1,4 +1,4 @@
 HOUR
-48
+8
 
 REBOOT

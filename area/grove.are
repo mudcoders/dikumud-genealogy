@@ -19,7 +19,7 @@ clear blue eyes you can see that He is aware of the world, and wise to its
 traps and pitfalls.
 ~
 193 8328 1000 S
-22 0 0 20d20+180 1d8+12
+19 0 0 20d20+180 1d8+12
 50 0
 0 Human~ 1
 #8901
@@ -32,7 +32,7 @@ clear blue eyes you can see that She is aware of the world, and wise to its
 traps and pitfalls.
 ~
 193 8328 1000 S
-23 0 0 20d20+180 1d8+12
+18 0 0 20d20+180 1d8+12
 50 0
 0 Human~ 2
 #8902
@@ -44,7 +44,7 @@ He looks ageless, as do all druids.  His grey beard contrasts strongly with
 his lack of wrinkles.
 ~
 193 8192 1000 S
-14 7 0 13d13+130 1d4+7
+13 7 0 13d13+130 1d4+7
 50 0
 0 Elf~ 1
 #8903
@@ -55,7 +55,7 @@ An elder druidess stands here, watching the local fauna and feeding rabbits.
 She looks ageless, as do all druids.  She smiles a beautiful smile at you.
 ~
 193 8192 1000 S
-16 7 0 13d13+130 1d4+7
+14 7 0 13d13+130 1d4+7
 50 0
 0 Elf~ 2
 #8904
@@ -67,7 +67,7 @@ This peaceful creature looks at you with big dark eyes.  Her nose twitches as
 she sniffs at you, but she goes back to chewing some grass.
 ~
 193 0 0 S
-11 15 0 5d5+55 1d4+3
+16 15 0 5d5+55 1d4+3
 2 0
 0 Animal~ 2
 #8905
@@ -79,7 +79,7 @@ The deer looks angered at your intrusion.  He butts his head against you,
 albeit ineffectively.
 ~
 193 0 0 S
-4 14 0 6d6+66 1d4+4
+6 14 0 6d6+66 1d4+4
 2 0
 0 Animal~ 1
 #8906
@@ -90,7 +90,7 @@ A large deer stag is here, protecting his territory.
 He eyes you with contained anger.  You'd better leave him alone!
 ~
 225 0 0 S
-2 12 0 8d8+88 1d4+9
+7 12 0 8d8+88 1d4+9
 2 0
 0 Animal~ 1
 #8907
@@ -101,7 +101,7 @@ A small bunny is here, poking from bush to bush.
 This bunny looks so adorable, you wished you had one just like this!
 ~
 193 0 0 S
-5 18 0 2d2+22 1d4+1
+4 18 0 2d2+22 1d4+1
 2 0
 0 Animal~ 0
 #8908
@@ -134,7 +134,7 @@ A druidess is here, peering at you.
 She wonders why you are staring at her, and how you got in here.
 ~
 193 8200 1000 S
-7 10 0 10d10+100 1d4+6
+3 10 0 10d10+100 1d4+6
 50 0
 0 Elf~ 2
 #8911
@@ -147,7 +147,7 @@ of his eyes is hideously enlarged and blue, while the other is a blackened
 empty socket.  The old man beams a toothless grin at you.
 ~
 193 8329 1000 S
-31 0 0 20d40+150 1d8+12
+33 0 0 20d40+150 1d8+12
 50 0
 0 Elf~ 1
 #0
@@ -824,13 +824,13 @@ S
 
 
 #SPECIALS
-M 8900 spec_cast_cleric
-M 8901 spec_cast_cleric
-M 8902 spec_cast_cleric
-M 8903 spec_cast_cleric
-M 8908 spec_poison
-M 8909 spec_cast_cleric
-M 8910 spec_cast_cleric
+M 8900 spec_cast_cleric 	; The Hierophant
+M 8901 spec_cast_cleric 	; The Hierophant
+M 8902 spec_cast_cleric 	; an elder druid
+M 8903 spec_cast_cleric 	; an elder druidess
+M 8908 spec_poison 	; a harmless snake
+M 8909 spec_cast_cleric 	; a druid
+M 8910 spec_cast_cleric 	; a druidess
 S
 
 
@@ -841,45 +841,45 @@ S
 
 
 #RESETS
-M 0 8901 1 8901
-E 0 8910 0 16
-E 0 8911 0 5
-G 0 8913 0
-G 0 8915 0
-M 0 8902 1 8902
-E 0 8910 0 16
-G 0 8914 0
-G 0 8916 0
-M 0 8907 4 8903
-M 0 8907 4 8903
-M 0 8903 1 8904
-E 0 8910 0 16
-G 0 8919 0
-G 0 8917 0
-M 0 8900 1 8905
-E 0 8910 0 16
-E 0 8911 0 5
-G 0 8919 0
-G 0 8918 0
-M 0 8904 2 8905
-M 0 8906 1 8905
-M 0 8905 2 8906
-M 0 8908 9 8906
-M 0 8909 1 8911
-G 0 8913 0
-O 0 8901 0 8912
-M 0 8910 1 8914
-G 0 8914 0
-O 0 8901 0 8914
-O 0 8902 0 8915
-P 0 8903 0 8902
-O 0 8902 0 8915
-P 0 8904 0 8902
-O 0 8905 0 8915
-M 0 8910 2 8917
-G 0 8918 0
-M 0 8909 2 8918
-G 0 8916 0
+M 0 8901  1 8901  	; The Hierophant to The holy grove
+E 0 8910  0 16    	;   A wooden staff wielded (1)
+E 0 8911  0 5     	;   A brown robe on the body
+G 0 8913  0      	;   Some bluish herbs
+G 0 8915  0      	;   Some blackish herbs
+M 0 8902  1 8902  	; an elder druid to The holy grove
+E 0 8910  0 16    	;   A wooden staff wielded (1)
+G 0 8914  0      	;   Some purplish herbs
+G 0 8916  0      	;   Some grayish herbs
+M 0 8907  4 8903  	; a small bunny to A clearing in the woods
+M 0 8907  4 8903  	; a small bunny to A clearing in the woods
+M 0 8903  1 8904  	; an elder druidess to The holy grove
+E 0 8910  0 16    	;   A wooden staff wielded (1)
+G 0 8919  0      	;   Some pinkish herbs
+G 0 8917  0      	;   Some reddish herbs
+M 0 8900  1 8905  	; The Hierophant to The sacred glade
+E 0 8910  0 16    	;   A wooden staff wielded (1)
+E 0 8911  0 5     	;   A brown robe on the body
+G 0 8919  0      	;   Some pinkish herbs
+G 0 8918  0      	;   Some orangish herbs
+M 0 8904  2 8905  	; a doe to The sacred glade
+M 0 8906  1 8905  	; a stag to The sacred glade
+M 0 8905  2 8906  	; a deer to The holy grove
+M 0 8908  9 8906  	; a harmless snake to The holy grove
+M 0 8909  1 8911  	; a druid to The hallway
+G 0 8913  0      	;   Some bluish herbs
+O 0 8901  0 8912  	; A closet to The blue room
+M 0 8910  1 8914  	; a druidess to The red room
+G 0 8914  0      	;   Some purplish herbs
+O 0 8901  0 8914  	; A closet to The red room
+O 0 8902  0 8915  	; A spice jar to The kitchen
+P 0 8903  0 8902  	; Some black powder inside some black powder
+O 0 8902  0 8915  	; A spice jar to The kitchen
+P 0 8904  0 8902  	; Some small yellow kernels inside some small yellow kernels
+O 0 8905  0 8915  	; A crumpled wad of paper to The kitchen
+M 0 8910  2 8917  	; a druidess to The greenhouse
+G 0 8918  0      	;   Some orangish herbs
+M 0 8909  2 8918  	; a druid to The dining hall
+G 0 8916  0      	;   Some grayish herbs
 S
 
 

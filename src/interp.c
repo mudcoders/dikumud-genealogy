@@ -21,6 +21,11 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined( macintosh )
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -223,6 +228,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "bash",           do_bash,        POS_STANDING,    0,  LOG_NORMAL },
     { "bet",            do_bet,         POS_STANDING,    0,  LOG_NORMAL },
     { "bladethirst",	do_bladethirst,	POS_STANDING,	 0,  LOG_NORMAL },
+    { "bring",		do_getspouse,	POS_RESTING,	 0,  LOG_NORMAL },
     { "delet",		do_delet,	POS_DEAD,	 0,  LOG_ALWAYS },
     { "delete",		do_delete,	POS_DEAD,	 0,  LOG_ALWAYS },
     { "wager",          do_bet,         POS_STANDING,    0,  LOG_NORMAL },
@@ -234,9 +240,10 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "heighten senses",do_heighten,    POS_STANDING,    0,  LOG_NORMAL },
     { "hide",		do_hide,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "hunt",		do_hunt,	POS_STANDING,	 0,  LOG_NORMAL },
-    { "poison weapon",	do_poison_weapon,POS_SLEEPING,	 0,  LOG_NORMAL	},
+    { "join",		do_gospouse,	POS_RESTING,	 0,  LOG_NORMAL },
     { "learn",		do_learn,	POS_SLEEPING,	 0,  LOG_ALWAYS },
     { "lore",		do_lore,	POS_RESTING,	 0,  LOG_ALWAYS },
+    { "poison weapon",	do_poison_weapon,POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "practice",	do_practice,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "qui",		do_qui,		POS_DEAD,	 0,  LOG_NORMAL	},
     { "quit",		do_quit,	POS_DEAD,	 0,  LOG_NORMAL	},
@@ -257,14 +264,18 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "untangle",	do_untangle,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "visible",	do_visible,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL	},
+    { "wed",		do_wed,		POS_DEAD,	 0,  LOG_NORMAL },
     { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL	},
 
     /*
      * Immortal commands.
      */
     { "advance",	do_advance,	POS_DEAD,    L_DIR,  LOG_ALWAYS	},
+    { "divorce",	do_divorce,	POS_STANDING,L_DIR,  LOG_ALWAYS },
     { "imtlset",	do_imtlset,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
 /*    { "objlist",	do_objlist,	POS_DEAD,    L_DIR,  LOG_ALWAYS }, */
+    { "marry",		do_marry,       POS_STANDING,L_DIR,  LOG_ALWAYS },
+    { "newring",	do_rings,	POS_STANDING,L_DIR,  LOG_ALWAYS },
     { "rename",		do_rename,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
     { "sstime",		do_sstime,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
     { "trust",		do_trust,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
@@ -358,13 +369,14 @@ const	struct	cmd_type	cmd_table	[ ] =
     /*
      * OLC 1.1b
      */
-    { "aedit",          do_aedit,       POS_DEAD,    0,  LOG_NORMAL },
-    { "redit",          do_redit,       POS_DEAD,    0,  LOG_NORMAL },
-    { "oedit",          do_oedit,       POS_DEAD,    0,  LOG_NORMAL },
-    { "medit",          do_medit,       POS_DEAD,    0,  LOG_NORMAL },
-    { "asave",          do_asave,       POS_DEAD,    0,  LOG_NORMAL },
-    { "alist",          do_alist,       POS_DEAD,    0,  LOG_NORMAL },
-    { "resets",         do_resets,      POS_DEAD,    0,  LOG_NORMAL },
+    { "aedit",          do_aedit,       POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "redit",          do_redit,       POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "oedit",          do_oedit,       POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "medit",          do_medit,       POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "mpedit",		do_mpedit,	POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "asave",          do_asave,       POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "alist",          do_alist,       POS_DEAD, L_SEN,  LOG_NORMAL },
+    { "resets",         do_resets,      POS_DEAD, L_SEN,  LOG_NORMAL },
 
     /*
      * Languages.
@@ -386,20 +398,20 @@ const	struct	cmd_type	cmd_table	[ ] =
     /*
      * MOBprogram commands.
      */
-    { "mpstat",         do_mpstat,      POS_DEAD,       38,  LOG_NORMAL },
-    { "mpasound",       do_mpasound,    POS_DEAD,        0,  LOG_NORMAL },
-    { "mpjunk",         do_mpjunk,      POS_DEAD,        0,  LOG_NORMAL },
-    { "mpecho",         do_mpecho,      POS_DEAD,        0,  LOG_NORMAL },
-    { "mpechoat",       do_mpechoat,    POS_DEAD,        0,  LOG_NORMAL },
-    { "mpechoaround",   do_mpechoaround,POS_DEAD,        0,  LOG_NORMAL },
-    { "mpkill",         do_mpkill      ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mpmload",        do_mpmload     ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mpoload",        do_mpoload     ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mppurge",        do_mppurge     ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mpgoto",         do_mpgoto      ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mpat",           do_mpat        ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mptransfer",     do_mptransfer  ,POS_DEAD,        0,  LOG_NORMAL },
-    { "mpforce",        do_mpforce     ,POS_DEAD,        0,  LOG_NORMAL },
+    { "mpstat",         do_mpstat,      POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpasound",       do_mpasound,    POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpjunk",         do_mpjunk,      POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpecho",         do_mpecho,      POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpechoat",       do_mpechoat,    POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpechoaround",   do_mpechoaround,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpkill",         do_mpkill      ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpmload",        do_mpmload     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpoload",        do_mpoload     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mppurge",        do_mppurge     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpgoto",         do_mpgoto      ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpat",           do_mpat        ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mptransfer",     do_mptransfer  ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
+    { "mpforce",        do_mpforce     ,POS_DEAD, L_DIR + 1, LOG_NORMAL },
 
 
     /*
@@ -441,7 +453,7 @@ void interpret( CHAR_DATA *ch, char *argument )
      */
     if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_FREEZE ) )
     {
-	send_to_char( "You're totally frozen!\r\n", ch );
+	send_to_char( "You're totally frozen!\n\r", ch );
 	return;
     }
 
@@ -516,7 +528,7 @@ void interpret( CHAR_DATA *ch, char *argument )
     {
 	write_to_buffer( ch->desc->snoop_by, "% ",    2 );
 	write_to_buffer( ch->desc->snoop_by, logline, 0 );
-	write_to_buffer( ch->desc->snoop_by, "\r\n",  2 );
+	write_to_buffer( ch->desc->snoop_by, "\n\r",  2 );
     }
 
     if ( !found )
@@ -525,12 +537,12 @@ void interpret( CHAR_DATA *ch, char *argument )
 	 * Look for command in socials table.
 	 */
 	if ( !check_social( ch, command, argument ) )
-	    send_to_char( "Huh?\r\n", ch );
+	    send_to_char( "Huh?\n\r", ch );
 	return;
     }
     else if ( check_disabled ( ch, &cmd_table[cmd] ) )
     {
-	send_to_char ( "This command has been temporarilly disabled by the Gods\r\n", ch );
+	send_to_char ( "This command has been temporarilly disabled by the Gods\n\r", ch );
 	return;
     }
 
@@ -542,28 +554,28 @@ void interpret( CHAR_DATA *ch, char *argument )
 	switch( ch->position )
 	{
 	case POS_DEAD:
-	    send_to_char( "Lie still; you are DEAD.\r\n", ch );
+	    send_to_char( "Lie still; you are DEAD.\n\r", ch );
 	    break;
 
 	case POS_MORTAL:
 	case POS_INCAP:
-	    send_to_char( "You are hurt far too bad for that.\r\n", ch );
+	    send_to_char( "You are hurt far too bad for that.\n\r", ch );
 	    break;
 
 	case POS_STUNNED:
-	    send_to_char( "You are too stunned to do that.\r\n",    ch );
+	    send_to_char( "You are too stunned to do that.\n\r",    ch );
 	    break;
 
 	case POS_SLEEPING:
-	    send_to_char( "In your dreams, or what?\r\n",           ch );
+	    send_to_char( "In your dreams, or what?\n\r",           ch );
 	    break;
 
 	case POS_RESTING:
-	    send_to_char( "Nah... You feel too relaxed...\r\n",     ch );
+	    send_to_char( "Nah... You feel too relaxed...\n\r",     ch );
 	    break;
 
 	case POS_FIGHTING:
-	    send_to_char( "No way!  You are still fighting!\r\n",   ch );
+	    send_to_char( "No way!  You are still fighting!\n\r",   ch );
 	    break;
 
 	}
@@ -604,23 +616,23 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
 
     if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_NO_EMOTE ) )
     {
-	send_to_char( "You are anti-social!\r\n", ch );
+	send_to_char( "You are anti-social!\n\r", ch );
 	return TRUE;
     }
 
     switch ( ch->position )
     {
     case POS_DEAD:
-	send_to_char( "Lie still; you are DEAD.\r\n",             ch );
+	send_to_char( "Lie still; you are DEAD.\n\r",             ch );
 	return TRUE;
 
     case POS_INCAP:
     case POS_MORTAL:
-	send_to_char( "You are hurt far too badly for that.\r\n", ch );
+	send_to_char( "You are hurt far too badly for that.\n\r", ch );
 	return TRUE;
 
     case POS_STUNNED:
-	send_to_char( "You are too stunned to do that.\r\n",      ch );
+	send_to_char( "You are too stunned to do that.\n\r",      ch );
 	return TRUE;
 
     case POS_SLEEPING:
@@ -630,7 +642,7 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
 	 */
 	if ( !str_cmp( social_table[cmd].name, "snore" ) )
 	    break;
-	send_to_char( "In your dreams, or what?\r\n",             ch );
+	send_to_char( "In your dreams, or what?\n\r",             ch );
 	return TRUE;
 
     }
@@ -644,7 +656,7 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
     }
     else if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n",                    ch );
+	send_to_char( "They aren't here.\n\r",                    ch );
     }
     else if ( victim == ch )
     {
@@ -676,7 +688,7 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
 	}
 	else
 	{
-	    send_to_char( "They aren't here.\r\n",                ch );
+	    send_to_char( "They aren't here.\n\r",                ch );
 	}
     }
     else
@@ -807,7 +819,7 @@ char *one_argument( char *argument, char *arg_first )
 
 /*
  * Disable by: Erwin S. Andreasen (4u2@aabc.dk)
- * Disable upto level & disable all added by: Canth (phule@xs4all.nl)
+ * Disable upto level & disable all added by: Canth (canth@xs4all.nl)
  */
 void do_disable (CHAR_DATA *ch, char *argument)
 {
@@ -822,7 +834,7 @@ void do_disable (CHAR_DATA *ch, char *argument)
 
 	if (IS_NPC(ch))
 	{
-		send_to_char ("RETURN first.\r\n",ch);
+		send_to_char ("RETURN first.\n\r",ch);
 		return;
 	}
 	
@@ -830,16 +842,16 @@ void do_disable (CHAR_DATA *ch, char *argument)
 	{
 		if (!disabled_first) /* Any disabled at all ? */
 		{
-			send_to_char ("There are no commands disabled.\r\n",ch);
+			send_to_char ("There are no commands disabled.\n\r",ch);
 			return;
 		}
 
-		send_to_char ("Disabled commands:\r\n"
-		              "Command      To Level    By Level   Disabled by\r\n",ch);
+		send_to_char ("Disabled commands:\n\r"
+		              "Command      To Level    By Level   Disabled by\n\r",ch);
 		                
 		for (p = disabled_first; p; p = p->next)
 		{
-			sprintf (buf, "%-12s %5d       %5d      %-12s\r\n",p->command->name, p->uptolevel, p->dislevel, p->disabled_by);
+			sprintf (buf, "%-12s %5d       %5d      %-12s\n\r",p->command->name, p->uptolevel, p->dislevel, p->disabled_by);
 			send_to_char (buf,ch);
 		}
 		return;
@@ -862,7 +874,7 @@ void do_disable (CHAR_DATA *ch, char *argument)
 	
 		if (get_trust(ch) < p->dislevel)
 		{
-			send_to_char ("This command was disabled by a higher power.\r\n",ch);
+			send_to_char ("This command was disabled by a higher power.\n\r",ch);
 			return;
 		}
 		
@@ -879,10 +891,10 @@ void do_disable (CHAR_DATA *ch, char *argument)
 		free_string (p->disabled_by); /* free name of disabler */
 		free_mem (p,sizeof(DISABLED_DATA)); /* free node */
 		save_disabled(); /* save to disk */
-		send_to_char ("Command enabled.\r\n",ch);
+		send_to_char ("Command enabled.\n\r",ch);
 	}
 	/*
-	 * Disable all to re-enable all disabled commands by Canth (phule@xs4all.nl)
+	 * Disable all to re-enable all disabled commands by Canth (canth@xs4all.nl)
 	 */
 	else if ( !str_cmp( arg1, "all" ) ) /* re-enable all commands */
 	{
@@ -902,7 +914,7 @@ void do_disable (CHAR_DATA *ch, char *argument)
 		/* IQ test */
 		if (!str_cmp(arg1,"disable"))
 		{
-			send_to_char ("You cannot disable the disable command.\r\n",ch);
+			send_to_char ("You cannot disable the disable command.\n\r",ch);
 			return;
 		}
 
@@ -914,21 +926,20 @@ void do_disable (CHAR_DATA *ch, char *argument)
 		/* Found? */				
 		if (cmd_table[i].name[0] == '\0')
 		{
-			send_to_char ("No such command.\r\n",ch);
+			send_to_char ("No such command.\n\r",ch);
 			return;
 		}
 
 		/* Can the imm use this command at all ? */				
 		if (cmd_table[i].level > get_trust(ch))
 		{
-			send_to_char ("You dot have access to that command; you cannot disable it.\r\n",ch);
+			send_to_char ("You dot have access to that command; you cannot disable it.\n\r",ch);
 			return;
 		}
 		
 		/* Disable the command */
 		
 		p = alloc_mem (sizeof(DISABLED_DATA));
-
 		p->command = &cmd_table[i];
 		p->disabled_by = str_dup (ch->name); /* save name of disabler */
 		p->dislevel = get_trust(ch); /* save trust */
@@ -939,7 +950,7 @@ void do_disable (CHAR_DATA *ch, char *argument)
 		p->next = disabled_first;
 		disabled_first = p; /* add before the current first element */
 		
-		send_to_char ("Command disabled.\r\n",ch);
+		send_to_char ("Command disabled.\n\r",ch);
 		save_disabled(); /* save to disk */
 	}
 }

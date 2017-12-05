@@ -21,12 +21,26 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined( macintosh )
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+
+#if !defined( macintosh )
+extern	int	_filbuf		args( (FILE *) );
+#endif
+
+#if defined( sun )
+int     system          args( ( const char *string ) );
+#endif
+
 
 /*
  * Array of containers read for proper re-nesting of objects.
@@ -77,8 +91,12 @@ void save_char_obj( CHAR_DATA *ch )
     fclose( fpReserve );
 
     /* player files parsed directories by Yaz 4th Realm */
+#if !defined( macintosh ) && !defined( MSDOS )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( ch->name ) );
+#else
+    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
+#endif
     if ( !( fp = fopen( strsave, "w" ) ) )
     {
         sprintf( buf, "Save_char_obj: fopen %s: ", ch->name );
@@ -132,6 +150,13 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Lvl         %d\n",	ch->level		);
     fprintf( fp, "Trst        %d\n",	ch->trust		);
     fprintf( fp, "Security    %d\n",    ch->pcdata->security    );  /* OLC */
+
+    /* Very badly done by canth... this should fix it... -- Maniac -- */
+    if (ch->pcdata->spouse)
+    {
+	fprintf( fp, "Spous       %s~\n",	ch->pcdata->spouse	);
+    }
+
     fprintf( fp, "Playd       %d\n",
 	ch->played + (int) ( current_time - ch->logon )		);
     fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note );
@@ -144,7 +169,6 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "HpMnMv      %d %d %d %d %d %d\n",
 	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move );
     fprintf( fp, "Gold        %d\n",	ch->gold		);
-    fprintf( fp, "Balance     %d\n",	ch->balance		);
     fprintf( fp, "Exp         %d\n",	ch->exp			);
     fprintf( fp, "Act         %d\n",    ch->act			);
     fprintf( fp, "AffdBy      %d\n",	ch->affected_by		);
@@ -235,6 +259,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		paf->location,
 		paf->bitvector );
     }
+
     fprintf( fp, "End\n\n" );
     return;
 }
@@ -349,10 +374,13 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
  */
 bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 {
+    extern char      *daPrompt;
            FILE      *fp;
     static PC_DATA    pcdata_zero;
 	   CHAR_DATA *ch;
+#if !defined( MSDOS )
 	   char       buf     [ MAX_STRING_LENGTH ];
+#endif
 	   char       strsave [ MAX_INPUT_LENGTH ];
 	   bool       found;
 
@@ -381,7 +409,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     d->character			= ch;
     ch->desc				= d;
     ch->name				= str_dup( name );
-    ch->pcdata->prompt                  = str_dup( "<%hhp %mm %vmv> " );
+    ch->pcdata->prompt                  = str_dup( daPrompt );
     ch->last_note                       = 0;
     ch->act				= PLR_BLANK | PLR_COMBINE | PLR_PROMPT;
     ch->pcdata->pwd			= str_dup( "" );
@@ -390,6 +418,9 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->immskll			= str_dup( "" );
     ch->pcdata->title			= str_dup( "" );
     ch->pcdata->who_text		= str_dup( "" );
+    ch->pcdata->spouse			= NULL;
+    ch->pcdata->clan			= CLAN_NONE;
+    ch->pcdata->clanlevel		= CLAN_NOLEVEL;
     ch->pcdata->perm_str		= 13;
     ch->pcdata->perm_int		= 13; 
     ch->pcdata->perm_wis		= 13;
@@ -407,6 +438,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
     /* parsed player file directories by Yaz of 4th Realm */
     /* decompress if .gz file exists - Thx Alander */
+#if !defined( macintosh ) && !defined( MSDOS )
     sprintf( strsave, "%s%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( name ), ".gz" );
     if ( ( fp = fopen( strsave, "r" ) ) )
@@ -415,9 +447,14 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 	sprintf( buf, "gzip -dfq %s", strsave );
 	system( buf );
     }
+#endif
 
+#if !defined( macintosh ) && !defined( MSDOS )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( name ) );
+#else
+    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( name ) );
+#endif
     if ( ( fp = fopen( strsave, "r" ) ) )
     {
 	int iNest;
@@ -558,7 +595,6 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    break;
 
 	case 'B':
-	    KEY( "Balance",	ch->balance,		fread_number( fp ) );
 	    KEY( "Bmfin",	ch->pcdata->bamfin,	fread_string( fp ) );
 	    KEY( "Bmfout",	ch->pcdata->bamfout,	fread_string( fp ) );
 	    KEY( "Balance",	ch->pcdata->balance,	fread_number( fp ) );
@@ -613,7 +649,6 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 	case 'I':
 	    KEY ( "Immskll",    ch->pcdata->immskll,    fread_string( fp ) );
-          break;
 
 	case 'L':
 	    KEY( "Lvl", 	ch->level,		fread_number( fp ) );
@@ -693,6 +728,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Sx",		ch->sex,		fread_number( fp ) );
 	    KEY( "ShtDsc",	ch->short_descr,	fread_string( fp ) );
 	    KEY( "Speak",	ch->pcdata->speaking,	fread_number( fp ) );
+	    KEY( "Spous",	ch->pcdata->spouse,	fread_string( fp ) );
 	    KEY( "Shares",	ch->pcdata->shares,	fread_number( fp ) );
             KEY( "Security",    ch->pcdata->security,   fread_number( fp ) );
 

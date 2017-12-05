@@ -716,7 +716,7 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
             if (save != 0 && !saves_spell(save,vch) && !IS_IMMORTAL(vch) &&
                 !IS_AFFECTED(vch,AFF_PLAGUE) && number_bits(4) == 0)
             {
-                send_to_char("You feel hot and feverish.\r\n",vch);
+                send_to_char("You feel hot and feverish.\n\r",vch);
                 act("$n shivers and looks very ill.",vch,NULL,NULL,TO_ROOM);
                 affect_join(vch,&plague);
             }
@@ -2120,7 +2120,7 @@ bool longstring( CHAR_DATA *ch, char *argument )
 {
     if ( strlen( argument) > 60 )
     {
-	send_to_char( "No more than 60 characters in this field.\r\n", ch );
+	send_to_char( "No more than 60 characters in this field.\n\r", ch );
 	return TRUE;
     }
     else
@@ -2129,13 +2129,12 @@ bool longstring( CHAR_DATA *ch, char *argument )
 
 bool authorized( CHAR_DATA *ch, char *skllnm )
 {
-
     char buf [ MAX_STRING_LENGTH ];
 
     if ( ( !IS_NPC( ch ) && str_infix( skllnm, ch->pcdata->immskll ) )
 	||  IS_NPC( ch ) )
     {
-        sprintf( buf, "Sorry, you are not authorized to use %s.\r\n", skllnm );
+        sprintf( buf, "Sorry, you are not authorized to use %s.\n\r", skllnm );
 	send_to_char( buf, ch );
 	return FALSE;
     }
@@ -2167,16 +2166,30 @@ void end_of_game( void )
 
 }
 
+/* Modified race lookup to be a LOT faster and CPU effective -- Maniac */
+/* This is about 14% faster then the older version... mud-wide */
 int race_lookup( const char *race )
 {
     int index;
 
     for ( index = 0; index < MAX_RACE; index++ )
-        if ( !str_prefix( race, race_table[index].name ) )
+        if ( !str_cmp( race, race_table[index].name ) )
 	    return index;
 
     return -1;
+}
 
+/* Changed race_lookup to this, to save cpu usage a LOT, most of the time
+	this function is called with the entire race name anyway (everywhere
+	in the source and area's, only not from player input -- Maniac */
+int race_lookup_prefix( const char *race )
+{
+	int	index;
+
+	for (index = 0; index < MAX_RACE; index++ )
+		if (!str_prefix(race, race_table[index].name ) )
+			return index;
+	return -1;
 }
 
 int affect_lookup( const char *affectname )

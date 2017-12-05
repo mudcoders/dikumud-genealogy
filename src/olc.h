@@ -41,10 +41,11 @@ typedef	bool OLC_FUN		args( ( CHAR_DATA *ch, char *argument ) );
 /*
  * Connected states for editor.
  */
-#define ED_AREA 1
-#define ED_ROOM 2
-#define ED_OBJECT 3
-#define ED_MOBILE 4
+#define ED_AREA		1
+#define ED_ROOM		2
+#define ED_OBJECT	3
+#define ED_MOBILE	4
+#define ED_MPROG	5
 
 
 
@@ -55,6 +56,7 @@ void    aedit           args( ( CHAR_DATA *ch, char *argument ) );
 void    redit           args( ( CHAR_DATA *ch, char *argument ) );
 void    medit           args( ( CHAR_DATA *ch, char *argument ) );
 void    oedit           args( ( CHAR_DATA *ch, char *argument ) );
+void	mpedit		args( ( CHAR_DATA *ch, char *argument ) );
 
 
 
@@ -108,6 +110,7 @@ extern const struct olc_cmd_type	aedit_table[];
 extern const struct olc_cmd_type	redit_table[];
 extern const struct olc_cmd_type	oedit_table[];
 extern const struct olc_cmd_type	medit_table[];
+extern const struct olc_cmd_type	mpedit_table[];
 
 
 /*
@@ -180,8 +183,6 @@ DECLARE_OLC_FUN( oedit_weight		);
 DECLARE_OLC_FUN( oedit_cost		);
 DECLARE_OLC_FUN( oedit_ed		);
 
-
-
 /*
  * Mobile Editor Prototypes
  */
@@ -197,6 +198,16 @@ DECLARE_OLC_FUN( medit_align		);
 DECLARE_OLC_FUN( medit_spec		);
 DECLARE_OLC_FUN( medit_game		);
 
+/*
+ * Mobprog Editor Prototypes
+ */
+DECLARE_OLC_FUN( mpedit_show		);
+DECLARE_OLC_FUN( mpedit_add		);
+DECLARE_OLC_FUN( mpedit_delete		);
+DECLARE_OLC_FUN( mpedit_create		);
+DECLARE_OLC_FUN( mpedit_copy		);
+DECLARE_OLC_FUN( mpedit_trigger		);
+DECLARE_OLC_FUN( mpedit_program		);
 
 
 /*
@@ -212,9 +223,7 @@ DECLARE_OLC_FUN( medit_game		);
 #define EDIT_OBJ(Ch, Obj)	( Obj = (OBJ_INDEX_DATA *)Ch->desc->pEdit )
 #define EDIT_ROOM(Ch, Room)	( Room = Ch->in_room )
 #define EDIT_AREA(Ch, Area)	( Area = (AREA_DATA *)Ch->desc->pEdit )
-
-
-
+#define EDIT_MPROG(Ch, Mprog)	( Mprog = (MOB_INDEX_DATA *)Ch->desc->pEdit )
 
 
 
@@ -241,4 +250,11 @@ OBJ_INDEX_DATA	*new_obj_index		args ( ( void ) );
 void		free_obj_index		args ( ( OBJ_INDEX_DATA *pObj ) );
 MOB_INDEX_DATA	*new_mob_index		args ( ( void ) );
 void		free_mob_index		args ( ( MOB_INDEX_DATA *pMob ) );
+/* Olc.c */
+int		mprog_count		args ( ( MOB_INDEX_DATA *pMob ) );
+MPROG_DATA *	edit_mprog		args ( ( CHAR_DATA * ch,
+						MOB_INDEX_DATA * pMobProg ) );
+void 		show_mprog		args ( ( CHAR_DATA * ch,
+						MPROG_DATA * pMobProg ) );
+void		delete_mprog		args ( ( CHAR_DATA * ch, int pnum ) );
 #undef	ED

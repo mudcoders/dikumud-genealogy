@@ -49,22 +49,22 @@ void do_bladethirst( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( ch ) 
 	&& ch->level < skill_table[gsn_bladethirst].skill_level[ch->class] )
     {                                          
-	send_to_char( "What do you think you are, a necromancer?\r\n", ch );
+	send_to_char( "What do you think you are, a necromancer?\n\r", ch );
 	return;
     }
 
     one_argument( argument, arg );
 
     if ( arg[0] == '\0' )                                              
-    { send_to_char( "What are you trying to do...?\r\n",    ch ); return; }
+    { send_to_char( "What are you trying to do...?\n\r",    ch ); return; }
     if ( ch->fighting )                                       
-    { send_to_char( "While you're fighting?  Nice try.\r\n", ch ); return; }
+    { send_to_char( "While you're fighting?  Nice try.\n\r", ch ); return; }
     if ( !( obj = get_obj_carry( ch, arg ) ) )
-    { send_to_char( "You do not have that weapon.\r\n",      ch ); return; }
+    { send_to_char( "You do not have that weapon.\n\r",      ch ); return; }
     if ( obj->item_type != ITEM_WEAPON )
-    { send_to_char( "That item is not a weapon.\r\n",        ch ); return; }
+    { send_to_char( "That item is not a weapon.\n\r",        ch ); return; }
     if ( IS_OBJ_STAT( obj, ITEM_BLADE_THIRST ) )
-    { send_to_char( "That weapon is already thirsty.\r\n",  ch ); return; }
+    { send_to_char( "That weapon is already thirsty.\n\r",  ch ); return; }
 
  /* Now we have a valid weapon...check to see if we have the bar of mithril. */
     for ( pobj = ch->carrying; pobj; pobj = pobj->next_content )
@@ -74,7 +74,7 @@ void do_bladethirst( CHAR_DATA *ch, char *argument )
     }
     if ( !pobj )
     {
-	send_to_char( "You do not have the mithril.\r\n", ch );
+	send_to_char( "You do not have the mithril.\n\r", ch );
 	return;
     }
 
@@ -88,14 +88,14 @@ void do_bladethirst( CHAR_DATA *ch, char *argument )
     }
     if ( !wobj )
     {
-	send_to_char( "You need some blood for this skill.\r\n", ch );
+	send_to_char( "You need some blood for this skill.\n\r", ch );
 	return;
     }
 
     /* Great, we have the ingredients...but is the ch smart enough? */
     if ( !IS_NPC( ch ) && get_curr_wis( ch ) < 17 )
     {
-	send_to_char( "You can't quite remember what to do...\r\n", ch );
+	send_to_char( "You can't quite remember what to do...\n\r", ch );
 	return;
     }
     /* And does he have steady enough hands? */
@@ -104,7 +104,7 @@ void do_bladethirst( CHAR_DATA *ch, char *argument )
 	    || ch->pcdata->condition[COND_DRUNK] > 0 ) )
     {
 	send_to_char(
-	"Your hands aren't steady enough to properly mix the ingredients.\r\n",
+	"Your hands aren't steady enough to properly mix the ingredients.\n\r",
 								ch );
 	return;
     }
@@ -115,7 +115,7 @@ void do_bladethirst( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( ch )
 	&& number_percent( ) > ch->pcdata->learned[gsn_bladethirst] )
     {
-	send_to_char( "You failed and spill some on yourself.  Ouch!\r\n",
+	send_to_char( "You failed and spill some on yourself.  Ouch!\n\r",
 		     ch );
 	damage( ch, ch, ch->level * 2, gsn_bladethirst, WEAR_NONE );
 	act( "$n spills the blade thirst liquid all over!", ch, NULL, NULL, TO_ROOM );

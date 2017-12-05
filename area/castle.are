@@ -47,7 +47,7 @@ his shield, the Dark Knight appears ready to take you on.
 You and your entire nation!
 ~
 97 25166368 -500 S
-16 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8203
@@ -60,7 +60,7 @@ scare even you if you werent already afraid.  The air around
 his sword shimmers like a summer day.
 ~
 3 25190944 -1000 S
-27 0 0 0d0+0 0d0+0
+24 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 1
 #8204
@@ -73,7 +73,7 @@ Hanging from the silken blonde hair of one of his victims
 are the finger bones of dozens of humans.
 ~
 35 25166368 -300 S
-19 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8205
@@ -86,7 +86,7 @@ the villagers carry their possessions on their backs. Others
 use wheel barrows, while the rest have sacks of goods.
 ~
 3 512 10 S
-10 0 0 0d0+0 0d0+0
+8 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 0
 #8206
@@ -98,7 +98,7 @@ The Ducal Guard is dressed in white with purple trim.
 The Falcon Shield that he holds is Duke Reinhold's family crest.
 ~
 65 16777728 100 S
-15 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8207
@@ -111,7 +111,7 @@ breads that the castle eats. His talents are evident as the
 smells of pastries and loafs are overpowering you.
 ~
 3 16785920 200 S
-30 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Halfdwarf~ 1
 #8208
@@ -136,7 +136,7 @@ As you look closely at Armon you notice that he has many wounds about
 his body.   He is surely a strong fighter.  Don't mess with him!
 ~
 3 16777728 0 S
-32 0 0 0d0+0 0d0+0
+35 0 0 0d0+0 0d0+0
 0 0
 0 Dwarf~ 0
 #8210
@@ -148,7 +148,7 @@ This tiny little lady has the eyes and wits of a barracuda.
 Mess with her and meet your doom.
 ~
 3 16785920 1000 S
-37 0 0 0d0+0 0d0+0
+34 0 0 0d0+0 0d0+0
 0 0
 0 Gnome~ 2
 #8211
@@ -187,7 +187,7 @@ The Captain has a small tattoo on his left forearm.
 It simply says, "GOOD will triumph".
 ~
 65 16786088 500 S
-29 0 0 0d0+0 0d0+0
+32 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8214
@@ -198,7 +198,7 @@ The Armory Guards seem very bored.
 The Armory Guards are ASLEEP !!!  Can you believe it ?
 ~
 3 16777728 100 S
-16 0 0 0d0+0 0d0+0
+14 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8215
@@ -210,7 +210,7 @@ The Cadet sneers at you because he is joining an elite
 fighting order and you are not!
 ~
 65 512 100 S
-14 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8216
@@ -223,7 +223,7 @@ John Paul was a powerful adventurer during his glory days...preaching
 the benefits of GOOD and defeating the vile creatures of evil.
 ~
 3 16786088 800 S
-30 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8217
@@ -246,7 +246,7 @@ A servant appears to be looking for something to do.
 Underneath that dusty uniform is the beating heart of a human being.
 ~
 69 0 50 S
-24 0 0 0d0+0 0d0+0
+21 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #8219
@@ -258,7 +258,7 @@ Thanks to a quick hand, the cook has been able to hide some
 food inside his pants.
 ~
 3 0 25 S
-22 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8220
@@ -270,7 +270,7 @@ Hidden under his silk outfit is a leather jerkin.  He also
 seems to be armed.
 ~
 65 0 10 S
-19 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8221
@@ -281,7 +281,7 @@ The attendant is ready to serve you.
 Long hours at this duty has driven the attendant mad.
 ~
 3 0 500 S
-20 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8222
@@ -294,7 +294,7 @@ stature is still that of a young military man.  Without a doubt
 he knows how to handle himself.  Be careful!
 ~
 3 8872 800 S
-27 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8223
@@ -306,7 +306,7 @@ Like her courtiers, the Duchess hides a set of armor beneath her
 beautiful gown.
 ~
 3 8872 500 S
-28 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #8224
@@ -322,7 +322,7 @@ With the power I am gathering I shall destroy all Goblinoids upon this
 continent. You should leave...before you make me angry.
 ~
 3 8744 0 S
-26 0 0 0d0+0 0d0+0
+23 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 0
 #8225
@@ -334,7 +334,7 @@ Without a doubt, this apprentice is the most beautiful woman you have
 ever seen. Too bad she crackles with magical energies.
 ~
 3 8744 200 S
-18 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 2
 #8226
@@ -349,7 +349,7 @@ It has talons four inches long.  Good Luck...because if you can
 read this..you're too close!!
 ~
 35 66090 0 S
-25 0 0 0d0+0 0d0+0
+24 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 0
 #8227
@@ -361,7 +361,7 @@ This elder has very wise eyes...however, he seems quite angry with you.
 SSSHHHHHH !!!!!!
 ~
 3 552 100 S
-22 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Halfelf~ 1
 #8228
@@ -372,7 +372,7 @@ This buxom cleaning wench has many fine attributes.
 Very professional.  That's what you think of when you look at her.
 ~
 69 0 20 S
-14 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #8229
@@ -383,7 +383,7 @@ WATCH OUT!!!  It's the chamber pot boy.
 Dirty..dirty..dirty.  Have you ever seen so much filth?
 ~
 69 0 0 S
-12 0 0 0d0+0 0d0+0
+14 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8230
@@ -394,7 +394,7 @@ The Grey Nonderon attacks you with sharp claws!
 Standing 6' tall, the Nonderon has an exoskeleton of super hard bone.
 ~
 35 16938 -200 S
-22 0 0 0d0+0 0d0+0
+24 0 0 0d0+0 0d0+0
 0 0
 0 God~ 0
 #8231
@@ -405,7 +405,7 @@ A blackness engulfs you as the Black Amoeba attacks!!!
 Within the Black Amoeba are the remains of it's previous victims.
 ~
 39 17064 -550 S
-25 0 0 0d0+0 0d0+0
+24 0 0 0d0+0 0d0+0
 0 0
 0 Worm~ 0
 #8232
@@ -417,7 +417,7 @@ The harpy has a terrible face..and her wings are filthy..and
 her claws are disgusting, but, she's got one heck of a body!
 ~
 39 16936 -500 S
-24 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Harpy~ 2
 #8233
@@ -429,7 +429,7 @@ Many an adventurer has lost their lives to the dark wyvern.
 Their bones litter the floor.
 ~
 35 16904 -700 S
-36 0 0 0d0+0 0d0+0
+40 0 0 0d0+0 0d0+0
 0 0
 0 Dragon~ 1
 #8234
@@ -441,7 +441,7 @@ Without a doubt this man loves his job.  You can hear him humming
 a ditti under his breath.
 ~
 3 520 500 S
-21 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #8235
@@ -452,7 +452,7 @@ The river snake is big...I mean REALLY BIG!   WATCH OUT !!!!
 The mob looks back at you!
 ~
 225 512 0 S
-16 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Snake~ 1
 #8236
@@ -464,7 +464,7 @@ This shady character has several documents that you may
 want to purchase.
 ~
 65 512 0 S
-15 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Drow~ 2
 #8237
@@ -499,7 +499,7 @@ The Albino Dragon has claws like mother of pearl.  Her head
 skeletal, her fangs wicked.
 ~
 35 552 -1000 S
-30 0 0 0d0+0 0d0+0
+25 0 0 0d0+0 0d0+0
 0 0
 0 Dragon~ 2
 #8240
@@ -510,7 +510,7 @@ The ABYSS Monster **** DEMOLISHES **** you.
 The ABYSS Monster is void of reflective surfaces...thus you cannot see it.
 ~
 99 25128 0 S
-25 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #8241
@@ -521,7 +521,7 @@ The HORROR attacks you!
 The Horror has Demon armor and a TERRIBLE attitude.
 ~
 99 25128 -1000 S
-27 0 0 0d0+0 0d0+0
+32 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 1
 #0
@@ -3192,29 +3192,29 @@ S
 
 
 #SPECIALS
-M 8202 spec_breath_acid
-M 8203 spec_breath_fire
-M 8204 spec_guard
-M 8206 spec_guard
-M 8212 spec_guard
-M 8213 spec_guard
-M 8216 spec_cast_adept
-M 8217 spec_guard
-M 8222 spec_guard
-M 8223 spec_cast_mage
-M 8224 spec_cast_mage
-M 8225 spec_cast_mage
-M 8226 spec_breath_any
-M 8230 spec_breath_lightning
-M 8231 spec_cast_mage
-M 8232 spec_breath_gas
-M 8233 spec_breath_acid
-M 8235 spec_poison
-M 8237 spec_poison
-M 8238 spec_poison
-M 8239 spec_breath_any
-M 8240 spec_poison
-M 8241 spec_cast_mage
+M 8202 spec_breath_acid 	; the Dark Knight
+M 8203 spec_breath_fire 	; Captain Vader
+M 8204 spec_guard 	; the Dark Soldier
+M 8206 spec_guard 	; the Ducal Guard
+M 8212 spec_guard 	; the Ducal Sergeant
+M 8213 spec_guard 	; the Ducal Captain
+M 8216 spec_cast_adept 	; John Paul the cleric
+M 8217 spec_guard 	; an Alert Guard
+M 8222 spec_guard 	; Duke Reinhold
+M 8223 spec_cast_mage 	; the Duchess Reinhold
+M 8224 spec_cast_mage 	; the Royal Wizard
+M 8225 spec_cast_mage 	; the loyal apprentice
+M 8226 spec_breath_any 	; the tower guardian
+M 8230 spec_breath_lightning 	; the Grey Nonderon
+M 8231 spec_cast_mage 	; the Black Amoeba
+M 8232 spec_breath_gas 	; the dirty harpy
+M 8233 spec_breath_acid 	; the dark wyvern
+M 8235 spec_poison 	; the river snake
+M 8237 spec_poison 	; a deadly snake
+M 8238 spec_poison 	; the lizardman
+M 8239 spec_breath_any 	; the Albino Dragon
+M 8240 spec_poison 	; the ABYSS Monster
+M 8241 spec_cast_mage 	; the Horror
 S
 
 
@@ -3225,242 +3225,242 @@ S
 
 
 #RESETS
-M 0 8205 1 8201
-G 0 8224 0
-M 0 8200 1 8201
-G 0 8200 0
-G 0 8204 0
-M 0 8202 1 8205
-E 0 8201 0 12
-E 0 8215 0 6
-G 0 8200 0
-M 0 8204 1 8205
-O 0 8209 0 8205
-O 0 8214 0 8205
-O 0 8214 0 8205
-M 0 8204 1 8205
-M 0 8201 1 8207
-M 0 8238 1 8212
-E 0 8263 0 16
-M 0 8235 3 8214
-M 0 8235 4 8215
-M 0 8235 5 8216
-O 0 8216 0 8218
-M 0 8205 1 8219
-G 0 8217 0
-M 0 8208 1 8221
-G 0 8280 0
-G 0 8281 0
-G 0 8282 0
-M 0 8205 1 8223
-M 0 8204 1 8225
-M 0 8202 1 8226
-E 0 8215 0 6
-E 0 8201 0 5
-E 0 8215 0 6
-G 0 8200 0
-M 0 8202 4 8226
-E 0 8201 0 5
-E 0 8215 0 6
-G 0 8200 0
-M 0 8204 1 8226
-M 0 8204 1 8226
-M 0 8203 1 8227
-E 0 8201 0 5
-E 0 8202 0 6
-E 0 8203 0 16
-G 0 8200 0
-M 0 8202 4 8227
-E 0 8201 0 5
-E 0 8215 0 6
-M 0 8204 1 8227
-M 0 8206 4 8229
-E 0 8207 0 7
-E 0 8205 0 11
-E 0 8208 0 16
-M 0 8206 4 8229
-M 0 8212 1 8229
-E 0 8210 0 1
-E 0 8206 0 5
-E 0 8211 0 16
-M 0 8206 4 8229
-M 0 8205 1 8230
-G 0 8219 0
-M 0 8205 2 8230
-E 0 8227 0 17
-M 0 8205 1 8230
-M 0 8205 1 8231
-G 0 8220 0
-M 0 8205 1 8231
-M 0 8206 4 8232
-E 0 8210 0 1
-G 0 8200 0
-M 0 8207 1 8234
-G 0 8200 0
-G 0 8253 0
-G 0 8254 0
-G 0 8255 0
-M 0 8209 1 8235
-G 0 8231 0
-G 0 8213 0
-M 0 8205 1 8236
-M 0 8215 4 8236
-M 0 8211 1 8237
-M 0 8215 4 8237
-M 0 8215 4 8237
-M 0 8216 1 8239
-M 0 8205 1 8240
-E 0 8227 0 17
-M 0 8206 4 8241
-M 0 8215 3 8241
-M 0 8215 3 8242
-M 0 8214 2 8243
-E 0 8206 0 5
-E 0 8213 0 16
-M 0 8214 2 8243
-E 0 8206 0 5
-E 0 8213 0 16
-O 0 8231 0 8243
-O 0 8208 0 8243
-M 0 8217 1 8244
-E 0 8232 0 16
-M 0 8236 1 8244
-G 0 8249 0
-G 0 8250 0
-G 0 8251 0
-M 0 8217 1 8245
-E 0 8231 0 16
-G 0 8233 0
-M 0 8206 4 8246
-E 0 8213 0 16
-M 0 8212 2 8246
-E 0 8210 0 1
-E 0 8210 0 2
-E 0 8206 0 5
-E 0 8207 0 7
-E 0 8205 0 11
-E 0 8211 0 16
-E 0 8228 0 17
-M 0 8217 1 8246
-M 0 8220 1 8248
-M 0 8228 1 8248
-M 0 8218 2 8249
-M 0 8218 3 8249
-M 0 8221 1 8251
-M 0 8219 1 8252
-M 0 8225 1 8253
-M 0 8226 1 8254
-M 0 8226 1 8255
-M 0 8224 1 8256
-E 0 8239 0 3
-E 0 8236 0 6
-E 0 8238 0 13
-E 0 8235 0 17
-E 0 8241 0 9
-G 0 8237 0
-G 0 8237 0
-G 0 8248 0
-M 0 8220 2 8257
-M 0 8218 2 8257
-M 0 8206 5 8257
-M 0 8206 6 8258
-M 0 8212 3 8258
-E 0 8206 0 5
-E 0 8211 0 16
-M 0 8206 7 8259
-M 0 8222 1 8259
-E 0 8210 0 1
-E 0 8210 0 2
-E 0 8256 0 5
-E 0 8257 0 6
-E 0 8259 0 7
-E 0 8260 0 8
-E 0 8261 0 9
-E 0 8205 0 11
-E 0 8258 0 12
-E 0 8262 0 16
-M 0 8223 1 8259
-M 0 8206 8 8259
-M 0 8220 4 8259
-M 0 8218 2 8259
-M 0 8229 1 8264
-M 0 8228 1 8264
-M 0 8229 1 8266
-M 0 8229 1 8266
-M 0 8228 1 8266
-M 0 8228 1 8267
-M 0 8229 1 8267
-M 0 8217 1 8267
-O 0 8243 0 8267
-O 0 8245 0 8267
-M 0 8229 1 8268
-M 0 8228 1 8268
-M 0 8217 1 8268
-O 0 8243 0 8268
-O 0 8245 0 8268
-O 0 8244 0 8268
-M 0 8227 1 8269
-G 0 8240 0
-M 0 8217 1 8272
-M 0 8230 1 8274
-M 0 8231 1 8275
-M 0 8231 1 8275
-M 0 8232 1 8277
-M 0 8232 2 8278
-O 0 8218 0 8278
-O 0 8214 0 8278
-O 0 8232 0 8278
-M 0 8233 1 8279
-M 0 8233 2 8280
-M 0 8233 2 8280
-M 0 8232 1 8280
-O 0 8219 0 8280
-O 0 8220 0 8280
-O 0 8224 0 8280
-O 0 8229 0 8280
-O 0 8238 0 8280
-O 0 8242 0 8280
-O 0 8213 0 8280
-O 0 8203 0 8280
-O 0 8247 0 8280
-M 0 8230 1 8280
-M 0 8234 1 8283
-O 0 8246 0 8284
-M 0 8210 1 8288
-G 0 8200 0
-G 0 8209 0
-G 0 8217 0
-M 0 8237 3 8292
-M 0 8235 4 8292
-M 0 8238 1 8293
-E 0 8264 0 1
-E 0 8263 0 16
-M 0 8237 3 8293
-M 0 8238 1 8293
-M 0 8239 1 8294
-E 0 8267 0 5
-E 0 8266 0 6
-E 0 8265 0 16
-M 0 8241 1 8295
-G 0 8279 0
-G 0 8279 0
-M 0 8240 1 8296
-E 0 8269 0 1
-E 0 8269 0 2
-E 0 8270 0 3
-E 0 8270 0 4
-E 0 8271 0 5
-E 0 8268 0 6
-E 0 8272 0 7
-E 0 8273 0 8
-E 0 8274 0 9
-E 0 8275 0 10
-E 0 8276 0 11
-E 0 8277 0 14
-E 0 8277 0 15
-G 0 8278 0
-G 0 8278 0
-G 0 8278 0
+M 0 8205  1 8201  	; the Villager to Burnt Village
+G 0 8224  0      	;   Some gold coins
+M 0 8200  1 8201  	; the Insane Villager to Burnt Village
+G 0 8200  0      	;   A field ration
+G 0 8204  0      	;   A sack
+M 0 8202  1 8205  	; the Dark Knight to Logging Camp
+E 0 8201  0 12    	;   A black chain armor about the shoulders
+E 0 8215  0 6     	;   A skull mask over the head
+G 0 8200  0      	;   A field ration
+M 0 8204  1 8205  	; the Dark Soldier to Logging Camp
+O 0 8209  0 8205  	; A wooden wagon to Logging Camp
+O 0 8214  0 8205  	; A siege ballista to Logging Camp
+O 0 8214  0 8205  	; A siege ballista to Logging Camp
+M 0 8204  1 8205  	; the Dark Soldier to Logging Camp
+M 0 8201  1 8207  	; the wounded villager to Scenic Overlook
+M 0 8238  1 8212  	; the lizardman to Crystal Cavern
+E 0 8263  0 16    	;   A mineral club wielded (1)
+M 0 8235  3 8214  	; the river snake to An underground River
+M 0 8235  4 8215  	; the river snake to River ride.
+M 0 8235  5 8216  	; the river snake to Dark cold river.
+O 0 8216  0 8218  	; An old well to Plaza Well
+M 0 8205  1 8219  	; the Villager to Western Plaza
+G 0 8217  0      	;   A set of pots and pans
+M 0 8208  1 8221  	; Captain Jack to The Armorer
+G 0 8280  0      	;   A magic ring
+G 0 8281  0      	;   A set of chain armor
+G 0 8282  0      	;   A white shield
+M 0 8205  1 8223  	; the Villager to Eastern Plaza
+M 0 8204  1 8225  	; the Dark Soldier to Downward Slope
+M 0 8202  1 8226  	; the Dark Knight to Battle Zone
+E 0 8215  0 6     	;   A skull mask over the head
+E 0 8201  0 5     	;   A black chain armor on the body
+E 0 8215  0 6     	;   A skull mask over the head
+G 0 8200  0      	;   A field ration
+M 0 8202  4 8226  	; the Dark Knight to Battle Zone
+E 0 8201  0 5     	;   A black chain armor on the body
+E 0 8215  0 6     	;   A skull mask over the head
+G 0 8200  0      	;   A field ration
+M 0 8204  1 8226  	; the Dark Soldier to Battle Zone
+M 0 8204  1 8226  	; the Dark Soldier to Battle Zone
+M 0 8203  1 8227  	; Captain Vader to Before the Gates
+E 0 8201  0 5     	;   A black chain armor on the body
+E 0 8202  0 6     	;   A black horned helmet over the head
+E 0 8203  0 16    	;   A bastard sword wielded (1)
+G 0 8200  0      	;   A field ration
+M 0 8202  4 8227  	; the Dark Knight to Before the Gates
+E 0 8201  0 5     	;   A black chain armor on the body
+E 0 8215  0 6     	;   A skull mask over the head
+M 0 8204  1 8227  	; the Dark Soldier to Before the Gates
+M 0 8206  4 8229  	; the Ducal Guard to Palace Road
+E 0 8207  0 7     	;   A set of shin guards on the legs
+E 0 8205  0 11    	;   A falcon shield as a shield
+E 0 8208  0 16    	;   A long sword wielded (1)
+M 0 8206  4 8229  	; the Ducal Guard to Palace Road
+M 0 8212  1 8229  	; the Ducal Sergeant to Palace Road
+E 0 8210  0 1     	;   A ducal ring on the left finger
+E 0 8206  0 5     	;   A set of plate armor on the body
+E 0 8211  0 16    	;   A ducal patrol club wielded (1)
+M 0 8206  4 8229  	; the Ducal Guard to Palace Road
+M 0 8205  1 8230  	; the Villager to Park Avenue
+G 0 8219  0      	;   A magnificient painting
+M 0 8205  2 8230  	; the Villager to Park Avenue
+E 0 8227  0 17    	;   A fire garnet held in the hands
+M 0 8205  1 8230  	; the Villager to Park Avenue
+M 0 8205  1 8231  	; the Villager to South End of Park
+G 0 8220  0      	;   A persian rug
+M 0 8205  1 8231  	; the Villager to South End of Park
+M 0 8206  4 8232  	; the Ducal Guard to Palace Entrance
+E 0 8210  0 1     	;   A ducal ring on the left finger
+G 0 8200  0      	;   A field ration
+M 0 8207  1 8234  	; Joe the Baker to The Bakery
+G 0 8200  0      	;   A field ration
+G 0 8253  0      	;   An angelfood cake
+G 0 8254  0      	;   A cookie
+G 0 8255  0      	;   A birthday cake
+M 0 8209  1 8235  	; Armon the weaponsmith to The Weaponsmith
+G 0 8231  0      	;   A crowbar
+G 0 8213  0      	;   A large halberd
+M 0 8205  1 8236  	; the Villager to Southern Plaza
+M 0 8215  4 8236  	; the young Cadet to Southern Plaza
+M 0 8211  1 8237  	; the Warlord to Parade Grounds
+M 0 8215  4 8237  	; the young Cadet to Parade Grounds
+M 0 8215  4 8237  	; the young Cadet to Parade Grounds
+M 0 8216  1 8239  	; John Paul the cleric to The LIGHT
+M 0 8205  1 8240  	; the Villager to Peace Garden
+E 0 8227  0 17    	;   A fire garnet held in the hands
+M 0 8206  4 8241  	; the Ducal Guard to First Floor Barracks
+M 0 8215  3 8241  	; the young Cadet to First Floor Barracks
+M 0 8215  3 8242  	; the young Cadet to The Second Floor
+M 0 8214  2 8243  	; the  Armory Guards to The Armory
+E 0 8206  0 5     	;   A set of plate armor on the body
+E 0 8213  0 16    	;   A large halberd wielded (1)
+M 0 8214  2 8243  	; the  Armory Guards to The Armory
+E 0 8206  0 5     	;   A set of plate armor on the body
+E 0 8213  0 16    	;   A large halberd wielded (1)
+O 0 8231  0 8243  	; A crowbar to The Armory
+O 0 8208  0 8243  	; A long sword to The Armory
+M 0 8217  1 8244  	; an Alert Guard to Crowbar Street
+E 0 8232  0 16    	;   A harpy claw wielded (1)
+M 0 8236  1 8244  	; the shady character to Crowbar Street
+G 0 8249  0      	;   A treasure rumor
+G 0 8250  0      	;   A trap rumor
+G 0 8251  0      	;   An item rumor
+M 0 8217  1 8245  	; an Alert Guard to Kiki Street
+E 0 8231  0 16    	;   A crowbar wielded (1)
+G 0 8233  0      	;   The large key
+M 0 8206  4 8246  	; the Ducal Guard to Keep Entrance
+E 0 8213  0 16    	;   A large halberd wielded (1)
+M 0 8212  2 8246  	; the Ducal Sergeant to Keep Entrance
+E 0 8210  0 1     	;   A ducal ring on the left finger
+E 0 8210  0 2     	;   A ducal ring on the right finger
+E 0 8206  0 5     	;   A set of plate armor on the body
+E 0 8207  0 7     	;   A set of shin guards on the legs
+E 0 8205  0 11    	;   A falcon shield as a shield
+E 0 8211  0 16    	;   A ducal patrol club wielded (1)
+E 0 8228  0 17    	;   A moonstone held in the hands
+M 0 8217  1 8246  	; an Alert Guard to Keep Entrance
+M 0 8220  1 8248  	; the Courtier to Forest Hall
+M 0 8228  1 8248  	; the cleaning wench to Forest Hall
+M 0 8218  2 8249  	; a servant to Dining Hall
+M 0 8218  3 8249  	; a servant to Dining Hall
+M 0 8221  1 8251  	; the toilet attendant to The Indoor Toilets
+M 0 8219  1 8252  	; the fat cook to The Kitchen
+M 0 8225  1 8253  	; the loyal apprentice to Flight of stairs
+M 0 8226  1 8254  	; the tower guardian to The First Ring 
+M 0 8226  1 8255  	; the tower guardian to The Second Ring
+M 0 8224  1 8256  	; the Royal Wizard to Third Ring
+E 0 8239  0 3     	;   The necklace of power around the neck (1)
+E 0 8236  0 6     	;   A wizard's hat over the head
+E 0 8238  0 13    	;   A purple pouch around the waist
+E 0 8235  0 17    	;   The staff of banishing held in the hands
+E 0 8241  0 9     	;   A set of power gauntlets on the hands
+G 0 8237  0      	;   A green potion
+G 0 8237  0      	;   A green potion
+G 0 8248  0      	;   A magical word
+M 0 8220  2 8257  	; the Courtier to Red Hall
+M 0 8218  2 8257  	; a servant to Red Hall
+M 0 8206  5 8257  	; the Ducal Guard to Red Hall
+M 0 8206  6 8258  	; the Ducal Guard to Grand Hall
+M 0 8212  3 8258  	; the Ducal Sergeant to Grand Hall
+E 0 8206  0 5     	;   A set of plate armor on the body
+E 0 8211  0 16    	;   A ducal patrol club wielded (1)
+M 0 8206  7 8259  	; the Ducal Guard to Audience Chamber
+M 0 8222  1 8259  	; Duke Reinhold to Audience Chamber
+E 0 8210  0 1     	;   A ducal ring on the left finger
+E 0 8210  0 2     	;   A ducal ring on the right finger
+E 0 8256  0 5     	;   A scarlet chainmail on the body
+E 0 8257  0 6     	;   A scarlet helmet over the head
+E 0 8259  0 7     	;   A scarlet leggings on the legs
+E 0 8260  0 8     	;   A pair of scarlet boots on the feet
+E 0 8261  0 9     	;   A pair of scarlet gloves on the hands
+E 0 8205  0 11    	;   A falcon shield as a shield
+E 0 8258  0 12    	;   A scarlet cape about the shoulders
+E 0 8262  0 16    	;   A razor sword wielded (1)
+M 0 8223  1 8259  	; the Duchess Reinhold to Audience Chamber
+M 0 8206  8 8259  	; the Ducal Guard to Audience Chamber
+M 0 8220  4 8259  	; the Courtier to Audience Chamber
+M 0 8218  2 8259  	; a servant to Audience Chamber
+M 0 8229  1 8264  	; the chamber pot boy to End of the Hall
+M 0 8228  1 8264  	; the cleaning wench to End of the Hall
+M 0 8229  1 8266  	; the chamber pot boy to Visitor's Room
+M 0 8229  1 8266  	; the chamber pot boy to Visitor's Room
+M 0 8228  1 8266  	; the cleaning wench to Visitor's Room
+M 0 8228  1 8267  	; the cleaning wench to Master Bedroom
+M 0 8229  1 8267  	; the chamber pot boy to Master Bedroom
+M 0 8217  1 8267  	; an Alert Guard to Master Bedroom
+O 0 8243  0 8267  	; A feather bed to Master Bedroom
+O 0 8245  0 8267  	; A cedar dresser to Master Bedroom
+M 0 8229  1 8268  	; the chamber pot boy to Mistress Bedroom
+M 0 8228  1 8268  	; the cleaning wench to Mistress Bedroom
+M 0 8217  1 8268  	; an Alert Guard to Mistress Bedroom
+O 0 8243  0 8268  	; A feather bed to Mistress Bedroom
+O 0 8245  0 8268  	; A cedar dresser to Mistress Bedroom
+O 0 8244  0 8268  	; A portrait to Mistress Bedroom
+M 0 8227  1 8269  	; the Librarian to Great Library
+G 0 8240  0      	;   A book
+M 0 8217  1 8272  	; an Alert Guard to A narrow passageway
+M 0 8230  1 8274  	; the Grey Nonderon to Natural Cave
+M 0 8231  1 8275  	; the Black Amoeba to The Dead Cavern
+M 0 8231  1 8275  	; the Black Amoeba to The Dead Cavern
+M 0 8232  1 8277  	; the dirty harpy to Overlook cave
+M 0 8232  2 8278  	; the dirty harpy to The Lair
+O 0 8218  0 8278  	; A set of silverware to The Lair
+O 0 8214  0 8278  	; A siege ballista to The Lair
+O 0 8232  0 8278  	; A harpy claw to The Lair
+M 0 8233  1 8279  	; the dark wyvern to A dark dangerous cavern
+M 0 8233  2 8280  	; the dark wyvern to Treasure Room
+M 0 8233  2 8280  	; the dark wyvern to Treasure Room
+M 0 8232  1 8280  	; the dirty harpy to Treasure Room
+O 0 8219  0 8280  	; A magnificient painting to Treasure Room
+O 0 8220  0 8280  	; A persian rug to Treasure Room
+O 0 8224  0 8280  	; Some gold coins to Treasure Room
+O 0 8229  0 8280  	; Platinum coins to Treasure Room
+O 0 8238  0 8280  	; A purple pouch to Treasure Room
+O 0 8242  0 8280  	; A pile of coins to Treasure Room
+O 0 8213  0 8280  	; A large halberd to Treasure Room
+O 0 8203  0 8280  	; A bastard sword to Treasure Room
+O 0 8247  0 8280  	; A wyvern mount to Treasure Room
+M 0 8230  1 8280  	; the Grey Nonderon to Treasure Room
+M 0 8234  1 8283  	; the Ducal torturer to Torture Chamber
+O 0 8246  0 8284  	; A bowl to Dungeon Cell
+M 0 8210  1 8288  	; Stella the Merchant to Mercantile
+G 0 8200  0      	;   A field ration
+G 0 8209  0      	;   A wooden wagon
+G 0 8217  0      	;   A set of pots and pans
+M 0 8237  3 8292  	; a deadly snake to The waterfall tunnel
+M 0 8235  4 8292  	; the river snake to The waterfall tunnel
+M 0 8238  1 8293  	; the lizardman to A Large underground cavern
+E 0 8264  0 1     	;   A fishbone ring on the left finger
+E 0 8263  0 16    	;   A mineral club wielded (1)
+M 0 8237  3 8293  	; a deadly snake to A Large underground cavern
+M 0 8238  1 8293  	; the lizardman to A Large underground cavern
+M 0 8239  1 8294  	; the Albino Dragon to God's Room
+E 0 8267  0 5     	;   An albino dragon armor on the body
+E 0 8266  0 6     	;   An albino dragon skull over the head
+E 0 8265  0 16    	;   An albino dragon claw wielded (1)
+M 0 8241  1 8295  	; the Horror to Hall of Horrors
+G 0 8279  0      	;   A strange potion
+G 0 8279  0      	;   A strange potion
+M 0 8240  1 8296  	; the ABYSS Monster to The Dark Abyss
+E 0 8269  0 1     	;   An abyss ring on the left finger
+E 0 8269  0 2     	;   An abyss ring on the right finger
+E 0 8270  0 3     	;   An abyss amulet around the neck (1)
+E 0 8270  0 4     	;   An abyss amulet around the neck (2)
+E 0 8271  0 5     	;   An abyss leather jerkin on the body
+E 0 8268  0 6     	;   An abyss helm over the head
+E 0 8272  0 7     	;   Abyss leg guards on the legs
+E 0 8273  0 8     	;   Abyss boots on the feet
+E 0 8274  0 9     	;   Abyss gloves on the hands
+E 0 8275  0 10    	;   Abyss sleeves on the arms
+E 0 8276  0 11    	;   An abyss shield as a shield
+E 0 8277  0 14    	;   An abyss bracer on the left wrist
+E 0 8277  0 15    	;   An abyss bracer on the right wrist
+G 0 8278  0      	;   An abyss potion
+G 0 8278  0      	;   An abyss potion
+G 0 8278  0      	;   An abyss potion
 S
 
 
@@ -3471,11 +3471,11 @@ S
 
 
 #SHOPS
-8207 19 0 0 0 0 40 100 0 23
-8208 9 0 0 0 0 90 100 0 23
-8209 5 4 3 0 0 80 110 0 23
-8210 12 15 8 0 0 80 110 0 2
-8236 8 0 0 0 0 40 110 0 23
+8207 19  0  0  0  0  40 100  0 23 	; Joe the Baker
+8208  9  0  0  0  0  90 100  0 23 	; Captain Jack
+8209  5  4  3  0  0  80 110  0 23 	; Armon the weaponsmith
+8210 12 15  8  0  0  80 110  0  2 	; Stella the Merchant
+8236  8  0  0  0  0  40 110  0 23 	; the shady character
 0
 
 

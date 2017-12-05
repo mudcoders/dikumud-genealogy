@@ -18,7 +18,7 @@ You see a slate grey vaguely humanoid shape, devoid of any true features.
 It stands before you with arms folded, seemingly uninterested in you.
 ~
 67 8360 0 S
-46 -20 0 37d37+370 8d12+100
+44 -20 0 37d37+370 8d12+100
 100000 0
 0 Human~ 0
 #1901
@@ -31,7 +31,7 @@ planes to torment mortals.  It vaguely resembles a horse, with a hide blacker
 than the darkest night, and hooves that burn with unholy fires.
 ~
 97 524808 -1000 S
-18 2 0 18d18+180 5d3+10
+16 2 0 18d18+180 5d3+10
 6000 0
 0 Animal~ 0
 #1902
@@ -44,7 +44,7 @@ purpose is to hunt down and slay mortals in order to obtain souls for her foul
 master to torment.
 ~
 101 520 -1000 S
-22 0 0 24d24+240 5d5+5
+21 0 0 24d24+240 5d5+5
 12500 0
 0 Undead~ 2
 #1903
@@ -56,7 +56,7 @@ You see only a wavy distortion in the air.  You reach out to touch it, and
 feel nothing, not even the slightest of motions.
 ~
 65 524290 200 S
-23 3 0 17d17+170 2d7+6
+24 3 0 17d17+170 2d7+6
 1000 0
 0 Undead~ 0
 #1904
@@ -68,7 +68,7 @@ This unfortunate being has had its very soul torn from its body.  It now roams
 mindlessly, unaware of its surroundings.
 ~
 193 0 0 S
-12 8 0 10d10+100 1d6+2
+13 8 0 10d10+100 1d6+2
 250 0
 0 Undead~ 0
 #1905
@@ -81,7 +81,7 @@ normal man.  Like all githyanki, his teeth are fanged and his eyes hollow
 and sunken.
 ~
 197 512 -500 S
-13 6 0 11d11+110 1d5+4
+8 6 0 11d11+110 1d5+4
 1000 0
 0 Githyanki~ 1
 #1906
@@ -95,7 +95,7 @@ He is clad in ornately designed splinted armor, and wields a sword that
 whistles through the air as it slices towards your neck.
 ~
 69 512 -500 S
-11 4 0 15d15+150 1d5+6
+15 4 0 15d15+150 1d5+6
 2500 0
 0 Githyanki~ 1
 #1907
@@ -109,7 +109,7 @@ He is clad in ornately designed splinted armor, and wields a sword that
 whistles through the air as it slices towards your neck.
 ~
 39 512 -500 S
-15 4 0 15d15+150 1d5+6
+12 4 0 15d15+150 1d5+6
 6000 0
 0 Githyanki~ 1
 #1908
@@ -123,7 +123,7 @@ splinted armor -- you only hear the hissing of his breath and the scraping
 of his sword against its scabbard as it is unsheathed.
 ~
 69 512 -750 S
-26 -2 0 25d25+250 1d5+15
+29 -2 0 25d25+250 1d5+15
 10000 0
 0 Githyanki~ 1
 #1909
@@ -137,7 +137,7 @@ splinted armor -- you only hear the hissing of his breath and the scraping
 of his sword against its scabbard as it is unsheathed.
 ~
 39 512 -750 S
-24 -2 0 25d25+250 1d5+15
+28 -2 0 25d25+250 1d5+15
 10000 0
 0 Githyanki~ 1
 #1910
@@ -151,7 +151,7 @@ sunken.  The gish are well-versed in the arcane arts, unlike the normal gith
 people.  You notice this from the blast of lightning headed towards you.
 ~
 197 512 -600 S
-13 6 0 11d11+110 1d5+2
+15 6 0 11d11+110 1d5+2
 3000 0
 0 Githyanki~ 1
 #1911
@@ -165,7 +165,7 @@ sunken.  The gish are well-versed in the arcane arts, unlike the normal gith
 people.  You notice this from the blast of lightning headed towards you.
 ~
 101 512 -600 S
-6 6 0 11d11+110 1d5+2
+4 6 0 11d11+110 1d5+2
 3000 0
 0 Githyanki~ 1
 #1912
@@ -179,7 +179,7 @@ and sunken.  As you turn to flee, you feel the impact of a fireball against
 your back.
 ~
 97 536 -900 S
-19 0 0 20d20+200 1d5+8
+22 0 0 20d20+200 1d5+8
 10000 0
 0 Githyanki~ 1
 #1913
@@ -193,7 +193,7 @@ unholy magic and the powers of this plane of existence.  The cold glare of her
 hollow eyes sends you into paroxysms of fright.
 ~
 35 696 -1000 S
-29 -8 0 30d30+300 4d5+20
+27 -8 0 30d30+300 4d5+20
 100000 0
 0 Githyanki~ 2
 #1914
@@ -211,7 +211,7 @@ He gestures towards you.  You feel your heart tremble and your throat begin
 to tighten.  You are about to die.
 ~
 35 554 -1000 S
-40 -15 0 35d35+350 10d3+50
+37 -15 0 35d35+350 10d3+50
 5000 0
 0 Githyanki~ 1
 #1915
@@ -225,7 +225,7 @@ and destroyed in this torment, and it now envys and intends to destroy all the
 true living beings it encounters, including you.
 ~
 97 1573376 -1000 S
-19 2 0 16d16+160 2d9+2
+20 2 0 16d16+160 2d9+2
 1000 0
 0 Undead~ 0
 #1916
@@ -238,7 +238,7 @@ by the mindflayers and related to the githyanki.  Unfortunately, the two races
 are bitter enemies, and this one happened to get caught.  He intends to escape.
 ~
 65 512 -350 S
-24 8 0 10d10+100 1d4+4
+26 8 0 10d10+100 1d4+4
 0 0
 0 Githyanki~ 1
 #1917
@@ -251,7 +251,7 @@ middle of its head.  It is hunched over, bent and scarred from torture inflicted
 by the githyanki.  It cringes as you approach.
 ~
 3 0 0 S
-5 13 0 8d8+80 2d4+3
+2 13 0 8d8+80 2d4+3
 0 0
 0 Mindflayer~ 0
 #1918
@@ -265,7 +265,7 @@ in length with an even more massive wingspan.  He watches you, smoke drifting
 from his open mouth.
 ~
 3 520 -500 S
-29 -3 0 28d28+280 3d5+25
+31 -3 0 28d28+280 3d5+25
 5000 0
 0 Dragon~ 1
 #1919
@@ -276,7 +276,7 @@ The fires of the furnace burn away at your skin!
 The fire feeds on your skin like a living being, licking out at your hair.
 ~
 99 512 0 S
-15 5 0 13d13+130 3d3+3
+17 5 0 13d13+130 3d3+3
 5000 0
 0 Object~ 0
 #0
@@ -3146,17 +3146,17 @@ S
 
 
 #SPECIALS
-M 1902 spec_cast_mage
-M 1905 spec_thief
-M 1910 spec_cast_mage
-M 1911 spec_cast_mage
-M 1912 spec_cast_mage
-M 1913 spec_cast_undead
-M 1914 spec_cast_undead
-M 1915 spec_cast_undead
-M 1917 spec_cast_mage
-M 1918 spec_cast_mage
-M 1919 spec_breath_fire
+M 1902 spec_cast_mage 	; An evil night hag
+M 1905 spec_thief 	; A githyanki hunter
+M 1910 spec_cast_mage 	; An evil gish
+M 1911 spec_cast_mage 	; An evil gish
+M 1912 spec_cast_mage 	; A warlock of the Gith
+M 1913 spec_cast_undead 	; The lich-queen
+M 1914 spec_cast_undead 	; Lord Gith
+M 1915 spec_cast_undead 	; An insubstantial ghost
+M 1917 spec_cast_mage 	; A tortured mindflayer prisoner
+M 1918 spec_cast_mage 	; The enslaved red dragon
+M 1919 spec_breath_fire 	; A massive blast of fire
 S
 
 
@@ -3167,193 +3167,193 @@ S
 
 
 #RESETS
-M 0 1900 1 1906
-E 0 1900 0 16
-R 0 1908 6
-R 0 1909 6
-R 0 1910 6
-R 0 1911 6
-R 0 1912 6
-R 0 1913 6
-M 0 1904 10 1913
-E 0 1926 0 16
-R 0 1914 6
-M 0 1904 10 1914
-E 0 1926 0 16
-R 0 1915 6
-M 0 1904 10 1915
-E 0 1926 0 16
-R 0 1916 6
-M 0 1904 10 1916
-E 0 1926 0 16
-R 0 1917 6
-M 0 1904 10 1917
-E 0 1926 0 16
-R 0 1918 6
-M 0 1904 10 1918
-E 0 1926 0 16
-M 0 1905 8 1918
-E 0 1907 0 16
-R 0 1919 6
-M 0 1904 10 1919
-E 0 1926 0 16
-R 0 1920 6
-M 0 1903 4 1920
-G 0 1914 0
-M 0 1904 10 1920
-E 0 1926 0 16
-M 0 1905 8 1920
-E 0 1907 0 16
-R 0 1921 6
-M 0 1904 10 1921
-E 0 1926 0 16
-R 0 1922 6
-M 0 1904 10 1922
-E 0 1926 0 16
-M 0 1905 8 1922
-E 0 1907 0 16
-R 0 1923 6
-M 0 1906 6 1923
-E 0 1909 0 16
-E 0 1915 0 5
-R 0 1924 6
-M 0 1903 4 1924
-G 0 1914 0
-M 0 1905 8 1924
-E 0 1907 0 16
-R 0 1925 6
-R 0 1926 6
-M 0 1903 4 1926
-G 0 1914 0
-R 0 1927 6
-M 0 1906 6 1927
-E 0 1909 0 16
-E 0 1915 0 5
-R 0 1928 6
-R 0 1929 6
-M 0 1910 6 1929
-E 0 1906 0 16
-R 0 1930 6
-M 0 1903 4 1930
-G 0 1914 0
-M 0 1908 3 1930
-E 0 1909 0 16
-E 0 1915 0 5
-E 0 1916 0 7
-E 0 1917 0 10
-R 0 1931 6
-M 0 1910 6 1931
-E 0 1906 0 16
-R 0 1932 6
-R 0 1933 6
-M 0 1901 2 1933
-G 0 1904 0
-R 0 1934 6
-M 0 1901 2 1934
-G 0 1904 0
-R 0 1935 6
-R 0 1936 6
-R 0 1937 6
-R 0 1938 6
-R 0 1939 6
-R 0 1940 6
-R 0 1941 6
-R 0 1942 6
-R 0 1943 6
-R 0 1944 6
-M 0 1915 3 1945
-G 0 1921 0
-M 0 1902 1 1946
-G 0 1905 0
-M 0 1915 3 1947
-G 0 1921 0
-M 0 1915 3 1949
-G 0 1921 0
-M 0 1907 8 1951
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1907 8 1951
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1911 6 1953
-E 0 1906 0 16
-M 0 1908 3 1955
-E 0 1909 0 16
-E 0 1915 0 5
-E 0 1916 0 7
-E 0 1917 0 10
-M 0 1911 6 1959
-E 0 1906 0 16
-M 0 1911 6 1962
-E 0 1906 0 16
-M 0 1911 6 1962
-E 0 1906 0 16
-G 0 1922 0
-M 0 1911 6 1963
-E 0 1906 0 16
-M 0 1911 6 1963
-E 0 1906 0 16
-G 0 1922 0
-M 0 1912 4 1964
-E 0 1910 0 16
-G 0 1903 0
-M 0 1907 8 1965
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1907 8 1965
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1907 8 1967
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1907 8 1967
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1918 1 1968
-E 0 1913 0 0
-M 0 1919 6 1968
-M 0 1919 6 1968
-M 0 1919 6 1968
-M 0 1919 6 1968
-M 0 1919 6 1968
-M 0 1919 6 1968
-M 0 1907 8 1969
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1907 8 1969
-E 0 1908 0 16
-E 0 1915 0 5
-M 0 1917 1 1971
-M 0 1916 1 1972
-M 0 1912 4 1973
-E 0 1910 0 16
-G 0 1903 0
-M 0 1912 4 1974
-E 0 1910 0 16
-G 0 1903 0
-M 0 1912 4 1974
-E 0 1910 0 16
-G 0 1903 0
-M 0 1909 2 1976
-E 0 1909 0 16
-E 0 1915 0 5
-E 0 1916 0 7
-E 0 1917 0 10
-E 0 1918 0 9
-M 0 1909 2 1977
-E 0 1909 0 16
-E 0 1915 0 5
-E 0 1916 0 7
-E 0 1917 0 10
-E 0 1918 0 9
-M 0 1913 1 1977
-E 0 1911 0 16
-E 0 1924 0 17
-G 0 1902 0
-M 0 1914 1 1979
-E 0 1912 0 16
-E 0 1919 0 5
-G 0 1925 0
+M 0 1900  1 1906  	; The Astral Guardian to The Astral Gate
+E 0 1900  0 16    	;   A massive slate-grey sledgehammer wielded (1)
+R 0 1908  6      	; Randomize Exploring the Astral Plane
+R 0 1909  6      	; Randomize Exploring the Astral Plane
+R 0 1910  6      	; Randomize Exploring the Astral Plane
+R 0 1911  6      	; Randomize Exploring the Astral Plane
+R 0 1912  6      	; Randomize Exploring the Astral Plane
+R 0 1913  6      	; Randomize Roaming the Astral Plane
+M 0 1904 10 1913  	; A poor soulless being to Roaming the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1914  6      	; Randomize Roaming the Astral Plane
+M 0 1904 10 1914  	; A poor soulless being to Roaming the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1915  6      	; Randomize Roaming the Astral Plane
+M 0 1904 10 1915  	; A poor soulless being to Roaming the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1916  6      	; Randomize Roaming the Astral Plane
+M 0 1904 10 1916  	; A poor soulless being to Roaming the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1917  6      	; Randomize Roaming the Astral Plane
+M 0 1904 10 1917  	; A poor soulless being to Roaming the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1918  6      	; Randomize Wandering the Astral Plane
+M 0 1904 10 1918  	; A poor soulless being to Wandering the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+M 0 1905  8 1918  	; A githyanki hunter to Wandering the Astral Plane
+E 0 1907  0 16    	;   A silvery dagger wielded (1)
+R 0 1919  6      	; Randomize Wandering the Astral Plane
+M 0 1904 10 1919  	; A poor soulless being to Wandering the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1920  6      	; Randomize Wandering the Astral Plane
+M 0 1903  4 1920  	; An invisible stalker to Wandering the Astral Plane
+G 0 1914  0      	;   Some astral powder
+M 0 1904 10 1920  	; A poor soulless being to Wandering the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+M 0 1905  8 1920  	; A githyanki hunter to Wandering the Astral Plane
+E 0 1907  0 16    	;   A silvery dagger wielded (1)
+R 0 1921  6      	; Randomize Wandering the Astral Plane
+M 0 1904 10 1921  	; A poor soulless being to Wandering the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+R 0 1922  6      	; Randomize Wandering the Astral Plane
+M 0 1904 10 1922  	; A poor soulless being to Wandering the Astral Plane
+E 0 1926  0 16    	;   A rusted sword wielded (1)
+M 0 1905  8 1922  	; A githyanki hunter to Wandering the Astral Plane
+E 0 1907  0 16    	;   A silvery dagger wielded (1)
+R 0 1923  6      	; Randomize Travelling the Astral Plane
+M 0 1906  6 1923  	; A githyanki warrior to Travelling the Astral Plane
+E 0 1909  0 16    	;   A thin two-handed sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+R 0 1924  6      	; Randomize Travelling the Astral Plane
+M 0 1903  4 1924  	; An invisible stalker to Travelling the Astral Plane
+G 0 1914  0      	;   Some astral powder
+M 0 1905  8 1924  	; A githyanki hunter to Travelling the Astral Plane
+E 0 1907  0 16    	;   A silvery dagger wielded (1)
+R 0 1925  6      	; Randomize Travelling the Astral Plane
+R 0 1926  6      	; Randomize Travelling the Astral Plane
+M 0 1903  4 1926  	; An invisible stalker to Travelling the Astral Plane
+G 0 1914  0      	;   Some astral powder
+R 0 1927  6      	; Randomize Travelling the Astral Plane
+M 0 1906  6 1927  	; A githyanki warrior to Travelling the Astral Plane
+E 0 1909  0 16    	;   A thin two-handed sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+R 0 1928  6      	; Randomize Traversing the Astral Plane
+R 0 1929  6      	; Randomize Traversing the Astral Plane
+M 0 1910  6 1929  	; An evil gish to Traversing the Astral Plane
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+R 0 1930  6      	; Randomize Traversing the Astral Plane
+M 0 1903  4 1930  	; An invisible stalker to Traversing the Astral Plane
+G 0 1914  0      	;   Some astral powder
+M 0 1908  3 1930  	; A githyanki knight to Traversing the Astral Plane
+E 0 1909  0 16    	;   A thin two-handed sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+E 0 1916  0 7     	;   A splint mail skirt on the legs
+E 0 1917  0 10    	;   A pair of splint mail sleeves on the arms
+R 0 1931  6      	; Randomize Traversing the Astral Plane
+M 0 1910  6 1931  	; An evil gish to Traversing the Astral Plane
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+R 0 1932  6      	; Randomize Traversing the Astral Plane
+R 0 1933  6      	; Randomize Lost in the Astral Plane
+M 0 1901  2 1933  	; A pitch-black nightmare to Lost in the Astral Plane
+G 0 1904  0      	;   A small demon's amulet
+R 0 1934  6      	; Randomize Lost in the Astral Plane
+M 0 1901  2 1934  	; A pitch-black nightmare to Lost in the Astral Plane
+G 0 1904  0      	;   A small demon's amulet
+R 0 1935  6      	; Randomize Lost in the Astral Plane
+R 0 1936  6      	; Randomize Walking the Silvery Strand
+R 0 1937  6      	; Randomize Walking the Silvery Strand
+R 0 1938  6      	; Randomize Walking the Silvery Strand
+R 0 1939  6      	; Randomize Walking the Silvery Strand
+R 0 1940  6      	; Randomize Walking the Silvery Strand
+R 0 1941  6      	; Randomize Walking the Silvery Strand
+R 0 1942  6      	; Randomize Walking the Silvery Strand
+R 0 1943  6      	; Randomize Walking the Silvery Strand
+R 0 1944  6      	; Randomize Walking the Silvery Strand
+M 0 1915  3 1945  	; An insubstantial ghost to Deep Within the Astral Plane
+G 0 1921  0      	;   A vial of murky fluid
+M 0 1902  1 1946  	; An evil night hag to Deep Within the Astral Plane
+G 0 1905  0      	;   A devilish talisman
+M 0 1915  3 1947  	; An insubstantial ghost to Deep Within the Astral Plane
+G 0 1921  0      	;   A vial of murky fluid
+M 0 1915  3 1949  	; An insubstantial ghost to Deep Within the Astral Plane
+G 0 1921  0      	;   A vial of murky fluid
+M 0 1907  8 1951  	; A githyanki guardian to A guard station
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1907  8 1951  	; A githyanki guardian to A guard station
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1911  6 1953  	; An evil gish to A grey road
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+M 0 1908  3 1955  	; A githyanki knight to A grey road
+E 0 1909  0 16    	;   A thin two-handed sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+E 0 1916  0 7     	;   A splint mail skirt on the legs
+E 0 1917  0 10    	;   A pair of splint mail sleeves on the arms
+M 0 1911  6 1959  	; An evil gish to A grey road
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+M 0 1911  6 1962  	; An evil gish to A small building
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+M 0 1911  6 1962  	; An evil gish to A small building
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+G 0 1922  0      	;   A silvery-colored potion
+M 0 1911  6 1963  	; An evil gish to A small building
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+M 0 1911  6 1963  	; An evil gish to A small building
+E 0 1906  0 16    	;   A silvery knife wielded (1)
+G 0 1922  0      	;   A silvery-colored potion
+M 0 1912  4 1964  	; A warlock of the Gith to A large dwelling
+E 0 1910  0 16    	;   A silvery sword wielded (1)
+G 0 1903  0      	;   A scroll with githyanki writings on it
+M 0 1907  8 1965  	; A githyanki guardian to The Githyanki Weaponry
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1907  8 1965  	; A githyanki guardian to The Githyanki Weaponry
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1907  8 1967  	; A githyanki guardian to The Githyanki Armoury
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1907  8 1967  	; A githyanki guardian to The Githyanki Armoury
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1918  1 1968  	; The enslaved red dragon to Inside the furnace
+E 0 1913  0 0     	;   A bright flaming stone as a light
+M 0 1919  6 1968  	; A massive blast of fire to Inside the furnace
+M 0 1919  6 1968  	; A massive blast of fire to Inside the furnace
+M 0 1919  6 1968  	; A massive blast of fire to Inside the furnace
+M 0 1919  6 1968  	; A massive blast of fire to Inside the furnace
+M 0 1919  6 1968  	; A massive blast of fire to Inside the furnace
+M 0 1919  6 1968  	; A massive blast of fire to Inside the furnace
+M 0 1907  8 1969  	; A githyanki guardian to A guard station
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1907  8 1969  	; A githyanki guardian to A guard station
+E 0 1908  0 16    	;   An extremely sharp and thin sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+M 0 1917  1 1971  	; A tortured mindflayer prisoner to A cramped cell
+M 0 1916  1 1972  	; An imprisoned githzerai to A tiny cell
+M 0 1912  4 1973  	; A warlock of the Gith to A large dwelling
+E 0 1910  0 16    	;   A silvery sword wielded (1)
+G 0 1903  0      	;   A scroll with githyanki writings on it
+M 0 1912  4 1974  	; A warlock of the Gith to South End of the Hall
+E 0 1910  0 16    	;   A silvery sword wielded (1)
+G 0 1903  0      	;   A scroll with githyanki writings on it
+M 0 1912  4 1974  	; A warlock of the Gith to South End of the Hall
+E 0 1910  0 16    	;   A silvery sword wielded (1)
+G 0 1903  0      	;   A scroll with githyanki writings on it
+M 0 1909  2 1976  	; A githyanki protector to The Altar Chamber
+E 0 1909  0 16    	;   A thin two-handed sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+E 0 1916  0 7     	;   A splint mail skirt on the legs
+E 0 1917  0 10    	;   A pair of splint mail sleeves on the arms
+E 0 1918  0 9     	;   A pair of ornately designed gauntlets on the hands
+M 0 1909  2 1977  	; A githyanki protector to Before the Altar
+E 0 1909  0 16    	;   A thin two-handed sword wielded (1)
+E 0 1915  0 5     	;   A splint mail vest on the body
+E 0 1916  0 7     	;   A splint mail skirt on the legs
+E 0 1917  0 10    	;   A pair of splint mail sleeves on the arms
+E 0 1918  0 9     	;   A pair of ornately designed gauntlets on the hands
+M 0 1913  1 1977  	; The lich-queen to Before the Altar
+E 0 1911  0 16    	;   An iron barbed flail wielded (1)
+E 0 1924  0 17    	;   A black pentagram held in the hands
+G 0 1902  0      	;   A black etched tablet
+M 0 1914  1 1979  	; Lord Gith to Utter darkness and despair
+E 0 1912  0 16    	;   The unholy sword of the githyanki wielded (1)
+E 0 1919  0 5     	;   A decaying vest made from cracked leather on the body
+G 0 1925  0      	;   A rotting pouch
 S
 
 

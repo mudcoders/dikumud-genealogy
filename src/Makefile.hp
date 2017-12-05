@@ -1,0 +1,40 @@
+# MAKEFILE  FOR  HP-UX 
+# Contributed by ass_fb@mehp6.epfl.ch
+#
+# It has been tested on a HP9000s700. It uses the ANSI-C mode.
+# If you manage to compile on an HP system or have some improvements please
+# mail a note to ass_sh@mehp6.epfl.ch.
+
+CC      = cc
+PROF    =
+DEBUG   = -g
+NOCRYPT =
+
+# unix & hpux should already be defined, but it was not the case on my system.
+# If you must use xdb you have to link the end.o file.
+# distribution: C_FLAGS = -O -Aa -D_HPUX_SOURCE -Dunix -Dhpux
+# debug: C_FLAGS = -v -g -Aa -D_HPUX_SOURCE -Dunix -Dhpux $(PROF)
+ 
+C_FLAGS = $(DEBUG) -v -Aa -D_HPUX_SOURCE -Dunix -Dhpux $(PROF) $(NOCRYPT)
+
+L_FLAGS = $(DEBUG) $(PROF)
+
+O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
+          db.o fight.o handler.o interp.o magic.o save.o special.o update.o \
+          healer.o blade.o act_wiz2.o scan.o games.o drunk.o quest.o clan.o \
+          hunt.o brewscribe.o language.o social-edit.o objlist.o economy.o \
+          necromancer.o ssm.o
+
+envy: $(O_FILES)
+	rm -f envy2
+	$(CC) $(L_FLAGS) -o envy2 $(O_FILES)
+
+.c.o: merc.h
+	$(CC) -c $(C_FLAGS) $<
+
+clean:
+	rm  -f *.o *.core envy2
+
+#didn't check this one yet...
+tar:
+	cd .. / .. ; tar cvf .

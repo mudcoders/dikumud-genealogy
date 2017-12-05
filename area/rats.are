@@ -30,7 +30,7 @@ that Snigger has no fangs, any casual observer would quickly argue that point.
 Poisonous?  Why don't you find out?
 ~
 3 8320 1000 S
-45 -20 0 40d40+999 2d40+40
+46 -20 0 40d40+999 2d40+40
 0 0
 0 Snake~ 1
 #3803
@@ -54,7 +54,7 @@ A rat scurries around.
 This rat is about average size, with average size teeth and average size claws.
 ~
 225 32768 -200 S
-4 18 0 2d2+20 1d2+2
+7 18 0 2d2+20 1d2+2
 0 0
 0 Rat~ 0
 #3805
@@ -79,7 +79,7 @@ both, namely standing erect, wielding a weapon, but with fur, ears, and tail
 of a rat.
 ~
 35 0 -500 S
-5 16 0 4d4+44 1d4+4
+7 16 0 4d4+44 1d4+4
 0 0
 0 Rat~ 0
 #3807
@@ -92,7 +92,7 @@ both, namely standing erect, wielding a weapon, but with fur, ears, and tail
 of a rat.  He seems to be guarding something.
 ~
 35 0 -500 S
-9 15 0 5d5+55 1d5+5
+10 15 0 5d5+55 1d5+5
 0 0
 0 Rat~ 0
 #3808
@@ -105,7 +105,7 @@ both, namely standing erect, wielding a weapon, but with fur, ears, and tail
 of a rat.  They don't notice you in their duscussion.
 ~
 195 0 -5 S
-3 16 0 4d4+44 1d4+4
+1 16 0 4d4+44 1d4+4
 0 0
 0 Rat~ 0
 #3809
@@ -118,7 +118,7 @@ has red scales over it's four-legged reptilian body, with sharp claws and
 piercing tail.  It is disturbed by your intrusion.
 ~
 35 8 -700 S
-7 13 0 7d7+77 1d7+7
+8 13 0 7d7+77 1d7+7
 0 0
 0 Dragon~ 0
 #3810
@@ -132,7 +132,7 @@ of a rat.  This one is different from the others, since it is better attired
 and also much bigger.
 ~
 35 0 -700 S
-8 13 0 7d7+77 1d7+7
+2 13 0 7d7+77 1d7+7
 0 0
 0 Rat~ 0
 #3811
@@ -144,7 +144,7 @@ This rat is about the length of your arm, with sharp claws and teeth, which it
 uses now to bite at you!
 ~
 35 0 -400 S
-6 17 0 3d3+33 1d3+3
+7 17 0 3d3+33 1d3+3
 0 0
 0 Rat~ 0
 #3812
@@ -171,7 +171,7 @@ slave used to be a citizen of Midgaard!  She asks pitifully for you to help
 her escape.
 ~
 129 0 100 S
-6 18 0 2d2+22 1d2+2
+5 18 0 2d2+22 1d2+2
 0 0
 0 Human~ 2
 #3814
@@ -197,7 +197,7 @@ Even in his mortal, statuesque form, Hatchet smirks a bit.  He smiles at your
 entrance, and welcomes you to join in conversation.
 ~
 3 8328 1000 S
-38 -20 0 40d40+444 1d40+40
+39 -20 0 40d40+444 1d40+40
 0 0
 0 Human~ 1
 #3816
@@ -211,7 +211,7 @@ smiles at you, and with an accent not too different from a Southern one, says,
 'Please join us in conversation!'
 ~
 3 8328 1000 S
-38 -20 0 40d40+444 1d40+40
+37 -20 0 40d40+444 1d40+40
 0 0
 0 Human~ 2
 #3817
@@ -222,7 +222,7 @@ Some green ooze clings onto the ceiling and the walls.
 This ooze looks like bad stuff, almost as if it's alive.
 ~
 35 0 0 S
-1 15 0 5d5+55 1d5+5
+6 15 0 5d5+55 1d5+5
 0 0
 0 Plant~ 0
 #0
@@ -1403,19 +1403,19 @@ S
 
 
 #SPECIALS
-M 3801 spec_poison
-M 3802 spec_poison
-M 3804 spec_poison
-M 3805 spec_poison
-M 3806 spec_poison
-M 3807 spec_poison
-M 3808 spec_poison
-M 3809 spec_breath_fire
-M 3810 spec_poison
-M 3811 spec_poison
-M 3812 spec_poison
-M 3815 spec_cast_undead
-M 3816 spec_cast_cleric
+M 3801 spec_poison 	; a small rat
+M 3802 spec_poison 	; Snigger
+M 3804 spec_poison 	; a rat
+M 3805 spec_poison 	; a large rat
+M 3806 spec_poison 	; a wererat
+M 3807 spec_poison 	; a wererat guard
+M 3808 spec_poison 	; a wererat
+M 3809 spec_breath_fire 	; a firedrake
+M 3810 spec_poison 	; the wererat leader
+M 3811 spec_poison 	; a large rat
+M 3812 spec_poison 	; a wererat slavemaster
+M 3815 spec_cast_undead 	; the mortal Hatchet
+M 3816 spec_cast_cleric 	; the mortal Icaza
 S
 
 
@@ -1426,101 +1426,101 @@ S
 
 
 #RESETS
-M 0 3801 2 3802
-O 0 3804 0 3802
-P 0 3820 0 3804
-O 0 3804 0 3803
-P 0 3820 0 3804
-O 0 3804 0 3804
-P 0 3820 0 3804
-M 0 3806 1 3806
-E 0 3811 0 16
-M 0 3804 2 3808
-M 0 3801 2 3810
-O 0 3804 0 3811
-P 0 3820 0 3804
-O 0 3804 0 3812
-P 0 3820 0 3804
-O 0 3804 0 3813
-P 0 3820 0 3804
-O 0 3804 0 3814
-P 0 3820 0 3804
-M 0 3807 2 3815
-E 0 3813 0 16
-E 0 3815 0 7
-M 0 3807 2 3815
-E 0 3813 0 16
-E 0 3815 0 7
-M 0 3807 2 3816
-E 0 3813 0 16
-E 0 3816 0 10
-M 0 3807 2 3816
-E 0 3813 0 16
-E 0 3816 0 10
-M 0 3804 2 3817
-M 0 3817 1 3819
-O 0 3804 0 3823
-P 0 3820 0 3804
-M 0 3805 1 3823
-O 0 3804 0 3824
-P 0 3820 0 3804
-M 0 3808 3 3824
-E 0 3811 0 16
-M 0 3808 3 3824
-E 0 3811 0 16
-M 0 3808 3 3824
-E 0 3811 0 16
-M 0 3809 1 3826
-E 0 3802 0 3
-O 0 3801 0 3827
-O 0 3821 0 3827
-M 0 3810 1 3828
-E 0 3817 0 16
-E 0 3814 0 14
-E 0 3814 0 15
-E 0 3815 0 7
-E 0 3816 0 10
-M 0 3811 2 3828
-M 0 3811 2 3828
-O 0 3805 0 3829
-P 0 3822 0 3805
-M 0 3812 1 3830
-E 0 3818 0 16
-E 0 3814 0 14
-E 0 3814 0 15
-G 0 3803 0
-O 0 3805 0 3830
-P 0 3823 0 3805
-M 0 3813 3 3831
-M 0 3813 3 3831
-M 0 3813 3 3831
-O 0 3805 0 3832
-P 0 3822 0 3805
-O 0 3805 0 3833
-P 0 3822 0 3805
-O 0 3805 0 3834
-P 0 3823 0 3805
-O 0 3805 0 3835
-P 0 3822 0 3805
-M 0 3814 2 3835
-O 0 3805 0 3836
-P 0 3822 0 3805
-O 0 3805 0 3837
-P 0 3823 0 3805
-M 0 3814 2 3837
-O 0 3805 0 3838
-P 0 3823 0 3805
-O 0 3812 0 3838
-P 0 3819 0 3812
-M 0 3815 1 3840
-E 0 3824 0 17
-M 0 3816 1 3840
-E 0 3824 0 17
-O 0 3826 0 3841
-M 0 3803 1 3841
-O 0 3825 0 3842
-P 0 3825 0 3812
-M 0 3802 1 3842
+M 0 3801  2 3802  	; a small rat to A Hallway
+O 0 3804  0 3802  	; The walls to A Hallway
+P 0 3820  0 3804  	; A torch inside a torch
+O 0 3804  0 3803  	; The walls to A Dim Hallway
+P 0 3820  0 3804  	; A torch inside a torch
+O 0 3804  0 3804  	; The walls to A Dim Hallway Above the Stairway
+P 0 3820  0 3804  	; A torch inside a torch
+M 0 3806  1 3806  	; a wererat to A Small Storage Room
+E 0 3811  0 16    	;   A wooden stake wielded (1)
+M 0 3804  2 3808  	; a rat to A Small Storage Room
+M 0 3801  2 3810  	; a small rat to A Small Storage Room
+O 0 3804  0 3811  	; The walls to Beneath the Old Stairway
+P 0 3820  0 3804  	; A torch inside a torch
+O 0 3804  0 3812  	; The walls to A Dark Hallway
+P 0 3820  0 3804  	; A torch inside a torch
+O 0 3804  0 3813  	; The walls to A Dark Hallway
+P 0 3820  0 3804  	; A torch inside a torch
+O 0 3804  0 3814  	; The walls to A Dark Hallway
+P 0 3820  0 3804  	; A torch inside a torch
+M 0 3807  2 3815  	; a wererat guard to A Storage Room
+E 0 3813  0 16    	;   A long rusted knife wielded (1)
+E 0 3815  0 7     	;   Tin leggings on the legs
+M 0 3807  2 3815  	; a wererat guard to A Storage Room
+E 0 3813  0 16    	;   A long rusted knife wielded (1)
+E 0 3815  0 7     	;   Tin leggings on the legs
+M 0 3807  2 3816  	; a wererat guard to A Storage Room
+E 0 3813  0 16    	;   A long rusted knife wielded (1)
+E 0 3816  0 10    	;   Tin armguards on the arms
+M 0 3807  2 3816  	; a wererat guard to A Storage Room
+E 0 3813  0 16    	;   A long rusted knife wielded (1)
+E 0 3816  0 10    	;   Tin armguards on the arms
+M 0 3804  2 3817  	; a rat to A Bedroom
+M 0 3817  1 3819  	; the green Ooze to A Bedroom
+O 0 3804  0 3823  	; The walls to A Stairway
+P 0 3820  0 3804  	; A torch inside a torch
+M 0 3805  1 3823  	; a large rat to A Stairway
+O 0 3804  0 3824  	; The walls to A Meeting Room
+P 0 3820  0 3804  	; A torch inside a torch
+M 0 3808  3 3824  	; a wererat to A Meeting Room
+E 0 3811  0 16    	;   A wooden stake wielded (1)
+M 0 3808  3 3824  	; a wererat to A Meeting Room
+E 0 3811  0 16    	;   A wooden stake wielded (1)
+M 0 3808  3 3824  	; a wererat to A Meeting Room
+E 0 3811  0 16    	;   A wooden stake wielded (1)
+M 0 3809  1 3826  	; a firedrake to The Firedrake's Lair
+E 0 3802  0 3     	;   A key on a necklace around the neck (1)
+O 0 3801  0 3827  	; A silver key to The Treasure Room
+O 0 3821  0 3827  	; The treasure of gold coins to The Treasure Room
+M 0 3810  1 3828  	; the wererat leader to The Leader's Quarters
+E 0 3817  0 16    	;   A spiked flail wielded (1)
+E 0 3814  0 14    	;   A tin bracer on the left wrist
+E 0 3814  0 15    	;   A tin bracer on the right wrist
+E 0 3815  0 7     	;   Tin leggings on the legs
+E 0 3816  0 10    	;   Tin armguards on the arms
+M 0 3811  2 3828  	; a large rat to The Leader's Quarters
+M 0 3811  2 3828  	; a large rat to The Leader's Quarters
+O 0 3805  0 3829  	; The walls of the cave to A Rough Tunnel
+P 0 3822  0 3805  	; A sapphire gem inside a sapphire gem
+M 0 3812  1 3830  	; a wererat slavemaster to A T-Intersection in the Tunnels
+E 0 3818  0 16    	;   A barbed whip wielded (1)
+E 0 3814  0 14    	;   A tin bracer on the left wrist
+E 0 3814  0 15    	;   A tin bracer on the right wrist
+G 0 3803  0      	;   An iron key
+O 0 3805  0 3830  	; The walls of the cave to A T-Intersection in the Tunnels
+P 0 3823  0 3805  	; A ruby gem inside a ruby gem
+M 0 3813  3 3831  	; a human slave to A Large Cage
+M 0 3813  3 3831  	; a human slave to A Large Cage
+M 0 3813  3 3831  	; a human slave to A Large Cage
+O 0 3805  0 3832  	; The walls of the cave to A Bend in the Tunnels
+P 0 3822  0 3805  	; A sapphire gem inside a sapphire gem
+O 0 3805  0 3833  	; The walls of the cave to A T-Intersection in the Tunnels
+P 0 3822  0 3805  	; A sapphire gem inside a sapphire gem
+O 0 3805  0 3834  	; The walls of the cave to An End of the Tunnel
+P 0 3823  0 3805  	; A ruby gem inside a ruby gem
+O 0 3805  0 3835  	; The walls of the cave to An End of the Tunnel
+P 0 3822  0 3805  	; A sapphire gem inside a sapphire gem
+M 0 3814  2 3835  	; a human slave to An End of the Tunnel
+O 0 3805  0 3836  	; The walls of the cave to The Tunnel
+P 0 3822  0 3805  	; A sapphire gem inside a sapphire gem
+O 0 3805  0 3837  	; The walls of the cave to An End of the Tunnel
+P 0 3823  0 3805  	; A ruby gem inside a ruby gem
+M 0 3814  2 3837  	; a human slave to An End of the Tunnel
+O 0 3805  0 3838  	; The walls of the cave to A Small Shrine
+P 0 3823  0 3805  	; A ruby gem inside a ruby gem
+O 0 3812  0 3838  	; The shrine to A Small Shrine
+P 0 3819  0 3812  	; Holy rod of icaza inside holy Rod of Icaza
+M 0 3815  1 3840  	; the mortal Hatchet to The Living Room of Icaza and Hatchet
+E 0 3824  0 17    	;   A 30mm minigun held in the hands
+M 0 3816  1 3840  	; the mortal Icaza to The Living Room of Icaza and Hatchet
+E 0 3824  0 17    	;   A 30mm minigun held in the hands
+O 0 3826  0 3841  	; A book of poetry to Hatchet's Study
+M 0 3803  1 3841  	; Sammy to Hatchet's Study
+O 0 3825  0 3842  	; A book of poetry to Icaza's Study
+P 0 3825  0 3812  	; A book of poetry inside a book of poetry
+M 0 3802  1 3842  	; Snigger to Icaza's Study
 S
 
 

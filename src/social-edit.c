@@ -32,7 +32,7 @@
 #include <time.h>
 #include "merc.h"
 
-#define SOCIAL_FILE "socials.txt" /* or whatever fits you */
+#define SOCIAL_FILE "SOCIALS.TXT" /* or whatever fits you */
 
 /* #define CONST_SOCIAL */  /* remove this in Step 2 */
 
@@ -159,13 +159,13 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 	
 	if (!cmd[0])
 	{
-		send_to_char ("Huh? Type HELP SEDIT to see syntax.\r\n",ch);
+		send_to_char ("Huh? Type HELP SEDIT to see syntax.\n\r",ch);
 		return;
 	}
 		
 	if (!social[0])
 	{
-		send_to_char ("What social do you want to operate on?\r\n",ch);
+		send_to_char ("What social do you want to operate on?\n\r",ch);
 		return;
 	}
 	
@@ -173,7 +173,7 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 	
 	if (str_cmp(cmd,"new") && (iSocial == -1))
 	{
-		send_to_char ("No such social exists.\r\n",ch);
+		send_to_char ("No such social exists.\n\r",ch);
 		return;
 	}
 
@@ -184,7 +184,7 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		
 		if (!new_table)
 		{
-			send_to_char ("Memory allocation failed. Brace for impact...\r\n",ch);
+			send_to_char ("Memory allocation failed. Brace for impact...\n\r",ch);
 			return;
 		}
 		
@@ -201,7 +201,7 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		
 		maxSocial--; /* Important :() */
 		
-		send_to_char ("That social is history now.\r\n",ch);
+		send_to_char ("That social is history now.\n\r",ch);
 				
 	}
 	
@@ -211,7 +211,7 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		
 		if (iSocial != -1)
 		{
-			send_to_char ("A social with that name already exists\r\n",ch);
+			send_to_char ("A social with that name already exists\n\r",ch);
 			return;
 		}
 		
@@ -223,7 +223,7 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		
 		if (!new_table) /* realloc failed */
 		{
-			send_to_char ("Memory allocation failed. Brace for impact.\r\n",ch);
+			send_to_char ("Memory allocation failed. Brace for impact.\n\r",ch);
 			return;
 		}
 		
@@ -240,27 +240,27 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		
 		social_table[maxSocial].name = str_dup (""); /* 'terminating' empty string */
 		
-		send_to_char ("New social added.\r\n",ch);
+		send_to_char ("New social added.\n\r",ch);
 			
 	}
 	
 	else if (!str_cmp(cmd, "show")) /* Show a certain social */
 	{
-		sprintf (buf, "Social: %s\r\n"
-		              "(cnoarg) No argument given, character sees:\r\n"
-		              "%s\r\n\r\n"
-		              "(onoarg) No argument given, others see:\r\n"
-		              "%s\r\n\r\n"
-		              "(cfound) Target found, character sees:\r\n"
-		              "%s\r\n\r\n"
-		              "(ofound) Target found, others see:\r\n"
-		              "%s\r\n\r\n"
-		              "(vfound) Target found, victim sees:\r\n"
-		              "%s\r\n\r\n"
-		              "(cself) Target is character himself:\r\n"
-		              "%s\r\n\r\n"
-		              "(oself) Target is character himself, others see:\r\n"
-		              "%s\r\n",
+		sprintf (buf, "Social: %s\n\r"
+		              "(cnoarg) No argument given, character sees:\n\r"
+		              "%s\n\r\n\r"
+		              "(onoarg) No argument given, others see:\n\r"
+		              "%s\n\r\n\r"
+		              "(cfound) Target found, character sees:\n\r"
+		              "%s\n\r\n\r"
+		              "(ofound) Target found, others see:\n\r"
+		              "%s\n\r\n\r"
+		              "(vfound) Target found, victim sees:\n\r"
+		              "%s\n\r\n\r"
+		              "(cself) Target is character himself:\n\r"
+		              "%s\n\r\n\r"
+		              "(oself) Target is character himself, others see:\n\r"
+		              "%s\n\r",
 		              
 		              social_table[iSocial].name,
 		              social_table[iSocial].char_no_arg,
@@ -281,9 +281,9 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].char_no_arg = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("Character will now see nothing when this social is used without arguments.\r\n",ch);
+			send_to_char ("Character will now see nothing when this social is used without arguments.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 	}
 	
 	else if (!str_cmp(cmd, "onoarg"))
@@ -292,9 +292,9 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].others_no_arg = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("Others will now see nothing when this social is used without arguments.\r\n",ch);
+			send_to_char ("Others will now see nothing when this social is used without arguments.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 			
 	}
 	
@@ -304,9 +304,9 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].char_found = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("The character will now see nothing when a target is found.\r\n",ch);
+			send_to_char ("The character will now see nothing when a target is found.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 			
 	}
 	
@@ -316,9 +316,9 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].others_found = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("Others will now see nothing when a target is found.\r\n",ch);
+			send_to_char ("Others will now see nothing when a target is found.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 			
 	}
 	
@@ -328,9 +328,9 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].vict_found = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("Victim will now see nothing when a target is found.\r\n",ch);
+			send_to_char ("Victim will now see nothing when a target is found.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 	}
 	
 	else if (!str_cmp(cmd, "cself"))
@@ -339,9 +339,9 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].char_auto = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("Character will now see nothing when targetting self.\r\n",ch);
+			send_to_char ("Character will now see nothing when targetting self.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 
 	}
 	
@@ -351,14 +351,14 @@ void do_sedit (CHAR_DATA *ch, char *argument)
 		social_table[iSocial].others_auto = str_dup(argument);		
 
 		if (!argument[0])
-			send_to_char ("Others will now see nothing when character targets self.\r\n",ch);
+			send_to_char ("Others will now see nothing when character targets self.\n\r",ch);
 		else
-			act ( "New message is now:\r\n$T\r\n", ch, NULL, argument, TO_CHAR );
+			act ( "New message is now:\n\r$T\n\r", ch, NULL, argument, TO_CHAR );
 	}
 	
 	else
 	{
-		send_to_char ("Huh? Try HELP SEDIT.\r\n",ch);
+		send_to_char ("Huh? Try HELP SEDIT.\n\r",ch);
 		return;
 	}
 	

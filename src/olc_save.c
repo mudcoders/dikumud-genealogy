@@ -32,6 +32,8 @@
 #include "merc.h"
 #include "olc.h"
 
+/* Local's */
+void write_mobprog( MOB_INDEX_DATA * pMobIndex );
 
 
 /*****************************************************************************
@@ -318,30 +320,33 @@ void save_specials( FILE *fp, AREA_DATA *pArea )
 
 /*****************************************************************************
  Name:          save_mobprogs
- Purpose:       Save #MOBPROGS section of area file.
+ Purpose:       Save #MOBPROGS section of area file.	-- By Maniac
  Called by:     save_area(olc_save.c).
  ****************************************************************************/
 void save_mobprogs( FILE *fp, AREA_DATA *pArea )
 {
-/*
     int vnum;
     MOB_INDEX_DATA *pMobIndex;
-*/
 
     fprintf( fp, "#MOBPROGS\n" );
-/*
     for( vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++ )
     {
         if( ( pMobIndex = get_mob_index(vnum) ) )
         {
             if ( pMobIndex->area == pArea && pMobIndex->spec_fun )
             {
-                fprintf( fp, "M %d %s\n", pMobIndex->vnum,
-                                          spec_string( pMobIndex->spec_fun ) );
+		if ( pMobIndex->progtypes )	/* If mob has progs... */
+		{
+		    /* Step 1: Write the prog call to the area file */
+		    fprintf( fp, "M %d %d.prg\n",
+			pMobIndex->vnum,
+			pMobIndex->vnum );
+		    /* Step 2: Create the .prg file... this is the hard part */
+		    write_mobprog(pMobIndex);
+		}
             }
         }
     }
-*/
 
     fprintf( fp, "S\n\n\n\n" );
     return;
@@ -847,14 +852,14 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
     if ( !ch )       /* Do an autosave */
     {
-	send_to_all_char( "Please wait for the database to be saved.\r\n" );
+	send_to_all_char( "Please wait for the database to be saved.\n\r" );
 	save_area_list();
 	for( pArea = area_first; pArea; pArea = pArea->next )
 	{
 	    save_area( pArea );
 	    REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED );
 	}
-	send_to_all_char( "Thank you, the database has been saved.\r\n" );
+	send_to_all_char( "Thank you, the database has been saved.\n\r" );
 	return;
     }
 
@@ -862,14 +867,14 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' )
     {
-    send_to_char( "Syntax:\r\n", ch );
-    send_to_char( "  asave <vnum>    - saves a particular area\r\n",	 ch );
-    send_to_char( "  asave list      - saves the area.lst file\r\n",	 ch );
-    send_to_char( "  asave area      - saves the area being edited\r\n", ch );
-    send_to_char( "  asave changed   - saves all changed zones\r\n",	 ch );
-    send_to_char( "  asave world     - saves the world! (db dump)\r\n",	 ch );
-    send_to_char( "  asave ^ verbose - saves in verbose mode\r\n", ch );
-    send_to_char( "\r\n", ch );
+    send_to_char( "Syntax:\n\r", ch );
+    send_to_char( "  asave <vnum>    - saves a particular area\n\r",	 ch );
+    send_to_char( "  asave list      - saves the area.lst file\n\r",	 ch );
+    send_to_char( "  asave area      - saves the area being edited\n\r", ch );
+    send_to_char( "  asave changed   - saves all changed zones\n\r",	 ch );
+    send_to_char( "  asave world     - saves the world! (db dump)\n\r",	 ch );
+    send_to_char( "  asave ^ verbose - saves in verbose mode\n\r", ch );
+    send_to_char( "\n\r", ch );
         return;
     }
 
@@ -881,7 +886,7 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
     if ( !( pArea = get_area_data( value ) ) && is_number( arg1 ) )
     {
-	send_to_char( "That area does not exist.\r\n", ch );
+	send_to_char( "That area does not exist.\n\r", ch );
 	return;
     }
 
@@ -889,7 +894,7 @@ void do_asave( CHAR_DATA *ch, char *argument )
     {
 	if ( !IS_BUILDER( ch, pArea ) )
 	{
-	    send_to_char( "You are not a builder for this area.\r\n", ch );
+	    send_to_char( "You are not a builder for this area.\n\r", ch );
 	    return;
 	}
 
@@ -918,8 +923,8 @@ void do_asave( CHAR_DATA *ch, char *argument )
 	    save_area( pArea );
 	    REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
 	}
-	send_to_char( "You saved the world.\r\n", ch );
-	send_to_all_char( "Database saved.\r\n" );
+	send_to_char( "You saved the world.\n\r", ch );
+	send_to_all_char( "Database saved.\n\r" );
 	return;
     }
 
@@ -932,8 +937,8 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
 	save_area_list();
 
-	send_to_char( "Saved zones:\r\n", ch );
-	sprintf( buf, "None.\r\n" );
+	send_to_char( "Saved zones:\n\r", ch );
+	sprintf( buf, "None.\n\r" );
 
 	for( pArea = area_first; pArea; pArea = pArea->next )
 	{
@@ -949,11 +954,11 @@ void do_asave( CHAR_DATA *ch, char *argument )
 		    SET_BIT( pArea->area_flags, AREA_VERBOSE );
 		save_area( pArea );
 		REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
-		sprintf( buf, "%24s - '%s'\r\n", pArea->name, pArea->filename );
+		sprintf( buf, "%24s - '%s'\n\r", pArea->name, pArea->filename );
 		send_to_char( buf, ch );
 	    }
         }
-	if ( !str_cmp( buf, "None.\r\n" ) )
+	if ( !str_cmp( buf, "None.\n\r" ) )
 	    send_to_char( buf, ch );
         return;
     }
@@ -992,7 +997,7 @@ void do_asave( CHAR_DATA *ch, char *argument )
 
 	if ( !IS_BUILDER( ch, pArea ) )
 	{
-	    send_to_char( "You are not a builder for this area.\r\n", ch );
+	    send_to_char( "You are not a builder for this area.\n\r", ch );
 	    return;
 	}
 
@@ -1001,7 +1006,7 @@ void do_asave( CHAR_DATA *ch, char *argument )
 	    SET_BIT( pArea->area_flags, AREA_VERBOSE );
 	save_area( pArea );
 	REMOVE_BIT( pArea->area_flags, AREA_CHANGED | AREA_ADDED | AREA_VERBOSE );
-	send_to_char( "Area saved.\r\n", ch );
+	send_to_char( "Area saved.\n\r", ch );
 	return;
     }
 
@@ -1009,4 +1014,36 @@ void do_asave( CHAR_DATA *ch, char *argument )
     /* -------------------- */
     do_asave( ch, "" );
     return;
+}
+
+void write_mobprog( MOB_INDEX_DATA * pMobIndex )
+{
+	FILE *		fp;
+	MPROG_DATA *	mprg;
+	char		filename[50];
+
+	filename[0] = '\0';
+
+	sprintf (filename, "%s%d.prg", MOB_DIR, pMobIndex->vnum );
+
+	fclose (fpReserve );
+
+	if ( !(fp = fopen( filename, "w" ) ) )
+	{
+		bug ("write_mobprog: open", 0 );
+		perror ( filename );
+	}
+
+	for ( mprg = pMobIndex->mobprogs; mprg != NULL; mprg = mprg->next )
+	{
+		fprintf (fp, ">%s %s~\n%s~\n",
+			mprog_type_to_name( mprg->type ),
+			mprg->arglist,
+			mprg->comlist );
+	}
+	fprintf (fp, "|\n");
+
+	fclose (fp);
+	fpReserve = fopen( NULL_FILE, "r");
+	return;
 }

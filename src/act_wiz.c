@@ -21,6 +21,11 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined( macintosh )
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,11 +60,11 @@ void do_wizhelp( CHAR_DATA *ch, char *argument )
 	sprintf( buf, "%-10s", cmd_table[cmd].name );
 	strcat( buf1, buf );
 	if ( ++col % 8 == 0 )
-	    strcat( buf1, "\r\n" );
+	    strcat( buf1, "\n\r" );
     }
  
     if ( col % 8 != 0 )
-	strcat( buf1, "\r\n" );
+	strcat( buf1, "\n\r" );
     send_to_char( buf1, ch );
     return;
 }
@@ -83,7 +88,7 @@ void do_bamfin( CHAR_DATA *ch, char *argument )
 	smash_tilde( argument );
 	free_string( ch->pcdata->bamfin );
 	ch->pcdata->bamfin = str_dup( argument );
-	send_to_char( "Ok.\r\n", ch );
+	send_to_char( "Ok.\n\r", ch );
     }
     return;
 }
@@ -107,7 +112,7 @@ void do_bamfout( CHAR_DATA *ch, char *argument )
 	smash_tilde( argument );
 	free_string( ch->pcdata->bamfout );
 	ch->pcdata->bamfout = str_dup( argument );
-	send_to_char( "Ok.\r\n", ch );
+	send_to_char( "Ok.\n\r", ch );
     }
     return;
 }
@@ -128,31 +133,31 @@ void do_deny( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Deny whom?\r\n", ch );
+	send_to_char( "Deny whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
     if ( get_trust( victim ) >= get_trust( ch ) )
     {
-	send_to_char( "You failed.\r\n", ch );
+	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
     SET_BIT( victim->act, PLR_DENY );
-    send_to_char( "You are denied access!\r\n", victim );
-    send_to_char( "OK.\r\n", ch );
+    send_to_char( "You are denied access!\n\r", victim );
+    send_to_char( "OK.\n\r", ch );
     if ( victim->level < 2 )
       victim->level = 2;
     do_quit( victim, "" );
@@ -177,13 +182,13 @@ void do_disconnect( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Disconnect whom?\r\n", ch );
+	send_to_char( "Disconnect whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
@@ -198,13 +203,13 @@ void do_disconnect( CHAR_DATA *ch, char *argument )
 	if ( d == victim->desc )
 	{
 	    close_socket( d );
-	    send_to_char( "Ok.\r\n", ch );
+	    send_to_char( "Ok.\n\r", ch );
 	    return;
 	}
     }
 
     bug( "Do_disconnect: desc not found.", 0 );
-    send_to_char( "Descriptor not found!\r\n", ch );
+    send_to_char( "Descriptor not found!\n\r", ch );
     return;
 }
 
@@ -227,19 +232,19 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' )
     {
-	send_to_char( "Syntax: pardon <character> <k(iller)|t(hieaf)|a(ll)>.\r\n", ch );
+	send_to_char( "Syntax: pardon <character> <k(iller)|t(hieaf)|a(ll)>.\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
@@ -248,14 +253,14 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	if ( IS_SET( victim->act, PLR_KILLER ) )
 	{
 	    REMOVE_BIT( victim->act, PLR_KILLER );
-	    send_to_char( "Killer flag removed.\r\n",		ch	);
-	    send_to_char( "You are no longer a killer.\r\n",	victim	);
+	    send_to_char( "Killer flag removed.\n\r",		ch	);
+	    send_to_char( "You are no longer a killer.\n\r",	victim	);
 	}
 	if ( IS_SET( victim->act, PLR_THIEF ) )
 	{
 	    REMOVE_BIT( victim->act, PLR_THIEF );
-	    send_to_char( "Thief flag removed.\r\n",		ch	);
-	    send_to_char( "You are no longer a thief.\r\n",	victim	);
+	    send_to_char( "Thief flag removed.\n\r",		ch	);
+	    send_to_char( "You are no longer a thief.\n\r",	victim	);
 	}
 	return;
     }
@@ -265,8 +270,8 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	if ( IS_SET( victim->act, PLR_KILLER ) )
 	{
 	    REMOVE_BIT( victim->act, PLR_KILLER );
-	    send_to_char( "Killer flag removed.\r\n",        ch     );
-	    send_to_char( "You are no longer a KILLER.\r\n", victim );
+	    send_to_char( "Killer flag removed.\n\r",        ch     );
+	    send_to_char( "You are no longer a KILLER.\n\r", victim );
 	}
 	return;
     }
@@ -276,13 +281,13 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	if ( IS_SET( victim->act, PLR_THIEF  ) )
 	{
 	    REMOVE_BIT( victim->act, PLR_THIEF  );
-	    send_to_char( "Thief flag removed.\r\n",        ch     );
-	    send_to_char( "You are no longer a THIEF.\r\n", victim );
+	    send_to_char( "Thief flag removed.\n\r",        ch     );
+	    send_to_char( "You are no longer a THIEF.\n\r", victim );
 	}
 	return;
     }
 
-    send_to_char( "Syntax: pardon <character> <k(iller)|t(hief)|a(ll)>.\r\n", ch );
+    send_to_char( "Syntax: pardon <character> <k(iller)|t(hief)|a(ll)>.\n\r", ch );
     return;
 }
 
@@ -299,11 +304,11 @@ void do_echo( CHAR_DATA *ch, char *argument )
 
     if ( argument[0] == '\0' )
     {
-	send_to_char( "Echo what?\r\n", ch );
+	send_to_char( "Echo what?\n\r", ch );
 	return;
     }
 
-    strcat( argument, "\r\n" );
+    strcat( argument, "\n\r" );
     send_to_all_char( argument );
 
     return;
@@ -321,13 +326,13 @@ void do_pecho( CHAR_DATA *ch, char *argument )
 
     if ( argument[0] == '\0' || arg[0] == '\0' )
     {
-        send_to_char("pecho what?\r\n", ch);
+        send_to_char("pecho what?\n\r", ch);
         return;
     }
 
     if  ( (victim = get_char_world(ch, arg) ) == NULL )
     {
-        send_to_char("Target not found.\r\n",ch);
+        send_to_char("Target not found.\n\r",ch);
         return;
     }
 
@@ -335,10 +340,10 @@ void do_pecho( CHAR_DATA *ch, char *argument )
         send_to_char( "pecho> ",victim);
 
     send_to_char(argument,victim);
-    send_to_char("\r\n",victim);
+    send_to_char("\n\r",victim);
     send_to_char( "pecho> ",ch);
     send_to_char(argument,ch);
-    send_to_char("\r\n",ch);
+    send_to_char("\n\r",ch);
 }
 
 void do_recho( CHAR_DATA *ch, char *argument )
@@ -353,7 +358,7 @@ void do_recho( CHAR_DATA *ch, char *argument )
 
     if ( argument[0] == '\0' )
     {
-	send_to_char( "Recho what?\r\n", ch );
+	send_to_char( "Recho what?\n\r", ch );
 	return;
     }
 
@@ -363,7 +368,7 @@ void do_recho( CHAR_DATA *ch, char *argument )
 	    && d->character->in_room == ch->in_room )
 	{
 	    send_to_char( argument, d->character );
-	    send_to_char( "\r\n",   d->character );
+	    send_to_char( "\n\r",   d->character );
 	}
     }
 
@@ -410,7 +415,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' )
     {
-	send_to_char( "Transfer whom (and where)?\r\n", ch );
+	send_to_char( "Transfer whom (and where)?\n\r", ch );
 	return;
     }
 
@@ -443,26 +448,26 @@ void do_transfer( CHAR_DATA *ch, char *argument )
     {
 	if ( !( location = find_location( ch, arg2 ) ) )
 	{
-	    send_to_char( "No such location.\r\n", ch );
+	    send_to_char( "No such location.\n\r", ch );
 	    return;
 	}
 
 	if ( ( room_is_private( location ) ) && (!get_trust(ch) >= MAX_LEVEL ) )
 	{
-	    send_to_char( "That room is private right now.\r\n", ch );
+	    send_to_char( "That room is private right now.\n\r", ch );
 	    return;
 	}
     }
 
     if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( !victim->in_room )
     {
-	send_to_char( "They are in limbo.\r\n", ch );
+	send_to_char( "They are in limbo.\n\r", ch );
 	return;
     }
 
@@ -475,7 +480,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
     if ( ch != victim )
 	act( "$n has transferred you.",        ch,     NULL, victim, TO_VICT );
     do_look( victim, "auto" );
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
 }
 
 
@@ -497,19 +502,19 @@ void do_at( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' || argument[0] == '\0' )
     {
-	send_to_char( "At where what?\r\n", ch );
+	send_to_char( "At where what?\n\r", ch );
 	return;
     }
 
     if ( !( location = find_location( ch, arg ) ) )
     {
-	send_to_char( "No such location.\r\n", ch );
+	send_to_char( "No such location.\n\r", ch );
 	return;
     }
 
     if ( ( room_is_private( location ) ) && (!get_trust(ch) >= MAX_LEVEL ) )
     {
-	send_to_char( "That room is private right now.\r\n", ch );
+	send_to_char( "That room is private right now.\n\r", ch );
 	return;
     }
 
@@ -551,19 +556,19 @@ void do_goto( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Goto where?\r\n", ch );
+	send_to_char( "Goto where?\n\r", ch );
 	return;
     }
 
     if ( !( location = find_location( ch, arg ) ) )
     {
-	send_to_char( "No such location.\r\n", ch );
+	send_to_char( "No such location.\n\r", ch );
 	return;
     }
 
     if ( ( room_is_private( location ) ) && (!get_trust(ch) >= MAX_LEVEL ) )
     {
-	send_to_char( "That room is private right now.\r\n", ch );
+	send_to_char( "That room is private right now.\n\r", ch );
 	return;
     }
 
@@ -611,33 +616,33 @@ void do_rstat( CHAR_DATA *ch, char *argument )
     location = ( arg[0] == '\0' ) ? ch->in_room : find_location( ch, arg );
     if ( !location )
     {
-	send_to_char( "No such location.\r\n", ch );
+	send_to_char( "No such location.\n\r", ch );
 	return;
     }
 
     if ( ( ch->in_room != location && room_is_private( location ) ) &&
 	(!get_trust(ch) >= MAX_LEVEL ) )
     {
-	send_to_char( "That room is private right now.\r\n", ch );
+	send_to_char( "That room is private right now.\n\r", ch );
 	return;
     }
 
     buf1[0] = '\0';
 
-    sprintf( buf, "Name: '%s.'\r\nArea: '%s'.\r\n",
+    sprintf( buf, "Name: '%s.'\n\rArea: '%s'.\n\r",
 	    location->name,
 	    location->area->name );
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "Vnum: %d.  Sector: %s.  Light: %d.\r\n",
+	    "Vnum: %d.  Sector: %s.  Light: %d.\n\r",
 	    location->vnum,
 	    sector_string(location->sector_type),	/* Maniac */
 	    location->light );
     strcat( buf1, buf );
 
     /* Room flags extension by Maniac */
-    sprintf( buf, "Description:\r\n%s", location->description );
+    sprintf( buf, "Description:\n\r%s", location->description );
     strcat( buf1, buf );
 
     if ( location->extra_descr )
@@ -651,10 +656,10 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	    if ( ed->next )
 		strcat( buf1, " " );
 	}
-	strcat( buf1, "'.\r\n" );
+	strcat( buf1, "'.\n\r" );
     }
 
-    sprintf(buf,"Room flags: %s.\r\n", room_flags_name(location->room_flags) );
+    sprintf(buf,"Room flags: %s.\n\r", room_flags_name(location->room_flags) );
     strcat( buf1, buf );
 
     strcat( buf1, "Characters:" );
@@ -671,14 +676,14 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    strcat( buf1, ".\r\nObjects:   " );
+    strcat( buf1, ".\n\rObjects:   " );
     for ( obj = location->contents; obj; obj = obj->next_content )
     {
 	strcat( buf1, " " );
 	one_argument( obj->name, buf );
 	strcat( buf1, buf );
     }
-    strcat( buf1, ".\r\n" );
+    strcat( buf1, ".\n\r" );
 
     for ( door = 0; door <= 5; door++ )
     {
@@ -687,7 +692,7 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	if ( ( pexit = location->exit[door] ) )
 	{
 	    sprintf( buf,
-		    "Door: %d.  To: %d.  Key: %d.  Exit flags: %d.\r\n",
+		    "Door: %d.  To: %d.  Key: %d.  Exit flags: %d.\n\r",
 		    door,
 		    pexit->to_room ? pexit->to_room->vnum : 0,
 		    pexit->key,
@@ -697,7 +702,7 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 		    "Keyword: '%s'.  Description: %s",
 		    pexit->keyword,
 		    pexit->description[0] != '\0' ? pexit->description
-		                                  : "(none).\r\n" );
+		                                  : "(none).\n\r" );
 	    strcat( buf1, buf );
 	}
     }
@@ -726,7 +731,7 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Ostat what?\r\n", ch );
+	send_to_char( "Ostat what?\n\r", ch );
 	return;
     }
 
@@ -734,45 +739,45 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 
     if ( !( obj = get_obj_world( ch, arg ) ) )
     {
-	send_to_char( "Nothing like that in hell, earth, or heaven.\r\n", ch);
+	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch);
 	return;
     }
 
-    sprintf( buf, "Name: %s.\r\n",
+    sprintf( buf, "Name: %s.\n\r",
 	    obj->name );
     strcat( buf1, buf );
 
-    sprintf( buf, "Vnum: %d.  Type: %s.\r\n",
+    sprintf( buf, "Vnum: %d.  Type: %s.\n\r",
 	    obj->pIndexData->vnum, item_type_name( obj ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Short description: %s.\r\nLong description: %s\r\n",
+    sprintf( buf, "Short description: %s.\n\rLong description: %s\n\r",
 	    obj->short_descr, obj->description );
     strcat( buf1, buf );
 
-    sprintf( buf, "Wear bits: %s.\r\nExtra bits: %s.\r\n",
+    sprintf( buf, "Wear bits: %s.\n\rExtra bits: %s.\n\r",
 	    str_wear_loc(obj->wear_flags),
 	    extra_bit_name( obj->extra_flags ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Number: %d/%d.  Weight: %d/%d.\r\n",
+    sprintf( buf, "Number: %d/%d.  Weight: %d/%d.\n\r",
 	    1,           get_obj_number( obj ),
 	    obj->weight, get_obj_weight( obj ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Cost: %d.  Timer: %d.  Level: %d.\r\n",
+    sprintf( buf, "Cost: %d.  Timer: %d.  Level: %d.\n\r",
 	    obj->cost, obj->timer, obj->level );
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "In room: %d.  In object: %s.  Carried by: %s.  Wear_loc: %s.\r\n",
+	    "In room: %d.  In object: %s.  Carried by: %s.  Wear_loc: %s.\n\r",
 	    !obj->in_room    ?        0 : obj->in_room->vnum,
 	    !obj->in_obj     ? "(none)" : obj->in_obj->short_descr,
 	    !obj->carried_by ? "(none)" : obj->carried_by->name,
 	    obj_eq_loc(obj->wear_loc) );
     strcat( buf1, buf );
     
-    sprintf( buf, "Values: %d %d %d %d.\r\n",
+    sprintf( buf, "Values: %d %d %d %d.\n\r",
 	    obj->value[0], obj->value[1], obj->value[2], obj->value[3] );
     strcat( buf1, buf );
 
@@ -796,19 +801,19 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 		strcat( buf1, " " );
 	}
 
-	strcat( buf1, "'.\r\n" );
+	strcat( buf1, "'.\n\r" );
     }
 
     for ( paf = obj->affected; paf; paf = paf->next )
     {
-	sprintf( buf, "Affects %s by %d.\r\n",
+	sprintf( buf, "Affects %s by %d.\n\r",
 		affect_loc_name( paf->location ), paf->modifier );
 	strcat( buf1, buf );
     }
 
     for ( paf = obj->pIndexData->affected; paf; paf = paf->next )
     {
-	sprintf( buf, "Affects %s by %d.\r\n",
+	sprintf( buf, "Affects %s by %d.\n\r",
 		affect_loc_name( paf->location ), paf->modifier );
 	strcat( buf1, buf );
     }
@@ -836,33 +841,33 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Mstat whom?\r\n", ch );
+	send_to_char( "Mstat whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     buf1[0] = '\0';
 
-    sprintf( buf, "Name: %s.\r\n",
+    sprintf( buf, "Name: %s.\n\r",
 	    victim->name );
     strcat( buf1, buf );
 
-    sprintf( buf, "Race: %s.\r\n", race_table[victim->race].name );
+    sprintf( buf, "Race: %s.\n\r", race_table[victim->race].name );
     strcat( buf1, buf );
 
-    sprintf( buf, "Vnum: %d.  Sex: %s.  Room: %d.\r\n",
+    sprintf( buf, "Vnum: %d.  Sex: %s.  Room: %d.\n\r",
 	    IS_NPC( victim ) ? victim->pIndexData->vnum : 0,
 	    victim->sex == SEX_MALE    ? "male"   :
 	    victim->sex == SEX_FEMALE  ? "female" : "neuter",
 	    !victim->in_room           ?        0 : victim->in_room->vnum );
     strcat( buf1, buf );
 
-    sprintf( buf, "Str: %d.  Int: %d.  Wis: %d.  Dex: %d.  Con: %d.\r\n",
+    sprintf( buf, "Str: %d.  Int: %d.  Wis: %d.  Dex: %d.  Con: %d.\n\r",
 	    get_curr_str( victim ),
 	    get_curr_int( victim ),
 	    get_curr_wis( victim ),
@@ -870,7 +875,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    get_curr_con( victim ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Hp: %d/%d.  Mana: %d/%d.  Move: %d/%d.  Practices: %d.\r\n",
+    sprintf( buf, "Hp: %d/%d.  Mana: %d/%d.  Move: %d/%d.  Practices: %d.\n\r",
 	    victim->hit,         victim->max_hit,
 	    victim->mana,        victim->max_mana,
 	    victim->move,        victim->max_move,
@@ -886,31 +891,31 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     /* Display balance and shares by Maniac */
     if (IS_NPC(victim))
     {
-	sprintf ( buf, "Gold: %d\r\n", victim->gold);
+	sprintf ( buf, "Gold: %d\n\r", victim->gold);
 	strcat( buf1, buf );
     }
     else
     {
-	sprintf (buf, "\r\nGold: %d.  Balance: %d.  Shares: %d. Securety: %d\r\n",
+	sprintf (buf, "\n\rGold: %d.  Balance: %d.  Shares: %d. Securety: %d\n\r",
 	victim->gold, victim->pcdata->balance, victim->pcdata->shares, victim->pcdata->security );
 	strcat( buf1, buf );
     }
 
-    sprintf( buf, "Position: %d.  Wimpy: %d.\r\n",
+    sprintf( buf, "Position: %d.  Wimpy: %d.\n\r",
             victim->position,    victim->wimpy );
     strcat( buf1, buf );
 
     if ( IS_NPC( victim )
         || victim->level >= skill_table[gsn_dual].skill_level[victim->class] )
 	strcat ( buf1, "Primary Weapon " );
-    sprintf( buf, "Hitroll: %d  Damroll: %d.\r\n",
+    sprintf( buf, "Hitroll: %d  Damroll: %d.\n\r",
             get_hitroll( victim, WEAR_WIELD ),
             get_damroll( victim, WEAR_WIELD ) );
     strcat( buf1, buf );
 
     if ( IS_NPC(victim) && victim->hunting != NULL )
     {
-        sprintf(buf, "Hunting victim: %s (%s)\r\n",
+        sprintf(buf, "Hunting victim: %s (%s)\n\r",
                 IS_NPC(victim->hunting) ? victim->hunting->short_descr
                                         : victim->hunting->name,
                 IS_NPC(victim->hunting) ? "MOB" : "PLAYER" );
@@ -919,7 +924,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     if ( get_eq_char( victim, WEAR_WIELD_2 ) )
     {
-	sprintf( buf, " Second Weapon Hitroll: %d  Damroll: %d.\r\n",
+	sprintf( buf, " Second Weapon Hitroll: %d  Damroll: %d.\n\r",
 		get_hitroll( victim, WEAR_WIELD_2 ),
 		get_damroll( victim, WEAR_WIELD_2 ) );
 	strcat( buf1, buf );
@@ -927,18 +932,18 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( victim ) )
     {
-	sprintf( buf, "Page Lines: %d.\r\n", victim->pcdata->pagelen );
+	sprintf( buf, "Page Lines: %d.\n\r", victim->pcdata->pagelen );
 	strcat( buf1, buf );
     }
 
-    sprintf( buf, "Fighting: %s.\r\n",
+    sprintf( buf, "Fighting: %s.\n\r",
 	    victim->fighting ? victim->fighting->name : "(none)" );
     strcat( buf1, buf );
 
     if ( !IS_NPC( victim ) )
     {
 	sprintf( buf,
-		"Thirst: %d.  Full: %d.  Drunk: %d.  Saving throw: %d.\r\n",
+		"Thirst: %d.  Full: %d.  Drunk: %d.  Saving throw: %d.\n\r",
 		victim->pcdata->condition[COND_THIRST],
 		victim->pcdata->condition[COND_FULL  ],
 		victim->pcdata->condition[COND_DRUNK ],
@@ -946,11 +951,11 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	strcat( buf1, buf );
     }
 
-    sprintf( buf, "Carry number: %d.  Carry weight: %d.\r\n",
+    sprintf( buf, "Carry number: %d.  Carry weight: %d.\n\r",
 	    victim->carry_number, victim->carry_weight );
     strcat( buf1, buf );
 
-    sprintf( buf, "Age: %d.  Played: %d.  Timer: %d.\r\n",
+    sprintf( buf, "Age: %d.  Played: %d.  Timer: %d.\n\r",
 	    get_age( victim ),
 	    (int) victim->played,
 	    victim->timer);
@@ -958,35 +963,35 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     /* Act flag extension by Maniac */
     if (IS_NPC(victim))
-	sprintf( buf, "Act: %s.\r\n", mob_act_name(victim->act) );
+	sprintf( buf, "Act: %s.\n\r", mob_act_name(victim->act) );
     else
-	sprintf( buf, "Act: %s.\r\n", plr_act_name(victim->act) );
+	sprintf( buf, "Act: %s.\n\r", plr_act_name(victim->act) );
     strcat (buf1, buf );
 
-    sprintf( buf, "Master: %s.  Leader: %s.  Affected by: %s.\r\n",
+    sprintf( buf, "Master: %s.  Leader: %s.  Affected by: %s.\n\r",
 	    victim->master      ? victim->master->name   : "(none)",
 	    victim->leader      ? victim->leader->name   : "(none)",
 	    affect_bit_name( victim->affected_by ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Short description: %s.\r\nLong  description: %s",
+    sprintf( buf, "Short description: %s.\n\rLong  description: %s",
 	    victim->short_descr,
 	    victim->long_descr[0] != '\0' ? victim->long_descr
-	                                  : "(none).\r\n" );
+	                                  : "(none).\n\r" );
     strcat( buf1, buf );
 
     if ( IS_NPC( victim ) && victim->spec_fun != 0 )
-	strcat( buf1, "Mobile has spec fun.\r\n" );
+	strcat( buf1, "Mobile has spec fun.\n\r" );
 
     if ( IS_NPC( victim ) && victim->game_fun != 0 )
-	strcat( buf1, "Mobile has game fun.\r\n" );
+	strcat( buf1, "Mobile has game fun.\n\r" );
 
     for ( paf = victim->affected; paf; paf = paf->next )
     {
         if ( paf->deleted )
 	    continue;
 	sprintf( buf,
-		"Spell: '%s' modifies %s by %d for %d hours with bits %s.\r\n",
+		"Spell: '%s' modifies %s by %d for %d hours with bits %s.\n\r",
 		skill_table[(int) paf->type].name,
 		affect_loc_name( paf->location ),
 		paf->modifier,
@@ -1022,7 +1027,7 @@ void do_mfind( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Mfind whom?\r\n", ch );
+	send_to_char( "Mfind whom?\n\r", ch );
 	return;
     }
 
@@ -1045,7 +1050,7 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 	    if ( fAll || is_name( arg, pMobIndex->player_name ) )
 	    {
 		found = TRUE;
-		sprintf( buf, "[%5d] %s\r\n",
+		sprintf( buf, "[%5d] %s\n\r",
 		    pMobIndex->vnum, capitalize( pMobIndex->short_descr ) );
 		if ( !fAll )
 		    strcat( buf1, buf );
@@ -1057,7 +1062,7 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 
     if ( !found )
     {
-	send_to_char( "Nothing like that in hell, earth, or heaven.\r\n", ch);
+	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch);
 	return;
     }
 
@@ -1087,7 +1092,7 @@ void do_ofind( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Ofind what?\r\n", ch );
+	send_to_char( "Ofind what?\n\r", ch );
 	return;
     }
 
@@ -1104,7 +1109,7 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 	    if ( fAll || is_name( arg, pObjIndex->name ) )
 	    {
 		found = TRUE;
-		sprintf( buf, "[%5d] %s\r\n",
+		sprintf( buf, "[%5d] %s\n\r",
 		    pObjIndex->vnum, capitalize( pObjIndex->short_descr ) );
 		if ( !fAll )
 		    strcat( buf1, buf );
@@ -1116,7 +1121,7 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 
     if ( !found )
     {
-	send_to_char( "Nothing like that in hell, earth, or heaven.\r\n", ch);
+	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch);
 	return;
     }
 
@@ -1142,7 +1147,7 @@ void do_mwhere( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Mwhere whom?\r\n", ch );
+	send_to_char( "Mwhere whom?\n\r", ch );
 	return;
     }
 
@@ -1155,7 +1160,7 @@ void do_mwhere( CHAR_DATA *ch, char *argument )
 	    && is_name( arg, victim->name ) )
 	{
 	    found = TRUE;
-	    sprintf( buf, "[%5d] %-28s [%5d] %s\r\n",
+	    sprintf( buf, "[%5d] %-28s [%5d] %s\n\r",
 		    victim->pIndexData->vnum,
 		    victim->short_descr,
 		    victim->in_room->vnum,
@@ -1185,7 +1190,7 @@ void do_reboo( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "reboot" ) )
         return;
 
-    send_to_char( "If you want to REBOOT, spell it out.\r\n", ch );
+    send_to_char( "If you want to REBOOT, spell it out.\n\r", ch );
     return;
 }
 
@@ -1222,7 +1227,7 @@ void do_shutdow( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "shutdown" ) )
         return;
 
-    send_to_char( "If you want to SHUTDOWN, spell it out.\r\n", ch );
+    send_to_char( "If you want to SHUTDOWN, spell it out.\n\r", ch );
     return;
 }
 
@@ -1241,7 +1246,7 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
 
     sprintf( buf, "Shutdown by %s.", ch->name );
     append_file( ch, SHUTDOWN_FILE, buf );
-    strcat( buf, "\r\n" );
+    strcat( buf, "\n\r" );
     do_echo( ch, buf );
 
     end_of_game( );
@@ -1268,25 +1273,25 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Snoop whom?\r\n", ch );
+	send_to_char( "Snoop whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( !victim->desc )
     {
-	send_to_char( "No descriptor to snoop.\r\n", ch );
+	send_to_char( "No descriptor to snoop.\n\r", ch );
 	return;
     }
 
     if ( victim == ch )
     {
-	send_to_char( "Cancelling all snoops.\r\n", ch );
+	send_to_char( "Cancelling all snoops.\n\r", ch );
 	for ( d = descriptor_list; d; d = d->next )
 	{
 	    if ( d->snoop_by == ch->desc )
@@ -1297,13 +1302,13 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 
     if ( victim->desc->snoop_by )
     {
-	send_to_char( "Busy already.\r\n", ch );
+	send_to_char( "Busy already.\n\r", ch );
 	return;
     }
 
     if ( get_trust( victim ) >= get_trust( ch ) )
     {
-	send_to_char( "You failed.\r\n", ch );
+	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
@@ -1313,14 +1318,14 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 	{
 	    if ( d->character == victim || d->original == victim )
 	    {
-		send_to_char( "No snoop loops.\r\n", ch );
+		send_to_char( "No snoop loops.\n\r", ch );
 		return;
 	    }
 	}
     }
 
     victim->desc->snoop_by = ch->desc;
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
     return;
 }
 
@@ -1341,7 +1346,7 @@ void do_switch( CHAR_DATA *ch, char *argument )
     
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Switch into whom?\r\n", ch );
+	send_to_char( "Switch into whom?\n\r", ch );
 	return;
     }
 
@@ -1350,19 +1355,19 @@ void do_switch( CHAR_DATA *ch, char *argument )
     
     if ( ch->desc->original )
     {
-	send_to_char( "You are already switched.\r\n", ch );
+	send_to_char( "You are already switched.\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( victim == ch )
     {
-	send_to_char( "Ok.\r\n", ch );
+	send_to_char( "Ok.\n\r", ch );
 	return;
     }
 
@@ -1371,13 +1376,13 @@ void do_switch( CHAR_DATA *ch, char *argument )
      */
     if ( !IS_NPC( victim ) )
     {
-        send_to_char( "You cannot switch into a player!\r\n", ch );
+        send_to_char( "You cannot switch into a player!\n\r", ch );
 	return;
     }
 
     if ( victim->desc )
     {
-	send_to_char( "Character in use.\r\n", ch );
+	send_to_char( "Character in use.\n\r", ch );
 	return;
     }
 
@@ -1386,7 +1391,7 @@ void do_switch( CHAR_DATA *ch, char *argument )
     ch->desc->original    = ch;
     victim->desc          = ch->desc;
     ch->desc              = NULL;
-    send_to_char( "Ok.\r\n", victim );
+    send_to_char( "Ok.\n\r", victim );
     return;
 }
 
@@ -1397,12 +1402,9 @@ void do_return( CHAR_DATA *ch, char *argument )
     if ( !ch->desc )
 	return;
 
-    if ( !authorized( ch, "return" ) )
-	return;
-
     if ( !ch->desc->original )
     {
-	send_to_char( "You aren't switched.\r\n", ch );
+	send_to_char( "You aren't switched.\n\r", ch );
 	return;
     }
 
@@ -1410,10 +1412,8 @@ void do_return( CHAR_DATA *ch, char *argument )
  * We assume we will automatically allow immortals with switch to return.
  * Dont want to have our immortals stuck in a mobile's body do we?  :)
  * -Kahn */
-/* Well, note that I, Canth, find it mildly amusing to have an immortal
- * in a mobile's body, and added the authorization check -Canth */
 
-    send_to_char( "You return to your original body.\r\n", ch );
+    send_to_char( "You return to your original body.\n\r", ch );
     ch->desc->original->pcdata->switched = FALSE;
     ch->desc->character                  = ch->desc->original;
     ch->desc->original                   = NULL;
@@ -1440,13 +1440,13 @@ void do_mload( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' || !is_number( arg ) )
     {
-	send_to_char( "Syntax: mload <vnum>.\r\n", ch );
+	send_to_char( "Syntax: mload <vnum>.\n\r", ch );
 	return;
     }
 
     if ( !( pMobIndex = get_mob_index( atoi( arg ) ) ) )
     {
-	send_to_char( "No mob has that vnum.\r\n", ch );
+	send_to_char( "No mob has that vnum.\n\r", ch );
 	return;
     }
 
@@ -1454,7 +1454,7 @@ void do_mload( CHAR_DATA *ch, char *argument )
     victim->spec_fun = pMobIndex->spec_fun;	/* Add special function */
     victim->game_fun = pMobIndex->game_fun;	/* Add game function */
     char_to_room( victim, ch->in_room );
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
     act( "$n has created $N!", ch, NULL, victim, TO_ROOM );
     return;
 }
@@ -1480,7 +1480,7 @@ void do_oload( CHAR_DATA *ch, char *argument )
  
     if ( arg1[0] == '\0' || !is_number( arg1 ) )
     {
-        send_to_char( "Syntax: oload <vnum> <level>.\r\n", ch );
+        send_to_char( "Syntax: oload <vnum> <level>.\n\r", ch );
         return;
     }
  
@@ -1495,20 +1495,20 @@ void do_oload( CHAR_DATA *ch, char *argument )
 	 */
         if ( !is_number( arg2 ) )
         {
-	    send_to_char( "Syntax: oload <vnum> <level>.\r\n", ch );
+	    send_to_char( "Syntax: oload <vnum> <level>.\n\r", ch );
 	    return;
         }
         level = atoi( arg2 );
 	if ( level < 0 || level > get_trust( ch ) )
         {
-	    send_to_char( "Limited to your trust level.\r\n", ch );
+	    send_to_char( "Limited to your trust level.\n\r", ch );
 	    return;
         }
     }
 
     if ( !( pObjIndex = get_obj_index( atoi( arg1 ) ) ) )
     {
-	send_to_char( "No object has that vnum.\r\n", ch );
+	send_to_char( "No object has that vnum.\n\r", ch );
 	return;
     }
 
@@ -1522,7 +1522,7 @@ void do_oload( CHAR_DATA *ch, char *argument )
 	obj_to_room( obj, ch->in_room );
 	act( "$n has created $p!", ch, obj, NULL, TO_ROOM );
     }
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
     return;
 }
 
@@ -1566,20 +1566,20 @@ void do_purge( CHAR_DATA *ch, char *argument )
 	    extract_obj( obj );
 	}
 
-	send_to_char( "Ok.\r\n", ch );
+	send_to_char( "Ok.\n\r", ch );
 	act( "$n purges the room!", ch, NULL, NULL, TO_ROOM);
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( !IS_NPC( victim ) )
     {
-	send_to_char( "Not on PC's.\r\n", ch );
+	send_to_char( "Not on PC's.\n\r", ch );
 	return;
     }
 
@@ -1609,19 +1609,19 @@ void do_advance( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
     {
-	send_to_char( "Syntax: advance <char> <level>.\r\n", ch );
+	send_to_char( "Syntax: advance <char> <level>.\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_room( ch, arg1 ) ) )
     {
-	send_to_char( "That player is not here.\r\n", ch);
+	send_to_char( "That player is not here.\n\r", ch);
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
     
@@ -1631,24 +1631,24 @@ void do_advance( CHAR_DATA *ch, char *argument )
     {
 	char buf [ MAX_STRING_LENGTH ];
 
-	sprintf( buf, "Advance within range 1 to %d.\r\n", MAX_LEVEL );
+	sprintf( buf, "Advance within range 1 to %d.\n\r", MAX_LEVEL );
 	send_to_char( buf, ch );
 	return;
     }
 
     if ( level > get_trust( ch ) )
     {
-	send_to_char( "Limited to your trust level.\r\n", ch );
+	send_to_char( "Limited to your trust level.\n\r", ch );
 	return;
     }
 
     /*
-     * Little extra check by Canth (phule@xs4all.nl)
+     * Little extra check by Canth (canth@xs4all.nl)
      * This works seeing as I'm trusted 55 ;-)
      */
     if ( ( get_trust(ch) <= get_trust(victim) ) && (ch != victim) )
     {
-	send_to_char( "You cannot advance your peer nor your superior.\r\n", ch );
+	send_to_char( "You cannot advance your peer nor your superior.\n\r", ch );
 	return;
     }
 
@@ -1665,8 +1665,8 @@ void do_advance( CHAR_DATA *ch, char *argument )
     {
 	int sn;
 	
-	send_to_char( "Lowering a player's level!\r\n", ch );
-	send_to_char( "**** OOOOHHHHHHHHHH  NNNNOOOO ****\r\n",    victim );
+	send_to_char( "Lowering a player's level!\n\r", ch );
+	send_to_char( "**** OOOOHHHHHHHHHH  NNNNOOOO ****\n\r",    victim );
 	victim->level    = 1;
 	victim->exp      = 1000;
 	victim->max_hit  = 10;
@@ -1682,8 +1682,8 @@ void do_advance( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	send_to_char( "Raising a player's level!\r\n", ch );
-	send_to_char( "**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\r\n", victim );
+	send_to_char( "Raising a player's level!\n\r", ch );
+	send_to_char( "**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim );
     }
 
     for ( iLevel = victim->level ; iLevel < level; iLevel++ )
@@ -1717,13 +1717,13 @@ void do_trust( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
     {
-	send_to_char( "Syntax: trust <char> <level>.\r\n", ch );
+	send_to_char( "Syntax: trust <char> <level>.\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_room( ch, arg1 ) ) )
     {
-	send_to_char( "That player is not here.\r\n", ch );
+	send_to_char( "That player is not here.\n\r", ch );
 	return;
     }
 
@@ -1733,24 +1733,24 @@ void do_trust( CHAR_DATA *ch, char *argument )
     {
 	char buf [ MAX_STRING_LENGTH ];
 
-	sprintf( buf, "Trust within range 1 to %d.\r\n", MAX_LEVEL );
+	sprintf( buf, "Trust within range 1 to %d.\n\r", MAX_LEVEL );
 	send_to_char( buf, ch );
 	return;
     }
 
     if ( level > get_trust( ch ) )
     {
-	send_to_char( "Limited to your trust.\r\n", ch );
+	send_to_char( "Limited to your trust.\n\r", ch );
 	return;
     }
 
     /*
-     * Little extra check by Canth (phule@xs4all.nl)
+     * Little extra check by Canth (canth@xs4all.nl)
      * This works seeing as I'm trusted 55 ;-)
      */
     if ( get_trust(ch) <= get_trust(victim) )
     {
-	send_to_char( "You cannot trust your peer nor your superior.\r\n", ch );
+	send_to_char( "You cannot trust your peer nor your superior.\n\r", ch );
 	return;
     }
 
@@ -1792,7 +1792,7 @@ void do_restore( CHAR_DATA *ch, char *argument )
             act("$n has restored you.",ch,NULL, rch,TO_VICT);
         }
 	wiznet (ch, WIZ_RESTORE, ch->level + 1, ch->name );
-        send_to_char("Room restored.\r\n",ch);
+        send_to_char("Room restored.\n\r",ch);
         return;
 
     }
@@ -1818,13 +1818,13 @@ void do_restore( CHAR_DATA *ch, char *argument )
 	    wiznet (ch, WIZ_RESTORE, ch->level + 1, ch->name );
             act( "$n has restored you.", ch, NULL, victim, TO_VICT );
         }
-        send_to_char( "Aww...how sweet :)...Done.\r\n", ch );
+        send_to_char( "Aww...how sweet :)...Done.\n\r", ch );
     }
     else
     {
 	if ( !( victim = get_char_world( ch, arg ) ) )
 	{
-		send_to_char( "They aren't here.\r\n", ch );
+		send_to_char( "They aren't here.\n\r", ch );
 		return;
 	}
 
@@ -1840,7 +1840,7 @@ void do_restore( CHAR_DATA *ch, char *argument )
         update_pos( victim );
         act( "$n has restored you.", ch, NULL, victim, TO_VICT );
 	wiznet (ch, WIZ_RESTORE, ch->level + 1, ch->name );
-        send_to_char( "Ok.\r\n", ch );
+        send_to_char( "Ok.\n\r", ch );
     }
 
     return;
@@ -1862,39 +1862,39 @@ void do_freeze( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Freeze whom?\r\n", ch );
+	send_to_char( "Freeze whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
     if ( get_trust( victim ) >= get_trust( ch ) )
     {
-	send_to_char( "You failed.\r\n", ch );
+	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
     if ( IS_SET( victim->act, PLR_FREEZE ) )
     {
 	REMOVE_BIT( victim->act, PLR_FREEZE );
-	send_to_char( "FREEZE removed.\r\n",     ch     );
-	send_to_char( "You can play again.\r\n", victim );
+	send_to_char( "FREEZE removed.\n\r",     ch     );
+	send_to_char( "You can play again.\n\r", victim );
     }
     else
     {
 	SET_BIT(    victim->act, PLR_FREEZE );
-	send_to_char( "FREEZE set.\r\n",            ch     );
-	send_to_char( "You can't do ANYthing!\r\n", victim );
+	send_to_char( "FREEZE set.\n\r",            ch     );
+	send_to_char( "You can't do ANYthing!\n\r", victim );
     }
 
     save_char_obj( victim );
@@ -1919,7 +1919,7 @@ void do_log( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Log whom?\r\n", ch );
+	send_to_char( "Log whom?\n\r", ch );
 	return;
     }
 
@@ -1928,12 +1928,12 @@ void do_log( CHAR_DATA *ch, char *argument )
         if ( fLogAll )
         {
             fLogAll = FALSE;
-            send_to_char( "Log ALL off.\r\n", ch );
+            send_to_char( "Log ALL off.\n\r", ch );
         }
         else
         {
             fLogAll = TRUE;
-            send_to_char( "Log ALL on.\r\n",  ch );
+            send_to_char( "Log ALL on.\n\r",  ch );
         }
         return;
     }
@@ -1943,25 +1943,25 @@ void do_log( CHAR_DATA *ch, char *argument )
 	if ( fLogAllMobs )
 	{
 	    fLogAllMobs = FALSE;
-	    send_to_char( "Log ALL MOBS off.\r\n", ch );
+	    send_to_char( "Log ALL MOBS off.\n\r", ch );
 	}
 	else
 	{
 	    fLogAllMobs = TRUE;
-	    send_to_char( "Log ALL MOBS on.\r\n",  ch );
+	    send_to_char( "Log ALL MOBS on.\n\r",  ch );
 	}
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
@@ -1974,19 +1974,19 @@ void do_log( CHAR_DATA *ch, char *argument )
      */
     if (( get_trust(victim) >= get_trust(ch) ) && (ch != victim ))
     {
-	send_to_char( "You cannot log your peer nor your superior.\r\n", ch);
+	send_to_char( "You cannot log your peer nor your superior.\n\r", ch);
 	return;
     }
 
     if ( IS_SET( victim->act, PLR_LOG ) )
     {
 	REMOVE_BIT( victim->act, PLR_LOG );
-	send_to_char( "LOG removed.\r\n", ch );
+	send_to_char( "LOG removed.\n\r", ch );
     }
     else
     {
 	SET_BIT(    victim->act, PLR_LOG );
-	send_to_char( "LOG set.\r\n",     ch );
+	send_to_char( "LOG set.\n\r",     ch );
     }
 
     return;
@@ -2009,39 +2009,39 @@ void do_noemote( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Noemote whom?\r\n", ch );
+	send_to_char( "Noemote whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
     if ( get_trust( victim ) >= get_trust( ch ) )
     {
-	send_to_char( "You failed.\r\n", ch );
+	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
     if ( IS_SET( victim->act, PLR_NO_EMOTE ) )
     {
 	REMOVE_BIT( victim->act, PLR_NO_EMOTE );
-	send_to_char( "NO_EMOTE removed.\r\n",    ch     );
-	send_to_char( "You can emote again.\r\n", victim );
+	send_to_char( "NO_EMOTE removed.\n\r",    ch     );
+	send_to_char( "You can emote again.\n\r", victim );
     }
     else
     {
 	SET_BIT(    victim->act, PLR_NO_EMOTE );
-	send_to_char( "You can't emote!\r\n",    victim );
-	send_to_char( "NO_EMOTE set.\r\n",       ch     );
+	send_to_char( "You can't emote!\n\r",    victim );
+	send_to_char( "NO_EMOTE set.\n\r",       ch     );
     }
 
     return;
@@ -2070,33 +2070,33 @@ void do_notell( CHAR_DATA *ch, char *argument )
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
     if ( get_trust( victim ) >= get_trust( ch ) )
     {
-	send_to_char( "You failed.\r\n", ch );
+	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
     if ( IS_SET( victim->act, PLR_NO_TELL ) )
     {
 	REMOVE_BIT( victim->act, PLR_NO_TELL );
-	send_to_char( "NO_TELL removed.\r\n",    ch );
-	send_to_char( "You can tell again.\r\n", victim );
+	send_to_char( "NO_TELL removed.\n\r",    ch );
+	send_to_char( "You can tell again.\n\r", victim );
     }
     else
     {
 	SET_BIT(    victim->act, PLR_NO_TELL );
-	send_to_char( "NO_TELL set.\r\n",        ch     );
-	send_to_char( "You can't tell!\r\n",     victim );
+	send_to_char( "NO_TELL set.\n\r",        ch     );
+	send_to_char( "You can't tell!\n\r",     victim );
     }
 
     return;
@@ -2119,39 +2119,39 @@ void do_silence( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Silence whom?\r\n", ch );
+	send_to_char( "Silence whom?\n\r", ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
     if ( get_trust( victim ) >= get_trust( ch ) )
     {
-	send_to_char( "You failed.\r\n", ch );
+	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
     if ( IS_SET( victim->act, PLR_SILENCE ) )
     {
 	REMOVE_BIT( victim->act, PLR_SILENCE );
-	send_to_char( "You can use channels again.\r\n", victim );
-	send_to_char( "SILENCE removed.\r\n",            ch     );
+	send_to_char( "You can use channels again.\n\r", victim );
+	send_to_char( "SILENCE removed.\n\r",            ch     );
     }
     else
     {
 	SET_BIT(    victim->act, PLR_SILENCE );
-	send_to_char( "You can't use channels!\r\n",     victim );
-	send_to_char( "SILENCE set.\r\n",                ch     );
+	send_to_char( "You can't use channels!\n\r",     victim );
+	send_to_char( "SILENCE set.\n\r",                ch     );
     }
 
     return;
@@ -2174,7 +2174,7 @@ void do_peace( CHAR_DATA *ch, char *argument )
 	    stop_fighting( rch, TRUE );
     }
 
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
     return;
 }
 
@@ -2202,11 +2202,11 @@ void do_ban( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	strcpy( buf, "Banned sites:\r\n" );
+	strcpy( buf, "Banned sites:\n\r" );
 	for ( pban = ban_list; pban; pban = pban->next )
 	{
 	    strcat( buf, pban->name );
-	    strcat( buf, "\r\n" );
+	    strcat( buf, "\n\r" );
 	}
 	send_to_char( buf, ch );
 	return;
@@ -2216,7 +2216,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
     {
 	if ( !str_cmp( arg, pban->name ) )
 	{
-	    send_to_char( "That site is already banned!\r\n", ch );
+	    send_to_char( "That site is already banned!\n\r", ch );
 	    return;
 	}
     }
@@ -2234,7 +2234,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
     pban->name	= str_dup( arg );
     pban->next	= ban_list;
     ban_list	= pban;
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
     ban_update( );
     return;
 }
@@ -2257,7 +2257,7 @@ void do_allow( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Remove which site from the ban list?\r\n", ch );
+	send_to_char( "Remove which site from the ban list?\n\r", ch );
 	return;
     }
 
@@ -2274,13 +2274,13 @@ void do_allow( CHAR_DATA *ch, char *argument )
 	    free_string( curr->name );
 	    curr->next	= ban_free;
 	    ban_free	= curr;
-	    send_to_char( "Ok.\r\n", ch );
+	    send_to_char( "Ok.\n\r", ch );
 	    ban_update( );
 	    return;
 	}
     }
 
-    send_to_char( "Site is not banned.\r\n", ch );
+    send_to_char( "Site is not banned.\n\r", ch );
     return;
 }
 
@@ -2299,9 +2299,9 @@ void do_wizlock( CHAR_DATA *ch, char *argument )
     wizlock = !wizlock;
 
     if ( wizlock )
-	send_to_char( "Game wizlocked.\r\n", ch );
+	send_to_char( "Game wizlocked.\n\r", ch );
     else
-	send_to_char( "Game un-wizlocked.\r\n", ch );
+	send_to_char( "Game un-wizlocked.\n\r", ch );
 
     return;
 }
@@ -2324,7 +2324,7 @@ void do_slookup( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Slookup what?\r\n", ch );
+	send_to_char( "Slookup what?\n\r", ch );
 	return;
     }
 
@@ -2335,7 +2335,7 @@ void do_slookup( CHAR_DATA *ch, char *argument )
 	{
 	    if ( !skill_table[sn].name )
 		break;
-	    sprintf( buf, "Sn: %4d Skill/spell: '%s'\r\n",
+	    sprintf( buf, "Sn: %4d Skill/spell: '%s'\n\r",
 		    sn, skill_table[sn].name );
 	    strcat( buf1, buf );
 	}
@@ -2350,7 +2350,7 @@ void do_slookup( CHAR_DATA *ch, char *argument )
 		&& sn  < MAX_SKILL
 		&& skill_table[sn].name )
 	    {
-		sprintf( buf, "Sn: %4d Skill/spell: '%s'\r\n",
+		sprintf( buf, "Sn: %4d Skill/spell: '%s'\n\r",
 			sn, skill_table[sn].name );
 		send_to_char( buf, ch );
 		return;
@@ -2359,11 +2359,11 @@ void do_slookup( CHAR_DATA *ch, char *argument )
 
         if ( ( sn = skill_lookup( arg ) ) < 0 )
 	{
-	    send_to_char( "No such skill or spell.\r\n", ch );
+	    send_to_char( "No such skill or spell.\n\r", ch );
 	    return;
 	}
 
-	sprintf( buf, "Sn: %4d Skill/spell: '%s'\r\n",
+	sprintf( buf, "Sn: %4d Skill/spell: '%s'\n\r",
 		sn, skill_table[sn].name );
 	send_to_char( buf, ch );
     }
@@ -2395,27 +2395,27 @@ void do_sset( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
     {
-	send_to_char( "Syntax: sset <victim> <skill> <value>\r\n",	ch );
-	send_to_char( "or:     sset <victim> all     <value>\r\n",	ch );
-	send_to_char( "Skill being any skill or spell.\r\n",		ch );
+	send_to_char( "Syntax: sset <victim> <skill> <value>\n\r",	ch );
+	send_to_char( "or:     sset <victim> all     <value>\n\r",	ch );
+	send_to_char( "Skill being any skill or spell.\n\r",		ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on NPC's.\r\n", ch );
+	send_to_char( "Not on NPC's.\n\r", ch );
 	return;
     }
 
     if ( get_trust(ch) <= get_trust(victim) && ch != victim )
     {
-	send_to_char( "You may not sset your peer nor your superior.\r\n",
+	send_to_char( "You may not sset your peer nor your superior.\n\r",
 		     ch );
 	return;
     }
@@ -2424,7 +2424,7 @@ void do_sset( CHAR_DATA *ch, char *argument )
     sn   = 0;
     if ( !fAll && ( sn = skill_lookup( arg2 ) ) < 0 )
     {
-	send_to_char( "No such skill or spell.\r\n", ch );
+	send_to_char( "No such skill or spell.\n\r", ch );
 	return;
     }
 
@@ -2433,14 +2433,14 @@ void do_sset( CHAR_DATA *ch, char *argument )
      */
     if ( !is_number( arg3 ) )
     {
-	send_to_char( "Value must be numeric.\r\n", ch );
+	send_to_char( "Value must be numeric.\n\r", ch );
 	return;
     }
 
     value = atoi( arg3 );
     if ( value < 0 || value > 100 )
     {
-	send_to_char( "Value range is 0 to 100.\r\n", ch );
+	send_to_char( "Value range is 0 to 100.\n\r", ch );
 	return;
     }
 
@@ -2448,20 +2448,18 @@ void do_sset( CHAR_DATA *ch, char *argument )
     {
         if ( get_trust( ch ) < L_DIR )
 	{
-	    send_to_char( "Only Directors may sset all.\r\n", ch );
+	    send_to_char( "Only Directors may sset all.\n\r", ch );
 	    return;
 	}
 	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
 	    if ( skill_table[sn].name )
-          {
 	        if ( skill_table[sn].skill_level[victim->class] <= LEVEL_HERO )
 		victim->pcdata->learned[sn]	= value;
 		else
 		    if ( skill_table[sn].skill_level[victim->class]
 			<= get_trust( victim ) )
 		        victim->pcdata->learned[sn] = value;
-          }
 	}
     }
     else
@@ -2524,35 +2522,35 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
     {
-	send_to_char( "Syntax: mset <victim> <field>  <value>\r\n",	ch );
-	send_to_char( "or:     mset <victim> <string> <value>\r\n",	ch );
+	send_to_char( "Syntax: mset <victim> <field>  <value>\n\r",	ch );
+	send_to_char( "or:     mset <victim> <string> <value>\n\r",	ch );
 	send_to_char( "or:     mset <victim> language <language> <value>", ch );
-	send_to_char( "\r\n\r\n",					ch );
-	send_to_char( "Field being one of:\r\n",			ch );
-	send_to_char( "  str int wis dex con class sex race level\r\n",	ch );
-	send_to_char( "  gold mhp mmana mmv practice learn align\r\n",	ch );
-	send_to_char( "  thirst drunk full hunt language whotext\r\n",	ch );
-	send_to_char( "  shares balance played chp cmana cmv exp\r\n",	ch );
-	send_to_char( "  qp qtime qnext securety\r\n",			ch );
-	send_to_char( "\r\n",						ch );
-	send_to_char( "String being one of:\r\n",			ch );
-	send_to_char( "  name short long title spec game\r\n",		ch );
+	send_to_char( "\n\r\n\r",					ch );
+	send_to_char( "Field being one of:\n\r",			ch );
+	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
+	send_to_char( "  gold mhp mmana mmv practice learn align\n\r",	ch );
+	send_to_char( "  thirst drunk full hunt language whotext\n\r",	ch );
+	send_to_char( "  shares balance played chp cmana cmv exp\n\r",	ch );
+	send_to_char( "  qp qtime qnext securety\n\r",			ch );
+	send_to_char( "\n\r",						ch );
+	send_to_char( "String being one of:\n\r",			ch );
+	send_to_char( "  name short long title spec game\n\r",		ch );
 	return;
     }
 
     if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
-	send_to_char( "They aren't here.\r\n", ch );
+	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
     /*
-     * Level check added by Canth (phule@xs4all.nl)
+     * Level check added by Canth (canth@xs4all.nl)
      * Maniac: Fixed the f*** check, can mset yourself !!
      */
     if ((get_trust(victim) >= get_trust(ch)) && ch != victim)
     {
-	send_to_char( "You may not mset your peer nor your superior.\r\n", ch );
+	send_to_char( "You may not mset your peer nor your superior.\n\r", ch );
 	return;
     }
 
@@ -2568,7 +2566,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -2579,7 +2577,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
 	if ( value < 3 || value > max )
 	{
-	    sprintf( buf, "Strength range is 3 to %d.\r\n", max );
+	    sprintf( buf, "Strength range is 3 to %d.\n\r", max );
 	    send_to_char( buf, ch );
 	    return;
 	}
@@ -2592,7 +2590,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -2603,7 +2601,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
 	if ( value < 3 || value > max )
 	{
-	    sprintf( buf, "Intelligence range is 3 to %d.\r\n", max );
+	    sprintf( buf, "Intelligence range is 3 to %d.\n\r", max );
 	    send_to_char( buf, ch );
 	    return;
 	}
@@ -2616,7 +2614,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -2627,7 +2625,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
 	if ( value < 3 || value > max )
 	{
-	    sprintf( buf, "Wisdom range is 3 to %d.\r\n", max );
+	    sprintf( buf, "Wisdom range is 3 to %d.\n\r", max );
 	    send_to_char( buf, ch );
 	    return;
 	}
@@ -2640,7 +2638,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -2651,7 +2649,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
 	if ( value < 3 || value > max )
 	{
-	    sprintf( buf, "Dexterity range is 3 to %d.\r\n", max );
+	    sprintf( buf, "Dexterity range is 3 to %d.\n\r", max );
 	    send_to_char( buf, ch );
 	    return;
 	}
@@ -2664,7 +2662,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -2675,7 +2673,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
 	if ( value < 3 || value > max )
 	{
-	    sprintf( buf, "Constitution range is 3 to %d.\r\n", max );
+	    sprintf( buf, "Constitution range is 3 to %d.\n\r", max );
 	    send_to_char( buf, ch );
 	    return;
 	}
@@ -2702,14 +2700,14 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
         if ( IS_AFFECTED( victim, AFF_CHANGE_SEX ) )
 	{
-	    send_to_char( "This person is affect by change sex.\r\n", ch );
-	    send_to_char( "Try again later.\r\n", ch );
+	    send_to_char( "This person is affect by change sex.\n\r", ch );
+	    send_to_char( "Try again later.\n\r", ch );
 	    return;
 	}
 
 	if ( value < 0 || value > 2 )
 	{
-	    send_to_char( "Sex range is 0 to 2.\r\n", ch );
+	    send_to_char( "Sex range is 0 to 2.\n\r", ch );
 	    return;
 	}
 
@@ -2726,24 +2724,24 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
 	if ( IS_AFFECTED( victim, AFF_POLYMORPH ) )
 	{
-	    send_to_char( "This person is affected by polymorph other.\r\n",
+	    send_to_char( "This person is affected by polymorph other.\n\r",
 			 ch );
-	    send_to_char( "Try again later.\r\n", ch );
+	    send_to_char( "Try again later.\n\r", ch );
 	    return;
 	}
 
-	race = race_lookup( arg3 );
+	race = race_lookup_prefix( arg3 );
 
 	if ( race < 0 )
 	{
-	    send_to_char( "Invalid race.\r\n", ch );
+	    send_to_char( "Invalid race.\n\r", ch );
 	    return;
 	}
 
 	if (  !IS_SET( race_table[ race ].race_abilities, RACE_PC_AVAIL )
 	    && get_trust( ch ) < L_DIR )
 	{
-	    send_to_char( "You may not set a race not available to PC's.\r\n",
+	    send_to_char( "You may not set a race not available to PC's.\n\r",
 			 ch );
 	    return;
 	}
@@ -2777,13 +2775,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( !IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on PC's.\r\n", ch );
+	    send_to_char( "Not on PC's.\n\r", ch );
 	    return;
 	}
 
 	if ( value < 0 || value > 50 )
 	{
-	    send_to_char( "Level range is 0 to 50.\r\n", ch );
+	    send_to_char( "Level range is 0 to 50.\n\r", ch );
 	    return;
 	}
 	victim->level = value;
@@ -2820,7 +2818,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -2828,13 +2826,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	{
 	    if ( ch->pcdata->security != 0 )
 	    {
-		sprintf( buf, "Valid security is 0-%d.\r\n",
+		sprintf( buf, "Valid security is 0-%d.\n\r",
 		   ch->pcdata->security );
 		send_to_char( buf, ch );
 	    }
 	    else
 	    {
-		send_to_char( "Valid security is 0 only.\r\n", ch );
+		send_to_char( "Valid security is 0 only.\n\r", ch );
 	    }
 	    return;
 	}
@@ -2874,12 +2872,12 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( value < -10 || value > 30000 )
 	{
-	    send_to_char( "Hp range is -10 to 30,000 hit points.\r\n", ch );
+	    send_to_char( "Hp range is -10 to 30,000 hit points.\n\r", ch );
 	    return;
 	}
 	if ( victim->fighting && value < 0 )
 	{
-	    send_to_char( "You cannot set a fighting person's hp below 0.\r\n",
+	    send_to_char( "You cannot set a fighting person's hp below 0.\n\r",
 			 ch );
 	    return;
 	}
@@ -2891,12 +2889,12 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
         if ( value < -10 || value > 30000 )
         {
-            send_to_char( "Hp range is -10 to 30,000 hit points.\r\n", ch );
+            send_to_char( "Hp range is -10 to 30,000 hit points.\n\r", ch );
             return;
         }
         if ( victim->fighting && value < 0 )
         {
-            send_to_char( "You cannot set a fighting person's hp below 0.\r\n",
+            send_to_char( "You cannot set a fighting person's hp below 0.\n\r",
                          ch );
             return;
         }
@@ -2908,7 +2906,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( value < 0 || value > 30000 )
 	{
-	    send_to_char( "Mana range is 0 to 30,000 mana points.\r\n", ch );
+	    send_to_char( "Mana range is 0 to 30,000 mana points.\n\r", ch );
 	    return;
 	}
 	victim->max_mana = value;
@@ -2919,7 +2917,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
         if ( value < 0 || value > 30000 )
         {
-            send_to_char( "Mana range is 0 to 30,000 mana points.\r\n", ch );
+            send_to_char( "Mana range is 0 to 30,000 mana points.\n\r", ch );
             return;
         }
         victim->mana = value;
@@ -2930,7 +2928,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( value < 0 || value > 30000 )
 	{
-	    send_to_char( "Move range is 0 to 30,000 move points.\r\n", ch );
+	    send_to_char( "Move range is 0 to 30,000 move points.\n\r", ch );
 	    return;
 	}
 	victim->max_move = value;
@@ -2941,7 +2939,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
         if ( value < 0 || value > 30000 )
         {
-            send_to_char( "Move range is 0 to 30,000 move points.\r\n", ch );
+            send_to_char( "Move range is 0 to 30,000 move points.\n\r", ch );
             return;
         }
         victim->move = value;
@@ -2957,7 +2955,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     if ( !str_cmp( arg2, "learn" ) )		/* Maniac */
     {
 	if (IS_NPC(ch))
-		send_to_char("Not on NPC's\r\n", ch);
+		send_to_char("Not on NPC's\n\r", ch);
 	else
 		victim->pcdata->learn = value;
         return;
@@ -2967,7 +2965,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( value < -1000 || value > 1000 )
 	{
-	    send_to_char( "Alignment range is -1000 to 1000.\r\n", ch );
+	    send_to_char( "Alignment range is -1000 to 1000.\n\r", ch );
 	    return;
 	}
 	victim->alignment = value;
@@ -2978,21 +2976,21 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
-	/* Check for victim's level removed by Canth (phule@xs4all.nl)
+	/* Check for victim's level removed by Canth (canth@xs4all.nl)
 	if ( ( value < 0 || value > 100 )
 	    && get_trust( victim ) < LEVEL_IMMORTAL )
 	{
-	    send_to_char( "Thirst range is 0 to 100.\r\n", ch );
+	    send_to_char( "Thirst range is 0 to 100.\n\r", ch );
 	    return;
 	}
 	else */
 	    if ( value < -1 || value > 100 )
 	    {
-		send_to_char( "Thirst range is -1 to 100.\r\n", ch );
+		send_to_char( "Thirst range is -1 to 100.\n\r", ch );
 		return;
 	    }
 
@@ -3004,13 +3002,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
 	if ( value < 0 || value > 100 )
 	{
-	    send_to_char( "Drunk range is 0 to 100.\r\n", ch );
+	    send_to_char( "Drunk range is 0 to 100.\n\r", ch );
 	    return;
 	}
 
@@ -3022,21 +3020,21 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
-	/* victim level check removed by Canth (phule@xs4all.nl)
+	/* victim level check removed by Canth (canth@xs4all.nl)
 	if ( ( value < 0 || value > 100 )
 	    && get_trust( victim ) < LEVEL_IMMORTAL )
 	{
-	    send_to_char( "Full range is 0 to 100.\r\n", ch );
+	    send_to_char( "Full range is 0 to 100.\n\r", ch );
 	    return;
 	}
 	else */
 	    if ( value < -1 || value > 100 )
 	    {
-		send_to_char( "Full range is -1 to 100.\r\n", ch );
+		send_to_char( "Full range is -1 to 100.\n\r", ch );
 		return;
 	    }
 
@@ -3048,7 +3046,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( !IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on PC's.\r\n", ch );
+	    send_to_char( "Not on PC's.\n\r", ch );
 	    return;
 	}
 
@@ -3076,7 +3074,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 
 	free_string( victim->long_descr );
-	strcat( arg3, "\r\n" );
+	strcat( arg3, "\n\r" );
 	victim->long_descr = str_dup( arg3 );
 	return;
     }
@@ -3085,7 +3083,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -3094,13 +3092,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
     }
 
     /*
-     * Whotext by Canth, phule@xs4all.nl
+     * Whotext by Canth, canth@xs4all.nl
      */
     if ( !str_cmp( arg2, "whotext" ) )
     {
 	if ( IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on NPC's.\r\n", ch );
+	    send_to_char( "Not on NPC's.\n\r", ch );
 	    return;
 	}
 
@@ -3118,7 +3116,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	 */
 	if ( !str_cmp( arg3, "@" ) )
 	{
-	    victim->pcdata->who_text = strdup( "@" );
+	    victim->pcdata->who_text = str_dup( "@" );
 	    return;
 	}
 
@@ -3140,13 +3138,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
 	if ( !IS_NPC( victim ) )
 	{
-	    send_to_char( "Not on PC's.\r\n", ch );
+	    send_to_char( "Not on PC's.\n\r", ch );
 	    return;
 	}
 
 	if ( ( victim->spec_fun = spec_lookup( arg3 ) ) == 0 )
 	{
-	    send_to_char( "No such spec fun.\r\n", ch );
+	    send_to_char( "No such spec fun.\n\r", ch );
 	    return;
 	}
 
@@ -3157,13 +3155,13 @@ void do_mset( CHAR_DATA *ch, char *argument )
     {
         if ( !IS_NPC( victim ) )
         {
-            send_to_char( "Not on PC's.\r\n", ch );
+            send_to_char( "Not on PC's.\n\r", ch );
             return;
         }
 
         if ( ( victim->game_fun = game_lookup( arg3 ) ) == 0 )
         {
-            send_to_char( "No such game fun.\r\n", ch );
+            send_to_char( "No such game fun.\n\r", ch );
             return;
         }
 
@@ -3177,14 +3175,14 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
         if ( !IS_NPC(victim) )
         {
-            send_to_char( "Not on PC's.\r\n", ch );
+            send_to_char( "Not on PC's.\n\r", ch );
             return;
         }
 
         if ( str_cmp( arg3, "." ) )
           if ( (hunted = get_char_area(victim, arg3)) == NULL )
             {
-              send_to_char("Mob couldn't locate the victim to hunt.\r\n", ch);
+              send_to_char("Mob couldn't locate the victim to hunt.\n\r", ch);
               return;
             }
 
@@ -3201,7 +3199,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	}
         if ( IS_NPC(victim) )
         {
-            send_to_char( "Not on NPC's.\r\n", ch );
+            send_to_char( "Not on NPC's.\n\r", ch );
             return;
         }
 	sprintf( buf, "%s %s %s", victim->name, arg3, arg4 );
@@ -3242,21 +3240,21 @@ void do_oset( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
     {
-	send_to_char( "Syntax: oset <object> <field>  <value>\r\n",	ch );
-	send_to_char( "or:     oset <object> <string> <value>\r\n",	ch );
-	send_to_char( "\r\n",						ch );
-	send_to_char( "Field being one of:\r\n",			ch );
-	send_to_char( "  value0 value1 value2 value3\r\n",		ch );
-	send_to_char( "  extra wear level weight cost timer\r\n",	ch );
-	send_to_char( "\r\n",						ch );
-	send_to_char( "String being one of:\r\n",			ch );
-	send_to_char( "  name short long ed\r\n",			ch );
+	send_to_char( "Syntax: oset <object> <field>  <value>\n\r",	ch );
+	send_to_char( "or:     oset <object> <string> <value>\n\r",	ch );
+	send_to_char( "\n\r",						ch );
+	send_to_char( "Field being one of:\n\r",			ch );
+	send_to_char( "  value0 value1 value2 value3\n\r",		ch );
+	send_to_char( "  extra wear level weight cost timer\n\r",	ch );
+	send_to_char( "\n\r",						ch );
+	send_to_char( "String being one of:\n\r",			ch );
+	send_to_char( "  name short long ed\n\r",			ch );
 	return;
     }
 
     if ( !( obj = get_obj_world( ch, arg1 ) ) )
     {
-	send_to_char( "Nothing like that in hell, earth, or heaven.\r\n", ch );
+	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
 	return;
     }
 
@@ -3315,7 +3313,7 @@ void do_oset( CHAR_DATA *ch, char *argument )
 	if ( obj->carried_by != NULL && !IS_NPC( obj->carried_by ) )
 	{
 	    send_to_char(
-		"You may not modify an item's weight while on a PC.\r\n",
+		"You may not modify an item's weight while on a PC.\n\r",
 			 ch);
 	    return;
 	}
@@ -3373,7 +3371,7 @@ void do_oset( CHAR_DATA *ch, char *argument )
 	argument = one_argument( argument, arg4 );
 	if ( arg4[0] == '\0' )
 	{
-	    send_to_char( "Syntax: oset <object> ed <keyword> <string>\r\n",
+	    send_to_char( "Syntax: oset <object> ed <keyword> <string>\n\r",
 		ch );
 	    return;
 	}
@@ -3427,16 +3425,16 @@ void do_rset( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
     {
-	send_to_char( "Syntax: rset <location> <field> value\r\n",	ch );
-	send_to_char( "\r\n",						ch );
-	send_to_char( "Field being one of:\r\n",			ch );
-	send_to_char( "  flags sector\r\n",				ch );
+	send_to_char( "Syntax: rset <location> <field> value\n\r",	ch );
+	send_to_char( "\n\r",						ch );
+	send_to_char( "Field being one of:\n\r",			ch );
+	send_to_char( "  flags sector\n\r",				ch );
 	return;
     }
 
     if ( !( location = find_location( ch, arg1 ) ) )
     {
-	send_to_char( "No such location.\r\n", ch );
+	send_to_char( "No such location.\n\r", ch );
 	return;
     }
 
@@ -3445,7 +3443,7 @@ void do_rset( CHAR_DATA *ch, char *argument )
      */
     if ( !is_number( arg3 ) )
     {
-	send_to_char( "Value must be numeric.\r\n", ch );
+	send_to_char( "Value must be numeric.\n\r", ch );
 	return;
     }
     value = atoi( arg3 );
@@ -3455,7 +3453,7 @@ void do_rset( CHAR_DATA *ch, char *argument )
 	if ( person != ch && person->level >= ch->level )
 	  {
 	    send_to_char(
-		"Your superior is in this room, no rsetting now.\r\n", ch );
+		"Your superior is in this room, no rsetting now.\n\r", ch );
 	    return;
 	  }
 
@@ -3504,7 +3502,7 @@ void do_users( CHAR_DATA *ch, char *argument )
 	if ( d->character && can_see( ch, d->character ) )
 	{
 	    count++;
-	    sprintf( buf + strlen( buf ), "[%3d %2d] %s@%s\r\n",
+	    sprintf( buf + strlen( buf ), "[%3d %2d] %s@%s\n\r",
 		    d->descriptor,
 		    d->connected,
 		    d->original  ? d->original->name  :
@@ -3513,7 +3511,7 @@ void do_users( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    sprintf( buf2, "%d user%s\r\n", count, count == 1 ? "" : "s" );
+    sprintf( buf2, "%d user%s\n\r", count, count == 1 ? "" : "s" );
     strcat( buf, buf2 );
     send_to_char( buf, ch );
     return;
@@ -3540,7 +3538,7 @@ void do_force( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' || argument[0] == '\0' )
     {
-	send_to_char( "Force whom to do what?\r\n", ch );
+	send_to_char( "Force whom to do what?\n\r", ch );
 	return;
     }
 
@@ -3554,7 +3552,7 @@ void do_force( CHAR_DATA *ch, char *argument )
 	    && !str_prefix( argument, cmd_table[cmd].name )
 	    && ( cmd_table[cmd].level > trust ) )
 	{
-	  send_to_char( "You can't even do that yourself!\r\n", ch );
+	  send_to_char( "You can't even do that yourself!\n\r", ch );
 	  return;
 	}
     }
@@ -3581,19 +3579,19 @@ void do_force( CHAR_DATA *ch, char *argument )
 
 	if ( !( victim = get_char_world( ch, arg ) ) )
 	{
-	    send_to_char( "They aren't here.\r\n", ch );
+	    send_to_char( "They aren't here.\n\r", ch );
 	    return;
 	}
 
 	if ( victim == ch )
 	{
-	    send_to_char( "Aye aye, right away!\r\n", ch );
+	    send_to_char( "Aye aye, right away!\n\r", ch );
 	    return;
 	}
 
 	if ( get_trust( victim ) >= get_trust( ch ) )
 	{
-	    send_to_char( "Do it yourself!\r\n", ch );
+	    send_to_char( "Do it yourself!\n\r", ch );
 	    return;
 	}
 
@@ -3601,7 +3599,7 @@ void do_force( CHAR_DATA *ch, char *argument )
 	interpret( victim, argument );
     }
 
-    send_to_char( "Ok.\r\n", ch );
+    send_to_char( "Ok.\n\r", ch );
     return;
 }
 
@@ -3621,13 +3619,13 @@ void do_invis( CHAR_DATA *ch, char *argument )
     if ( IS_SET( ch->act, PLR_WIZINVIS ) )
     {
 	REMOVE_BIT( ch->act, PLR_WIZINVIS );
-	send_to_char( "You slowly fade back into existence.\r\n", ch    );
+	send_to_char( "You slowly fade back into existence.\n\r", ch    );
 	act( "$n slowly fades into existence.", ch, NULL, NULL, TO_ROOM );
     }
     else
     {
 	SET_BIT( ch->act, PLR_WIZINVIS );
-	send_to_char( "You slowly vanish into thin air.\r\n",     ch    );
+	send_to_char( "You slowly vanish into thin air.\n\r",     ch    );
 	act( "$n slowly fades into thin air.",  ch, NULL, NULL, TO_ROOM );
     }
 
@@ -3647,12 +3645,12 @@ void do_holylight( CHAR_DATA *ch, char *argument )
     if ( IS_SET( ch->act, PLR_HOLYLIGHT ) )
     {
 	REMOVE_BIT( ch->act, PLR_HOLYLIGHT );
-	send_to_char( "Holy light mode off.\r\n", ch );
+	send_to_char( "Holy light mode off.\n\r", ch );
     }
     else
     {
 	SET_BIT(    ch->act, PLR_HOLYLIGHT );
-	send_to_char( "Holy light mode on.\r\n", ch );
+	send_to_char( "Holy light mode on.\n\r", ch );
     }
 
     return;
@@ -3675,17 +3673,17 @@ void do_wizify( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' )
     {
-	send_to_char( "Syntax: wizify <name>\r\n" , ch );
+	send_to_char( "Syntax: wizify <name>\n\r" , ch );
 	return;
     }
     if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
-	send_to_char( "They aren't here.\r\n" , ch );
+	send_to_char( "They aren't here.\n\r" , ch );
 	return;
     }
     if ( IS_NPC( victim ) )
     {
-	send_to_char( "Not on mobs.\r\n", ch );
+	send_to_char( "Not on mobs.\n\r", ch );
 	return;
     }
 

@@ -28,7 +28,7 @@ A member of the Trolls wanders about here.
 He wants to rid the world of every last Ogre gang member.
 ~
 85 0 100 S
-4 15 0 5d5+50 1d7+5
+7 15 0 5d5+50 1d7+5
 210 0
 0 Troll~ 1
 #2103
@@ -39,7 +39,7 @@ The gang leader is not pleased you found his hideout!
 He's risen to be leader through brute force and cunning leadership.
 ~
 99 0 0 S
-17 8 0 13d13+130 1d10+12
+14 8 0 13d13+130 1d10+12
 2000 0
 0 Ogre~ 1
 #2104
@@ -50,7 +50,7 @@ A big, mean bruiser is looking for limbs to break.
 He's 6'6" 245 pounds and enough muscle to bash your head in.
 ~
 229 8 -333 S
-14 9 0 10d10+100 1d6+10
+13 9 0 10d10+100 1d6+10
 1500 0
 0 Orc~ 1
 #2105
@@ -61,7 +61,7 @@ A gang doll looks naughty and nice.
 She's a beauty (ok in RELATIVE terms) but you better not touch!
 ~
 213 0 0 S
-12 8 0 7d7+70 1d6+4
+14 8 0 7d7+70 1d6+4
 1000 0
 0 Orc~ 2
 #2106
@@ -72,7 +72,7 @@ A patrolman is trying to keep the peace.
 He'd rather be at the local pub then out here with these nasty kids.
 ~
 65 0 700 S
-6 13 0 8d8+80 1d6+8
+9 13 0 8d8+80 1d6+8
 7000 0
 0 Human~ 1
 #2107
@@ -83,7 +83,7 @@ A vandal is spray painting pro-gang slogans on the wall here.
 He has a wary eye and a fine hand for art.
 ~
 129 32768 -400 S
-15 10 0 10d10+100 1d6+6
+10 10 0 10d10+100 1d6+6
 500 0
 0 Dwarf~ 1
 #2108
@@ -95,7 +95,7 @@ You get a nice close look at him while he's tearing at your throat.
 His fangs are blood-stained from hearty meals of ... steak?!
 ~
 99 65544 -100 S
-1 10 0 5d5+50 1d6+3
+3 10 0 5d5+50 1d6+3
 10 0
 0 Animal~ 1
 #0
@@ -1560,152 +1560,152 @@ S
 
 
 #RESETS
-M 0 2107 4 2102
-E 0 2105 0 17
-M 0 2101 25 2102
-E 0 2101 0 5
-M 0 2101 25 2103
-E 0 2101 0 5
-M 0 2101 25 2104
-E 0 2101 0 5
-M 0 2101 25 2105
-M 0 2101 25 2106
-E 0 2101 0 5
-M 0 2101 25 2107
-E 0 2101 0 5
-M 0 2104 10 2108
-E 0 2109 0 9
-M 0 2101 25 2108
-M 0 2101 25 2109
-E 0 2101 0 5
-M 0 2101 25 2110
-E 0 2101 0 5
-M 0 2101 25 2111
-M 0 2101 25 2112
-E 0 2101 0 5
-M 0 2101 25 2113
-E 0 2101 0 5
-M 0 2104 10 2114
-E 0 2103 0 16
-M 0 2107 4 2114
-E 0 2105 0 17
-M 0 2101 25 2114
-M 0 2101 25 2115
-E 0 2101 0 5
-M 0 2104 10 2116
-E 0 2104 0 11
-E 0 2103 0 16
-M 0 2101 25 2116
-E 0 2101 0 5
-M 0 2101 25 2117
-E 0 2101 0 5
-M 0 2101 25 2118
-E 0 2101 0 5
-M 0 2101 25 2119
-M 0 2101 25 2120
-M 0 2101 25 2121
-E 0 2101 0 5
-M 0 2101 25 2122
-E 0 2101 0 5
-M 0 2105 10 2123
-E 0 2108 0 17
-M 0 2103 2 2124
-E 0 2111 0 1
-M 0 2108 12 2124
-M 0 2108 12 2124
-M 0 2108 12 2124
-M 0 2108 12 2124
-M 0 2105 10 2125
-E 0 2108 0 17
-E 0 2107 0 8
-M 0 2101 25 2128
-M 0 2101 25 2130
-E 0 2101 0 5
-M 0 2106 15 2131
-E 0 2110 0 16
-M 0 2106 15 2132
-E 0 2110 0 16
-M 0 2106 15 2133
-E 0 2110 0 16
-M 0 2106 15 2134
-E 0 2110 0 16
-M 0 2106 15 2135
-E 0 2110 0 16
-M 0 2106 15 2136
-E 0 2110 0 16
-M 0 2106 15 2137
-E 0 2110 0 16
-M 0 2106 15 2138
-E 0 2110 0 16
-M 0 2106 15 2139
-E 0 2110 0 16
-M 0 2106 15 2140
-E 0 2110 0 16
-M 0 2102 25 2142
-E 0 2102 0 5
-M 0 2102 25 2145
-E 0 2102 0 5
-M 0 2102 25 2146
-E 0 2102 0 5
-M 0 2103 2 2148
-E 0 2106 0 16
-E 0 2112 0 17
-M 0 2108 12 2148
-M 0 2108 12 2148
-M 0 2108 12 2148
-M 0 2108 12 2148
-M 0 2105 10 2149
-E 0 2107 0 8
-E 0 2108 0 17
-M 0 2102 25 2150
-M 0 2102 25 2151
-E 0 2102 0 5
-M 0 2105 10 2152
-E 0 2108 0 17
-M 0 2102 25 2152
-E 0 2102 0 5
-M 0 2102 25 2153
-E 0 2102 0 5
-M 0 2102 25 2154
-M 0 2104 10 2155
-E 0 2104 0 11
-E 0 2109 0 9
-M 0 2102 25 2155
-M 0 2102 25 2156
-E 0 2102 0 5
-M 0 2102 25 2157
-M 0 2102 25 2158
-E 0 2102 0 5
-M 0 2102 25 2159
-E 0 2102 0 5
-M 0 2102 25 2160
-M 0 2107 4 2161
-E 0 2105 0 17
-M 0 2102 25 2161
-E 0 2102 0 5
-M 0 2102 25 2162
-E 0 2102 0 5
-M 0 2102 25 2163
-M 0 2102 25 2164
-E 0 2102 0 5
-M 0 2107 4 2165
-E 0 2105 0 17
-M 0 2102 25 2165
-M 0 2102 25 2165
-E 0 2102 0 5
-M 0 2102 25 2165
-E 0 2102 0 5
-M 0 2102 25 2165
-E 0 2102 0 5
-M 0 2102 25 2166
-E 0 2102 0 5
-M 0 2102 25 2167
-E 0 2102 0 5
-M 0 2102 25 2169
-E 0 2102 0 5
-M 0 2104 10 2170
-E 0 2111 0 1
-E 0 2104 0 11
+M 0 2107  4 2102  	; a vandal to Beginning of White Dragon Boulevard
+E 0 2105  0 17    	;   A spray paint can held in the hands
+M 0 2101 25 2102  	; a gang member to Beginning of White Dragon Boulevard
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2103  	; a gang member to Along White Dragon Boulevard
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2104  	; a gang member to White Dragon Boulevard at Armory
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2105  	; a gang member to White Dragon Blvd.
+M 0 2101 25 2106  	; a gang member to Corner of Ice and White Dragon
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2107  	; a gang member to White Dragon Boulevard
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2104 10 2108  	; a bruiser to Corner of Bronze and White Dragon
+E 0 2109  0 9     	;   Comfortable leather gloves on the hands
+M 0 2101 25 2108  	; a gang member to Corner of Bronze and White Dragon
+M 0 2101 25 2109  	; a gang member to An over-grown lot
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2110  	; a gang member to East end of an over-grown plot of land
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2111  	; a gang member to Armory
+M 0 2101 25 2112  	; a gang member to A Bend in the Way
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2113  	; a gang member to Ice Dragon Bend
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2104 10 2114  	; a bruiser to The remains of the magic shop
+E 0 2103  0 16    	;   A hefty length of chain wielded (1)
+M 0 2107  4 2114  	; a vandal to The remains of the magic shop
+E 0 2105  0 17    	;   A spray paint can held in the hands
+M 0 2101 25 2114  	; a gang member to The remains of the magic shop
+M 0 2101 25 2115  	; a gang member to Bronze Dragon Street at wizard's back door
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2104 10 2116  	; a bruiser to Dracolich Plaza
+E 0 2104  0 11    	;   A metal shield as a shield
+E 0 2103  0 16    	;   A hefty length of chain wielded (1)
+M 0 2101 25 2116  	; a gang member to Dracolich Plaza
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2117  	; a gang member to Shortcut
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2118  	; a gang member to Ice Dragon Way
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2119  	; a gang member to Courtyard North
+M 0 2101 25 2120  	; a gang member to Bronze Dragon Street
+M 0 2101 25 2121  	; a gang member to Shortcut
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2101 25 2122  	; a gang member to Ice Dragon Way
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2105 10 2123  	; a doll to Courtyard South
+E 0 2108  0 17    	;   A mirror held in the hands
+M 0 2103  2 2124  	; the gang leader to Old Abandoned Warehouse
+E 0 2111  0 1     	;   A troll signet ring on the left finger
+M 0 2108 12 2124  	; a pitbull to Old Abandoned Warehouse
+M 0 2108 12 2124  	; a pitbull to Old Abandoned Warehouse
+M 0 2108 12 2124  	; a pitbull to Old Abandoned Warehouse
+M 0 2108 12 2124  	; a pitbull to Old Abandoned Warehouse
+M 0 2105 10 2125  	; a doll to Bronze Dragon Street at Warehouse
+E 0 2108  0 17    	;   A mirror held in the hands
+E 0 2107  0 8     	;   Spiked heeled boots on the feet
+M 0 2101 25 2128  	; a gang member to Yellow Dragon Road
+M 0 2101 25 2130  	; a gang member to Yellow Dragon Road
+E 0 2101  0 5     	;   An ogre gang jacket on the body
+M 0 2106 15 2131  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2132  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2133  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2134  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2135  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2136  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2137  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2138  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2139  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2106 15 2140  	; a patrolman to NO MAN'S LAND
+E 0 2110  0 16    	;   A patrol club wielded (1)
+M 0 2102 25 2142  	; a gang member to Hector Street at Bakery
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2145  	; a gang member to Corner of Ajax and Hector
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2146  	; a gang member to Hector Street
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2103  2 2148  	; the gang leader to A small ruined chapel
+E 0 2106  0 16    	;   A stiletto wielded (1)
+E 0 2112  0 17    	;   Brass knuckles held in the hands
+M 0 2108 12 2148  	; a pitbull to A small ruined chapel
+M 0 2108 12 2148  	; a pitbull to A small ruined chapel
+M 0 2108 12 2148  	; a pitbull to A small ruined chapel
+M 0 2108 12 2148  	; a pitbull to A small ruined chapel
+M 0 2105 10 2149  	; a doll to Ajax Avenue at chapel
+E 0 2107  0 8     	;   Spiked heeled boots on the feet
+E 0 2108  0 17    	;   A mirror held in the hands
+M 0 2102 25 2150  	; a gang member to First intersection of Hector and Achilles
+M 0 2102 25 2151  	; a gang member to Hector street
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2105 10 2152  	; a doll to A bend in the road
+E 0 2108  0 17    	;   A mirror held in the hands
+M 0 2102 25 2152  	; a gang member to A bend in the road
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2153  	; a gang member to What is left of the weaponshop
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2154  	; a gang member to Ajax street at Weaponshop (or whats left of it)
+M 0 2104 10 2155  	; a bruiser to Khan Park
+E 0 2104  0 11    	;   A metal shield as a shield
+E 0 2109  0 9     	;   Comfortable leather gloves on the hands
+M 0 2102 25 2155  	; a gang member to Khan Park
+M 0 2102 25 2156  	; a gang member to Achilles avenue at entrance to park
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2157  	; a gang member to A bend in Ajax
+M 0 2102 25 2158  	; a gang member to Ajax street
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2159  	; a gang member to Curve in the road
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2160  	; a gang member to A wide alleyway
+M 0 2107  4 2161  	; a vandal to Alexander Road
+E 0 2105  0 17    	;   A spray paint can held in the hands
+M 0 2102 25 2161  	; a gang member to Alexander Road
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2162  	; a gang member to Alexander Street at park entrance
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2163  	; a gang member to Achilles Avenue
+M 0 2102 25 2164  	; a gang member to Ajax Street
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2107  4 2165  	; a vandal to The inn/pub
+E 0 2105  0 17    	;   A spray paint can held in the hands
+M 0 2102 25 2165  	; a gang member to The inn/pub
+M 0 2102 25 2165  	; a gang member to The inn/pub
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2165  	; a gang member to The inn/pub
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2165  	; a gang member to The inn/pub
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2166  	; a gang member to Solomon Street
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2167  	; a gang member to Intersection of Achilles and Solomon
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2102 25 2169  	; a gang member to Intersection of Ajax and Solomon
+E 0 2102  0 5     	;   A troll gang jacket on the body
+M 0 2104 10 2170  	; a bruiser to Hallway
+E 0 2111  0 1     	;   A troll signet ring on the left finger
+E 0 2104  0 11    	;   A metal shield as a shield
 S
 
 

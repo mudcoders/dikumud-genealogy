@@ -67,7 +67,7 @@ void do_bank( CHAR_DATA *ch, char *argument )
 
 	if ( IS_NPC( ch ) )
 	{
-		send_to_char( "Banking Services are only available to players!\r\n", ch );
+		send_to_char( "Banking Services are only available to players!\n\r", ch );
 		return;
 	}
   
@@ -80,27 +80,27 @@ void do_bank( CHAR_DATA *ch, char *argument )
  
 	if ( mob == NULL )
 	{
-		send_to_char( "You can't do that here.\r\n", ch );
+		send_to_char( "You can't do that here.\n\r", ch );
 		return;
 	}
 
 	if ((time_info.hour < 9) || (time_info.hour > 17))
 	{
-		send_to_char( "The bank is closed, it is open from 9 to 5.\r\n", ch);
+		send_to_char( "The bank is closed, it is open from 9 to 5.\n\r", ch);
 		return;
 	}
 
 	if ( argument[0] == '\0' )
 	{
-		send_to_char( "Bank Options:\r\n\r\n", ch );
-		send_to_char( "Bank balance: Displays your balance.\r\n", ch );
-		send_to_char( "Bank deposit <amount>: Deposit gold into your account.\r\n", ch );
-		send_to_char( "Bank withdraw <amount>: Withdraw gold from your account.\r\n", ch );
+		send_to_char( "Bank Options:\n\r\n\r", ch );
+		send_to_char( "Bank balance: Displays your balance.\n\r", ch );
+		send_to_char( "Bank deposit <amount>: Deposit gold into your account.\n\r", ch );
+		send_to_char( "Bank withdraw <amount>: Withdraw gold from your account.\n\r", ch );
 #if defined BANK_TRANSFER
-		send_to_char( "Bank transfer <amount> <player>: Transfer <amount> gold to <player> account.\r\n", ch); 
-		send_to_char( "Bank buy #: Buy # shares (in developement)\r\n", ch);
-		send_to_char( "Bank sell #: Sell # shares (in developement)\r\n", ch);
-		send_to_char( "Bank check: Check the current rates of the shares. (in developement)\r\n", ch);
+		send_to_char( "Bank transfer <amount> <player>: Transfer <amount> gold to <player> account.\n\r", ch); 
+		send_to_char( "Bank buy #: Buy # shares (in developement)\n\r", ch);
+		send_to_char( "Bank sell #: Sell # shares (in developement)\n\r", ch);
+		send_to_char( "Bank check: Check the current rates of the shares. (in developement)\n\r", ch);
 #endif
 		return;
 	}
@@ -138,7 +138,7 @@ void do_bank( CHAR_DATA *ch, char *argument )
 
 			ch->gold -= amount;
 			ch->pcdata->balance += amount;
-			sprintf ( buf, "You deposit %d GP.  Your new balance is %d GP.\r\n",  
+			sprintf ( buf, "You deposit %d GP.  Your new balance is %d GP.\n\r",  
 			amount, ch->pcdata->balance );
 			send_to_char( buf, ch );
 			do_save( ch, "" );
@@ -187,10 +187,10 @@ void do_bank( CHAR_DATA *ch, char *argument )
 
 			ch->pcdata->balance     -= amount;
  			victim->pcdata->balance += amount;
-			sprintf( buf, "You transfer %d GP. Your new balance is %d GP.\r\n",
+			sprintf( buf, "You transfer %d GP. Your new balance is %d GP.\n\r",
 			amount, ch->pcdata->balance );
 			send_to_char( buf, ch );
-			sprintf (buf, "[BANK] %s has transferred %d gold's to your account.\r\n", ch->name, amount);
+			sprintf (buf, "[BANK] %s has transferred %d gold's to your account.\n\r", ch->name, amount);
 			send_to_char( buf, victim );
 			do_save( ch, "" );
 			do_save( victim, "");

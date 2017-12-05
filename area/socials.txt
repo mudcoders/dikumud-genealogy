@@ -1,4 +1,4 @@
-240
+239
 accuse~
 Accuse whom?~
 $n is in an accusing mood.~
@@ -2149,13 +2149,4 @@ $n makes a jumping dance around $N. $e must be happy.~
 $n makes a jumping dance around you. $e must be happy.~
 You jump up and down with joy!~
 $n jumps up and down with joy!~
-
-maniac~
-~
-~
-~
-~
-~
-~
-~
 

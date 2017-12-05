@@ -1,13 +1,20 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+MythranMud 3.1.1
+Monday, 21 October 1996
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+This document was written by:
+Kahn            michael@uclink.berkeley.edu
+Hatchet         hatchet@uclink.berkeley.edu
+
+and changed and updated by:
+Maniac		mark@delftnet.nl
+Canth		canth@xs4all.nl
+Staff		mythran@envy.com
+
+for use with MythranMud 3.1.1
 
 
-
---- This has been modified and edited from sky.txt in the Envy 1.0 release to
-    reflect changes made from the Envy 1.0 source to Envy 2.0.
+--- This has been modified and edited from sky.txt in the Envy 2.0 release to
+    reflect changes made from the Envy 2.0 source to Mythran.
      
 === Blue Sky
 
@@ -48,22 +55,6 @@ drivers for the following operating systems:
 We'd like to see items loaded with random spells, placed on random mobs, so
 that players have to explore more instead of just having a '#blue' macro that
 goes to the queen spider and kills her for a blue potion.
-
-
-
-=== An Arena
-
-A room flag where players can attack players without getting a killer flag, can
-cast offensive spells at players, and death carries no xp or eq loss.  Wanna
-try out a beholder without getting killed?  Just pay enough money and you can
-have one loaded in the arena!
-
-
-
-=== Area Logging
-
-So you can tell if everyone's going to the same area over and over and make the
-area harder.
 
 
 

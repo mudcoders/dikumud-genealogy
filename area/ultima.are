@@ -18,7 +18,7 @@ These insects are more of an annoyance than a threat.  It is made
 up of hundreds of annoying insects.
 ~
 33 524288 -200 S
-3 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Insect~ 0
 #2401
@@ -30,7 +30,7 @@ You hear a high pitch screech.  It is a black furry bat.  This
 annoying creature usually travel in flocks, so WATCH OUT.
 ~
 35 524288 -500 S
-3 0 0 0d0+0 0d0+0
+4 0 0 0d0+0 0d0+0
 0 0
 0 Bat~ 1
 #2402
@@ -57,7 +57,7 @@ learned enough of her culture to be humble.   She jumps rope and
 looks up at you expectantly.
 ~
 129 0 1000 S
-4 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #2404
@@ -69,7 +69,7 @@ Even the sheep in New Magincia seem to exude humbleness.  The
 sheep has pure white fleece.
 ~
 131 0 1000 S
-3 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #2405
@@ -83,7 +83,7 @@ back to her home and helped rebuild Magincia.  She still is a
 great warrior and an able guardian of New Magincia.
 ~
 69 128 1000 S
-6 0 0 0d0+0 0d0+0
+4 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #2406
@@ -97,7 +97,7 @@ shred the books.  This rat seems to be rabid, so beware his
 teeth.
 ~
 33 0 -1000 S
-9 0 0 0d0+0 0d0+0
+12 0 0 0d0+0 0d0+0
 0 0
 0 Rat~ 0
 #2407
@@ -123,7 +123,7 @@ come to library to peruse the ancient tomes of knowledge.  He
 glances at you, and returns to his study.
 ~
 65 16 1000 S
-5 0 0 0d0+0 0d0+0
+7 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 1
 #2409
@@ -136,7 +136,7 @@ shining example of Truth.  His head is bowed over a book, but
 power radiates from him.
 ~
 3 128 1000 S
-26 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 1
 #2410
@@ -149,7 +149,7 @@ add some magical punch during his Enlightenment.  She seems
 serene in her total devotion to the virtue of Honesty.
 ~
 65 128 1000 S
-11 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Elf~ 2
 #2411
@@ -174,7 +174,7 @@ The green snake tongue darts in and out tasting the air.  It
 senses spilled beer, and the distinctive taste of human.
 ~
 161 0 -1000 S
-12 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
 0 Snake~ 1
 #2413
@@ -187,7 +187,7 @@ often meaningless and he gives out irrelevant clues, his sleek
 body and his much practiced jaw muscles can be very dangerous.
 ~
 3 0 500 S
-21 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 1
 #2414
@@ -200,7 +200,7 @@ seeker of compassion, but in his spare time he sings and
 dances.
 ~
 3 0 750 S
-10 0 0 0d0+0 0d0+0
+8 0 0 0d0+0 0d0+0
 0 0
 0 Hobbit~ 1
 #2415
@@ -212,7 +212,7 @@ He is more accustomed to receiving Compassion, than giving it.
 But help him out, give him a few coins.
 ~
 1 0 500 S
-3 0 0 0d0+0 0d0+0
+2 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2416
@@ -227,7 +227,7 @@ wandered down to the cellar.  Anyway, in the spirit of the virtue
 Compassion that he embodies, he holds out a bottle for you.
 ~
 3 128 1000 S
-7 0 0 0d0+0 0d0+0
+4 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2417
@@ -254,7 +254,7 @@ is also an ardent believer in Compassion, and a responsible
 citizen, he knows the value of a good party.
 ~
 1 0 1000 S
-10 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2419
@@ -270,7 +270,7 @@ Compassion, and as she wanders she helps the drunks up and leads
 them out the door.
 ~
 1 128 1000 S
-27 0 0 0d0+0 0d0+0
+25 0 0 0d0+0 0d0+0
 0 0
 0 Hobbit~ 2
 #2420
@@ -282,7 +282,7 @@ This orc is a disgusting animal, this ape-like monster scratches
 its armpits.  It travels in herds and is a coward.
 ~
 161 0 -1000 S
-8 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Orc~ 1
 #2421
@@ -294,7 +294,7 @@ This huge monster is immense and powerful.  Over a chest and a
 head taller then you, his meaty arms swing a club at you!
 ~
 33 0 -1000 S
-11 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
 0 Troll~ 1
 #2422
@@ -307,7 +307,7 @@ The Wisp is constantly blinking.  It wishes information exchange.
 It looks peaceful, but will defend itself.
 ~
 5 128 0 S
-14 0 0 0d0+0 0d0+0
+12 0 0 0d0+0 0d0+0
 0 0
 0 Faerie~ 0
 #2423
@@ -336,7 +336,7 @@ the flame.  When she looks at you her hard eyes, only judge,
 seeking Justice.
 ~
 3 0 1000 S
-13 0 0 0d0+0 0d0+0
+10 0 0 0d0+0 0d0+0
 0 0
 0 Halfdwarf~ 2
 #2425
@@ -352,7 +352,7 @@ Justice, sends criminals to jail everyday, sometimes with his
 bare hands.
 ~
 3 128 1000 S
-27 0 0 0d0+0 0d0+0
+25 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2426
@@ -365,7 +365,7 @@ magical force to the Avatar.  The Avatar's mentor in Justice; she
 has gone to the woods to drive life into a corner.
 ~
 1 4194432 1000 S
-11 0 0 0d0+0 0d0+0
+9 0 0 0d0+0 0d0+0
 0 0
 0 Halfdwarf~ 2
 #2427
@@ -378,7 +378,7 @@ Justice was done to him.  You glimpse light shining off of
 something black in his hands.
 ~
 131 32768 -666 S
-13 0 0 0d0+0 0d0+0
+10 0 0 0d0+0 0d0+0
 0 0
 0 Drow~ 1
 #2428
@@ -390,7 +390,7 @@ This Prisoner was convicted of one of the most heinous crimes,
 MURDER.  It took many guards and druids to restrain this beast.
 ~
 35 0 -1000 S
-15 0 0 0d0+0 0d0+0
+10 0 0 0d0+0 0d0+0
 0 0
 0 Drow~ 1
 #2429
@@ -404,7 +404,7 @@ citizen of the city of Justice strolls the street, sure of his
 Virtue.
 ~
 129 0 1000 S
-14 0 0 0d0+0 0d0+0
+12 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2430
@@ -418,7 +418,7 @@ people who have gone to him for advice.  His advice to you, is to
 kick back and enjoy a drink.
 ~
 1 0 1000 S
-3 0 0 0d0+0 0d0+0
+4 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2431
@@ -430,7 +430,7 @@ The pub owner waves and smiles to you.  She asks what you want to
 drink and eat.
 ~
 3 0 1000 S
-17 0 0 0d0+0 0d0+0
+15 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #2432
@@ -442,7 +442,7 @@ With its two heads, it should make sense that this monster should
 have double the intelligence.  But in fact it has half.
 ~
 33 0 -1000 S
-20 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #2433
@@ -455,7 +455,7 @@ out of it.  It does not seem like these things could hurt you,
 but your money pouch seems much lighter.
 ~
 133 98304 -1000 S
-14 0 0 0d0+0 0d0+0
+11 0 0 0d0+0 0d0+0
 0 0
 0 Goblin~ 0
 #2434
@@ -468,7 +468,7 @@ unerringly reaches for you, you know it does.  In any case these
 creatures are strong and enduring.
 ~
 33 0 -1000 S
-24 0 0 0d0+0 0d0+0
+26 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #2435
@@ -483,7 +483,7 @@ One of the more dangerous is to descend into the pits of hell and
 clean them out.
 ~
 1 0 1000 S
-14 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 2
 #2436
@@ -497,7 +497,7 @@ His board shoulders make you look like a mouse.  He epitomizes
 Valor.
 ~
 1 128 1000 S
-16 0 0 0d0+0 0d0+0
+19 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
 #2437
@@ -511,7 +511,7 @@ immense sword.  This is The Lord of Serpent Hold, courage itself
 solidified into a human form.
 ~
 1 128 1000 S
-35 0 0 0d0+0 0d0+0
+31 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
 #2438
@@ -523,7 +523,7 @@ The treasure chest reforms, and spits out a glob of poison.
 Beware adventurer of the Mimic.
 ~
 33 0 -1000 S
-24 0 0 0d0+0 0d0+0
+25 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 0
 #2439
@@ -536,7 +536,7 @@ auxiliary eyeballs coming of the main.  The eyeballs draw you in,
 making you forget who you are....
 ~
 33 0 -1000 S
-20 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #2440
@@ -550,7 +550,7 @@ incredible strength and weaponskill.  This is not one you wish to
 fight.
 ~
 1 0 1000 S
-28 0 0 0d0+0 0d0+0
+26 0 0 0d0+0 0d0+0
 0 0
 0 Faerie~ 1
 #2441
@@ -565,7 +565,7 @@ She represents Sacrifice in everything she does, she is the
 Keeper of Oral History, as well as a prominent weaponsmith.
 ~
 3 128 1000 S
-31 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Faerie~ 2
 #2442
@@ -578,7 +578,7 @@ waves of pure Love come from her body.  Her love for you almost
 knocks you down.  You cannot hurt this one.
 ~
 1 128 1000 S
-39 0 0 0d0+0 0d0+0
+37 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #2443
@@ -591,7 +591,7 @@ travellers hidden.  No one is really sure what the Sandtrap looks
 like, but it is a dangerous foe.
 ~
 165 98304 -1000 S
-22 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Object~ 0
 #2444
@@ -605,7 +605,7 @@ tail, fire.  Only this one doesn't have a dorky color attached
 to it.  And doesn't talk about annoying C terms. 
 ~
 35 0 -1000 S
-32 0 0 0d0+0 0d0+0
+29 0 0 0d0+0 0d0+0
 0 0
 0 Dragon~ 0
 #2445
@@ -619,7 +619,7 @@ shiny armour and equally shiny sword serves to remind you that he
 is among Brittannia's most powerful battalion.
 ~
 1 0 1000 S
-32 0 0 0d0+0 0d0+0
+34 0 0 0d0+0 0d0+0
 0 0
 0 Dwarf~ 1
 #2446
@@ -632,7 +632,7 @@ Warrior of Destiny.  He is a symbol of Honor.  He is right now
 trying to figure out a plan of attack to get the dragon.
 ~
 3 128 1000 S
-38 0 0 0d0+0 0d0+0
+37 0 0 0d0+0 0d0+0
 0 0
 0 Dwarf~ 1
 #2447
@@ -645,7 +645,7 @@ this disadvantage his tentacles and magical powers more then make
 up for disadvantage.
 ~
 35 0 -1000 S
-29 0 0 0d0+0 0d0+0
+30 0 0 0d0+0 0d0+0
 0 0
 0 Animal~ 0
 #2448
@@ -670,7 +670,7 @@ This ghost seems peaceful, even though he is chained to the earth
 through some responsibility.
 ~
 1 0 1000 S
-21 0 0 0d0+0 0d0+0
+20 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #2450
@@ -682,7 +682,7 @@ In through its transparent face, you can see a grimace of
 evilness and swoops over to you.
 ~
 33 0 -1000 S
-25 0 0 0d0+0 0d0+0
+23 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #2451
@@ -696,7 +696,7 @@ completely clean on him is his white teeth, perhaps from his
 nightly meals of flesh and bone.
 ~
 33 0 -1000 S
-20 0 0 0d0+0 0d0+0
+16 0 0 0d0+0 0d0+0
 0 0
 0 Undead~ 0
 #2452
@@ -709,7 +709,7 @@ monsters, this beast can use all magics, is strong and hardy.
 Right now he seems to be busy... killing you.
 ~
 33 128 -1000 S
-32 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 God~ 0
 #2453
@@ -722,7 +722,7 @@ one.  She is expressing poignant Spirituality.  This gives her
 strength to persevere.
 ~
 1 0 1000 S
-13 0 0 0d0+0 0d0+0
+12 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 2
 #2454
@@ -735,7 +735,7 @@ position.  The Enlightened smile on his face confirms that he
 indeed is one with the spirit of Spirituality.
 ~
 3 128 1000 S
-37 0 0 0d0+0 0d0+0
+41 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2455
@@ -749,7 +749,7 @@ fell an urge to prostrate yourself to him.  But as all godly
 powers must be, he is truly and totally neutral.
 ~
 3 128 0 S
-41 0 0 0d0+0 0d0+0
+40 0 0 0d0+0 0d0+0
 0 0
 0 God~ 1
 #2456
@@ -762,7 +762,7 @@ He is the latest, and some people say greatest of the Avatar's
 enemies.  And now you have the joy of meeting him.
 ~
 35 128 -1000 S
-42 0 0 0d0+0 0d0+0
+37 0 0 0d0+0 0d0+0
 0 0
 0 God~ 1
 #2457
@@ -775,7 +775,7 @@ still a foe of Avatar that eventually was destroyed, during this
 era he still is corrupt and VERY, VERY dangerous.
 ~
 35 128 -1000 S
-46 0 0 0d0+0 0d0+0
+45 0 0 0d0+0 0d0+0
 0 0
 0 Werewolf~ 1
 #2458
@@ -803,7 +803,7 @@ Without the Avatar the world would still be under her complete
 power.
 ~
 35 128 -1000 S
-38 0 0 0d0+0 0d0+0
+34 0 0 0d0+0 0d0+0
 0 0
 0 Ogre~ 2
 #2460
@@ -831,7 +831,7 @@ of Lord British.  In seeing this done he is completely armored
 and wields a heavy blade.
 ~
 3 0 1000 S
-36 0 0 0d0+0 0d0+0
+38 0 0 0d0+0 0d0+0
 0 0
 0 Giant~ 1
 #2462
@@ -845,7 +845,7 @@ from their rightful owners.  He is though protected by the power
 of his god.
 ~
 1 128 -1000 S
-37 0 0 0d0+0 0d0+0
+38 0 0 0d0+0 0d0+0
 0 0
 0 God~ 1
 #2463
@@ -859,7 +859,7 @@ Justice, Spirituality, Honesty, Sacrifice, Valor, and Honor.  He
 truly is an inspiration to those who know him.
 ~
 3 128 1000 S
-50 0 0 0d0+0 0d0+0
+53 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2464
@@ -873,7 +873,7 @@ him you see the three crown jewels.  These hold power both
 figuratively and truly.
 ~
 3 128 1000 S
-59 0 0 0d0+0 0d0+0
+58 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2465
@@ -884,7 +884,7 @@ The shark smells blood.
 This fish can sense blood in the water and comes to kill you.
 ~
 33 0 -1000 S
-26 0 0 0d0+0 0d0+0
+27 0 0 0d0+0 0d0+0
 0 0
 0 Fish~ 1
 #2466
@@ -896,7 +896,7 @@ The seahorse is an amazingly beautiful creature.  Its swimming
 and diving please you.
 ~
 1 0 500 S
-27 0 0 0d0+0 0d0+0
+28 0 0 0d0+0 0d0+0
 0 0
 0 Fish~ 1
 #2467
@@ -908,7 +908,7 @@ The squid easily is double the boat in size.  Its tentacles are
 huge and you fear as it grabs for you.
 ~
 33 0 -1000 S
-36 0 0 0d0+0 0d0+0
+35 0 0 0d0+0 0d0+0
 0 0
 0 Fish~ 1
 #2468
@@ -930,7 +930,7 @@ The Weaponseller stands here.
 The Weaponseller sells... weapons.
 ~
 3 4 1000 S
-101 0 0 0d0+0 0d0+0
+107 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #2470
@@ -941,7 +941,7 @@ The Boatseller stands here.
 The Boatseller sells... boats.
 ~
 3 4 1000 S
-101 0 0 0d0+0 0d0+0
+98 0 0 0d0+0 0d0+0
 0 0
 0 Human~ 1
 #0
@@ -5118,24 +5118,24 @@ S
 
 
 #SPECIALS
-M 2407 spec_poison
-M 2408 spec_cast_mage
-M 2409 spec_cast_mage
-M 2410 spec_cast_mage
-M 2423 spec_cast_cleric
-M 2424 spec_cast_cleric
-M 2426 spec_cast_cleric
-M 2433 spec_thief
-M 2438 spec_poison
-M 2444 spec_breath_fire
-M 2449 spec_cast_ghost
-M 2450 spec_cast_ghost
-M 2451 spec_cast_undead
-M 2452 spec_cast_undead
-M 2454 spec_cast_psionicist
-M 2459 spec_cast_mage
-M 2460 spec_cast_mage
-M 2462 spec_cast_cleric
+M 2407 spec_poison 	; the giant spider
+M 2408 spec_cast_mage 	; the mage
+M 2409 spec_cast_mage 	; Nystul the Librarian
+M 2410 spec_cast_mage 	; Mariah the Mage
+M 2423 spec_cast_cleric 	; the forest druid
+M 2424 spec_cast_cleric 	; the city druid
+M 2426 spec_cast_cleric 	; Jaana the Druid
+M 2433 spec_thief 	; the gremlin
+M 2438 spec_poison 	; the mimic
+M 2444 spec_breath_fire 	; the dragon
+M 2449 spec_cast_ghost 	; the spirit
+M 2450 spec_cast_ghost 	; the ghost
+M 2451 spec_cast_undead 	; the skeleton
+M 2452 spec_cast_undead 	; the daemon
+M 2454 spec_cast_psionicist 	; Shamino the Ranger
+M 2459 spec_cast_mage 	; Minax
+M 2460 spec_cast_mage 	; Mondain
+M 2462 spec_cast_cleric 	; Batlin
 S
 
 
@@ -5146,213 +5146,213 @@ S
 
 
 #RESETS
-M 0 2402 10 2401
-E 0 2417 0 16
-M 0 2404 10 2401
-M 0 2403 5 2402
-E 0 2418 0 17
-M 0 2404 10 2404
-M 0 2413 1 2406
-E 0 2423 0 8
-M 0 2402 10 2407
-E 0 2417 0 16
-M 0 2400 5 2408
-M 0 2403 5 2408
-E 0 2418 0 17
-M 0 2404 10 2408
-M 0 2401 1 2411
-G 0 2408 0
-M 0 2403 5 2412
-E 0 2418 0 17
-M 0 2402 10 2413
-E 0 2417 0 16
-M 0 2404 10 2413
-M 0 2405 1 2415
-E 0 2419 0 16
-E 0 2401 0 17
-M 0 2410 1 2418
-E 0 2404 0 17
-M 0 2409 1 2421
-E 0 2421 0 16
-M 0 2406 10 2424
-M 0 2408 10 2430
-E 0 2422 0 5
-M 0 2407 1 2435
-G 0 2409 0
-G 0 2420 0
-M 0 2415 3 2437
-E 0 2425 0 17
-P 0 2426 0 2425
-M 0 2418 10 2439
-M 0 2430 1 2439
-M 0 2414 5 2444
-E 0 2424 0 16
-M 0 2419 1 2445
-E 0 2430 0 16
-M 0 2416 1 2448
-G 0 2427 0
-E 0 2428 0 16
-E 0 2400 0 17
-M 0 2411 20 2452
-M 0 2412 1 2454
-G 0 2410 0
-M 0 2429 5 2456
-M 0 2424 10 2459
-M 0 2431 1 2460
-M 0 2425 1 2464
-E 0 2433 0 16
-M 0 2427 1 2467
-G 0 2411 0
-M 0 2428 1 2468
-R 0 2469 4
-M 0 2426 1 2470
-E 0 2402 0 17
-E 0 2434 0 16
-R 0 2470 4
-R 0 2471 4
-R 0 2472 4
-M 0 2421 20 2473
-E 0 2432 0 16
-R 0 2473 4
-R 0 2474 4
-R 0 2475 4
-R 0 2476 4
-R 0 2477 4
-M 0 2423 10 2478
-R 0 2478 4
-R 0 2479 4
-M 0 2420 5 2480
-E 0 2431 0 16
-R 0 2480 4
-M 0 2422 10 2481
-R 0 2481 4
-R 0 2482 4
-R 0 2483 4
-M 0 2435 10 2486
-E 0 2436 0 16
-M 0 2436 1 2487
-E 0 2406 0 17
-E 0 2435 0 16
-M 0 2432 10 2488
-M 0 2437 1 2488
-E 0 2437 0 16
-M 0 2433 10 2490
-M 0 2434 1 2492
-G 0 2412 0
-M 0 2468 1 2503
-O 0 2467 0 2504
-M 0 2469 1 2505
-M 0 2470 1 2506
-G 0 2468 0
-M 0 2440 5 2508
-E 0 2438 0 16
-M 0 2442 1 2508
-E 0 2440 0 3
-M 0 2441 1 2510
-E 0 2405 0 17
-E 0 2439 0 16
-M 0 2440 5 2511
-E 0 2438 0 16
-M 0 2440 5 2512
-E 0 2438 0 16
-M 0 2439 2 2514
-M 0 2439 2 2515
-M 0 2438 2 2516
-M 0 2438 2 2517
-R 0 2518 4
-R 0 2519 4
-R 0 2520 4
-M 0 2466 5 2521
-R 0 2521 4
-M 0 2465 5 2522
-R 0 2522 4
-M 0 2467 1 2523
-G 0 2413 0
-R 0 2523 4
-R 0 2524 4
-R 0 2525 4
-R 0 2526 4
-M 0 2445 6 2529
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2531
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2532
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2448 1 2534
-E 0 2444 0 16
-M 0 2446 1 2536
-E 0 2407 0 17
-E 0 2443 0 16
-M 0 2445 6 2537
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2538
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2445 6 2539
-E 0 2441 0 17
-E 0 2442 0 5
-M 0 2443 10 2541
-M 0 2444 1 2548
-G 0 2414 0
-M 0 2455 1 2549
-E 0 2416 0 17
-E 0 2448 0 5
-M 0 2447 3 2550
-M 0 2452 1 2551
-G 0 2415 0
-M 0 2447 3 2552
-M 0 2450 5 2553
-M 0 2447 3 2555
-M 0 2451 3 2555
-E 0 2445 0 16
-E 0 2446 0 11
-M 0 2449 5 2560
-M 0 2453 4 2560
-M 0 2454 1 2561
-E 0 2447 0 12
-E 0 2403 0 17
-M 0 2417 1 2562
-E 0 2429 0 16
-O 0 2467 0 2563
-M 0 2461 1 2565
-E 0 2454 0 6
-E 0 2455 0 10
-E 0 2456 0 13
-E 0 2457 0 16
-E 0 2458 0 9
-E 0 2459 0 8
-E 0 2460 0 7
-E 0 2461 0 5
-M 0 2463 1 2567
-E 0 2463 0 16
-M 0 2464 1 2567
-E 0 2464 0 6
-E 0 2465 0 17
-E 0 2466 0 3
-M 0 2462 1 2568
-G 0 2400 0
-G 0 2401 0
-G 0 2402 0
-G 0 2403 0
-G 0 2404 0
-G 0 2405 0
-G 0 2406 0
-G 0 2407 0
-E 0 2462 0 3
-M 0 2460 1 2578
-E 0 2453 0 17
-M 0 2459 1 2579
-E 0 2452 0 3
-M 0 2458 1 2580
-E 0 2451 0 5
-M 0 2457 1 2582
-E 0 2450 0 16
-M 0 2456 1 2583
-E 0 2449 0 6
+M 0 2402 10 2401  	; the shepherd to New Magincia Road
+E 0 2417  0 16    	;   The shepherd's crook wielded (1)
+M 0 2404 10 2401  	; the sheep to New Magincia Road
+M 0 2403  5 2402  	; the girl to New Magincia Road
+E 0 2418  0 17    	;   The doll held in the hands
+M 0 2404 10 2404  	; the sheep to New Magincia Road
+M 0 2413  1 2406  	; Mr. Smithy to Stables
+E 0 2423  0 8     	;   Horseshoes on the feet
+M 0 2402 10 2407  	; the shepherd to Barn
+E 0 2417  0 16    	;   The shepherd's crook wielded (1)
+M 0 2400  5 2408  	; the insects to Humility Lane
+M 0 2403  5 2408  	; the girl to Humility Lane
+E 0 2418  0 17    	;   The doll held in the hands
+M 0 2404 10 2408  	; the sheep to Humility Lane
+M 0 2401  1 2411  	; the bat to Attic
+G 0 2408  0      	;   Moonstone
+M 0 2403  5 2412  	; the girl to House
+E 0 2418  0 17    	;   The doll held in the hands
+M 0 2402 10 2413  	; the shepherd to Humility Lane
+E 0 2417  0 16    	;   The shepherd's crook wielded (1)
+M 0 2404 10 2413  	; the sheep to Humility Lane
+M 0 2405  1 2415  	; Katrina the Shepherd to Katrina's Office
+E 0 2419  0 16    	;   Katrina's sword wielded (1)
+E 0 2401  0 17    	;   Lum held in the hands
+M 0 2410  1 2418  	; Mariah the Mage to Library
+E 0 2404  0 17    	;   Ahm held in the hands
+M 0 2409  1 2421  	; Nystul the Librarian to Library Office
+E 0 2421  0 16    	;   A magic dagger wielded (1)
+M 0 2406 10 2424  	; the giant rat to Library
+M 0 2408 10 2430  	; the mage to Library
+E 0 2422  0 5     	;   A robe on the body
+M 0 2407  1 2435  	; the giant spider to Web
+G 0 2409  0      	;   Moonstone
+G 0 2420  0      	;   A wrinkled scroll
+M 0 2415  3 2437  	; the beggar to The Center of the Tavern
+E 0 2425  0 17    	;   A cup held in the hands
+P 0 2426  0 2425  	; Some gold pieces inside some gold pieces
+M 0 2418 10 2439  	; the townsman to The North Wall of the Tavern
+M 0 2430  1 2439  	; the bartender to The North Wall of the Tavern
+M 0 2414  5 2444  	; the bard to The South Wall of the Tavern
+E 0 2424  0 16    	;   A mandolin wielded (1)
+M 0 2419  1 2445  	; Gwenno the Bard to The Southeast Corner of the Tavern
+E 0 2430  0 16    	;   The infinity bow wielded (1)
+M 0 2416  1 2448  	; Iolo the Bard to Cellar
+G 0 2427  0      	;   The bottle
+E 0 2428  0 16    	;   Iolo's bow wielded (1)
+E 0 2400  0 17    	;   Mu held in the hands
+M 0 2411 20 2452  	; the slime to Cellar
+M 0 2412  1 2454  	; the snake to Cellar
+G 0 2410  0      	;   Moonstone
+M 0 2429  5 2456  	; the citizen of yew to In Front of the Courthouse
+M 0 2424 10 2459  	; the city druid to Bonfire
+M 0 2431  1 2460  	; the pub owner to Pub
+M 0 2425  1 2464  	; The Judge to The Bench
+E 0 2433  0 16    	;   A gavel wielded (1)
+M 0 2427  1 2467  	; the dirty prisoner to Prison Cell
+G 0 2411  0      	;   Moonstone
+M 0 2428  1 2468  	; the prisoner to Prison Cell
+R 0 2469  4      	; Randomize Yew Forest
+M 0 2426  1 2470  	; Jaana the Druid to Yew Forest
+E 0 2402  0 17    	;   Beh held in the hands
+E 0 2434  0 16    	;   A staff wielded (1)
+R 0 2470  4      	; Randomize Yew Forest
+R 0 2471  4      	; Randomize Yew Forest
+R 0 2472  4      	; Randomize Yew Forest
+M 0 2421 20 2473  	; the troll to Yew Forest
+E 0 2432  0 16    	;   A stone club wielded (1)
+R 0 2473  4      	; Randomize Yew Forest
+R 0 2474  4      	; Randomize Yew Forest
+R 0 2475  4      	; Randomize Yew Forest
+R 0 2476  4      	; Randomize Yew Forest
+R 0 2477  4      	; Randomize Yew Forest
+M 0 2423 10 2478  	; the forest druid to Yew Forest
+R 0 2478  4      	; Randomize Yew Forest
+R 0 2479  4      	; Randomize Yew Forest
+M 0 2420  5 2480  	; the orc to Yew Forest
+E 0 2431  0 16    	;   A wooden spear wielded (1)
+R 0 2480  4      	; Randomize Yew Forest
+M 0 2422 10 2481  	; the wisp to Yew Forest
+R 0 2481  4      	; Randomize Yew Forest
+R 0 2482  4      	; Randomize Yew Forest
+R 0 2483  4      	; Randomize Yew Forest
+M 0 2435 10 2486  	; the fighter to The Dungeon
+E 0 2436  0 16    	;   A sword wielded (1)
+M 0 2436  1 2487  	; Geoffrey the Fighter to The Dungeon
+E 0 2406  0 17    	;   Ra held in the hands
+E 0 2435  0 16    	;   A sword wielded (1)
+M 0 2432 10 2488  	; the ettin to The Dungeon
+M 0 2437  1 2488  	; Lord Simon to The Dungeon
+E 0 2437  0 16    	;   A bastard sword wielded (1)
+M 0 2433 10 2490  	; the gremlin to The Dungeon
+M 0 2434  1 2492  	; the headless to The Dungeon
+G 0 2412  0      	;   Moonstone
+M 0 2468  1 2503  	; the armourer to The Armourer
+O 0 2467  0 2504  	; A fountain to Minoc's Fountain
+M 0 2469  1 2505  	; the weaponseller to The Weaponsmith
+M 0 2470  1 2506  	; the boatseller to The Boatseller
+G 0 2468  0      	;   A boat
+M 0 2440  5 2508  	; a tinker to Sacrifice Street
+E 0 2438  0 16    	;   A hammer wielded (1)
+M 0 2442  1 2508  	; The Lady of Empath Abbey to Sacrifice Street
+E 0 2440  0 3     	;   The amulet of love around the neck (1)
+M 0 2441  1 2510  	; Julia the Tinker to Forge
+E 0 2405  0 17    	;   Cah held in the hands
+E 0 2439  0 16    	;   A sword wielded (1)
+M 0 2440  5 2511  	; a tinker to Residence
+E 0 2438  0 16    	;   A hammer wielded (1)
+M 0 2440  5 2512  	; a tinker to Residence
+E 0 2438  0 16    	;   A hammer wielded (1)
+M 0 2439  2 2514  	; the gazer to The Beach
+M 0 2439  2 2515  	; the gazer to The Beach
+M 0 2438  2 2516  	; the mimic to The Beach
+M 0 2438  2 2517  	; the mimic to The Beach
+R 0 2518  4      	; Randomize The Whirlpool
+R 0 2519  4      	; Randomize The Whirlpool
+R 0 2520  4      	; Randomize The Whirlpool
+M 0 2466  5 2521  	; a seahorse to The Whirlpool
+R 0 2521  4      	; Randomize The Whirlpool
+M 0 2465  5 2522  	; the shark to The Whirlpool
+R 0 2522  4      	; Randomize The Whirlpool
+M 0 2467  1 2523  	; the squid to The Whirlpool
+G 0 2413  0      	;   Moonstone
+R 0 2523  4      	; Randomize The Whirlpool
+R 0 2524  4      	; Randomize The Whirlpool
+R 0 2525  4      	; Randomize The Whirlpool
+R 0 2526  4      	; Randomize The Whirlpool
+M 0 2445  6 2529  	; the paladin to Between the Tents
+E 0 2441  0 17    	;   A shiny sword held in the hands
+E 0 2442  0 5     	;   Shiny armour on the body
+M 0 2445  6 2531  	; the paladin to A Small Tent
+E 0 2441  0 17    	;   A shiny sword held in the hands
+E 0 2442  0 5     	;   Shiny armour on the body
+M 0 2445  6 2532  	; the paladin to A Small Tent
+E 0 2441  0 17    	;   A shiny sword held in the hands
+E 0 2442  0 5     	;   Shiny armour on the body
+M 0 2448  1 2534  	; Draxthanum the Gargoyle to The Grand Tent
+E 0 2444  0 16    	;   A boomerang wielded (1)
+M 0 2446  1 2536  	; Dupre the Paladin to Dupre's Tent
+E 0 2407  0 17    	;   Summ held in the hands
+E 0 2443  0 16    	;   A rapier wielded (1)
+M 0 2445  6 2537  	; the paladin to A Small Tent
+E 0 2441  0 17    	;   A shiny sword held in the hands
+E 0 2442  0 5     	;   Shiny armour on the body
+M 0 2445  6 2538  	; the paladin to Desert Entrance
+E 0 2441  0 17    	;   A shiny sword held in the hands
+E 0 2442  0 5     	;   Shiny armour on the body
+M 0 2445  6 2539  	; the paladin to A Small Tent
+E 0 2441  0 17    	;   A shiny sword held in the hands
+E 0 2442  0 5     	;   Shiny armour on the body
+M 0 2443 10 2541  	; the sandtrap to The Desert
+M 0 2444  1 2548  	; the dragon to The Dragon Cave
+G 0 2414  0      	;   Moonstone
+M 0 2455  1 2549  	; the Timelord to The Shrine of Spirituality
+E 0 2416  0 17    	;   The hourglass held in the hands
+E 0 2448  0 5     	;   An aura of power on the body
+M 0 2447  3 2550  	; the reaper to The Place of Ultimate Evil
+M 0 2452  1 2551  	; the daemon to The Place of Ultimate Evil
+G 0 2415  0      	;   Moonstone
+M 0 2447  3 2552  	; the reaper to The Place of Ultimate Evil
+M 0 2450  5 2553  	; the ghost to The Place of Ultimate Evil
+M 0 2447  3 2555  	; the reaper to The Place of Ultimate Evil
+M 0 2451  3 2555  	; the skeleton to The Place of Ultimate Evil
+E 0 2445  0 16    	;   A rusty sword wielded (1)
+E 0 2446  0 11    	;   A rusty shield as a shield
+M 0 2449  5 2560  	; the spirit to The Graveyard
+M 0 2453  4 2560  	; the mourner to The Graveyard
+M 0 2454  1 2561  	; Shamino the Ranger to The Graveyard
+E 0 2447  0 12    	;   A magic cloak about the shoulders
+E 0 2403  0 17    	;   Ohm held in the hands
+M 0 2417  1 2562  	; Chuckles the Jester to Lord British's Castle Entrance
+E 0 2429  0 16    	;   A chicken wielded (1)
+O 0 2467  0 2563  	; A fountain to Castle Fountain
+M 0 2461  1 2565  	; Sentri to Hallways
+E 0 2454  0 6     	;   Sentri's helmet over the head
+E 0 2455  0 10    	;   Sentri's sleeves on the arms
+E 0 2456  0 13    	;   Sentri's girth around the waist
+E 0 2457  0 16    	;   Sentri's two-handed sword wielded (1)
+E 0 2458  0 9     	;   Sentri's gloves on the hands
+E 0 2459  0 8     	;   Sentri's boots on the feet
+E 0 2460  0 7     	;   Sentri's leggings on the legs
+E 0 2461  0 5     	;   Sentri's armour on the body
+M 0 2463  1 2567  	; The Avatar to The Throne Room
+E 0 2463  0 16    	;   The glass sword wielded (1)
+M 0 2464  1 2567  	; Lord British to The Throne Room
+E 0 2464  0 6     	;   British's crown over the head
+E 0 2465  0 17    	;   British's sceptre held in the hands
+E 0 2466  0 3     	;   British's amulet around the neck (1)
+M 0 2462  1 2568  	; Batlin to Batlin's Room
+G 0 2400  0      	;   Mu
+G 0 2401  0      	;   Lum
+G 0 2402  0      	;   Beh
+G 0 2403  0      	;   Ohm
+G 0 2404  0      	;   Ahm
+G 0 2405  0      	;   Cah
+G 0 2406  0      	;   Ra
+G 0 2407  0      	;   Summ
+E 0 2462  0 3     	;   A fellowship medallion around the neck (1)
+M 0 2460  1 2578  	; Mondain to In the Warp
+E 0 2453  0 17    	;   An evil gem held in the hands
+M 0 2459  1 2579  	; Minax to In the Warp
+E 0 2452  0 3     	;   An evil charm around the neck (1)
+M 0 2458  1 2580  	; Exodus to In the Warp
+E 0 2451  0 5     	;   A completely black armour on the body
+M 0 2457  1 2582  	; Blackthorn to In the Warp
+E 0 2450  0 16    	;   A spiked mace wielded (1)
+M 0 2456  1 2583  	; The Guardian to In the Warp
+E 0 2449  0 6     	;   A big red face over the head
 S
 
 
@@ -5363,9 +5363,9 @@ S
 
 
 #SHOPS
-2468 9 0 0 0 0 110 90 0 23
-2469 5 0 0 0 0 110 90 0 23
-2470 22 0 0 0 0 110 90 0 23
+2468  9  0  0  0  0 110  90  0 23 	; the armourer
+2469  5  0  0  0  0 110  90  0 23 	; the weaponseller
+2470 22  0  0  0  0 110  90  0 23 	; the boatseller
 0
 
 

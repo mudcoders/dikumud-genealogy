@@ -1,6 +1,9 @@
-How to add a new language to Mythran Mud 3.0
+How to add a new language to Mythran Mud 3.1.1
 
 A guide written by: Canth and Maniac from Mythran.
+Maniac		mark@delftnet.nl
+Canth		canth@xs4all.nl
+Staff		mythran@envy.com
 
 
 	Think of a new language...

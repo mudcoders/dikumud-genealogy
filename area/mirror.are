@@ -19,7 +19,7 @@ round body which can charm you with its cuteness.  Baby beholders are known for
 their playful personality.  Hmmm....  It looks like the baby is teething!
 ~
 135 8 500 S
-7 16 0 5d5+55 1d6+2
+11 16 0 5d5+55 1d6+2
 225 0
 0 Giant~ 0
 #5301
@@ -55,7 +55,7 @@ He is dressed in plate, and he looks quite formidable.  At the moment, though,
 he is just giggling with a kid running about.
 ~
 69 128 1000 S
-22 6 0 15d15+150 1d4+10
+20 6 0 15d15+150 1d4+10
 1500 0
 0 Human~ 1
 #5304
@@ -68,7 +68,7 @@ smiles at you, and your heart flutters at the thought that you have her
 attention, if only for a moment.
 ~
 193 0 500 S
-5 16 0 5d5+55 1d4+3
+4 16 0 5d5+55 1d4+3
 100 0
 0 Human~ 2
 #5305
@@ -82,7 +82,7 @@ you suspiciously not only because you are a stranger, but because you are an
 ARMED stranger.  Better not do any funny stuff in his presence.
 ~
 1 128 1000 S
-32 0 0 35d35+350 1d8+30
+31 0 0 35d35+350 1d8+30
 10000 0
 0 Human~ 1
 #5306
@@ -96,7 +96,7 @@ listens to this fool.  The priest's right fist is covered in golden silk,
 and he clenches it at you.  Other than that, he is dressed all in black.
 ~
 131 0 -500 S
-7 10 0 10d10+100 1d4+8
+6 10 0 10d10+100 1d4+8
 100 0
 0 Human~ 1
 #5307
@@ -109,7 +109,7 @@ by the world as 'The City of Peace'.  He is very happy to be the high priest
 here.
 ~
 3 128 1000 S
-14 5 0 20d20+200 1d4+15
+18 5 0 20d20+200 1d4+15
 100 0
 0 Human~ 1
 #5308
@@ -121,7 +121,7 @@ It is a big chunk of rock that has been magically formed into a giant
 stone creature.  It stands here guarding the city.
 ~
 3 8192 1000 S
-31 0 0 30d30+300 1d8+25
+29 0 0 30d30+300 1d8+25
 4250 0
 0 God~ 0
 #5309
@@ -144,7 +144,7 @@ Dan the Barkeep stands by the counter wiping a glass.
 He looks at you, and says, 'What's your poison, stranger?'
 ~
 3 0 600 S
-23 0 0 30d30+300 1d6+20
+18 0 0 30d30+300 1d6+20
 1000 0
 0 Minotaur~ 1
 #5311
@@ -156,7 +156,7 @@ Looking down at you with blood splattered all over his face and apron,
 he asks, 'How much you want?'
 ~
 3 0 600 S
-26 0 0 30d30+300 1d6+20
+23 0 0 30d30+300 1d6+20
 1000 0
 0 Minotaur~ 1
 #5312
@@ -179,7 +179,7 @@ Thaellor sweats rivers and complains about the heat as he pounds the
 metal into items of defense and destruction.
 ~
 3 0 550 S
-29 0 0 30d30+300 1d6+20
+33 0 0 30d30+300 1d6+20
 1000 0
 0 Orc~ 1
 #5314
@@ -190,7 +190,7 @@ Ben the Smith sells metal odds and ends to anyone interested.
 Ben tries to pawn his various wares to you.
 ~
 3 0 600 S
-24 0 0 30d30+30 1d6+20
+22 0 0 30d30+30 1d6+20
 1000 0
 0 Elf~ 1
 #5315
@@ -201,7 +201,7 @@ The librarian is here shelving books away neatly.
 The librarian looks busy and whispers, 'Shhh!'
 ~
 131 0 500 S
-6 12 0 8d8+80 1d4+6
+5 12 0 8d8+80 1d4+6
 0 0
 0 Halfelf~ 2
 #5316
@@ -223,7 +223,7 @@ An old wizard sits quietly at the counter waiting for a sale.
 This old wizard almost looks like he is about to fall over and sleep.
 ~
 3 8 550 S
-29 0 0 30d30+300 1d6+20
+25 0 0 30d30+300 1d6+20
 1000 0
 0 Hobbit~ 1
 #5318
@@ -236,7 +236,7 @@ smiles at you, and your heart flutters at the thought that you have her
 attention, and you jump to her offer for a massage.
 ~
 131 0 700 S
-6 16 0 4d4+40 1d4+3
+5 16 0 4d4+40 1d4+3
 50 0
 0 Human~ 2
 #5319
@@ -248,7 +248,7 @@ He smiles at you, almost as if he knows you.  He is so friendly, you have no
 choice but to reciprocate and join him and the others in the soothing pool.
 ~
 131 0 650 S
-11 15 0 5d5+50 1d4+4
+17 15 0 5d5+50 1d4+4
 0 0
 0 Human~ 1
 #5320
@@ -261,7 +261,7 @@ he is looking at a map of Thalos aside his fellow co-workers keeping
 track of each city patrol.
 ~
 71 128 1000 S
-15 6 0 15d15+150 1d4+10
+14 6 0 15d15+150 1d4+10
 1500 0
 0 Human~ 1
 #5321
@@ -273,7 +273,7 @@ He is dressed in plate, and he looks quite formidable.  At the moment,
 he is watching the children play with amusement.
 ~
 71 128 1000 S
-12 6 0 15d15+150 1d4+10
+17 6 0 15d15+150 1d4+10
 1500 0
 0 Human~ 1
 #5322
@@ -285,7 +285,7 @@ This peaceful creature looks at you with big dark eyes.  Her nose twitches as
 she sniffs at you, but she goes back to chewing some grass.
 ~
 193 0 0 S
-3 15 0 5d5+55 1d4+3
+2 15 0 5d5+55 1d4+3
 2 0
 0 Animal~ 2
 #5323
@@ -297,7 +297,7 @@ The deer looks angered at your intrusion.  He butts his head against you,
 albeit ineffectively.
 ~
 193 0 0 S
-1 14 0 6d6+66 1d4+4
+6 14 0 6d6+66 1d4+4
 2 0
 0 Animal~ 1
 #5324
@@ -308,7 +308,7 @@ A large deer stag protects his territory.
 He eyes you with contained anger.  You'd better leave him alone!
 ~
 225 0 0 S
-7 12 0 8d8+88 1d4+9
+5 12 0 8d8+88 1d4+9
 2 0
 0 Animal~ 1
 #5325
@@ -319,7 +319,7 @@ A small bunny pokes from bush to bush.
 This bunny looks so adorable, you wished you had one just like this!
 ~
 193 0 0 S
-5 18 0 2d2+22 1d4+1
+4 18 0 2d2+22 1d4+1
 2 0
 0 Animal~ 0
 #5326
@@ -330,7 +330,7 @@ A small snake slithers between the grass.
 Upon careful inspection, you are sure it is NOT a cobra!
 ~
 225 32768 0 S
-2 16 0 4d4+44 1d8+4
+4 16 0 4d4+44 1d8+4
 2 0
 0 Snake~ 0
 #5327
@@ -341,7 +341,7 @@ A druid is here in meditation.
 He doesn't like you bothering him, but is too polite to ask you to leave.
 ~
 193 8200 1000 S
-10 10 0 10d10+100 1d4+6
+4 10 0 10d10+100 1d4+6
 50 0
 0 Halfdwarf~ 1
 #5328
@@ -352,7 +352,7 @@ A druidess peers at you.
 She wonders why you are staring at her, and how you got in here.
 ~
 193 8200 1000 S
-11 10 0 10d10+100 1d4+6
+4 10 0 10d10+100 1d4+6
 50 0
 0 Halfdwarf~ 2
 #5329
@@ -363,7 +363,7 @@ A bard sings of the glory of Thalos.
 This musical fellow plays a happy song with his fellow comrades.
 ~
 7 0 450 S
-6 15 0 6d6+60 1d4+4
+4 15 0 6d6+60 1d4+4
 100 0
 0 Human~ 1
 #5330
@@ -374,7 +374,7 @@ This bard merrily skips along singing of the glory of Thalos.
 This musical fellow wanders the world singing of the glory of Thalos.
 ~
 5 0 550 S
-3 14 0 7d7+70 1d4+5
+2 14 0 7d7+70 1d4+5
 150 0
 0 Human~ 1
 #5331
@@ -385,7 +385,7 @@ A cityguard stands here.
 A big, strong, helpful, trustworthy guard.
 ~
 69 0 1000 S
-18 15 0 15d15+150 1d4+10
+20 15 0 15d15+150 1d4+10
 500 0
 0 Giant~ 1
 #5332
@@ -395,7 +395,7 @@ A janitor is walking around, cleaning up.
 ~
 ~
 1 0 900 S
-3 20 0 2d6+10 1d5+0
+7 20 0 2d6+10 1d5+0
 34 0
 0 Hobgoblin~ 1
 #5333
@@ -407,7 +407,7 @@ Fido is a small dog that has a foul smell and pieces of rotted meat hanging
 around his teeth.
 ~
 161 0 -200 S
-4 20 0 1d6+4 1d4+0
+8 20 0 1d6+4 1d4+0
 10 0
 0 Animal~ 1
 #5334
@@ -418,7 +418,7 @@ A cityguard is here, guarding the gate.
 A big, strong, helpful, trustworthy guard.
 ~
 67 0 1000 S
-18 5 0 15d15+150 1d4+10
+17 5 0 15d15+150 1d4+10
 500 0
 0 Giant~ 1
 #0
@@ -582,9 +582,9 @@ You see an imperial sword here.~
 0~ 3~ 4~ 3~
 5 0 0
 A
-19 2
-A
 18 2
+A
+19 2
 E
 sword~
 You see a sword of great craftsmanship.  Imprinted on the side is:
@@ -599,9 +599,9 @@ You see an imperial mace here.~
 0~ 4~ 4~ 7~
 5 0 0
 A
-19 2
-A
 18 2
+A
+19 2
 E
 mace~
 You see a mace of great craftsmanship.  Imprinted on the side is:
@@ -759,9 +759,9 @@ You see a ring with a strange symbol on the floor.~
 0~ 0~ 0~ 0~
 1 0 0
 A
-24 -2
-A
 17 -6
+A
+24 -2
 #5331
 imperial banner~
 an imperial war banner~
@@ -771,9 +771,9 @@ An imperial war banner is on the floor here.~
 0~ 0~ -1~ 0~
 1 0 0
 A
-17 -2
-A
 24 -2
+A
+17 -2
 E
 banner~
 This is the official Merc war banner to see you through the darkest realm!
@@ -2599,14 +2599,9 @@ Main Street leads west from here.
 ~
 0 0 1
 E
-wall~
-It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
-~
-E
-tower towers~
-Both of the towers are built from large grey rocks that have been fastened to
-each other with some kind of mortar, just like the city wall.
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.
 ~
 E
 gate~
@@ -2615,9 +2610,14 @@ reinforced with large iron bands to make them even more sturdy.  One of the
 doors is equipped with a very big lock.
 ~
 E
-bridge footbridge~
-It is too high up to reach but it looks as if one easily could walk across it
-from one tower to the other.
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.
+~
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.
 ~
 D1
 You see the city gate.
@@ -2637,14 +2637,9 @@ plains stretch out in the distance.
 ~
 0 0 1
 E
-wall~
-It is built from large grey rocks that have been fastened to each other with
-some kind of mortar.  It is far too high to climb.
-~
-E
-tower towers~
-Both of the towers are built from large grey rocks that have been fastened to
-each other with some kind of mortar, just like the city wall.
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.
 ~
 E
 gate~
@@ -2653,9 +2648,14 @@ reinforced with large iron bands to make them even more sturdy.  One of the
 doors is equipped with a very big lock.
 ~
 E
-bridge footbridge~
-It is too high up to reach but it looks as if one easily could walk across it
-from one tower to the other.
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.
+~
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.
 ~
 D1
 You see the plains.~
@@ -2675,16 +2675,16 @@ behind it is a ten foot tall sitting statue of Odin, the King of the Gods.
 ~
 0 1032 0
 E
+altar~
+Even though the altar is more than ten feet long it appears to be made from a
+single block of white virgin marble.
+~
+E
 statue odin king god~
 The statue represents the one-eyed Odin sitting on a his throne.  He has
 long, grey hair and beard and a strict look on his face.  On top of the
 throne, just above his shoulders, his two ravens Hugin and Munin are sitting
 and at his feet are his wolves Gere and Freke.
-~
-E
-altar~
-Even though the altar is more than ten feet long it appears to be made from a
-single block of white virgin marble.
 ~
 D2
 You see the southern end of the temple.
@@ -2697,20 +2697,20 @@ S
 
 
 #SPECIALS
-M 5300 spec_cast_mage
-M 5303 spec_guard
-M 5305 spec_guard
-M 5306 spec_cast_cleric
-M 5307 spec_cast_adept
-M 5317 spec_cast_mage
-M 5320 spec_guard
-M 5321 spec_guard
-M 5327 spec_cast_cleric
-M 5328 spec_cast_cleric
-M 5331 spec_guard
-M 5332 spec_janitor
-M 5333 spec_fido
-M 5334 spec_guard
+M 5300 spec_cast_mage 	; the baby beholder
+M 5303 spec_guard 	; an imperial cityguard
+M 5305 spec_guard 	; Gordon the Brave
+M 5306 spec_cast_cleric 	; the fanatic priest
+M 5307 spec_cast_adept 	; the priest of Thalos
+M 5317 spec_cast_mage 	; an old wizard
+M 5320 spec_guard 	; An imperial cityguard
+M 5321 spec_guard 	; an imperial cityguard
+M 5327 spec_cast_cleric 	; a druid
+M 5328 spec_cast_cleric 	; a druidess
+M 5331 spec_guard 	; the cityguard
+M 5332 spec_janitor 	; the janitor
+M 5333 spec_fido 	; the beastly fido
+M 5334 spec_guard 	; the cityguard
 S
 
 
@@ -2721,306 +2721,307 @@ S
 
 
 #RESETS
-M 0 5301 20 5300
-E 0 5300 0 3
-M 0 5330 2 5300
-E 0 5311 0 17
-M 0 5321 2 5300
-E 0 5331 0 0
-E 0 5319 0 5
-E 0 5322 0 6
-E 0 5323 0 7
-E 0 5324 0 8
-E 0 5325 0 9
-E 0 5320 0 11
-E 0 5318 0 16
-M 0 5321 2 5300
-E 0 5331 0 0
-E 0 5319 0 5
-E 0 5324 0 8
-E 0 5325 0 9
-E 0 5326 0 10
-E 0 5320 0 11
-E 0 5317 0 16
-M 0 5303 11 5300
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5329 0 14
-E 0 5318 0 16
-M 0 5301 20 5302
-E 0 5300 0 3
-M 0 5304 9 5302
-M 0 5301 20 5304
-E 0 5300 0 3
-M 0 5303 11 5304
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5320 0 11
-E 0 5317 0 16
-M 0 5302 9 5304
-M 0 5301 20 5306
-E 0 5300 0 3
-M 0 5303 11 5307
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5328 0 13
-E 0 5329 0 14
-E 0 5318 0 16
-M 0 5304 9 5307
-M 0 5301 20 5308
-E 0 5300 0 3
-M 0 5302 9 5308
-M 0 5301 20 5310
-E 0 5300 0 3
-M 0 5301 20 5312
-E 0 5300 0 3
-M 0 5304 9 5312
-M 0 5303 11 5313
-E 0 5330 0 1
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5320 0 11
-E 0 5317 0 16
-M 0 5301 20 5314
-E 0 5300 0 3
-M 0 5303 11 5315
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5328 0 13
-E 0 5318 0 16
-M 0 5301 20 5316
-E 0 5300 0 3
-M 0 5302 9 5316
-M 0 5311 1 5317
-G 0 5219 0
-E 0 601 0 16
-G 0 602 0
-G 0 603 0
-G 0 604 0
-G 0 605 0
-M 0 5301 20 5318
-E 0 5300 0 3
-M 0 5306 1 5319
-E 0 5218 0 3
-E 0 5222 0 12
-E 0 5252 0 16
-E 0 5332 0 17
-M 0 5301 20 5320
-E 0 5300 0 3
-M 0 5312 1 5320
-G 0 609 0
-G 0 610 0
-G 0 611 0
-G 0 612 0
-G 0 613 0
-M 0 5314 1 5321
-G 0 601 0
-G 0 615 0
-M 0 5301 20 5322
-E 0 5300 0 3
-M 0 5301 20 5324
-E 0 5300 0 3
-M 0 5303 11 5324
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5320 0 11
-E 0 5317 0 16
-M 0 5301 20 5326
-E 0 5300 0 3
-M 0 5304 9 5326
-M 0 5302 9 5327
-M 0 5301 20 5328
-E 0 5300 0 3
-M 0 5313 1 5329
-M 0 5301 20 5330
-E 0 5300 0 3
-M 0 5329 2 5330
-E 0 5309 0 17
-M 0 5329 2 5330
-E 0 5310 0 17
-M 0 5310 1 5330
-G 0 648 0
-G 0 649 0
-G 0 650 0
-M 0 5304 9 5330
-M 0 5302 9 5330
-M 0 5309 1 5331
-E 0 5224 0 17
-O 0 5307 0 5331
-P 0 5304 0 5307
-P 0 5305 0 5307
-P 0 5231 0 5307
-M 0 5303 11 5331
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5328 0 13
-E 0 5329 0 14
-E 0 5318 0 16
-M 0 5301 20 5332
-E 0 5300 0 3
-M 0 5304 9 5332
-O 0 5308 0 5333
-P 0 3105 0 5308
-P 0 5214 0 5308
-P 0 5230 0 5308
-M 0 5301 20 5334
-E 0 5300 0 3
-O 0 5306 0 5334
-M 0 5303 11 5334
-E 0 5330 0 1
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5320 0 11
-E 0 5317 0 16
-M 0 5320 3 5335
-E 0 5330 0 1
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5328 0 13
-E 0 5317 0 16
-M 0 5320 3 5335
-E 0 5330 0 1
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5329 0 14
-E 0 5318 0 16
-M 0 5320 3 5335
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5328 0 13
-E 0 5329 0 14
-E 0 5317 0 16
-M 0 5305 1 5336
-E 0 5204 0 8
-E 0 5203 0 10
-E 0 5205 0 7
-E 0 5206 0 13
-E 0 5201 0 6
-E 0 5202 0 9
-E 0 5301 0 5
-E 0 5221 0 16
-E 0 5226 0 17
-M 0 5301 20 5336
-E 0 5300 0 3
-M 0 5315 1 5337
-M 0 5301 20 5338
-E 0 5300 0 3
-M 0 5317 1 5338
-G 0 5210 0
-G 0 5211 0
-M 0 5302 9 5338
-M 0 5301 20 5340
-E 0 5300 0 3
-M 0 5304 9 5340
-M 0 5303 11 5341
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5318 0 16
-M 0 5301 20 5342
-E 0 5300 0 3
-M 0 5319 2 5342
-M 0 5301 20 5344
-E 0 5300 0 3
-M 0 5318 4 5344
-M 0 5302 9 5344
-M 0 5304 9 5344
-M 0 5316 2 5345
-M 0 5301 20 5346
-E 0 5300 0 3
-M 0 5308 8 5346
-E 0 5221 0 16
-E 0 5233 0 17
-M 0 5308 8 5347
-E 0 5221 0 16
-E 0 5232 0 17
-M 0 5301 20 5348
-E 0 5300 0 3
-M 0 5308 8 5348
-E 0 5221 0 16
-E 0 5235 0 17
-M 0 5300 1 5350
-E 0 5243 0 17
-M 0 5307 1 5350
-E 0 5302 0 17
-E 0 5223 0 3
-M 0 5301 20 5350
-E 0 5300 0 3
-M 0 5303 11 5350
-E 0 5321 0 4
-E 0 5319 0 5
-E 0 5320 0 11
-E 0 5317 0 16
-M 0 5302 9 5350
-M 0 5301 20 5352
-E 0 5300 0 3
-M 0 5303 11 5352
-E 0 5330 0 1
-E 0 5319 0 5
-E 0 5327 0 12
-E 0 5328 0 13
-E 0 5318 0 16
-M 0 5301 20 5354
-E 0 5300 0 3
-M 0 5308 8 5354
-E 0 5221 0 16
-E 0 5237 0 17
-M 0 5326 4 5356
-M 0 5323 3 5358
-M 0 5304 9 5361
-M 0 5302 9 5367
-M 0 5322 2 5367
-M 0 5327 1 5368
-G 0 5313 0
-M 0 5324 1 5369
-M 0 5323 3 5370
-M 0 5327 2 5371
-G 0 5315 0
-M 0 5328 2 5372
-G 0 5316 0
-M 0 5326 4 5372
-M 0 5325 3 5373
-M 0 5328 1 5374
-G 0 5314 0
-R 0 5375 5
-R 0 5376 6
-R 0 5377 6
-R 0 5378 5
-M 0 5332 2 5380
-M 0 5331 1 5381
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3355 0 4
-M 0 5333 3 5382
-M 0 5334 1 5384
-E 0 3365 0 0
-E 0 3364 0 1
-E 0 3350 0 16
-E 0 3353 0 5
-E 0 3354 0 11
+M 0 5301 20 5300  	; the pet lamia to The Grand Gate of Thalos
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5330  2 5300  	; bard of Thalos to The Grand Gate of Thalos
+E 0 5311  0 17    	;   A silver flute held in the hands
+M 0 5321  2 5300  	; an imperial cityguard to The Grand Gate of Thalos
+E 0 5331  0 0     	;   An imperial war banner as a light
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5322  0 6     	;   An imperial helm over the head
+E 0 5323  0 7     	;   A pair of imperial plate leggings on the legs
+E 0 5324  0 8     	;   A pair of imperial plate boots on the feet
+E 0 5325  0 9     	;   A pair of imperial plate gloves on the hands
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5321  2 5300  	; an imperial cityguard to The Grand Gate of Thalos
+E 0 5331  0 0     	;   An imperial war banner as a light
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5324  0 8     	;   A pair of imperial plate boots on the feet
+E 0 5325  0 9     	;   A pair of imperial plate gloves on the hands
+E 0 5326  0 10    	;   A pair of imperial plate sleeves on the arms
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5303 11 5300  	; an imperial cityguard to The Grand Gate of Thalos
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5329  0 14    	;   An imperial metal bracer on the left wrist
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5301 20 5302  	; the pet lamia to Main Street
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5304  9 5302  	; a female citizen of Thalos to Main Street
+M 0 5301 20 5304  	; the pet lamia to A Garden Path
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5303 11 5304  	; an imperial cityguard to A Garden Path
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5302  9 5304  	; a citizen of Thalos to A Garden Path
+M 0 5301 20 5306  	; the pet lamia to A Garden Path
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5303 11 5307  	; an imperial cityguard to The market place
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5328  0 13    	;   An imperial belt around the waist
+E 0 5329  0 14    	;   An imperial metal bracer on the left wrist
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5304  9 5307  	; a female citizen of Thalos to The market place
+M 0 5301 20 5308  	; the pet lamia to The market place
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5302  9 5308  	; a citizen of Thalos to The market place
+M 0 5301 20 5310  	; the pet lamia to A Side Street
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5301 20 5312  	; the pet lamia to A side street
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5304  9 5312  	; a female citizen of Thalos to A side street
+M 0 5303 11 5313  	; an imperial cityguard to A side street
+E 0 5330  0 1     	;   An imperial city guard signet ring on the left finger
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5301 20 5314  	; the pet lamia to A side street
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5303 11 5315  	; an imperial cityguard to Under another grand watchtower
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5328  0 13    	;   An imperial belt around the waist
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5301 20 5316  	; the pet lamia to A back alley
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5302  9 5316  	; a citizen of Thalos to A back alley
+M 0 5311  1 5317  	; George the Butcher to The meat stand
+G 0 5219  0      	;   A chunk of venison
+E 0 601  0 16    	;   A meat cleaver wielded (1)
+G 0 602  0      	;   A side of beef
+G 0 603  0      	;   A side of pork
+G 0 604  0      	;   A side of horse
+G 0 605  0      	;   A defeathered chicken
+M 0 5301 20 5318  	; the pet lamia to A back alley
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5306  1 5319  	; the fanatic priest to The guild house
+E 0 5218  0 3     	;   A demon-faced talisman around the neck (1)
+E 0 5222  0 12    	;   A black silk robe about the shoulders
+E 0 5252  0 16    	;   A long slim dagger wielded (1)
+E 0 5332  0 17    	;   The scroll of prophecy held in the hands
+M 0 5301 20 5320  	; the pet lamia to The produce stand
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5312  1 5320  	; Farmer Betty to The produce stand
+G 0 609  0      	;   A head of cabbage
+G 0 610  0      	;   A head of lettuce
+G 0 611  0      	;   A bottle of milk
+G 0 612  0      	;   An apple
+G 0 613  0      	;   An ear of corn
+M 0 5314  1 5321  	; Ben the Smith to The smithy
+G 0 601  0      	;   A meat cleaver
+G 0 615  0      	;   A pitchfork
+M 0 5301 20 5322  	; the pet lamia to The tapestry stand
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5301 20 5324  	; the pet lamia to Under the watchtower
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5303 11 5324  	; an imperial cityguard to Under the watchtower
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5301 20 5326  	; the pet lamia to A simple clay dwelling
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5304  9 5326  	; a female citizen of Thalos to A simple clay dwelling
+M 0 5302  9 5327  	; a citizen of Thalos to A stone dwelling
+M 0 5301 20 5328  	; the pet lamia to A back alley
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5313  1 5329  	; Thaellor the dwarf to A busy shop
+M 0 5301 20 5330  	; the pet lamia to The Tavern of the Sun
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5329  2 5330  	; bard of Thalos to The Tavern of the Sun
+E 0 5309  0 17    	;   A mandolin held in the hands
+M 0 5329  2 5330  	; bard of Thalos to The Tavern of the Sun
+E 0 5310  0 17    	;   A golden harp held in the hands
+M 0 5310  1 5330  	; Dan the Barkeep to The Tavern of the Sun
+G 0 648  0      	;   A shot of whiskey
+G 0 649  0      	;   A quart of ale
+G 0 650  0      	;   A quart of port brew
+M 0 5304  9 5330  	; a female citizen of Thalos to The Tavern of the Sun
+M 0 5302  9 5330  	; a citizen of Thalos to The Tavern of the Sun
+M 0 5309  1 5331  	; the mayor of Thalos to South wing of the city hall
+E 0 5224  0 17    	;   An engraved ebony seal held in the hands
+O 0 5307  0 5331  	; The curved desk to South wing of the city hall
+P 0 5304  0 5307  	; A scroll of enchantment inside a scroll of enchantment
+P 0 5305  0 5307  	; A bound scroll inside a bound scroll
+P 0 5231  0 5307  	; A scarlet and blue stone inside a scarlet and blue stone
+M 0 5303 11 5331  	; an imperial cityguard to South wing of the city hall
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5328  0 13    	;   An imperial belt around the waist
+E 0 5329  0 14    	;   An imperial metal bracer on the left wrist
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5301 20 5332  	; the pet lamia to The city hall
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5304  9 5332  	; a female citizen of Thalos to The city hall
+O 0 5308  0 5333  	; The glass cabinet to East wing of the city hall
+P 0 3105  0 5308  	; A bronze bracer inside a bronze bracer
+P 0 5214  0 5308  	; A smooth quartz ball inside a smooth quartz ball
+P 0 5230  0 5308  	; A pale blue stone inside a pale blue stone
+M 0 5301 20 5334  	; the pet lamia to The private gardens and courtyard of Thalos
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+O 0 5306  0 5334  	; A large beautiful fountain to The private gardens and courtyard of Thalos
+M 0 5303 11 5334  	; an imperial cityguard to The private gardens and courtyard of Thalos
+E 0 5330  0 1     	;   An imperial city guard signet ring on the left finger
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5320  3 5335  	; An imperial cityguard to A small guard house
+E 0 5330  0 1     	;   An imperial city guard signet ring on the left finger
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5328  0 13    	;   An imperial belt around the waist
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5320  3 5335  	; An imperial cityguard to A small guard house
+E 0 5330  0 1     	;   An imperial city guard signet ring on the left finger
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5329  0 14    	;   An imperial metal bracer on the left wrist
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5320  3 5335  	; An imperial cityguard to A small guard house
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5328  0 13    	;   An imperial belt around the waist
+E 0 5329  0 14    	;   An imperial metal bracer on the left wrist
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5305  1 5336  	; Gordon the Brave to An impressive house
+E 0 5204  0 8     	;   A pair of mithril boots on the feet
+E 0 5203  0 10    	;   Some mithril sleeves on the arms
+E 0 5205  0 7     	;   A set of mithril leggings on the legs
+E 0 5206  0 13    	;   A mithril girth around the waist
+E 0 5201  0 6     	;   A mithril helm over the head
+E 0 5202  0 9     	;   A pair of mithril gauntlets on the hands
+E 0 5301  0 5     	;   A beautiful iron breast plate on the body
+E 0 5221  0 16    	;   A two-handed sword wielded (1)
+E 0 5226  0 17    	;   An engraved ivory seal held in the hands
+M 0 5301 20 5336  	; the pet lamia to An impressive house
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5315  1 5337  	; the librarian to A Public Library
+M 0 5301 20 5338  	; the pet lamia to The Library Addition
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5317  1 5338  	; an old wizard to The Library Addition
+G 0 5210  0      	;   A black potion
+G 0 5211  0      	;   An orange potion
+M 0 5302  9 5338  	; a citizen of Thalos to The Library Addition
+M 0 5301 20 5340  	; the pet lamia to A back alley
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5304  9 5340  	; a female citizen of Thalos to A back alley
+M 0 5303 11 5341  	; an imperial cityguard to Under a watchtower
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5301 20 5342  	; the pet lamia to A bath house
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5319  2 5342  	; a man to A bath house
+M 0 5301 20 5344  	; the pet lamia to A Resting Room
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5318  4 5344  	; a beautiful masseuse to A Resting Room
+M 0 5302  9 5344  	; a citizen of Thalos to A Resting Room
+M 0 5304  9 5344  	; a female citizen of Thalos to A Resting Room
+M 0 5316  2 5345  	; a young scholar to On the second floor of the library
+M 0 5301 20 5346  	; the pet lamia to The north-west watchtower
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5308  8 5346  	; the stone golem to The north-west watchtower
+E 0 5221  0 16    	;   A two-handed sword wielded (1)
+E 0 5233  0 17    	;   A deep red stone held in the hands
+M 0 5308  8 5347  	; the stone golem to The south-west watchtower
+E 0 5221  0 16    	;   A two-handed sword wielded (1)
+E 0 5232  0 17    	;   An incandescent blue stone held in the hands
+M 0 5301 20 5348  	; the pet lamia to The north-east watchtower
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5308  8 5348  	; the stone golem to The north-east watchtower
+E 0 5221  0 16    	;   A two-handed sword wielded (1)
+E 0 5235  0 17    	;   A pearly white stone held in the hands
+M 0 5300  1 5350  	; the baby beholder to The Temple of Thalos
+E 0 5243  0 17    	;   A clear stone held in the hands
+M 0 5307  1 5350  	; the priest of Thalos to The Temple of Thalos
+E 0 5302  0 17    	;   A green serpentine staff held in the hands
+E 0 5223  0 3     	;   A dark green cloak around the neck (1)
+M 0 5301 20 5350  	; the pet lamia to The Temple of Thalos
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5303 11 5350  	; an imperial cityguard to The Temple of Thalos
+E 0 5321  0 4     	;   An imperial cloak around the neck (2)
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5320  0 11    	;   An imperial shield as a shield
+E 0 5317  0 16    	;   An imperial sword wielded (1)
+M 0 5302  9 5350  	; a citizen of Thalos to The Temple of Thalos
+M 0 5301 20 5352  	; the pet lamia to Under a watchtower
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5303 11 5352  	; an imperial cityguard to Under a watchtower
+E 0 5330  0 1     	;   An imperial city guard signet ring on the left finger
+E 0 5319  0 5     	;   An imperial chest plate on the body
+E 0 5327  0 12    	;   An imperial cape about the shoulders
+E 0 5328  0 13    	;   An imperial belt around the waist
+E 0 5318  0 16    	;   An imperial mace wielded (1)
+M 0 5301 20 5354  	; the pet lamia to The south-east watchtower
+E 0 5300  0 3     	;   A lamia collar around the neck (1)
+M 0 5308  8 5354  	; the stone golem to The south-east watchtower
+E 0 5221  0 16    	;   A two-handed sword wielded (1)
+E 0 5237  0 17    	;   A lavender and green stone held in the hands
+M 0 5326  4 5356  	; a harmless snake to A trail at the end of the dwarf forest
+M 0 5323  3 5358  	; a deer to The dwarf forest
+M 0 5304  9 5361  	; a female citizen of Thalos to The dwarf forest
+M 0 5302  9 5367  	; a citizen of Thalos to The holy grove
+M 0 5322  2 5367  	; a doe to The holy grove
+M 0 5327  1 5368  	; a druid to A clearing in the woods
+G 0 5313  0      	;   Some bluish herbs
+M 0 5324  1 5369  	; a stag to The holy grove
+M 0 5323  3 5370  	; a deer to The sacred glade
+M 0 5327  2 5371  	; a druid to The holy grove
+G 0 5315  0      	;   Some grayish herbs
+M 0 5328  2 5372  	; a druidess to The holy grove
+G 0 5316  0      	;   Some orangish herbs
+M 0 5326  4 5372  	; a harmless snake to The holy grove
+M 0 5325  3 5373  	; a small bunny to The sunny field
+M 0 5328  1 5374  	; a druidess to The croquet lawn
+G 0 5314  0      	;   Some purplish herbs
+R 0 5375  5      	; Randomize The Void
+R 0 5376  6      	; Randomize The Void
+R 0 5377  6      	; Randomize The Void
+R 0 5378  5      	; Randomize The Void
+M 0 5332  2 5380  	; the janitor to The Temple Square
+M 0 5331  1 5381  	; the cityguard to Market Square
+E 0 3365  0 0     	;   A war banner as a light
+E 0 3364  0 1     	;   A city guard signet ring on the left finger
+E 0 3350  0 16    	;   A standard issue sword wielded (1)
+E 0 3353  0 5     	;   A standard issue vest on the body
+E 0 3355  0 4     	;   A standard issue cloak around the neck (2)
+M 0 5333  3 5382  	; the beastly fido to The Main Street
+M 0 5334  1 5384  	; the cityguard to Inside the East Gate of Midgaard
+E 0 3365  0 0     	;   A war banner as a light
+E 0 3364  0 1     	;   A city guard signet ring on the left finger
+E 0 3350  0 16    	;   A standard issue sword wielded (1)
+E 0 3353  0 5     	;   A standard issue vest on the body
+E 0 3354  0 11    	;   A standard issue shield as a shield
 S
 
 
 
 #MOBPROGS
+M 5332 5332.prg
 S
 
 
 
 #SHOPS
-5310 0 0 0 0 0 120 90 0 23
-5311 5 17 19 0 0 110 90 6 20
-5312 19 0 0 0 0 110 90 7 19
-5313 5 9 0 0 0 130 70 5 21
-5314 1 8 12 13 22 135 65 8 18
-5317 2 3 4 10 0 120 50 9 17
+5310  0  0  0  0  0 120  90  0 23 	; Dan the Barkeep
+5311  5 17 19  0  0 110  90  6 20 	; George the Butcher
+5312 19  0  0  0  0 110  90  7 19 	; Farmer Betty
+5313  5  9  0  0  0 130  70  5 21 	; Thaellor the dwarf
+5314  1  8 12 13 22 135  65  8 18 	; Ben the Smith
+5317  2  3  4 10  0 120  50  9 17 	; an old wizard
 0
 
 

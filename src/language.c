@@ -1,26 +1,8 @@
-/***************************************************************************
- *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
- *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
- *                                                                         *
- *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
- *  Chastain, Michael Quan, and Mitchell Tse.                              *
- *                                                                         *
- *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
- *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
- *                                                                         *
- *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
- *  Mitchell Tse.                                                          *
- *                                                                         *
- *  In order to use any part of this Envy Diku Mud, you must comply with   *
- *  the original Diku license in 'license.doc', the Merc license in        *
- *  'license.txt', as well as the Envy license in 'license.nvy'.           *
- *  In particular, you may not remove either of these copyright notices.   *
- *                                                                         *
- *  Much time and thought has gone into this software and you are          *
- *  benefitting.  We hope that you share your changes too.  What goes      *
- *  around, comes around.                                                  *
- ***************************************************************************/
-
+#if defined( macintosh )
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -59,13 +41,13 @@ void do_speak( CHAR_DATA *ch, char *argument )
 
 	if (IS_NPC(ch))
 	{
-		send_to_char ("Mobiles can't speak !\r\n", ch);
+		send_to_char ("Mobiles can't speak !\n\r", ch);
 		return;
 	}
 
 	if (arg[0] == '\0')
 	{
-		sprintf (buf, "You currently speak %s.\r\n", lang_table[ch->pcdata->speaking].name);
+		sprintf (buf, "You currently speak %s.\n\r", lang_table[ch->pcdata->speaking].name);
 		send_to_char (buf, ch);
 	}
 	else
@@ -74,19 +56,19 @@ void do_speak( CHAR_DATA *ch, char *argument )
 		{
 			if ((canspeak = ch->pcdata->language[speaking]) == 0)
 			{
-				sprintf (buf, "But you don't know how to speak %s.\r\n", lang_table[speaking].name);
+				sprintf (buf, "But you don't know how to speak %s.\n\r", lang_table[speaking].name);
 				send_to_char(buf, ch);
 			}
 			else
 			{
 				ch->pcdata->speaking = speaking;
-				sprintf (buf, "You will speak %s from now on.\r\n", lang_table[ch->pcdata->speaking].name);
+				sprintf (buf, "You will speak %s from now on.\n\r", lang_table[ch->pcdata->speaking].name);
 				send_to_char(buf, ch);
 			}
 		}
 		else
 		{
-			sprintf (buf, "%s is not a valid language!\r\n", arg);
+			sprintf (buf, "%s is not a valid language!\n\r", arg);
 			send_to_char( buf, ch);
 		}
 	}
@@ -114,28 +96,28 @@ void do_lset( CHAR_DATA *ch, char *argument )
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
     {
-        send_to_char( "Syntax: lset <victim> <lang> <value>\r\n",	ch );
-        send_to_char( "or:     lset <victim> all    <value>\r\n",	ch );
-	send_to_char( "or:     lset <victim> learn  <value>\r\n",	ch );
-        send_to_char( "Lang being any language.\r\n",			ch );
+        send_to_char( "Syntax: lset <victim> <lang> <value>\n\r",	ch );
+        send_to_char( "or:     lset <victim> all    <value>\n\r",	ch );
+	send_to_char( "or:     lset <victim> learn  <value>\n\r",	ch );
+        send_to_char( "Lang being any language.\n\r",			ch );
         return;
     }
 
     if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
-        send_to_char( "They aren't here.\r\n", ch );
+        send_to_char( "They aren't here.\n\r", ch );
         return;
     }
 
     if ( IS_NPC( victim ) )
     {
-        send_to_char( "Not on NPC's.\r\n", ch );
+        send_to_char( "Not on NPC's.\n\r", ch );
         return;
     }
 
     if ( ch->level <= victim->level && ch != victim )
     {
-        send_to_char( "You may not lset your peer nor your superior.\r\n", ch );
+        send_to_char( "You may not lset your peer nor your superior.\n\r", ch );
         return;
     }
 
@@ -143,7 +125,7 @@ void do_lset( CHAR_DATA *ch, char *argument )
     {
 	    if (!is_number(arg3))
 	    {
-		send_to_char ("Value must be numeric.\r\n", ch);
+		send_to_char ("Value must be numeric.\n\r", ch);
 		return;
 	    }
 	    value = atoi(arg3);
@@ -153,7 +135,7 @@ void do_lset( CHAR_DATA *ch, char *argument )
 	    if (value > 100)
 		    value = 100;
 	    victim->pcdata->learn = value;
-	    send_to_char("OK\r\n", ch);
+	    send_to_char("OK\n\r", ch);
 	    return;
     }
 
@@ -161,7 +143,7 @@ void do_lset( CHAR_DATA *ch, char *argument )
     ln   = 0;
     if ( !fAll && ( ln = lang_lookup( arg2 ) ) < 0 )
     {
-        send_to_char( "No such language.\r\n", ch );
+        send_to_char( "No such language.\n\r", ch );
         return;
     }
 
@@ -170,14 +152,14 @@ void do_lset( CHAR_DATA *ch, char *argument )
      */
     if ( !is_number( arg3 ) )
     {
-        send_to_char( "Value must be numeric.\r\n", ch );
+        send_to_char( "Value must be numeric.\n\r", ch );
         return;
     }
 
     value = atoi( arg3 );
     if ( value < 0 || value > 100 )
     {
-        send_to_char( "Value range is 0 to 100.\r\n", ch );
+        send_to_char( "Value range is 0 to 100.\n\r", ch );
         return;
     }
 
@@ -185,7 +167,7 @@ void do_lset( CHAR_DATA *ch, char *argument )
     {
         if ( get_trust( ch ) < L_SEN )
         {
-            send_to_char( "Only Seniors may lset all.\r\n", ch );
+            send_to_char( "Only Seniors may lset all.\n\r", ch );
             return;
         }
         for ( ln = 0; ln < MAX_LANGUAGE; ln++ )
@@ -214,19 +196,19 @@ void do_lstat( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' )
     {
-        send_to_char("lstat whom\r\n?", ch);
+        send_to_char("lstat whom\n\r?", ch);
         return;
     }
 
     if ( ( victim = get_char_world( ch, arg ) ) == NULL )
     {
-        send_to_char("That person isn't logged on.\r\n", ch);
+        send_to_char("That person isn't logged on.\n\r", ch);
         return;
     }
 
     if ( IS_NPC( victim ) )
     {
-        send_to_char("Not on NPC's.\r\n", ch);
+        send_to_char("Not on NPC's.\n\r", ch);
         return;
     }
 
@@ -240,11 +222,11 @@ void do_lstat( CHAR_DATA *ch, char *argument )
                 victim->pcdata->language[ln] );
         strcat( buf2, buf1 );
         if ( ++col %3 == 0 )
-            strcat( buf2, "\r\n" );
+            strcat( buf2, "\n\r" );
     }
     if ( col % 3 != 0 )
-         strcat( buf2, "\r\n" );
-    sprintf( buf1, "%s has %d learning sessions left.\r\n", victim->name,
+         strcat( buf2, "\n\r" );
+    sprintf( buf1, "%s has %d learning sessions left.\n\r", victim->name,
                 victim->pcdata->learn );
     strcat( buf2, buf1 );
 
@@ -290,17 +272,17 @@ void do_learn( CHAR_DATA *ch, char *argument )
                         lang_table[ln].name, ch->pcdata->language[ln] );
                 strcat( buf1, buf );
                 if ( ++col % 3 == 0 )
-                    strcat( buf1, "\r\n" );
+                    strcat( buf1, "\n\r" );
             }
         }
 
         if ( col % 3 != 0 )
-            strcat( buf1, "\r\n" );
+            strcat( buf1, "\n\r" );
 
-        sprintf( buf, "You have %d learning sessions left.\r\n",
+        sprintf( buf, "You have %d learning sessions left.\n\r",
                 ch->pcdata->learn);
         strcat( buf1, buf );
-        sprintf( buf, "Cost of lessons is %d gold coins.\r\n", money );
+        sprintf( buf, "Cost of lessons is %d gold coins.\n\r", money );
         strcat( buf1, buf );
         send_to_char( buf1, ch );
     }
@@ -311,7 +293,7 @@ void do_learn( CHAR_DATA *ch, char *argument )
 
         if ( !IS_AWAKE( ch ) )
         {
-            send_to_char( "In your dreams, or what?\r\n", ch );
+            send_to_char( "In your dreams, or what?\n\r", ch );
             return;
         }
 
@@ -325,42 +307,38 @@ void do_learn( CHAR_DATA *ch, char *argument )
 
         if ( !mob )
         {
-            send_to_char( "You can't do that here.\r\n", ch );
+            send_to_char( "You can't do that here.\n\r", ch );
             return;
         }
 
         if ( ch->pcdata->learn <= 0 )
         {
-            send_to_char( "You have no lessons left.\r\n", ch );
+            send_to_char( "You have no lessons left.\n\r", ch );
             return;
         }
         else if ( money > ch->gold )
         {
-            send_to_char( "You don't have enough money to take lessons.\r\n", ch );
+            send_to_char( "You don't have enough money to take lessons.\n\r", ch );
             return;
         }
 
         if (( ln = lang_lookup( argument ) ) < 0)
         {
-            send_to_char( "That's not a language.\r\n", ch );
+            send_to_char( "That's not a language.\n\r", ch );
             return;
         }
 
         adept = (get_curr_int(ch) * 5);		/* Max learned = int*5 */
 	if ( ch->level < LEVEL_HERO )		/* Max is 95% */
-      {
 		if ( adept > 95 )
 			adept = 95;
-      }
 	else					/* Hero and higher have */
-      {
 		if ( adept > 100 )		/* a MAX of 100% */
 			adept = 100;
-      }
 
         if ( ch->pcdata->language[ln] >= adept )
         {
-            sprintf( buf, "You are already fluent in %s.\r\n",
+            sprintf( buf, "You are already fluent in %s.\n\r",
                 lang_table[ln].name );
             send_to_char( buf, ch );
         }
@@ -464,7 +442,7 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	/* Now find out if we can speak it... */
 	if((chance = ch->pcdata->language[language]) == 0)
 	{
-		sprintf(buf, "You don't know how to speak %s.\r\n", lan_str);
+		sprintf(buf, "You don't know how to speak %s.\n\r", lan_str);
 		send_to_char(buf ,ch);
 		return;
 	}
@@ -472,7 +450,7 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	if(argument[0] == '\0')
 	{
 		buf[0] = '\0';
-		sprintf(buf, "Say WHAT in %s ??\r\n", lan_str);
+		sprintf(buf, "Say WHAT in %s ??\n\r", lan_str);
 		send_to_char(buf ,ch);
 		return;
 	}
@@ -483,7 +461,7 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	if(number_percent( ) <= chance )
 	{
 	   buf[0] = '\0';
-	   sprintf (buf,"In %s, you say '%s'\r\n", lan_str, argument);
+	   sprintf (buf,"In %s, you say '%s'\n\r", lan_str, argument);
 	   send_to_char(buf, ch);
 	   for(och = ch->in_room->people; och != NULL; och = och->next_in_room )
 	   {
@@ -495,13 +473,13 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 		if(number_percent( ) <= chance2)
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In %s, %s says, '%s'\r\n", lan_str, ch->name, argument);
+		   sprintf (buf, "In %s, %s says, '%s'\n\r", lan_str, ch->name, argument);
 		   send_to_char(buf, och);
 		}
 		else
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In %s, %s says something you can't understand.\r\n", lan_str, ch->name);
+		   sprintf (buf, "In %s, %s says something you can't understand.\n\r", lan_str, ch->name);
 		   send_to_char(buf, och);
 		}
              }
@@ -510,7 +488,7 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
 	else
 	{
 	   buf[0] = '\0';
-	   sprintf (buf, "In %s, you try to say '%s', but it doesn't sound correct.\r\n", lan_str, argument);
+	   sprintf (buf, "In %s, you try to say '%s', but it doesn't sound correct.\n\r", lan_str, argument);
 	   send_to_char(buf, ch);
            for(och = ch->in_room->people; och != NULL; och = och->next_in_room )
            {
@@ -522,13 +500,13 @@ void do_language( CHAR_DATA *ch, char *argument, int language)
                 if(number_percent( ) <= chance2)
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In a weird form of %s, %s says something uncomprehensible.\r\n", lan_str, ch->name);
+		   sprintf (buf, "In a weird form of %s, %s says something uncomprehensible.\n\r", lan_str, ch->name);
                    send_to_char(buf, och);
 		}
                 else
 		{
 		   buf[0] = '\0';
-		   sprintf (buf, "In %s, %s says something you can't understand.\r\n", lan_str, ch->name);
+		   sprintf (buf, "In %s, %s says something you can't understand.\n\r", lan_str, ch->name);
 		   send_to_char(buf, och);
 		}
              }

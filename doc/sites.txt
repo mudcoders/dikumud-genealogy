@@ -1,43 +1,26 @@
-EnvyMud Release 2.0
-Monday, 25th December 1994
+MythranMud 3.1.1
+Monday, 21 October 1996
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+This document was written by:
+Kahn            michael@uclink.berkeley.edu
+Hatchet         hatchet@uclink.berkeley.edu
+
+and changed and updated by:
+Maniac		mark@delftnet.nl
+Canth		canth@xs4all.nl
+Staff		mythran@envy.com
+
+for use with MythranMud 3.1.1
 
 
-
-=== Merc-Based Sites
-
-The following muds are based on Merc code.  The implementors of these muds
-add their own changes and features, so don't expect all these muds to look
-alike.  Most of them look VERY different!
-
-To the imps who run these muds ... thanks for sharing your computers with
-us all!
-
-These are the MERC muds we know of:
-
-Dutch Mountains		dm.icce.rug.nl			4000
-Mystic Adventure	miniac.etu.gel.ulaval.ca	4000 mudadmin@gel.ulaval.ca
-Mortal Realms (Pkill)	hydrogen.ee.utulsa.edu		4321
-Mortal Realms		192.216.48.20			4321
-Vego Mud		spotted.alfred.edu		4000 vego@spotted.alfred.edu
-Legend of the Winds	140.113.17.168			4040
-TURF			163.1.245.206			4000 turf.teaching@physics.oxford.ac.uk
-The Final Challenge	mud.primenet.com		4000
-
-These are the ROM Muds we know of:
-Providence of Coranthia	mserv1.wizvax.net		9201 strife@mserv1.wizvax.net
-The Great Hunt		wheel.imaginary.com		4000 rsmith@eclipse.net
-The Labyrnthe		nash.pubnix.net			2000 sneil@pubnix.net
-Endless Nameless	mserv1.wizvax.net		4301
-			199.181.141.3			4301
-Endless Realms		persephone.cs.umsl.edu		9000
-Nevermore		nevermore.mclv.net		4000
+Here are some Mythran Mud sites
+Mythran Mud Development	delftnet.nl			1234 mark@delftnet.nl
+Daisy mud		daisy.goodnet.com		1234 dan@daisy.goodnet.com
+			neworder.cc.uky.edu		1234
 
 These are the ENVY Muds we know of:
+EnvyMud 2 Development	mud.envy.com			1234 michael@uclink.berkeley.edu
 Wild Side		levant.cs.ohiou.edu		1234 stclair@bobcat.ent.ohiou.edu
 Troll Mud		carbon.cudenver.edu		9000 swatkins@ouray.cudenver.edu
-EnvyMud 2.0 Development	206.24.105.9			1234 michael@uclink.berkeley.edu
-Lost World		spock.tacom.army.mil port	4000 ajohnson@spock.tacom.army.mil
+Lost World		spock.tacom.army.mil 		4000 ajohnson@spock.tacom.army.mil
 

@@ -69,7 +69,7 @@ void spell_rock_flesh( int sn, int level, CHAR_DATA *ch, void *vo )
 
         if (!(obj) )     /* Char does not have all reagents */
         {       /* When !obj, the loop was done, and not all was found */
-                send_to_char( "You do not have the required reagents.\r\n", ch );
+                send_to_char( "You do not have the required reagents.\n\r", ch );
 		return;
         }
 
@@ -87,7 +87,7 @@ void spell_rock_flesh( int sn, int level, CHAR_DATA *ch, void *vo )
 	af.bitvector = 0;
 	affect_to_char( victim, &af );
 
-	send_to_char( "Your flesh turns to rock.\r\n", victim );
+	send_to_char( "Your flesh turns to rock.\n\r", victim );
 	act( "$n's flesh turns to rock.", victim, NULL, NULL, TO_ROOM );
 	return;
 }
@@ -114,7 +114,7 @@ void spell_summon_dead( int sn, int level, CHAR_DATA *ch, void *vo )
 	}
 	if (!obj )
 	{
-		send_to_char( "You do not have the required reagents.\r\n", ch );
+		send_to_char( "You do not have the required reagents.\n\r", ch );
 		return;
 	}
 
@@ -131,7 +131,7 @@ void spell_summon_dead( int sn, int level, CHAR_DATA *ch, void *vo )
 	zombie->max_hit = (ch->max_hit /3);	/* give it hp	*/
 	zombie->hit = zombie->max_hit;		/* give it full health	*/
 
-	send_to_char("You call upon the dark powers and summon a dead warrior.\r\n", ch);
+	send_to_char("You call upon the dark powers and summon a dead warrior.\n\r", ch);
 	act( "$n calls upon dark powers to bring back a dead warrior.", ch, NULL, NULL, TO_ROOM );
 	add_follower( zombie, ch);
 	zombie->leader = ch;
@@ -164,7 +164,7 @@ void spell_call_quake( int sn, int level, CHAR_DATA *ch, void *vo )
 	}
 	if (!obj )
 	{
-		send_to_char( "You do not have the required reagents.\r\n", ch );
+		send_to_char( "You do not have the required reagents.\n\r", ch );
 		return;
 	}
         extract_obj(blood);
@@ -172,7 +172,7 @@ void spell_call_quake( int sn, int level, CHAR_DATA *ch, void *vo )
         extract_obj(wood);
 	extract_obj(blackmoor);
 
-	send_to_char( "The earth trembles beneath your feet!\r\n", ch );
+	send_to_char( "The earth trembles beneath your feet!\n\r", ch );
 	act( "$n makes the earth tremble and shiver.", ch, NULL, NULL, TO_ROOM );
 
 	for ( vch = char_list; vch; vch = vch->next )
@@ -187,7 +187,7 @@ void spell_call_quake( int sn, int level, CHAR_DATA *ch, void *vo )
 		}
 
 		if ( vch->in_room->area == ch->in_room->area )
-		send_to_char( "The earth trembles and shivers.\r\n", vch );
+		send_to_char( "The earth trembles and shivers.\n\r", vch );
 	}
 	return;
 }

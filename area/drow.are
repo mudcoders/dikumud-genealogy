@@ -17,7 +17,7 @@ A goblin slave lies here asleep.
 The defenseless goblin begs for mercy.
 ~
 131 0 -450 S
-2 20 0 1d11+11 1d5+0
+1 20 0 1d11+11 1d5+0
 0 0
 0 Goblin~ 1
 #5101
@@ -28,7 +28,7 @@ A drow commoner walks on guard duty.
 I doubt he is the type to give directions.
 ~
 65 8 -1000 S
-9 12 0 1d10+130 12d1+5
+7 12 0 1d10+130 12d1+5
 300 0
 0 Drow~ 1
 #5102
@@ -39,7 +39,7 @@ The drow warrior noble stands here guarding his home.
 He looks pissed off!
 ~
 3 8 -1000 S
-10 9 0 2d20+160 15d1+2
+13 9 0 2d20+160 15d1+2
 1000 0
 0 Drow~ 1
 #5103
@@ -61,7 +61,7 @@ The drow priestess is here shouting orders.
 I wouldn't want go get on her bad side!
 ~
 3 8 -1000 S
-20 5 0 1d11+205 17d1+2
+21 5 0 1d11+205 17d1+2
 4000 0
 0 Drow~ 2
 #5105
@@ -72,7 +72,7 @@ The drow master stares at you angrily.
 The drow master is ALWAYS ready for a fight.
 ~
 3 8 -1000 S
-25 0 0 1d12+248 18d1+4
+22 0 0 1d12+248 18d1+4
 10000 0
 0 Drow~ 1
 #5106
@@ -83,7 +83,7 @@ The drow weapons master is here shadow boxing.
 He definitely knows his way around in combat.
 ~
 3 8 -1000 S
-24 -2 0 23d23+230 1d4+15
+22 -2 0 23d23+230 1d4+15
 15000 0
 0 Drow~ 1
 #5107
@@ -94,7 +94,7 @@ The matron mother of the house is standing here.
 She looks really pissed off!
 ~
 35 8 -1000 S
-25 0 0 1d50+450 15d2+4
+24 0 0 1d50+450 15d2+4
 30000 0
 0 Drow~ 2
 #5108
@@ -105,7 +105,7 @@ The matron mother of the 1st house is waiting for you.
 She looks like she is about to rip your head off and eat it.
 ~
 35 136 -1000 S
-27 0 0 1d50+350 20d2+4
+26 0 0 1d50+350 20d2+4
 30000 0
 0 Drow~ 2
 #5109
@@ -116,7 +116,7 @@ A yochlol forms out of a swirling mist.
 The yochlol is not in a good mood.
 ~
 35 136 -1000 S
-30 0 0 25d2+2200 5d2+35
+29 0 0 25d2+2200 5d2+35
 30000 0
 0 God~ 2
 #5110
@@ -138,7 +138,7 @@ The drow scout is here sneaking among the shadows.
 The drow scout blends so well with her environment, you barely see her form.
 ~
 161 98304 -1000 S
-5 13 0 8d8+80 1d4+3
+3 13 0 8d8+80 1d4+3
 1000 0
 0 Drow~ 2
 #0
@@ -1147,10 +1147,10 @@ S
 
 
 #SPECIALS
-M 5103 spec_cast_mage
-M 5104 spec_cast_cleric
-M 5108 spec_cast_cleric
-M 5109 spec_breath_any
+M 5103 spec_cast_mage 	; the drow mage noble
+M 5104 spec_cast_cleric 	; the drow priestess
+M 5108 spec_cast_cleric 	; the matron mother
+M 5109 spec_breath_any 	; the yochlol
 S
 
 
@@ -1161,63 +1161,63 @@ S
 
 
 #RESETS
-M 0 5106 1 5101
-E 0 5105 0 16
-M 0 5102 1 5104
-E 0 5101 0 16
-M 0 5103 1 5104
-E 0 5102 0 16
-M 0 5104 1 5104
-E 0 5103 0 16
-M 0 5107 1 5105
-E 0 5104 0 16
-E 0 5111 0 6
-M 0 5102 1 5108
-E 0 5101 0 16
-M 0 5103 1 5108
-E 0 5102 0 16
-M 0 5104 1 5108
-E 0 5103 0 16
-M 0 5107 1 5109
-E 0 5104 0 16
-E 0 5108 0 10
-M 0 5102 1 5111
-E 0 5101 0 16
-M 0 5103 1 5111
-E 0 5102 0 16
-M 0 5104 1 5111
-E 0 5103 0 16
-M 0 5108 1 5113
-E 0 5104 0 16
-E 0 5112 0 1
-M 0 5105 1 5116
-E 0 5104 0 16
-E 0 5110 0 17
-M 0 5101 10 5118
-E 0 5100 0 16
-M 0 5105 1 5118
-E 0 5105 0 16
-E 0 5110 0 17
-M 0 5105 1 5120
-E 0 5104 0 16
-E 0 5110 0 17
-M 0 5100 15 5122
-M 0 5102 1 5124
-E 0 5101 0 16
-M 0 5103 1 5124
-E 0 5102 0 16
-M 0 5104 1 5124
-E 0 5103 0 16
-M 0 5107 1 5125
-E 0 5104 0 16
-G 0 5114 0
-M 0 5101 10 5133
-E 0 5100 0 16
-M 0 5109 1 5148
-E 0 5113 0 16
-M 0 5106 1 5150
-E 0 5105 0 16
-E 0 5109 0 9
+M 0 5106  1 5101  	; The weapons master to City street
+E 0 5105  0 16    	;   A black longsword wielded (1)
+M 0 5102  1 5104  	; the drow warrior noble to 3rd House
+E 0 5101  0 16    	;   A noble's longsword wielded (1)
+M 0 5103  1 5104  	; the drow mage noble to 3rd House
+E 0 5102  0 16    	;   A snake headed whip wielded (1)
+M 0 5104  1 5104  	; the drow priestess to 3rd House
+E 0 5103  0 16    	;   A snake headed whip wielded (1)
+M 0 5107  1 5105  	; the matron mother to Throne Room
+E 0 5104  0 16    	;   A snake headed whip wielded (1)
+E 0 5111  0 6     	;   A small helmet over the head
+M 0 5102  1 5108  	; the drow warrior noble to 2nd House
+E 0 5101  0 16    	;   A noble's longsword wielded (1)
+M 0 5103  1 5108  	; the drow mage noble to 2nd House
+E 0 5102  0 16    	;   A snake headed whip wielded (1)
+M 0 5104  1 5108  	; the drow priestess to 2nd House
+E 0 5103  0 16    	;   A snake headed whip wielded (1)
+M 0 5107  1 5109  	; the matron mother to Throne Room
+E 0 5104  0 16    	;   A snake headed whip wielded (1)
+E 0 5108  0 10    	;   A pair of bracers on the arms
+M 0 5102  1 5111  	; the drow warrior noble to 1st House
+E 0 5101  0 16    	;   A noble's longsword wielded (1)
+M 0 5103  1 5111  	; the drow mage noble to 1st House
+E 0 5102  0 16    	;   A snake headed whip wielded (1)
+M 0 5104  1 5111  	; the drow priestess to 1st House
+E 0 5103  0 16    	;   A snake headed whip wielded (1)
+M 0 5108  1 5113  	; the matron mother to Main Chamber
+E 0 5104  0 16    	;   A snake headed whip wielded (1)
+E 0 5112  0 1     	;   A small ruby ring on the left finger
+M 0 5105  1 5116  	; The drow master to Cleric Academy
+E 0 5104  0 16    	;   A snake headed whip wielded (1)
+E 0 5110  0 17    	;   A silvery blue wand held in the hands
+M 0 5101 10 5118  	; the drow commoner to Warrior's Academy
+E 0 5100  0 16    	;   A commoner's longsword wielded (1)
+M 0 5105  1 5118  	; The drow master to Warrior's Academy
+E 0 5105  0 16    	;   A black longsword wielded (1)
+E 0 5110  0 17    	;   A silvery blue wand held in the hands
+M 0 5105  1 5120  	; The drow master to Mage's Academy
+E 0 5104  0 16    	;   A snake headed whip wielded (1)
+E 0 5110  0 17    	;   A silvery blue wand held in the hands
+M 0 5100 15 5122  	; the goblin slave to Slave Chamber
+M 0 5102  1 5124  	; the drow warrior noble to 4th house
+E 0 5101  0 16    	;   A noble's longsword wielded (1)
+M 0 5103  1 5124  	; the drow mage noble to 4th house
+E 0 5102  0 16    	;   A snake headed whip wielded (1)
+M 0 5104  1 5124  	; the drow priestess to 4th house
+E 0 5103  0 16    	;   A snake headed whip wielded (1)
+M 0 5107  1 5125  	; the matron mother to Throne Room
+E 0 5104  0 16    	;   A snake headed whip wielded (1)
+G 0 5114  0      	;   A small bright green hat
+M 0 5101 10 5133  	; the drow commoner to Warrior's Barracks
+E 0 5100  0 16    	;   A commoner's longsword wielded (1)
+M 0 5109  1 5148  	; the yochlol to Dais
+E 0 5113  0 16    	;   A spider shaped dagger wielded (1)
+M 0 5106  1 5150  	; The weapons master to Weaponsmaster's Chamber
+E 0 5105  0 16    	;   A black longsword wielded (1)
+E 0 5109  0 9     	;   A pair of gauntlets on the hands
 S
 
 

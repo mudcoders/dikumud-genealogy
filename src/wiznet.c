@@ -49,6 +49,9 @@ void do_wiznet( CHAR_DATA *ch, char *argument )
 	char	arg[MAX_STRING_LENGTH];
 	char	buf[MAX_STRING_LENGTH];
 
+	if ( ch->desc && ch->desc->original )
+		ch = ch->desc->original;
+
 	buf[0] = '\0';
 
 	one_argument(argument, arg);
@@ -56,9 +59,9 @@ void do_wiznet( CHAR_DATA *ch, char *argument )
 	if (arg[0] == '\0' )
 	{
 		if (IS_SET(ch->pcdata->wiznet, WIZ_ON))
-			strcat (buf, "Wiznet is on.\r\n");
+			strcat (buf, "Wiznet is on.\n\r");
 		else
-			strcat (buf, "Wiznet is off.\r\n");
+			strcat (buf, "Wiznet is off.\n\r");
 		strcat (buf, (WCHAN(ch, WIZ_TICKS) ? "TICKS " : "ticks " ) );
 		strcat (buf, (WCHAN(ch, WIZ_LOGINS) ? "LOGINS " : "logins " ) );
 		strcat (buf, (WCHAN(ch, WIZ_DEATHS) ? "DEATHS " : "deaths " ) );
@@ -67,7 +70,7 @@ void do_wiznet( CHAR_DATA *ch, char *argument )
 		strcat (buf, (WCHAN(ch, WIZ_SACCING) ? "SACCING " : "saccing " ) );
 		strcat (buf, (WCHAN(ch, WIZ_LEVELS) ? "LEVELS " : "levels " ) );
 		strcat (buf, (WCHAN(ch, WIZ_SECURE) ? "SECURE " : "secure " ) );
-		strcat (buf, "\r\n" );		/* Some spacing */
+		strcat (buf, "\n\r" );		/* Some spacing */
 		strcat (buf, (WCHAN(ch, WIZ_SWITCHES) ? "SWITCHES " : "switches " ) );
 		strcat (buf, (WCHAN(ch, WIZ_SNOOPS) ? "SNOOPS " : "snoops " ) );
 		strcat (buf, (WCHAN(ch, WIZ_RESTORE) ? "RESTORE " : "restore " ) );
@@ -76,7 +79,7 @@ void do_wiznet( CHAR_DATA *ch, char *argument )
 		strcat (buf, (WCHAN(ch, WIZ_SPAM) ? "SPAM " : "spam " ) );
 		strcat (buf, (WCHAN(ch, WIZ_CHAT) ? "CHAT " : "chat " ) );
 		strcat (buf, (WCHAN(ch, WIZ_DEBUG) ? "DEBUG" : "debug" ) );
-		strcat (buf, "\r\n" );		/* Finishing line */
+		strcat (buf, "\n\r" );		/* Finishing line */
 		send_to_char (buf, ch );
 		return;
 	}
@@ -84,93 +87,93 @@ void do_wiznet( CHAR_DATA *ch, char *argument )
 	if ( !str_cmp(argument, "on" ) )
 	{
 		SET_BIT(ch->pcdata->wiznet, WIZ_ON );
-		send_to_char ("Welcome to Wiznet.\r\n", ch );
+		send_to_char ("Welcome to Wiznet.\n\r", ch );
 	}
 	else if (!str_cmp (argument, "off" ) )
 	{
 		REMOVE_BIT(ch->pcdata->wiznet, WIZ_ON );
-		send_to_char ("Wiznet is now off.\r\n", ch );
+		send_to_char ("Wiznet is now off.\n\r", ch );
 	}
 	else
 	{
 		if (!str_infix ("tick", argument ) )
 		{
-			send_to_char ("Ticks toggled\r\n", ch );
+			send_to_char ("Ticks toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_TICKS );
 		}
 		if (!str_infix ("login", argument ) )
 		{
-			send_to_char ("Logins toggled\r\n", ch );
+			send_to_char ("Logins toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_LOGINS );
 		}
 		if (!str_infix ("death", argument ) )
 		{
-			send_to_char ("Deaths toggled\r\n", ch );
+			send_to_char ("Deaths toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_DEATHS );
 		}
 		if (!str_infix ("reset", argument ) )
 		{
-			send_to_char ("Resets toggled\r\n", ch );
+			send_to_char ("Resets toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_RESETS );
 		}
 		if (!str_infix ("flag", argument ) )
 		{
-			send_to_char ("Flags toggled\r\n", ch );
+			send_to_char ("Flags toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_FLAGS );
 		}
 		if (!str_infix ("sac", argument ) )
 		{
-			send_to_char ("Saccing toggled\r\n", ch );
+			send_to_char ("Saccing toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_SACCING );
 		}
 		if (!str_infix ("level", argument ) )
 		{
-			send_to_char ("Levels toggled\r\n", ch );
+			send_to_char ("Levels toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_LEVELS );
 		}
 		if (!str_infix ("secure", argument ) )
 		{
-			send_to_char ("Secure toggled\r\n", ch );
+			send_to_char ("Secure toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_SECURE );
 		}
 		if (!str_infix ("switch", argument ) )
 		{
-			send_to_char ("Switches toggled\r\n", ch );
+			send_to_char ("Switches toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_SWITCHES );
 		}
 		if (!str_infix ("snoop", argument ) )
 		{
-			send_to_char ("Snoops toggled\r\n", ch );
+			send_to_char ("Snoops toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_SNOOPS );
 		}
 		if (!str_infix ("resto", argument ) )
 		{
-			send_to_char ("Restores toggled\r\n", ch );
+			send_to_char ("Restores toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_RESTORE );
 		}
 		if (!str_infix ("load", argument ) )
 		{
-			send_to_char ("Loading toggled\r\n", ch );
+			send_to_char ("Loading toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_LOAD );
 		}
 		if (!str_infix ("newb", argument ) )
 		{
-			send_to_char ("Newbies toggled\r\n", ch );
+			send_to_char ("Newbies toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_NEWBIE );
 		}
 		if (!str_infix ("spam", argument ) )
 		{
-			send_to_char ("Spamming toggled\r\n", ch );
+			send_to_char ("Spamming toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_SPAM );
 		}
 		if (!str_infix ("chat", argument ) )
 		{
-			send_to_char ("Wiznet chat toggled\r\n", ch );
+			send_to_char ("Wiznet chat toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_CHAT );
 		}
 		if (!str_infix ("debug", argument ) )
 		{
-			send_to_char ("Wiznet debug info toggled\r\n", ch );
+			send_to_char ("Wiznet debug info toggled\n\r", ch );
 			TOGGLE_BIT( ch->pcdata->wiznet, WIZ_DEBUG );
 		}
 	}
@@ -235,12 +238,13 @@ void wiznet( CHAR_DATA *ch, int chan, int level, char * string )
 			break;
 	}
 	strcat (buf, string );
-	strcat (buf, "\r\n" );
+	strcat (buf, "\n\r" );
 
 	for ( d = descriptor_list; d != NULL; d = d->next )
 	{
 		if (d->connected == CON_PLAYING		/* Playing ??? */
-		&&  (get_trust(d->character) >= level)	/* Powerfull enuf */
+		&& (!d->original)			/* Fix ???? */
+		&& (get_trust(d->character) >= level)	/* Powerfull enuf */
 		&& (d->character != ch )		/* Not the sender */
 		&& (WCHAN(d->character, WIZ_ON ) )	/* Is wiznet on */
 		&& (WCHAN(d->character, chan ) ) )	/* Is this chan on */

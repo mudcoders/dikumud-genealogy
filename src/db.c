@@ -21,12 +21,25 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined( macintosh )
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+
+#if !defined( macintosh )
+extern  int     _filbuf	        args( (FILE *) );
+#endif
+
+#if !defined( ultrix ) && !defined( apollo ) && !defined( sun )
+#include <memory.h>
+#endif
 
 /*
  * Globals.
@@ -125,14 +138,11 @@ int                     gsn_vampiric_bite;
 MOB_INDEX_DATA *	mob_index_hash	        [ MAX_KEY_HASH       ];
 OBJ_INDEX_DATA *	obj_index_hash	        [ MAX_KEY_HASH       ];
 ROOM_INDEX_DATA *	room_index_hash		[ MAX_KEY_HASH	     ];
-char *			string_hash	        [ MAX_KEY_HASH       ];
 
 AREA_DATA *		area_first;
 AREA_DATA *		area_last;
 
-char *			string_space;
-char *			top_string;
-char			str_empty	        [ 1                  ];
+extern	char		str_empty		[ 1			];
 
 int			top_affect;
 int			top_area;
@@ -163,9 +173,20 @@ void   		mprog_read_programs     args ( ( FILE* fp,
  * Memory management.
  * Increase MAX_STRING from 1500000 if you have too.
  * Tune the others only if you understand what you're doing.
+ * MAX_STRING is now in ssm.c
  */
-#define			MAX_STRING      1600000
+extern int		MAX_STRING;
 
+#if defined( macintosh )
+#define			MAX_PERM_BLOCK  131072
+#define			MAX_MEM_LIST    14
+
+void *			rgFreeList              [ MAX_MEM_LIST       ];
+const int		rgSizeList              [ MAX_MEM_LIST       ]  =
+{
+	4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768-64
+};
+#else
 #define			MAX_PERM_BLOCK  131072
 #define			MAX_MEM_LIST    12
 
@@ -174,9 +195,13 @@ const int		rgSizeList              [ MAX_MEM_LIST       ]  =
 {
     16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536
 };
+#endif
 
-int			nAllocString;
-int			sAllocString;
+extern int		nAllocString;
+extern int		sAllocString;
+extern int		nOverFlowString;
+extern int		sOverFlowString;
+extern bool		Full;
 int			nAllocPerm;
 int			sAllocPerm;
 
@@ -189,7 +214,9 @@ bool			fBootDb;
 FILE *			fpArea;
 char			strArea                 [ MAX_INPUT_LENGTH   ];
 
-
+void    init_string_space( void );
+void    boot_done( );
+char *  daPrompt;
 
 /*
  * Local booting procedures.
@@ -232,12 +259,7 @@ void boot_db( void )
      */
     log_string ("Booting database...");
     {
-	if ( !( string_space = calloc( 1, MAX_STRING ) ) )
-	{
-	    bug( "Boot_db: can't alloc %d string space.", MAX_STRING );
-	    exit( 1 );
-	}
-	top_string	= string_space;
+        init_string_space( );
 	fBootDb		= TRUE;
     }
 
@@ -416,6 +438,8 @@ void boot_db( void )
         log_string ("Fixing exits...");
 	fix_exits( );
 	fBootDb = FALSE;
+	daPrompt = str_dup( "<%hhp %mm %vmv> " );
+	boot_done( );
         log_string ("Updating areas...");
 	area_update( );
         log_string ("Loading notes...");
@@ -428,6 +452,7 @@ void boot_db( void )
 	load_bank( );
         log_string ("Loading downtime");
 	load_down_time( );
+	pulse_db_dump = PULSE_DB_DUMP;
 	MOBtrigger = TRUE;
     }
 
@@ -577,12 +602,10 @@ void assign_area_vnum( int vnum )
     if ( area_last->lvnum == 0 || area_last->uvnum == 0 )
         area_last->lvnum = area_last->uvnum = vnum;
     if ( vnum != URANGE( area_last->lvnum, vnum, area_last->uvnum ) )
-    {
         if ( vnum < area_last->lvnum )
             area_last->lvnum = vnum;
         else
             area_last->uvnum = vnum;
-    }
     return;
 }
 
@@ -1767,7 +1790,7 @@ void area_update( void )
 		    && pch->in_room
 		    && pch->in_room->area == pArea )
 		{
-		    send_to_char( "You hear the patter of little feet.\r\n",
+		    send_to_char( "You hear the patter of little feet.\n\r",
 			pch );
 		}
 	    }
@@ -2072,10 +2095,10 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
     clear_char( mob );
     mob->pIndexData     = pMobIndex;
 
-    mob->name           = str_dup( pMobIndex->player_name );    /* OLC */
-    mob->short_descr    = str_dup( pMobIndex->short_descr );    /* OLC */
-    mob->long_descr     = str_dup( pMobIndex->long_descr );     /* OLC */
-    mob->description    = str_dup( pMobIndex->description );    /* OLC */
+    mob->name           = str_dup( pMobIndex->player_name );
+    mob->short_descr    = str_dup( pMobIndex->short_descr );
+    mob->long_descr     = str_dup( pMobIndex->long_descr  );
+    mob->description    = str_dup( pMobIndex->description );
     mob->spec_fun	= pMobIndex->spec_fun;
     mob->game_fun	= pMobIndex->game_fun;
 
@@ -2147,9 +2170,9 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->level		= level;
     obj->wear_loc	= -1;
 
-    obj->name           = str_dup( pObjIndex->name );           /* OLC */
-    obj->short_descr    = str_dup( pObjIndex->short_descr );    /* OLC */
-    obj->description    = str_dup( pObjIndex->description );    /* OLC */
+    obj->name           = str_dup( pObjIndex->name        );
+    obj->short_descr    = str_dup( pObjIndex->short_descr );
+    obj->description    = str_dup( pObjIndex->description );
     obj->item_type	= pObjIndex->item_type;
     obj->extra_flags	= pObjIndex->extra_flags;
     obj->wear_flags	= pObjIndex->wear_flags;
@@ -2243,7 +2266,6 @@ void clear_char( CHAR_DATA *ch )
     ch->level                   = 0;
     ch->race                    = 0;
     ch->practice		= 21;
-    ch->balance			= 0;
     ch->hit			= 20;
     ch->max_hit			= 20;
     ch->mana			= 100;
@@ -2478,117 +2500,6 @@ int fread_number( FILE *fp )
 
 
 /*
- * Read and allocate space for a string from a file.
- * These strings are read-only and shared.
- * Strings are hashed:
- *   each string prepended with hash pointer to prev string,
- *   hash code is simply the string length.
- * This function takes 40% to 50% of boot-up time.
- */
-char *fread_string( FILE *fp )
-{
-    char *plast;
-    char  c;
-
-    plast = top_string + sizeof( char * );
-    if ( plast > &string_space [ MAX_STRING - MAX_STRING_LENGTH ] )
-    {
-	bug( "Fread_string: MAX_STRING %d exceeded.", MAX_STRING );
-	exit( 1 );
-    }
-
-    /*
-     * Skip blanks.
-     * Read first char.
-     */
-    do
-    {
-	c = getc( fp );
-    }
-    while ( isspace( c ) );
-
-    if ( ( *plast++ = c ) == '~' )
-	return &str_empty[0];
-
-    for ( ;; )
-    {
-	/*
-	 * Back off the char type lookup,
-	 *   it was too dirty for portability.
-	 *   -- Furey
-	 */
-	switch ( *plast = getc( fp ) )
-	{
-	default:
-	    plast++;
-	    break;
-
-	case EOF:
-	    bug( "Fread_string: EOF", 0 );
-	    exit( 1 );
-	    break;
-
-	case '\n':
-	    plast++;
-	    *plast++ = '\r';
-	    break;
-
-	case '\r':
-	    break;
-
-	case '~':
-	    plast++;
-	    {
-		union
-		{
-		    char *	pc;
-		    char	rgc[sizeof( char * )];
-		} u1;
-		int ic;
-		int iHash;
-		char *pHash;
-		char *pHashPrev;
-		char *pString;
-
-		plast[-1] = '\0';
-		iHash     = UMIN( MAX_KEY_HASH - 1, plast - 1 - top_string );
-		for ( pHash = string_hash[iHash]; pHash; pHash = pHashPrev )
-		{
-		    for ( ic = 0; ic < sizeof( char * ); ic++ )
-			u1.rgc[ic] = pHash[ic];
-		    pHashPrev = u1.pc;
-		    pHash    += sizeof(char *);
-
-		    if ( top_string[sizeof( char * )] == pHash[0]
-			&& !strcmp( top_string+sizeof( char * )+1, pHash+1 ) )
-			return pHash;
-		}
-
-		if ( fBootDb )
-		{
-		    pString             = top_string;
-		    top_string		= plast;
-		    u1.pc		= string_hash[iHash];
-		    for ( ic = 0; ic < sizeof( char * ); ic++ )
-			pString[ic] = u1.rgc[ic];
-		    string_hash[iHash]  = pString;
-
-		    nAllocString += 1;
-		    sAllocString += top_string - pString;
-		    return pString + sizeof( char * );
-		}
-		else
-		{
-		    return str_dup( top_string + sizeof( char * ) );
-		}
-	    }
-	}
-    }
-}
-
-
-
-/*
  * Read to end of line (for comments).
  */
 void fread_to_eol( FILE *fp )
@@ -2760,45 +2671,6 @@ void *alloc_perm( int sMem )
 
 
 
-/*
- * Duplicate a string into dynamic memory.
- * Fread_strings are read-only and shared.
- */
-char *str_dup( const char *str )
-{
-    char *str_new;
-
-    if ( str[0] == '\0' )
-	return &str_empty[0];
-
-    if ( str >= string_space && str < top_string )
-	return (char *) str;
-
-    str_new = alloc_mem( strlen(str) + 1 );
-    strcpy( str_new, str );
-    return str_new;
-}
-
-
-
-/*
- * Free a string.
- * Null is legal here to simplify callers.
- * Read-only shared strings are not touched.
- */
-void free_string( char *pstr )
-{
-    if (  !pstr
-	|| pstr == &str_empty[0]
-	|| ( pstr >= string_space && pstr < top_string ) )
-	return;
-
-    free_mem( pstr, strlen( pstr ) + 1 );
-    return;
-}
-
-
-
 void do_areas( CHAR_DATA *ch, char *argument )
 {
     AREA_DATA *pArea1;
@@ -2818,7 +2690,7 @@ void do_areas( CHAR_DATA *ch, char *argument )
 
     for ( iArea = 0; iArea < iAreaHalf; iArea++ )
     {
-	sprintf( buf, "%-39s%-39s\r\n", pArea1->name,
+	sprintf( buf, "%-39s%-39s\n\r", pArea1->name,
 		( pArea2 ) ? pArea2->name : "" );
 	strcat( buf1, buf );
 	pArea1 = pArea1->next;
@@ -2842,24 +2714,34 @@ void do_memory( CHAR_DATA *ch, char *argument )
     if ( !authorized( rch, "memory" ) )
         return;
 
-    sprintf( buf, "Affects %5d\r\n", top_affect    ); send_to_char( buf, ch );
-    sprintf( buf, "Areas   %5d\r\n", top_area      ); send_to_char( buf, ch );
-    sprintf( buf, "ExDes   %5d\r\n", top_ed        ); send_to_char( buf, ch );
-    sprintf( buf, "Exits   %5d\r\n", top_exit      ); send_to_char( buf, ch );
-    sprintf( buf, "Helps   %5d\r\n", top_help      ); send_to_char( buf, ch );
-    sprintf( buf, "Mobs    %5d\r\n", top_mob_index ); send_to_char( buf, ch );
-    sprintf( buf, "Objs    %5d\r\n", top_obj_index ); send_to_char( buf, ch );
-    sprintf( buf, "Resets  %5d\r\n", top_reset     ); send_to_char( buf, ch );
-    sprintf( buf, "Rooms   %5d\r\n", top_room      ); send_to_char( buf, ch );
-    sprintf( buf, "Shops   %5d\r\n", top_shop      ); send_to_char( buf, ch );
+    sprintf( buf, "Affects %5d\n\r", top_affect    ); send_to_char( buf, ch );
+    sprintf( buf, "Areas   %5d\n\r", top_area      ); send_to_char( buf, ch );
+    sprintf( buf, "ExDes   %5d\n\r", top_ed        ); send_to_char( buf, ch );
+    sprintf( buf, "Exits   %5d\n\r", top_exit      ); send_to_char( buf, ch );
+    sprintf( buf, "Helps   %5d\n\r", top_help      ); send_to_char( buf, ch );
+    sprintf( buf, "Mobs    %5d\n\r", top_mob_index ); send_to_char( buf, ch );
+    sprintf( buf, "Objs    %5d\n\r", top_obj_index ); send_to_char( buf, ch );
+    sprintf( buf, "Resets  %5d\n\r", top_reset     ); send_to_char( buf, ch );
+    sprintf( buf, "Rooms   %5d\n\r", top_room      ); send_to_char( buf, ch );
+    sprintf( buf, "Shops   %5d\n\r", top_shop      ); send_to_char( buf, ch );
 
-    sprintf( buf, "Strings %5d strings of %7d bytes (max %d).\r\n",
-	    nAllocString, sAllocString, MAX_STRING );
-    send_to_char( buf, ch );
-
-    sprintf( buf, "Perms   %5d blocks  of %7d bytes.\r\n",
+    sprintf( buf, "Perms   %5d blocks  of %7d bytes.\n\r\n\r",
 	    nAllocPerm, sAllocPerm );
     send_to_char( buf, ch );
+
+    sprintf( buf, "Shared String Info:\n\r\n\r" );
+    send_to_char( buf, ch );
+    sprintf( buf, "Shared Strings   %5d strings of %7d bytes (max %d).\n\r",
+	    nAllocString, sAllocString, MAX_STRING );
+    send_to_char( buf, ch );
+    sprintf( buf, "Overflow Strings %5d strings of %7d bytes.\n\r",
+	    nOverFlowString, sOverFlowString );
+    send_to_char( buf, ch );
+    if ( Full )
+    {
+	sprintf( buf, "Shared String Heap is full, increase MAX_STRING.\n\r" );
+	send_to_char( buf, ch );
+    }
 
     return;
 }
@@ -3051,21 +2933,12 @@ void smash_tilde( char *str )
  */
 bool str_cmp( const char *astr, const char *bstr )
 {
-    if ( !astr )
-    {
-	bug( "Str_cmp: null astr.", 0 );
+    if ( astr == NULL || bstr == NULL )
 	return TRUE;
-    }
-
-    if ( !bstr )
-    {
-	bug( "Str_cmp: null bstr.", 0 );
-	return TRUE;
-    }
 
     for ( ; *astr || *bstr; astr++, bstr++ )
     {
-	if ( LOWER( *astr ) != LOWER( *bstr ) )
+	if ( LOWER(*astr) != LOWER(*bstr) )
 	    return TRUE;
     }
 
@@ -3184,7 +3057,7 @@ void append_file( CHAR_DATA *ch, char *file, char *str )
     if ( !( fp = fopen( file, "a" ) ) )
     {
 	perror( file );
-	send_to_char( "Could not open the file!\r\n", ch );
+	send_to_char( "Could not open the file!\n\r", ch );
     }
     else
     {
@@ -3280,7 +3153,7 @@ void do_area_count( CHAR_DATA *ch, char *argument )
     buf1[0] = '\0';
     for ( iArea = 0; iArea < top_area -1; iArea++ )
     {
-        sprintf( buf, "%-40s players: %d\tage:%d\r\n", pArea->name, pArea->nplayer, pArea->age);
+        sprintf( buf, "%-40s players: %d\tage:%d\n\r", pArea->name, pArea->nplayer, pArea->age);
         strcat( buf1, buf );
         pArea = pArea->next;
     }
